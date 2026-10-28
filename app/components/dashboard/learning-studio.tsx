@@ -72,18 +72,15 @@ export function LearningStudio({ role }: { role: string }) {
   const [tutorMessages, setTutorMessages] = useState<TutorMessage[]>([]);
 
   // Completed Lessons Set
-  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    const saved = localStorage.getItem("careertwin-completed-lessons");
-    if (saved) {
-      try {
-        setCompletedLessons(JSON.parse(saved) as Record<string, boolean>);
-      } catch {
-        // ignore
-      }
+  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>(() => {
+    if (typeof window === "undefined") return {};
+    try {
+      const saved = localStorage.getItem("careertwin-completed-lessons");
+      return saved ? (JSON.parse(saved) as Record<string, boolean>) : {};
+    } catch {
+      return {};
     }
-  }, []);
+  });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -442,6 +439,13 @@ export function LearningStudio({ role }: { role: string }) {
               ))}
             </div>
           </div>
+        </section>
+      )}
+
+      {loadingLesson && (
+        <section className="flex items-center gap-3 rounded-[26px] border border-ink/10 bg-white p-6 text-sm font-semibold text-slate shadow-sm">
+          <div className="size-4 animate-spin rounded-full border-2 border-accent border-t-transparent" />
+          <span>Preparing interactive lesson guide, practice lab, and assessment checks…</span>
         </section>
       )}
 
