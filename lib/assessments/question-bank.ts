@@ -1,0 +1,31 @@
+import "server-only";
+
+export type AssessmentQuestion = {
+  id: string;
+  roles: string[];
+  skill: string;
+  difficulty: "foundation" | "intermediate";
+  prompt: string;
+  options: Array<{ id: string; text: string }>;
+  correctOptionId: string;
+  explanation: string;
+};
+
+export const assessmentQuestionBank: AssessmentQuestion[] = [
+  { id: "web-semantic-1", roles: ["Frontend Developer", "Software Engineer"], skill: "Semantic HTML", difficulty: "foundation", prompt: "Which element should normally contain a page's primary navigation links?", options: [{ id: "a", text: "<nav>" }, { id: "b", text: "<div role='presentation'>" }, { id: "c", text: "<section>" }, { id: "d", text: "<span>" }], correctOptionId: "a", explanation: "The nav element identifies a major navigation region and gives assistive technology useful structure." },
+  { id: "web-accessibility-1", roles: ["Frontend Developer", "Software Engineer"], skill: "Accessibility", difficulty: "intermediate", prompt: "A custom dialog opens from a button. What is the most important keyboard behavior?", options: [{ id: "a", text: "Animate the dialog for at least one second" }, { id: "b", text: "Move focus into it, contain focus while open, and restore focus when closed" }, { id: "c", text: "Remove every visible outline" }, { id: "d", text: "Require a mouse click to close it" }], correctOptionId: "b", explanation: "Predictable focus management makes modal content operable for keyboard and assistive-technology users." },
+  { id: "sql-join-1", roles: ["Data Analyst", "Backend Developer", "Software Engineer"], skill: "SQL", difficulty: "foundation", prompt: "Which join keeps every row from the left table and matching rows from the right table?", options: [{ id: "a", text: "INNER JOIN" }, { id: "b", text: "CROSS JOIN" }, { id: "c", text: "LEFT JOIN" }, { id: "d", text: "SELF JOIN" }], correctOptionId: "c", explanation: "A LEFT JOIN preserves all rows from the left input and fills unmatched right-side columns with null values." },
+  { id: "data-quality-1", roles: ["Data Analyst", "AI/ML Engineer"], skill: "Data cleaning", difficulty: "intermediate", prompt: "Before removing duplicate customer records, what should you establish first?", options: [{ id: "a", text: "A documented identity rule and the intended unit of analysis" }, { id: "b", text: "The chart colour palette" }, { id: "c", text: "That every duplicate row is an error" }, { id: "d", text: "A higher model learning rate" }], correctOptionId: "a", explanation: "Duplicates are defined relative to an entity and analysis goal; removing rows without that rule can destroy valid observations." },
+  { id: "security-least-privilege-1", roles: ["Cybersecurity Analyst", "Cloud Engineer", "Backend Developer"], skill: "Identity and access", difficulty: "foundation", prompt: "Which access-control choice best follows least privilege?", options: [{ id: "a", text: "Give every developer permanent administrator access" }, { id: "b", text: "Grant only required permissions for the required period" }, { id: "c", text: "Share one powerful account across the team" }, { id: "d", text: "Disable audit logging" }], correctOptionId: "b", explanation: "Least privilege limits permissions and duration to what the task genuinely requires." },
+  { id: "security-incident-1", roles: ["Cybersecurity Analyst", "Cloud Engineer"], skill: "Incident response", difficulty: "intermediate", prompt: "An alert suggests a cloud credential was exposed. What should happen before deleting all logs?", options: [{ id: "a", text: "Preserve relevant evidence and follow the incident-response process" }, { id: "b", text: "Publish the credential in a team chat" }, { id: "c", text: "Ignore the alert until the next audit" }, { id: "d", text: "Turn off monitoring" }], correctOptionId: "a", explanation: "Evidence preservation and a controlled response support containment, investigation, and accountable recovery." },
+  { id: "ml-evaluation-1", roles: ["AI/ML Engineer", "Data Analyst"], skill: "Model evaluation", difficulty: "foundation", prompt: "Why is a separate test set used in model evaluation?", options: [{ id: "a", text: "To estimate performance on data not used to fit or tune the model" }, { id: "b", text: "To guarantee production accuracy" }, { id: "c", text: "To remove the need for monitoring" }, { id: "d", text: "To maximize training-set memorization" }], correctOptionId: "a", explanation: "A held-out test set provides a less biased estimate of generalization, but does not guarantee future production performance." },
+  { id: "api-auth-1", roles: ["Backend Developer", "Software Engineer", "Cloud Engineer"], skill: "Authentication and authorization", difficulty: "intermediate", prompt: "An authenticated API request asks for another user's private record. What must the server verify?", options: [{ id: "a", text: "Only that the record ID exists" }, { id: "b", text: "That the caller owns the record or has explicit authorization" }, { id: "c", text: "That the browser hid the URL" }, { id: "d", text: "That JavaScript validation passed" }], correctOptionId: "b", explanation: "Authentication identifies the caller; authorization must still enforce ownership or an allowed permission server-side." },
+  { id: "general-evidence-1", roles: ["*"], skill: "Evidence and communication", difficulty: "foundation", prompt: "Which statement is the strongest skill evidence?", options: [{ id: "a", text: "I am excellent at everything" }, { id: "b", text: "I listed the skill on my resume" }, { id: "c", text: "I completed a specific task, can show the artifact, and can explain the decisions" }, { id: "d", text: "A tool predicted I am job-ready" }], correctOptionId: "c", explanation: "Specific, reviewable work plus an explanation is stronger evidence than an unsupported claim or automated prediction." },
+];
+
+export function questionsForRole(role: string, limit = 5) {
+  const roleSpecific = assessmentQuestionBank.filter((question) => question.roles.includes(role));
+  const general = assessmentQuestionBank.filter((question) => question.roles.includes("*"));
+  const fallback = assessmentQuestionBank.filter((question) => !question.roles.includes("*") && !roleSpecific.includes(question));
+  return [...roleSpecific, ...general, ...fallback].slice(0, limit);
+}
