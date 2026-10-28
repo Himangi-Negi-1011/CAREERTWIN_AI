@@ -71,6 +71,115 @@ a { color: inherit; text-decoration: none; }
 .surface-card { border: 1px solid rgb(24 48 52 / .09); background: rgb(255 255 255 / .82); box-shadow: 0 18px 50px rgb(24 48 52 / .055), inset 0 1px 0 rgb(255 255 255 / .72); backdrop-filter: blur(12px); }
 .subtle-grid { background-image: linear-gradient(rgb(24 48 52 / .035) 1px, transparent 1px), linear-gradient(90deg, rgb(24 48 52 / .035) 1px, transparent 1px); background-size: 32px 32px; }
 
+/* OBLO-inspired public experience: electric color, strict grid, condensed display type. */
+.oblo-page { --oblo-blue: #0757ee; --oblo-navy: #061b57; --oblo-yellow: #ffed2f; }
+.oblo-page h1,
+.oblo-page h2,
+.oblo-page h3 { font-family: Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Narrow", sans-serif; font-stretch: condensed; }
+.oblo-grid {
+  background-image: linear-gradient(90deg, rgb(255 255 255 / .11) 1px, transparent 1px);
+  background-size: clamp(92px, 10vw, 160px) 100%;
+}
+.oblo-grid::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background-image: linear-gradient(rgb(255 255 255 / .045) 1px, transparent 1px);
+  background-size: 100% 96px;
+}
+.oblo-visual img { filter: saturate(1.08) contrast(1.02); }
+.oblo-cta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  padding: .9rem 1.25rem;
+  font-family: var(--font-geist-mono);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.oblo-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 0 rgb(6 27 87 / .2); }
+.oblo-kicker { color: #0757ee; font-family: var(--font-geist-mono); font-size: 10px; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+
+/* Auralis-inspired public experience: dark immersive space, restrained orange signal. */
+.auralis-page { font-family: Arial, Helvetica, sans-serif; }
+.auralis-page h1,
+.auralis-page h2,
+.auralis-page h3 { text-wrap: balance; }
+.auralis-glow {
+  background:
+    radial-gradient(circle at 50% 26%, rgb(39 49 92 / .22), transparent 38%),
+    radial-gradient(circle at 78% 10%, rgb(255 117 66 / .07), transparent 24%);
+}
+.auralis-scene::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background-image: linear-gradient(rgb(255 255 255 / .025) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.auralis-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  border-radius: 999px;
+  padding: .8rem 1.15rem;
+  font-family: var(--font-geist-mono);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+.auralis-button:hover { transform: translateY(-2px); }
+.auralis-kicker { color: #ff7542; font-family: var(--font-geist-mono); font-size: 8px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+
+/* Aura Assistant-inspired public experience: calm AI product clarity and tactile UI. */
+.assistant-page { color-scheme: light; }
+.assistant-hero {
+  background-image:
+    radial-gradient(circle at 77% 45%, rgb(88 151 255 / .18), transparent 27%),
+    radial-gradient(circle at 44% 105%, rgb(130 176 255 / .12), transparent 30%);
+}
+.assistant-highlight {
+  display: inline-block;
+  border-radius: .18em;
+  background: linear-gradient(135deg, #4a91ff, #2867ec);
+  padding: .03em .12em .08em;
+  color: white;
+  box-shadow: 0 14px 32px rgb(47 114 255 / .22), inset 0 1px 0 rgb(255 255 255 / .34);
+}
+.assistant-primary,
+.assistant-secondary {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  border-radius: 999px;
+  padding: .8rem 1.25rem;
+  font-size: .75rem;
+  font-weight: 750;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.assistant-primary { background: #2f72ff; color: white; box-shadow: 0 10px 24px rgb(47 114 255 / .22); }
+.assistant-primary:hover { transform: translateY(-2px); background: #2164ec; box-shadow: 0 15px 32px rgb(47 114 255 / .27); }
+.assistant-secondary { border: 1px solid #d9e3f3; background: rgb(255 255 255 / .7); color: #53617b; }
+.assistant-secondary:hover { transform: translateY(-2px); background: white; }
+.assistant-kicker { color: #2f72ff; font-family: var(--font-geist-mono); font-size: 9px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.assistant-cta {
+  background-image: radial-gradient(circle at 85% 15%, rgb(88 151 255 / .17), transparent 30%);
+}
+
 /* Aura-inspired dashboard treatment: quiet depth, precise borders, and useful motion. */
 .career-dashboard main article[class*="bg-white"],
 .career-dashboard main section[class*="bg-white"],

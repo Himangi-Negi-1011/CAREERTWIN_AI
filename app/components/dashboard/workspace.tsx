@@ -23,7 +23,6 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -50,10 +49,7 @@ function ModuleLoading() {
   );
 }
 
-const SkillEvidence = dynamic(
-  () => import("./skill-evidence").then((module) => module.SkillEvidence),
-  { loading: ModuleLoading },
-);
+import { SkillEvidence } from "./skill-evidence";
 
 
 type View = "overview" | "intelligence" | "skills" | "roadmap" | "learning" | "interviews" | "documents" | "progress" | "settings";
