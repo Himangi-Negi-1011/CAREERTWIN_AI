@@ -10,9 +10,6 @@ import {
   Sparkles,
   ArrowLeft,
   Search,
-  Database,
-  FileCode,
-  GraduationCap,
 } from "lucide-react";
 
 interface AdminSkill {
@@ -50,6 +47,27 @@ export default function AdminLibraryPage() {
   const [busySkill, setBusySkill] = useState<string | null>(null);
   const [globalGenerating, setGlobalGenerating] = useState(false);
 
+  useEffect(() => {
+    let active = true;
+    void (async () => {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/admin/library");
+        if (res.ok && active) {
+          const json = await res.json();
+          setData(json.data);
+        }
+      } catch {
+        if (active) setActionMessage("Failed to load library statistics.");
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, []);
+
   async function loadStats() {
     setLoading(true);
     try {
@@ -64,10 +82,6 @@ export default function AdminLibraryPage() {
       setLoading(false);
     }
   }
-
-  useEffect(() => {
-    loadStats();
-  }, []);
 
   async function handleGenerateAll() {
     setGlobalGenerating(true);

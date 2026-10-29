@@ -7,7 +7,6 @@ import {
   sanitizeMockTestForStudent,
   gradeMockTest,
   mockTestDocumentSchema,
-  type MockTestDocument,
 } from "@/lib/learning/mock-test-schema";
 import {
   getMockTest,
@@ -39,8 +38,8 @@ describe("Mock Test System & Persistence", () => {
     const sanitized = sanitizeMockTestForStudent(testDoc);
 
     for (const q of sanitized.questions) {
-      expect((q as any).correctOptionIds).toBeUndefined();
-      expect((q as any).explanation).toBeUndefined();
+      expect((q as Record<string, unknown>).correctOptionIds).toBeUndefined();
+      expect((q as Record<string, unknown>).explanation).toBeUndefined();
       expect(q.prompt).toBeTruthy();
       expect(q.options.length).toBeGreaterThanOrEqual(2);
     }

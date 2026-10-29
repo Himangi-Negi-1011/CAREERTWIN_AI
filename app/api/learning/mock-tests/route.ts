@@ -46,8 +46,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const session = await auth();
-    const userId = session?.userId || "guest";
+    await auth();
 
     const body = await request.json();
     const { skillName, level = "beginner", count = 3 } = body;

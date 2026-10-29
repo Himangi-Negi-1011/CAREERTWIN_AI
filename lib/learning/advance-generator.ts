@@ -2,7 +2,6 @@ import { seededSkills, findCanonicalSkill, skillSlug } from "./catalog";
 import {
   buildDeterministicCurriculum,
   extractPlannedLessons,
-  type PlannedLesson,
 } from "./course-engine";
 import { buildDeterministicLesson } from "./lesson-service";
 import { assertLessonIntegrity, type LessonDocument } from "./lesson-schema";
@@ -10,10 +9,8 @@ import { assertCurriculumIntegrity, type Curriculum } from "./schema";
 import {
   saveCurriculum,
   findCurriculumBySkill,
-  getCurriculumById,
   saveLesson,
   listLessonsForCurriculum,
-  getLesson,
   listMockTestsForSkill,
   listAllCurricula,
   listAllLessons,

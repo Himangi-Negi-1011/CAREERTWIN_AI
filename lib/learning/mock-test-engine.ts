@@ -3,7 +3,7 @@ import {
   type MockTestQuestion,
   mockTestDocumentSchema,
 } from "./mock-test-schema";
-import { saveMockTest, getMockTest, listMockTestsForSkill } from "./repository";
+import { saveMockTest, listMockTestsForSkill } from "./repository";
 import { skillSlug } from "./catalog";
 
 interface QuestionSeed {
@@ -21,7 +21,8 @@ interface QuestionSeed {
 /**
  * Skill-specific templates for realistic, high-quality technical questions
  */
-function getDomainQuestions(skillName: string, level: string): QuestionSeed[] {
+function getDomainQuestions(skillName: string, level?: string): QuestionSeed[] {
+  void level;
   const norm = skillName.toLowerCase();
 
   // Python Questions

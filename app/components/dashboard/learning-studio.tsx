@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  AlertCircle,
   ArrowLeft,
   Award,
   BookOpen,
@@ -22,7 +21,7 @@ import {
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
-import { FormEvent, useEffect, useState, useCallback } from "react";
+import { FormEvent, useEffect, useState, useCallback, useRef } from "react";
 import { gradeKnowledgeChecks, type LessonDocument, type GradedKnowledgeCheck } from "@/lib/learning/lesson-schema";
 
 type SkillResult = { id: string; canonicalName: string; domain: string; description: string; difficulty: string; reviewStatus: string };
@@ -360,7 +359,7 @@ export function LearningStudio({ role }: { role: string }) {
     }
   }
 
-  const loadMockTests = useCallback(async (skillName: string, selectedLevel: string) => {
+  async function loadMockTests(skillName: string, selectedLevel: string) {
     setLoadingMockTests(true);
     try {
       const res = await fetch(`/api/learning/mock-tests?skill=${encodeURIComponent(skillName)}&level=${selectedLevel}`);
@@ -373,7 +372,7 @@ export function LearningStudio({ role }: { role: string }) {
     } finally {
       setLoadingMockTests(false);
     }
-  }, []);
+  }
 
   function handleSelectMockOption(questionId: string, optionId: string, isMulti: boolean) {
     setMockAnswers((prev) => {
@@ -410,6 +409,9 @@ export function LearningStudio({ role }: { role: string }) {
     }
   }
 
+  const handleMockSubmitRef = useRef(handleMockSubmit);
+  handleMockSubmitRef.current = handleMockSubmit;
+
   // Timer countdown for active mock test
   useEffect(() => {
     if (!activeMockTest || mockReport) return;
@@ -417,7 +419,7 @@ export function LearningStudio({ role }: { role: string }) {
       setMockTimer((t) => {
         if (t <= 1) {
           clearInterval(interval);
-          void handleMockSubmit();
+          void handleMockSubmitRef.current();
           return 0;
         }
         return t - 1;
