@@ -7,6 +7,7 @@ import {
   Check,
   CheckCircle2,
   Clock3,
+  ExternalLink,
   GraduationCap,
   HelpCircle,
   Lightbulb,
@@ -18,6 +19,7 @@ import {
   Sparkles,
   Terminal,
   Timer,
+  Video,
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
@@ -69,11 +71,11 @@ const POPULAR_TRACKS = [
   { name: "Financial Modelling", level: "intermediate" },
 ];
 
-export function LearningStudio({ role }: { role: string }) {
+export function LearningStudio({ role, initialSkill }: { role: string; initialSkill?: string }) {
   const [query, setQuery] = useState("");
   const [skills, setSkills] = useState<SkillResult[]>([]);
   const [registration, setRegistration] = useState<Registration | null>(null);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(initialSkill || "");
   const [level, setLevel] = useState("foundation");
   const [language, setLanguage] = useState("English");
   const [curriculum, setCurriculum] = useState<Curriculum | null>(null);
@@ -90,7 +92,7 @@ export function LearningStudio({ role }: { role: string }) {
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
   const [activeLesson, setActiveLesson] = useState<LessonDocument | null>(null);
   const [loadingLesson, setLoadingLesson] = useState(false);
-  const [lessonTab, setLessonTab] = useState<"read" | "exercise" | "quiz">("read");
+  const [lessonTab, setLessonTab] = useState<"read" | "video" | "exercise" | "quiz">("read");
 
   // Quiz State
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string[]>>({});
@@ -331,6 +333,15 @@ export function LearningStudio({ role }: { role: string }) {
     },
     [language, level, role]
   );
+
+  useEffect(() => {
+    if (initialSkill && !curriculum) {
+      const timer = setTimeout(() => {
+        void startCourseGeneration(initialSkill, level);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [initialSkill, startCourseGeneration, level, curriculum]);
 
   async function prepare(event: FormEvent) {
     event.preventDefault();
@@ -944,9 +955,23 @@ export function LearningStudio({ role }: { role: string }) {
                         </div>
                       </div>
 
-                      <p className="mt-3 text-[11px] text-slate">
-                        <strong>Checkpoint:</strong> {module.checkpoint}
-                      </p>
+                      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-ink/8 pt-3">
+                        <p className="text-[11px] text-slate">
+                          <strong>Checkpoint:</strong> {module.checkpoint}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCurriculumTab("mock-tests");
+                            if (mockTests.length === 0 && curriculum) {
+                              void loadMockTests(curriculum.skillName, curriculum.learnerLevel);
+                            }
+                          }}
+                          className="inline-flex items-center gap-1 rounded-md bg-accent/10 px-2.5 py-1 text-[11px] font-bold text-accent transition hover:bg-accent/20"
+                        >
+                          <Award size={12} /> Phase Assessment
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -1272,7 +1297,7 @@ export function LearningStudio({ role }: { role: string }) {
           </div>
 
           {/* Sub Navigation Tabs */}
-          <div className="flex gap-2 border-b border-ink/8 pb-2">
+          <div className="flex flex-wrap gap-2 border-b border-ink/8 pb-2">
             <button
               type="button"
               onClick={() => setLessonTab("read")}
@@ -1281,6 +1306,15 @@ export function LearningStudio({ role }: { role: string }) {
               }`}
             >
               📖 Lesson Guide
+            </button>
+            <button
+              type="button"
+              onClick={() => setLessonTab("video")}
+              className={`rounded-lg px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 ${
+                lessonTab === "video" ? "bg-ink text-white" : "text-slate hover:bg-cream"
+              }`}
+            >
+              <Video size={13} /> Video Masterclass ({activeLesson.videoResources?.length ?? 0})
             </button>
             <button
               type="button"
@@ -1375,6 +1409,127 @@ export function LearningStudio({ role }: { role: string }) {
                 <div className="rounded-2xl border border-ink/10 bg-cream/40 p-5">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Lesson Summary</h4>
                   <p className="mt-2 text-sm leading-relaxed text-slate">{activeLesson.recap}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Tab: Video Masterclass & Curated External Resources */}
+          {lessonTab === "video" && (
+            <div className="space-y-6">
+              {activeLesson.videoResources && activeLesson.videoResources.length > 0 ? (
+                activeLesson.videoResources.map((video) => {
+                  const embedSrc = video.embedUrl || (video.url.includes("watch?v=") ? video.url.replace("watch?v=", "embed/") : video.url);
+                  return (
+                    <article key={video.id} className="space-y-4 rounded-2xl border border-ink/10 bg-white p-5 md:p-6 shadow-sm">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink/8 pb-3">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 uppercase tracking-wider inline-flex items-center gap-1">
+                              <CheckCircle2 size={11} className="text-emerald-600" />
+                              {video.verificationStatus === "verified" ? "Verified Curriculum Resource" : "Curated Resource"}
+                            </span>
+                            {video.difficulty && (
+                              <span className="rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold text-slate uppercase">
+                                {video.difficulty}
+                              </span>
+                            )}
+                            {video.durationMinutes && (
+                              <span className="inline-flex items-center gap-1 text-[11px] text-slate font-medium">
+                                <Clock3 size={11} /> {video.durationMinutes} min
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="mt-1 text-lg font-bold text-ink">{video.title}</h3>
+                          {video.channelOrAuthor && (
+                            <p className="text-xs text-slate">Instructor / Channel: <strong className="text-ink">{video.channelOrAuthor}</strong></p>
+                          )}
+                        </div>
+
+                        <a
+                          href={video.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-accent/30 bg-accent/5 px-3 py-1.5 text-xs font-bold text-accent transition hover:bg-accent/10"
+                        >
+                          Watch on YouTube <ExternalLink size={12} />
+                        </a>
+                      </div>
+
+                      {/* Video Player Embed with Responsive Container */}
+                      <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-ink/10 bg-slate-900 shadow-sm">
+                        <iframe
+                          src={embedSrc}
+                          title={video.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="size-full"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      {/* Pedagogical Rationale & Objectives */}
+                      <div className="grid gap-4 md:grid-cols-2 pt-2">
+                        <div className="rounded-xl border border-ink/8 bg-cream/30 p-4 space-y-2">
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Why This Resource Was Selected</h4>
+                          <p className="text-xs leading-relaxed text-ink">{video.whySelected}</p>
+                          <h4 className="pt-2 text-xs font-bold uppercase tracking-wider text-slate">What It Teaches</h4>
+                          <p className="text-xs leading-relaxed text-slate">{video.whatItTeaches}</p>
+                        </div>
+
+                        <div className="rounded-xl border border-accent/15 bg-accent/5 p-4 space-y-2">
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-accent">Key Learning Objectives Supported</h4>
+                          <ul className="space-y-1.5">
+                            {video.learningObjectivesSupported.map((obj, i) => (
+                              <li key={i} className="flex items-start gap-1.5 text-xs text-ink font-medium">
+                                <Check size={12} className="mt-0.5 shrink-0 text-accent" />
+                                <span>{obj}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          {video.keyTopicsCovered && video.keyTopicsCovered.length > 0 && (
+                            <div className="pt-2">
+                              <h5 className="text-[11px] font-bold text-slate mb-1.5">Concepts to Focus On:</h5>
+                              <div className="flex flex-wrap gap-1.5">
+                                {video.keyTopicsCovered.map((topic, i) => (
+                                  <span key={i} className="rounded-md bg-white border border-accent/20 px-2 py-0.5 text-[10px] font-semibold text-accent">
+                                    {topic}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Follow-up Activity */}
+                      {video.followUpActivity && (
+                        <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
+                          <strong className="block text-xs font-bold text-emerald-900">Recommended Follow-up Activity:</strong>
+                          <p className="mt-1 text-xs leading-relaxed text-emerald-800">{video.followUpActivity}</p>
+                        </div>
+                      )}
+                    </article>
+                  );
+                })
+              ) : (
+                <div className="rounded-2xl border border-ink/10 bg-white p-8 text-center space-y-3">
+                  <Video size={36} className="mx-auto text-slate/40" />
+                  <h4 className="text-base font-bold text-ink">External Video Resources</h4>
+                  <p className="max-w-md mx-auto text-xs text-slate leading-relaxed">
+                    Study the interactive lesson guide and exercises for {activeLesson.title}, or explore official documentation and community tutorials.
+                  </p>
+                  <a
+                    href={`https://www.youtube.com/results?search_query=${encodeURIComponent(
+                      `${activeLesson.skillName} ${activeLesson.title} tutorial`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2 text-xs font-bold text-white transition hover:bg-accent/90"
+                  >
+                    Search Verified Tutorials on YouTube <ExternalLink size={12} />
+                  </a>
                 </div>
               )}
             </div>

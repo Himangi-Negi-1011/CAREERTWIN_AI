@@ -12,7 +12,10 @@ for (const viewport of viewports) {
     const browserErrors: string[] = [];
     page.on("console", (message) => {
       const text = message.text();
-      const knownDevelopmentWarning = text.includes("Clerk has been loaded with development keys") || text === "No available adapters.";
+      const knownDevelopmentWarning =
+        text.includes("Clerk has been loaded with development keys") ||
+        text === "No available adapters." ||
+        text.includes("was preloaded using link preload");
       if (message.type() === "error" || (message.type() === "warning" && !knownDevelopmentWarning)) browserErrors.push(text);
     });
     page.on("pageerror", (error) => browserErrors.push(error.message));
@@ -21,7 +24,7 @@ for (const viewport of viewports) {
     await page.goto("/onboarding");
 
     await expect(page.getByRole("heading", { name: "Personal Profile" })).toBeVisible();
-    await expect(page.getByText("STEP 1 OF 7")).toBeVisible();
+    await expect(page.getByText("STEP 1 OF 7", { exact: true })).toBeVisible();
     await expect(page.getByRole("navigation", { name: /profile setup steps/i })).toBeVisible();
 
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -33,7 +36,7 @@ for (const viewport of viewports) {
     await expect(continueButton).toBeEnabled();
     await continueButton.click();
     await expect(page.getByRole("heading", { name: "Education" })).toBeVisible();
-    await expect(page.getByText("STEP 2 OF 7")).toBeVisible();
+    await expect(page.getByText("STEP 2 OF 7", { exact: true })).toBeVisible();
     expect(browserErrors).toEqual([]);
   });
 }

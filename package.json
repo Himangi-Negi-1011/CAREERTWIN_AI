@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "seed:courses": "tsx --conditions=react-server scripts/generate-advance-library.ts",
+    "seed:courses": "npx tsx --conditions=react-server scripts/generate-advance-library.ts",
     "check": "npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {

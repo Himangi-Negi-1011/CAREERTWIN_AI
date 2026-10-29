@@ -3,7 +3,7 @@ import {
   buildDeterministicCurriculum,
   extractPlannedLessons,
 } from "./course-engine";
-import { buildDeterministicLesson } from "./lesson-service";
+import { buildDeterministicLesson, getCuratedVideoResources } from "./lesson-service";
 import { assertLessonIntegrity, type LessonDocument } from "./lesson-schema";
 import { assertCurriculumIntegrity, type Curriculum } from "./schema";
 import {
@@ -136,7 +136,12 @@ export async function precomputeSkillCourse(
 
   for (const p of planned) {
     if (existingLessonMap.has(p.lessonId) && !options?.forceRegenerate) {
-      savedLessons.push(existingLessonMap.get(p.lessonId)!);
+      const existingLesson = existingLessonMap.get(p.lessonId)!;
+      if (!existingLesson.videoResources || existingLesson.videoResources.length === 0) {
+        existingLesson.videoResources = getCuratedVideoResources(canonicalName, p.lessonTitle);
+        await saveLesson(curriculum.skillId || `curr-${slug}-${level}`, existingLesson);
+      }
+      savedLessons.push(existingLesson);
       continue;
     }
 

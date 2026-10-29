@@ -67,6 +67,26 @@ export const lessonSectionSchema = z.object({
   commonMistakes: z.array(text(400)).max(8).default([]),
 });
 
+// ─── External Video & Documentation Resources ─────────────────────────────────
+export const externalResourceSchema = z.object({
+  id: text(100),
+  title: text(200),
+  provider: z.enum(["youtube", "documentation", "tutorial", "coursera", "edx", "other"]).default("youtube"),
+  channelOrAuthor: optText(160),
+  url: z.string().url().max(2000),
+  embedUrl: optText(2000),
+  durationMinutes: z.number().int().min(1).max(600).optional(),
+  difficulty: z.enum(["beginner", "intermediate", "advanced"]).default("beginner"),
+  whySelected: optText(500),
+  whatItTeaches: optText(500),
+  learningObjectivesSupported: z.array(text(200)).default([]),
+  keyTopicsCovered: z.array(text(200)).default([]),
+  followUpActivity: optText(500),
+  verificationStatus: z.enum(["verified", "curated", "unverified"]).default("curated"),
+  lastCheckedDate: z.string().optional(),
+});
+export type ExternalResource = z.infer<typeof externalResourceSchema>;
+
 // ─── Full lesson document ─────────────────────────────────────────────────────
 export const lessonDocumentSchema = z.object({
   lessonId: text(100),
@@ -83,6 +103,7 @@ export const lessonDocumentSchema = z.object({
   exercises: z.array(exerciseSchema).max(5).default([]),
   knowledgeChecks: z.array(knowledgeCheckSchema).min(1).max(8),
   recap: text(1000),
+  videoResources: z.array(externalResourceSchema).default([]),
   furtherReading: z.array(z.object({
     title: text(200),
     url: z.string().url().max(2000),
