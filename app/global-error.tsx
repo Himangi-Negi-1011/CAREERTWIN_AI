@@ -4,6 +4,7 @@ import { AlertTriangle, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { Brand } from "./components/brand";
+import "./globals.css";
 
 export default function GlobalError({
   error,

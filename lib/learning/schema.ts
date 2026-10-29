@@ -4,6 +4,7 @@ const shortText = (max = 160) => z.string().trim().min(1).max(max);
 const optionalUrl = z.string().url().max(2000);
 
 export const skillLevelSchema = z.enum(["foundation", "beginner", "intermediate", "advanced"]);
+export type SkillLevel = z.infer<typeof skillLevelSchema>;
 export const contentStatusSchema = z.enum(["draft", "approved", "archived"]);
 
 export const skillSchema = z.object({

@@ -61,7 +61,7 @@ export function buildDeterministicLesson(req: LessonRequest): LessonDocument {
       ],
       correctOptionIds: ["opt-2a", "opt-2b", "opt-2d"],
       explanation: "Modular architectures, automated verification, and observability are core best practices. Secrets must never be committed to source files.",
-      objectiveIds: [objIds[objIds.length > 1 ? 1 : 0]],
+      objectiveIds: objIds.length > 1 ? objIds.slice(1) : [objIds[0]],
     },
   ];
 

@@ -215,20 +215,52 @@ export function getAIProviderStatus() {
   return { provider, configured, model: configured ? (provider === "gemini" ? env.GEMINI_MODEL : env.OPENROUTER_MODEL) ?? null : null };
 }
 
+function sanitizeSchemaForGemini(schema: unknown): unknown {
+  if (Array.isArray(schema)) return schema.map(sanitizeSchemaForGemini);
+  if (schema && typeof schema === "object") {
+    const copy: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(schema)) {
+      if (["minItems", "maxItems", "minimum", "maximum", "minLength", "maxLength"].includes(k)) continue;
+      if (k === "anyOf" && Array.isArray(v)) {
+        const hasNull = v.some((item) => item && typeof item === "object" && (item as { type?: string }).type === "null");
+        if (hasNull) {
+          const nonNull = v.find((item) => item && typeof item === "object" && (item as { type?: string }).type !== "null");
+          if (nonNull) {
+            Object.assign(copy, sanitizeSchemaForGemini(nonNull), { nullable: true });
+            continue;
+          }
+        }
+      }
+      copy[k] = sanitizeSchemaForGemini(v);
+    }
+    return copy;
+  }
+  return schema;
+}
+
+function parseJsonContent(text: string): unknown {
+  const trimmed = text.trim();
+  const cleaned = trimmed.startsWith("```")
+    ? trimmed.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim()
+    : trimmed;
+  return JSON.parse(cleaned);
+}
+
 async function generateJson(prompt: string, schema: object, signal: AbortSignal) {
   const env = getServerEnv(); const status = getAIProviderStatus();
   if (!status.provider || !status.configured || !status.model) throw new AIConfigurationError("AI provider is not configured");
   if (status.provider === "gemini") {
     const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
-    const response = await ai.models.generateContent({ model: status.model, contents: prompt, config: { abortSignal: signal, temperature: 0.2, responseMimeType: "application/json", responseJsonSchema: schema } });
+    const geminiSchema = sanitizeSchemaForGemini(schema);
+    const response = await ai.models.generateContent({ model: status.model, contents: prompt, config: { abortSignal: signal, temperature: 0.2, responseMimeType: "application/json", responseJsonSchema: geminiSchema } });
     if (!response.text) throw new AIProviderError("Provider response did not contain content");
-    return JSON.parse(response.text) as unknown;
+    return parseJsonContent(response.text);
   }
   const response = await fetch(OPENROUTER_URL, { method: "POST", signal, headers: { Authorization: `Bearer ${env.OPENROUTER_API_KEY}`, "Content-Type": "application/json", ...(env.NEXT_PUBLIC_APP_URL ? { "HTTP-Referer": env.NEXT_PUBLIC_APP_URL } : {}), "X-Title": "CareerTwin" }, body: JSON.stringify({ model: status.model, temperature: 0.2, response_format: { type: "json_object" }, messages: [{ role: "system", content: "Return only valid JSON matching the requested schema." }, { role: "user", content: prompt }] }) });
   if (!response.ok) throw new AIProviderError("Provider request failed", response.status === 429 ? 429 : 502, response.headers.get("retry-after") ?? undefined);
   const json = await response.json() as { choices?: Array<{ message?: { content?: string } }> }; const content = json.choices?.[0]?.message?.content;
   if (!content) throw new AIProviderError("Provider response did not contain content");
-  return JSON.parse(content) as unknown;
+  return parseJsonContent(content);
 }
 
 function evaluationPrompt(input: { interviewType: keyof typeof rubricDefinitions; difficulty: string; targetRole: string; question: string; answer: string; clarification?: string }) {
@@ -240,7 +272,7 @@ export async function verifyAIConnectivity(signal: AbortSignal) {
   const env = getServerEnv(); const status = getAIProviderStatus();
   if (!status.provider || !status.configured || !status.model) throw new AIConfigurationError("AI provider is not configured");
   if (status.provider === "gemini") {
-    const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY }); const response = await ai.models.generateContent({ model: status.model, contents: "Reply with exactly OK.", config: { abortSignal: signal, temperature: 0, maxOutputTokens: 8 } });
+    const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY }); const response = await ai.models.generateContent({ model: status.model, contents: "Reply with exactly OK.", config: { abortSignal: signal, temperature: 0, maxOutputTokens: 100 } });
     if (!response.text?.trim()) throw new AIProviderError("Gemini connectivity check returned no content");
   } else {
     const response = await fetch(OPENROUTER_URL, { method: "POST", signal, headers: { Authorization: `Bearer ${env.OPENROUTER_API_KEY}`, "Content-Type": "application/json", "X-Title": "CareerTwin health check" }, body: JSON.stringify({ model: status.model, max_tokens: 8, temperature: 0, messages: [{ role: "user", content: "Reply with exactly OK." }] }) });

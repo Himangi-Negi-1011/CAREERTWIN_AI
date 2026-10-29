@@ -2,12 +2,12 @@ import type { Skill } from "./schema";
 
 const domainSeeds: Record<string, string[]> = {
   "Software Development": ["Python", "JavaScript", "TypeScript", "Java", "C", "C++", "C#", "Go", "Rust", "PHP", "Ruby", "Kotlin", "Swift", "SQL", "Bash", "PowerShell", "HTML", "CSS", "Object-Oriented Programming", "Data Structures", "Algorithms", "API Design", "Debugging", "Software Testing", "Software Architecture"],
-  "Web Development": ["React", "Next.js", "Vue", "Angular", "Node.js", "Express", "Django", "Flask", "FastAPI", "REST APIs", "GraphQL", "Web Authentication", "Web Security", "Responsive Design", "Frontend Testing", "Backend Testing", "Full-Stack Development"],
+  "Web Development": ["React", "Next.js", "Vue", "Angular", "Node.js", "Express", "Django", "Flask", "FastAPI", "REST APIs", "GraphQL", "Web Authentication", "Web Security", "Responsive Design", "Frontend Testing", "Backend Testing", "Full-Stack Development", "Backend Development"],
   "Data and Databases": ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis", "Database Design", "Normalization", "Database Indexing", "Query Optimization", "ETL", "Data Pipelines", "Data Warehousing", "Apache Spark", "Workflow Orchestration"],
-  "AI and Machine Learning": ["Python for AI", "Statistics", "Linear Algebra", "Data Preprocessing", "Supervised Learning", "Unsupervised Learning", "Model Evaluation", "Neural Networks", "Deep Learning", "Natural Language Processing", "Computer Vision", "Generative AI", "Prompt Engineering", "LLM APIs", "Retrieval-Augmented Generation", "Vector Search", "AI Evaluation", "Responsible AI"],
-  "Analytics and BI": ["Excel", "SQL Analytics", "Python Analytics", "Power BI", "Tableau", "Data Visualization", "Business Analysis", "Data Storytelling", "Reporting"],
+  "AI and Machine Learning": ["Python for AI", "Statistics", "Linear Algebra", "Data Preprocessing", "Supervised Learning", "Unsupervised Learning", "Machine Learning", "AI Fundamentals", "Applied AI Development", "Model Evaluation", "Neural Networks", "Deep Learning", "Natural Language Processing", "Computer Vision", "Generative AI", "Prompt Engineering", "LLM APIs", "Retrieval-Augmented Generation", "Vector Search", "AI Evaluation", "Responsible AI"],
+  "Analytics and BI": ["Excel", "SQL Analytics", "Python Analytics", "Data Analysis", "Power BI", "Tableau", "Data Visualization", "Business Analysis", "Data Storytelling", "Reporting"],
   Cybersecurity: ["Networking", "Linux", "Security Fundamentals", "Cryptography Fundamentals", "Access Control", "Identity and Access Management", "Vulnerability Management", "Secure Coding", "SIEM", "Incident Response", "Digital Forensics", "Malware Analysis Fundamentals", "Ethical Hacking", "Penetration Testing Methodology", "Threat Modelling", "Cloud Security"],
-  "Cloud and DevOps": ["AWS", "Microsoft Azure", "Google Cloud", "Cloud Networking", "Cloud Storage", "Containers", "Kubernetes", "Serverless Computing", "Infrastructure as Code", "Cloud Architecture", "Cost Optimization", "Cloud Governance", "Git", "GitHub", "Docker", "CI/CD", "GitHub Actions", "Terraform", "Configuration Management", "Logging", "Monitoring", "Observability", "Reliability Engineering", "Deployment Automation"],
+  "Cloud and DevOps": ["Cloud Computing", "AWS", "Microsoft Azure", "Google Cloud", "Cloud Networking", "Cloud Storage", "Containers", "Kubernetes", "Serverless Computing", "Infrastructure as Code", "Cloud Architecture", "Cost Optimization", "Cloud Governance", "Git", "GitHub", "Docker", "CI/CD", "GitHub Actions", "Terraform", "Configuration Management", "Logging", "Monitoring", "Observability", "Reliability Engineering", "Deployment Automation"],
   "Networking and IT": ["TCP/IP", "DNS", "HTTP", "HTTPS", "Routing", "Switching", "Subnetting", "Firewalls", "VPNs", "Network Troubleshooting", "Windows Administration", "Linux Administration", "Virtualization", "Infrastructure Troubleshooting"],
   "Design and Product": ["UI Design", "UX Research", "Figma", "Prototyping", "Accessibility", "Design Systems", "Product Discovery", "Product Management", "Requirements Analysis", "Product Analytics", "Usability Testing"],
   "Business and Management": ["Communication", "Problem Solving", "Project Management", "Agile", "Scrum", "Leadership", "Strategic Planning", "Entrepreneurship", "Customer Research", "Sales", "Negotiation", "Operations Management"],
@@ -23,6 +23,17 @@ const aliases: Record<string, string[]> = {
   "Retrieval-Augmented Generation": ["RAG"], "Natural Language Processing": ["NLP"],
   "Continuous Integration and Delivery": ["CI/CD"], "Amazon Web Services": ["AWS"],
   "Search Engine Optimization": ["SEO"], "User Experience Research": ["UX Research"],
+  "Microsoft Azure": ["Azure"],
+  "Deployment Automation": ["Deployment"],
+  "Vulnerability Management": ["Vulnerability Assessment"],
+  "Security Fundamentals": ["Defensive Security"],
+  "Ethical Hacking": ["Ethical Hacking Fundamentals"],
+  "REST APIs": ["APIs"],
+  "Machine Learning": ["ML"],
+  "Cloud Computing": ["Cloud"],
+  "Python": ["Python 3", "Python Programming"],
+  "Data Analysis": ["Data Analytics"],
+  "Teamwork": ["Collaboration"],
 };
 
 export function normalizeSkillName(value: string) {

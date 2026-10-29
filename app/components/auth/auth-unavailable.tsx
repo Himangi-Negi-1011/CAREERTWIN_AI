@@ -13,7 +13,14 @@ export function AuthUnavailable() {
       <div className="mt-6 rounded-2xl border border-ink/8 bg-cream/55 p-4 text-xs leading-5 text-slate">
         No account or session has been simulated. Add the complete <code className="font-mono text-ink">CLERK_SECRET_KEY</code> to the protected environment, then restart development or rebuild the production preview.
       </div>
-      <Link href="/" className="button-primary mt-6 w-full">Return home</Link>
+      <div className="mt-6 flex flex-col gap-2.5">
+        <Link href="/dashboard" className="button-primary w-full text-center">
+          Continue to Demo Workspace →
+        </Link>
+        <Link href="/" className="btn btn-outline w-full text-center text-xs">
+          Return home
+        </Link>
+      </div>
     </div>
   );
 }
