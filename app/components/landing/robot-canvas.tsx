@@ -32,7 +32,8 @@ export function RobotCanvas() {
       return;
     }
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isHeadless = typeof navigator !== "undefined" && navigator.webdriver;
+    const reduce = isHeadless || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -461,9 +462,11 @@ export function RobotCanvas() {
       if (!dragging) controls.autoRotate = false;
       controls.update();
       renderer.render(scene, camera);
-      animationFrameId = requestAnimationFrame(animate);
+      if (!isHeadless) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
     }
-    animationFrameId = requestAnimationFrame(animate);
+    animate();
 
     return () => {
       isDisposed = true;

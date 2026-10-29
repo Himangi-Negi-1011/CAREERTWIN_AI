@@ -376,6 +376,9 @@ export function Landing() {
                   href="/sign-up?redirect_url=/onboarding"
                   aria-label="Build My Career Twin"
                   className="btn btn-primary btn-lg magnetic shine"
+                  onClick={() => {
+                    window.location.href = "/sign-up?redirect_url=/onboarding";
+                  }}
                 >
                   Build My Career Twin
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
