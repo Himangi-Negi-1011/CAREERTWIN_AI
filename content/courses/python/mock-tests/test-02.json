@@ -1,0 +1,299 @@
+{
+  "id": "mock-python-beginner-t2",
+  "skillName": "Python",
+  "skillSlug": "python",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Python BEGINNER Comprehensive Mock Test 2",
+  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Python.",
+  "durationMinutes": 30,
+  "totalMarks": 17,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Memory Management & Generators",
+    "Concurrency & Architecture",
+    "Object-Oriented Programming & Optimization",
+    "Exception Hierarchy & Error Handling",
+    "Decorators & Metaprogramming",
+    "Data Structures & Mutability",
+    "Data Structures & Comprehensions",
+    "Functions & Scope"
+  ],
+  "questions": [
+    {
+      "id": "mock-python-beginner-t2-q1",
+      "type": "scenario",
+      "prompt": "You are processing a 10GB log file on an instance with 2GB RAM. Which Python approach avoids memory exhaustion?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Read the file line-by-line using a generator iterator (with open(...) as f: for line in f:)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Call f.readlines() to parse all lines into memory at once"
+        },
+        {
+          "id": "opt-3",
+          "text": "Convert the file to a JSON object before looping"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use multiprocessing to load the entire file into 8 concurrent arrays"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Iterating over a file object in Python streams line by line as a generator without loading the entire payload into RAM.",
+      "difficulty": "beginner",
+      "topic": "Memory Management & Generators",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q2",
+      "type": "multiple-select",
+      "prompt": "Which of the following statements about Python's Global Interpreter Lock (GIL) and concurrency are correct?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The GIL allows only one native thread to execute Python bytecode at a time in CPython"
+        },
+        {
+          "id": "opt-2",
+          "text": "multiprocessing bypasses the GIL by creating separate processes with separate memory spaces"
+        },
+        {
+          "id": "opt-3",
+          "text": "I/O bound operations release the GIL while waiting for network or disk operations"
+        },
+        {
+          "id": "opt-4",
+          "text": "threading provides true multi-core parallel CPU execution for math-heavy loops in CPython"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "In CPython, GIL prevents multi-threaded CPU parallel execution, but I/O releases the lock, and multiprocessing spawns separate OS processes.",
+      "difficulty": "beginner",
+      "topic": "Concurrency & Architecture",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q3",
+      "type": "single-choice",
+      "prompt": "What does the '__slots__' attribute do when declared on a Python class?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It restricts valid instance attributes to a fixed set, eliminating __dict__ to optimize memory usage."
+        },
+        {
+          "id": "opt-2",
+          "text": "It prevents other classes from inheriting from the declared class."
+        },
+        {
+          "id": "opt-3",
+          "text": "It automatically serializes class instances to JSON format."
+        },
+        {
+          "id": "opt-4",
+          "text": "It declares private variables accessible only via getter functions."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Defining __slots__ on a class prevents the creation of the default __dict__ per instance, significantly reducing memory consumption for millions of objects.",
+      "difficulty": "beginner",
+      "topic": "Object-Oriented Programming & Optimization",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q4",
+      "type": "debugging",
+      "prompt": "What will occur when running: try: 1 / 0 except LookupError: print('A') except ZeroDivisionError: print('B')",
+      "codeSnippet": "try:\n    1 / 0\nexcept LookupError:\n    print(\"A\")\nexcept ZeroDivisionError:\n    print(\"B\")",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Prints 'B' because ZeroDivisionError inherits from ArithmeticError, not LookupError."
+        },
+        {
+          "id": "opt-2",
+          "text": "Prints 'A' because LookupError is the base class for arithmetic exceptions."
+        },
+        {
+          "id": "opt-3",
+          "text": "SyntaxError because multiple except blocks are prohibited."
+        },
+        {
+          "id": "opt-4",
+          "text": "Uncaught exception crash."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "ZeroDivisionError inherits from ArithmeticError, not LookupError (which is the parent of IndexError and KeyError). The second block matches.",
+      "difficulty": "beginner",
+      "topic": "Exception Hierarchy & Error Handling",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q5",
+      "type": "scenario",
+      "prompt": "Which decorator is used to define a method that operates on class state rather than a specific instance?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "@classmethod (receiving cls as first parameter)"
+        },
+        {
+          "id": "opt-2",
+          "text": "@staticmethod (receiving self as first parameter)"
+        },
+        {
+          "id": "opt-3",
+          "text": "@property"
+        },
+        {
+          "id": "opt-4",
+          "text": "@abstractmethod"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "@classmethod binds the method to the class namespace, taking cls as its first parameter.",
+      "difficulty": "beginner",
+      "topic": "Decorators & Metaprogramming",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q6",
+      "type": "multiple-select",
+      "prompt": "Which of the following built-in Python data types are mutable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "list"
+        },
+        {
+          "id": "opt-2",
+          "text": "dict"
+        },
+        {
+          "id": "opt-3",
+          "text": "set"
+        },
+        {
+          "id": "opt-4",
+          "text": "tuple"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "Lists, dicts, and sets can be mutated in place. Tuples and frozensets are immutable.",
+      "difficulty": "beginner",
+      "topic": "Data Structures & Mutability",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q7",
+      "type": "code-output",
+      "prompt": "What is the exact output of the following list comprehension snippet?",
+      "codeSnippet": "matrix = [[1, 2], [3, 4]]\nflattened = [val for row in matrix for val in row]\nprint(flattened)",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "[1, 2, 3, 4]"
+        },
+        {
+          "id": "opt-2",
+          "text": "[[1, 2], [3, 4]]"
+        },
+        {
+          "id": "opt-3",
+          "text": "[1, 3, 2, 4]"
+        },
+        {
+          "id": "opt-4",
+          "text": "TypeError: list indices must be integers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "In nested list comprehensions in Python, outer loops come first from left to right: for row in matrix, then for val in row.",
+      "difficulty": "beginner",
+      "topic": "Data Structures & Comprehensions",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+    },
+    {
+      "id": "mock-python-beginner-t2-q8",
+      "type": "debugging",
+      "prompt": "Identify why the following function mutates state unexpectedly across calls:",
+      "codeSnippet": "def append_item(item, target_list=[]):\n    target_list.append(item)\n    return target_list\n\na = append_item(1)\nb = append_item(2)",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Default arguments are evaluated once at function definition time, sharing the mutable list instance."
+        },
+        {
+          "id": "opt-2",
+          "text": "Python functions create a global variable when default arguments are used."
+        },
+        {
+          "id": "opt-3",
+          "text": "append() returns None rather than the updated list."
+        },
+        {
+          "id": "opt-4",
+          "text": "Integers cannot be appended to untyped lists."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Python evaluates default parameter expressions once at definition time. Mutable default arguments (like lists or dicts) are shared across all calls.",
+      "difficulty": "beginner",
+      "topic": "Functions & Scope",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-30T06:02:55.093Z",
+  "updatedAt": "2026-10-30T06:02:55.093Z"
+}

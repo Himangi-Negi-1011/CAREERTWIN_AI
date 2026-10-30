@@ -1,0 +1,195 @@
+{
+  "id": "phase-sql-mod-1-foundations-assessment",
+  "skillName": "SQL",
+  "skillSlug": "sql",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-foundations",
+  "moduleTitle": "Module 1: Foundations & Core Concepts of SQL",
+  "title": "SQL — Module 1: Foundations & Core Concepts of SQL Phase Assessment",
+  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to SQL, Core Syntax and Primitives in SQL.",
+  "durationMinutes": 20,
+  "totalMarks": 11,
+  "passingPercentage": 75,
+  "topicsCovered": [
+    "Indexing & Query Optimization",
+    "Aggregation & Grouping",
+    "Transactions & Concurrency",
+    "Relational Joins & Set Theory",
+    "Three-Valued Logic & NULL Handling"
+  ],
+  "questions": [
+    {
+      "id": "phase-sql-mod-1-foundations-assessment-q1",
+      "type": "scenario",
+      "prompt": "[Module 1: Foundations & Core Concepts of SQL] A query filtering on WHERE UPPER(email) = 'USER@EXAMPLE.COM' is causing full table scans despite an index on email. What is the solution?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Create a functional/expression index on UPPER(email) or normalize email to lowercase before indexing and querying"
+        },
+        {
+          "id": "opt-2",
+          "text": "Add an extra ORDER BY email ASC clause"
+        },
+        {
+          "id": "opt-3",
+          "text": "Convert the column type from VARCHAR to TEXT"
+        },
+        {
+          "id": "opt-4",
+          "text": "Change the SELECT clause to SELECT *"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Wrapping indexed columns in functions disables standard B-Tree index lookups unless an expression index exists or values are pre-normalized.",
+      "difficulty": "beginner",
+      "topic": "Indexing & Query Optimization",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to SQL"
+    },
+    {
+      "id": "phase-sql-mod-1-foundations-assessment-q2",
+      "type": "code-output",
+      "prompt": "[Module 1: Foundations & Core Concepts of SQL] What rows are returned by this SQL query?",
+      "codeSnippet": "SELECT department_id, COUNT(*)\nFROM employees\nGROUP BY department_id\nHAVING COUNT(*) > 5;",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Only department IDs that have strictly more than 5 employee records"
+        },
+        {
+          "id": "opt-2",
+          "text": "The first 5 departments ordered by employee count"
+        },
+        {
+          "id": "opt-3",
+          "text": "All employees in departments where at least one person makes over 5k"
+        },
+        {
+          "id": "opt-4",
+          "text": "A syntax error because WHERE was omitted"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "HAVING filters aggregated groups after the GROUP BY clause, retaining only groups satisfying the aggregate predicate.",
+      "difficulty": "beginner",
+      "topic": "Aggregation & Grouping",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
+    },
+    {
+      "id": "phase-sql-mod-1-foundations-assessment-q3",
+      "type": "multiple-select",
+      "prompt": "[Module 1: Foundations & Core Concepts of SQL] Which of the following are ACID properties in relational database transactions?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Atomicity: All operations in the transaction succeed or all roll back"
+        },
+        {
+          "id": "opt-2",
+          "text": "Consistency: The transaction brings the database from one valid state to another"
+        },
+        {
+          "id": "opt-3",
+          "text": "Isolation: Concurrent execution of transactions yields the same state as serial execution"
+        },
+        {
+          "id": "opt-4",
+          "text": "Adaptability: Schema changes apply dynamically without migration locks"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "ACID stands for Atomicity, Consistency, Isolation, and Durability.",
+      "difficulty": "beginner",
+      "topic": "Transactions & Concurrency",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to SQL"
+    },
+    {
+      "id": "phase-sql-mod-1-foundations-assessment-q4",
+      "type": "single-choice",
+      "prompt": "[Module 1: Foundations & Core Concepts of SQL] What is the difference between an INNER JOIN and a LEFT OUTER JOIN?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "INNER JOIN returns only rows with matches in both tables; LEFT OUTER JOIN preserves all left rows and fills unmatched right columns with NULL."
+        },
+        {
+          "id": "opt-2",
+          "text": "LEFT OUTER JOIN returns only unmatched rows."
+        },
+        {
+          "id": "opt-3",
+          "text": "INNER JOIN can only be used on primary keys."
+        },
+        {
+          "id": "opt-4",
+          "text": "LEFT JOIN sorts the results in ascending order automatically."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "LEFT JOIN keeps all records from the left-hand table regardless of whether the join predicate matches a row on the right.",
+      "difficulty": "beginner",
+      "topic": "Relational Joins & Set Theory",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
+    },
+    {
+      "id": "phase-sql-mod-1-foundations-assessment-q5",
+      "type": "debugging",
+      "prompt": "[Module 1: Foundations & Core Concepts of SQL] What will happen if you compare a column value with NULL using '=' (e.g. WHERE status = NULL)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It returns UNKNOWN (evaluating to false in WHERE), matching zero rows; 'IS NULL' must be used instead."
+        },
+        {
+          "id": "opt-2",
+          "text": "It matches all rows where status is an empty string."
+        },
+        {
+          "id": "opt-3",
+          "text": "It triggers a syntax error in ANSI SQL."
+        },
+        {
+          "id": "opt-4",
+          "text": "It converts NULL to zero."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "In three-valued SQL logic, NULL = NULL evaluates to UNKNOWN, not TRUE. Checking for nullability requires the 'IS NULL' operator.",
+      "difficulty": "beginner",
+      "topic": "Three-Valued Logic & NULL Handling",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to SQL"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-30T06:22:08.983Z",
+  "updatedAt": "2026-10-30T06:22:08.983Z"
+}

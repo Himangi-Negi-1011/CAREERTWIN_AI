@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard — CareerTwin</title>
+<meta name="description" content="CareerTwin workspace: skill gap analysis, career intelligence, roadmap, learning studio, AI coach and weekly tests — all in one private, local workspace." />
+<meta name="theme-color" content="#08080a" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b5cf6' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m12 14 4-4'/%3E%3Cpath d='M3.34 19a10 10 0 1 1 17.32 0'/%3E%3C/svg%3E" />
+<style>/*__CSS__*/</style>
+<style>/*__DASH_CSS__*/</style>
+</head>
+<body class="dash-page">
+<script>document.documentElement.classList.add('js-anim');</script>
+<a class="skip-link" href="#viewRoot">Skip to workspace</a>
+
+<div class="dash-bg" aria-hidden="true">
+  <div class="grid-fade"></div>
+  <div class="blob blob-1"></div>
+</div>
+
+<div class="dash-shell">
+  <!-- ============================ sidebar ============================ -->
+  <aside class="dash-side" id="dashSide" aria-label="Workspace navigation">
+    <div class="dash-side-head">
+      <a class="brand" href="index.html" aria-label="CareerTwin — home">
+        <span class="brand-mark small">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5.6 11.1q2.4-3.1 4.8 0"/><path d="M13.6 11.1q2.4-3.1 4.8 0"/><path d="M7.6 14.2q4.4 3.5 8.8 0"/>
+          </svg>
+        </span>
+        <span class="brand-text"><span class="brand-thin">Career</span><span class="brand-strong">Twin</span></span>
+      </a>
+      <button class="dash-side-close" id="sideClose" type="button" aria-label="Close navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <p class="dash-nav-label">Workspace</p>
+    <nav class="dash-nav" aria-label="Workspace">
+      <a class="dash-nav-item is-active" href="#dashboard" data-view-link="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9h-9z"/><path d="M12 12V4"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a class="dash-nav-item" href="#skills" data-view-link="skills">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M8 15V9M12 17V7M16 13V5"/></svg>
+        <span>Skill Gap Analysis</span>
+        <em class="dash-nav-meta" id="navGaps">3</em>
+      </a>
+      <a class="dash-nav-item" href="#intelligence" data-view-link="intelligence">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg>
+        <span>Career Intelligence</span>
+      </a>
+      <a class="dash-nav-item" href="#roadmap" data-view-link="roadmap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="6" height="6" rx="1.6"/><rect x="15" y="14" width="6" height="6" rx="1.6"/><path d="M9 7h5a3 3 0 0 1 3 3v1M6 10v4a3 3 0 0 0 3 3h3"/></svg>
+        <span>Career Roadmap</span>
+        <em class="dash-nav-meta" id="navRoadmap">7/12</em>
+      </a>
+      <a class="dash-nav-item" href="#studio" data-view-link="studio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5"/></svg>
+        <span>Learning Studio</span>
+      </a>
+      <a class="dash-nav-item" href="#coach" data-view-link="coach">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H8l-4 3v-4.6A8 8 0 0 1 13 4a8 8 0 0 1 8 8Z"/><path d="M9 11h.01M13 11h.01M17 11h.01"/></svg>
+        <span>AI Career Coach</span>
+      </a>
+      <a class="dash-nav-item" href="#documents" data-view-link="documents">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5z"/></svg>
+        <span>My Documents</span>
+        <em class="dash-nav-meta" id="navDocs">0</em>
+      </a>
+      <a class="dash-nav-item" href="#progress" data-view-link="progress">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></svg>
+        <span>Progress &amp; Weekly Tests</span>
+      </a>
+      <a class="dash-nav-item" href="#settings" data-view-link="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1Z"/></svg>
+        <span>Privacy &amp; Settings</span>
+      </a>
+    </nav>
+
+    <div class="dash-side-foot">
+      <div class="dash-side-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+        <p>Demo build — everything is stored in this browser only.</p>
+      </div>
+      <a class="dash-user" href="#settings" data-view-link="settings">
+        <span class="dash-avatar" id="sideAvatar" aria-hidden="true">AS</span>
+        <span class="dash-user-text">
+          <strong id="sideName">Aarav Sharma</strong>
+          <em id="sideEmail">aarav@example.com</em>
+        </span>
+        <span class="dash-signout" title="Privacy &amp; settings" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+        </span>
+      </a>
+    </div>
+  </aside>
+  <div class="dash-scrim" id="dashScrim" hidden></div>
+
+  <!-- ============================ main ============================ -->
+  <div class="dash-main">
+    <header class="dash-top">
+      <button class="dash-menu" id="sideOpen" type="button" aria-label="Open navigation" aria-controls="dashSide" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+
+      <div class="dash-title">
+        <span class="dash-title-dot" aria-hidden="true"></span>
+        <div>
+          <strong id="viewTitle">Dashboard</strong>
+          <em id="viewSub">Private career workspace</em>
+        </div>
+      </div>
+
+      <div class="dash-find">
+        <label class="dash-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+          <input id="quickFind" type="search" placeholder="Quick find" autocomplete="off" aria-label="Quick find across the workspace" role="combobox" aria-expanded="false" aria-controls="findResults" />
+          <kbd>⌘K</kbd>
+        </label>
+        <div class="find-results" id="findResults" role="listbox" aria-label="Quick find results" hidden></div>
+      </div>
+
+      <div class="dash-top-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <a class="dash-userchip" href="#settings" data-view-link="settings" aria-label="Open privacy and settings">
+          <span class="dash-avatar small" id="topAvatar" aria-hidden="true">AS</span>
+          <span id="topName">Aarav</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="dash-content" id="viewRoot">
+      <!-- ======================================================= DASHBOARD -->
+      <section class="view" data-view="dashboard" aria-labelledby="dashH1">
+        <div class="command">
+          <div class="command-copy">
+            <p class="dash-eyebrow"><span class="live-dot" aria-hidden="true"></span>Career command centre</p>
+            <h1 id="dashH1">Make your next move visible.</h1>
+            <p class="dash-sub">A private place to turn real evidence into focused, reviewable action.</p>
+          </div>
+          <div class="command-visual">
+            <div class="visual-glow" aria-hidden="true"></div>
+            <canvas id="dashRobot" aria-label="Animated 3D robot assistant" role="img"></canvas>
+            <button class="robot-chip" id="sayHi" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V7a2 2 0 1 1 4 0v3"/><path d="M11 10V5.5a2 2 0 1 1 4 0V10"/><path d="M15 10.5V8a2 2 0 1 1 4 0v6a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-2a2 2 0 1 1 4 0"/></svg>
+              Say hi
+            </button>
+          </div>
+        </div>
+
+        <div class="status-line" id="statusLine">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span id="statusText">Secure Career Twin loaded.</span>
+        </div>
+
+        <div class="dash-split">
+          <div class="dash-col">
+            <!-- welcome -->
+            <section class="panel panel--welcome">
+              <div class="welcome-main">
+                <div>
+                  <p class="panel-kicker">Welcome back</p>
+                  <h2 class="welcome-name"><span id="welcomeName">Aarav Sharma</span> <span class="muted">·</span> <span id="welcomeHours">5 learning hours/week</span></h2>
+                </div>
+                <div class="welcome-actions">
+                  <a class="btn btn-outline btn-sm" href="#settings" data-view-link="settings">Edit profile</a>
+                  <a class="btn btn-outline btn-sm" href="#roadmap" data-view-link="roadmap">View roadmap</a>
+                  <a class="btn btn-outline btn-sm" href="#studio" data-view-link="studio">Learning Studio</a>
+                  <a class="btn btn-primary btn-sm" href="#progress" data-view-link="progress" id="startTestBtn">Start weekly test</a>
+                </div>
+              </div>
+              <div class="completion">
+                <div class="completion-head">
+                  <span>Profile completion</span>
+                  <strong id="completionPct">0%</strong>
+                </div>
+                <div class="bar" id="completionBar" style="--p:0"><i></i></div>
+                <ul class="completion-list" id="completionList"></ul>
+              </div>
+            </section>
+
+            <!-- next action -->
+            <section class="next-action" aria-labelledby="nextActionTitle">
+              <p class="panel-kicker">Next recommended action</p>
+              <h2 id="nextActionTitle">Choose a target role</h2>
+              <p id="nextActionCopy">This recommendation uses only the profile and activity saved for your workspace. It updates as you review evidence and complete tasks.</p>
+              <a class="btn next-action-btn" id="nextActionBtn" href="#settings" data-view-link="settings">Choose a target role</a>
+            </section>
+          </div>
+
+          <div class="dash-col dash-col--side">
+            <!-- career target -->
+            <section class="panel" aria-labelledby="targetTitle">
+              <div class="panel-head">
+                <div>
+                  <p class="panel-kicker">Career target</p>
+                  <h2 id="targetTitle" class="target-name">Product Designer</h2>
+                  <p class="target-meta" id="targetMeta">Secure Twin updated just now.</p>
+                </div>
+                <a class="dash-icon-btn" href="#intelligence" data-view-link="intelligence" aria-label="Open career intelligence">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 12.5h18"/></svg>
+                </a>
+              </div>
+              <div class="target-tiles">
+                <div class="tile">
+                  <span>Evidence coverage</span>
+                  <strong id="coverageVal">Not available</strong>
+                </div>
+                <div class="tile">
+                  <span>Priority gap</span>
+                  <strong id="gapVal">None recorded</strong>
+                </div>
+              </div>
+              <p class="fineprint">Evidence coverage is the share of this role framework backed by skills you have recorded yourself. It is not job readiness or mastery.</p>
+              <a class="btn btn-outline btn-sm" href="#intelligence" data-view-link="intelligence">Edit target</a>
+            </section>
+
+            <!-- this week -->
+            <section class="panel" aria-labelledby="weekTitle">
+              <div class="panel-head">
+                <div>
+                  <p class="panel-kicker">This week</p>
+                  <h2 id="weekTitle">Your rhythm</h2>
+                </div>
+                <span class="panel-meta" id="streakMeta">0 day streak</span>
+              </div>
+              <ul class="mini-stats">
+                <li><span>Roadmap</span><strong id="miniRoadmap">7/12</strong></li>
+                <li><span>Skills with evidence</span><strong id="miniEvidence">0/6</strong></li>
+                <li><span>Lessons reviewed</span><strong id="miniLessons">0/6</strong></li>
+                <li><span>Weekly tests</span><strong id="miniTests">0</strong></li>
+              </ul>
+              <a class="btn btn-outline btn-sm" href="#progress" data-view-link="progress">Open progress</a>
+            </section>
+          </div>
+        </div>
+
+        <!-- how it works -->
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>How this workspace works</h2>
+              <p>Four habits, in order. Every number above moves when you do them.</p>
+            </div>
+          </div>
+          <ol class="how">
+            <li><span>01</span><div><strong>Set a target</strong><em>Pick the role you are aiming at.</em></div></li>
+            <li><span>02</span><div><strong>Record evidence</strong><em>Mark the skills you can actually show.</em></div></li>
+            <li><span>03</span><div><strong>Work the roadmap</strong><em>Close the gaps that move the score.</em></div></li>
+            <li><span>04</span><div><strong>Check in weekly</strong><em>A short test, then a review.</em></div></li>
+          </ol>
+        </section>
+      </section>
+
+      <!-- ======================================================= SKILLS -->
+      <section class="view" data-view="skills" aria-labelledby="skillsH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">Skill gap analysis</p>
+            <h1 id="skillsH1">Where the gap actually is.</h1>
+            <p class="dash-sub">Your recorded level against what the target role asks for. Record evidence when you can show the skill, not when you have read about it.</p>
+          </div>
+        </div>
+
+        <div class="dash-split">
+          <section class="panel">
+            <div class="panel-head">
+              <div><h2>Skills in the framework</h2><p>Six of thirty-four tracked skills.</p></div>
+              <span class="panel-meta" id="skillsMeta">0 with evidence</span>
+            </div>
+            <ul class="skilllist" id="skillList"></ul>
+          </section>
+
+          <div class="dash-col dash-col--side">
+            <section class="panel">
+              <div class="panel-head"><div><p class="panel-kicker">Priority gap</p><h2 id="prioritySkill">Data literacy</h2></div></div>
+              <p class="fineprint" id="priorityCopy">Lowest recorded level in the framework. One real project with numbers moves it fastest.</p>
+              <div class="bar is-gap" id="priorityBar" style="--p:41"><i></i></div>
+              <a class="btn btn-outline btn-sm" href="#studio" data-view-link="studio">Find a lesson</a>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><div><p class="panel-kicker">Coverage</p><h2 id="coverageBig">0%</h2></div></div>
+              <p class="fineprint">Skills with recorded evidence, out of the six tracked. Recording evidence is a claim about your own work — nothing is verified here.</p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= INTELLIGENCE -->
+      <section class="view" data-view="intelligence" aria-labelledby="intelH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">Career intelligence</p>
+            <h1 id="intelH1">Roles your profile already points at.</h1>
+            <p class="dash-sub">Closest matches for what you have recorded. Set one as the target and the roadmap, gaps and tests all re-point at it.</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div><h2>Matches</h2><p>Fit is a distance measure against the role framework, not a prediction.</p></div>
+            <span class="panel-meta" id="intelMeta">5 roles</span>
+          </div>
+          <ul class="roles" id="rolesList">
+            <li data-role="Product Designer" data-fit="92">
+              <div class="role-main"><strong>Product Designer</strong><em>Your target · 3 gaps left</em></div>
+              <div class="role-fit"><span>92</span><div class="bar" style="--p:92"><i></i></div></div>
+              <button class="role-set" type="button" data-set-target="Product Designer">Set target</button>
+            </li>
+            <li data-role="UX Researcher" data-fit="78">
+              <div class="role-main"><strong>UX Researcher</strong><em>Adjacent · 6 gaps left</em></div>
+              <div class="role-fit"><span>78</span><div class="bar" style="--p:78"><i></i></div></div>
+              <button class="role-set" type="button" data-set-target="UX Researcher">Set target</button>
+            </li>
+            <li data-role="Design Systems Lead" data-fit="71">
+              <div class="role-main"><strong>Design Systems Lead</strong><em>Stretch · 8 gaps left</em></div>
+              <div class="role-fit"><span>71</span><div class="bar" style="--p:71"><i></i></div></div>
+              <button class="role-set" type="button" data-set-target="Design Systems Lead">Set target</button>
+            </li>
+            <li data-role="Product Manager" data-fit="64">
+              <div class="role-main"><strong>Product Manager</strong><em>Switch · 11 gaps left</em></div>
+              <div class="role-fit"><span>64</span><div class="bar" style="--p:64"><i></i></div></div>
+              <button class="role-set" type="button" data-set-target="Product Manager">Set target</button>
+            </li>
+            <li data-role="Front-end Engineer" data-fit="52">
+              <div class="role-main"><strong>Front-end Engineer</strong><em>Far · 14 gaps left</em></div>
+              <div class="role-fit"><span>52</span><div class="bar" style="--p:52"><i></i></div></div>
+              <button class="role-set" type="button" data-set-target="Front-end Engineer">Set target</button>
+            </li>
+          </ul>
+        </section>
+
+        <div class="dash-split">
+          <section class="panel">
+            <div class="panel-head"><div><h2>What the target asks for</h2><p>Signals pulled from the role framework.</p></div></div>
+            <ul class="plain-list">
+              <li><strong>Portfolio with outcomes</strong><em>Two case studies that quote a real number beat ten screenshots.</em></li>
+              <li><strong>Design-system fluency</strong><em>Variables, tokens and component states — the most common interview probe.</em></li>
+              <li><strong>Research you ran yourself</strong><em>One session you moderated is worth more than a course on method.</em></li>
+            </ul>
+          </section>
+          <section class="panel dash-col--side">
+            <div class="panel-head"><div><p class="panel-kicker">Reality check</p><h2>What this is not</h2></div></div>
+            <p class="fineprint">No salary predictions, no hiring odds, no scraped job counts. Matches are computed from the skills you record here, so they are only as good as what you put in.</p>
+          </section>
+        </div>
+      </section>
+
+      <!-- ======================================================= ROADMAP -->
+      <section class="view" data-view="roadmap" aria-labelledby="roadmapH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">Career roadmap</p>
+            <h1 id="roadmapH1">Four weeks, twelve steps.</h1>
+            <p class="dash-sub">Ordered by what moves the score most. Ticking a step saves it here in the browser.</p>
+          </div>
+          <div class="view-head-actions">
+            <span class="panel-meta" id="roadmapCount">7 of 12 done</span>
+            <button class="btn btn-ghost btn-sm" id="resetRoadmap" type="button">Reset</button>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="roadmap-list" id="roadmapList">
+            <article class="week is-done">
+              <header class="week-head">
+                <span class="week-badge" aria-hidden="true">01</span>
+                <div><h3>Sharpen the story</h3><p>Make the resume say what you actually did.</p></div>
+                <span class="week-progress">3/3</span>
+              </header>
+              <ul class="road-steps">
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Rewrite the resume summary around outcomes</span></label></li>
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Add two case studies with real numbers</span></label></li>
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Run one mock interview in Focus Mode</span></label></li>
+              </ul>
+            </article>
+
+            <article class="week" id="week2">
+              <header class="week-head">
+                <span class="week-badge" aria-hidden="true">02</span>
+                <div><h3>Close the top gaps</h3><p>Design systems and research are holding you back.</p></div>
+                <span class="week-progress">2/3</span>
+              </header>
+              <ul class="road-steps">
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Finish the advanced Figma variables lesson</span></label></li>
+                <li><label><input type="checkbox" data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Ship a 3-screen prototype to one real user</span></label></li>
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Publish a short teardown of a product you use daily</span></label></li>
+              </ul>
+            </article>
+
+            <article class="week">
+              <header class="week-head">
+                <span class="week-badge" aria-hidden="true">03</span>
+                <div><h3>Get in front of people</h3><p>Applications are a volume game with a sharp aim.</p></div>
+                <span class="week-progress">2/3</span>
+              </header>
+              <ul class="road-steps">
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Send 10 tailored applications</span></label></li>
+                <li><label><input type="checkbox" checked data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Ask two designers for a portfolio review</span></label></li>
+                <li><label><input type="checkbox" data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Book one informational call</span></label></li>
+              </ul>
+            </article>
+
+            <article class="week">
+              <header class="week-head">
+                <span class="week-badge" aria-hidden="true">04</span>
+                <div><h3>Land it</h3><p>Interview craft, then the offer conversation.</p></div>
+                <span class="week-progress">0/3</span>
+              </header>
+              <ul class="road-steps">
+                <li><label><input type="checkbox" data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Prepare the design-challenge story</span></label></li>
+                <li><label><input type="checkbox" data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Rehearse a 20-minute portfolio walkthrough</span></label></li>
+                <li><label><input type="checkbox" data-step /><span class="tick" aria-hidden="true"></span><span class="road-text">Write your counter-offer script</span></label></li>
+              </ul>
+            </article>
+          </div>
+          <p class="dash-empty" id="roadmapEmpty" hidden>Nothing matches that search.</p>
+        </section>
+      </section>
+
+      <!-- ======================================================= STUDIO -->
+      <section class="view" data-view="studio" aria-labelledby="studioH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">Learning studio</p>
+            <h1 id="studioH1">Short lessons, tied to your gaps.</h1>
+            <p class="dash-sub">Each one targets a skill in the framework. Mark it reviewed when you have actually done the work.</p>
+          </div>
+          <span class="panel-meta" id="studioMeta">0 of 6 reviewed</span>
+        </div>
+        <div class="lesson-grid" id="lessonGrid"></div>
+      </section>
+
+      <!-- ======================================================= COACH -->
+      <section class="view" data-view="coach" aria-labelledby="coachH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">AI career coach</p>
+            <h1 id="coachH1">Ask about the plan.</h1>
+            <p class="dash-sub">The coach answers from your own workspace data — roadmap state, recorded evidence and the next test.</p>
+          </div>
+        </div>
+        <div class="coach-grid">
+          <section class="panel panel--coach-visual">
+            <div class="coach-stage">
+              <div class="visual-glow" aria-hidden="true"></div>
+              <canvas id="coachRobot" aria-label="Animated 3D robot coach" role="img"></canvas>
+            </div>
+            <button class="btn btn-outline btn-sm" id="cheerBtn" type="button">Say hi</button>
+          </section>
+          <section class="panel">
+            <div class="chat" id="chat" role="log" aria-live="polite" aria-label="Conversation with the coach">
+              <div class="chat-msg chat-msg--bot"><p>Hi Aarav. Ask me what to do next, why a skill is flagged, or how to prepare for the weekly test.</p></div>
+            </div>
+            <div class="chat-chips">
+              <button type="button" data-ask="next">What should I do next?</button>
+              <button type="button" data-ask="score">Why is my evidence coverage low?</button>
+              <button type="button" data-ask="interview">Prep me for an interview</button>
+            </div>
+            <p class="fineprint">Scripted demo replies, generated from the data saved in this browser. Nothing is sent anywhere.</p>
+          </section>
+        </div>
+      </section>
+
+      <!-- ======================================================= DOCUMENTS -->
+      <section class="view" data-view="documents" aria-labelledby="docsH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">My documents</p>
+            <h1 id="docsH1">Your working files.</h1>
+            <p class="dash-sub">Files stay on your device. This page stores the name, size and date so you can keep track of what you have already used.</p>
+          </div>
+          <label class="btn btn-primary btn-sm file-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+            Add document
+            <input type="file" id="docInput" hidden accept=".pdf,.doc,.docx,.txt,.md" />
+          </label>
+        </div>
+        <section class="panel">
+          <div class="panel-head">
+            <div><h2>Added files</h2><p>Nothing is read, parsed or uploaded.</p></div>
+            <span class="panel-meta" id="docsMeta">0 files</span>
+          </div>
+          <ul class="doclist" id="docList"></ul>
+          <p class="dash-empty" id="docsEmpty">No documents yet. Add your resume to keep it in the workspace list.</p>
+        </section>
+      </section>
+
+      <!-- ======================================================= PROGRESS -->
+      <section class="view" data-view="progress" aria-labelledby="progH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">Progress &amp; weekly tests</p>
+            <h1 id="progH1">A short check-in, every week.</h1>
+            <p class="dash-sub">Three questions about your own work. It is not a graded exam — it is a nudge to look at what you actually shipped.</p>
+          </div>
+          <span class="panel-meta" id="progMeta">0 tests taken</span>
+        </div>
+
+        <div class="dash-split">
+          <section class="panel">
+            <div class="panel-head"><div><h2>Weekly test</h2><p id="testState">Not taken this week.</p></div></div>
+            <form id="testForm" class="quiz" novalidate>
+              <fieldset>
+                <legend>1. Did you ship anything real this week — a prototype, a post, an application?</legend>
+                <label><input type="radio" name="q1" value="3" required /><span>Yes, and someone else used or read it</span></label>
+                <label><input type="radio" name="q1" value="2" /><span>Yes, but only I have seen it</span></label>
+                <label><input type="radio" name="q1" value="1" /><span>Not yet</span></label>
+              </fieldset>
+              <fieldset>
+                <legend>2. Which gap did you work on?</legend>
+                <label><input type="radio" name="q2" value="3" required /><span>The priority gap</span></label>
+                <label><input type="radio" name="q2" value="2" /><span>A secondary gap</span></label>
+                <label><input type="radio" name="q2" value="1" /><span>None of them</span></label>
+              </fieldset>
+              <fieldset>
+                <legend>3. How confident are you explaining your last project out loud?</legend>
+                <label><input type="radio" name="q3" value="3" required /><span>I could do it right now, in two minutes</span></label>
+                <label><input type="radio" name="q3" value="2" /><span>With notes, yes</span></label>
+                <label><input type="radio" name="q3" value="1" /><span>I would need to prepare</span></label>
+              </fieldset>
+              <div class="quiz-actions">
+                <button class="btn btn-primary btn-sm" type="submit">Submit check-in</button>
+                <span class="quiz-hint" id="quizHint" role="status"></span>
+              </div>
+            </form>
+          </section>
+
+          <div class="dash-col dash-col--side">
+            <section class="panel">
+              <div class="panel-head"><div><p class="panel-kicker">Check-in history</p><h2>Last results</h2></div></div>
+              <ul class="history" id="testHistory"></ul>
+              <p class="dash-empty" id="historyEmpty">No check-ins yet.</p>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><div><p class="panel-kicker">Workspace numbers</p><h2>Where you are</h2></div></div>
+              <ul class="mini-stats">
+                <li><span>Roadmap steps</span><strong id="progRoadmap">7/12</strong></li>
+                <li><span>Evidence recorded</span><strong id="progEvidence">0/6</strong></li>
+                <li><span>Lessons reviewed</span><strong id="progLessons">0/6</strong></li>
+                <li><span>Profile completion</span><strong id="progProfile">0%</strong></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= SETTINGS -->
+      <section class="view" data-view="settings" aria-labelledby="setH1" hidden>
+        <div class="view-head">
+          <div>
+            <p class="dash-eyebrow">Privacy &amp; settings</p>
+            <h1 id="setH1">Your workspace, your rules.</h1>
+            <p class="dash-sub">Nothing on this page is sent to a server. Everything below is stored in this browser and can be wiped in one click.</p>
+          </div>
+        </div>
+
+        <div class="dash-split">
+          <section class="panel">
+            <div class="panel-head"><div><h2>Profile</h2><p>Used in the greeting, the welcome card and the coach's answers.</p></div></div>
+            <form id="profileForm" class="settings-form">
+              <label class="field"><span>Name</span><input id="setName" type="text" autocomplete="name" /></label>
+              <label class="field"><span>Email</span><input id="setEmail" type="email" autocomplete="email" /></label>
+              <label class="field"><span>Target role</span>
+                <select id="setTarget">
+                  <option value="">Not chosen yet</option>
+                  <option>Product Designer</option>
+                  <option>UX Researcher</option>
+                  <option>Design Systems Lead</option>
+                  <option>Product Manager</option>
+                  <option>Front-end Engineer</option>
+                </select>
+              </label>
+              <label class="field"><span>Learning hours per week</span><input id="setHours" type="number" min="1" max="40" step="1" /></label>
+              <div class="settings-actions">
+                <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+                <span class="quiz-hint" id="settingsHint" role="status"></span>
+              </div>
+            </form>
+          </section>
+
+          <div class="dash-col dash-col--side">
+            <section class="panel">
+              <div class="panel-head"><div><p class="panel-kicker">Privacy</p><h2>What is stored</h2></div></div>
+              <ul class="plain-list tight">
+                <li><strong>Profile</strong><em>Name, email, target role, hours per week.</em></li>
+                <li><strong>Activity</strong><em>Roadmap ticks, recorded evidence, reviewed lessons, check-in scores.</em></li>
+                <li><strong>Documents</strong><em>Only the file name, size and date — never the contents.</em></li>
+              </ul>
+              <div class="settings-actions">
+                <button class="btn btn-outline btn-sm" id="exportBtn" type="button">Export my data</button>
+                <button class="btn btn-ghost btn-sm" id="clearBtn" type="button">Clear everything</button>
+              </div>
+              <p class="fineprint" id="clearHint"></p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dash-foot">
+        <p>© <span class="footer-year">2026</span> CareerTwin Inc. · Demo build, sample data, nothing leaves this browser.</p>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="login.html">Log in</a>
+        </nav>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<button class="career-guide" id="careerGuide" type="button">
+  <span class="career-guide-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-4 3v-4.6A8 8 0 0 1 13 4a8 8 0 0 1 8 8Z"/><path d="M9 11h.01M13 11h.01M17 11h.01"/></svg>
+  </span>
+  <span>Career guide</span>
+</button>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

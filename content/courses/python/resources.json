@@ -1,0 +1,102 @@
+[
+  {
+    "id": "res-python-python",
+    "title": "Python for Beginners - Full Programming Course",
+    "provider": "youtube",
+    "channelOrAuthor": "Programming with Mosh / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+    "embedUrl": "https://www.youtube.com/embed/_uQrJ0TkZlc",
+    "durationMinutes": 60,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative pedagogical breakdown of Python syntax, data types, control flow, and functions.",
+    "whatItTeaches": "Core Python mental models, variable scoping, and function execution patterns relevant to Introduction to Python.",
+    "learningObjectivesSupported": [
+      "Master foundational concepts of Introduction to Python",
+      "Write clean, idiomatic Python code"
+    ],
+    "keyTopicsCovered": [
+      "Variables & Expressions",
+      "Control Flow",
+      "Functions & Scope",
+      "Testing & Debugging"
+    ],
+    "followUpActivity": "Complete the practical code exercise in the Practice Lab tab to verify understanding.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-python-python",
+    "title": "Python for Beginners - Full Programming Course",
+    "provider": "youtube",
+    "channelOrAuthor": "Programming with Mosh / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+    "embedUrl": "https://www.youtube.com/embed/_uQrJ0TkZlc",
+    "durationMinutes": 60,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative pedagogical breakdown of Python syntax, data types, control flow, and functions.",
+    "whatItTeaches": "Core Python mental models, variable scoping, and function execution patterns relevant to Core Syntax and Primitives in Python.",
+    "learningObjectivesSupported": [
+      "Master foundational concepts of Core Syntax and Primitives in Python",
+      "Write clean, idiomatic Python code"
+    ],
+    "keyTopicsCovered": [
+      "Variables & Expressions",
+      "Control Flow",
+      "Functions & Scope",
+      "Testing & Debugging"
+    ],
+    "followUpActivity": "Complete the practical code exercise in the Practice Lab tab to verify understanding.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-python-python",
+    "title": "Python for Beginners - Full Programming Course",
+    "provider": "youtube",
+    "channelOrAuthor": "Programming with Mosh / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+    "embedUrl": "https://www.youtube.com/embed/_uQrJ0TkZlc",
+    "durationMinutes": 60,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative pedagogical breakdown of Python syntax, data types, control flow, and functions.",
+    "whatItTeaches": "Core Python mental models, variable scoping, and function execution patterns relevant to Production Patterns and Resilience in Python.",
+    "learningObjectivesSupported": [
+      "Master foundational concepts of Production Patterns and Resilience in Python",
+      "Write clean, idiomatic Python code"
+    ],
+    "keyTopicsCovered": [
+      "Variables & Expressions",
+      "Control Flow",
+      "Functions & Scope",
+      "Testing & Debugging"
+    ],
+    "followUpActivity": "Complete the practical code exercise in the Practice Lab tab to verify understanding.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-python-python",
+    "title": "Python for Beginners - Full Programming Course",
+    "provider": "youtube",
+    "channelOrAuthor": "Programming with Mosh / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+    "embedUrl": "https://www.youtube.com/embed/_uQrJ0TkZlc",
+    "durationMinutes": 60,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative pedagogical breakdown of Python syntax, data types, control flow, and functions.",
+    "whatItTeaches": "Core Python mental models, variable scoping, and function execution patterns relevant to Capstone Lab: Verifiable Python Implementation.",
+    "learningObjectivesSupported": [
+      "Master foundational concepts of Capstone Lab: Verifiable Python Implementation",
+      "Write clean, idiomatic Python code"
+    ],
+    "keyTopicsCovered": [
+      "Variables & Expressions",
+      "Control Flow",
+      "Functions & Scope",
+      "Testing & Debugging"
+    ],
+    "followUpActivity": "Complete the practical code exercise in the Practice Lab tab to verify understanding.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  }
+]

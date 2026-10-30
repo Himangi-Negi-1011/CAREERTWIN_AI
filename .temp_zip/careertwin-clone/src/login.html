@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Log in — CareerTwin</title>
+<meta name="description" content="Log in to CareerTwin and pick up your career roadmap where you left off." />
+<meta name="theme-color" content="#06050b" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b5cf6' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m12 14 4-4'/%3E%3Cpath d='M3.34 19a10 10 0 1 1 17.32 0'/%3E%3C/svg%3E" />
+<style>/*__CSS__*/</style>
+<style>/*__LOGIN_CSS__*/</style>
+</head>
+<body class="auth-page">
+<script>document.documentElement.classList.add('js-anim');</script>
+<a class="skip-link" href="#authForm">Skip to form</a>
+
+<header class="site-header auth-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="CareerTwin — home">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5.6 11.1q2.4-3.1 4.8 0"/>
+          <path d="M13.6 11.1q2.4-3.1 4.8 0"/>
+          <path d="M7.6 14.2q4.4 3.5 8.8 0"/>
+        </svg>
+      </span>
+      <span class="brand-text"><span class="brand-thin">Career</span><span class="brand-strong">Twin</span></span>
+    </a>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+      </button>
+      <a class="btn btn-ghost" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:rotate(180deg)"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <span class="back-label">Back to site</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="auth-main">
+  <div class="auth-bg" aria-hidden="true">
+    <div class="grid-fade"></div>
+    <div class="grid-veil"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <div class="container auth-shell">
+    <!-- ============ left: robot + pitch ============ -->
+    <section class="auth-visual" aria-label="CareerTwin assistant">
+      <div class="auth-robot-wrap">
+        <div class="visual-glow" aria-hidden="true"></div>
+        <canvas id="loginRobot" aria-label="Animated 3D robot assistant waving hello" role="img"></canvas>
+        <div class="float-card auth-float auth-float--a" data-float>
+          <div class="fc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg>
+          </div>
+          <div><strong>Welcome back</strong><span>Your roadmap is waiting</span></div>
+        </div>
+        <button class="robot-hint robot-hint--login" id="robotHint" type="button">
+          <svg class="hint-wave" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 10.5V4.8a1.5 1.5 0 0 1 3 0V11"/><path d="M15 11V6.5a1.5 1.5 0 0 1 3 0v6.2"/><path d="M9 11V9a1.5 1.5 0 0 0-3 0v3.4c0 4.1 2.4 7.1 6.3 7.1 3.3 0 5.7-2.2 5.7-5.5"/></svg> Say hi
+        </button>
+
+        <div class="float-card auth-float auth-float--b" data-float>
+          <div class="fc-icon alt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div><strong>Focus Mode</strong><span>Interview coach ready</span></div>
+        </div>
+      </div>
+
+      <div class="auth-pitch">
+        <h1>Pick up where you<br /><span class="grad-text gradient-anim">left off</span></h1>
+        <p>Your skill analysis, roadmap progress and interview practice all live in one place.</p>
+        <ul class="auth-points">
+          <li>
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Resume analysis history and saved roadmaps
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Mock interviews with feedback in Focus Mode
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Weekly milestones you can actually finish
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ right: the form ============ -->
+    <section class="auth-card-wrap">
+      <div class="auth-card">
+        <div class="auth-card-head">
+          <span class="auth-badge" id="authBadge">Log in</span>
+          <h2 id="authTitle">Welcome back</h2>
+          <p id="authSub">Log in to continue your career plan.</p>
+        </div>
+
+        <form class="auth-form" id="authForm" novalidate>
+          <label class="field">
+            <span>Email address</span>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="emailError" />
+            </div>
+            <em class="field-error" id="emailError" role="alert"></em>
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required minlength="6" aria-describedby="passwordError" />
+              <button class="pw-toggle" id="pwToggle" type="button" aria-label="Show password" aria-pressed="false">
+                <svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="eye-shut" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.5 0 10 7 10 7a18 18 0 0 1-2.4 3.3M6.6 6.6A17.7 17.7 0 0 0 2 11s3.5 7 10 7a9.4 9.4 0 0 0 4-.87"/><path d="M2 2l20 20"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+              </button>
+            </div>
+            <em class="field-error" id="passwordError" role="alert"></em>
+          </label>
+
+          <div class="auth-row">
+            <label class="check">
+              <input type="checkbox" id="remember" name="remember" checked />
+              <span class="check-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              Remember me
+            </label>
+            <button class="link-btn" id="forgotBtn" type="button">Forgot password?</button>
+          </div>
+
+          <button class="btn btn-primary btn-lg auth-submit" id="submitBtn" type="submit">
+            <span class="btn-label">Log in</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+
+          <p class="auth-status" id="authStatus" role="status" aria-live="polite"></p>
+
+          <div class="auth-divider"><span>or</span></div>
+
+          <button class="btn btn-outline auth-oauth" id="googleBtn" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="g-icon">
+              <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.2-5.5 4.2A6.3 6.3 0 1 1 15.9 7.4l2.7-2.6A10 10 0 1 0 12 22c5.8 0 9.6-4.1 9.6-9.8 0-.7-.08-1.2-.18-1.9H12Z"/>
+            </svg>
+            Continue with Google
+          </button>
+
+          <p class="auth-switch">
+            <span id="switchText">New to CareerTwin?</span>
+            <button class="link-btn strong" id="switchMode" type="button">Create an account</button>
+          </p>
+        </form>
+
+        <div class="auth-success" role="status" aria-live="polite">
+          <span class="success-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+          <h3>You’re in!</h3>
+          <p></p>
+          <a class="btn btn-primary" id="successContinue" href="dashboard.html">
+            Continue to your dashboard
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <p class="auth-demo-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+          Demo build — no account is created and nothing is sent anywhere. Use any email and a 6+ character password.
+        </p>
+      </div>
+
+      <a class="auth-skip" href="index.html#analyze">
+        Skip login and get started
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </section>
+  </div>
+</main>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

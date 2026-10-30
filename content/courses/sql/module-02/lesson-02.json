@@ -1,0 +1,197 @@
+{
+  "lessonId": "mod-2-application-l2-capstone-lab-verifiable-sql-implementati",
+  "skillName": "SQL",
+  "moduleId": "mod-2-application",
+  "title": "Capstone Lab: Verifiable SQL Implementation",
+  "summary": "Comprehensive masterclass on Capstone Lab: Verifiable SQL Implementation for SQL. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Apply SQL in production-ready real-world scenarios",
+    "Evaluate security, performance, and best practices for SQL"
+  ],
+  "objectiveIds": [
+    "sql-obj-3",
+    "sql-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Basic foundational concepts",
+    "SQL environment setup"
+  ],
+  "sections": [
+    {
+      "id": "section-overview",
+      "heading": "1. Core Architecture & Mental Model of Capstone Lab: Verifiable SQL Implementation",
+      "content": "Relational SQL databases operate on set theory and declarative logic. Rather than specifying how to iterate over rows, you declare the desired result set. In Capstone Lab: Verifiable SQL Implementation, understanding query execution plans, relational integrity, and indexing strategies is crucial for low-latency queries.",
+      "codeExamples": [
+        {
+          "language": "sql",
+          "code": "-- Relational Optimization: Capstone Lab: Verifiable SQL Implementation\nSELECT \n    d.department_name,\n    COUNT(e.id) AS total_employees,\n    ROUND(AVG(e.salary), 2) AS avg_salary\nFROM departments d\nINNER JOIN employees e ON d.id = e.department_id\nWHERE e.is_active = TRUE\nGROUP BY d.department_name\nHAVING COUNT(e.id) >= 5\nORDER BY avg_salary DESC;",
+          "explanation": "Filtering active rows in the WHERE clause reduces joined volume before aggregation, while HAVING filters groups after aggregation. Indexes on foreign keys and filter columns prevent table scans.",
+          "expectedOutput": "department_name | total_employees | avg_salary\nEngineering     | 14              | 112500.00\nProduct         | 6               | 98400.00"
+        }
+      ],
+      "keyPoints": [
+        "WHERE filters rows before aggregation; HAVING filters aggregated groups.",
+        "Join on indexed foreign keys to avoid costly nested-loop full table scans.",
+        "Avoid SELECT * in production queries to minimize I/O and network payload."
+      ],
+      "commonMistakes": [
+        "Applying functions on indexed columns in the WHERE clause (e.g. WHERE YEAR(created_at) = 2026), disabling index lookups.",
+        "Accidental Cartesian products caused by omitting join predicates on relational joins."
+      ]
+    },
+    {
+      "id": "section-deep-dive",
+      "heading": "2. Production Patterns & Real-World Implementations",
+      "content": "In production database architectures, transaction management (ACID), locking considerations, and idempotent migrations guarantee consistency under heavy concurrency.",
+      "codeExamples": [
+        {
+          "language": "sql",
+          "code": "BEGIN TRANSACTION;\n\n-- Safe optimistic update with row lock\nUPDATE accounts \nSET balance = balance - 500.00, updated_at = CURRENT_TIMESTAMP\nWHERE id = 'acc-101' AND balance >= 500.00;\n\nINSERT INTO audit_log (account_id, action, amount, logged_at)\nVALUES ('acc-101', 'WITHDRAWAL', 500.00, CURRENT_TIMESTAMP);\n\nCOMMIT;",
+          "explanation": "Wrapping interrelated financial or status updates in an explicit transaction prevents partial failures from corrupting relational state.",
+          "expectedOutput": "COMMIT; Transaction applied atomically with audit log."
+        }
+      ],
+      "keyPoints": [
+        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
+        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+      ],
+      "commonMistakes": [
+        "Proceeding without clear acceptance criteria or error telemetry.",
+        "Silently ignoring failure modes instead of implementing deterministic error handling."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-application-l2-capstone-lab-verifiable-sql-implementati-ex-1",
+      "type": "coding",
+      "title": "SQL Lab: Capstone Lab: Verifiable SQL Implementation",
+      "objective": "Write an optimized SQL query demonstrating aggregation, filtering, and joins.",
+      "description": "Construct a multi-table SQL query resolving the practical task in Capstone Lab: Verifiable SQL Implementation. Ensure indices are respected and aggregations are accurate.",
+      "instructions": [
+        "Join the primary entity with its related transaction or child entity.",
+        "Apply selective filtering in the WHERE clause.",
+        "Group results and calculate aggregate totals with an appropriate filter on groups."
+      ],
+      "starterCode": "-- SQL Lab for Capstone Lab: Verifiable SQL Implementation\nSELECT \n    -- TODO: Specify columns explicitly\nFROM primary_table p\n-- TODO: Add JOIN and WHERE clauses\n;",
+      "hints": [
+        "Check whether you need an INNER JOIN (intersection only) or LEFT JOIN (preserve all parent rows).",
+        "Always verify column data types when comparing timestamps."
+      ],
+      "submissionRequirements": "Submit clean, formatted SQL with explicit column names and valid joins.",
+      "evaluationCriteria": [
+        "Syntax: Valid ANSI SQL query with correct operator precedence.",
+        "Optimization: Correct use of WHERE vs HAVING without redundant subqueries."
+      ],
+      "solutionExplanation": "The optimal query applies filtering early in the execution pipeline, joins on indexed foreign keys, and aggregates only necessary dimensions."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-application-l2-capstone-lab-verifiable-sql-implementati-kc-1",
+      "type": "single-choice",
+      "prompt": "What is the critical semantic difference between the WHERE clause and the HAVING clause in SQL?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "WHERE filters individual rows before grouping occurs; HAVING filters aggregated groups after GROUP BY."
+        },
+        {
+          "id": "opt-2",
+          "text": "WHERE works only on numeric data; HAVING works only on strings and dates."
+        },
+        {
+          "id": "opt-3",
+          "text": "HAVING executes before table joins are resolved."
+        },
+        {
+          "id": "opt-4",
+          "text": "WHERE and HAVING are completely interchangeable syntax aliases in ANSI SQL."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "WHERE evaluates predicates on raw table rows before grouping and aggregate calculations. HAVING evaluates predicates on the grouped aggregate results.",
+      "objectiveIds": [
+        "sql-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-application-l2-capstone-lab-verifiable-sql-implementati-kc-2",
+      "type": "multiple-select",
+      "prompt": "Which of the following actions prevent unnecessary full table scans on relational databases?",
+      "options": [
+        {
+          "id": "opt-2a",
+          "text": "Creating B-Tree indexes on foreign keys and frequently filtered columns"
+        },
+        {
+          "id": "opt-2b",
+          "text": "Avoiding functions wrapping indexed columns in WHERE predicates (e.g. avoiding UPPER(column))"
+        },
+        {
+          "id": "opt-2c",
+          "text": "Using SELECT * across all tables in a multi-table join"
+        },
+        {
+          "id": "opt-2d",
+          "text": "Normalizing tables and analyzing query execution plans with EXPLAIN"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2a",
+        "opt-2b",
+        "opt-2d"
+      ],
+      "explanation": "Indexes, sargable predicates (no function wraps on columns), and EXPLAIN analysis allow index seeks instead of sequential table scans. SELECT * does not prevent table scans and increases network I/O.",
+      "objectiveIds": [
+        "sql-obj-4"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you established the foundations of Capstone Lab: Verifiable SQL Implementation. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "videoResources": [
+    {
+      "id": "res-sql-sql",
+      "title": "SQL & Relational Database Design for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+      "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+      "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
+      "durationMinutes": 50,
+      "difficulty": "beginner",
+      "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
+      "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+      "learningObjectivesSupported": [
+        "Apply Capstone Lab: Verifiable SQL Implementation to real database tables and queries"
+      ],
+      "keyTopicsCovered": [
+        "SELECT & WHERE filtering",
+        "INNER & LEFT JOINs",
+        "GROUP BY & HAVING",
+        "Indexes"
+      ],
+      "followUpActivity": "Write and execute three query variations based on the database exercise.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-10-25"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "PostgreSQL Official Documentation",
+      "url": "https://www.postgresql.org/docs/",
+      "description": "Official documentation and authoritative guides for SQL."
+    }
+  ],
+  "realWorldApplications": [
+    "Industrial engineering workflows and production services",
+    "Mission-critical business systems requiring accuracy and compliance"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-30T06:22:08.773Z"
+}

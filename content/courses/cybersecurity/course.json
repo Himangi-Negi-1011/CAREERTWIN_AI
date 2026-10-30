@@ -1,0 +1,93 @@
+{
+  "skillId": "724463ac-8380-4459-b603-c8792553a5e5",
+  "skillName": "Cybersecurity",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "cybersecurity-obj-1",
+      "statement": "Understand foundational mental models and syntax of Cybersecurity",
+      "order": 1
+    },
+    {
+      "id": "cybersecurity-obj-2",
+      "statement": "Implement reliable patterns and error handling in Cybersecurity",
+      "order": 2
+    },
+    {
+      "id": "cybersecurity-obj-3",
+      "statement": "Apply Cybersecurity in production-ready real-world scenarios",
+      "order": 3
+    },
+    {
+      "id": "cybersecurity-obj-4",
+      "statement": "Evaluate security, performance, and best practices for Cybersecurity",
+      "order": 4
+    }
+  ],
+  "prerequisites": [
+    "Basic digital literacy and analytical reasoning"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-foundations",
+      "title": "Module 1: Foundations & Core Concepts of Cybersecurity",
+      "summary": "Explore the fundamental concepts, terminology, and development workflow.",
+      "order": 1,
+      "estimatedMinutes": 60,
+      "objectiveIds": [
+        "cybersecurity-obj-1",
+        "cybersecurity-obj-2"
+      ],
+      "lessonTitles": [
+        "Introduction to Cybersecurity",
+        "Core Syntax and Primitives in Cybersecurity"
+      ],
+      "checkpoint": "Build a functional baseline demonstration verifying syntax and flow."
+    },
+    {
+      "id": "mod-2-application",
+      "title": "Module 2: Practical Implementation & Production Patterns",
+      "summary": "Deep dive into resilient design, test automation, and real-world deployment.",
+      "order": 2,
+      "estimatedMinutes": 90,
+      "objectiveIds": [
+        "cybersecurity-obj-3",
+        "cybersecurity-obj-4"
+      ],
+      "lessonTitles": [
+        "Production Patterns and Resilience in Cybersecurity",
+        "Capstone Lab: Verifiable Cybersecurity Implementation"
+      ],
+      "checkpoint": "Complete a verifiable project applying defense-in-depth principles."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic",
+    "Interactive boundary condition exercises",
+    "Production code review simulations"
+  ],
+  "assessmentCheckpoints": [
+    "Module 1 Knowledge Check (70% pass threshold)",
+    "Module 2 Production Readiness Evaluation"
+  ],
+  "projects": [
+    "Production-ready Cybersecurity portfolio module with automated test suite and documentation"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Submit verifiable implementation satisfying acceptance criteria"
+  ],
+  "resources": [
+    {
+      "title": "Official Cybersecurity Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-30T06:22:09.647Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

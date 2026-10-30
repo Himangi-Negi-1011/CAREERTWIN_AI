@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CareerTwin — Your Personalized AI Career Co-pilot</title>
+<meta name="description" content="Your personalized AI career co-pilot, guiding you from confusion to job-readiness." />
+<meta name="theme-color" content="#06050b" />
+<meta property="og:title" content="CareerTwin — Your Personalized AI Career Co-pilot" />
+<meta property="og:description" content="Turn career anxiety into an actionable plan: skills analysis, a personalised roadmap and mock interview practice." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a855f7' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m12 14 4-4'/%3E%3Cpath d='M3.34 19a10 10 0 1 1 17.32 0'/%3E%3C/svg%3E" />
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js-anim');</script>
+<a class="skip-link" href="#home">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="#home" aria-label="CareerTwin — home">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5.6 11.1q2.4-3.1 4.8 0"/>
+          <path d="M13.6 11.1q2.4-3.1 4.8 0"/>
+          <path d="M7.6 14.2q4.4 3.5 8.8 0"/>
+        </svg>
+      </span>
+      <span class="brand-text"><span class="brand-thin">Career</span><span class="brand-strong">Twin</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+      </button>
+      <a class="btn btn-ghost hide-md" href="login.html">Login</a>
+      <a class="btn btn-primary hide-md magnetic" href="login.html">Get Started</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#faq">FAQ</a>
+    <div class="mobile-menu-actions">
+      <a class="btn btn-outline" href="login.html">Login</a>
+      <a class="btn btn-primary" href="login.html">Get Started</a>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="grid-fade"></div>
+      <div class="grid-veil"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="spotlight" id="spotlight"></div>
+    </div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <a class="eyebrow" href="#features">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>New — AI Interview Coach with Focus Mode</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+
+        <h1>
+          <span class="h1-line">Your Personalized</span>
+          <span class="grad-text gradient-anim h1-line">AI Career Co-pilot</span>
+        </h1>
+
+        <p class="lede">
+          Transform career anxiety into an actionable plan. CareerTwin guides you from
+          self-discovery and skill-building to job-readiness.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg magnetic shine" href="#analyze">
+            Analyze My Career
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn-outline btn-lg" href="#features">Learn More</a>
+        </div>
+
+        <ul class="hero-facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free to start</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No credit card</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your resume stays private</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" id="heroVisual">
+        <div class="visual-glow" aria-hidden="true"></div>
+        <div class="scene-shell">
+          <canvas id="robotCanvas" aria-label="Animated 3D robot assistant" role="img"></canvas>
+          <noscript><div class="scene-fallback">CareerTwin AI</div></noscript>
+        </div>
+
+        <div class="float-card float-card--a" data-float>
+          <div class="fc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <strong>Match score</strong>
+            <span>Product Designer · 92%</span>
+          </div>
+          <div class="ring" style="--p:92"><b>92</b></div>
+        </div>
+
+        <div class="float-card float-card--b" data-float>
+          <div class="fc-icon alt">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg>
+          </div>
+          <div>
+            <strong>Next milestone</strong>
+            <span>Build 2 portfolio projects</span>
+          </div>
+          <div class="bars" aria-hidden="true"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:85%"></i></div>
+        </div>
+
+        <button class="robot-hint" id="robotHint" type="button">
+          <svg class="hint-wave" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 10.5V4.8a1.5 1.5 0 0 1 3 0V11"/><path d="M15 11V6.5a1.5 1.5 0 0 1 3 0v6.2"/><path d="M9 11V9a1.5 1.5 0 0 0-3 0v3.4c0 4.1 2.4 7.1 6.3 7.1 3.3 0 5.7-2.2 5.7-5.5"/></svg> Say hi
+        </button>
+
+        <div class="float-card float-chip float-card--c" data-float><span class="chip-dot" aria-hidden="true"></span>Analyzing your profile…</div>
+      </div>
+    </div>
+
+    <button class="scroll-hint" id="scrollHint" type="button"><span aria-hidden="true"><i></i></span>Scroll to explore</button>
+  </section>
+
+  <!-- ============================== WORKFLOW STRIP ============================== -->
+  <section class="flow-strip" id="flowStrip" aria-label="How the workflow fits together">
+    <div class="flow-inner container">
+      <span class="flow-step"><b>1</b>Paste your resume</span>
+      <i class="flow-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </i>
+      <span class="flow-step"><b>2</b>See skills &amp; fit</span>
+      <i class="flow-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </i>
+      <span class="flow-step"><b>3</b>Follow the roadmap</span>
+      <i class="flow-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </i>
+      <span class="flow-step"><b>4</b>Practise &amp; apply</span>
+    </div>
+  </section>
+
+  <!-- ============================== FEATURES ============================== -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="icon-badge reveal-pop">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h2>How CareerTwin Empowers You</h2>
+        <p>Powerful, AI-driven tools to guide you from confusion to clarity and confidence.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card tilt reveal" style="--i:0">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          </div>
+          <h3>AI Skills Analysis</h3>
+          <p>Get instant analysis of your resume to discover your strengths and best-fit career paths.</p>
+          <ul class="card-tags">
+            <li>Resume scan</li><li>Skill gaps</li><li>ATS score</li>
+          </ul>
+          <a class="card-link" href="#analyze">Try it free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card tilt reveal" style="--i:1">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg>
+          </div>
+          <h3>Dynamic Career Roadmaps</h3>
+          <p>Receive a personalized, step-by-step plan with courses to take and projects to build.</p>
+          <ul class="card-tags">
+            <li>12-week plan</li><li>Courses</li><li>Projects</li>
+          </ul>
+          <a class="card-link" href="#analyze">Try it free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="card tilt reveal" style="--i:2">
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Mock Interview Practice</h3>
+          <p>Build confidence with our AI Interview Coach in a distraction-free ‘Focus Mode’.</p>
+          <ul class="card-tags">
+            <li>Live feedback</li><li>Focus Mode</li><li>STAR answers</li>
+          </ul>
+          <a class="card-link" href="#analyze">Try it free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== HOW IT WORKS ============================== -->
+  <section id="how" class="section section--alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Three steps</span>
+        <h2>From confusion to a clear plan</h2>
+        <p>No guesswork, no generic advice — every step is built around your profile.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step reveal" style="--i:0">
+          <span class="step-num">01</span>
+          <h3>Upload your resume</h3>
+          <p>Paste your resume text — or attach a .txt file. The model reads it in seconds.</p>
+        </li>
+        <li class="step reveal" style="--i:1">
+          <span class="step-num">02</span>
+          <h3>Get your twin + roadmap</h3>
+          <p>See best-fit roles, missing skills and a week-by-week plan to close the gap.</p>
+        </li>
+        <li class="step reveal" style="--i:2">
+          <span class="step-num">03</span>
+          <h3>Practise, then apply</h3>
+          <p>Run mock interviews, polish your story and walk in prepared.</p>
+        </li>
+        <span class="steps-line" aria-hidden="true"></span>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ ============================== -->
+  <section id="faq" class="section">
+    <div class="container faq-wrap">
+      <div class="section-head section-head--left reveal">
+        <span class="kicker">FAQ</span>
+        <h2>Questions, answered</h2>
+        <p>The things people actually ask before their first analysis. Use ↑ ↓ to move between questions.</p>
+      </div>
+
+      <div class="faq-list" id="faqList" role="list">
+        <div class="faq-item is-open" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q1" type="button" aria-expanded="true" aria-controls="faq-a1">
+              <span>Is CareerTwin free?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq-a-inner"><p>Yes — completely. Every analysis, roadmap and practice log on this build is free. There is no paid plan, no card and no trial that expires.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q2" type="button" aria-expanded="false" aria-controls="faq-a2">
+              <span>Do I need an account?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq-a-inner"><p>No. You can start an analysis straight away. Logging in only saves your history so you can pick up where you left off on another day.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q3" type="button" aria-expanded="false" aria-controls="faq-a3">
+              <span>How does the AI analyse my resume?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq-a-inner"><p>It reads your text for skills, seniority and domain signals, then compares them with what realistic target roles actually ask for. You get a fit score plus the gaps that matter most — not a generic keyword count.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q4" type="button" aria-expanded="false" aria-controls="faq-a4">
+              <span>Is my data private?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq-a-inner"><p>Your resume never leaves your browser. The analysis runs locally on your device — there is no upload, no account and no tracking of what you paste.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q5" type="button" aria-expanded="false" aria-controls="faq-a5">
+              <span>How long does an analysis take?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="faq-a-inner"><p>About eight seconds from paste to report, on any device. Most of that is you checking that the pasted text looks right.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q6" type="button" aria-expanded="false" aria-controls="faq-a6">
+              <span>Which resume formats work best?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="faq-a-inner"><p>Plain text gives the most accurate result, and you can attach a .txt or .md file. If yours is a PDF or Word document, open it, copy the text and paste it in.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q7" type="button" aria-expanded="false" aria-controls="faq-a7">
+              <span>Does it work for freshers and career switchers?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a7" role="region" aria-labelledby="faq-q7">
+            <div class="faq-a-inner"><p>Yes. There is no experience floor — students see entry-level paths, and switchers can name a target role to see the closest adjacent routes plus the skills they are missing.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <h3>
+            <button class="faq-q" id="faq-q8" type="button" aria-expanded="false" aria-controls="faq-a8">
+              <span>Can it write my resume for me?</span>
+              <i aria-hidden="true"></i>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a8" role="region" aria-labelledby="faq-q8">
+            <div class="faq-a-inner"><p>No, and it will not pretend to. It shows you where your resume is weak for a role and what to add, then you do the writing — which is why it reads better afterwards.</p></div>
+          </div>
+        </div>
+
+        <p class="faq-more">Something else on your mind? <a href="login.html">Log in</a> and ask the assistant directly.</p>
+      </div>
+      <div class="faq-preview reveal">
+        <div class="faq-preview-head">
+          <span class="faq-preview-badge">See it first</span>
+          <p>Two lines of your resume are enough for the demo to build a live skill map.</p>
+        </div>
+        <ol class="faq-preview-list">
+          <li><span>01</span><strong>Role fit</strong><em>How close you are, right now</em></li>
+          <li><span>02</span><strong>Top 3 gaps</strong><em>The skills holding you back</em></li>
+          <li><span>03</span><strong>Next moves</strong><em>Your first three steps</em></li>
+        </ol>
+        <a class="btn btn-primary" href="#analyze">Get started
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CTA ============================== -->
+  <section class="section section--cta">
+    <div class="container">
+      <div class="cta-band reveal-scale">
+        <div class="cta-aura" aria-hidden="true"></div>
+        <div class="cta-grid" aria-hidden="true"></div>
+        <div class="cta-main">
+          <span class="cta-eyebrow"><i aria-hidden="true"></i>Free · no account needed</span>
+          <h2>Ready to build your future?</h2>
+          <p>Run your first AI career analysis and take the first step towards the job you'll love.</p>
+          <div class="cta-actions">
+            <a class="btn btn-light btn-lg magnetic shine" href="#analyze">
+              Get Started
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="cta-alt" href="#how">See how it works
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <ol class="cta-steps">
+          <li><span>01</span><div><strong>Paste your resume</strong><em>Or attach a text file — nothing is uploaded.</em></div></li>
+          <li><span>02</span><div><strong>See your fit in seconds</strong><em>Match score, gaps and adjacent roles.</em></div></li>
+          <li><span>03</span><div><strong>Leave with a plan</strong><em>Three steps you can start this week.</em></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="#home">
+        <span class="brand-mark small">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.6 11.1q2.4-3.1 4.8 0"/><path d="M13.6 11.1q2.4-3.1 4.8 0"/><path d="M7.6 14.2q4.4 3.5 8.8 0"/></svg>
+        </span>
+        <span class="brand-text"><span class="brand-thin">Career</span><span class="brand-strong">Twin</span></span>
+      </a>
+      <p>© <span class="footer-year">2026</span> CareerTwin Inc. All rights reserved.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="login.html">Log in</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ============================== ANALYZE VIEW ============================== -->
+<section class="analyze-view" id="analyzeView" role="dialog" aria-modal="true" aria-labelledby="analyzeTitle" aria-hidden="true">
+  <div class="analyze-inner container">
+    <button class="analyze-back" id="analyzeBack" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to site
+    </button>
+
+    <div class="analyze-panel">
+      <!-- step 1 -->
+      <div class="analyze-step is-active" data-step="1">
+        <span class="kicker">Career analysis</span>
+        <h2 id="analyzeTitle">Let's find your best-fit career</h2>
+        <p class="analyze-sub">Paste your resume text — or attach a .txt file. Your report takes about 8 seconds.</p>
+
+        <label class="field">
+          <span>Target role <em>(optional)</em></span>
+          <input id="targetRole" type="text" placeholder="e.g. Product Designer, Data Analyst" autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span>Your resume</span>
+          <textarea id="resumeInput" rows="7" placeholder="Paste your resume text here — experience, projects, skills…"></textarea>
+        </label>
+
+        <div class="analyze-row">
+          <label class="file-drop" id="fileDrop">
+            <input type="file" id="fileInput" accept=".txt,.md,.pdf,.doc,.docx" hidden />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+            <span id="fileName">Attach .txt</span>
+          </label>
+          <button class="btn btn-ghost" id="sampleBtn" type="button">Use sample resume</button>
+        </div>
+
+        <button class="btn btn-primary btn-lg shine analyze-submit" id="analyzeBtn" type="button">
+          Analyze My Career
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <p class="file-note" id="fileNote" role="status" aria-live="polite" hidden></p>
+        <p class="analyze-note">Demo analysis runs locally in your browser — nothing is uploaded.</p>
+      </div>
+
+      <!-- step 2 -->
+      <div class="analyze-step" data-step="2">
+        <div class="scan-stage">
+          <div class="scan-doc">
+            <span></span><span></span><span></span><span></span><span></span>
+            <div class="scan-line"></div>
+          </div>
+          <div class="scan-ring"><b id="scanPct">0%</b></div>
+        </div>
+        <h2 class="scan-title">Reading your career twin…</h2>
+        <p class="scan-status" id="scanStatus">Parsing experience and projects</p>
+        <div class="scan-bar"><i id="scanBarFill"></i></div>
+      </div>
+
+      <!-- step 3 -->
+      <div class="analyze-step" data-step="3">
+        <div class="result-head">
+          <div class="score-ring" id="scoreRing" style="--p:0"><b id="scoreVal">0</b><span>match</span></div>
+          <div>
+            <span class="kicker">Your report</span>
+            <h2 id="resultRole">Product Designer</h2>
+            <p class="analyze-sub" id="resultSummary">Strong foundation — sharpen two skills and you're interview-ready.</p>
+          </div>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <h4>Detected skills</h4>
+            <div class="skill-bars" id="skillBars"></div>
+          </div>
+          <div class="result-card">
+            <h4>Best-fit paths</h4>
+            <ul class="path-list" id="pathList"></ul>
+          </div>
+          <div class="result-card wide">
+            <h4>Your 4-week starter roadmap</h4>
+            <ol class="roadmap" id="roadmapList"></ol>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-primary" id="restartBtn" type="button">Analyze another resume</button>
+          <a class="btn btn-outline" href="#features" data-close-analyze>Explore features</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

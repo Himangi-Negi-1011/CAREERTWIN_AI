@@ -1,0 +1,161 @@
+{
+  "id": "mock-cybersecurity-beginner-t3",
+  "skillName": "Cybersecurity",
+  "skillSlug": "cybersecurity",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Cybersecurity BEGINNER Comprehensive Mock Test 3",
+  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Cybersecurity.",
+  "durationMinutes": 30,
+  "totalMarks": 9,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Vulnerability Assessment",
+    "Defensive Engineering",
+    "Access Control & Identity",
+    "Cryptography Foundations"
+  ],
+  "questions": [
+    {
+      "id": "mock-cybersecurity-beginner-t3-q1",
+      "type": "scenario",
+      "prompt": "During a vulnerability scan, a web server responds to requests containing '../../etc/passwd'. What vulnerability does this indicate?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Path Traversal (Directory Traversal)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Cross-Site Request Forgery (CSRF)"
+        },
+        {
+          "id": "opt-3",
+          "text": "Server-Side Request Forgery (SSRF)"
+        },
+        {
+          "id": "opt-4",
+          "text": "Insecure Direct Object Reference (IDOR)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Path traversal allows attackers to read arbitrary files on the server by stepping up directories using dot-dot-slash patterns.",
+      "difficulty": "beginner",
+      "topic": "Vulnerability Assessment",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t3-q2",
+      "type": "multiple-select",
+      "prompt": "Which defensive measures protect against SQL Injection vulnerabilities?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Parameterized queries (prepared statements)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Object-Relational Mapping (ORM) with parameterized bindings"
+        },
+        {
+          "id": "opt-3",
+          "text": "Strict input validation against allowlists"
+        },
+        {
+          "id": "opt-4",
+          "text": "Client-side alert boxes warning users not to type quotes"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "Parameterized queries separate SQL structure from data, completely neutralizing malicious query injection.",
+      "difficulty": "beginner",
+      "topic": "Defensive Engineering",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t3-q3",
+      "type": "single-choice",
+      "prompt": "What is the primary objective of the Principle of Least Privilege (PoLP)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Every user and service is granted only the minimum permissions necessary to perform their legitimate tasks."
+        },
+        {
+          "id": "opt-2",
+          "text": "All users are assigned administrative privileges to prevent operational bottlenecks."
+        },
+        {
+          "id": "opt-3",
+          "text": "Password complexity requirements are reduced for internal network users."
+        },
+        {
+          "id": "opt-4",
+          "text": "Firewalls are configured to allow all outbound traffic unconditionally."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Least privilege limits blast radius: if an identity is compromised, an attacker cannot pivot beyond that identity's minimal permissions.",
+      "difficulty": "beginner",
+      "topic": "Access Control & Identity",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t3-q4",
+      "type": "debugging",
+      "prompt": "Why is base64 encoding NOT considered an encryption mechanism?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Base64 is an encoding scheme with no secret cryptographic key; anyone can decode it instantly without credentials."
+        },
+        {
+          "id": "opt-2",
+          "text": "Base64 uses 128-bit keys which are easily brute-forced."
+        },
+        {
+          "id": "opt-3",
+          "text": "Base64 only works on ASCII text."
+        },
+        {
+          "id": "opt-4",
+          "text": "Base64 is a proprietary hashing algorithm."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Encoding transforms data representation for transport. Encryption requires secret keys and mathematical algorithms (AES, RSA) to ensure confidentiality.",
+      "difficulty": "beginner",
+      "topic": "Cryptography Foundations",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Cybersecurity"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-30T06:22:10.459Z",
+  "updatedAt": "2026-10-30T06:22:10.459Z"
+}

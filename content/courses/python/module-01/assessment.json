@@ -1,0 +1,195 @@
+{
+  "id": "phase-python-mod-1-foundations-assessment",
+  "skillName": "Python",
+  "skillSlug": "python",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-foundations",
+  "moduleTitle": "Module 1: Foundations & Core Concepts of Python",
+  "title": "Python — Module 1: Foundations & Core Concepts of Python Phase Assessment",
+  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to Python, Core Syntax and Primitives in Python.",
+  "durationMinutes": 20,
+  "totalMarks": 11,
+  "passingPercentage": 75,
+  "topicsCovered": [
+    "Data Structures & Comprehensions",
+    "Functions & Scope",
+    "Memory Management & Generators",
+    "Concurrency & Architecture",
+    "Object-Oriented Programming & Optimization"
+  ],
+  "questions": [
+    {
+      "id": "phase-python-mod-1-foundations-assessment-q1",
+      "type": "code-output",
+      "prompt": "[Module 1: Foundations & Core Concepts of Python] What is the exact output of the following list comprehension snippet?",
+      "codeSnippet": "matrix = [[1, 2], [3, 4]]\nflattened = [val for row in matrix for val in row]\nprint(flattened)",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "[1, 2, 3, 4]"
+        },
+        {
+          "id": "opt-2",
+          "text": "[[1, 2], [3, 4]]"
+        },
+        {
+          "id": "opt-3",
+          "text": "[1, 3, 2, 4]"
+        },
+        {
+          "id": "opt-4",
+          "text": "TypeError: list indices must be integers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "In nested list comprehensions in Python, outer loops come first from left to right: for row in matrix, then for val in row.",
+      "difficulty": "beginner",
+      "topic": "Data Structures & Comprehensions",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to Python"
+    },
+    {
+      "id": "phase-python-mod-1-foundations-assessment-q2",
+      "type": "debugging",
+      "prompt": "[Module 1: Foundations & Core Concepts of Python] Identify why the following function mutates state unexpectedly across calls:",
+      "codeSnippet": "def append_item(item, target_list=[]):\n    target_list.append(item)\n    return target_list\n\na = append_item(1)\nb = append_item(2)",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Default arguments are evaluated once at function definition time, sharing the mutable list instance."
+        },
+        {
+          "id": "opt-2",
+          "text": "Python functions create a global variable when default arguments are used."
+        },
+        {
+          "id": "opt-3",
+          "text": "append() returns None rather than the updated list."
+        },
+        {
+          "id": "opt-4",
+          "text": "Integers cannot be appended to untyped lists."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Python evaluates default parameter expressions once at definition time. Mutable default arguments (like lists or dicts) are shared across all calls.",
+      "difficulty": "beginner",
+      "topic": "Functions & Scope",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+    },
+    {
+      "id": "phase-python-mod-1-foundations-assessment-q3",
+      "type": "scenario",
+      "prompt": "[Module 1: Foundations & Core Concepts of Python] You are processing a 10GB log file on an instance with 2GB RAM. Which Python approach avoids memory exhaustion?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Read the file line-by-line using a generator iterator (with open(...) as f: for line in f:)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Call f.readlines() to parse all lines into memory at once"
+        },
+        {
+          "id": "opt-3",
+          "text": "Convert the file to a JSON object before looping"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use multiprocessing to load the entire file into 8 concurrent arrays"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Iterating over a file object in Python streams line by line as a generator without loading the entire payload into RAM.",
+      "difficulty": "beginner",
+      "topic": "Memory Management & Generators",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to Python"
+    },
+    {
+      "id": "phase-python-mod-1-foundations-assessment-q4",
+      "type": "multiple-select",
+      "prompt": "[Module 1: Foundations & Core Concepts of Python] Which of the following statements about Python's Global Interpreter Lock (GIL) and concurrency are correct?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The GIL allows only one native thread to execute Python bytecode at a time in CPython"
+        },
+        {
+          "id": "opt-2",
+          "text": "multiprocessing bypasses the GIL by creating separate processes with separate memory spaces"
+        },
+        {
+          "id": "opt-3",
+          "text": "I/O bound operations release the GIL while waiting for network or disk operations"
+        },
+        {
+          "id": "opt-4",
+          "text": "threading provides true multi-core parallel CPU execution for math-heavy loops in CPython"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "In CPython, GIL prevents multi-threaded CPU parallel execution, but I/O releases the lock, and multiprocessing spawns separate OS processes.",
+      "difficulty": "beginner",
+      "topic": "Concurrency & Architecture",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+    },
+    {
+      "id": "phase-python-mod-1-foundations-assessment-q5",
+      "type": "single-choice",
+      "prompt": "[Module 1: Foundations & Core Concepts of Python] What does the '__slots__' attribute do when declared on a Python class?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It restricts valid instance attributes to a fixed set, eliminating __dict__ to optimize memory usage."
+        },
+        {
+          "id": "opt-2",
+          "text": "It prevents other classes from inheriting from the declared class."
+        },
+        {
+          "id": "opt-3",
+          "text": "It automatically serializes class instances to JSON format."
+        },
+        {
+          "id": "opt-4",
+          "text": "It declares private variables accessible only via getter functions."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Defining __slots__ on a class prevents the creation of the default __dict__ per instance, significantly reducing memory consumption for millions of objects.",
+      "difficulty": "beginner",
+      "topic": "Object-Oriented Programming & Optimization",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to Python"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-30T06:02:54.742Z",
+  "updatedAt": "2026-10-30T06:02:54.742Z"
+}

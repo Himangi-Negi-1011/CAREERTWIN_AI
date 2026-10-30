@@ -1,0 +1,93 @@
+{
+  "skillId": "0fc8ccd8-c3bb-4c9e-ba78-183d464d0893",
+  "skillName": "SQL",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "sql-obj-1",
+      "statement": "Understand foundational mental models and syntax of SQL",
+      "order": 1
+    },
+    {
+      "id": "sql-obj-2",
+      "statement": "Implement reliable patterns and error handling in SQL",
+      "order": 2
+    },
+    {
+      "id": "sql-obj-3",
+      "statement": "Apply SQL in production-ready real-world scenarios",
+      "order": 3
+    },
+    {
+      "id": "sql-obj-4",
+      "statement": "Evaluate security, performance, and best practices for SQL",
+      "order": 4
+    }
+  ],
+  "prerequisites": [
+    "Basic digital literacy and analytical reasoning"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-foundations",
+      "title": "Module 1: Foundations & Core Concepts of SQL",
+      "summary": "Explore the fundamental concepts, terminology, and development workflow.",
+      "order": 1,
+      "estimatedMinutes": 60,
+      "objectiveIds": [
+        "sql-obj-1",
+        "sql-obj-2"
+      ],
+      "lessonTitles": [
+        "Introduction to SQL",
+        "Core Syntax and Primitives in SQL"
+      ],
+      "checkpoint": "Build a functional baseline demonstration verifying syntax and flow."
+    },
+    {
+      "id": "mod-2-application",
+      "title": "Module 2: Practical Implementation & Production Patterns",
+      "summary": "Deep dive into resilient design, test automation, and real-world deployment.",
+      "order": 2,
+      "estimatedMinutes": 90,
+      "objectiveIds": [
+        "sql-obj-3",
+        "sql-obj-4"
+      ],
+      "lessonTitles": [
+        "Production Patterns and Resilience in SQL",
+        "Capstone Lab: Verifiable SQL Implementation"
+      ],
+      "checkpoint": "Complete a verifiable project applying defense-in-depth principles."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic",
+    "Interactive boundary condition exercises",
+    "Production code review simulations"
+  ],
+  "assessmentCheckpoints": [
+    "Module 1 Knowledge Check (70% pass threshold)",
+    "Module 2 Production Readiness Evaluation"
+  ],
+  "projects": [
+    "Production-ready SQL portfolio module with automated test suite and documentation"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Submit verifiable implementation satisfying acceptance criteria"
+  ],
+  "resources": [
+    {
+      "title": "Official SQL Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-30T06:22:08.529Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

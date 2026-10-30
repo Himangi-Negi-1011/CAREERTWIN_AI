@@ -3,6 +3,7 @@ import path from "path";
 import { type Curriculum, curriculumSchema } from "./schema";
 import { type LessonDocument, lessonDocumentSchema } from "./lesson-schema";
 import { type MockTestDocument, mockTestDocumentSchema, type MockTestGradedReport } from "./mock-test-schema";
+import { loadCoursePackage, listAllCourseSlugs, hasCoursePackage } from "./course-content-store";
 
 export type CourseJobStatus =
   | "requested"
@@ -94,6 +95,27 @@ async function readJsonFile<T>(filePath: string): Promise<T | null> {
   } catch {
     return null;
   }
+}
+
+const missingTablesSet = new Set<string>();
+let missingTablesCheckedAt = 0;
+
+export function markTableMissing(tableName: string) {
+  missingTablesSet.add(tableName);
+  missingTablesCheckedAt = Date.now();
+}
+
+export function isTableKnownMissing(tableName: string): boolean {
+  if (Date.now() - missingTablesCheckedAt > 60_000) {
+    missingTablesSet.clear();
+    return false;
+  }
+  return missingTablesSet.has(tableName);
+}
+
+export function clearMissingTablesCache() {
+  missingTablesSet.clear();
+  missingTablesCheckedAt = 0;
 }
 
 async function getDbClient() {
@@ -191,7 +213,15 @@ export async function saveCurriculum(
 }
 
 export async function getCurriculumById(id: string): Promise<Curriculum | null> {
-  // 1. Try Supabase
+  // 1. Try version-controlled content/courses/
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg && (pkg.curriculum.skillId === id || `curr-${s}-beginner` === id || `curr-${s}` === id || id.includes(s))) {
+      return pkg.curriculum;
+    }
+  }
+
+  // 2. Try Supabase
   try {
     const db = await getDbClient();
     if (db) {
@@ -208,7 +238,7 @@ export async function getCurriculumById(id: string): Promise<Curriculum | null> 
     // Fall back to local
   }
 
-  // 2. Local fallback
+  // 3. Local fallback
   const filePath = path.join(DATA_DIR, "curricula", `${id}.json`);
   const data = await readJsonFile<Curriculum>(filePath);
   if (!data) return null;
@@ -220,29 +250,40 @@ export async function findCurriculumBySkill(
   level: "foundation" | "beginner" | "intermediate" | "advanced" = "beginner",
   language: string = "English"
 ): Promise<{ id: string; curriculum: Curriculum } | null> {
-  // 1. Try Supabase
-  try {
-    const db = await getDbClient();
-    if (db) {
-      const { data, error } = await db
-        .from("curriculum_records")
-        .select("id, curriculum_document")
-        .ilike("skill_name", skillName)
-        .eq("learner_level", level)
-        .maybeSingle();
-      if (!error && data?.curriculum_document) {
-        return {
-          id: data.id,
-          curriculum: curriculumSchema.parse(data.curriculum_document),
-        };
-      }
-    }
-  } catch {
-    // Fall back to local
+  const slug = skillName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+  // 1. Try version-controlled content/courses/
+  const pkg = await loadCoursePackage(slug);
+  if (pkg && pkg.curriculum) {
+    return { id: pkg.curriculum.skillId || `curr-${slug}-${level}`, curriculum: pkg.curriculum };
   }
 
-  // 2. Local fallback
-  const slug = skillName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  // 2. Try Supabase
+  if (!isTableKnownMissing("curriculum_records")) {
+    try {
+      const db = await getDbClient();
+      if (db) {
+        const { data, error } = await db
+          .from("curriculum_records")
+          .select("id, curriculum_document")
+          .ilike("skill_name", skillName)
+          .eq("learner_level", level)
+          .maybeSingle();
+        if (error && (error.code === "PGRST205" || error.code === "42P01")) {
+          markTableMissing("curriculum_records");
+        } else if (!error && data?.curriculum_document) {
+          return {
+            id: data.id,
+            curriculum: curriculumSchema.parse(data.curriculum_document),
+          };
+        }
+      }
+    } catch {
+      // Fall back to local
+    }
+  }
+
+  // 3. Local fallback
   const lookupKey = `${slug}_${level}_${language.toLowerCase()}`;
   const lookupPath = path.join(DATA_DIR, "curricula_index", `${lookupKey}.json`);
   const indexData = await readJsonFile<{ curriculumId: string }>(lookupPath);
@@ -266,7 +307,7 @@ export async function saveLesson(curriculumId: string, lesson: LessonDocument): 
   try {
     const db = await getDbClient();
     if (db) {
-      await db.from("learning_lessons").upsert(
+      const { error } = await db.from("learning_lessons").upsert(
         {
           id: `${curriculumId}:${validated.lessonId}`,
           curriculum_id: curriculumId,
@@ -278,16 +319,28 @@ export async function saveLesson(curriculumId: string, lesson: LessonDocument): 
         },
         { onConflict: "id" }
       );
+      if (error) {
+        console.warn(`[SupabaseSync] saveLesson failed for ${validated.lessonId}: ${error.message} (${error.code})`);
+      }
     }
-  } catch {
-    // Local copy remains authoritative
+  } catch (err) {
+    console.warn(`[SupabaseSync] saveLesson exception:`, err);
   }
 
   return validated;
 }
 
 export async function getLesson(curriculumId: string, lessonId: string): Promise<LessonDocument | null> {
-  // 1. Try Supabase
+  // 1. Try version-controlled content/courses/
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg) {
+      const match = pkg.lessons.find((l) => l.lessonId === lessonId);
+      if (match) return match;
+    }
+  }
+
+  // 2. Try Supabase
   try {
     const db = await getDbClient();
     if (db) {
@@ -304,7 +357,7 @@ export async function getLesson(curriculumId: string, lessonId: string): Promise
     // Fall back
   }
 
-  // 2. Local fallback
+  // 3. Local fallback
   const filePath = path.join(DATA_DIR, "lessons", curriculumId, `${lessonId}.json`);
   const data = await readJsonFile<LessonDocument>(filePath);
   if (!data) return null;
@@ -312,23 +365,35 @@ export async function getLesson(curriculumId: string, lessonId: string): Promise
 }
 
 export async function listLessonsForCurriculum(curriculumId: string): Promise<LessonDocument[]> {
-  // 1. Try Supabase
-  try {
-    const db = await getDbClient();
-    if (db) {
-      const { data, error } = await db
-        .from("learning_lessons")
-        .select("lesson_document")
-        .eq("curriculum_id", curriculumId);
-      if (!error && Array.isArray(data) && data.length > 0) {
-        return data.map((row) => lessonDocumentSchema.parse(row.lesson_document));
-      }
+  // 1. Try version-controlled content/courses/
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg && (pkg.curriculum.skillId === curriculumId || `curr-${s}-beginner` === curriculumId || `curr-${s}` === curriculumId || curriculumId.includes(s))) {
+      if (pkg.lessons.length > 0) return pkg.lessons;
     }
-  } catch {
-    // Fall back
   }
 
-  // 2. Local fallback
+  // 2. Try Supabase
+  if (!isTableKnownMissing("learning_lessons")) {
+    try {
+      const db = await getDbClient();
+      if (db) {
+        const { data, error } = await db
+          .from("learning_lessons")
+          .select("lesson_document")
+          .eq("curriculum_id", curriculumId);
+        if (error && (error.code === "PGRST205" || error.code === "42P01")) {
+          markTableMissing("learning_lessons");
+        } else if (!error && Array.isArray(data) && data.length > 0) {
+          return data.map((row) => lessonDocumentSchema.parse(row.lesson_document));
+        }
+      }
+    } catch {
+      // Fall back
+    }
+  }
+
+  // 3. Local fallback
   const dirPath = path.join(DATA_DIR, "lessons", curriculumId);
   try {
     const files = await fs.readdir(dirPath);
@@ -592,7 +657,7 @@ export async function saveMockTest(test: MockTestDocument): Promise<MockTestDocu
   try {
     const db = await getDbClient();
     if (db) {
-      await db.from("learning_mock_tests").upsert(
+      const { error } = await db.from("learning_mock_tests").upsert(
         {
           id: validated.id,
           skill_slug: validated.skillSlug,
@@ -605,30 +670,46 @@ export async function saveMockTest(test: MockTestDocument): Promise<MockTestDocu
         },
         { onConflict: "id" }
       );
+      if (error) {
+        console.warn(`[SupabaseSync] saveMockTest failed for ${validated.id}: ${error.message} (${error.code})`);
+      }
     }
-  } catch {
-    // Local copy remains authoritative
+  } catch (err) {
+    console.warn(`[SupabaseSync] saveMockTest exception:`, err);
   }
 
   return validated;
 }
 
 export async function getMockTest(testId: string): Promise<MockTestDocument | null> {
-  // 1. Try Supabase
-  try {
-    const db = await getDbClient();
-    if (db) {
-      const { data, error } = await db
-        .from("learning_mock_tests")
-        .select("test_document")
-        .eq("id", testId)
-        .maybeSingle();
-      if (!error && data?.test_document) {
-        return mockTestDocumentSchema.parse(data.test_document);
-      }
+  // 1. Try version-controlled content/courses/
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg) {
+      const match = [...pkg.phaseAssessments, ...pkg.mockTests].find((t) => t.id === testId);
+      if (match) return match;
     }
-  } catch {
-    // Fall back
+  }
+
+  // 2. Try Supabase
+  if (!isTableKnownMissing("learning_mock_tests")) {
+    try {
+      const db = await getDbClient();
+      if (db) {
+        const { data, error } = await db
+          .from("learning_mock_tests")
+          .select("test_document")
+          .eq("id", testId)
+          .maybeSingle();
+        if (error && (error.code === "PGRST205" || error.code === "42P01")) {
+          markTableMissing("learning_mock_tests");
+        } else if (!error && data?.test_document) {
+          return mockTestDocumentSchema.parse(data.test_document);
+        }
+      }
+    } catch {
+      // Fall back
+    }
   }
 
   // 2. Local fallback
@@ -643,21 +724,34 @@ export async function getMockTest(testId: string): Promise<MockTestDocument | nu
 }
 
 export async function listMockTestsForSkill(skillSlug: string, level?: string): Promise<MockTestDocument[]> {
-  // 1. Try Supabase
-  try {
-    const db = await getDbClient();
-    if (db) {
-      let query = db.from("learning_mock_tests").select("test_document").eq("skill_slug", skillSlug);
-      if (level) query = query.eq("level", level);
-      const { data, error } = await query;
-      if (!error && Array.isArray(data) && data.length > 0) {
-        return data
-          .map((row) => mockTestDocumentSchema.parse(row.test_document))
-          .sort((a, b) => a.testNumber - b.testNumber);
-      }
+  // 1. Try version-controlled content/courses/
+  const pkg = await loadCoursePackage(skillSlug);
+  if (pkg) {
+    const combined = [...pkg.phaseAssessments, ...pkg.mockTests];
+    if (combined.length > 0) {
+      return (level ? combined.filter((t) => t.level === level) : combined).sort((a, b) => a.testNumber - b.testNumber);
     }
-  } catch {
-    // Fall back
+  }
+
+  // 2. Try Supabase
+  if (!isTableKnownMissing("learning_mock_tests")) {
+    try {
+      const db = await getDbClient();
+      if (db) {
+        let query = db.from("learning_mock_tests").select("test_document").eq("skill_slug", skillSlug);
+        if (level) query = query.eq("level", level);
+        const { data, error } = await query;
+        if (error && (error.code === "PGRST205" || error.code === "42P01")) {
+          markTableMissing("learning_mock_tests");
+        } else if (!error && Array.isArray(data) && data.length > 0) {
+          return data
+            .map((row) => mockTestDocumentSchema.parse(row.test_document))
+            .sort((a, b) => a.testNumber - b.testNumber);
+        }
+      }
+    } catch {
+      // Fall back
+    }
   }
 
   // 2. Local fallback
@@ -687,18 +781,43 @@ export async function listMockTestsForSkill(skillSlug: string, level?: string): 
 }
 
 export async function listAllMockTests(): Promise<MockTestDocument[]> {
+  const map = new Map<string, MockTestDocument>();
+
+  // 1. Version-controlled packages
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg) {
+      for (const t of [...pkg.phaseAssessments, ...pkg.mockTests]) {
+        map.set(t.id, t);
+      }
+    }
+  }
+
+  // 2. Local fallback
   const root = path.join(DATA_DIR, "mock_tests");
   try {
     const skillDirs = await fs.readdir(root);
-    const allTests: MockTestDocument[] = [];
     for (const skillDir of skillDirs) {
-      const tests = await listMockTestsForSkill(skillDir);
-      allTests.push(...tests);
+      const dirPath = path.join(root, skillDir);
+      const files = await fs.readdir(dirPath);
+      for (const f of files) {
+        if (f.endsWith(".json")) {
+          const item = await readJsonFile<MockTestDocument>(path.join(dirPath, f));
+          if (item && !map.has(item.id)) {
+            try {
+              map.set(item.id, mockTestDocumentSchema.parse(item));
+            } catch {
+              // ignore
+            }
+          }
+        }
+      }
     }
-    return allTests;
   } catch {
-    return [];
+    // ignore
   }
+
+  return Array.from(map.values());
 }
 
 export async function saveMockTestAttempt(userId: string, report: MockTestGradedReport): Promise<void> {
@@ -791,41 +910,80 @@ export async function getUserMockTestAttempts(userId: string, testId?: string): 
 // ─── Global Library Inspection ────────────────────────────────────────────────
 
 export async function listAllCurricula(): Promise<Curriculum[]> {
+  const map = new Map<string, Curriculum>();
+
+  // 1. Version-controlled packages
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg && pkg.curriculum) {
+      map.set(pkg.curriculum.skillName.toLowerCase(), pkg.curriculum);
+    }
+  }
+
+  // 2. Local fallback
   const dirPath = path.join(DATA_DIR, "curricula");
   try {
     const files = await fs.readdir(dirPath);
-    const curricula: Curriculum[] = [];
     for (const file of files) {
       if (file.endsWith(".json")) {
         const item = await readJsonFile<Curriculum>(path.join(dirPath, file));
         if (item) {
           try {
-            curricula.push(curriculumSchema.parse(item));
+            const parsed = curriculumSchema.parse(item);
+            if (!map.has(parsed.skillName.toLowerCase())) {
+              map.set(parsed.skillName.toLowerCase(), parsed);
+            }
           } catch {
             // ignore
           }
         }
       }
     }
-    return curricula;
   } catch {
-    return [];
+    // ignore
   }
+
+  return Array.from(map.values());
 }
 
 export async function listAllLessons(): Promise<LessonDocument[]> {
+  const map = new Map<string, LessonDocument>();
+
+  // 1. Version-controlled packages
+  for (const s of await listAllCourseSlugs()) {
+    const pkg = await loadCoursePackage(s);
+    if (pkg) {
+      for (const l of pkg.lessons) {
+        map.set(l.lessonId, l);
+      }
+    }
+  }
+
+  // 2. Local fallback
   const root = path.join(DATA_DIR, "lessons");
   try {
     const currDirs = await fs.readdir(root);
-    const allLessons: LessonDocument[] = [];
     for (const currId of currDirs) {
-      const lessons = await listLessonsForCurriculum(currId);
-      allLessons.push(...lessons);
+      const dirPath = path.join(root, currId);
+      const files = await fs.readdir(dirPath);
+      for (const f of files) {
+        if (f.endsWith(".json")) {
+          const item = await readJsonFile<LessonDocument>(path.join(dirPath, f));
+          if (item && !map.has(item.lessonId)) {
+            try {
+              map.set(item.lessonId, lessonDocumentSchema.parse(item));
+            } catch {
+              // ignore
+            }
+          }
+        }
+      }
     }
-    return allLessons;
   } catch {
-    return [];
+    // ignore
   }
+
+  return Array.from(map.values());
 }
 
 export async function getLibraryStats() {
@@ -841,5 +999,250 @@ export async function getLibraryStats() {
     totalMockTests: mockTests.length,
     preparedSkillsCount: skillNamesWithCurriculum.size,
     lastUpdate: new Date().toISOString(),
+  };
+}
+
+export async function getPhaseAssessment(skillSlug: string, moduleId: string): Promise<MockTestDocument | null> {
+  const testId = `phase-${skillSlug}-${moduleId}-assessment`;
+  return getMockTest(testId);
+}
+
+export async function listPhaseAssessmentsForSkill(skillSlug: string): Promise<MockTestDocument[]> {
+  const tests = await listMockTestsForSkill(skillSlug);
+  return tests.filter((t) => t.isPhaseAssessment);
+}
+
+export interface DatabaseHealthStatus {
+  connected: boolean;
+  provider: string;
+  degradedMode: boolean;
+  tablesFound: string[];
+  tablesMissing: string[];
+  totalLocalCurricula: number;
+  totalLocalLessons: number;
+  totalLocalMockTests: number;
+  totalCloudCurricula: number;
+  totalCloudLessons: number;
+  totalCloudMockTests: number;
+  lastCheck: string;
+  error?: string | null;
+}
+
+export async function checkDatabaseHealth(): Promise<DatabaseHealthStatus> {
+  const localCurricula = await listAllCurricula();
+  const localLessons = await listAllLessons();
+  const localMockTests = await listAllMockTests();
+
+  const requiredTables = [
+    "curriculum_records",
+    "learning_lessons",
+    "learning_mock_tests",
+    "learning_mock_test_attempts",
+    "user_learning_progress",
+  ];
+
+  let db = null;
+  try {
+    db = await getDbClient();
+  } catch {
+    // client init failure
+  }
+
+  if (!db) {
+    return {
+      connected: false,
+      provider: "Local Atomic Repository (.data)",
+      degradedMode: true,
+      tablesFound: [],
+      tablesMissing: requiredTables,
+      totalLocalCurricula: localCurricula.length,
+      totalLocalLessons: localLessons.length,
+      totalLocalMockTests: localMockTests.length,
+      totalCloudCurricula: 0,
+      totalCloudLessons: 0,
+      totalCloudMockTests: 0,
+      lastCheck: new Date().toISOString(),
+      error: "Supabase client not initialized (missing environment variables)",
+    };
+  }
+
+  const tablesFound: string[] = [];
+  const tablesMissing: string[] = [];
+  let firstError: string | null = null;
+
+  for (const table of requiredTables) {
+    try {
+      const { error } = await db.from(table).select("*").limit(0);
+      if (error) {
+        tablesMissing.push(table);
+        markTableMissing(table);
+        if (!firstError) firstError = `${error.code}: ${error.message}`;
+      } else {
+        tablesFound.push(table);
+      }
+    } catch (err) {
+      tablesMissing.push(table);
+      markTableMissing(table);
+      if (!firstError) firstError = err instanceof Error ? err.message : String(err);
+    }
+  }
+
+  let cloudCurriculaCount = 0;
+  let cloudLessonsCount = 0;
+  let cloudMockTestsCount = 0;
+
+  if (tablesFound.includes("curriculum_records")) {
+    const { count } = await db.from("curriculum_records").select("*", { count: "exact", head: true });
+    cloudCurriculaCount = count || 0;
+  }
+  if (tablesFound.includes("learning_lessons")) {
+    const { count } = await db.from("learning_lessons").select("*", { count: "exact", head: true });
+    cloudLessonsCount = count || 0;
+  }
+  if (tablesFound.includes("learning_mock_tests")) {
+    const { count } = await db.from("learning_mock_tests").select("*", { count: "exact", head: true });
+    cloudMockTestsCount = count || 0;
+  }
+
+  const degradedMode = tablesMissing.length > 0;
+
+  return {
+    connected: tablesFound.length > 0,
+    provider: degradedMode
+      ? `Supabase (Degraded Mode: ${tablesMissing.length} tables pending migration in Supabase Dashboard)`
+      : "Supabase PostgreSQL (Authoritative)",
+    degradedMode,
+    tablesFound,
+    tablesMissing,
+    totalLocalCurricula: localCurricula.length,
+    totalLocalLessons: localLessons.length,
+    totalLocalMockTests: localMockTests.length,
+    totalCloudCurricula: cloudCurriculaCount,
+    totalCloudLessons: cloudLessonsCount,
+    totalCloudMockTests: cloudMockTestsCount,
+    lastCheck: new Date().toISOString(),
+    error: firstError,
+  };
+}
+
+export async function syncAllLocalToSupabase(): Promise<{
+  timestamp: string;
+  degradedMode: boolean;
+  tablesMissing: string[];
+  curriculaAttempted: number;
+  curriculaSynced: number;
+  lessonsAttempted: number;
+  lessonsSynced: number;
+  mockTestsAttempted: number;
+  mockTestsSynced: number;
+  totalAttempted: number;
+  totalSynced: number;
+  totalFailed: number;
+  errors: string[];
+}> {
+  const health = await checkDatabaseHealth();
+  const db = await getDbClient();
+  const errors: string[] = [];
+
+  const curricula = await listAllCurricula();
+  let curriculaSynced = 0;
+
+  if (db) {
+    for (const c of curricula) {
+      try {
+        const { error } = await db.from("curriculum_records").upsert(
+          {
+            id: c.skillId || crypto.randomUUID(),
+            skill_id: c.skillId || crypto.randomUUID(),
+            skill_name: c.skillName,
+            learner_level: c.learnerLevel,
+            preferred_language: c.preferredLanguage || "English",
+            curriculum_document: c,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: "id" }
+        );
+        if (error) {
+          errors.push(`Curriculum ${c.skillName}: ${error.message}`);
+        } else {
+          curriculaSynced++;
+        }
+      } catch (err) {
+        errors.push(`Curriculum ${c.skillName}: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    }
+  }
+
+  const lessons = await listAllLessons();
+  let lessonsSynced = 0;
+  if (db) {
+    for (const l of lessons) {
+      try {
+        const { error } = await db.from("learning_lessons").upsert(
+          {
+            id: `${l.moduleId}:${l.lessonId}`,
+            curriculum_id: l.moduleId,
+            lesson_id: l.lessonId,
+            title: l.title,
+            module_id: l.moduleId,
+            lesson_document: l,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: "id" }
+        );
+        if (error) {
+          errors.push(`Lesson ${l.title}: ${error.message}`);
+        } else {
+          lessonsSynced++;
+        }
+      } catch (err) {
+        errors.push(`Lesson ${l.title}: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    }
+  }
+
+  const mockTests = await listAllMockTests();
+  let testsSynced = 0;
+  if (db) {
+    for (const t of mockTests) {
+      try {
+        const { error } = await db.from("learning_mock_tests").upsert(
+          {
+            id: t.id,
+            skill_slug: t.skillSlug,
+            test_number: t.testNumber,
+            level: t.level,
+            title: t.title,
+            duration_minutes: t.durationMinutes,
+            test_document: t,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: "id" }
+        );
+        if (error) {
+          errors.push(`MockTest ${t.id}: ${error.message}`);
+        } else {
+          testsSynced++;
+        }
+      } catch (err) {
+        errors.push(`MockTest ${t.id}: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    }
+  }
+
+  return {
+    timestamp: new Date().toISOString(),
+    degradedMode: health.degradedMode,
+    tablesMissing: health.tablesMissing,
+    curriculaAttempted: curricula.length,
+    curriculaSynced,
+    lessonsAttempted: lessons.length,
+    lessonsSynced,
+    mockTestsAttempted: mockTests.length,
+    mockTestsSynced: testsSynced,
+    totalAttempted: curricula.length + lessons.length + mockTests.length,
+    totalSynced: curriculaSynced + lessonsSynced + testsSynced,
+    totalFailed: (curricula.length - curriculaSynced) + (lessons.length - lessonsSynced) + (mockTests.length - testsSynced),
+    errors: errors.slice(0, 15),
   };
 }

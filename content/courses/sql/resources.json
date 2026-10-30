@@ -1,0 +1,98 @@
+[
+  {
+    "id": "res-sql-sql",
+    "title": "SQL & Relational Database Design for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+    "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+    "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
+    "durationMinutes": 50,
+    "difficulty": "beginner",
+    "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
+    "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+    "learningObjectivesSupported": [
+      "Apply Introduction to SQL to real database tables and queries"
+    ],
+    "keyTopicsCovered": [
+      "SELECT & WHERE filtering",
+      "INNER & LEFT JOINs",
+      "GROUP BY & HAVING",
+      "Indexes"
+    ],
+    "followUpActivity": "Write and execute three query variations based on the database exercise.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-sql-sql",
+    "title": "SQL & Relational Database Design for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+    "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+    "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
+    "durationMinutes": 50,
+    "difficulty": "beginner",
+    "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
+    "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+    "learningObjectivesSupported": [
+      "Apply Core Syntax and Primitives in SQL to real database tables and queries"
+    ],
+    "keyTopicsCovered": [
+      "SELECT & WHERE filtering",
+      "INNER & LEFT JOINs",
+      "GROUP BY & HAVING",
+      "Indexes"
+    ],
+    "followUpActivity": "Write and execute three query variations based on the database exercise.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-sql-sql",
+    "title": "SQL & Relational Database Design for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+    "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+    "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
+    "durationMinutes": 50,
+    "difficulty": "beginner",
+    "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
+    "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+    "learningObjectivesSupported": [
+      "Apply Production Patterns and Resilience in SQL to real database tables and queries"
+    ],
+    "keyTopicsCovered": [
+      "SELECT & WHERE filtering",
+      "INNER & LEFT JOINs",
+      "GROUP BY & HAVING",
+      "Indexes"
+    ],
+    "followUpActivity": "Write and execute three query variations based on the database exercise.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-sql-sql",
+    "title": "SQL & Relational Database Design for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+    "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+    "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
+    "durationMinutes": 50,
+    "difficulty": "beginner",
+    "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
+    "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+    "learningObjectivesSupported": [
+      "Apply Capstone Lab: Verifiable SQL Implementation to real database tables and queries"
+    ],
+    "keyTopicsCovered": [
+      "SELECT & WHERE filtering",
+      "INNER & LEFT JOINs",
+      "GROUP BY & HAVING",
+      "Indexes"
+    ],
+    "followUpActivity": "Write and execute three query variations based on the database exercise.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  }
+]

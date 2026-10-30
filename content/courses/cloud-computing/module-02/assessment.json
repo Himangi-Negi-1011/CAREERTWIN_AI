@@ -1,0 +1,163 @@
+{
+  "id": "phase-cloud-computing-mod-2-application-assessment",
+  "skillName": "Cloud Computing",
+  "skillSlug": "cloud-computing",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-application",
+  "moduleTitle": "Module 2: Practical Implementation & Production Patterns",
+  "title": "Cloud Computing — Module 2: Practical Implementation & Production Patterns Phase Assessment",
+  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Production Patterns and Resilience in Cloud Computing, Capstone Lab: Verifiable Cloud Computing Implementation.",
+  "durationMinutes": 20,
+  "totalMarks": 9,
+  "passingPercentage": 75,
+  "topicsCovered": [
+    "Strategic Execution",
+    "Mastery & Continuous Improvement",
+    "Root-Cause Analysis",
+    "Quality Standards & Deliverables"
+  ],
+  "questions": [
+    {
+      "id": "phase-cloud-computing-mod-2-application-assessment-q1",
+      "type": "scenario",
+      "prompt": "[Module 2: Practical Implementation & Production Patterns] When applying Cloud Computing in a high-stakes cross-functional project, what is the best strategy to align stakeholders and minimize risk?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Establish explicit written objectives, measurable milestones, and scheduled stakeholder review checkpoints."
+        },
+        {
+          "id": "opt-2",
+          "text": "Work in isolation until the final deadline without communicating status."
+        },
+        {
+          "id": "opt-3",
+          "text": "Change project requirements verbally without documenting rationale."
+        },
+        {
+          "id": "opt-4",
+          "text": "Bypass review stages to deliver ahead of schedule regardless of quality."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Transparent communication, structured milestones, and regular stakeholder feedback ensure alignment and prevent costly late-stage surprises.",
+      "difficulty": "beginner",
+      "topic": "Strategic Execution",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-application-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Cloud Computing"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-application-assessment-q2",
+      "type": "multiple-select",
+      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which principles are essential for achieving long-term proficiency in Cloud Computing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Consistent deliberate practice with feedback loops"
+        },
+        {
+          "id": "opt-2",
+          "text": "Understanding underlying mental models rather than merely memorizing facts"
+        },
+        {
+          "id": "opt-3",
+          "text": "Reviewing mistakes and performing root-cause analysis on failures"
+        },
+        {
+          "id": "opt-4",
+          "text": "Avoiding practical exercises in favor of passive video consumption"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "Deliberate practice, foundational mental models, and reflective error analysis are the empirical pillars of skill acquisition.",
+      "difficulty": "beginner",
+      "topic": "Mastery & Continuous Improvement",
+      "marks": 3,
+      "recommendedLessonId": "mod-2-application-l1",
+      "recommendedLessonTitle": "Capstone Lab: Verifiable Cloud Computing Implementation"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-application-assessment-q3",
+      "type": "single-choice",
+      "prompt": "[Module 2: Practical Implementation & Production Patterns] What is the most effective approach when confronting unexpected edge-case failures while executing Cloud Computing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Isolate the boundary inputs, form a verifiable hypothesis, and test each component independently."
+        },
+        {
+          "id": "opt-2",
+          "text": "Restart the entire process repeatedly hoping for different results."
+        },
+        {
+          "id": "opt-3",
+          "text": "Ignore the edge case if the general scenario succeeds."
+        },
+        {
+          "id": "opt-4",
+          "text": "Remove telemetry to hide the failure."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Hypothesis-driven diagnosis and boundary isolation locate root causes systematically without introducing regressions.",
+      "difficulty": "beginner",
+      "topic": "Root-Cause Analysis",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-application-l1",
+      "recommendedLessonTitle": "Production Patterns and Resilience in Cloud Computing"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-application-assessment-q4",
+      "type": "multiple-select",
+      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which attributes characterize high-quality artifacts produced in Cloud Computing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Adherence to established domain standards and conventions"
+        },
+        {
+          "id": "opt-2",
+          "text": "Thorough documentation of assumptions, constraints, and dependencies"
+        },
+        {
+          "id": "opt-3",
+          "text": "Verifiability against measurable acceptance criteria"
+        },
+        {
+          "id": "opt-4",
+          "text": "High complexity without explanation to demonstrate expertise"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "Clarity, standard compliance, and verifiability make artifacts maintainable and scalable.",
+      "difficulty": "beginner",
+      "topic": "Quality Standards & Deliverables",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-application-l1",
+      "recommendedLessonTitle": "Capstone Lab: Verifiable Cloud Computing Implementation"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-30T06:22:12.709Z",
+  "updatedAt": "2026-10-30T06:22:12.709Z"
+}

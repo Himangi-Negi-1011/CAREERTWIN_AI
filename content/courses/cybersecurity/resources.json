@@ -1,0 +1,98 @@
+[
+  {
+    "id": "res-sec-cybersecurity",
+    "title": "Defensive Security & Threat Analysis Fundamentals",
+    "provider": "youtube",
+    "channelOrAuthor": "NetworkChuck / Professor Messer",
+    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
+    "durationMinutes": 55,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
+    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+    "learningObjectivesSupported": [
+      "Defend systems and diagnose vulnerabilities in Introduction to Cybersecurity"
+    ],
+    "keyTopicsCovered": [
+      "Defense in Depth",
+      "Principle of Least Privilege",
+      "Audit Logging",
+      "Patch Management"
+    ],
+    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-sec-cybersecurity",
+    "title": "Defensive Security & Threat Analysis Fundamentals",
+    "provider": "youtube",
+    "channelOrAuthor": "NetworkChuck / Professor Messer",
+    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
+    "durationMinutes": 55,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
+    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+    "learningObjectivesSupported": [
+      "Defend systems and diagnose vulnerabilities in Core Syntax and Primitives in Cybersecurity"
+    ],
+    "keyTopicsCovered": [
+      "Defense in Depth",
+      "Principle of Least Privilege",
+      "Audit Logging",
+      "Patch Management"
+    ],
+    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-sec-cybersecurity",
+    "title": "Defensive Security & Threat Analysis Fundamentals",
+    "provider": "youtube",
+    "channelOrAuthor": "NetworkChuck / Professor Messer",
+    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
+    "durationMinutes": 55,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
+    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+    "learningObjectivesSupported": [
+      "Defend systems and diagnose vulnerabilities in Production Patterns and Resilience in Cybersecurity"
+    ],
+    "keyTopicsCovered": [
+      "Defense in Depth",
+      "Principle of Least Privilege",
+      "Audit Logging",
+      "Patch Management"
+    ],
+    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-sec-cybersecurity",
+    "title": "Defensive Security & Threat Analysis Fundamentals",
+    "provider": "youtube",
+    "channelOrAuthor": "NetworkChuck / Professor Messer",
+    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
+    "durationMinutes": 55,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
+    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+    "learningObjectivesSupported": [
+      "Defend systems and diagnose vulnerabilities in Capstone Lab: Verifiable Cybersecurity Implementation"
+    ],
+    "keyTopicsCovered": [
+      "Defense in Depth",
+      "Principle of Least Privilege",
+      "Audit Logging",
+      "Patch Management"
+    ],
+    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  }
+]

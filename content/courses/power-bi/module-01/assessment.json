@@ -1,0 +1,161 @@
+{
+  "id": "phase-power-bi-mod-1-foundations-assessment",
+  "skillName": "Power BI",
+  "skillSlug": "power-bi",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-foundations",
+  "moduleTitle": "Module 1: Foundations & Core Concepts of Power BI",
+  "title": "Power BI — Module 1: Foundations & Core Concepts of Power BI Phase Assessment",
+  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to Power BI, Core Syntax and Primitives in Power BI.",
+  "durationMinutes": 20,
+  "totalMarks": 9,
+  "passingPercentage": 75,
+  "topicsCovered": [
+    "DAX Evaluation & Filter Context",
+    "Tabular Modeling & Performance",
+    "Time Intelligence & Date Dimensions",
+    "DAX Math & Error Handling"
+  ],
+  "questions": [
+    {
+      "id": "phase-power-bi-mod-1-foundations-assessment-q1",
+      "type": "single-choice",
+      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] In DAX, how does the CALCULATE function modify evaluation?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It evaluates an expression under a modified filter context, and transitions any active row context into filter context."
+        },
+        {
+          "id": "opt-2",
+          "text": "It forces the formula to compute on the GPU."
+        },
+        {
+          "id": "opt-3",
+          "text": "It converts DAX measures into static physical columns."
+        },
+        {
+          "id": "opt-4",
+          "text": "It bypasses all relationship definitions in the data model."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "CALCULATE is the single most powerful DAX function because it overrides, merges, or clears filter context and triggers context transition.",
+      "difficulty": "beginner",
+      "topic": "DAX Evaluation & Filter Context",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to Power BI"
+    },
+    {
+      "id": "phase-power-bi-mod-1-foundations-assessment-q2",
+      "type": "scenario",
+      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] Why is a Star Schema architecture preferred over a flat, single-table model in Power BI?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The VertiPaq tabular engine compresses columnar Dimension tables efficiently and executes single-direction relationships with minimal RAM."
+        },
+        {
+          "id": "opt-2",
+          "text": "Star schemas require fewer measures to be written."
+        },
+        {
+          "id": "opt-3",
+          "text": "Single flat tables cannot be refreshed automatically in the Power BI Service."
+        },
+        {
+          "id": "opt-4",
+          "text": "Power BI visual slicers do not function without star schemas."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "The VertiPaq in-memory engine achieves optimal dictionary encoding and memory compression when data is normalized into distinct Fact and Dimension tables.",
+      "difficulty": "beginner",
+      "topic": "Tabular Modeling & Performance",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Power BI"
+    },
+    {
+      "id": "phase-power-bi-mod-1-foundations-assessment-q3",
+      "type": "multiple-select",
+      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] Which of the following represent requirements for a dedicated Date Dimension in Power BI to support time-intelligence functions?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It must contain continuous calendar dates with zero gaps across the required span"
+        },
+        {
+          "id": "opt-2",
+          "text": "It must contain at least one column formatted as Date or DateTime"
+        },
+        {
+          "id": "opt-3",
+          "text": "It must be marked as the official Date Table in the data model"
+        },
+        {
+          "id": "opt-4",
+          "text": "It must be stored in a SQL database rather than imported into Power BI"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3"
+      ],
+      "explanation": "Time intelligence (DATESYTD, SAMEPERIODLASTYEAR) requires a marked, contiguous Date table with no missing calendar days.",
+      "difficulty": "beginner",
+      "topic": "Time Intelligence & Date Dimensions",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Introduction to Power BI"
+    },
+    {
+      "id": "phase-power-bi-mod-1-foundations-assessment-q4",
+      "type": "debugging",
+      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] A report visual crashes with a '#DIV/0!' visual error. Which DAX function avoids this issue cleanly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "DIVIDE(Numerator, Denominator, 0)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Numerator / Denominator"
+        },
+        {
+          "id": "opt-3",
+          "text": "QUOTIENT(Numerator, Denominator)"
+        },
+        {
+          "id": "opt-4",
+          "text": "MOD(Numerator, Denominator)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "DIVIDE safely checks for zero or blank denominators and returns an optional fallback (defaulting to BLANK or 0) rather than raising an error.",
+      "difficulty": "beginner",
+      "topic": "DAX Math & Error Handling",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-foundations-l1",
+      "recommendedLessonTitle": "Core Syntax and Primitives in Power BI"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-30T06:22:13.303Z",
+  "updatedAt": "2026-10-30T06:22:13.303Z"
+}

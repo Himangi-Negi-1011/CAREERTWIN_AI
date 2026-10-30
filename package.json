@@ -11,7 +11,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "seed:courses": "npx tsx --conditions=react-server scripts/generate-advance-library.ts",
+    "seed:courses": "npx tsx --env-file=.env.local --conditions=react-server scripts/generate-advance-library.ts",
+    "audit:learning": "npx tsx --env-file=.env.local --conditions=react-server scripts/audit-learning.ts",
+    "courses:generate": "npx tsx --env-file=.env.local --conditions=react-server scripts/generate-courses.ts",
+    "courses:validate": "npx tsx --env-file=.env.local --conditions=react-server scripts/validate-courses.ts",
+    "courses:seed": "npx tsx --env-file=.env.local --conditions=react-server scripts/seed-courses.ts",
+    "courses:audit": "npx tsx --env-file=.env.local --conditions=react-server scripts/audit-courses.ts",
     "check": "npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {

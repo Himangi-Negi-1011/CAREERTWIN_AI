@@ -1,0 +1,98 @@
+[
+  {
+    "id": "res-cloud-cloudcomputing",
+    "title": "Cloud Computing Infrastructure & Deployment Architecture",
+    "provider": "youtube",
+    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
+    "durationMinutes": 45,
+    "difficulty": "beginner",
+    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
+    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+    "learningObjectivesSupported": [
+      "Deploy and isolate workloads using Introduction to Cloud Computing"
+    ],
+    "keyTopicsCovered": [
+      "Container Architecture",
+      "Networking",
+      "IAM & Security Policies",
+      "Health Checks"
+    ],
+    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-cloud-cloudcomputing",
+    "title": "Cloud Computing Infrastructure & Deployment Architecture",
+    "provider": "youtube",
+    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
+    "durationMinutes": 45,
+    "difficulty": "beginner",
+    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
+    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+    "learningObjectivesSupported": [
+      "Deploy and isolate workloads using Core Syntax and Primitives in Cloud Computing"
+    ],
+    "keyTopicsCovered": [
+      "Container Architecture",
+      "Networking",
+      "IAM & Security Policies",
+      "Health Checks"
+    ],
+    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-cloud-cloudcomputing",
+    "title": "Cloud Computing Infrastructure & Deployment Architecture",
+    "provider": "youtube",
+    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
+    "durationMinutes": 45,
+    "difficulty": "beginner",
+    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
+    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+    "learningObjectivesSupported": [
+      "Deploy and isolate workloads using Production Patterns and Resilience in Cloud Computing"
+    ],
+    "keyTopicsCovered": [
+      "Container Architecture",
+      "Networking",
+      "IAM & Security Policies",
+      "Health Checks"
+    ],
+    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  },
+  {
+    "id": "res-cloud-cloudcomputing",
+    "title": "Cloud Computing Infrastructure & Deployment Architecture",
+    "provider": "youtube",
+    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
+    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
+    "durationMinutes": 45,
+    "difficulty": "beginner",
+    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
+    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+    "learningObjectivesSupported": [
+      "Deploy and isolate workloads using Capstone Lab: Verifiable Cloud Computing Implementation"
+    ],
+    "keyTopicsCovered": [
+      "Container Architecture",
+      "Networking",
+      "IAM & Security Policies",
+      "Health Checks"
+    ],
+    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-10-25"
+  }
+]

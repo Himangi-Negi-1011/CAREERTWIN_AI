@@ -1,0 +1,198 @@
+{
+  "lessonId": "mod-2-application-l1-production-patterns-and-resilience-in-po",
+  "skillName": "Power BI",
+  "moduleId": "mod-2-application",
+  "title": "Production Patterns and Resilience in Power BI",
+  "summary": "Comprehensive masterclass on Production Patterns and Resilience in Power BI for Power BI. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Apply Power BI in production-ready real-world scenarios",
+    "Evaluate security, performance, and best practices for Power BI"
+  ],
+  "objectiveIds": [
+    "power-bi-obj-3",
+    "power-bi-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Basic foundational concepts",
+    "Power BI environment setup"
+  ],
+  "sections": [
+    {
+      "id": "section-overview",
+      "heading": "1. Core Architecture & Mental Model of Production Patterns and Resilience in Power BI",
+      "content": "Power BI combines a relational tabular data engine with the DAX (Data Analysis Expressions) formula language. In Production Patterns and Resilience in Power BI, the fundamental mental model is understanding Filter Context vs Row Context, star schema relationships, and distinguishing Calculated Columns from Measures.",
+      "codeExamples": [
+        {
+          "language": "dax",
+          "code": "-- DAX Measure: Production Patterns and Resilience in Power BI\nTotal Revenue = SUM(Sales[Revenue])\n\nRevenue YoY Growth = \nVAR CurrentRevenue = [Total Revenue]\nVAR PriorRevenue = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR('Date'[Date]))\nRETURN\n    DIVIDE(CurrentRevenue - PriorRevenue, PriorRevenue, 0)",
+          "explanation": "CALCULATE alters the active filter context, while DIVIDE safely handles division by zero. Declaring variables (VAR) improves readability and query performance.",
+          "expectedOutput": "Percentage metric reacting dynamically to visual slicers (Date, Region, Product)."
+        }
+      ],
+      "keyPoints": [
+        "Always model data as a Star Schema: central Fact table surrounded by 1-to-many Dimension tables.",
+        "Use Measures (calculated at query time) instead of Calculated Columns (which consume RAM in the tabular model).",
+        "Use DIVIDE(num, denom, alternate) instead of '/' to avoid #DIV/0! visual errors."
+      ],
+      "commonMistakes": [
+        "Creating bidirectional cross-filtering relationships across multiple tables, causing ambiguous filter propagation.",
+        "Using calculated columns for aggregation metrics instead of explicit DAX measures."
+      ]
+    },
+    {
+      "id": "section-deep-dive",
+      "heading": "2. Production Patterns & Real-World Implementations",
+      "content": "Production enterprise Power BI models require a dedicated Date dimension table marked as Date Table, explicit measures grouped in display folders, and optimized cardinality.",
+      "codeExamples": [
+        {
+          "language": "dax",
+          "code": "Sales MTD = \nCALCULATE(\n    [Total Revenue],\n    DATESMTD('Date'[Date])\n)",
+          "explanation": "Time intelligence DAX functions rely strictly on a continuous, contiguous Date dimension with no missing calendar days.",
+          "expectedOutput": "Month-to-date cumulative metric resetting on the first of each calendar month."
+        }
+      ],
+      "keyPoints": [
+        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
+        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+      ],
+      "commonMistakes": [
+        "Proceeding without clear acceptance criteria or error telemetry.",
+        "Silently ignoring failure modes instead of implementing deterministic error handling."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-application-l1-production-patterns-and-resilience-in-po-ex-1",
+      "type": "analysis",
+      "title": "Power BI & DAX Lab: Production Patterns and Resilience in Power BI",
+      "objective": "Formulate a Star Schema data model and construct dynamic DAX measures for Production Patterns and Resilience in Power BI.",
+      "description": "Design the relational model and write the core DAX measures to calculate metrics required for Production Patterns and Resilience in Power BI.",
+      "instructions": [
+        "Define the Fact table and related Dimension tables with their primary/foreign keys.",
+        "Write the base aggregation measure.",
+        "Write a time-intelligence or ratio measure using CALCULATE and DIVIDE.",
+        "Explain how visual slicers affect the measure's filter context."
+      ],
+      "starterCode": "-- DAX Measure Formulation for Production Patterns and Resilience in Power BI\n[Base Metric] = SUM(FactTable[Value])\n\n[Advanced Metric] = \nVAR BaseVal = [Base Metric]\nRETURN\n    CALCULATE(BaseVal, ... -- Add filter condition)",
+      "hints": [
+        "Remember that CALCULATE transitions row context to filter context.",
+        "Check whether relationships are 1-to-many from Dimension to Fact."
+      ],
+      "submissionRequirements": "Submit valid DAX code formatted with VAR/RETURN syntax and relational modeling notes.",
+      "evaluationCriteria": [
+        "DAX Syntax: Valid measure definitions with proper handling of filter context.",
+        "Modeling: Star schema principles adhered to without circular or ambiguous relationships."
+      ],
+      "solutionExplanation": "The optimal solution uses a clean star schema with single-direction filtering and computes metrics via explicit DAX measures leveraging CALCULATE and time intelligence."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-application-l1-production-patterns-and-resilience-in-po-kc-1",
+      "type": "single-choice",
+      "prompt": "What is the primary difference between a Calculated Column and a Measure in Power BI?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Calculated columns are evaluated during data refresh and stored in memory row-by-row; Measures are dynamic formulas calculated on the fly based on current filter context."
+        },
+        {
+          "id": "opt-2",
+          "text": "Calculated columns can only contain numbers, while measures can only contain text."
+        },
+        {
+          "id": "opt-3",
+          "text": "Measures increase the storage file size of the PBIX file substantially more than columns."
+        },
+        {
+          "id": "opt-4",
+          "text": "Calculated columns adapt dynamically when a user clicks a slicer in a report."
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Calculated columns consume RAM and disk storage because values are computed row-by-row at refresh time. Measures consume minimal memory and compute dynamically in response to visual filters and slicers.",
+      "objectiveIds": [
+        "power-bi-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-application-l1-production-patterns-and-resilience-in-po-kc-2",
+      "type": "multiple-select",
+      "prompt": "Which of the following represent data modeling best practices in Power BI?",
+      "options": [
+        {
+          "id": "opt-2a",
+          "text": "Structuring the data model into a Star Schema with Fact and Dimension tables"
+        },
+        {
+          "id": "opt-2b",
+          "text": "Using the DIVIDE function instead of the '/' operator to prevent division-by-zero errors"
+        },
+        {
+          "id": "opt-2c",
+          "text": "Enabling bidirectional cross-filtering on all relationships indiscriminately"
+        },
+        {
+          "id": "opt-2d",
+          "text": "Marking a dedicated Date dimension as an official Date Table for time-intelligence calculations"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2a",
+        "opt-2b",
+        "opt-2d"
+      ],
+      "explanation": "Star schema design, DIVIDE for error safety, and a dedicated Date table are foundational Power BI best practices. Indiscriminate bidirectional filtering creates relationship ambiguity and degrades performance.",
+      "objectiveIds": [
+        "power-bi-obj-4"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you established the foundations of Production Patterns and Resilience in Power BI. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "videoResources": [
+    {
+      "id": "res-pbi-powerbi",
+      "title": "Power BI Full Course: DAX & Data Modeling",
+      "provider": "youtube",
+      "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
+      "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
+      "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
+      "durationMinutes": 55,
+      "difficulty": "beginner",
+      "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
+      "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
+      "learningObjectivesSupported": [
+        "Build relational tabular data models and DAX measures for Production Patterns and Resilience in Power BI"
+      ],
+      "keyTopicsCovered": [
+        "Star Schema Modeling",
+        "DAX Measures vs Columns",
+        "CALCULATE Context Transition",
+        "Time Intelligence"
+      ],
+      "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-10-25"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Microsoft Power BI DAX Reference",
+      "url": "https://learn.microsoft.com/en-us/dax/",
+      "description": "Official documentation and authoritative guides for Power BI."
+    }
+  ],
+  "realWorldApplications": [
+    "Industrial engineering workflows and production services",
+    "Mission-critical business systems requiring accuracy and compliance"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-30T06:22:13.191Z"
+}
