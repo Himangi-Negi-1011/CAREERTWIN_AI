@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, ChangeEvent } from "react";
 import Link from "next/link";
-import { RobotCanvas } from "./landing/robot-canvas";
+import { RobotCharacter, CheerChip } from "./robot/robot-character";
 import { Pip } from "./pip";
 import "./landing/landing-clone.css";
 
@@ -408,7 +408,13 @@ export function Landing() {
             {/* Hero Visual with 3D Robot Canvas */}
             <div className="hero-visual" id="heroVisual">
               <div className="visual-glow" aria-hidden="true" />
-              <RobotCanvas />
+              <div className="scene-shell relative w-full h-full">
+                <RobotCharacter pose="hero" canvasId="robotCanvas" />
+                <noscript><div className="scene-fallback">CareerTwin AI</div></noscript>
+                <div className="absolute bottom-5 left-5 z-20">
+                  <CheerChip label="Say hi" tag="Click to wave" />
+                </div>
+              </div>
 
               <div className="float-card float-card--a">
                 <div className="fc-icon">

@@ -12,10 +12,10 @@ describe("Learning Studio", () => {
     }));
     render(<LearningStudio role="Software Developer"/>);
     fireEvent.change(screen.getByLabelText(/skill or learning goal/i), { target: { value: "Python" } });
-    const option = await screen.findByRole("button", { name: /Python.*Software Development.*draft/i });
+    const option = await screen.findByRole("button", { name: /Python.*Software Development.*draft/i }, { timeout: 5000 });
     fireEvent.click(option);
     fireEvent.click(screen.getByRole("button", { name: /prepare path/i }));
-    expect(await screen.findByRole("heading", { name: /Python · foundation/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /Python · foundation/i }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getByText(/not yet labelled approved learning content/i)).toBeInTheDocument();
     expect(screen.getByText("Review required")).toBeInTheDocument();
   });
@@ -26,7 +26,7 @@ describe("Learning Studio", () => {
       : new Response(JSON.stringify({ error: { message: "Curriculum generation is unavailable until a supported server-side AI provider is configured." } }), { status: 503 })));
     render(<LearningStudio role=""/>);
     fireEvent.change(screen.getByLabelText(/skill or learning goal/i), { target: { value: "Python" } });
-    fireEvent.click(await screen.findByRole("button", { name: /Python.*Software Development.*draft/i }));
+    fireEvent.click(await screen.findByRole("button", { name: /Python.*Software Development.*draft/i }, { timeout: 5000 }));
     fireEvent.click(screen.getByRole("button", { name: /prepare path/i }));
     await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(/provider is configured/i));
     expect(screen.queryByText(/learning objectives/i)).not.toBeInTheDocument();

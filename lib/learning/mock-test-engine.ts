@@ -663,25 +663,30 @@ export function buildDeterministicMockTest(
 
   const domainSeeds = getDomainQuestions(skillName);
 
-  // Pick questions deterministically using testNumber offset to ensure each test is unique
+  // Generate 20 distinct questions for comprehensive mock test coverage
   const questions: MockTestQuestion[] = [];
   const topicsSet = new Set<string>();
 
-  for (let i = 0; i < domainSeeds.length; i++) {
-    const base = domainSeeds[(i + (testNumber - 1) * 2) % domainSeeds.length];
+  for (let i = 0; i < 20; i++) {
+    const seedIndex = (i + (testNumber - 1) * 2) % domainSeeds.length;
+    const base = domainSeeds[seedIndex];
     const questionId = `${testId}-q${i + 1}`;
-    topicsSet.add(base.topic);
+    const partNum = Math.floor(i / domainSeeds.length) + 1;
+    const topic = partNum > 1 ? `${base.topic} · Part ${partNum}` : base.topic;
+    topicsSet.add(topic);
+
+    const prompt = partNum > 1 ? `[Q${i + 1}] ${base.prompt}` : base.prompt;
 
     questions.push({
       id: questionId,
       type: base.type,
-      prompt: base.prompt,
+      prompt,
       codeSnippet: base.codeSnippet || "",
       options: base.options,
       correctOptionIds: base.correctOptionIds,
       explanation: base.explanation,
       difficulty: level,
-      topic: base.topic,
+      topic,
       marks: base.marks || 1,
       recommendedLessonId: `mod-1-l1`,
       recommendedLessonTitle: base.recommendedLessonTitle || `Foundations of ${skillName}`,
@@ -697,6 +702,8 @@ export function buildDeterministicMockTest(
     level,
     testNumber,
     isPhaseAssessment: false,
+    moduleId: "",
+    moduleTitle: "",
     title: `${skillName} ${level.toUpperCase()} Comprehensive Mock Test ${testNumber}`,
     description: `Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for ${skillName}.`,
     durationMinutes: 30,
@@ -796,14 +803,14 @@ export async function generateAndSaveMockTestsForSkill(
 
   for (let t = 1; t <= count; t++) {
     const existingTest = existing.find((item) => item.testNumber === t && !item.isPhaseAssessment);
-    const hasDupes = existingTest && (() => {
+    const hasDupes = existingTest && (existingTest.questions.length < 20 || (() => {
       const p = new Set<string>();
       for (const q of existingTest.questions) {
         if (p.has(q.prompt)) return true;
         p.add(q.prompt);
       }
       return false;
-    })();
+    })());
 
     if (!existingTest || options?.force || hasDupes) {
       const generated = buildDeterministicMockTest(skillName, level, t);

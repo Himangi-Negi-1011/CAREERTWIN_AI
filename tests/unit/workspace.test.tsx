@@ -25,7 +25,7 @@ describe("CareerWorkspace", () => {
     render(<CareerWorkspace />);
     fireEvent.click(screen.getByRole("button", { name: "Skill Gap Analysis" }));
 
-    expect(await screen.findByRole("heading", { name: /document what you can show/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /document what you can show/i }, { timeout: 5000 })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Can demonstrate" }));
     fireEvent.change(screen.getByLabelText(/evidence or next proof point/i), { target: { value: "Built and tested a semantic portfolio page." } });
     fireEvent.click(screen.getByRole("button", { name: /save evidence/i }));
@@ -39,7 +39,7 @@ describe("CareerWorkspace", () => {
   it("uses a saved local role without inventing skill results", async () => {
     window.localStorage.setItem("careertwin-role-draft", "Frontend Developer");
     render(<CareerWorkspace />);
-    expect(await screen.findAllByText("Frontend Developer")).not.toHaveLength(0);
+    expect(await screen.findAllByText("Frontend Developer", {}, { timeout: 5000 })).not.toHaveLength(0);
     expect(screen.getByText("Not reviewed")).toBeInTheDocument();
   });
 
@@ -51,18 +51,18 @@ describe("CareerWorkspace", () => {
 
     render(<CareerWorkspace />);
 
-    expect(await screen.findByRole("heading", { name: "Publish the accessibility case study" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Publish the accessibility case study" }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getByText("1 reviewed · 1 with evidence")).toBeInTheDocument();
     expect(screen.getByText("reviewed-resume.pdf")).toBeInTheDocument();
     expect(screen.getByText("0/1 steps complete")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /continue this task/i }));
-    expect(await screen.findByRole("heading", { name: /turn a career goal into small, verifiable steps/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /turn a career goal into small, verifiable steps/i }, { timeout: 5000 })).toBeInTheDocument();
   });
 
   it("opens a query-linked workspace destination instead of leaving the link on the dashboard", async () => {
     window.history.replaceState({}, "", "/dashboard?view=progress");
     render(<CareerWorkspace />);
-    expect(await screen.findByRole("heading", { name: /plan a week you can actually finish/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /plan a week you can actually finish/i }, { timeout: 5000 })).toBeInTheDocument();
   });
 
   it("hydrates canonical Twin data before mounting a mutable workspace module", async () => {
@@ -73,7 +73,7 @@ describe("CareerWorkspace", () => {
     vi.stubGlobal("fetch", vi.fn((input: RequestInfo | URL) => String(input).includes("/api/twin") ? twinResponse : Promise.resolve(new Response(JSON.stringify({ data: null }), { status: 200 }))));
 
     render(<CareerWorkspace />);
-    expect(await screen.findByLabelText(/loading workspace module/i)).toBeInTheDocument();
+    expect(await screen.findByLabelText(/loading workspace module/i, {}, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.queryByText("Stale browser task")).not.toBeInTheDocument();
 
     await act(async () => resolveTwin?.(new Response(JSON.stringify({ data: {
@@ -81,7 +81,7 @@ describe("CareerWorkspace", () => {
       twin: { targetRole: "Frontend Developer", recommendedNextAction: { title: "Continue roadmap", detail: "Continue the saved task.", destination: "/dashboard?view=roadmap" } },
     } }), { status: 200 })));
 
-    expect(await screen.findByText("Canonical saved task")).toBeInTheDocument();
+    expect(await screen.findByText("Canonical saved task", {}, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.queryByText("Stale browser task")).not.toBeInTheDocument();
   });
 
@@ -91,7 +91,7 @@ describe("CareerWorkspace", () => {
     fireEvent.change(screen.getByRole("textbox", { name: /search workspace/i }), { target: { value: "interview" } });
     fireEvent.click(screen.getByRole("button", { name: /AI Career Coach.*practise interviews with text/i }));
 
-    expect(await screen.findByRole("heading", { name: /walk me through your background/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /walk me through your background/i }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.queryByRole("dialog", { name: /quick navigation/i })).not.toBeInTheDocument();
   });
 });

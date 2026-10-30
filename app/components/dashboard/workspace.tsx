@@ -36,6 +36,8 @@ import { CareerIntelligence } from "./career-intelligence";
 import { DevelopmentHub } from "./development-hub";
 import { LearningStudio } from "./learning-studio";
 import { WeeklyPlanner } from "./weekly-planner";
+import { RobotCharacter } from "../robot/robot-character";
+import "./dashboard-clone.css";
 
 function ModuleLoading() {
   return (
@@ -178,6 +180,34 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
   const focusAction = !role ? "Choose a career" : snapshot.reviewedSkills === 0 ? "Review my skills" : snapshot.tasksTotal === 0 ? "Build my roadmap" : snapshot.nextTask ? "Continue this task" : snapshot.practiceCount === 0 ? "Start interview practice" : "Review evidence";
   return (
     <div className="space-y-5">
+      {/* 3D Robot Command Header from clone */}
+      <div className="command flex flex-col md:flex-row items-center justify-between gap-6 rounded-3xl border border-ink/8 bg-white p-6 md:p-8">
+        <div className="command-copy max-w-xl">
+          <p className="dash-eyebrow text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-2">
+            <span className="live-dot size-2 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+            Career command centre
+          </p>
+          <h1 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight text-ink">Make your next move visible.</h1>
+          <p className="mt-2 text-sm text-slate">A private place to turn real evidence into focused, reviewable action.</p>
+        </div>
+        <div className="command-visual relative w-44 h-44 md:w-52 md:h-52 flex items-center justify-center">
+          <div className="visual-glow absolute inset-2 rounded-full bg-accent/20 blur-xl -z-10" aria-hidden="true" />
+          <RobotCharacter pose="dash" canvasId="dashRobot" />
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("careertwin:cheer"))}
+            className="robot-chip absolute bottom-1 right-2 inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white/95 backdrop-blur px-3 py-1 text-xs font-bold text-ink shadow-sm transition hover:bg-white hover:scale-105 cursor-pointer"
+          >
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M7 11V7a2 2 0 1 1 4 0v3" />
+              <path d="M11 10V5.5a2 2 0 1 1 4 0V10" />
+              <path d="M15 10.5V8a2 2 0 1 1 4 0v6a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-2a2 2 0 1 1 4 0" />
+            </svg>
+            Say hi
+          </button>
+        </div>
+      </div>
+
       <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-ink/8 bg-white px-5 py-4">
         <div><p className="text-xs text-slate">Welcome back{displayName ? `, ${displayName}` : ""}</p><h2 className="mt-1 text-lg font-bold">{role || "Build your Career Twin"}{snapshot.weeklyHours ? ` · ${snapshot.weeklyHours} learning hours/week` : ""}</h2></div>
         <div className="flex flex-wrap items-center gap-2">

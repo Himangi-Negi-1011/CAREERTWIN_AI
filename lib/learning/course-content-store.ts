@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { type Curriculum, curriculumSchema } from "./schema";
-import { type LessonDocument, lessonDocumentSchema } from "./lesson-schema";
+import { type LessonDocument, type ExternalResource, lessonDocumentSchema } from "./lesson-schema";
 import { type MockTestDocument, mockTestDocumentSchema } from "./mock-test-schema";
 import { findCanonicalSkill, skillSlug } from "./catalog";
 
@@ -20,17 +20,7 @@ export interface CoursePackage {
   lessons: LessonDocument[];
   phaseAssessments: MockTestDocument[];
   mockTests: MockTestDocument[];
-  resources: Array<{
-    title: string;
-    url: string;
-    platform: string;
-    channel?: string;
-    duration?: string;
-    curatedAt: string;
-    verificationStatus: "curated" | "verified";
-    conceptsCovered: string[];
-    relevanceReason: string;
-  }>;
+  resources: ExternalResource[];
 }
 
 /**
