@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenCheck, Check, CircleDashed, Download, Plus, Save, Sparkles } from "lucide-react";
+import { BookOpen, BookOpenCheck, Check, CircleDashed, Download, Plus, Save, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { persistTwinPatch } from "@/lib/twin/client";
@@ -41,7 +41,7 @@ function readEvidence(storageKey: string): StoredEvidence {
   }
 }
 
-export function SkillEvidence({ role, ownerKey, onOpenProgress }: { role: string; ownerKey: string; onOpenProgress: () => void }) {
+export function SkillEvidence({ role, ownerKey, onOpenProgress, onOpenLearning }: { role: string; ownerKey: string; onOpenProgress: () => void; onOpenLearning?: (skill: string) => void }) {
   const storageKey = `${STORAGE_KEY}:${ownerKey}`;
   const starterSkills = useMemo(() => roleSkills[role] ?? fallbackSkills, [role]);
   const [records, setRecords] = useState<Record<string, SkillRecord>>({});
@@ -205,7 +205,19 @@ export function SkillEvidence({ role, ownerKey, onOpenProgress }: { role: string
             <textarea id="skill-evidence-note" aria-describedby="evidence-hint" value={activeRecord.evidence} onChange={(event) => updateActive({ evidence: event.target.value })} rows={6} placeholder="Example: Built a responsive dashboard and tested keyboard navigation across its primary workflows." className="mt-2.5 w-full resize-y rounded-2xl border border-ink/10 bg-cream/35 px-4 py-3 text-sm leading-6 outline-none placeholder:text-slate/60 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/8" />
           </div>
           <section className="mt-6 grid gap-3 rounded-2xl border border-ink/8 bg-app/60 p-4 sm:grid-cols-2"><div><p className="text-xs font-bold">Importance</p><p className="mt-1 text-sm text-slate">{activeImportance} for the ordered {role} review framework.</p></div><div><p className="text-xs font-bold">Prerequisites</p><p className="mt-1 text-sm text-slate">{prerequisites.length ? prerequisites.join(", ") : "No earlier framework skill."}</p></div><div><p className="text-xs font-bold">Effort assumption</p><p className="mt-1 text-sm text-slate">Start with 3–6 focused sessions of about 45 minutes, then reassess from evidence.</p></div><div><p className="text-xs font-bold">Practical exercise</p><p className="mt-1 text-sm text-slate">Create a small reviewable artifact and explain one decision, one constraint, and one improvement.</p></div></section>
-          <div className="mt-4 flex flex-wrap gap-2"><button type="button" onClick={()=>updateActive({status:"learning"})} className="button-secondary px-4 py-2.5"><BookOpenCheck size={15}/>Start learning</button><button type="button" onClick={onOpenProgress} className="button-secondary px-4 py-2.5">Open weekly assessment</button></div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {onOpenLearning && (
+              <button
+                type="button"
+                onClick={() => onOpenLearning(activeSkill)}
+                className="button-primary px-4 py-2.5"
+              >
+                <BookOpen size={15}/> Study course
+              </button>
+            )}
+            <button type="button" onClick={()=>updateActive({status:"learning"})} className="button-secondary px-4 py-2.5"><BookOpenCheck size={15}/>Mark learning</button>
+            <button type="button" onClick={onOpenProgress} className="button-secondary px-4 py-2.5">Open weekly assessment</button>
+          </div>
           <p className="mt-3 text-xs leading-5 text-slate">Completing learning activity does not establish mastery. Use an assessment and specific evidence before marking “Can demonstrate.”</p>
           <div className="mt-6 flex flex-col gap-3 border-t border-ink/8 pt-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-slate" aria-live="polite">{saved ? "Evidence saved to your secure Career Twin." : "Unsaved changes remain a browser draft until secure sync succeeds."}</p>

@@ -10,6 +10,7 @@ import {
   CalendarDays,
   CheckCircle2,
   Download,
+  FolderKanban,
   Save,
   ChevronRight,
   CircleUserRound,
@@ -19,6 +20,7 @@ import {
   GraduationCap,
   Menu,
   MessageSquareText,
+  RefreshCw,
   Route,
   Search,
   ShieldCheck,
@@ -53,16 +55,18 @@ function ModuleLoading() {
 }
 
 import { SkillEvidence } from "./skill-evidence";
+import { MyCareerTwin } from "./my-career-twin";
 
-
-type View = "overview" | "intelligence" | "skills" | "roadmap" | "learning" | "interviews" | "progress" | "settings";
+type View = "overview" | "twin" | "skills" | "intelligence" | "roadmap" | "learning" | "projects" | "interviews" | "progress" | "settings";
 
 const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
   { id: "overview", label: "Dashboard", icon: Gauge },
+  { id: "twin", label: "My Career Twin", icon: Sparkles },
   { id: "skills", label: "Skill Gap Analysis", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", icon: Route },
   { id: "learning", label: "Learning Studio", icon: BookOpen },
+  { id: "projects", label: "Applied Projects", icon: FolderKanban },
   { id: "interviews", label: "AI Career Coach", icon: MessageSquareText },
   { id: "progress", label: "Progress & Weekly Tests", icon: CalendarDays },
   { id: "settings", label: "Privacy & Settings", icon: ShieldCheck },
@@ -70,10 +74,12 @@ const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
 
 const commands: CommandItem[] = [
   { id: "overview", label: "Dashboard", description: "See your profile, target, evidence, weekly work, and recommended next action.", keywords: "home overview", icon: Gauge },
+  { id: "twin", label: "My Career Twin", description: "Inspect your calculated Career Twin, evidence coverage, verified skills, and persona.", keywords: "twin ai identity profile persona", icon: Sparkles },
   { id: "skills", label: "Skill Gap Analysis", description: "Record skills, evidence, and target-role priorities.", keywords: "proficiency assessment", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", description: "Review evidence-grounded career context and next steps.", keywords: "analysis paths strengths", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", description: "Plan and complete practical learning tasks.", keywords: "tasks study plan", icon: Route },
-  { id: "learning", label: "Learning Studio", description: "Search skills and prepare validated, reviewable curricula.", keywords: "course lesson curriculum quiz", icon: BookOpen },
+  { id: "learning", label: "Learning Studio", description: "Search skills and study 14 validated production courses.", keywords: "course lesson curriculum quiz python sql", icon: BookOpen },
+  { id: "projects", label: "Applied Projects", description: "Build and document real-world evidence projects with code deliverables.", keywords: "projects portfolio github demo artifact", icon: FolderKanban },
   { id: "interviews", label: "AI Career Coach", description: "Practise interviews with text, supported voice, and evidence-aware feedback.", keywords: "coach behavioral technical communication", icon: MessageSquareText },
   { id: "progress", label: "Progress & Weekly Tests", description: "Schedule roadmap work, record time, and complete curated assessments.", keywords: "week quiz assessment calendar progress", icon: CalendarDays },
   { id: "settings", label: "Privacy & Settings", description: "Review data controls, resume document settings, and account data.", keywords: "security privacy account files documents resume upload", icon: ShieldCheck },
@@ -153,7 +159,7 @@ function readWorkspaceSnapshot(ownerKey: string, role: string, canonical?: TwinS
   return snapshot;
 }
 
-function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSource, onOpen }: { role: string; profileCompletion: number | null; displayName: string; ownerKey: string; twin: TwinOutput | null; twinSource: TwinSourceState | null; onOpen: (view: View) => void }) {
+function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSource, onOpen, onOpenLearning }: { role: string; profileCompletion: number | null; displayName: string; ownerKey: string; twin: TwinOutput | null; twinSource: TwinSourceState | null; onOpen: (view: View) => void; onOpenLearning?: (skill: string) => void }) {
   const router = useRouter();
   const [snapshot, setSnapshot] = useState<WorkspaceSnapshot>(EMPTY_SNAPSHOT);
   useEffect(() => {
@@ -250,8 +256,82 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
           <p className="mt-5 text-sm leading-6 text-slate">{role ? twin ? `Secure Twin updated ${new Date(twin.calculatedAt).toLocaleString()}.` : "Profile loaded; secure Twin state is unavailable." : "Complete the first onboarding step to set your direction."}</p>
           {twin && <div className="mt-4 grid grid-cols-2 gap-2"><div className="rounded-xl bg-app p-3"><span className="text-[10px] text-slate">Evidence coverage</span><strong className="mt-1 block text-sm">{twin.evidenceCoverage.score === null ? "Not available" : `${twin.evidenceCoverage.score}%`}</strong></div><div className="rounded-xl bg-app p-3"><span className="text-[10px] text-slate">Priority gap</span><strong className="mt-1 block truncate text-sm">{twin.prioritizedGaps[0]?.skill ?? "None recorded"}</strong></div></div>}
           {twin && <p className="mt-3 text-[11px] leading-5 text-slate">{twin.evidenceCoverage.meaning}</p>}
-          <Link href="/onboarding" className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:underline">{role ? "Edit target" : "Set target"}<ChevronRight size={14}/></Link>
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <Link href="/onboarding" className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:underline">{role ? "Edit target" : "Set target"}<ChevronRight size={14}/></Link>
+            <button type="button" onClick={() => onOpen("twin")} className="inline-flex items-center gap-1.5 text-xs font-bold text-slate hover:text-accent">
+              <Sparkles size={13} className="text-accent" /> View Twin Evidence
+            </button>
+          </div>
         </article>
+      </section>
+
+      {/* Continue Learning Hub Card */}
+      <section className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7 shadow-xs">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="label">Continue Learning · Universal AI Engine</p>
+            <h3 className="mt-2 text-xl font-bold tracking-tight">
+              {twin?.prioritizedGaps?.[0]?.skill
+                ? `Active Priority: ${twin.prioritizedGaps[0].skill}`
+                : "14 Production-Ready Skill Courses Available"}
+            </h3>
+            <p className="mt-2 text-sm text-slate max-w-2xl">
+              Study structured curricula with markdown lessons, interactive quizzes, video demonstrations, and 42 comprehensive mock tests.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => {
+                const target = twin?.prioritizedGaps?.[0]?.skill || "Python";
+                if (onOpenLearning) onOpenLearning(target);
+                else onOpen("learning");
+              }}
+              className="button-primary px-4 py-2.5 cursor-pointer"
+            >
+              <BookOpen size={14} /> Resume Learning
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpen("twin")}
+              className="button-secondary px-4 py-2.5 cursor-pointer"
+            >
+              <Sparkles size={14} /> My Career Twin
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpen("projects")}
+              className="button-secondary px-4 py-2.5 cursor-pointer"
+            >
+              <FolderKanban size={14} /> Applied Projects
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 border-t border-ink/8 pt-5">
+          <div className="rounded-2xl bg-app p-4">
+            <span className="text-xs text-slate">Ready Courses</span>
+            <strong className="mt-1 block text-base font-bold text-ink">14 Production Packages</strong>
+            <span className="text-[11px] text-emerald-700 font-semibold mt-0.5 block">100% Validated</span>
+          </div>
+          <div className="rounded-2xl bg-app p-4">
+            <span className="text-xs text-slate">Total Lessons</span>
+            <strong className="mt-1 block text-base font-bold text-ink">76 Complete Lessons</strong>
+            <span className="text-[11px] text-slate mt-0.5 block">Markdown + Code Exercises</span>
+          </div>
+          <div className="rounded-2xl bg-app p-4">
+            <span className="text-xs text-slate">Mock Assessments</span>
+            <strong className="mt-1 block text-base font-bold text-ink">42 Full Mock Tests</strong>
+            <span className="text-[11px] text-slate mt-0.5 block">3 Tests per Skill Track</span>
+          </div>
+          <div className="rounded-2xl bg-app p-4">
+            <span className="text-xs text-slate">Evidence Projects</span>
+            <strong className="mt-1 block text-base font-bold text-ink">
+              {snapshot.projectsTotal + snapshot.profileProjects} Tracked · {snapshot.projectsDone} Done
+            </strong>
+            <span className="text-[11px] text-slate mt-0.5 block">Code Deliverables</span>
+          </div>
+        </div>
       </section>
 
       <section className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7"><div className="flex flex-wrap items-start justify-between gap-4"><div><p className="label">Weekly learning summary</p><h3 className="mt-2 text-xl font-bold tracking-[-.03em]">{snapshot.nextWeeklyActivity ? `Next: ${snapshot.nextWeeklyActivity}` : "Plan the next useful week"}</h3><p className="mt-2 text-sm text-slate">Recorded activity only—opening a page never increases progress.</p></div><button type="button" onClick={()=>onOpen("progress")} className="button-secondary">Open weekly plan<ArrowRight size={14}/></button></div><div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[["Weekly target",snapshot.weeklyHours?`${snapshot.weeklyHours} hours`:"Not set"],["Time recorded",`${snapshot.weeklyRecordedMinutes}/${snapshot.weeklyPlannedMinutes} min`],["Tasks complete",`${snapshot.weeklyDone}/${snapshot.weeklyTasks}`],["Upcoming test",role?"Ready to start":"Choose a target role"]].map(([label,value])=><div key={label} className="rounded-2xl bg-app p-4"><span className="text-xs text-slate">{label}</span><strong className="mt-1 block text-sm">{value}</strong></div>)}</div></section>
@@ -570,6 +650,33 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     return () => window.removeEventListener("keydown", openCommands);
   }, []);
 
+  const [learningSkillParam, setLearningSkillParam] = useState<string>("");
+
+  function openLearningWithSkill(skill: string) {
+    setLearningSkillParam(skill);
+    setView("learning");
+    setMobileOpen(false);
+    setCommandOpen(false);
+    window.history.replaceState({}, "", `/dashboard?view=learning&skill=${encodeURIComponent(skill)}`);
+  }
+
+  async function refreshTwin() {
+    if (!storageOwnerKey) return;
+    setSyncState({ status: "saving", message: "Updating Career Twin calculation…" });
+    try {
+      const res = await fetch("/api/twin");
+      if (!res.ok) throw new Error("Sync failed");
+      const payload = (await res.json()) as { data?: { source: TwinSourceState; twin: TwinOutput } };
+      if (payload.data) {
+        setTwin(payload.data.twin);
+        setTwinSource(payload.data.source);
+        setSyncState({ status: "saved", message: "Secure Career Twin loaded." });
+      }
+    } catch {
+      setSyncState({ status: "error", message: "Career Twin re-calculation failed. Local records remain available." });
+    }
+  }
+
   function changeView(next: View) {
     setView(next);
     setMobileOpen(false);
@@ -578,6 +685,8 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
 
   function preloadView(next: View) {
     if (next === "skills") void import("./skill-evidence");
+    if (next === "twin") void import("./my-career-twin");
+    if (next === "projects" || next === "roadmap") void import("./development-hub");
   }
 
   const active = navigation.find((item) => item.id === view)!;
@@ -609,7 +718,76 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         {syncState && <div role="status" className={`mb-5 rounded-xl border px-4 py-3 text-sm ${syncState.status === "error" ? "border-red-200 bg-red-50 text-red-800" : syncState.status === "saving" ? "border-amber-200 bg-amber-50 text-amber-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>{syncState.message}</div>}
         <AnimatePresence mode="wait">
           <motion.div key={view} initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -4 }} transition={{ duration: .2 }}>
-            {twinLoadState === "loading" && view !== "overview" ? <ModuleLoading/> : view === "overview" ? <Overview role={role} profileCompletion={profileCompletion} displayName={displayName} ownerKey={storageOwnerKey} twin={twin} twinSource={twinSource} onOpen={changeView}/> : view === "skills" ? <SkillEvidence role={role} ownerKey={storageOwnerKey} onOpenProgress={()=>changeView("progress")}/> : view === "roadmap" || view === "interviews" ? <DevelopmentHub view={view} role={role} ownerKey={storageOwnerKey} onOpen={(next)=>changeView(next === "interviews" ? "interviews" : next === "progress" ? "progress" : "roadmap")}/> : view === "intelligence" ? <CareerIntelligence role={role} ownerKey={storageOwnerKey} onOpenRoadmap={()=>changeView("roadmap")}/> : view === "learning" ? <LearningStudio role={role} initialSkill={searchParams.get("skill") ?? undefined}/> : view === "progress" ? <WeeklyPlanner ownerKey={storageOwnerKey} role={role} onOpenRoadmap={()=>changeView("roadmap")}/> : <SettingsModule ownerKey={storageOwnerKey}/>} 
+            {twinLoadState === "loading" && view !== "overview" ? (
+              <ModuleLoading />
+            ) : view === "overview" ? (
+              <Overview
+                role={role}
+                profileCompletion={profileCompletion}
+                displayName={displayName}
+                ownerKey={storageOwnerKey}
+                twin={twin}
+                twinSource={twinSource}
+                onOpen={changeView}
+                onOpenLearning={openLearningWithSkill}
+              />
+            ) : view === "twin" ? (
+              <MyCareerTwin
+                role={role}
+                displayName={displayName}
+                ownerKey={storageOwnerKey}
+                twin={twin}
+                twinSource={twinSource}
+                syncState={syncState}
+                onRefreshTwin={refreshTwin}
+                onOpenLearning={openLearningWithSkill}
+                onOpenSkills={() => changeView("skills")}
+                onOpenRoadmap={() => changeView("roadmap")}
+              />
+            ) : view === "skills" ? (
+              <SkillEvidence
+                role={role}
+                ownerKey={storageOwnerKey}
+                onOpenProgress={() => changeView("progress")}
+                onOpenLearning={openLearningWithSkill}
+              />
+            ) : view === "roadmap" || view === "interviews" ? (
+              <DevelopmentHub
+                view={view}
+                role={role}
+                ownerKey={storageOwnerKey}
+                onOpen={(next) => changeView(next === "interviews" ? "interviews" : next === "progress" ? "progress" : "roadmap")}
+                onOpenLearning={openLearningWithSkill}
+              />
+            ) : view === "projects" ? (
+              <DevelopmentHub
+                view="projects"
+                role={role}
+                ownerKey={storageOwnerKey}
+                onOpen={(next) => changeView(next === "interviews" ? "interviews" : next === "progress" ? "progress" : "roadmap")}
+                onOpenLearning={openLearningWithSkill}
+              />
+            ) : view === "intelligence" ? (
+              <CareerIntelligence
+                role={role}
+                ownerKey={storageOwnerKey}
+                onOpenRoadmap={() => changeView("roadmap")}
+                onOpenLearning={openLearningWithSkill}
+              />
+            ) : view === "learning" ? (
+              <LearningStudio
+                role={role}
+                initialSkill={learningSkillParam || searchParams.get("skill") || undefined}
+              />
+            ) : view === "progress" ? (
+              <WeeklyPlanner
+                ownerKey={storageOwnerKey}
+                role={role}
+                onOpenRoadmap={() => changeView("roadmap")}
+              />
+            ) : (
+              <SettingsModule ownerKey={storageOwnerKey} />
+            )} 
           </motion.div>
         </AnimatePresence>
       </main>

@@ -3,7 +3,7 @@ import path from "path";
 import { type Curriculum, curriculumSchema } from "./schema";
 import { type LessonDocument, lessonDocumentSchema } from "./lesson-schema";
 import { type MockTestDocument, mockTestDocumentSchema, type MockTestGradedReport } from "./mock-test-schema";
-import { loadCoursePackage, listAllCourseSlugs, hasCoursePackage } from "./course-content-store";
+import { loadCoursePackage, listAllCourseSlugs, hasCoursePackage, normalizeCourseSlug } from "./course-content-store";
 
 export type CourseJobStatus =
   | "requested"
@@ -250,7 +250,7 @@ export async function findCurriculumBySkill(
   level: "foundation" | "beginner" | "intermediate" | "advanced" = "beginner",
   language: string = "English"
 ): Promise<{ id: string; curriculum: Curriculum } | null> {
-  const slug = skillName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const slug = normalizeCourseSlug(skillName);
 
   // 1. Try version-controlled content/courses/
   const pkg = await loadCoursePackage(slug);
@@ -724,8 +724,9 @@ export async function getMockTest(testId: string): Promise<MockTestDocument | nu
 }
 
 export async function listMockTestsForSkill(skillSlug: string, level?: string): Promise<MockTestDocument[]> {
+  const normalizedSlug = normalizeCourseSlug(skillSlug);
   // 1. Try version-controlled content/courses/
-  const pkg = await loadCoursePackage(skillSlug);
+  const pkg = await loadCoursePackage(normalizedSlug);
   if (pkg) {
     const combined = [...pkg.phaseAssessments, ...pkg.mockTests];
     if (combined.length > 0) {

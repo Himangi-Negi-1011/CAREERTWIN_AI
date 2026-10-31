@@ -63,12 +63,20 @@ type TutorMessage = {
 };
 
 const POPULAR_TRACKS = [
-  { name: "Python from Zero", level: "foundation" },
-  { name: "SQL for Data Analysis", level: "beginner" },
-  { name: "AWS Cloud Security", level: "intermediate" },
-  { name: "React with Practical Projects", level: "beginner" },
-  { name: "Digital Marketing", level: "beginner" },
-  { name: "Financial Modelling", level: "intermediate" },
+  { name: "Python", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "SQL", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "TypeScript", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "JavaScript", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "Cloud Computing", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "Cybersecurity", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "Java", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "Go", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "Rust", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "C++", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "C#", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "C Programming", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "Power BI", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "PHP", level: "beginner", tag: "6 Lessons · 3 Tests" },
 ];
 
 export function LearningStudio({ role, initialSkill }: { role: string; initialSkill?: string }) {
@@ -634,11 +642,16 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
         </p>
       </section>
 
-      {/* Popular Tracks Quick Picker */}
+      {/* Published Production Courses Quick Picker */}
       {!activeLesson && !curriculum && (
-        <section className="rounded-2xl border border-ink/8 bg-white p-5">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Popular Learning Tracks:</h4>
-          <div className="mt-3 flex flex-wrap gap-2">
+        <section className="rounded-2xl border border-ink/8 bg-white p-5 shadow-sm">
+          <div className="flex items-center justify-between gap-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Published Production Courses (14 Ready):</h4>
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800 border border-emerald-200">
+              <CheckCircle2 size={12} /> Instant Access · Zero Wait Time
+            </span>
+          </div>
+          <div className="mt-3.5 flex flex-wrap gap-2.5">
             {POPULAR_TRACKS.map((track) => (
               <button
                 key={track.name}
@@ -649,11 +662,11 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
                   setLevel(track.level);
                   void startCourseGeneration(track.name, track.level);
                 }}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-ink/10 bg-cream/40 px-3.5 py-2 text-xs font-semibold text-ink transition hover:border-accent hover:bg-accent/5 hover:text-accent"
+                className="inline-flex items-center gap-2 rounded-xl border border-ink/10 bg-cream/40 px-3.5 py-2.5 text-xs font-semibold text-ink transition hover:border-accent hover:bg-violet-50 hover:text-accent cursor-pointer shadow-xs"
               >
                 <Play size={11} className="text-accent" />
-                {track.name}
-                <span className="text-[10px] text-slate capitalize">({track.level})</span>
+                <span className="font-bold">{track.name}</span>
+                <span className="text-[10px] text-accent/80 font-medium bg-white/80 px-1.5 py-0.5 rounded-md border border-ink/5">{track.tag}</span>
               </button>
             ))}
           </div>

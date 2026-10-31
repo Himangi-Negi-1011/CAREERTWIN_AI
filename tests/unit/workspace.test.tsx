@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CareerWorkspace } from "@/app/components/dashboard/workspace";
 import { emptyCareerProfile } from "@/lib/profile/schema";
@@ -93,5 +93,26 @@ describe("CareerWorkspace", () => {
 
     expect(await screen.findByRole("heading", { name: /walk me through your background/i }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.queryByRole("dialog", { name: /quick navigation/i })).not.toBeInTheDocument();
+  });
+
+  it("opens My Career Twin view from navigation and displays persona metrics", async () => {
+    window.localStorage.setItem("careertwin-role-draft:test-user", "Software Engineer");
+    render(<CareerWorkspace />);
+    const nav = screen.getByRole("navigation", { name: "Career workspace" });
+    fireEvent.click(within(nav).getByRole("button", { name: "My Career Twin" }));
+
+    expect(await screen.findByText(/Verified AI Twin Persona/i, {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(screen.getByText(/Evidence Coverage/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Refresh Twin Calculation/i })).toBeInTheDocument();
+  });
+
+  it("opens Applied Projects view from navigation and supports project tracking", async () => {
+    window.localStorage.setItem("careertwin-role-draft:test-user", "Software Engineer");
+    render(<CareerWorkspace />);
+    const nav = screen.getByRole("navigation", { name: "Career workspace" });
+    fireEvent.click(within(nav).getByRole("button", { name: "Applied Projects" }));
+
+    expect(await screen.findByText(/Applied Portfolio Projects/i, {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Create project/i })).toBeInTheDocument();
   });
 });

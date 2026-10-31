@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { seededSkills, findCanonicalSkill, skillSlug } from "@/lib/learning/catalog";
+import { normalizeCourseSlug } from "@/lib/learning/course-content-store";
 import {
   listAllCurricula,
   listAllLessons,
@@ -41,17 +42,20 @@ export async function GET() {
     const skillMap = new Map<string, { curriculaCount: number; lessonsCount: number; mockTestsCount: number; status: "ready" | "incomplete" }>();
 
     for (const c of curricula) {
-      const slug = skillSlug(c.skillName);
+      const slug = normalizeCourseSlug(c.skillName);
       const skillLessons = await listLessonsForCurriculum(c.skillId || `curr-${slug}-${c.learnerLevel}`);
       const skillTests = await listMockTestsForSkill(slug, c.learnerLevel);
       const isComplete = skillLessons.length >= 2 && skillTests.length >= 1;
 
-      skillMap.set(slug, {
+      const record = {
         curriculaCount: 1,
         lessonsCount: skillLessons.length,
         mockTestsCount: skillTests.length,
-        status: isComplete ? "ready" : "incomplete",
-      });
+        status: (isComplete ? "ready" : "incomplete") as "ready" | "incomplete",
+      };
+      skillMap.set(slug, record);
+      skillMap.set(c.skillName.toLowerCase(), record);
+      skillMap.set(skillSlug(c.skillName), record);
     }
 
     const readyCoursesCount = Array.from(skillMap.values()).filter((s) => s.status === "ready").length;
@@ -72,7 +76,7 @@ export async function GET() {
         totalMockTests: mockTests.length,
         databaseHealth,
         sampleSkills: seededSkills.slice(0, 50).map((s) => {
-          const stats = skillMap.get(s.slug) || { curriculaCount: 0, lessonsCount: 0, mockTestsCount: 0, status: "incomplete" };
+          const stats = skillMap.get(normalizeCourseSlug(s.canonicalName)) || skillMap.get(s.slug) || skillMap.get(s.canonicalName.toLowerCase()) || { curriculaCount: 0, lessonsCount: 0, mockTestsCount: 0, status: "incomplete" };
           return {
             id: s.id,
             canonicalName: s.canonicalName,

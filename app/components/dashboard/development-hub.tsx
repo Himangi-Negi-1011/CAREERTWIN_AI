@@ -11,7 +11,7 @@ import { InterviewCoach } from "./interview-coach";
 export type DevelopmentView = "roadmap" | "projects" | "interviews" | "progress" | "guide";
 
 type LearningTask = { id: string; title: string; detail: string; done: boolean; createdAt: string; status?: "planned" | "in-progress" | "paused" | "complete"; skill?: string; prerequisites?: string; priority?: "high" | "medium" | "low"; estimatedMinutes?: number; plannedDate?: string; notes?: string };
-type Project = { id: string; title: string; outcome: string; status: "planned" | "building" | "complete"; createdAt: string };
+type Project = { id: string; title: string; outcome: string; status: "planned" | "building" | "complete"; createdAt: string; deliverableUrl?: string; skill?: string };
 type Practice = { questionId: string; rating: number; note: string; answerText?: string; mode?: "text" | "voice-review"; practicedAt: string };
 type DevelopmentData = { tasks: LearningTask[]; projects: Project[]; practice: Practice[] };
 type GeneratedPlan = { summary: string; tasks: Array<{ title: string; detail: string; rationale: string; proof: string; estimatedMinutes: number }> };
@@ -43,7 +43,7 @@ function EmptyStart({ icon: Icon, title, text, action, onAction }: { icon: typeo
   </div>;
 }
 
-function Roadmap({ role, data, update, onOpenProgress }: { role: string; data: DevelopmentData; update: (next: DevelopmentData) => void; onOpenProgress: () => void }) {
+function Roadmap({ role, data, update, onOpenProgress, onOpenLearning }: { role: string; data: DevelopmentData; update: (next: DevelopmentData) => void; onOpenProgress: () => void; onOpenLearning?: (skill: string) => void }) {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [reviewedFacts, setReviewedFacts] = useState("");
@@ -104,7 +104,21 @@ function Roadmap({ role, data, update, onOpenProgress }: { role: string; data: D
           {status==="paused"&&<button type="button" onClick={()=>updateTask(task.id,{status:"in-progress",done:false})} className="button-secondary px-3 py-2"><Play size={13}/>Resume</button>}
           {!complete&&<button type="button" onClick={()=>updateTask(task.id,{status:"complete",done:true})} className="button-primary px-3 py-2"><Check size={13}/>Mark complete</button>}
           {complete&&<button type="button" onClick={()=>updateTask(task.id,{status:"in-progress",done:false})} className="button-secondary px-3 py-2"><RotateCcw size={13}/>Reopen</button>}
-          <button type="button" onClick={() => { const skill = task.skill || role; if (skill) { window.history.replaceState({}, "", `/dashboard?view=learning&skill=${encodeURIComponent(skill)}`); window.dispatchEvent(new PopStateEvent("popstate")); window.location.reload(); } }} className="button-secondary px-3 py-2 text-accent">
+          <button
+            type="button"
+            onClick={() => {
+              const skill = task.skill || role;
+              if (skill) {
+                if (onOpenLearning) {
+                  onOpenLearning(skill);
+                } else {
+                  window.history.replaceState({}, "", `/dashboard?view=learning&skill=${encodeURIComponent(skill)}`);
+                  window.dispatchEvent(new PopStateEvent("popstate"));
+                }
+              }
+            }}
+            className="button-secondary px-3 py-2 text-accent"
+          >
             <BookOpen size={13}/>Study course
           </button>
           <button type="button" onClick={onOpenProgress} className="button-secondary px-3 py-2"><CalendarDays size={13}/>Assessment & schedule</button>
@@ -115,14 +129,211 @@ function Roadmap({ role, data, update, onOpenProgress }: { role: string; data: D
   </div>;
 }
 
-function Projects({ data, update }: { data: DevelopmentData; update: (next: DevelopmentData) => void }) {
-  const [title, setTitle] = useState(""); const [outcome, setOutcome] = useState("");
-  function add(event: FormEvent) { event.preventDefault(); if (!title.trim()) return; update({ ...data, projects: [...data.projects, { id: makeId("project"), title: title.trim(), outcome: outcome.trim(), status: "planned", createdAt: now() }] }); setTitle(""); setOutcome(""); }
+const PROJECT_TEMPLATES = [
+  { title: "Full-Stack Task API with TypeScript & SQL", skill: "TypeScript", outcome: "Design a relational schema with migrations, implement REST endpoints with Zod validation, and write automated integration tests." },
+  { title: "Python Data Pipeline & Statistical Analysis", skill: "Python", outcome: "Extract and clean real-world dataset, compute summary metrics, generate visual charts, and document reproducible findings." },
+  { title: "Secure Cloud Infrastructure Deployment", skill: "Cloud Computing", outcome: "Provision least-privilege IAM roles, deploy a containerized service with automated health checks, and document a threat model." },
+  { title: "High-Performance Concurrency Worker in Go", skill: "Go", outcome: "Implement a buffered worker pool processing simulated async tasks with graceful shutdown and rate-limiting." },
+];
+
+function Projects({ data, update, role }: { data: DevelopmentData; update: (next: DevelopmentData) => void; role?: string }) {
+  const [title, setTitle] = useState("");
+  const [skill, setSkill] = useState("");
+  const [outcome, setOutcome] = useState("");
+  const [deliverableUrl, setDeliverableUrl] = useState("");
+
+  function add(event: FormEvent) {
+    event.preventDefault();
+    if (!title.trim()) return;
+    update({
+      ...data,
+      projects: [
+        ...data.projects,
+        {
+          id: makeId("project"),
+          title: title.trim(),
+          skill: skill.trim() || role || "General",
+          outcome: outcome.trim(),
+          deliverableUrl: deliverableUrl.trim() || undefined,
+          status: "planned",
+          createdAt: now(),
+        },
+      ],
+    });
+    setTitle("");
+    setSkill("");
+    setOutcome("");
+    setDeliverableUrl("");
+  }
+
+  function applyTemplate(tpl: typeof PROJECT_TEMPLATES[0]) {
+    setTitle(tpl.title);
+    setSkill(tpl.skill);
+    setOutcome(tpl.outcome);
+  }
+
   const states: Project["status"][] = ["planned", "building", "complete"];
-  return <div className="space-y-5"><section className="rounded-[26px] bg-ink p-6 text-white md:p-8"><p className="font-mono text-[10px] uppercase tracking-[.18em] text-mint">Evidence projects</p><h2 className="mt-3 text-2xl font-semibold tracking-[-.035em]">Make work that is useful, reviewable, and safe to share.</h2><p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">A project can be a case study, analysis, campaign, lesson, workflow, experiment, prototype, research summary, operational improvement, or other artifact appropriate to your domain.</p></section>
-    <form onSubmit={add} className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-xl bg-mint/35 text-accent"><FolderKanban size={18}/></span><div><p className="label">New project</p><h3 className="mt-1 font-bold">Define the outcome before the output</h3></div></div><div className="mt-5 grid gap-3 md:grid-cols-2"><label className="text-xs font-bold">Project title<input value={title} onChange={(e)=>setTitle(e.target.value)} maxLength={120} className="mt-2 w-full rounded-xl border border-ink/10 bg-cream/35 px-3 py-3 text-sm font-normal outline-none focus:border-accent" placeholder="e.g. Customer support insights brief"/></label><label className="text-xs font-bold">Outcome and evidence<textarea value={outcome} onChange={(e)=>setOutcome(e.target.value)} maxLength={400} rows={2} className="mt-2 w-full resize-y rounded-xl border border-ink/10 bg-cream/35 px-3 py-3 text-sm font-normal outline-none focus:border-accent" placeholder="Who is it for, what problem will it address, and what can you show?"/></label></div><p className="mt-3 text-xs text-slate">Do not include confidential, proprietary, personal, or unsafe material.</p><button disabled={!title.trim()} className="button-primary mt-4 disabled:opacity-40"><Plus size={15}/>Create project</button></form>
-    {!data.projects.length ? <EmptyStart icon={FolderKanban} title="No evidence projects yet" text="Create a project with an outcome you can explain. CareerTwin will not invent projects or completion claims for you." action="Focus title field" onAction={()=>document.querySelector<HTMLInputElement>('input[placeholder*="Customer support"]')?.focus()}/> : <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{data.projects.map((project)=><article key={project.id} className="rounded-[24px] border border-ink/10 bg-white p-5"><div className="flex items-start justify-between gap-3"><span className="rounded-full bg-cream px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate">{project.status}</span><button type="button" onClick={()=>update({...data,projects:data.projects.filter((item)=>item.id!==project.id)})} aria-label={`Delete ${project.title}`} className="text-slate hover:text-red-700"><Trash2 size={15}/></button></div><h3 className="mt-4 text-lg font-bold">{project.title}</h3><p className="mt-2 min-h-15 text-sm leading-5 text-slate">{project.outcome || "Add an outcome by recreating this project with clearer evidence criteria."}</p><label className="mt-5 block text-[10px] font-bold uppercase tracking-wider text-slate">Status<select value={project.status} onChange={(e)=>update({...data,projects:data.projects.map((item)=>item.id===project.id?{...item,status:e.target.value as Project["status"]}:item)})} className="mt-2 w-full rounded-xl border border-ink/10 bg-cream/35 px-3 py-2.5 text-sm font-semibold text-ink">{states.map((state)=><option key={state}>{state}</option>)}</select></label></article>)}</section>}
-  </div>;
+
+  return (
+    <div className="space-y-5">
+      <section className="rounded-[26px] bg-ink p-6 text-white md:p-8 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="font-mono text-[10px] uppercase tracking-[.18em] text-mint">Applied Portfolio Projects</p>
+          <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-xs font-semibold text-white">
+            {data.projects.filter((p) => p.status === "complete").length}/{data.projects.length} Completed
+          </span>
+        </div>
+        <h2 className="mt-3 text-2xl md:text-3xl font-semibold tracking-[-.035em]">
+          Turn skills into reviewable evidence and working code.
+        </h2>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">
+          A project can be a GitHub repository, deployed demo, case study, technical brief, or automated pipeline.
+          CareerTwin records your actual project deliverables as verified evidence for your Career Twin.
+        </p>
+
+        {/* Quick starter templates */}
+        <div className="mt-6 border-t border-white/10 pt-4">
+          <p className="text-xs font-bold text-mint uppercase tracking-wider">Quick Project Starters:</p>
+          <div className="mt-2.5 flex flex-wrap gap-2">
+            {PROJECT_TEMPLATES.map((tpl) => (
+              <button
+                key={tpl.title}
+                type="button"
+                onClick={() => applyTemplate(tpl)}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-white/15 cursor-pointer"
+              >
+                <Plus size={11} className="text-mint" />
+                {tpl.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <form onSubmit={add} className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7 shadow-xs">
+        <div className="flex items-center gap-3">
+          <span className="grid size-10 place-items-center rounded-xl bg-mint/35 text-accent">
+            <FolderKanban size={18} />
+          </span>
+          <div>
+            <p className="label">New project</p>
+            <h3 className="mt-1 font-bold">Define the deliverable and completion criteria</h3>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <label className="text-xs font-bold">
+            Project title
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              maxLength={120}
+              className="mt-2 w-full rounded-xl border border-ink/10 bg-cream/35 px-3 py-3 text-sm font-normal outline-none focus:border-accent"
+              placeholder="e.g. Full-Stack Task API with TypeScript"
+            />
+          </label>
+          <label className="text-xs font-bold">
+            Skill focus
+            <input
+              value={skill}
+              onChange={(e) => setSkill(e.target.value)}
+              maxLength={60}
+              className="mt-2 w-full rounded-xl border border-ink/10 bg-cream/35 px-3 py-3 text-sm font-normal outline-none focus:border-accent"
+              placeholder="e.g. TypeScript, Python, SQL, Cloud..."
+            />
+          </label>
+          <label className="text-xs font-bold sm:col-span-2">
+            Deliverable URL (GitHub repo, live deployment, or writeup)
+            <input
+              value={deliverableUrl}
+              onChange={(e) => setDeliverableUrl(e.target.value)}
+              maxLength={240}
+              className="mt-2 w-full rounded-xl border border-ink/10 bg-cream/35 px-3 py-3 text-sm font-normal outline-none focus:border-accent"
+              placeholder="https://github.com/username/project"
+            />
+          </label>
+          <label className="text-xs font-bold sm:col-span-2">
+            Outcome and evidence criteria
+            <textarea
+              value={outcome}
+              onChange={(e) => setOutcome(e.target.value)}
+              maxLength={400}
+              rows={2}
+              className="mt-2 w-full resize-y rounded-xl border border-ink/10 bg-cream/35 px-3 py-3 text-sm font-normal outline-none focus:border-accent"
+              placeholder="Who is it for, what problem will it address, and what does it prove?"
+            />
+          </label>
+        </div>
+        <p className="mt-3 text-xs text-slate">Do not include confidential, proprietary, personal, or unsafe material.</p>
+        <button disabled={!title.trim()} className="button-primary mt-4 disabled:opacity-40 cursor-pointer">
+          <Plus size={15} /> Create project
+        </button>
+      </form>
+
+      {!data.projects.length ? (
+        <EmptyStart
+          icon={FolderKanban}
+          title="No evidence projects yet"
+          text="Create a project with an outcome you can explain or select a quick project starter above."
+          action="Focus title field"
+          onAction={() => document.querySelector<HTMLInputElement>('input[placeholder*="Full-Stack"]')?.focus()}
+        />
+      ) : (
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {data.projects.map((project) => (
+            <article key={project.id} className="rounded-[24px] border border-ink/10 bg-white p-5 flex flex-col justify-between shadow-xs">
+              <div>
+                <div className="flex items-start justify-between gap-3">
+                  <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${project.status === "complete" ? "bg-emerald-100 text-emerald-800" : project.status === "building" ? "bg-amber-100 text-amber-800" : "bg-cream text-slate"}`}>
+                    {project.status}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => update({ ...data, projects: data.projects.filter((item) => item.id !== project.id) })}
+                    aria-label={`Delete ${project.title}`}
+                    className="text-slate hover:text-red-700 cursor-pointer"
+                  >
+                    <Trash2 size={15} />
+                  </button>
+                </div>
+                <h3 className="mt-3 text-lg font-bold">{project.title}</h3>
+                {project.skill && <p className="text-xs font-semibold text-accent mt-0.5">{project.skill}</p>}
+                <p className="mt-2 text-sm leading-5 text-slate">{project.outcome || "Add an outcome description."}</p>
+                {project.deliverableUrl && (
+                  <a
+                    href={project.deliverableUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline break-all"
+                  >
+                    Deliverable: {project.deliverableUrl.replace(/^https?:\/\//, "")}
+                  </a>
+                )}
+              </div>
+              <label className="mt-5 block border-t border-ink/8 pt-3 text-[10px] font-bold uppercase tracking-wider text-slate">
+                Status
+                <select
+                  value={project.status}
+                  onChange={(e) =>
+                    update({
+                      ...data,
+                      projects: data.projects.map((item) =>
+                        item.id === project.id ? { ...item, status: e.target.value as Project["status"] } : item
+                      ),
+                    })
+                  }
+                  className="mt-1.5 w-full rounded-xl border border-ink/10 bg-cream/35 px-3 py-2 text-sm font-semibold text-ink"
+                >
+                  {states.map((state) => (
+                    <option key={state}>{state}</option>
+                  ))}
+                </select>
+              </label>
+            </article>
+          ))}
+        </section>
+      )}
+    </div>
+  );
 }
 
 function Interviews({ role, data, update }: { role: string; data: DevelopmentData; update: (next: DevelopmentData) => void }) {
@@ -141,13 +352,13 @@ function Guide({ open }: { open: (view: DevelopmentView)=>void }) {
  return <div className="space-y-5"><section className="rounded-[28px] bg-ink p-7 text-white md:p-9"><p className="font-mono text-[10px] uppercase tracking-[.18em] text-mint">CareerTwin guide</p><h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-.04em]">A practical workflow for any career domain.</h2><p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">CareerTwin helps you organize self-recorded evidence and action. It does not verify credentials, predict hiring outcomes, or replace advice from qualified educators, mentors, recruiters, or regulated professionals.</p></section><section className="grid gap-4 md:grid-cols-2">{steps.map((step)=><article key={step.title} className="rounded-[22px] border border-ink/10 bg-white p-5"><h3 className="font-bold">{step.title}</h3><p className="mt-2 text-sm leading-6 text-slate">{step.text}</p></article>)}</section><section className="rounded-[26px] border border-accent/15 bg-mint/15 p-6"><h3 className="font-bold">Privacy and safe use</h3><ul className="mt-3 grid gap-2 text-sm leading-6 text-slate md:grid-cols-2"><li>• Data in these modules is stored in this browser and scoped to your signed-in account ID.</li><li>• Avoid employer secrets, client data, health data, credentials, or personal identifiers.</li><li>• Exported files may contain your notes; review them before sharing.</li><li>• Integrations remain unavailable until secure provider OAuth is configured.</li></ul></section><div className="flex flex-wrap gap-3"><button onClick={()=>open("roadmap")} className="button-primary">Start learning plan<ArrowRight size={15}/></button><button onClick={()=>open("interviews")} className="button-secondary">Practise an interview</button></div></div>;
 }
 
-export function DevelopmentHub({ view, role, ownerKey, onOpen }: { view: DevelopmentView; role: string; ownerKey: string; onOpen: (view: DevelopmentView)=>void }) {
+export function DevelopmentHub({ view, role, ownerKey, onOpen, onOpenLearning }: { view: DevelopmentView; role: string; ownerKey: string; onOpen: (view: DevelopmentView)=>void; onOpenLearning?: (skill: string) => void }) {
   const storageKey=`${KEY}:${ownerKey}`; const [data,setData]=useState<DevelopmentData>(EMPTY); const [loaded,setLoaded]=useState(false);
   useEffect(()=>{const task=window.setTimeout(()=>{setData(readData(storageKey));setLoaded(true)},0);return()=>window.clearTimeout(task)},[storageKey]);
   function update(next:DevelopmentData){setData(next);window.localStorage.setItem(storageKey,JSON.stringify(next));window.dispatchEvent(new Event("careertwin:development-saved"));void persistTwinPatch({development:next})}
   if(!loaded)return <div className="grid min-h-[420px] place-items-center text-sm font-semibold text-slate">Loading your development workspace…</div>;
-  if(view==="roadmap")return <Roadmap role={role} data={data} update={update} onOpenProgress={()=>onOpen("progress")}/>;
-  if(view==="projects")return <Projects data={data} update={update}/>;
+  if(view==="roadmap")return <Roadmap role={role} data={data} update={update} onOpenProgress={()=>onOpen("progress")} onOpenLearning={onOpenLearning}/>;
+  if(view==="projects")return <Projects data={data} update={update} role={role}/>;
   if(view==="interviews")return <Interviews role={role} data={data} update={update}/>;
   if(view==="progress")return <Progress data={data}/>;
   return <Guide open={onOpen}/>;

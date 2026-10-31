@@ -13,6 +13,28 @@ export function clearCoursePackageCache(): void {
   packageCache.clear();
 }
 
+/**
+ * Normalizes any skill name or slug variant to the exact directory name in content/courses/
+ */
+export function normalizeCourseSlug(input: string): string {
+  const clean = input.trim().toLowerCase();
+  if (clean === "c++" || clean === "cpp" || clean === "c-plus-plus" || clean === "cplusplus" || clean === "c-") return "cpp";
+  if (clean === "c#" || clean === "csharp" || clean === "c-sharp" || clean === "csharp") return "csharp";
+  if (clean === "c" || clean === "c-programming" || clean === "c-language" || clean === "c programming") return "c-programming";
+  if (clean === "cloud computing" || clean === "cloud-computing" || clean === "cloud" || clean === "cloud-fundamentals") return "cloud-computing";
+  if (clean === "cybersecurity" || clean === "cyber-security" || clean === "cyber security" || clean === "security-fundamentals") return "cybersecurity";
+  if (clean === "power bi" || clean === "power-bi" || clean === "powerbi") return "power-bi";
+  if (clean === "javascript" || clean === "js" || clean === "javascript and typescript") return "javascript";
+  if (clean === "typescript" || clean === "ts") return "typescript";
+  if (clean === "python" || clean === "py" || clean === "python from zero") return "python";
+  if (clean === "sql" || clean === "sql for data analysis") return "sql";
+  if (clean === "java") return "java";
+  if (clean === "go" || clean === "golang") return "go";
+  if (clean === "rust") return "rust";
+  if (clean === "php") return "php";
+  return clean.replace(/\+/g, "plus").replace(/#/g, "sharp").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 export interface CoursePackage {
   slug: string;
   skillName: string;
@@ -125,7 +147,8 @@ export async function saveCoursePackage(pkg: CoursePackage): Promise<void> {
 /**
  * Loads a course package from content/courses/<slug>/ if it exists.
  */
-export async function loadCoursePackage(slug: string): Promise<CoursePackage | null> {
+export async function loadCoursePackage(rawSlug: string): Promise<CoursePackage | null> {
+  const slug = normalizeCourseSlug(rawSlug);
   if (packageCache.has(slug)) {
     return packageCache.get(slug)!;
   }
@@ -201,7 +224,8 @@ export async function loadCoursePackage(slug: string): Promise<CoursePackage | n
 /**
  * Checks if a course package exists in content/courses/<slug>/
  */
-export async function hasCoursePackage(slug: string): Promise<boolean> {
+export async function hasCoursePackage(rawSlug: string): Promise<boolean> {
+  const slug = normalizeCourseSlug(rawSlug);
   try {
     await fs.access(path.join(CONTENT_DIR, slug, "course.json"));
     return true;
