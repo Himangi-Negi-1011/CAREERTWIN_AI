@@ -8,4 +8,6 @@ export function initRobotScene(options?: {
   robot: unknown;
   react: (action?: string) => void;
   resize: () => void;
+  dispose: () => void;
 } | null;
+

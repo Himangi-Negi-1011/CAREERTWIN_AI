@@ -114,7 +114,8 @@ function initRobotScene({ canvasId, pose = 'hero' } = {}) {
   // Gracefully handle environments without WebGL (e.g. jsdom, old devices)
   if (typeof window === 'undefined' || !window.WebGLRenderingContext) return null;
   try {
-    const gl = canvas.getContext && (canvas.getContext("webgl2") || canvas.getContext("webgl"));
+    const probe = document.createElement("canvas");
+    const gl = probe.getContext("webgl2") || probe.getContext("webgl");
     if (!gl) return null;
   } catch {
     return null;
@@ -520,7 +521,7 @@ function initRobotScene({ canvasId, pose = 'hero' } = {}) {
   const pointerGoal = { x: 0, y: 0 };
   let hovering = false;
 
-  window.addEventListener('pointermove', (e) => {
+  const onPointerMove = (e) => {
     const host = canvas.parentElement || canvas;
     const r = host.getBoundingClientRect();
     const margin = 220;
@@ -530,10 +531,14 @@ function initRobotScene({ canvasId, pose = 'hero' } = {}) {
     if (!near) { pointerGoal.x = 0; pointerGoal.y = 0; return; }
     pointerGoal.x = clamp(((e.clientX - r.left) / r.width) * 2 - 1, -1, 1);
     pointerGoal.y = clamp(((e.clientY - r.top) / r.height) * 2 - 1, -1, 1);
-  }, { passive: true });
+  };
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
 
-  document.addEventListener('pointerleave', () => { hovering = false; pointerGoal.x = 0; pointerGoal.y = 0; });
-  window.addEventListener('blur', () => { hovering = false; pointerGoal.x = 0; pointerGoal.y = 0; });
+  const onPointerLeave = () => { hovering = false; pointerGoal.x = 0; pointerGoal.y = 0; };
+  document.addEventListener('pointerleave', onPointerLeave);
+
+  const onBlur = () => { hovering = false; pointerGoal.x = 0; pointerGoal.y = 0; };
+  window.addEventListener('blur', onBlur);
 
   /* ================= resize ================= */
   function resize() {
@@ -556,7 +561,11 @@ function initRobotScene({ canvasId, pose = 'hero' } = {}) {
   window.addEventListener('resize', resize);
   window.addEventListener('orientationchange', resize);
   window.addEventListener('careertwin:resize3d', resize);
-  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas.parentElement || canvas);
+  let resizeObserver = null;
+  if (window.ResizeObserver) {
+    resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(canvas.parentElement || canvas);
+  }
 
   /* ================= theme ================= */
   function applyTheme() {
@@ -735,30 +744,41 @@ function initRobotScene({ canvasId, pose = 'hero' } = {}) {
     floorGlow.position.y = -1.62 + Math.sin(t * 1.02) * 0.01;
     floorGlow.material.opacity = (root.getAttribute('data-theme') === 'light' ? 0.4 : 0.8) - hopY * 0.4;
 
-    renderer.render(scene, camera);
-    requestAnimationFrame(frame);
+    if (!isDisposed) {
+      renderer.render(scene, camera);
+      rafId = requestAnimationFrame(frame);
+    }
   }
 
-  requestAnimationFrame(frame);
+  let rafId = requestAnimationFrame(frame);
+  let isDisposed = false;
 
-  return { scene, renderer, camera, robot, react, resize };
-}
+  function dispose() {
+    isDisposed = true;
+    if (rafId) cancelAnimationFrame(rafId);
+    window.removeEventListener('pointermove', onPointerMove);
+    document.removeEventListener('pointerleave', onPointerLeave);
+    window.removeEventListener('blur', onBlur);
+    window.removeEventListener('resize', resize);
+    window.removeEventListener('orientationchange', resize);
+    window.removeEventListener('careertwin:resize3d', resize);
+    if (resizeObserver) resizeObserver.disconnect();
+    window.removeEventListener('careertwin:theme', applyTheme);
+    shell.removeEventListener('careertwin:cheer', react);
+    canvas.removeEventListener('click', react);
+    try {
+      renderer.dispose();
+      scene.clear();
+    } catch {
+      // safe cleanup
+    }
+  }
 
-/* auto-boot in browser */
-function boot() {
-  if (typeof document === "undefined") return;
-  if (document.getElementById('robotCanvas')) initRobotScene({ canvasId: 'robotCanvas', pose: 'hero' });
-  if (document.getElementById('loginRobot')) initRobotScene({ canvasId: 'loginRobot', pose: 'login' });
-  if (document.getElementById('dashRobot')) initRobotScene({ canvasId: 'dashRobot', pose: 'dash' });
+  return { scene, renderer, camera, robot, react, resize, dispose };
 }
 
 if (typeof window !== "undefined") {
   window.CTRobot = { init: initRobotScene };
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot, { once: true });
-  } else {
-    boot();
-  }
 }
 
 export { initRobotScene };

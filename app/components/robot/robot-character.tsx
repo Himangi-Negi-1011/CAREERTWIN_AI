@@ -25,10 +25,15 @@ export function RobotCharacter({
 
     const instance = initRobotScene({ canvasId: effectiveId, pose });
 
+    const timers = [80, 320, 900].map((ms) =>
+      setTimeout(() => {
+        window.dispatchEvent(new Event("careertwin:resize3d"));
+      }, ms)
+    );
+
     return () => {
-      if (instance?.renderer) {
-        instance.renderer.dispose();
-      }
+      timers.forEach(clearTimeout);
+      instance?.dispose?.();
     };
   }, [effectiveId, pose]);
 
@@ -71,3 +76,4 @@ export function CheerChip({
     </button>
   );
 }
+

@@ -190,13 +190,13 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
           <h1 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight text-ink">Make your next move visible.</h1>
           <p className="mt-2 text-sm text-slate">A private place to turn real evidence into focused, reviewable action.</p>
         </div>
-        <div className="command-visual relative w-44 h-44 md:w-52 md:h-52 flex items-center justify-center">
+        <div className="command-visual relative w-48 h-48 md:w-56 md:h-56 shrink-0 flex items-center justify-center" style={{ minWidth: "192px", minHeight: "192px" }}>
           <div className="visual-glow absolute inset-2 rounded-full bg-accent/20 blur-xl -z-10" aria-hidden="true" />
           <RobotCharacter pose="dash" canvasId="dashRobot" />
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent("careertwin:cheer"))}
-            className="robot-chip absolute bottom-1 right-2 inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white/95 backdrop-blur px-3 py-1 text-xs font-bold text-ink shadow-sm transition hover:bg-white hover:scale-105 cursor-pointer"
+            className="robot-chip absolute bottom-1 right-2 inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white/95 backdrop-blur px-3 py-1 text-xs font-bold text-[#2c1170] shadow-sm transition hover:bg-white hover:scale-105 cursor-pointer z-10"
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M7 11V7a2 2 0 1 1 4 0v3" />
@@ -227,9 +227,9 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
               {role ? `This recommendation uses only the profile and activity saved for your ${role} workspace. It updates as you review evidence and complete tasks.` : "A target role gives your evidence review, roadmap, and practice a clear reference point. You can change it whenever your goal changes."}
             </p>
             {focusView === "onboarding" ? (
-              <Link href="/onboarding" className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-ink transition hover:-translate-y-0.5">{focusAction}<ArrowRight size={15}/></Link>
+              <Link href="/onboarding" className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-[#2c1170] shadow-md transition hover:-translate-y-0.5">{focusAction}<ArrowRight size={15}/></Link>
             ) : (
-              <button onClick={() => onOpen(focusView)} className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-ink transition hover:-translate-y-0.5">{focusAction}<ArrowRight size={15}/></button>
+              <button onClick={() => onOpen(focusView)} className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-[#2c1170] shadow-md transition hover:-translate-y-0.5">{focusAction}<ArrowRight size={15}/></button>
             )}
           </div>
           <div className="absolute -bottom-24 -right-16 size-64 rounded-full border-[42px] border-white/[.055]" /><div className="absolute -right-8 top-0 h-px w-2/3 bg-gradient-to-l from-mint/50 to-transparent" />
