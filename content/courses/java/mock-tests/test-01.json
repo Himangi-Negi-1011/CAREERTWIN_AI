@@ -1,0 +1,703 @@
+{
+  "id": "mock-java-beginner-test-01",
+  "skillName": "Java",
+  "skillSlug": "java",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Java Beginner Mock Test 1",
+  "description": "Comprehensive 50-minute mock examination for Java at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "JDK",
+    "bytecode",
+    "main method",
+    "primitive types",
+    "integer division",
+    "String equality",
+    "parsing",
+    "short circuit logic",
+    "if chains",
+    "switch",
+    "arrays",
+    "enhanced for",
+    "while loops",
+    "methods",
+    "pass by value",
+    "encapsulation",
+    "static",
+    "List",
+    "Map",
+    "Set"
+  ],
+  "questions": [
+    {
+      "id": "mock-java-beginner-test-01-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes JDK in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "the JDK includes development tools such as javac"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "JDK",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes bytecode in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "javac emits JVM bytecode in class files"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "bytecode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes main method in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "the JVM entry point uses public static void main(String[] args)"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "main method",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes primitive types in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "primitive variables directly hold primitive values"
+        },
+        {
+          "id": "B",
+          "text": "double is approximate and unsuitable for exact currency rules"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "primitive variables directly hold primitive values. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "primitive types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes integer division in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "division of two integers produces an integer result"
+        },
+        {
+          "id": "B",
+          "text": "casting only after integer division cannot restore the fraction"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "division of two integers produces an integer result. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "integer division",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q6",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes String equality in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "String content is compared with equals"
+        },
+        {
+          "id": "B",
+          "text": "== compares object references rather than String content"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "String content is compared with equals. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "String equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q7",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes parsing in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "parse methods convert valid text or throw on invalid text"
+        },
+        {
+          "id": "B",
+          "text": "parseInt does not accept arbitrary decimal text"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "parse methods convert valid text or throw on invalid text. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "parsing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q8",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes short circuit logic in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "&& and || may skip evaluation of the right operand"
+        },
+        {
+          "id": "B",
+          "text": "using non-short-circuit operators can evaluate unsafe expressions"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "&& and || may skip evaluation of the right operand. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "short circuit logic",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q9",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes if chains in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "only the first matched branch of an if/else-if chain runs"
+        },
+        {
+          "id": "B",
+          "text": "separate if statements can execute overlapping branches"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "only the first matched branch of an if/else-if chain runs. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "if chains",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q10",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes switch in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "switch is useful for finite discrete choices"
+        },
+        {
+          "id": "B",
+          "text": "switch does not replace range-oriented conditions cleanly"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "switch is useful for finite discrete choices. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q11",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes arrays in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "arrays have fixed length and zero-based indexes"
+        },
+        {
+          "id": "B",
+          "text": "access at index length throws an exception"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "arrays have fixed length and zero-based indexes. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q12",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes enhanced for in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enhanced for iterates values without exposing indexes"
+        },
+        {
+          "id": "B",
+          "text": "assigning the loop variable does not replace an array element"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enhanced for iterates values without exposing indexes. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "enhanced for",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q13",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes while loops in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "while repeats while a boolean remains true"
+        },
+        {
+          "id": "B",
+          "text": "missing progress can produce an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "while repeats while a boolean remains true. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q14",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes methods in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "methods declare parameter and return contracts"
+        },
+        {
+          "id": "B",
+          "text": "a void method cannot provide a result expression"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "methods declare parameter and return contracts. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q15",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes pass by value in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Java copies every argument value during a call"
+        },
+        {
+          "id": "B",
+          "text": "reassigning a parameter does not reassign the caller variable"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Java copies every argument value during a call. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "pass by value",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q16",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes encapsulation in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "private state is changed through invariant-preserving behavior"
+        },
+        {
+          "id": "B",
+          "text": "public mutable fields allow invalid states"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "private state is changed through invariant-preserving behavior. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "encapsulation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q17",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes static in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "static members belong to the class rather than one instance"
+        },
+        {
+          "id": "B",
+          "text": "static code cannot directly use instance fields without an object"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "static members belong to the class rather than one instance. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "static",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q18",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes List in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "List preserves order and allows duplicates"
+        },
+        {
+          "id": "B",
+          "text": "removing during enhanced iteration can cause concurrent modification"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "List preserves order and allows duplicates. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "List",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q19",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Map in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Map associates unique keys with values"
+        },
+        {
+          "id": "B",
+          "text": "get on a missing key commonly returns null"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Map associates unique keys with values. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "Map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-01-q20",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Set in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Set retains unique elements"
+        },
+        {
+          "id": "B",
+          "text": "Set does not provide positional indexing"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Set retains unique elements. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "Set",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.436Z",
+  "updatedAt": "2026-10-31T13:08:48.436Z"
+}

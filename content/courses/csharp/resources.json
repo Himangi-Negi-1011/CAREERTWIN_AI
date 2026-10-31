@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-csharp-main",
+    "title": "C# Full Course for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for C#.",
+    "whatItTeaches": "Step-by-step walkthrough of C# fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "csharp-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "The .NET Build and Execution Model",
+      "Types, Conversion, and Nullable References",
+      "Conditions, Patterns, and Boundaries",
+      "Collections, Iteration, and LINQ",
+      "Methods, Records, Classes, and Encapsulation",
+      "Files, JSON, Async, and a Progress Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

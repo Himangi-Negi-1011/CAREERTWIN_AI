@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro",
+  "skillName": "TypeScript",
+  "moduleId": "mod-2-typescript-beginner-module-2",
+  "title": "Object Types, Interfaces, and Optional Properties",
+  "summary": "Describe object shapes with interfaces and type aliases, distinguish optional properties from undefined values, and preserve excess-property checks.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the TypeScript behavior taught in Object Types, Interfaces, and Optional Properties",
+    "Use strict compiler evidence and runtime tests to verify the contract"
+  ],
+  "objectiveIds": [
+    "typescript-obj-3",
+    "typescript-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-sec-1",
+      "heading": "Core model",
+      "content": "Object types document required fields and their value types. Interfaces are well suited to extendable object contracts; type aliases can represent objects, unions, primitives, and tuples. `name?: string` means a property may be absent, while `name: string | undefined` requires the property key even when its value is undefined. Mark data immutable with `readonly` when mutation is not part of the contract. Fresh object literals receive excess-property checks that catch misspelled fields. Avoid broad index signatures unless every unknown key genuinely follows the same value rule.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Object types document required fields and their value types."
+      ],
+      "commonMistakes": [
+        "a general string loses exhaustiveness checking",
+        "a type assertion is not runtime evidence"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-sec-2",
+      "heading": "Worked TypeScript example",
+      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "interface Skill {\n  readonly id: string;\n  name: string;\n  level?: 'beginner' | 'intermediate';\n}\nconst skill: Skill = { id: 's1', name: 'TypeScript' };\nconsole.log(skill.name);",
+          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+          "expectedOutput": "TypeScript"
+        }
+      ],
+      "keyPoints": [
+        "Object types document required fields and their value types."
+      ],
+      "commonMistakes": [
+        "a general string loses exhaustiveness checking",
+        "a type assertion is not runtime evidence"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Object types document required fields and their value types."
+      ],
+      "commonMistakes": [
+        "a general string loses exhaustiveness checking",
+        "a type assertion is not runtime evidence"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-ex-1",
+      "type": "coding",
+      "title": "Build, check, and explain",
+      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
+      "description": "Define typed Learner and Course records, include one optional field and one readonly field, and demonstrate a compiler error for a misspelled property. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "instructions": [
+        "Define typed Learner and Course records, include one optional field and one readonly field, and demonstrate a compiler error for a misspelled property. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+      ],
+      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "hints": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about type inference is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "B",
+          "text": "the compiler derives a type from available expressions"
+        },
+        {
+          "id": "C",
+          "text": "rely on inference for obvious local values and annotate public boundaries"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict mode is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "B",
+          "text": "strict enables a coordinated set of stronger checks"
+        },
+        {
+          "id": "C",
+          "text": "enable strict in tsconfig for new application code"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about annotations is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "B",
+          "text": "annotations state an expected compile-time type"
+        },
+        {
+          "id": "C",
+          "text": "annotate function boundaries when the contract should remain stable"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Object Types, Interfaces, and Optional Properties in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-typescript-main",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for TypeScript.",
+      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "typescript-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Object Types, Interfaces, and Optional Properties",
+        "Typed Arrays and Function Contracts"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Object Types, Interfaces, and Optional Properties",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Object Types, Interfaces, and Optional Properties."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using TypeScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.687Z"
+}

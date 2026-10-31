@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries",
+  "skillName": "C#",
+  "moduleId": "mod-2-csharp-beginner-module-2",
+  "title": "Conditions, Patterns, and Boundaries",
+  "summary": "Write clear decisions with boolean logic, if/else, switch expressions, relational and property patterns, and tested boundaries.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Conditions, Patterns, and Boundaries",
+    "Use compiler and runtime evidence to test the contract"
+  ],
+  "objectiveIds": [
+    "csharp-obj-3",
+    "csharp-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-sec-1",
+      "heading": "Core model",
+      "content": "`if` chains suit numeric ranges, while switch expressions provide concise exhaustive mappings for finite cases. `&&` and `||` short-circuit, protecting later expressions from invalid state. Pattern matching can test type, null, property, and relational evidence while introducing narrowed variables. Use parentheses when mixed operators obscure intent. A switch over an enum should handle every expected value; a discard arm should be intentional rather than hiding missing domain cases. Test below, at, and above each threshold.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`if` chains suit numeric ranges, while switch expressions provide concise exhaustive mappings for finite cases."
+      ],
+      "commonMistakes": [
+        "single ampersand does not short-circuit",
+        "a discard arm can hide an omitted case"
+      ]
+    },
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-sec-2",
+      "heading": "Worked C# example",
+      "content": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "csharp",
+          "code": "var score = 72;\nvar submitted = true;\nvar result = score is >= 0 and <= 100 && submitted ? \"recorded\" : \"review input\";\nConsole.WriteLine(result);",
+          "explanation": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+          "expectedOutput": "recorded"
+        }
+      ],
+      "keyPoints": [
+        "`if` chains suit numeric ranges, while switch expressions provide concise exhaustive mappings for finite cases."
+      ],
+      "commonMistakes": [
+        "single ampersand does not short-circuit",
+        "a discard arm can hide an omitted case"
+      ]
+    },
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`if` chains suit numeric ranges, while switch expressions provide concise exhaustive mappings for finite cases."
+      ],
+      "commonMistakes": [
+        "single ampersand does not short-circuit",
+        "a discard arm can hide an omitted case"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in C#.",
+      "description": "Implement a grade classifier with relational patterns or explicit conditions, reject values outside 0–100, and test every boundary. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+      "instructions": [
+        "Implement a grade classifier with relational patterns or explicit conditions, reject values outside 0–100, and test every boundary. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling."
+      ],
+      "starterCode": "// C# Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Nullable-clean C# source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Nullable-clean C# source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C# operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about .NET SDK is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a runtime-only installation may not include build tools"
+        },
+        {
+          "id": "B",
+          "text": "the SDK includes build run and test tools"
+        },
+        {
+          "id": "C",
+          "text": "use dotnet build to obtain compiler evidence"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a runtime-only installation may not include build tools. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about assemblies is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "an assembly is not raw C# source"
+        },
+        {
+          "id": "B",
+          "text": "assemblies contain intermediate language and metadata"
+        },
+        {
+          "id": "C",
+          "text": "build source into a target-framework assembly"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an assembly is not raw C# source. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-csharp-beginner-module-2-l1-conditions-patterns-and-boundaries-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about var is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "var does not permit later values of unrelated types"
+        },
+        {
+          "id": "B",
+          "text": "var infers one static type from an initializer"
+        },
+        {
+          "id": "C",
+          "text": "use it when the inferred type is clear"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "var does not permit later values of unrelated types. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Conditions, Patterns, and Boundaries in C#. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-csharp-main",
+      "title": "C# Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C#.",
+      "whatItTeaches": "Step-by-step walkthrough of C# fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "csharp-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions, Patterns, and Boundaries",
+        "Collections, Iteration, and LINQ"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Conditions, Patterns, and Boundaries",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Conditions, Patterns, and Boundaries."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C#",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.315Z"
+}

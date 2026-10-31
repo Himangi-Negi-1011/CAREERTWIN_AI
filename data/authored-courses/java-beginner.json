@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "Java",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "Java Foundations: Compilation to an Encapsulated Progress Tracker",
+  "description": "A beginner Java course teaching the JDK workflow, types, input, control flow, arrays, methods, classes, collections, exceptions, tests, and an encapsulated progress-tracker capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Compile, run, and diagnose small Java programs",
+    "Use types, decisions, loops, arrays, methods, classes, and collections safely",
+    "Build and test an encapsulated progress tracker with validated invariants"
+  ],
+  "modules": [
+    {
+      "stableKey": "java-beginner-module-1",
+      "title": "Compilation, Types, and Input",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "java-jdk-compile",
+          "title": "JDK, Compilation, and Program Structure",
+          "summary": "Set up a Java development workflow and understand source files, classes, the main method, compilation, bytecode, and actionable compiler diagnostics.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Java behavior taught in JDK, Compilation, and Program Structure",
+            "Compile, run, and test the behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "java-jdk-compile-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "The JDK provides the compiler and runtime tools. `javac Main.java` checks source and emits bytecode in `Main.class`; `java Main` starts the JVM and invokes `public static void main(String[] args)`. A public class name must match its source filename. Java is statically typed, so many invalid operations are rejected before execution. Read the first relevant compiler diagnostic, correct one cause at a time, and recompile. Packages organize names and should match directory structure in normal projects. Do not edit generated `.class` files or commit them as source."
+            },
+            {
+              "stableKey": "java-jdk-compile-example",
+              "type": "code",
+              "heading": "Worked Java example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+              "codeLanguage": "java",
+              "codeSource": "public class Main {\n  public static void main(String[] args) {\n    String course = \"Java\";\n    int lessons = 6;\n    System.out.println(course + \": \" + lessons + \" lessons\");\n  }\n}",
+              "expectedOutput": "Java: 6 lessons"
+            },
+            {
+              "stableKey": "java-jdk-compile-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "java-jdk-compile-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create Main.java, compile and run it, then introduce a filename/class mismatch and explain the compiler diagnostic before correcting it. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+              "expectedOutcomes": [
+                "Compiling Java source with descriptive names",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "java-jdk-compile-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "java-beg-lesson-1-01-JDK",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes JDK in Java?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "JDK"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the JDK includes development tools such as javac"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a JRE-only installation may not provide javac"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The JVM chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external paid library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-1-02-bytecode",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes bytecode in Java?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "bytecode"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "javac emits JVM bytecode in class files"
+                  },
+                  {
+                    "key": "B",
+                    "text": "editing a class file is not a source workflow"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The JVM chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external paid library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-1-03-main-method",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes main method in Java?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "main method"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the JVM entry point uses public static void main(String[] args)"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a misspelled signature is not selected as the entry point"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The JVM chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external paid library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "The JDK provides the compiler and runtime tools."
+          ],
+          "commonMistakes": [
+            "a JRE-only installation may not provide javac",
+            "editing a class file is not a source workflow"
+          ],
+          "interviewQuestions": [
+            "Explain JDK with a minimal Java example."
+          ]
+        },
+        {
+          "stableKey": "java-types-input",
+          "title": "Primitive Types, Strings, and Input",
+          "summary": "Use primitive types, String, explicit numeric conversion, Scanner input, arithmetic, and predictable equality rules.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Java behavior taught in Primitive Types, Strings, and Input",
+            "Compile, run, and test the behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "java-types-input-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Java primitive types store numeric, boolean, and character values; reference types such as `String` refer to objects. Choose `int` or `long` according to range and `double` for approximate decimal calculations, not exact currency. Integer division discards the fractional part when both operands are integers. `Scanner` token methods and `nextLine` interact with line endings, so design input consistently. Use `.equals` for String value comparison; `==` compares primitive values but reference identity for objects. Parse text with methods such as `Integer.parseInt` and handle invalid input explicitly."
+            },
+            {
+              "stableKey": "java-types-input-example",
+              "type": "code",
+              "heading": "Worked Java example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+              "codeLanguage": "java",
+              "codeSource": "int age = Integer.parseInt(\"19\");\nint nextYear = age + 1;\nSystem.out.println(\"Next year: \" + nextYear);",
+              "expectedOutput": "Next year: 20"
+            },
+            {
+              "stableKey": "java-types-input-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "java-types-input-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Read weekly study hours, validate a whole number, calculate a four-week total, and test non-numeric, negative, zero, and unusually large input. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+              "expectedOutcomes": [
+                "Compiling Java source with descriptive names",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "java-types-input-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "java-beg-lesson-2-01-JDK",
+                "type": "single-choice",
+                "prompt": "Which is the most reliable beginner application of JDK?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "JDK"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use a JDK to compile source before running bytecode"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a JRE-only installation may not provide javac"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress all exceptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with println"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-2-02-bytecode",
+                "type": "single-choice",
+                "prompt": "Which is the most reliable beginner application of bytecode?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "bytecode"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "recompile source after changes before running"
+                  },
+                  {
+                    "key": "B",
+                    "text": "editing a class file is not a source workflow"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress all exceptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with println"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-2-03-main-method",
+                "type": "single-choice",
+                "prompt": "Which is the most reliable beginner application of main method?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "main method"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "declare the exact entry-point signature in an executable class"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a misspelled signature is not selected as the entry point"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress all exceptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with println"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Java primitive types store numeric, boolean, and character values; reference types such as `String` refer to objects."
+          ],
+          "commonMistakes": [
+            "double is approximate and unsuitable for exact currency rules",
+            "casting only after integer division cannot restore the fraction"
+          ],
+          "interviewQuestions": [
+            "Explain primitive types with a minimal Java example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "java-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "java-beg-module-1-01-JDK",
+            "type": "single-choice",
+            "prompt": "Which is the most reliable beginner application of JDK?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "JDK"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use a JDK to compile source before running bytecode"
+              },
+              {
+                "key": "B",
+                "text": "a JRE-only installation may not provide javac"
+              },
+              {
+                "key": "C",
+                "text": "Suppress all exceptions"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with println"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-1-02-bytecode",
+            "type": "single-choice",
+            "prompt": "Which is the most reliable beginner application of bytecode?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "bytecode"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "recompile source after changes before running"
+              },
+              {
+                "key": "B",
+                "text": "editing a class file is not a source workflow"
+              },
+              {
+                "key": "C",
+                "text": "Suppress all exceptions"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with println"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-1-03-main-method",
+            "type": "single-choice",
+            "prompt": "Which is the most reliable beginner application of main method?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "main method"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "declare the exact entry-point signature in an executable class"
+              },
+              {
+                "key": "B",
+                "text": "a misspelled signature is not selected as the entry point"
+              },
+              {
+                "key": "C",
+                "text": "Suppress all exceptions"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with println"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-1-04-primitive-types",
+            "type": "single-choice",
+            "prompt": "Which is the most reliable beginner application of primitive types?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "primitive types"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "choose types according to range and operation semantics"
+              },
+              {
+                "key": "B",
+                "text": "double is approximate and unsuitable for exact currency rules"
+              },
+              {
+                "key": "C",
+                "text": "Suppress all exceptions"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with println"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "choose types according to range and operation semantics. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-1-05-integer-division",
+            "type": "single-choice",
+            "prompt": "Which is the most reliable beginner application of integer division?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "integer division"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "cast an operand before division when a fraction is required"
+              },
+              {
+                "key": "B",
+                "text": "casting only after integer division cannot restore the fraction"
+              },
+              {
+                "key": "C",
+                "text": "Suppress all exceptions"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with println"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "cast an operand before division when a fraction is required. Confirm the rule by compiling and running a minimal program."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "java-beginner-module-2",
+      "title": "Control Flow, Arrays, and Methods",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "java-conditions",
+          "title": "Conditions, Boolean Logic, and Boundaries",
+          "summary": "Express mutually exclusive decisions with comparisons, boolean operators, if/else, switch expressions, and explicit boundary tests.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Java behavior taught in Conditions, Boolean Logic, and Boundaries",
+            "Compile, run, and test the behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "java-conditions-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "`if`, `else if`, and `else` select one path according to boolean conditions. `&&` and `||` short-circuit, which can protect later operations from invalid state. Use parentheses when operator precedence is not immediately clear. Compare strings and value objects with `.equals`, using a constant on the left when null is possible. Modern switch expressions work well for finite categories and require intentional exhaustiveness. Test values below, at, and above every threshold; `score >= 60` includes 60 while `score > 60` does not."
+            },
+            {
+              "stableKey": "java-conditions-example",
+              "type": "code",
+              "heading": "Worked Java example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+              "codeLanguage": "java",
+              "codeSource": "int score = 72;\nboolean submitted = true;\nif (score >= 0 && score <= 100 && submitted) {\n  System.out.println(\"recorded\");\n} else {\n  System.out.println(\"review input\");\n}",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "java-conditions-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "java-conditions-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a grade classifier for 0\u2013100, reject invalid scores, and test every grade boundary plus -1 and 101. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+              "expectedOutcomes": [
+                "Compiling Java source with descriptive names",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "java-conditions-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "java-beg-lesson-3-01-JDK",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about JDK is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "JDK"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a JRE-only installation may not provide javac"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the JDK includes development tools such as javac"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use a JDK to compile source before running bytecode"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can be used only inside an interface"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a JRE-only installation may not provide javac. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-3-02-bytecode",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about bytecode is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "bytecode"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "editing a class file is not a source workflow"
+                  },
+                  {
+                    "key": "B",
+                    "text": "javac emits JVM bytecode in class files"
+                  },
+                  {
+                    "key": "C",
+                    "text": "recompile source after changes before running"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can be used only inside an interface"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "editing a class file is not a source workflow. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-3-03-main-method",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about main method is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "main method"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a misspelled signature is not selected as the entry point"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the JVM entry point uses public static void main(String[] args)"
+                  },
+                  {
+                    "key": "C",
+                    "text": "declare the exact entry-point signature in an executable class"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can be used only inside an interface"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a misspelled signature is not selected as the entry point. Confirm the rule by compiling and running a minimal program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "`if`, `else if`, and `else` select one path according to boolean conditions."
+          ],
+          "commonMistakes": [
+            "parseInt does not accept arbitrary decimal text",
+            "using non-short-circuit operators can evaluate unsafe expressions"
+          ],
+          "interviewQuestions": [
+            "Explain parsing with a minimal Java example."
+          ]
+        },
+        {
+          "stableKey": "java-loops-arrays",
+          "title": "Loops, Arrays, and Iteration",
+          "summary": "Use for, enhanced for, while, arrays, accumulators, break, continue, and clear termination invariants.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Java behavior taught in Loops, Arrays, and Iteration",
+            "Compile, run, and test the behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "java-loops-arrays-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Arrays have a fixed length and zero-based indexes. Use an enhanced `for` loop when only values matter and an indexed loop when positions are part of the algorithm. `while` suits state-dependent repetition but every normal path must progress toward termination. Initialize accumulators before the loop and update once per accepted item. Array access outside `0` through `length - 1` throws `ArrayIndexOutOfBoundsException`. Use `break` for a deliberate early exit and `continue` sparingly; required state updates must not be skipped."
+            },
+            {
+              "stableKey": "java-loops-arrays-example",
+              "type": "code",
+              "heading": "Worked Java example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+              "codeLanguage": "java",
+              "codeSource": "int[] scores = {70, 82, 91};\nint total = 0;\nfor (int score : scores) total += score;\ndouble average = (double) total / scores.length;\nSystem.out.println(average);",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "java-loops-arrays-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "java-loops-arrays-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process an array of study minutes, ignore negatives, calculate total and average, and explain the cast that prevents integer division. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+              "expectedOutcomes": [
+                "Compiling Java source with descriptive names",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "java-loops-arrays-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "java-beg-lesson-4-01-JDK",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes JDK in Java?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "JDK"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the JDK includes development tools such as javac"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a JRE-only installation may not provide javac"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The JVM chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external paid library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-4-02-bytecode",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes bytecode in Java?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "bytecode"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "javac emits JVM bytecode in class files"
+                  },
+                  {
+                    "key": "B",
+                    "text": "editing a class file is not a source workflow"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The JVM chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external paid library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-4-03-main-method",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes main method in Java?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "main method"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the JVM entry point uses public static void main(String[] args)"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a misspelled signature is not selected as the entry point"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The JVM chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external paid library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Arrays have a fixed length and zero-based indexes."
+          ],
+          "commonMistakes": [
+            "switch does not replace range-oriented conditions cleanly",
+            "access at index length throws an exception"
+          ],
+          "interviewQuestions": [
+            "Explain switch with a minimal Java example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "java-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "java-beg-module-2-06-String-equality",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about String equality is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "String equality"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "== compares object references rather than String content"
+              },
+              {
+                "key": "B",
+                "text": "String content is compared with equals"
+              },
+              {
+                "key": "C",
+                "text": "use constant.equals(value) when value may be null"
+              },
+              {
+                "key": "D",
+                "text": "It can be used only inside an interface"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "== compares object references rather than String content. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-2-07-parsing",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about parsing is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "parsing"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "parseInt does not accept arbitrary decimal text"
+              },
+              {
+                "key": "B",
+                "text": "parse methods convert valid text or throw on invalid text"
+              },
+              {
+                "key": "C",
+                "text": "catch NumberFormatException only where recovery is defined"
+              },
+              {
+                "key": "D",
+                "text": "It can be used only inside an interface"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "parseInt does not accept arbitrary decimal text. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-2-08-short-circuit-logic",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about short circuit logic is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "short circuit logic"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "using non-short-circuit operators can evaluate unsafe expressions"
+              },
+              {
+                "key": "B",
+                "text": "&& and || may skip evaluation of the right operand"
+              },
+              {
+                "key": "C",
+                "text": "place safety checks before dependent expressions"
+              },
+              {
+                "key": "D",
+                "text": "It can be used only inside an interface"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "using non-short-circuit operators can evaluate unsafe expressions. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-2-09-if-chains",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about if chains is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "if chains"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "separate if statements can execute overlapping branches"
+              },
+              {
+                "key": "B",
+                "text": "only the first matched branch of an if/else-if chain runs"
+              },
+              {
+                "key": "C",
+                "text": "order mutually exclusive boundaries intentionally"
+              },
+              {
+                "key": "D",
+                "text": "It can be used only inside an interface"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "separate if statements can execute overlapping branches. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-2-10-switch",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about switch is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "switch"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "switch does not replace range-oriented conditions cleanly"
+              },
+              {
+                "key": "B",
+                "text": "switch is useful for finite discrete choices"
+              },
+              {
+                "key": "C",
+                "text": "handle every allowed category or provide an intentional default"
+              },
+              {
+                "key": "D",
+                "text": "It can be used only inside an interface"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "switch does not replace range-oriented conditions cleanly. Confirm the rule by compiling and running a minimal program."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "java-beginner-module-3",
+      "title": "Classes, Collections, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "java-methods-classes",
+          "title": "Methods, Classes, and Encapsulation",
+          "summary": "Create focused methods and small classes with parameters, return values, constructors, private fields, validation, and clear responsibilities.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Java behavior taught in Methods, Classes, and Encapsulation",
+            "Compile, run, and test the behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "java-methods-classes-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Methods package behavior behind typed parameters and a return type. `void` means no result is returned. Java passes arguments by value; for object references, the copied reference still points to the same mutable object. A class combines state and behavior. Keep fields private, validate constructor and method inputs, and expose operations that preserve invariants rather than public mutable fields. `static` members belong to the class; instance members require an object. Use exceptions such as `IllegalArgumentException` when a caller violates a documented precondition."
+            },
+            {
+              "stableKey": "java-methods-classes-example",
+              "type": "code",
+              "heading": "Worked Java example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+              "codeLanguage": "java",
+              "codeSource": "static double progress(int completed, int planned) {\n  if (completed < 0 || planned <= 0 || completed > planned)\n    throw new IllegalArgumentException(\"invalid progress\");\n  return completed * 100.0 / planned;\n}\nSystem.out.println(progress(3, 4));",
+              "expectedOutput": "75.0"
+            },
+            {
+              "stableKey": "java-methods-classes-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "java-methods-classes-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a CourseProgress class with private fields, validated updates, a percentage method, and tests for normal and invalid construction. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+              "expectedOutcomes": [
+                "Compiling Java source with descriptive names",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "java-methods-classes-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "java-beg-lesson-5-01-JDK",
+                "type": "single-choice",
+                "prompt": "Which is the most reliable beginner application of JDK?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "JDK"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use a JDK to compile source before running bytecode"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a JRE-only installation may not provide javac"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress all exceptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with println"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-5-02-bytecode",
+                "type": "single-choice",
+                "prompt": "Which is the most reliable beginner application of bytecode?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "bytecode"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "recompile source after changes before running"
+                  },
+                  {
+                    "key": "B",
+                    "text": "editing a class file is not a source workflow"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress all exceptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with println"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-5-03-main-method",
+                "type": "single-choice",
+                "prompt": "Which is the most reliable beginner application of main method?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "main method"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "declare the exact entry-point signature in an executable class"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a misspelled signature is not selected as the entry point"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress all exceptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with println"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Methods package behavior behind typed parameters and a return type."
+          ],
+          "commonMistakes": [
+            "missing progress can produce an infinite loop",
+            "a void method cannot provide a result expression"
+          ],
+          "interviewQuestions": [
+            "Explain while loops with a minimal Java example."
+          ]
+        },
+        {
+          "stableKey": "java-collections-project",
+          "title": "Collections and a Progress Tracker",
+          "summary": "Apply List, Map, Set, generics, iteration, immutable views, exceptions, and modular design in a progress-tracker capstone.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Java behavior taught in Collections and a Progress Tracker",
+            "Compile, run, and test the behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "java-collections-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Use `List` for ordered values, `Set` for uniqueness and membership, and `Map` for key-value relationships. Generic arguments such as `List<String>` preserve element types without casts. Choose an implementation according to behavior: `ArrayList`, `HashSet`, and `HashMap` are common defaults. A missing map key returns null from `get`, so distinguish absence with `containsKey` or use an intentional default. Do not structurally modify a collection during enhanced iteration. Return defensive copies or unmodifiable views when callers must not mutate internal state."
+            },
+            {
+              "stableKey": "java-collections-project-example",
+              "type": "code",
+              "heading": "Worked Java example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+              "codeLanguage": "java",
+              "codeSource": "java.util.Map<String,Integer> progress = new java.util.HashMap<>();\nprogress.put(\"Basics\", 100);\nprogress.put(\"Loops\", 70);\nprogress.forEach((topic, percent) -> System.out.println(topic + \": \" + percent));",
+              "expectedOutput": "Basics: 100\nLoops: 70"
+            },
+            {
+              "stableKey": "java-collections-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "java-collections-project-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a progress tracker using classes and collections. Validate 0\u2013100 percentages, update topics, list completed work, calculate an average, and include at least ten JUnit-style assertions. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+              "expectedOutcomes": [
+                "Compiling Java source with descriptive names",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "java-collections-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "java-beg-lesson-6-01-JDK",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about JDK is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "JDK"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a JRE-only installation may not provide javac"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the JDK includes development tools such as javac"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use a JDK to compile source before running bytecode"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can be used only inside an interface"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a JRE-only installation may not provide javac. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-6-02-bytecode",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about bytecode is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "bytecode"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "editing a class file is not a source workflow"
+                  },
+                  {
+                    "key": "B",
+                    "text": "javac emits JVM bytecode in class files"
+                  },
+                  {
+                    "key": "C",
+                    "text": "recompile source after changes before running"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can be used only inside an interface"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "editing a class file is not a source workflow. Confirm the rule by compiling and running a minimal program."
+              },
+              {
+                "stableId": "java-beg-lesson-6-03-main-method",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about main method is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "main method"
+                ],
+                "objectiveIds": [
+                  "java-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a misspelled signature is not selected as the entry point"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the JVM entry point uses public static void main(String[] args)"
+                  },
+                  {
+                    "key": "C",
+                    "text": "declare the exact entry-point signature in an executable class"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can be used only inside an interface"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a misspelled signature is not selected as the entry point. Confirm the rule by compiling and running a minimal program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Use `List` for ordered values, `Set` for uniqueness and membership, and `Map` for key-value relationships."
+          ],
+          "commonMistakes": [
+            "public mutable fields allow invalid states",
+            "static code cannot directly use instance fields without an object"
+          ],
+          "interviewQuestions": [
+            "Explain encapsulation with a minimal Java example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "java-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "java-beg-module-3-11-arrays",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes arrays in Java?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "arrays"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "arrays have fixed length and zero-based indexes"
+              },
+              {
+                "key": "B",
+                "text": "access at index length throws an exception"
+              },
+              {
+                "key": "C",
+                "text": "The JVM chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external paid library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "arrays have fixed length and zero-based indexes. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-3-12-enhanced-for",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes enhanced for in Java?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "enhanced for"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "enhanced for iterates values without exposing indexes"
+              },
+              {
+                "key": "B",
+                "text": "assigning the loop variable does not replace an array element"
+              },
+              {
+                "key": "C",
+                "text": "The JVM chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external paid library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "enhanced for iterates values without exposing indexes. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-3-13-while-loops",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes while loops in Java?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "while loops"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "while repeats while a boolean remains true"
+              },
+              {
+                "key": "B",
+                "text": "missing progress can produce an infinite loop"
+              },
+              {
+                "key": "C",
+                "text": "The JVM chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external paid library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "while repeats while a boolean remains true. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-3-14-methods",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes methods in Java?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "methods"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "methods declare parameter and return contracts"
+              },
+              {
+                "key": "B",
+                "text": "a void method cannot provide a result expression"
+              },
+              {
+                "key": "C",
+                "text": "The JVM chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external paid library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "methods declare parameter and return contracts. Confirm the rule by compiling and running a minimal program."
+          },
+          {
+            "stableId": "java-beg-module-3-15-pass-by-value",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes pass by value in Java?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "pass by value"
+            ],
+            "objectiveIds": [
+              "java-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "Java copies every argument value during a call"
+              },
+              {
+                "key": "B",
+                "text": "reassigning a parameter does not reassign the caller variable"
+              },
+              {
+                "key": "C",
+                "text": "The JVM chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external paid library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "Java copies every argument value during a call. Confirm the rule by compiling and running a minimal program."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "java-beginner-mock-1",
+      "title": "Java Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "java-beg-mock-1-01-JDK",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes JDK in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "JDK"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the JDK includes development tools such as javac"
+            },
+            {
+              "key": "B",
+              "text": "a JRE-only installation may not provide javac"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-02-bytecode",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes bytecode in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "bytecode"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "javac emits JVM bytecode in class files"
+            },
+            {
+              "key": "B",
+              "text": "editing a class file is not a source workflow"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-03-main-method",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes main method in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "main method"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the JVM entry point uses public static void main(String[] args)"
+            },
+            {
+              "key": "B",
+              "text": "a misspelled signature is not selected as the entry point"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-04-primitive-types",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes primitive types in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "primitive types"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "primitive variables directly hold primitive values"
+            },
+            {
+              "key": "B",
+              "text": "double is approximate and unsuitable for exact currency rules"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "primitive variables directly hold primitive values. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-05-integer-division",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes integer division in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer division"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "division of two integers produces an integer result"
+            },
+            {
+              "key": "B",
+              "text": "casting only after integer division cannot restore the fraction"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "division of two integers produces an integer result. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-06-String-equality",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes String equality in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "String equality"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "String content is compared with equals"
+            },
+            {
+              "key": "B",
+              "text": "== compares object references rather than String content"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "String content is compared with equals. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-07-parsing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes parsing in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "parsing"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "parse methods convert valid text or throw on invalid text"
+            },
+            {
+              "key": "B",
+              "text": "parseInt does not accept arbitrary decimal text"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "parse methods convert valid text or throw on invalid text. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-08-short-circuit-logic",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes short circuit logic in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit logic"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "&& and || may skip evaluation of the right operand"
+            },
+            {
+              "key": "B",
+              "text": "using non-short-circuit operators can evaluate unsafe expressions"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "&& and || may skip evaluation of the right operand. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-09-if-chains",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes if chains in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "if chains"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "only the first matched branch of an if/else-if chain runs"
+            },
+            {
+              "key": "B",
+              "text": "separate if statements can execute overlapping branches"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "only the first matched branch of an if/else-if chain runs. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-10-switch",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes switch in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "switch is useful for finite discrete choices"
+            },
+            {
+              "key": "B",
+              "text": "switch does not replace range-oriented conditions cleanly"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "switch is useful for finite discrete choices. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-11-arrays",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes arrays in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "arrays have fixed length and zero-based indexes"
+            },
+            {
+              "key": "B",
+              "text": "access at index length throws an exception"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "arrays have fixed length and zero-based indexes. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-12-enhanced-for",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes enhanced for in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "enhanced for"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "enhanced for iterates values without exposing indexes"
+            },
+            {
+              "key": "B",
+              "text": "assigning the loop variable does not replace an array element"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "enhanced for iterates values without exposing indexes. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-13-while-loops",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes while loops in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while loops"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "while repeats while a boolean remains true"
+            },
+            {
+              "key": "B",
+              "text": "missing progress can produce an infinite loop"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "while repeats while a boolean remains true. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-14-methods",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes methods in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "methods declare parameter and return contracts"
+            },
+            {
+              "key": "B",
+              "text": "a void method cannot provide a result expression"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "methods declare parameter and return contracts. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-15-pass-by-value",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes pass by value in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "pass by value"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Java copies every argument value during a call"
+            },
+            {
+              "key": "B",
+              "text": "reassigning a parameter does not reassign the caller variable"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Java copies every argument value during a call. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-16-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes encapsulation in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "private state is changed through invariant-preserving behavior"
+            },
+            {
+              "key": "B",
+              "text": "public mutable fields allow invalid states"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "private state is changed through invariant-preserving behavior. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-17-static",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes static in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "static"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "static members belong to the class rather than one instance"
+            },
+            {
+              "key": "B",
+              "text": "static code cannot directly use instance fields without an object"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "static members belong to the class rather than one instance. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-18-List",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes List in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "List"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "List preserves order and allows duplicates"
+            },
+            {
+              "key": "B",
+              "text": "removing during enhanced iteration can cause concurrent modification"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "List preserves order and allows duplicates. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-19-Map",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Map in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Map"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Map associates unique keys with values"
+            },
+            {
+              "key": "B",
+              "text": "get on a missing key commonly returns null"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Map associates unique keys with values. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-1-20-Set",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Set in Java?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Set"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Set retains unique elements"
+            },
+            {
+              "key": "B",
+              "text": "Set does not provide positional indexing"
+            },
+            {
+              "key": "C",
+              "text": "The JVM chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external paid library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Set retains unique elements. Confirm the rule by compiling and running a minimal program."
+        }
+      ]
+    },
+    {
+      "stableKey": "java-beginner-mock-2",
+      "title": "Java Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "java-beg-mock-2-01-JDK",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of JDK?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "JDK"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use a JDK to compile source before running bytecode"
+            },
+            {
+              "key": "B",
+              "text": "a JRE-only installation may not provide javac"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-02-bytecode",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of bytecode?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "bytecode"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "recompile source after changes before running"
+            },
+            {
+              "key": "B",
+              "text": "editing a class file is not a source workflow"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-03-main-method",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of main method?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "main method"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "declare the exact entry-point signature in an executable class"
+            },
+            {
+              "key": "B",
+              "text": "a misspelled signature is not selected as the entry point"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-04-primitive-types",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of primitive types?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "primitive types"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "choose types according to range and operation semantics"
+            },
+            {
+              "key": "B",
+              "text": "double is approximate and unsuitable for exact currency rules"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "choose types according to range and operation semantics. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-05-integer-division",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of integer division?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer division"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "cast an operand before division when a fraction is required"
+            },
+            {
+              "key": "B",
+              "text": "casting only after integer division cannot restore the fraction"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "cast an operand before division when a fraction is required. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-06-String-equality",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of String equality?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "String equality"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use constant.equals(value) when value may be null"
+            },
+            {
+              "key": "B",
+              "text": "== compares object references rather than String content"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use constant.equals(value) when value may be null. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-07-parsing",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of parsing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "parsing"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "catch NumberFormatException only where recovery is defined"
+            },
+            {
+              "key": "B",
+              "text": "parseInt does not accept arbitrary decimal text"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "catch NumberFormatException only where recovery is defined. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-08-short-circuit-logic",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of short circuit logic?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit logic"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "place safety checks before dependent expressions"
+            },
+            {
+              "key": "B",
+              "text": "using non-short-circuit operators can evaluate unsafe expressions"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "place safety checks before dependent expressions. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-09-if-chains",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of if chains?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "if chains"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "order mutually exclusive boundaries intentionally"
+            },
+            {
+              "key": "B",
+              "text": "separate if statements can execute overlapping branches"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "order mutually exclusive boundaries intentionally. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-10-switch",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of switch?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "handle every allowed category or provide an intentional default"
+            },
+            {
+              "key": "B",
+              "text": "switch does not replace range-oriented conditions cleanly"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "handle every allowed category or provide an intentional default. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-11-arrays",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of arrays?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use length minus one as the final valid index"
+            },
+            {
+              "key": "B",
+              "text": "access at index length throws an exception"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use length minus one as the final valid index. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-12-enhanced-for",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of enhanced for?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "enhanced for"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it when position is irrelevant"
+            },
+            {
+              "key": "B",
+              "text": "assigning the loop variable does not replace an array element"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it when position is irrelevant. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-13-while-loops",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of while loops?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while loops"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "update termination state on each normal path"
+            },
+            {
+              "key": "B",
+              "text": "missing progress can produce an infinite loop"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "update termination state on each normal path. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-14-methods",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of methods?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return calculated data instead of only printing it"
+            },
+            {
+              "key": "B",
+              "text": "a void method cannot provide a result expression"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return calculated data instead of only printing it. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-15-pass-by-value",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of pass by value?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "pass by value"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "remember that a copied object reference can still reach shared mutable state"
+            },
+            {
+              "key": "B",
+              "text": "reassigning a parameter does not reassign the caller variable"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "remember that a copied object reference can still reach shared mutable state. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-16-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of encapsulation?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "validate inputs in constructors and mutation methods"
+            },
+            {
+              "key": "B",
+              "text": "public mutable fields allow invalid states"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "validate inputs in constructors and mutation methods. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-17-static",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of static?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "static"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use static for stateless utilities and the main entry point"
+            },
+            {
+              "key": "B",
+              "text": "static code cannot directly use instance fields without an object"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use static for stateless utilities and the main entry point. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-18-List",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of List?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "List"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use ArrayList as a common resizable sequence"
+            },
+            {
+              "key": "B",
+              "text": "removing during enhanced iteration can cause concurrent modification"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use ArrayList as a common resizable sequence. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-19-Map",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of Map?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Map"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check absence explicitly before unboxing a nullable result"
+            },
+            {
+              "key": "B",
+              "text": "get on a missing key commonly returns null"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check absence explicitly before unboxing a nullable result. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-2-20-Set",
+          "type": "single-choice",
+          "prompt": "Which is the most reliable beginner application of Set?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Set"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use HashSet for membership and duplicate removal"
+            },
+            {
+              "key": "B",
+              "text": "Set does not provide positional indexing"
+            },
+            {
+              "key": "C",
+              "text": "Suppress all exceptions"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with println"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use HashSet for membership and duplicate removal. Confirm the rule by compiling and running a minimal program."
+        }
+      ]
+    },
+    {
+      "stableKey": "java-beginner-mock-3",
+      "title": "Java Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "java-beg-mock-3-01-JDK",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about JDK is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "JDK"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a JRE-only installation may not provide javac"
+            },
+            {
+              "key": "B",
+              "text": "the JDK includes development tools such as javac"
+            },
+            {
+              "key": "C",
+              "text": "use a JDK to compile source before running bytecode"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a JRE-only installation may not provide javac. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-02-bytecode",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about bytecode is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "bytecode"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "editing a class file is not a source workflow"
+            },
+            {
+              "key": "B",
+              "text": "javac emits JVM bytecode in class files"
+            },
+            {
+              "key": "C",
+              "text": "recompile source after changes before running"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "editing a class file is not a source workflow. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-03-main-method",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about main method is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "main method"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a misspelled signature is not selected as the entry point"
+            },
+            {
+              "key": "B",
+              "text": "the JVM entry point uses public static void main(String[] args)"
+            },
+            {
+              "key": "C",
+              "text": "declare the exact entry-point signature in an executable class"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a misspelled signature is not selected as the entry point. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-04-primitive-types",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about primitive types is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "primitive types"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "double is approximate and unsuitable for exact currency rules"
+            },
+            {
+              "key": "B",
+              "text": "primitive variables directly hold primitive values"
+            },
+            {
+              "key": "C",
+              "text": "choose types according to range and operation semantics"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "double is approximate and unsuitable for exact currency rules. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-05-integer-division",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about integer division is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer division"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "casting only after integer division cannot restore the fraction"
+            },
+            {
+              "key": "B",
+              "text": "division of two integers produces an integer result"
+            },
+            {
+              "key": "C",
+              "text": "cast an operand before division when a fraction is required"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "casting only after integer division cannot restore the fraction. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-06-String-equality",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about String equality is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "String equality"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "== compares object references rather than String content"
+            },
+            {
+              "key": "B",
+              "text": "String content is compared with equals"
+            },
+            {
+              "key": "C",
+              "text": "use constant.equals(value) when value may be null"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "== compares object references rather than String content. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-07-parsing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about parsing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "parsing"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "parseInt does not accept arbitrary decimal text"
+            },
+            {
+              "key": "B",
+              "text": "parse methods convert valid text or throw on invalid text"
+            },
+            {
+              "key": "C",
+              "text": "catch NumberFormatException only where recovery is defined"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "parseInt does not accept arbitrary decimal text. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-08-short-circuit-logic",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about short circuit logic is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit logic"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using non-short-circuit operators can evaluate unsafe expressions"
+            },
+            {
+              "key": "B",
+              "text": "&& and || may skip evaluation of the right operand"
+            },
+            {
+              "key": "C",
+              "text": "place safety checks before dependent expressions"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using non-short-circuit operators can evaluate unsafe expressions. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-09-if-chains",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about if chains is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "if chains"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "separate if statements can execute overlapping branches"
+            },
+            {
+              "key": "B",
+              "text": "only the first matched branch of an if/else-if chain runs"
+            },
+            {
+              "key": "C",
+              "text": "order mutually exclusive boundaries intentionally"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "separate if statements can execute overlapping branches. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-10-switch",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about switch is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "switch does not replace range-oriented conditions cleanly"
+            },
+            {
+              "key": "B",
+              "text": "switch is useful for finite discrete choices"
+            },
+            {
+              "key": "C",
+              "text": "handle every allowed category or provide an intentional default"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "switch does not replace range-oriented conditions cleanly. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-11-arrays",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about arrays is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "access at index length throws an exception"
+            },
+            {
+              "key": "B",
+              "text": "arrays have fixed length and zero-based indexes"
+            },
+            {
+              "key": "C",
+              "text": "use length minus one as the final valid index"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "access at index length throws an exception. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-12-enhanced-for",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about enhanced for is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "enhanced for"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assigning the loop variable does not replace an array element"
+            },
+            {
+              "key": "B",
+              "text": "enhanced for iterates values without exposing indexes"
+            },
+            {
+              "key": "C",
+              "text": "use it when position is irrelevant"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assigning the loop variable does not replace an array element. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-13-while-loops",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about while loops is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while loops"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "missing progress can produce an infinite loop"
+            },
+            {
+              "key": "B",
+              "text": "while repeats while a boolean remains true"
+            },
+            {
+              "key": "C",
+              "text": "update termination state on each normal path"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "missing progress can produce an infinite loop. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-14-methods",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about methods is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a void method cannot provide a result expression"
+            },
+            {
+              "key": "B",
+              "text": "methods declare parameter and return contracts"
+            },
+            {
+              "key": "C",
+              "text": "return calculated data instead of only printing it"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a void method cannot provide a result expression. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-15-pass-by-value",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about pass by value is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "pass by value"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "reassigning a parameter does not reassign the caller variable"
+            },
+            {
+              "key": "B",
+              "text": "Java copies every argument value during a call"
+            },
+            {
+              "key": "C",
+              "text": "remember that a copied object reference can still reach shared mutable state"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "reassigning a parameter does not reassign the caller variable. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-16-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about encapsulation is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "public mutable fields allow invalid states"
+            },
+            {
+              "key": "B",
+              "text": "private state is changed through invariant-preserving behavior"
+            },
+            {
+              "key": "C",
+              "text": "validate inputs in constructors and mutation methods"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "public mutable fields allow invalid states. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-17-static",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about static is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "static"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "static code cannot directly use instance fields without an object"
+            },
+            {
+              "key": "B",
+              "text": "static members belong to the class rather than one instance"
+            },
+            {
+              "key": "C",
+              "text": "use static for stateless utilities and the main entry point"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "static code cannot directly use instance fields without an object. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-18-List",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about List is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "List"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "removing during enhanced iteration can cause concurrent modification"
+            },
+            {
+              "key": "B",
+              "text": "List preserves order and allows duplicates"
+            },
+            {
+              "key": "C",
+              "text": "use ArrayList as a common resizable sequence"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "removing during enhanced iteration can cause concurrent modification. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-19-Map",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Map is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Map"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "get on a missing key commonly returns null"
+            },
+            {
+              "key": "B",
+              "text": "Map associates unique keys with values"
+            },
+            {
+              "key": "C",
+              "text": "check absence explicitly before unboxing a nullable result"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "get on a missing key commonly returns null. Confirm the rule by compiling and running a minimal program."
+        },
+        {
+          "stableId": "java-beg-mock-3-20-Set",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Set is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Set"
+          ],
+          "objectiveIds": [
+            "java-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Set does not provide positional indexing"
+            },
+            {
+              "key": "B",
+              "text": "Set retains unique elements"
+            },
+            {
+              "key": "C",
+              "text": "use HashSet for membership and duplicate removal"
+            },
+            {
+              "key": "D",
+              "text": "It can be used only inside an interface"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Set does not provide positional indexing. Confirm the rule by compiling and running a minimal program."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "java-beginner-capstone",
+    "title": "Encapsulated Java Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a Java progress tracker using private fields, validated constructors and updates, typed collections, clear exceptions, calculated summaries, and separated console interaction. Include compilation instructions and at least ten automated assertions.",
+    "deliverables": [
+      "Java source files",
+      "README with compile and run commands",
+      "Output from at least ten tests",
+      "Reflection describing one defect found by a boundary test"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "encapsulation": 25,
+      "validation": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

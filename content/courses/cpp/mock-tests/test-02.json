@@ -1,0 +1,703 @@
+{
+  "id": "mock-cpp-beginner-test-02",
+  "skillName": "C++",
+  "skillSlug": "cpp",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "C++ Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for C++ at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "C++20 mode",
+    "warnings",
+    "linking",
+    "brace initialization",
+    "const",
+    "auto",
+    "stream state",
+    "short circuit",
+    "switch",
+    "scope",
+    "std::array",
+    "std::vector",
+    "range for",
+    "bounds",
+    "references",
+    "value semantics",
+    "encapsulation",
+    "RAII",
+    "algorithms",
+    "file streams"
+  ],
+  "questions": [
+    {
+      "id": "mock-cpp-beginner-test-02-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of C++20 mode?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "compile with std=c++20 consistently"
+        },
+        {
+          "id": "B",
+          "text": "the language mode selects modern standard rules"
+        },
+        {
+          "id": "C",
+          "text": "compiler defaults may use an older standard"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "C++20 mode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of warnings?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "B",
+          "text": "warnings expose suspicious translated code"
+        },
+        {
+          "id": "C",
+          "text": "warning-free does not prove logic correctness"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "warnings",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of linking?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "provide one definition for each used non-inline entity"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves definitions across translation units"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "linking",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of brace initialization?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use braces for clear initialization"
+        },
+        {
+          "id": "B",
+          "text": "braces reject many narrowing conversions"
+        },
+        {
+          "id": "C",
+          "text": "uninitialized fundamental locals have indeterminate values"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use braces for clear initialization. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "brace initialization",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of const?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "mark stable values and observers const"
+        },
+        {
+          "id": "B",
+          "text": "const prevents modification through that name or access path"
+        },
+        {
+          "id": "C",
+          "text": "const is not automatically deep for referenced objects"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "mark stable values and observers const. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "const",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of auto?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it when the type is obvious or verbose"
+        },
+        {
+          "id": "B",
+          "text": "auto deduces a type from an initializer"
+        },
+        {
+          "id": "C",
+          "text": "auto does not make a value dynamically typed"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it when the type is obvious or verbose. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "auto",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of stream state?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "test the stream before using extracted data"
+        },
+        {
+          "id": "B",
+          "text": "streams record extraction and I/O failure"
+        },
+        {
+          "id": "C",
+          "text": "failed extraction does not guarantee useful destination input"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "test the stream before using extracted data. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "stream state",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of short circuit?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "place guards before dependent operations"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "bitwise operators do not short-circuit"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "place guards before dependent operations. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of switch?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "terminate every case intentionally"
+        },
+        {
+          "id": "B",
+          "text": "switch handles discrete integral choices"
+        },
+        {
+          "id": "C",
+          "text": "accidental fallthrough executes later cases"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "terminate every case intentionally. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of scope?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare values near first valid use"
+        },
+        {
+          "id": "B",
+          "text": "block scope limits name lifetime and visibility"
+        },
+        {
+          "id": "C",
+          "text": "wide mutable scope increases coupling"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare values near first valid use. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "scope",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of std::array?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it when size is known at compile time"
+        },
+        {
+          "id": "B",
+          "text": "std::array owns a fixed number of elements"
+        },
+        {
+          "id": "C",
+          "text": "its size cannot grow at runtime"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it when size is known at compile time. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "std::array",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of std::vector?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use vector as the default variable-size sequence"
+        },
+        {
+          "id": "B",
+          "text": "vector owns a dynamic contiguous sequence"
+        },
+        {
+          "id": "C",
+          "text": "growth can invalidate iterators and references"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use vector as the default variable-size sequence. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "std::vector",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of range for?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use const references for read-only complex elements"
+        },
+        {
+          "id": "B",
+          "text": "range-for traverses every element"
+        },
+        {
+          "id": "C",
+          "text": "copying each element can be unnecessary or misleading"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use const references for read-only complex elements. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "range for",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of bounds?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use at when checked access is valuable"
+        },
+        {
+          "id": "B",
+          "text": "operator[] requires a valid index while at checks"
+        },
+        {
+          "id": "C",
+          "text": "index equal to size is invalid"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use at when checked access is valuable. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "bounds",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of references?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use const references for read-only non-owning access"
+        },
+        {
+          "id": "B",
+          "text": "references alias existing objects and cannot be reseated"
+        },
+        {
+          "id": "C",
+          "text": "returning a reference to a local creates a dangling reference"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use const references for read-only non-owning access. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "references",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of value semantics?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "prefer values and standard owners when practical"
+        },
+        {
+          "id": "B",
+          "text": "ordinary objects manage their own values and lifetimes"
+        },
+        {
+          "id": "C",
+          "text": "unnecessary shared mutation complicates lifetime reasoning"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "prefer values and standard owners when practical. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "value semantics",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of encapsulation?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "validate in constructors and methods"
+        },
+        {
+          "id": "B",
+          "text": "private state is changed through invariant-preserving operations"
+        },
+        {
+          "id": "C",
+          "text": "public fields permit invalid combinations"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "validate in constructors and methods. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "encapsulation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of RAII?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use containers streams and smart pointers as owners"
+        },
+        {
+          "id": "B",
+          "text": "resource ownership follows object lifetime"
+        },
+        {
+          "id": "C",
+          "text": "manual new and delete invite leaks and mismatched lifetime"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use containers streams and smart pointers as owners. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "RAII",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of algorithms?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use count_if or find_if with focused predicates"
+        },
+        {
+          "id": "B",
+          "text": "standard algorithms express common traversal intent"
+        },
+        {
+          "id": "C",
+          "text": "mutating a container structurally can invalidate algorithm iterators"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use count_if or find_if with focused predicates. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "algorithms",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "mock-cpp-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of file streams?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "check opening and every required operation"
+        },
+        {
+          "id": "B",
+          "text": "fstream objects manage file handles through RAII"
+        },
+        {
+          "id": "C",
+          "text": "automatic closing does not make malformed input valid"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "check opening and every required operation. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "file streams",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.263Z",
+  "updatedAt": "2026-10-31T13:08:48.263Z"
+}

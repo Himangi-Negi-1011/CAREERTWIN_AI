@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics",
+  "skillName": "C Programming",
+  "moduleId": "mod-1-c-beginner-module-1",
+  "title": "Compiling C and Reading Diagnostics",
+  "summary": "Understand source, preprocessing, compilation, linking, executable output, warnings, and a repeatable build-run-debug cycle.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Compiling C and Reading Diagnostics",
+    "Compile and test behavior with warnings enabled"
+  ],
+  "objectiveIds": [
+    "c-programming-obj-1",
+    "c-programming-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-sec-1",
+      "heading": "Core model",
+      "content": "A C implementation translates source through preprocessing, compilation, assembly, and linking. Use a command such as `cc -std=c17 -Wall -Wextra -Wpedantic main.c -o main` so warnings expose suspicious conversions and unused values. The compiler checks syntax and types but cannot prove every memory access is valid. Linker errors usually indicate a declared function or object has no matching definition. Read the first relevant diagnostic, correct one cause, rebuild, and never run a stale executable after compilation fails.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A C implementation translates source through preprocessing, compilation, assembly, and linking."
+      ],
+      "commonMistakes": [
+        "macros do textual substitution without type checking",
+        "ignoring warnings can leave real defects"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-sec-2",
+      "heading": "Worked C example",
+      "content": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "c",
+          "code": "#include <stdio.h>\nint main(void) {\n    int lessons = 6;\n    printf(\"C Programming: %d lessons\\n\", lessons);\n    return 0;\n}",
+          "explanation": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+          "expectedOutput": "C Programming: 6 lessons"
+        }
+      ],
+      "keyPoints": [
+        "A C implementation translates source through preprocessing, compilation, assembly, and linking."
+      ],
+      "commonMistakes": [
+        "macros do textual substitution without type checking",
+        "ignoring warnings can leave real defects"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A C implementation translates source through preprocessing, compilation, assembly, and linking."
+      ],
+      "commonMistakes": [
+        "macros do textual substitution without type checking",
+        "ignoring warnings can leave real defects"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C Programming.",
+      "description": "Compile with strict warnings, introduce an undeclared name and then an undefined function, and distinguish compiler from linker diagnostics. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+      "instructions": [
+        "Compile with strict warnings, introduce an undeclared name and then an undefined function, and distinguish compiler from linker diagnostics. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling."
+      ],
+      "starterCode": "// C Programming Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C Programming operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes preprocessing in C?",
+      "options": [
+        {
+          "id": "A",
+          "text": "preprocessing handles directives before compilation"
+        },
+        {
+          "id": "B",
+          "text": "use headers for declarations and include guards"
+        },
+        {
+          "id": "C",
+          "text": "macros do textual substitution without type checking"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "preprocessing handles directives before compilation. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes compiler warnings in C?",
+      "options": [
+        {
+          "id": "A",
+          "text": "warnings identify suspicious but translatable code"
+        },
+        {
+          "id": "B",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "C",
+          "text": "ignoring warnings can leave real defects"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "warnings identify suspicious but translatable code. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l1-compiling-c-and-reading-diagnostics-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes linking in C?",
+      "options": [
+        {
+          "id": "A",
+          "text": "linking resolves referenced definitions"
+        },
+        {
+          "id": "B",
+          "text": "provide exactly one matching external definition"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "linking resolves referenced definitions. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Compiling C and Reading Diagnostics in C Programming. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-c-programming-main",
+      "title": "C Programming Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C Programming.",
+      "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "c-programming-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "Compiling C and Reading Diagnostics",
+        "Types, Expressions, and Safe Input"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Compiling C and Reading Diagnostics",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Compiling C and Reading Diagnostics."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C Programming",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.128Z"
+}

@@ -1,0 +1,122 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "Go",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "go-obj-1",
+      "statement": "Write and explain small Python programs",
+      "order": 1
+    },
+    {
+      "id": "go-obj-2",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 2
+    },
+    {
+      "id": "go-obj-3",
+      "statement": "Write and explain small Python programs",
+      "order": 3
+    },
+    {
+      "id": "go-obj-4",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 4
+    },
+    {
+      "id": "go-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "go-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
+    }
+  ],
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-go-beginner-module-1",
+      "title": "Toolchain, Types, Errors, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "order": 1,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "go-obj-1",
+        "go-obj-2"
+      ],
+      "lessonTitles": [
+        "Go Toolchain, Modules, and Packages",
+        "Types, Parsing, and Explicit Errors"
+      ],
+      "checkpoint": "Pass the Toolchain, Types, Errors, and Control Flow assessment with 70%+ score."
+    },
+    {
+      "id": "mod-2-go-beginner-module-2",
+      "title": "Slices, Maps, Functions, and Domain Models",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "order": 2,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "go-obj-3",
+        "go-obj-4"
+      ],
+      "lessonTitles": [
+        "Control Flow, Switches, and Boundaries",
+        "Arrays, Slices, Maps, and Iteration"
+      ],
+      "checkpoint": "Pass the Slices, Maps, Functions, and Domain Models assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-go-beginner-module-3",
+      "title": "Concurrency, Persistence, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "go-obj-5",
+        "go-obj-6"
+      ],
+      "lessonTitles": [
+        "Functions, Structs, Methods, and Interfaces",
+        "Goroutines, Channels, Context, and a Tracker"
+      ],
+      "checkpoint": "Pass the Concurrency, Persistence, and a Project assessment with 70%+ score."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic in Go",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
+  ],
+  "assessmentCheckpoints": [
+    "Toolchain, Types, Errors, and Control Flow Knowledge Check (70% pass threshold)",
+    "Slices, Maps, Functions, and Domain Models Knowledge Check (70% pass threshold)",
+    "Concurrency, Persistence, and a Project Knowledge Check (70% pass threshold)"
+  ],
+  "projects": [
+    "Race-Safe Persistent Progress Tracker"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
+  ],
+  "resources": [
+    {
+      "title": "Official Go Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-31T13:08:48.383Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

@@ -1,0 +1,122 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "Java",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "java-obj-1",
+      "statement": "Write and explain small Python programs",
+      "order": 1
+    },
+    {
+      "id": "java-obj-2",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 2
+    },
+    {
+      "id": "java-obj-3",
+      "statement": "Write and explain small Python programs",
+      "order": 3
+    },
+    {
+      "id": "java-obj-4",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 4
+    },
+    {
+      "id": "java-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "java-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
+    }
+  ],
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-java-beginner-module-1",
+      "title": "Compilation, Types, and Input",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "order": 1,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "java-obj-1",
+        "java-obj-2"
+      ],
+      "lessonTitles": [
+        "JDK, Compilation, and Program Structure",
+        "Primitive Types, Strings, and Input"
+      ],
+      "checkpoint": "Pass the Compilation, Types, and Input assessment with 70%+ score."
+    },
+    {
+      "id": "mod-2-java-beginner-module-2",
+      "title": "Control Flow, Arrays, and Methods",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "order": 2,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "java-obj-3",
+        "java-obj-4"
+      ],
+      "lessonTitles": [
+        "Conditions, Boolean Logic, and Boundaries",
+        "Loops, Arrays, and Iteration"
+      ],
+      "checkpoint": "Pass the Control Flow, Arrays, and Methods assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-java-beginner-module-3",
+      "title": "Classes, Collections, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "java-obj-5",
+        "java-obj-6"
+      ],
+      "lessonTitles": [
+        "Methods, Classes, and Encapsulation",
+        "Collections and a Progress Tracker"
+      ],
+      "checkpoint": "Pass the Classes, Collections, and a Project assessment with 70%+ score."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic in Java",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
+  ],
+  "assessmentCheckpoints": [
+    "Compilation, Types, and Input Knowledge Check (70% pass threshold)",
+    "Control Flow, Arrays, and Methods Knowledge Check (70% pass threshold)",
+    "Classes, Collections, and a Project Knowledge Check (70% pass threshold)"
+  ],
+  "projects": [
+    "Encapsulated Java Progress Tracker"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
+  ],
+  "resources": [
+    {
+      "title": "Official Java Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-31T13:08:48.434Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

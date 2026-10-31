@@ -1,0 +1,703 @@
+{
+  "id": "mock-typescript-beginner-test-02",
+  "skillName": "TypeScript",
+  "skillSlug": "typescript",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "TypeScript Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for TypeScript at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "type inference",
+    "strict mode",
+    "annotations",
+    "union types",
+    "unknown",
+    "any",
+    "literal unions",
+    "narrowing",
+    "interfaces",
+    "optional properties",
+    "readonly",
+    "excess property checks",
+    "typed arrays",
+    "function return types",
+    "generics",
+    "generic constraints",
+    "Pick and Omit",
+    "Partial",
+    "type guards",
+    "type assertions"
+  ],
+  "questions": [
+    {
+      "id": "mock-typescript-beginner-test-02-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of type inference?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "rely on inference for obvious local values and annotate public boundaries"
+        },
+        {
+          "id": "B",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type inference",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of strict mode?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable strict in tsconfig for new application code"
+        },
+        {
+          "id": "B",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "strict mode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of annotations?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotate function boundaries when the contract should remain stable"
+        },
+        {
+          "id": "B",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "annotations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of union types?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "narrow a union before using member-specific operations"
+        },
+        {
+          "id": "B",
+          "text": "calling a string-only method on string | number is unsafe"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "narrow a union before using member-specific operations. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "union types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of unknown?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "represent untrusted external data as unknown"
+        },
+        {
+          "id": "B",
+          "text": "casting unknown directly avoids checking but does not make data safe"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "represent untrusted external data as unknown. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "unknown",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of any?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "isolate unavoidable any at a boundary and replace it quickly"
+        },
+        {
+          "id": "B",
+          "text": "any can propagate unsound operations through otherwise typed code"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "isolate unavoidable any at a boundary and replace it quickly. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "any",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of literal unions?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "model finite statuses with a literal union"
+        },
+        {
+          "id": "B",
+          "text": "a general string loses exhaustiveness checking"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "model finite statuses with a literal union. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "literal unions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of narrowing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use typeof or discriminants before member-specific access"
+        },
+        {
+          "id": "B",
+          "text": "a type assertion is not runtime evidence"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use typeof or discriminants before member-specific access. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "narrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of interfaces?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use an interface for a named extendable object shape"
+        },
+        {
+          "id": "B",
+          "text": "an interface disappears from emitted JavaScript"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use an interface for a named extendable object shape. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of optional properties?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "check or default an optional value before use"
+        },
+        {
+          "id": "B",
+          "text": "optional does not mean every value type is accepted"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "check or default an optional value before use. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "optional properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of readonly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use readonly for inputs a function must not mutate"
+        },
+        {
+          "id": "B",
+          "text": "readonly is compile-time protection, not deep runtime freezing"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use readonly for inputs a function must not mutate. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of excess property checks?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use them to catch misspelled fields at creation"
+        },
+        {
+          "id": "B",
+          "text": "assigning through a broad variable can bypass the fresh-literal check"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use them to catch misspelled fields at creation. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "excess property checks",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of typed arrays?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use readonly T[] for non-mutating function inputs"
+        },
+        {
+          "id": "B",
+          "text": "a tuple and an array express different positional guarantees"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use readonly T[] for non-mutating function inputs. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "typed arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of function return types?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotate exported functions and domain boundaries"
+        },
+        {
+          "id": "B",
+          "text": "console output is not a returned value"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotate exported functions and domain boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "function return types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of generics?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a generic when output type depends on input type"
+        },
+        {
+          "id": "B",
+          "text": "a generic appearing once adds complexity without a relationship"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a generic when output type depends on input type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generics",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of generic constraints?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "constrain T to an id-bearing object when reading id"
+        },
+        {
+          "id": "B",
+          "text": "a constraint does not create missing runtime properties"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "constrain T to an id-bearing object when reading id. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generic constraints",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Pick and Omit?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "derive view and creation types from a canonical domain contract"
+        },
+        {
+          "id": "B",
+          "text": "utility types do not validate runtime objects"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "derive view and creation types from a canonical domain contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "Pick and Omit",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Partial?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use Partial for controlled patch inputs then validate invariants"
+        },
+        {
+          "id": "B",
+          "text": "Partial can permit empty updates unless separately checked"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use Partial for controlled patch inputs then validate invariants. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "Partial",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of type guards?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "check every required field before returning value is T"
+        },
+        {
+          "id": "B",
+          "text": "returning true without complete checks creates unsound trust"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "check every required field before returning value is T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type guards",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of type assertions?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "reserve assertions for evidence the compiler cannot express"
+        },
+        {
+          "id": "B",
+          "text": "asserting parsed JSON does not validate its shape"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reserve assertions for evidence the compiler cannot express. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type assertions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.692Z",
+  "updatedAt": "2026-10-31T13:08:48.692Z"
+}

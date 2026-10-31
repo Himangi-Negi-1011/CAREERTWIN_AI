@@ -1,0 +1,193 @@
+{
+  "id": "phase-cpp-beginner-mod-2",
+  "skillName": "C++",
+  "skillSlug": "cpp",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-cpp-beginner-module-2",
+  "moduleTitle": "Containers, Functions, and Classes",
+  "title": "Containers, Functions, and Classes Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Containers, Functions, and Classes.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "auto",
+    "stream state",
+    "short circuit",
+    "switch",
+    "scope"
+  ],
+  "questions": [
+    {
+      "id": "phase-cpp-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about auto is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "auto does not make a value dynamically typed"
+        },
+        {
+          "id": "B",
+          "text": "auto deduces a type from an initializer"
+        },
+        {
+          "id": "C",
+          "text": "use it when the type is obvious or verbose"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "auto does not make a value dynamically typed. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "auto",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-cpp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about stream state is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "failed extraction does not guarantee useful destination input"
+        },
+        {
+          "id": "B",
+          "text": "streams record extraction and I/O failure"
+        },
+        {
+          "id": "C",
+          "text": "test the stream before using extracted data"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "failed extraction does not guarantee useful destination input. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "stream state",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-cpp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "bitwise operators do not short-circuit"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "place guards before dependent operations"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "bitwise operators do not short-circuit. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-cpp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "accidental fallthrough executes later cases"
+        },
+        {
+          "id": "B",
+          "text": "switch handles discrete integral choices"
+        },
+        {
+          "id": "C",
+          "text": "terminate every case intentionally"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "accidental fallthrough executes later cases. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-cpp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about scope is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "wide mutable scope increases coupling"
+        },
+        {
+          "id": "B",
+          "text": "block scope limits name lifetime and visibility"
+        },
+        {
+          "id": "C",
+          "text": "declare values near first valid use"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "wide mutable scope increases coupling. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "scope",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-cpp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.262Z",
+  "updatedAt": "2026-10-31T13:08:48.262Z"
+}

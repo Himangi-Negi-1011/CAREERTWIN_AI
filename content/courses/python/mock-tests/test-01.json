@@ -1,5 +1,5 @@
 {
-  "id": "mock-python-beginner-t1",
+  "id": "mock-python-beginner-test-01",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
@@ -7,293 +7,697 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Python BEGINNER Comprehensive Mock Test 1",
-  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Python.",
-  "durationMinutes": 30,
-  "totalMarks": 17,
+  "title": "Python Beginner Mock Test 1",
+  "description": "Comprehensive 50-minute mock examination for Python at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Data Structures & Comprehensions",
-    "Functions & Scope",
-    "Memory Management & Generators",
-    "Concurrency & Architecture",
-    "Object-Oriented Programming & Optimization",
-    "Exception Hierarchy & Error Handling",
-    "Decorators & Metaprogramming",
-    "Data Structures & Mutability"
+    "01",
+    "02",
+    "integer",
+    "f",
+    "05",
+    "comparison",
+    "07",
+    "08",
+    "for",
+    "while",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "local",
+    "17",
+    "18",
+    "19",
+    "20"
   ],
   "questions": [
     {
-      "id": "mock-python-beginner-t1-q1",
-      "type": "code-output",
-      "prompt": "What is the exact output of the following list comprehension snippet?",
-      "codeSnippet": "matrix = [[1, 2], [3, 4]]\nflattened = [val for row in matrix for val in row]\nprint(flattened)",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "[1, 2, 3, 4]"
-        },
-        {
-          "id": "opt-2",
-          "text": "[[1, 2], [3, 4]]"
-        },
-        {
-          "id": "opt-3",
-          "text": "[1, 3, 2, 4]"
-        },
-        {
-          "id": "opt-4",
-          "text": "TypeError: list indices must be integers"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "In nested list comprehensions in Python, outer loops come first from left to right: for row in matrix, then for val in row.",
-      "difficulty": "beginner",
-      "topic": "Data Structures & Comprehensions",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
-    },
-    {
-      "id": "mock-python-beginner-t1-q2",
-      "type": "debugging",
-      "prompt": "Identify why the following function mutates state unexpectedly across calls:",
-      "codeSnippet": "def append_item(item, target_list=[]):\n    target_list.append(item)\n    return target_list\n\na = append_item(1)\nb = append_item(2)",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Default arguments are evaluated once at function definition time, sharing the mutable list instance."
-        },
-        {
-          "id": "opt-2",
-          "text": "Python functions create a global variable when default arguments are used."
-        },
-        {
-          "id": "opt-3",
-          "text": "append() returns None rather than the updated list."
-        },
-        {
-          "id": "opt-4",
-          "text": "Integers cannot be appended to untyped lists."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Python evaluates default parameter expressions once at definition time. Mutable default arguments (like lists or dicts) are shared across all calls.",
-      "difficulty": "beginner",
-      "topic": "Functions & Scope",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t1-q3",
-      "type": "scenario",
-      "prompt": "You are processing a 10GB log file on an instance with 2GB RAM. Which Python approach avoids memory exhaustion?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Read the file line-by-line using a generator iterator (with open(...) as f: for line in f:)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Call f.readlines() to parse all lines into memory at once"
-        },
-        {
-          "id": "opt-3",
-          "text": "Convert the file to a JSON object before looping"
-        },
-        {
-          "id": "opt-4",
-          "text": "Use multiprocessing to load the entire file into 8 concurrent arrays"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Iterating over a file object in Python streams line by line as a generator without loading the entire payload into RAM.",
-      "difficulty": "beginner",
-      "topic": "Memory Management & Generators",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t1-q4",
-      "type": "multiple-select",
-      "prompt": "Which of the following statements about Python's Global Interpreter Lock (GIL) and concurrency are correct?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "The GIL allows only one native thread to execute Python bytecode at a time in CPython"
-        },
-        {
-          "id": "opt-2",
-          "text": "multiprocessing bypasses the GIL by creating separate processes with separate memory spaces"
-        },
-        {
-          "id": "opt-3",
-          "text": "I/O bound operations release the GIL while waiting for network or disk operations"
-        },
-        {
-          "id": "opt-4",
-          "text": "threading provides true multi-core parallel CPU execution for math-heavy loops in CPython"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "In CPython, GIL prevents multi-threaded CPU parallel execution, but I/O releases the lock, and multiprocessing spawns separate OS processes.",
-      "difficulty": "beginner",
-      "topic": "Concurrency & Architecture",
-      "marks": 3,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t1-q5",
+      "id": "mock-python-beginner-test-01-q1",
       "type": "single-choice",
-      "prompt": "What does the '__slots__' attribute do when declared on a Python class?",
+      "prompt": "Which statement accurately describes assignment in Python?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "It restricts valid instance attributes to a fixed set, eliminating __dict__ to optimize memory usage."
+          "id": "A",
+          "text": "assignment binds a name to the evaluated object"
         },
         {
-          "id": "opt-2",
-          "text": "It prevents other classes from inheriting from the declared class."
+          "id": "B",
+          "text": "using a name before assignment raises NameError"
         },
         {
-          "id": "opt-3",
-          "text": "It automatically serializes class instances to JSON format."
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
         },
         {
-          "id": "opt-4",
-          "text": "It declares private variables accessible only via getter functions."
+          "id": "D",
+          "text": "It is available only through third-party packages"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "Defining __slots__ on a class prevents the creation of the default __dict__ per instance, significantly reducing memory consumption for millions of objects.",
+      "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Object-Oriented Programming & Optimization",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "01",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     },
     {
-      "id": "mock-python-beginner-t1-q6",
-      "type": "debugging",
-      "prompt": "What will occur when running: try: 1 / 0 except LookupError: print('A') except ZeroDivisionError: print('B')",
-      "codeSnippet": "try:\n    1 / 0\nexcept LookupError:\n    print(\"A\")\nexcept ZeroDivisionError:\n    print(\"B\")",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Prints 'B' because ZeroDivisionError inherits from ArithmeticError, not LookupError."
-        },
-        {
-          "id": "opt-2",
-          "text": "Prints 'A' because LookupError is the base class for arithmetic exceptions."
-        },
-        {
-          "id": "opt-3",
-          "text": "SyntaxError because multiple except blocks are prohibited."
-        },
-        {
-          "id": "opt-4",
-          "text": "Uncaught exception crash."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "ZeroDivisionError inherits from ArithmeticError, not LookupError (which is the parent of IndexError and KeyError). The second block matches.",
-      "difficulty": "beginner",
-      "topic": "Exception Hierarchy & Error Handling",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t1-q7",
-      "type": "scenario",
-      "prompt": "Which decorator is used to define a method that operates on class state rather than a specific instance?",
+      "id": "mock-python-beginner-test-01-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes input in Python?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "@classmethod (receiving cls as first parameter)"
+          "id": "A",
+          "text": "input returns a string"
         },
         {
-          "id": "opt-2",
-          "text": "@staticmethod (receiving self as first parameter)"
+          "id": "B",
+          "text": "adding an input string to an integer raises TypeError"
         },
         {
-          "id": "opt-3",
-          "text": "@property"
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
         },
         {
-          "id": "opt-4",
-          "text": "@abstractmethod"
+          "id": "D",
+          "text": "It is available only through third-party packages"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "@classmethod binds the method to the class namespace, taking cls as its first parameter.",
+      "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Decorators & Metaprogramming",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "02",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     },
     {
-      "id": "mock-python-beginner-t1-q8",
-      "type": "multiple-select",
-      "prompt": "Which of the following built-in Python data types are mutable?",
+      "id": "mock-python-beginner-test-01-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes integer division in Python?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "list"
+          "id": "A",
+          "text": "`//` performs floor division"
         },
         {
-          "id": "opt-2",
-          "text": "dict"
+          "id": "B",
+          "text": "floor division rounds toward negative infinity, not toward zero"
         },
         {
-          "id": "opt-3",
-          "text": "set"
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
         },
         {
-          "id": "opt-4",
-          "text": "tuple"
+          "id": "D",
+          "text": "It is available only through third-party packages"
         }
       ],
       "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
+        "A"
       ],
-      "explanation": "Lists, dicts, and sets can be mutated in place. Tuples and frozensets are immutable.",
+      "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Data Structures & Mutability",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "integer",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes f-strings in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an f-string evaluates expressions inside braces"
+        },
+        {
+          "id": "B",
+          "text": "forgetting the leading f leaves braces as ordinary text"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an f-string evaluates expressions inside braces. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "f",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes booleans in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "comparison expressions produce boolean values"
+        },
+        {
+          "id": "B",
+          "text": "the strings 'False' and '0' are non-empty and therefore truthy"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "comparison expressions produce boolean values. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "05",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q6",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes comparison boundaries in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "`>=` includes the boundary value"
+        },
+        {
+          "id": "B",
+          "text": "using `>` accidentally excludes the exact boundary"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "`>=` includes the boundary value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "comparison",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q7",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes elif in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "only the first true branch in an if/elif chain executes"
+        },
+        {
+          "id": "B",
+          "text": "independent if statements can execute more than one overlapping branch"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "only the first true branch in an if/elif chain executes. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "07",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q8",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes range in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "range excludes its stop value"
+        },
+        {
+          "id": "B",
+          "text": "assuming the stop is included creates off-by-one errors"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "range excludes its stop value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "08",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q9",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes for loops in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a for loop consumes values from an iterable"
+        },
+        {
+          "id": "B",
+          "text": "changing the loop variable does not replace the original list element"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a for loop consumes values from an iterable. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "for",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q10",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes while loops in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a while loop repeats while its condition remains truthy"
+        },
+        {
+          "id": "B",
+          "text": "failing to make progress can create an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a while loop repeats while its condition remains truthy. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "while",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q11",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes break in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "break exits the nearest enclosing loop"
+        },
+        {
+          "id": "B",
+          "text": "break does not exit an enclosing function unless followed by return"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "break exits the nearest enclosing loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "11",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q12",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes continue in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "continue skips to the next iteration"
+        },
+        {
+          "id": "B",
+          "text": "placing required state updates after continue can prevent progress"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "continue skips to the next iteration. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "12",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q13",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes accumulators in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an accumulator is initialized before and updated inside a loop"
+        },
+        {
+          "id": "B",
+          "text": "resetting the accumulator inside the loop loses earlier work"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an accumulator is initialized before and updated inside a loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "13",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q14",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes functions in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a function call evaluates to its returned value"
+        },
+        {
+          "id": "B",
+          "text": "a function with no return statement returns None"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a function call evaluates to its returned value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "14",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q15",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes return in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return ends the current function call"
+        },
+        {
+          "id": "B",
+          "text": "printing a value does not make it available to the caller"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return ends the current function call. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "15",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q16",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes local scope in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "parameters and assigned names are local by default"
+        },
+        {
+          "id": "B",
+          "text": "a local name is unavailable after the function call finishes"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "parameters and assigned names are local by default. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "local",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q17",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes lists in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "lists are ordered and mutable"
+        },
+        {
+          "id": "B",
+          "text": "aliasing the same list means mutations are visible through both names"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "lists are ordered and mutable. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "17",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q18",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes dictionaries in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "dictionaries map unique hashable keys to values"
+        },
+        {
+          "id": "B",
+          "text": "indexing a missing key raises KeyError"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "dictionaries map unique hashable keys to values. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "18",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q19",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes sets in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "sets retain unique hashable elements"
+        },
+        {
+          "id": "B",
+          "text": "sets do not preserve a meaningful positional index"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "sets retain unique hashable elements. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "19",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-01-q20",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes exceptions in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "exceptions separate failure handling from the normal path"
+        },
+        {
+          "id": "B",
+          "text": "a broad bare except can hide programming defects and interrupts"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "exceptions separate failure handling from the normal path. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "20",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:02:55.032Z",
-  "updatedAt": "2026-10-30T06:02:55.032Z"
+  "createdAt": "2026-10-31T13:08:48.570Z",
+  "updatedAt": "2026-10-31T13:08:48.570Z"
 }

@@ -1,0 +1,703 @@
+{
+  "id": "mock-rust-beginner-test-01",
+  "skillName": "Rust",
+  "skillSlug": "rust",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Rust Beginner Mock Test 1",
+  "description": "Comprehensive 50-minute mock examination for Rust at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Cargo",
+    "rustfmt",
+    "Clippy",
+    "immutability",
+    "String and str",
+    "Option",
+    "Result",
+    "question mark",
+    "match",
+    "ranges",
+    "iterators",
+    "ownership",
+    "shared borrowing",
+    "mutable borrowing",
+    "slices",
+    "Vec",
+    "structs",
+    "enums",
+    "traits",
+    "threads"
+  ],
+  "questions": [
+    {
+      "id": "mock-rust-beginner-test-01-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Cargo in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cargo builds tests and manages crate metadata"
+        },
+        {
+          "id": "B",
+          "text": "use cargo check test and run as separate evidence"
+        },
+        {
+          "id": "C",
+          "text": "Cargo.lock policy differs between applications and libraries"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Cargo builds tests and manages crate metadata. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Cargo",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes rustfmt in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "rustfmt applies canonical formatting"
+        },
+        {
+          "id": "B",
+          "text": "run cargo fmt before review"
+        },
+        {
+          "id": "C",
+          "text": "manual formatting drift distracts from behavior"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "rustfmt applies canonical formatting. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "rustfmt",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Clippy in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clippy provides additional lint diagnostics"
+        },
+        {
+          "id": "B",
+          "text": "review each lint in its code context"
+        },
+        {
+          "id": "C",
+          "text": "blindly allowing lints can hide defects"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Clippy provides additional lint diagnostics. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Clippy",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes immutability in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "bindings are immutable unless marked mut"
+        },
+        {
+          "id": "B",
+          "text": "request mutability only where state changes"
+        },
+        {
+          "id": "C",
+          "text": "interior mutability follows separate runtime rules"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "bindings are immutable unless marked mut. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "immutability",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes String and str in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "String owns text while str slices borrow text"
+        },
+        {
+          "id": "B",
+          "text": "accept &str for read-only text parameters"
+        },
+        {
+          "id": "C",
+          "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "String owns text while str slices borrow text. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "String and str",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q6",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Option in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Option models presence with Some or absence with None"
+        },
+        {
+          "id": "B",
+          "text": "match or transform both possibilities intentionally"
+        },
+        {
+          "id": "C",
+          "text": "unwrap can panic when absence is possible"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Option models presence with Some or absence with None. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Option",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q7",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Result in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Result models success or failure"
+        },
+        {
+          "id": "B",
+          "text": "propagate or handle errors before using output"
+        },
+        {
+          "id": "C",
+          "text": "ignoring an Err loses required control flow"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Result models success or failure. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Result",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q8",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes question mark in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "question mark returns failure to the caller"
+        },
+        {
+          "id": "B",
+          "text": "use it in compatible Result or Option functions"
+        },
+        {
+          "id": "C",
+          "text": "it does not log or recover automatically"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "question mark returns failure to the caller. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "question mark",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q9",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes match in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "match is exhaustive pattern-based control flow"
+        },
+        {
+          "id": "B",
+          "text": "enumerate domain variants explicitly"
+        },
+        {
+          "id": "C",
+          "text": "a wildcard can hide newly added variants"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "match is exhaustive pattern-based control flow. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q10",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes ranges in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "exclusive ranges omit their upper endpoint"
+        },
+        {
+          "id": "B",
+          "text": "use inclusive syntax when the endpoint belongs"
+        },
+        {
+          "id": "C",
+          "text": "off-by-one assumptions can skip or overrun values"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "exclusive ranges omit their upper endpoint. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ranges",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q11",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes iterators in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "iterator adapters are generally lazy"
+        },
+        {
+          "id": "B",
+          "text": "consume with collect sum or a loop"
+        },
+        {
+          "id": "C",
+          "text": "building a chain alone may perform no work"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "iterator adapters are generally lazy. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "iterators",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q12",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes ownership in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "one owner controls ordinary value cleanup"
+        },
+        {
+          "id": "B",
+          "text": "move values deliberately across boundaries"
+        },
+        {
+          "id": "C",
+          "text": "using a non-Copy value after a move is rejected"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "one owner controls ordinary value cleanup. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ownership",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q13",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes shared borrowing in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "shared references allow non-mutating access"
+        },
+        {
+          "id": "B",
+          "text": "use &T for temporary read-only borrowing"
+        },
+        {
+          "id": "C",
+          "text": "shared and active mutable borrowing cannot overlap"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "shared references allow non-mutating access. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "shared borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q14",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes mutable borrowing in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an exclusive reference enables mutation"
+        },
+        {
+          "id": "B",
+          "text": "keep mutable borrow scope as short as practical"
+        },
+        {
+          "id": "C",
+          "text": "only one active mutable borrow to the same data is allowed"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an exclusive reference enables mutation. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "mutable borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q15",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes slices in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "slices borrow contiguous sequence regions"
+        },
+        {
+          "id": "B",
+          "text": "accept slices instead of requiring Vec ownership"
+        },
+        {
+          "id": "C",
+          "text": "a slice cannot outlive its backing storage"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "slices borrow contiguous sequence regions. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "slices",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q16",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Vec in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vec owns a growable contiguous sequence"
+        },
+        {
+          "id": "B",
+          "text": "use Vec for variable-size owned elements"
+        },
+        {
+          "id": "C",
+          "text": "growth can relocate elements and invalidate references"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Vec owns a growable contiguous sequence. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Vec",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q17",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes structs in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "structs group named fields"
+        },
+        {
+          "id": "B",
+          "text": "keep invariant-sensitive fields private"
+        },
+        {
+          "id": "C",
+          "text": "public fields permit arbitrary invalid combinations"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "structs group named fields. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "structs",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q18",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes enums in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enums model one variant from a closed set"
+        },
+        {
+          "id": "B",
+          "text": "use them for meaningful states and outcomes"
+        },
+        {
+          "id": "C",
+          "text": "parallel booleans can represent impossible states"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enums model one variant from a closed set. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "enums",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q19",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes traits in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "traits define shared behavior contracts"
+        },
+        {
+          "id": "B",
+          "text": "use focused traits and explicit bounds"
+        },
+        {
+          "id": "C",
+          "text": "traits do not automatically imply object safety"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "traits define shared behavior contracts. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "traits",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-01-q20",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes threads in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "threads require safe transferred or shared data"
+        },
+        {
+          "id": "B",
+          "text": "join workers and propagate errors"
+        },
+        {
+          "id": "C",
+          "text": "detached work can outlive intended operation scope"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "threads require safe transferred or shared data. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "threads",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.632Z",
+  "updatedAt": "2026-10-31T13:08:48.632Z"
+}

@@ -1,0 +1,122 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "C Programming",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "c-programming-obj-1",
+      "statement": "Write and explain small Python programs",
+      "order": 1
+    },
+    {
+      "id": "c-programming-obj-2",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 2
+    },
+    {
+      "id": "c-programming-obj-3",
+      "statement": "Write and explain small Python programs",
+      "order": 3
+    },
+    {
+      "id": "c-programming-obj-4",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 4
+    },
+    {
+      "id": "c-programming-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "c-programming-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
+    }
+  ],
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-c-beginner-module-1",
+      "title": "Build Process, Types, and Input",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "order": 1,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "c-programming-obj-1",
+        "c-programming-obj-2"
+      ],
+      "lessonTitles": [
+        "Compiling C and Reading Diagnostics",
+        "Types, Expressions, and Safe Input"
+      ],
+      "checkpoint": "Pass the Build Process, Types, and Input assessment with 70%+ score."
+    },
+    {
+      "id": "mod-2-c-beginner-module-2",
+      "title": "Control Flow, Arrays, and Functions",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "order": 2,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "c-programming-obj-3",
+        "c-programming-obj-4"
+      ],
+      "lessonTitles": [
+        "Conditions, Operators, and Boundaries",
+        "Loops, Arrays, and Bounds"
+      ],
+      "checkpoint": "Pass the Control Flow, Arrays, and Functions assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-c-beginner-module-3",
+      "title": "Pointers, Structs, Files, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "c-programming-obj-5",
+        "c-programming-obj-6"
+      ],
+      "lessonTitles": [
+        "Functions, Pointers, and Ownership",
+        "Structs, Text Files, and a Progress Tracker"
+      ],
+      "checkpoint": "Pass the Pointers, Structs, Files, and a Project assessment with 70%+ score."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic in C Programming",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
+  ],
+  "assessmentCheckpoints": [
+    "Build Process, Types, and Input Knowledge Check (70% pass threshold)",
+    "Control Flow, Arrays, and Functions Knowledge Check (70% pass threshold)",
+    "Pointers, Structs, Files, and a Project Knowledge Check (70% pass threshold)"
+  ],
+  "projects": [
+    "Safe File-Backed Progress Tracker"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
+  ],
+  "resources": [
+    {
+      "title": "Official C Programming Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-31T13:08:48.097Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

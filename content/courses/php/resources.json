@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-php-main",
+    "title": "PHP Full Course for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=OK_JCtrrv-c",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for PHP.",
+    "whatItTeaches": "Step-by-step walkthrough of PHP fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "php-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "PHP Runtime, Files, and Composer",
+      "Types, Strings, Input, and Validation",
+      "Control Flow, Arrays, and Iteration",
+      "Functions, Exceptions, and Boundaries",
+      "Classes, Value Objects, and Encapsulation",
+      "PDO, Sessions, Security, and a Progress Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

@@ -1,198 +1,226 @@
 {
-  "lessonId": "mod-1-foundations-l1-introduction-to-python",
+  "lessonId": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values",
   "skillName": "Python",
-  "moduleId": "mod-1-foundations",
-  "title": "Introduction to Python",
-  "summary": "Comprehensive masterclass on Introduction to Python for Python. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-1-python-beginner-module-1",
+  "title": "Running Python and Working with Values",
+  "summary": "Python executes source from top to bottom while names refer to objects. This lesson establishes the edit-run-observe cycle, assignment, naming rules, and how to inspect values without treating a variable as a fixed box.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 75,
   "learningObjectives": [
-    "Understand foundational mental models and syntax of Python",
-    "Implement reliable patterns and error handling in Python"
+    "Explain and apply the Python behavior taught in Running Python and Working with Values",
+    "Test the behavior with a small observable program"
   ],
   "objectiveIds": [
     "python-obj-1",
     "python-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Python environment setup"
+    "Ability to create and save a text file",
+    "No prior programming experience required"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Introduction to Python",
-      "content": "Python emphasizes code readability, explicit namespaces, and deterministic execution. When working with Introduction to Python, understanding how references, mutability, and scoping operate is essential to building bug-free pipelines and algorithms.",
-      "codeExamples": [
-        {
-          "language": "python",
-          "code": "# Python Idiom: Introduction to Python\nfrom typing import List, Optional\n\ndef process_items(items: List[str], prefix: Optional[str] = None) -> List[str]:\n    \"\"\"Process and sanitize input strings deterministically.\"\"\"\n    if not items:\n        return []\n    clean_prefix = prefix.strip() if prefix else \"item\"\n    return [f\"{clean_prefix}_{idx}:{val.strip().lower()}\" for idx, val in enumerate(items) if val.strip()]\n\nprint(process_items([\" Python \", \" DATA \", \"\"]))",
-          "explanation": "Type hints, explicit None checks for default arguments, and generator-backed list comprehensions ensure type safety and avoid mutable default argument traps.",
-          "expectedOutput": "['item_0:python', 'item_1:data']"
-        }
-      ],
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-sec-1",
+      "heading": "Core model",
+      "content": "Python programs are sequences of statements evaluated by the interpreter. An assignment such as `price = 120` evaluates the expression on the right and binds the resulting integer object to the name on the left. Reassignment changes the binding; it does not alter the earlier object. Use descriptive snake_case names, keep one purpose per name, and inspect uncertain values with `print()` and `type()`. A `NameError` means a name was used before a successful binding. Reading the traceback from its final line upward usually identifies both the exception and the line that caused it.",
+      "codeExamples": [],
       "keyPoints": [
-        "Never use mutable objects (like [] or {}) as default parameter values.",
-        "Use list comprehensions and generators for memory-efficient iteration.",
-        "Enforce explicit type hints (typing / mypy) to catch contract mismatches before execution."
+        "Python programs are sequences of statements evaluated by the interpreter."
       ],
       "commonMistakes": [
-        "Modifying a list or dictionary while iterating over it, causing skipped elements.",
-        "Using broad except: blocks that catch KeyboardInterrupt and SystemExit rather than specific exceptions."
+        "using a name before assignment raises NameError",
+        "adding an input string to an integer raises TypeError"
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In production services, Python code must handle unexpected I/O failures, resource leaks, and concurrent thread limitations via context managers and decoupled error handling.",
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-sec-2",
+      "heading": "Worked Python example",
+      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
       "codeExamples": [
         {
           "language": "python",
-          "code": "import contextlib\nimport logging\nfrom typing import Iterator\n\nlogger = logging.getLogger(__name__)\n\n@contextlib.contextmanager\ndef safe_resource_session(name: str) -> Iterator[dict]:\n    session = {\"name\": name, \"status\": \"active\"}\n    try:\n        yield session\n    except Exception as exc:\n        logger.error(\"Session %s failed: %s\", name, exc)\n        raise\n    finally:\n        session[\"status\"] = \"closed\"\n        logger.info(\"Session %s safely terminated.\", name)",
-          "explanation": "Context managers guarantee resource teardown (database connections, file descriptors) even during unhandled exceptions.",
-          "expectedOutput": "Session safely terminated context log with guaranteed cleanup"
+          "code": "price = 120\nquantity = 3\ntotal = price * quantity\nprint(total)\nprint(type(total).__name__)",
+          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+          "expectedOutput": "360\nint"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Python programs are sequences of statements evaluated by the interpreter."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "using a name before assignment raises NameError",
+        "adding an input string to an integer raises TypeError"
+      ]
+    },
+    {
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Python programs are sequences of statements evaluated by the interpreter."
+      ],
+      "commonMistakes": [
+        "using a name before assignment raises NameError",
+        "adding an input string to an integer raises TypeError"
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-python-ex-1",
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-ex-1",
       "type": "coding",
-      "title": "Python Lab: Introduction to Python",
-      "objective": "Implement a robust, typed Python utility for Introduction to Python with proper exception handling.",
-      "description": "Construct a production-ready Python module for Introduction to Python. Validate input boundaries and return clean, normalized data.",
+      "title": "Build and explain",
+      "objective": "Master Build and explain and apply practical principles in Python.",
+      "description": "Create a price calculator that binds unit price and quantity, calculates a total, prints the result and its type, then deliberately misspells one name and explains the resulting traceback. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
       "instructions": [
-        "Define a function with PEP-484 type annotations for inputs and outputs.",
-        "Include docstrings and defensive validation raising ValueError on invalid parameters.",
-        "Demonstrate proper idiomatic collection processing."
+        "Create a price calculator that binds unit price and quantity, calculates a total, prints the result and its type, then deliberately misspells one name and explains the resulting traceback. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
       ],
-      "starterCode": "def execute_mod_1_foundations_l1_introduction_to_python(data: list[str]) -> dict:\n    # TODO: Implement domain processing for Introduction to Python\n    if not isinstance(data, list):\n        raise TypeError(\"Expected list input\")\n    return {\"processed_count\": len(data), \"status\": \"success\"}",
+      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
       "hints": [
-        "Use try...except blocks specifically targeting expected exceptions.",
-        "Leverage Python 3.10+ union syntax (int | None) or typing module."
+        "A runnable Python program with descriptive names",
+        "Observed output and at least one boundary or failure test",
+        "An explanation based on program evidence"
       ],
-      "submissionRequirements": "Submit valid Python 3 code with type annotations and deterministic error handling.",
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
       "evaluationCriteria": [
-        "Correctness: Passes edge cases including empty lists and invalid data types.",
-        "Pythonic idioms: Follows PEP 8 formatting and clean comprehension syntax."
+        "A runnable Python program with descriptive names",
+        "Observed output and at least one boundary or failure test",
+        "An explanation based on program evidence"
       ],
-      "solutionExplanation": "The optimal solution separates boundary validation from core data transformation, utilizing context managers or list comprehensions for predictable memory consumption."
+      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-python-kc-1",
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-kc-1",
       "type": "single-choice",
-      "prompt": "In Python, why is using a mutable collection (e.g., target_list=[]) as a default function parameter considered a dangerous anti-pattern?",
+      "prompt": "Which statement accurately describes assignment in Python?",
       "options": [
         {
-          "id": "opt-1",
-          "text": "Default parameter expressions are evaluated once at function definition time, sharing the exact same list instance across all invocations."
+          "id": "A",
+          "text": "assignment binds a name to the evaluated object"
         },
         {
-          "id": "opt-2",
-          "text": "Python's garbage collector immediately purges default arguments after the first invocation."
+          "id": "B",
+          "text": "using a name before assignment raises NameError"
         },
         {
-          "id": "opt-3",
-          "text": "Mutable default arguments trigger a syntax error in Python 3.10 and newer."
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
         },
         {
-          "id": "opt-4",
-          "text": "Default parameters can only accept primitive types like int and float."
+          "id": "D",
+          "text": "It is available only through third-party packages"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "Python binds default arguments once when the function is defined. If a mutable object like a list is mutated within the function, subsequent calls without arguments reuse that same mutated list.",
+      "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "objectiveIds": [
         "python-obj-1"
       ]
     },
     {
-      "id": "mod-1-foundations-l1-introduction-to-python-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following are recommended best practices when developing production Python code?",
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes input in Python?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Using context managers (with statements) to guarantee cleanup of files and connections"
+          "id": "A",
+          "text": "input returns a string"
         },
         {
-          "id": "opt-2b",
-          "text": "Using generator expressions instead of massive in-memory lists when streaming large datasets"
+          "id": "B",
+          "text": "adding an input string to an integer raises TypeError"
         },
         {
-          "id": "opt-2c",
-          "text": "Silently suppressing exceptions with empty 'except Exception: pass' blocks"
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
         },
         {
-          "id": "opt-2d",
-          "text": "Specifying type annotations and validating external data contracts at service boundaries"
+          "id": "D",
+          "text": "It is available only through third-party packages"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "A"
       ],
-      "explanation": "Context managers, generators for memory efficiency, and type contracts are core tenets of production Python. Silently swallowing exceptions hides critical failures.",
+      "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "objectiveIds": [
         "python-obj-2"
       ]
+    },
+    {
+      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes integer division in Python?",
+      "options": [
+        {
+          "id": "A",
+          "text": "`//` performs floor division"
+        },
+        {
+          "id": "B",
+          "text": "floor division rounds toward negative infinity, not toward zero"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-1"
+      ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Introduction to Python. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "In this lesson, you covered Running Python and Working with Values in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
   "videoResources": [
     {
-      "id": "res-python-python",
-      "title": "Python for Beginners - Full Programming Course",
+      "id": "vid-python-main",
+      "title": "Python for Beginners - Full Course",
       "provider": "youtube",
-      "channelOrAuthor": "Programming with Mosh / freeCodeCamp",
+      "channelOrAuthor": "Programming with Mosh",
       "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
-      "embedUrl": "https://www.youtube.com/embed/_uQrJ0TkZlc",
-      "durationMinutes": 60,
+      "embedUrl": "",
+      "durationMinutes": 180,
       "difficulty": "beginner",
-      "whySelected": "Authoritative pedagogical breakdown of Python syntax, data types, control flow, and functions.",
-      "whatItTeaches": "Core Python mental models, variable scoping, and function execution patterns relevant to Introduction to Python.",
+      "whySelected": "Authoritative complete tutorial for Python.",
+      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
       "learningObjectivesSupported": [
-        "Master foundational concepts of Introduction to Python",
-        "Write clean, idiomatic Python code"
+        "python-obj-1"
       ],
       "keyTopicsCovered": [
-        "Variables & Expressions",
-        "Control Flow",
-        "Functions & Scope",
-        "Testing & Debugging"
+        "Running Python and Working with Values",
+        "Types, Conversion, and Input/Output"
       ],
-      "followUpActivity": "Complete the practical code exercise in the Practice Lab tab to verify understanding.",
-      "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
     }
   ],
   "furtherReading": [
     {
-      "title": "Official Python 3 Documentation",
-      "url": "https://docs.python.org/3/",
-      "description": "Official documentation and authoritative guides for Python."
+      "title": "Official Documentation: Running Python and Working with Values",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Running Python and Working with Values."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Production application development using Python",
+    "Automated software quality verification and debugging"
   ],
   "generationMode": "ai-draft",
   "reviewStatus": "draft",
   "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:07.766Z"
+  "generatedAt": "2026-10-31T13:08:48.568Z"
 }

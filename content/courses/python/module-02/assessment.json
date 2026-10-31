@@ -1,195 +1,193 @@
 {
-  "id": "phase-python-mod-2-application-assessment",
+  "id": "phase-python-beginner-mod-2",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
-  "testNumber": 1,
+  "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-application",
-  "moduleTitle": "Module 2: Practical Implementation & Production Patterns",
-  "title": "Python — Module 2: Practical Implementation & Production Patterns Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Production Patterns and Resilience in Python, Capstone Lab: Verifiable Python Implementation.",
+  "moduleId": "mod-2-python-beginner-module-2",
+  "moduleTitle": "Control Flow and Repetition",
+  "title": "Control Flow and Repetition Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow and Repetition.",
   "durationMinutes": 20,
-  "totalMarks": 11,
-  "passingPercentage": 75,
+  "totalMarks": 5,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Data Structures & Comprehensions",
-    "Functions & Scope",
-    "Memory Management & Generators",
-    "Concurrency & Architecture",
-    "Object-Oriented Programming & Optimization"
+    "comparison",
+    "07",
+    "08",
+    "for",
+    "while"
   ],
   "questions": [
     {
-      "id": "phase-python-mod-2-application-assessment-q1",
-      "type": "code-output",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What is the exact output of the following list comprehension snippet?",
-      "codeSnippet": "matrix = [[1, 2], [3, 4]]\nflattened = [val for row in matrix for val in row]\nprint(flattened)",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "[1, 2, 3, 4]"
-        },
-        {
-          "id": "opt-2",
-          "text": "[[1, 2], [3, 4]]"
-        },
-        {
-          "id": "opt-3",
-          "text": "[1, 3, 2, 4]"
-        },
-        {
-          "id": "opt-4",
-          "text": "TypeError: list indices must be integers"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "In nested list comprehensions in Python, outer loops come first from left to right: for row in matrix, then for val in row.",
-      "difficulty": "beginner",
-      "topic": "Data Structures & Comprehensions",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "phase-python-mod-2-application-assessment-q2",
-      "type": "debugging",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Identify why the following function mutates state unexpectedly across calls:",
-      "codeSnippet": "def append_item(item, target_list=[]):\n    target_list.append(item)\n    return target_list\n\na = append_item(1)\nb = append_item(2)",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Default arguments are evaluated once at function definition time, sharing the mutable list instance."
-        },
-        {
-          "id": "opt-2",
-          "text": "Python functions create a global variable when default arguments are used."
-        },
-        {
-          "id": "opt-3",
-          "text": "append() returns None rather than the updated list."
-        },
-        {
-          "id": "opt-4",
-          "text": "Integers cannot be appended to untyped lists."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Python evaluates default parameter expressions once at definition time. Mutable default arguments (like lists or dicts) are shared across all calls.",
-      "difficulty": "beginner",
-      "topic": "Functions & Scope",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Python Implementation"
-    },
-    {
-      "id": "phase-python-mod-2-application-assessment-q3",
-      "type": "scenario",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] You are processing a 10GB log file on an instance with 2GB RAM. Which Python approach avoids memory exhaustion?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Read the file line-by-line using a generator iterator (with open(...) as f: for line in f:)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Call f.readlines() to parse all lines into memory at once"
-        },
-        {
-          "id": "opt-3",
-          "text": "Convert the file to a JSON object before looping"
-        },
-        {
-          "id": "opt-4",
-          "text": "Use multiprocessing to load the entire file into 8 concurrent arrays"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Iterating over a file object in Python streams line by line as a generator without loading the entire payload into RAM.",
-      "difficulty": "beginner",
-      "topic": "Memory Management & Generators",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "phase-python-mod-2-application-assessment-q4",
-      "type": "multiple-select",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which of the following statements about Python's Global Interpreter Lock (GIL) and concurrency are correct?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "The GIL allows only one native thread to execute Python bytecode at a time in CPython"
-        },
-        {
-          "id": "opt-2",
-          "text": "multiprocessing bypasses the GIL by creating separate processes with separate memory spaces"
-        },
-        {
-          "id": "opt-3",
-          "text": "I/O bound operations release the GIL while waiting for network or disk operations"
-        },
-        {
-          "id": "opt-4",
-          "text": "threading provides true multi-core parallel CPU execution for math-heavy loops in CPython"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "In CPython, GIL prevents multi-threaded CPU parallel execution, but I/O releases the lock, and multiprocessing spawns separate OS processes.",
-      "difficulty": "beginner",
-      "topic": "Concurrency & Architecture",
-      "marks": 3,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Python Implementation"
-    },
-    {
-      "id": "phase-python-mod-2-application-assessment-q5",
+      "id": "phase-python-beginner-mod-2-q1",
       "type": "single-choice",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What does the '__slots__' attribute do when declared on a Python class?",
+      "prompt": "Which warning should a code review raise about comparison boundaries?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "It restricts valid instance attributes to a fixed set, eliminating __dict__ to optimize memory usage."
+          "id": "A",
+          "text": "using `>` accidentally excludes the exact boundary"
         },
         {
-          "id": "opt-2",
-          "text": "It prevents other classes from inheriting from the declared class."
+          "id": "B",
+          "text": "`>=` includes the boundary value"
         },
         {
-          "id": "opt-3",
-          "text": "It automatically serializes class instances to JSON format."
+          "id": "C",
+          "text": "test values immediately below, at, and above a threshold"
         },
         {
-          "id": "opt-4",
-          "text": "It declares private variables accessible only via getter functions."
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "Defining __slots__ on a class prevents the creation of the default __dict__ per instance, significantly reducing memory consumption for millions of objects.",
+      "explanation": "using `>` accidentally excludes the exact boundary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Object-Oriented Programming & Optimization",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
+      "topic": "comparison",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
+      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-python-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about elif?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "independent if statements can execute more than one overlapping branch"
+        },
+        {
+          "id": "B",
+          "text": "only the first true branch in an if/elif chain executes"
+        },
+        {
+          "id": "C",
+          "text": "order score bands from the most restrictive boundary downward"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "independent if statements can execute more than one overlapping branch. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "07",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
+      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-python-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about range?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "assuming the stop is included creates off-by-one errors"
+        },
+        {
+          "id": "B",
+          "text": "range excludes its stop value"
+        },
+        {
+          "id": "C",
+          "text": "use `range(1, 6)` to produce one through five"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "assuming the stop is included creates off-by-one errors. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "08",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
+      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-python-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about for loops?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "changing the loop variable does not replace the original list element"
+        },
+        {
+          "id": "B",
+          "text": "a for loop consumes values from an iterable"
+        },
+        {
+          "id": "C",
+          "text": "iterate directly over items when an index is unnecessary"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "changing the loop variable does not replace the original list element. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "for",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
+      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-python-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about while loops?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "failing to make progress can create an infinite loop"
+        },
+        {
+          "id": "B",
+          "text": "a while loop repeats while its condition remains truthy"
+        },
+        {
+          "id": "C",
+          "text": "update the state used by the condition on every normal path"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "failing to make progress can create an infinite loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "while",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
+      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:02:54.829Z",
-  "updatedAt": "2026-10-30T06:02:54.829Z"
+  "createdAt": "2026-10-31T13:08:48.569Z",
+  "updatedAt": "2026-10-31T13:08:48.569Z"
 }

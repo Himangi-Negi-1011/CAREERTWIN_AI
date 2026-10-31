@@ -1,0 +1,193 @@
+{
+  "id": "phase-go-beginner-mod-3",
+  "skillName": "Go",
+  "skillSlug": "go",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-go-beginner-module-3",
+  "moduleTitle": "Concurrency, Persistence, and a Project",
+  "title": "Concurrency, Persistence, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Concurrency, Persistence, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "arrays",
+    "slices",
+    "maps",
+    "copy",
+    "multiple returns"
+  ],
+  "questions": [
+    {
+      "id": "phase-go-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes arrays in Go?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "arrays have fixed length as part of their type"
+        },
+        {
+          "id": "B",
+          "text": "use them for truly fixed value-sized data"
+        },
+        {
+          "id": "C",
+          "text": "passing an array copies all elements"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "arrays have fixed length as part of their type. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-go-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Methods, and Interfaces"
+    },
+    {
+      "id": "phase-go-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes slices in Go?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "slices describe a backing array region"
+        },
+        {
+          "id": "B",
+          "text": "retain append returned value"
+        },
+        {
+          "id": "C",
+          "text": "sub-slices may share mutable storage"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "slices describe a backing array region. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "slices",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-go-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Methods, and Interfaces"
+    },
+    {
+      "id": "phase-go-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes maps in Go?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "maps return a zero value for absent keys"
+        },
+        {
+          "id": "B",
+          "text": "use comma-ok when absence matters"
+        },
+        {
+          "id": "C",
+          "text": "writing to a nil map panics"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "maps return a zero value for absent keys. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "maps",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-go-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Methods, and Interfaces"
+    },
+    {
+      "id": "phase-go-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes copy in Go?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "copy transfers elements between slices"
+        },
+        {
+          "id": "B",
+          "text": "copy when an independent snapshot is needed"
+        },
+        {
+          "id": "C",
+          "text": "assigning a slice copies only its descriptor"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "copy transfers elements between slices. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "copy",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-go-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Methods, and Interfaces"
+    },
+    {
+      "id": "phase-go-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes multiple returns in Go?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "functions can return several typed values"
+        },
+        {
+          "id": "B",
+          "text": "return result and error together"
+        },
+        {
+          "id": "C",
+          "text": "using a result after non-nil error may violate its contract"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "functions can return several typed values. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "multiple returns",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-go-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Methods, and Interfaces"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.386Z",
+  "updatedAt": "2026-10-31T13:08:48.386Z"
+}

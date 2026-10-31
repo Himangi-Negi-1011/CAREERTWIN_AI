@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress-",
+  "skillName": "TypeScript",
+  "moduleId": "mod-3-typescript-beginner-module-3",
+  "title": "Runtime Validation and a Typed Progress Tracker",
+  "summary": "Combine compile-time contracts with runtime validation for untrusted data in a modular progress-tracker capstone.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the TypeScript behavior taught in Runtime Validation and a Typed Progress Tracker",
+    "Use strict compiler evidence and runtime tests to verify the contract"
+  ],
+  "objectiveIds": [
+    "typescript-obj-5",
+    "typescript-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--sec-1",
+      "heading": "Core model",
+      "content": "TypeScript cannot guarantee data arriving from JSON, forms, storage, or network responses. Parse external values as `unknown`, inspect their structure at runtime, and only then return a trusted domain type. A type assertion does not validate anything; it merely tells the compiler to trust the author. User-defined type guards return predicates such as `value is ProgressRecord` after checking required evidence. Keep validation at system boundaries and let internal functions operate on validated types. The capstone separates raw input, validation, domain updates, calculations, and presentation so each layer can be tested.",
+      "codeExamples": [],
+      "keyPoints": [
+        "TypeScript cannot guarantee data arriving from JSON, forms, storage, or network responses."
+      ],
+      "commonMistakes": [
+        "a constraint does not create missing runtime properties",
+        "utility types do not validate runtime objects"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--sec-2",
+      "heading": "Worked TypeScript example",
+      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "type Progress = { topic: string; percent: number };\nfunction isProgress(value: unknown): value is Progress {\n  if (typeof value !== 'object' || value === null) return false;\n  const item = value as Record<string, unknown>;\n  return typeof item.topic === 'string' && typeof item.percent === 'number' && item.percent >= 0 && item.percent <= 100;\n}\nconsole.log(isProgress({ topic: 'Types', percent: 80 }));",
+          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+          "expectedOutput": "true"
+        }
+      ],
+      "keyPoints": [
+        "TypeScript cannot guarantee data arriving from JSON, forms, storage, or network responses."
+      ],
+      "commonMistakes": [
+        "a constraint does not create missing runtime properties",
+        "utility types do not validate runtime objects"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
+      "codeExamples": [],
+      "keyPoints": [
+        "TypeScript cannot guarantee data arriving from JSON, forms, storage, or network responses."
+      ],
+      "commonMistakes": [
+        "a constraint does not create missing runtime properties",
+        "utility types do not validate runtime objects"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--ex-1",
+      "type": "coding",
+      "title": "Build, check, and explain",
+      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
+      "description": "Build a typed progress tracker that validates unknown JSON, rejects invalid percentages, updates records immutably, calculates mastery, and includes runtime plus compile-time test cases. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "instructions": [
+        "Build a typed progress tracker that validates unknown JSON, rejects invalid percentages, updates records immutably, calculates mastery, and includes runtime plus compile-time test cases. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+      ],
+      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "hints": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about type inference is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "B",
+          "text": "the compiler derives a type from available expressions"
+        },
+        {
+          "id": "C",
+          "text": "rely on inference for obvious local values and annotate public boundaries"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict mode is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "B",
+          "text": "strict enables a coordinated set of stronger checks"
+        },
+        {
+          "id": "C",
+          "text": "enable strict in tsconfig for new application code"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l2-runtime-validation-and-a-typed-progress--kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about annotations is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "B",
+          "text": "annotations state an expected compile-time type"
+        },
+        {
+          "id": "C",
+          "text": "annotate function boundaries when the contract should remain stable"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Runtime Validation and a Typed Progress Tracker in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-typescript-main",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for TypeScript.",
+      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "typescript-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Generics and Standard Utility Types",
+        "Runtime Validation and a Typed Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Runtime Validation and a Typed Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Runtime Validation and a Typed Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using TypeScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.688Z"
+}

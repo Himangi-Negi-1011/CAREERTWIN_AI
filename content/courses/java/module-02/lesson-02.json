@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration",
+  "skillName": "Java",
+  "moduleId": "mod-2-java-beginner-module-2",
+  "title": "Loops, Arrays, and Iteration",
+  "summary": "Use for, enhanced for, while, arrays, accumulators, break, continue, and clear termination invariants.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Java behavior taught in Loops, Arrays, and Iteration",
+    "Compile, run, and test the behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "java-obj-3",
+    "java-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-sec-1",
+      "heading": "Core model",
+      "content": "Arrays have a fixed length and zero-based indexes. Use an enhanced `for` loop when only values matter and an indexed loop when positions are part of the algorithm. `while` suits state-dependent repetition but every normal path must progress toward termination. Initialize accumulators before the loop and update once per accepted item. Array access outside `0` through `length - 1` throws `ArrayIndexOutOfBoundsException`. Use `break` for a deliberate early exit and `continue` sparingly; required state updates must not be skipped.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Arrays have a fixed length and zero-based indexes."
+      ],
+      "commonMistakes": [
+        "switch does not replace range-oriented conditions cleanly",
+        "access at index length throws an exception"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-sec-2",
+      "heading": "Worked Java example",
+      "content": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+      "codeExamples": [
+        {
+          "language": "java",
+          "code": "int[] scores = {70, 82, 91};\nint total = 0;\nfor (int score : scores) total += score;\ndouble average = (double) total / scores.length;\nSystem.out.println(average);",
+          "explanation": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+          "expectedOutput": "81.0"
+        }
+      ],
+      "keyPoints": [
+        "Arrays have a fixed length and zero-based indexes."
+      ],
+      "commonMistakes": [
+        "switch does not replace range-oriented conditions cleanly",
+        "access at index length throws an exception"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Arrays have a fixed length and zero-based indexes."
+      ],
+      "commonMistakes": [
+        "switch does not replace range-oriented conditions cleanly",
+        "access at index length throws an exception"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in Java.",
+      "description": "Process an array of study minutes, ignore negatives, calculate total and average, and explain the cast that prevents integer division. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+      "instructions": [
+        "Process an array of study minutes, ignore negatives, calculate total and average, and explain the cast that prevents integer division. Submit source, compiler output, runtime output, tests, and a concise explanation."
+      ],
+      "starterCode": "// Java Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Java operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes JDK in Java?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the JDK includes development tools such as javac"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes bytecode in Java?",
+      "options": [
+        {
+          "id": "A",
+          "text": "javac emits JVM bytecode in class files"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l2-loops-arrays-and-iteration-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes main method in Java?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the JVM entry point uses public static void main(String[] args)"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Loops, Arrays, and Iteration in Java. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-java-main",
+      "title": "Java Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Java.",
+      "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "java-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions, Boolean Logic, and Boundaries",
+        "Loops, Arrays, and Iteration"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Loops, Arrays, and Iteration",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Loops, Arrays, and Iteration."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Java",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.435Z"
+}

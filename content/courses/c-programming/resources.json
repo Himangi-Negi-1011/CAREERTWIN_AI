@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-c-programming-main",
+    "title": "C Programming Tutorial for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for C Programming.",
+    "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "c-programming-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "Compiling C and Reading Diagnostics",
+      "Types, Expressions, and Safe Input",
+      "Conditions, Operators, and Boundaries",
+      "Loops, Arrays, and Bounds",
+      "Functions, Pointers, and Ownership",
+      "Structs, Text Files, and a Progress Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types",
+  "skillName": "TypeScript",
+  "moduleId": "mod-3-typescript-beginner-module-3",
+  "title": "Generics and Standard Utility Types",
+  "summary": "Use constrained generics when behavior is independent of a specific type, and derive focused types with Pick, Omit, Partial, and Record.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the TypeScript behavior taught in Generics and Standard Utility Types",
+    "Use strict compiler evidence and runtime tests to verify the contract"
+  ],
+  "objectiveIds": [
+    "typescript-obj-5",
+    "typescript-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-sec-1",
+      "heading": "Core model",
+      "content": "A generic parameter preserves a relationship between inputs and outputs. `function first<T>(items: readonly T[]): T | undefined` returns the same element type supplied by the caller. Add a constraint such as `T extends { id: string }` only when the implementation uses that capability. Do not introduce a generic used in only one position; a concrete or union type is clearer. Utility types transform existing contracts: `Pick` selects keys, `Omit` removes keys, `Partial` makes properties optional for patch operations, and `Record` maps a known key union to one value type. These are compile-time transformations, not runtime validation.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A generic parameter preserves a relationship between inputs and outputs."
+      ],
+      "commonMistakes": [
+        "a tuple and an array express different positional guarantees",
+        "console output is not a returned value"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-sec-2",
+      "heading": "Worked TypeScript example",
+      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "function findById<T extends { id: string }>(items: readonly T[], id: string): T | undefined {\n  return items.find(item => item.id === id);\n}\nconst result = findById([{ id: 'a', score: 90 }], 'a');\nconsole.log(result?.score);",
+          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+          "expectedOutput": "90"
+        }
+      ],
+      "keyPoints": [
+        "A generic parameter preserves a relationship between inputs and outputs."
+      ],
+      "commonMistakes": [
+        "a tuple and an array express different positional guarantees",
+        "console output is not a returned value"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A generic parameter preserves a relationship between inputs and outputs."
+      ],
+      "commonMistakes": [
+        "a tuple and an array express different positional guarantees",
+        "console output is not a returned value"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-ex-1",
+      "type": "coding",
+      "title": "Build, check, and explain",
+      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
+      "description": "Create a generic `indexById` returning a Record, constrain inputs to string IDs, and define a safe Partial update type for a progress record. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "instructions": [
+        "Create a generic `indexById` returning a Record, constrain inputs to string IDs, and define a safe Partial update type for a progress record. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+      ],
+      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "hints": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of type inference?",
+      "options": [
+        {
+          "id": "A",
+          "text": "rely on inference for obvious local values and annotate public boundaries"
+        },
+        {
+          "id": "B",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of strict mode?",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable strict in tsconfig for new application code"
+        },
+        {
+          "id": "B",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of annotations?",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotate function boundaries when the contract should remain stable"
+        },
+        {
+          "id": "B",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Generics and Standard Utility Types in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-typescript-main",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for TypeScript.",
+      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "typescript-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Generics and Standard Utility Types",
+        "Runtime Validation and a Typed Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Generics and Standard Utility Types",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Generics and Standard Utility Types."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using TypeScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.688Z"
+}

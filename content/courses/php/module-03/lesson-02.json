@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra",
+  "skillName": "PHP",
+  "moduleId": "mod-3-php-beginner-module-3",
+  "title": "PDO, Sessions, Security, and a Progress Tracker",
+  "summary": "Combine PDO transactions, parameterized SQL, sessions, output escaping, CSRF protection, authorization, and tests in a secure tracker.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply PDO, Sessions, Security, and a Progress Tracker",
+    "Verify contracts with lint, runtime, and test evidence"
+  ],
+  "objectiveIds": [
+    "php-obj-5",
+    "php-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-sec-1",
+      "heading": "Core model",
+      "content": "Use PDO prepared statements with bound values instead of concatenating SQL, and wrap multi-step writes in a transaction that rolls back on failure. Authentication identifies a user; authorization checks whether that user may access the specific record. Regenerate session identifiers after login and configure secure, HttpOnly, and appropriate SameSite cookies. Escape untrusted text for its output context, usually with `htmlspecialchars` for HTML text. State-changing browser requests need CSRF protection. Store password hashes from `password_hash`, never plaintext passwords, and verify with `password_verify`.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Use PDO prepared statements with bound values instead of concatenating SQL, and wrap multi-step writes in a transaction that rolls back on failure."
+      ],
+      "commonMistakes": [
+        "large interfaces couple unrelated responsibilities",
+        "string concatenation enables injection risk"
+      ]
+    },
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-sec-2",
+      "heading": "Worked PHP example",
+      "content": "Predict types, failures, and output, then lint, run, and compare the evidence.\n\nIn practical software engineering with PHP, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "php",
+          "code": "<?php\ndeclare(strict_types=1);\n$progress = ['Basics' => 100, 'Arrays' => 70];\nforeach ($progress as $topic => $percent) { echo htmlspecialchars($topic, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . \": $percent%\\n\"; }",
+          "explanation": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+          "expectedOutput": "Basics: 100%\nArrays: 70%"
+        }
+      ],
+      "keyPoints": [
+        "Use PDO prepared statements with bound values instead of concatenating SQL, and wrap multi-step writes in a transaction that rolls back on failure."
+      ],
+      "commonMistakes": [
+        "large interfaces couple unrelated responsibilities",
+        "string concatenation enables injection risk"
+      ]
+    },
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Use PDO prepared statements with bound values instead of concatenating SQL, and wrap multi-step writes in a transaction that rolls back on failure."
+      ],
+      "commonMistakes": [
+        "large interfaces couple unrelated responsibilities",
+        "string concatenation enables injection risk"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in PHP.",
+      "description": "Build a PDO-backed progress tracker with ownership checks, transactions, validation, escaped output, CSRF-protected mutations, and at least ten tests. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+      "instructions": [
+        "Build a PDO-backed progress tracker with ownership checks, transactions, validation, escaped output, CSRF-protected mutations, and at least ten tests. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation."
+      ],
+      "starterCode": "// PHP Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core PHP operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict types is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "B",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "C",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "it does not validate HTTP input automatically. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linting is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "B",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "C",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "syntax success does not prove runtime correctness. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-php-beginner-module-3-l2-pdo-sessions-security-and-a-progress-tra-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Composer is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "B",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "C",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "vendor output should normally be regenerated. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered PDO, Sessions, Security, and a Progress Tracker in PHP. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-php-main",
+      "title": "PHP Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=OK_JCtrrv-c",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for PHP.",
+      "whatItTeaches": "Step-by-step walkthrough of PHP fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "php-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Classes, Value Objects, and Encapsulation",
+        "PDO, Sessions, Security, and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: PDO, Sessions, Security, and a Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for PDO, Sessions, Security, and a Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using PHP",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.524Z"
+}

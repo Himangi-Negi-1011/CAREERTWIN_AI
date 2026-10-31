@@ -1,0 +1,193 @@
+{
+  "id": "phase-python-beginner-mod-3",
+  "skillName": "Python",
+  "skillSlug": "python",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-python-beginner-module-3",
+  "moduleTitle": "Functions, Collections, and a Project",
+  "title": "Functions, Collections, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Functions, Collections, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "11",
+    "12",
+    "13",
+    "14",
+    "15"
+  ],
+  "questions": [
+    {
+      "id": "phase-python-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes break in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "break exits the nearest enclosing loop"
+        },
+        {
+          "id": "B",
+          "text": "break does not exit an enclosing function unless followed by return"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "break exits the nearest enclosing loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "11",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+    },
+    {
+      "id": "phase-python-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes continue in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "continue skips to the next iteration"
+        },
+        {
+          "id": "B",
+          "text": "placing required state updates after continue can prevent progress"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "continue skips to the next iteration. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "12",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+    },
+    {
+      "id": "phase-python-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes accumulators in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an accumulator is initialized before and updated inside a loop"
+        },
+        {
+          "id": "B",
+          "text": "resetting the accumulator inside the loop loses earlier work"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an accumulator is initialized before and updated inside a loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "13",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+    },
+    {
+      "id": "phase-python-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes functions in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a function call evaluates to its returned value"
+        },
+        {
+          "id": "B",
+          "text": "a function with no return statement returns None"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a function call evaluates to its returned value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "14",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+    },
+    {
+      "id": "phase-python-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes return in Python?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return ends the current function call"
+        },
+        {
+          "id": "B",
+          "text": "printing a value does not make it available to the caller"
+        },
+        {
+          "id": "C",
+          "text": "Python automatically selects the correct behavior without code"
+        },
+        {
+          "id": "D",
+          "text": "It is available only through third-party packages"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return ends the current function call. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "15",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.569Z",
+  "updatedAt": "2026-10-31T13:08:48.569Z"
+}

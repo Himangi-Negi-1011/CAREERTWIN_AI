@@ -1,0 +1,703 @@
+{
+  "id": "mock-javascript-beginner-test-03",
+  "skillName": "JavaScript",
+  "skillSlug": "javascript",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "JavaScript Beginner Mock Test 3",
+  "description": "Comprehensive 50-minute mock examination for JavaScript at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "const and let",
+    "typeof",
+    "Number conversion",
+    "strict equality",
+    "template literals",
+    "truthiness",
+    "nullish coalescing",
+    "optional chaining",
+    "for of",
+    "array map",
+    "array filter",
+    "reduce",
+    "while loops",
+    "return",
+    "lexical scope",
+    "default parameters",
+    "objects",
+    "Map",
+    "Set",
+    "exceptions"
+  ],
+  "questions": [
+    {
+      "id": "mock-javascript-beginner-test-03-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about const and let is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "B",
+          "text": "const prevents rebinding while let permits deliberate reassignment"
+        },
+        {
+          "id": "C",
+          "text": "declare stable bindings with const and state that changes with let"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "const and let",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about typeof is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "B",
+          "text": "typeof reports a runtime type string"
+        },
+        {
+          "id": "C",
+          "text": "use typeof while diagnosing values at an input boundary"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "typeof",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Number conversion is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "B",
+          "text": "Number converts an entire value to numeric form"
+        },
+        {
+          "id": "C",
+          "text": "convert then check Number.isNaN before arithmetic"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Number conversion",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict equality is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "0 == false is true but 0 === false is false"
+        },
+        {
+          "id": "B",
+          "text": "=== compares without type coercion"
+        },
+        {
+          "id": "C",
+          "text": "use strict equality for predictable branch conditions"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "0 == false is true but 0 === false is false. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "strict equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about template literals is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ordinary quoted strings do not interpolate ${expressions}"
+        },
+        {
+          "id": "B",
+          "text": "backtick strings interpolate expressions with ${}"
+        },
+        {
+          "id": "C",
+          "text": "use template literals for readable calculated output"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ordinary quoted strings do not interpolate ${expressions}. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "template literals",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q6",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about truthiness is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "non-empty strings including '0' and 'false' are truthy"
+        },
+        {
+          "id": "B",
+          "text": "conditions convert non-boolean values using defined truthiness rules"
+        },
+        {
+          "id": "C",
+          "text": "convert user intent explicitly when strings such as 'false' are possible"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "non-empty strings including '0' and 'false' are truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "truthiness",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q7",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about nullish coalescing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "using || can replace valid zero or empty-string input"
+        },
+        {
+          "id": "B",
+          "text": "?? defaults only null or undefined"
+        },
+        {
+          "id": "C",
+          "text": "use ?? when zero and empty string are valid values"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using || can replace valid zero or empty-string input. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "nullish coalescing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q8",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about optional chaining is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "optional chaining does not validate a present value's type"
+        },
+        {
+          "id": "B",
+          "text": "?. stops a property chain on null or undefined"
+        },
+        {
+          "id": "C",
+          "text": "use optional chaining for genuinely optional nested data"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "optional chaining does not validate a present value's type. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "optional chaining",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q9",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about for of is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "for...in yields property keys rather than array values"
+        },
+        {
+          "id": "B",
+          "text": "for...of iterates values from an iterable"
+        },
+        {
+          "id": "C",
+          "text": "use for...of for array values when no index is needed"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "for...in yields property keys rather than array values. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "for of",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q10",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about array map is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring map's returned array loses the transformed result"
+        },
+        {
+          "id": "B",
+          "text": "map creates a new array from one result per input"
+        },
+        {
+          "id": "C",
+          "text": "use map for a pure one-to-one transformation"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring map's returned array loses the transformed result. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q11",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about array filter is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "filter does not modify each selected item"
+        },
+        {
+          "id": "B",
+          "text": "filter returns items whose callback is truthy"
+        },
+        {
+          "id": "C",
+          "text": "use filter to select records without mutating the source"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "filter does not modify each selected item. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array filter",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q12",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about reduce is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "omitting the initial value changes behavior and fails on an empty array"
+        },
+        {
+          "id": "B",
+          "text": "reduce combines values through an accumulator"
+        },
+        {
+          "id": "C",
+          "text": "provide an explicit initial accumulator value"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "omitting the initial value changes behavior and fails on an empty array. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "reduce",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q13",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about while loops is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "no progress toward termination can create an infinite loop"
+        },
+        {
+          "id": "B",
+          "text": "while repeats while its condition remains truthy"
+        },
+        {
+          "id": "C",
+          "text": "update condition state on every normal path"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "no progress toward termination can create an infinite loop. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q14",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about return is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "console.log does not return the displayed value"
+        },
+        {
+          "id": "B",
+          "text": "return ends a function call and supplies its result"
+        },
+        {
+          "id": "C",
+          "text": "return calculated data and format it at the interface"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "console.log does not return the displayed value. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "return",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q15",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about lexical scope is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "local bindings cannot be read outside their scope"
+        },
+        {
+          "id": "B",
+          "text": "name lookup follows the scopes where functions are defined"
+        },
+        {
+          "id": "C",
+          "text": "pass changing dependencies as parameters"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "local bindings cannot be read outside their scope. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "lexical scope",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q16",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about default parameters is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "passing null does not activate a default parameter"
+        },
+        {
+          "id": "B",
+          "text": "defaults apply when an argument is undefined"
+        },
+        {
+          "id": "C",
+          "text": "use defaults for documented optional arguments"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "passing null does not activate a default parameter. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "default parameters",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q17",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about objects is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "spread creates only a shallow copy"
+        },
+        {
+          "id": "B",
+          "text": "objects group named properties"
+        },
+        {
+          "id": "C",
+          "text": "use objects for records with known named fields"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "spread creates only a shallow copy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "objects",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q18",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Map is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "JSON.stringify does not serialize Map entries directly"
+        },
+        {
+          "id": "B",
+          "text": "Map supports any key type and preserves insertion iteration"
+        },
+        {
+          "id": "C",
+          "text": "use Map when non-string keys or frequent keyed updates matter"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "JSON.stringify does not serialize Map entries directly. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q19",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Set is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Set has no positional indexing"
+        },
+        {
+          "id": "B",
+          "text": "Set stores unique values"
+        },
+        {
+          "id": "C",
+          "text": "use Set for membership and duplicate removal"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Set has no positional indexing. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Set",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-03-q20",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about exceptions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a broad catch that discards the error hides defects"
+        },
+        {
+          "id": "B",
+          "text": "throw communicates a failure that normal output cannot represent"
+        },
+        {
+          "id": "C",
+          "text": "throw a specific Error subtype and catch only where recovery is possible"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a broad catch that discards the error hides defects. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "exceptions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.479Z",
+  "updatedAt": "2026-10-31T13:08:48.479Z"
+}

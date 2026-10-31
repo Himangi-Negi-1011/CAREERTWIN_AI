@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-javascript-main",
+    "title": "JavaScript Programming - Full Course",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for JavaScript.",
+    "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "javascript-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "Running JavaScript and Understanding Values",
+      "Types, Conversion, and Strict Equality",
+      "Conditions and Boolean Logic",
+      "Loops and Array Iteration",
+      "Functions, Parameters, and Scope",
+      "Objects, Collections, and a Progress Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

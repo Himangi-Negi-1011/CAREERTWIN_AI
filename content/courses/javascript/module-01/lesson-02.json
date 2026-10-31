@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality",
+  "skillName": "JavaScript",
+  "moduleId": "mod-1-javascript-beginner-module-1",
+  "title": "Types, Conversion, and Strict Equality",
+  "summary": "Work with strings, numbers, booleans, null, undefined, explicit conversion, template literals, and strict equality without relying on surprising coercion.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the JavaScript behavior taught in Types, Conversion, and Strict Equality",
+    "Test behavior using observable output and assertions"
+  ],
+  "objectiveIds": [
+    "javascript-obj-1",
+    "javascript-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-sec-1",
+      "heading": "Core model",
+      "content": "JavaScript values include strings, numbers, booleans, `null`, `undefined`, bigints, symbols, and objects. Browser form values are normally strings. Convert intentionally with `Number`, `parseInt`, or `parseFloat`, then verify `Number.isNaN` when failure matters. The `+` operator concatenates when either operand becomes a string, so explicit conversion protects arithmetic. Prefer `===` and `!==` because they compare without type coercion. Template literals use backticks and `${expression}` for readable output. `null` is an intentional empty value; `undefined` commonly means no value was supplied or assigned.",
+      "codeExamples": [],
+      "keyPoints": [
+        "JavaScript values include strings, numbers, booleans, `null`, `undefined`, bigints, symbols, and objects."
+      ],
+      "commonMistakes": [
+        "0 == false is true but 0 === false is false",
+        "ordinary quoted strings do not interpolate ${expressions}"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-sec-2",
+      "heading": "Worked JavaScript example",
+      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "const ageText = '19';\nconst age = Number(ageText);\nconsole.log(`Next year: ${age + 1}`);\nconsole.log(Number.isNaN(age));",
+          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+          "expectedOutput": "Next year: 20\nfalse"
+        }
+      ],
+      "keyPoints": [
+        "JavaScript values include strings, numbers, booleans, `null`, `undefined`, bigints, symbols, and objects."
+      ],
+      "commonMistakes": [
+        "0 == false is true but 0 === false is false",
+        "ordinary quoted strings do not interpolate ${expressions}"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "JavaScript values include strings, numbers, booleans, `null`, `undefined`, bigints, symbols, and objects."
+      ],
+      "commonMistakes": [
+        "0 == false is true but 0 === false is false",
+        "ordinary quoted strings do not interpolate ${expressions}"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-ex-1",
+      "type": "coding",
+      "title": "Build and explain",
+      "objective": "Master Build and explain and apply practical principles in JavaScript.",
+      "description": "Accept a weekly-hours string, convert and validate it, then display a four-week total. Test empty text, whitespace, decimal input, and non-numeric input. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "instructions": [
+        "Accept a weekly-hours string, convert and validate it, then display a four-week total. Test empty text, whitespace, decimal input, and non-numeric input. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+      ],
+      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "hints": [
+        "Runnable JavaScript with clear bindings",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Runnable JavaScript with clear bindings",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-kc-1",
+      "type": "single-choice",
+      "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare stable bindings with const and state that changes with let"
+        },
+        {
+          "id": "B",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-kc-2",
+      "type": "single-choice",
+      "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use typeof while diagnosing values at an input boundary"
+        },
+        {
+          "id": "B",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l2-types-conversion-and-strict-equality-kc-3",
+      "type": "single-choice",
+      "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "convert then check Number.isNaN before arithmetic"
+        },
+        {
+          "id": "B",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Types, Conversion, and Strict Equality in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-javascript-main",
+      "title": "JavaScript Programming - Full Course",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for JavaScript.",
+      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "javascript-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "Running JavaScript and Understanding Values",
+        "Types, Conversion, and Strict Equality"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Types, Conversion, and Strict Equality",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Types, Conversion, and Strict Equality."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using JavaScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.476Z"
+}

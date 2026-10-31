@@ -1,0 +1,703 @@
+{
+  "id": "mock-csharp-beginner-test-03",
+  "skillName": "C#",
+  "skillSlug": "csharp",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "C# Beginner Mock Test 3",
+  "description": "Comprehensive 50-minute mock examination for C# at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    ".NET SDK",
+    "assemblies",
+    "var",
+    "TryParse",
+    "nullable references",
+    "null coalescing",
+    "short circuit",
+    "patterns",
+    "switch expressions",
+    "arrays",
+    "List",
+    "Dictionary",
+    "HashSet",
+    "deferred LINQ",
+    "methods",
+    "argument passing",
+    "records",
+    "encapsulation",
+    "async Task",
+    "JSON validation"
+  ],
+  "questions": [
+    {
+      "id": "mock-csharp-beginner-test-03-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about .NET SDK is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a runtime-only installation may not include build tools"
+        },
+        {
+          "id": "B",
+          "text": "the SDK includes build run and test tools"
+        },
+        {
+          "id": "C",
+          "text": "use dotnet build to obtain compiler evidence"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a runtime-only installation may not include build tools. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": ".NET SDK",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about assemblies is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an assembly is not raw C# source"
+        },
+        {
+          "id": "B",
+          "text": "assemblies contain intermediate language and metadata"
+        },
+        {
+          "id": "C",
+          "text": "build source into a target-framework assembly"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an assembly is not raw C# source. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "assemblies",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about var is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "var does not permit later values of unrelated types"
+        },
+        {
+          "id": "B",
+          "text": "var infers one static type from an initializer"
+        },
+        {
+          "id": "C",
+          "text": "use it when the inferred type is clear"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "var does not permit later values of unrelated types. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "var",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about TryParse is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring its boolean result can use an unintended default"
+        },
+        {
+          "id": "B",
+          "text": "TryParse reports expected conversion failure without throwing"
+        },
+        {
+          "id": "C",
+          "text": "use it for interactive numeric input"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring its boolean result can use an unintended default. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "TryParse",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about nullable references is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "the null-forgiving operator does not validate at runtime"
+        },
+        {
+          "id": "B",
+          "text": "nullable annotations model possible null at compile time"
+        },
+        {
+          "id": "C",
+          "text": "check string? before dereference"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the null-forgiving operator does not validate at runtime. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "nullable references",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q6",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about null coalescing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a fallback can hide missing required data if used carelessly"
+        },
+        {
+          "id": "B",
+          "text": "?? supplies a fallback only for null"
+        },
+        {
+          "id": "C",
+          "text": "use it when an explicit fallback is valid"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a fallback can hide missing required data if used carelessly. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "null coalescing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q7",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "single ampersand does not short-circuit"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "place guards before dependent operations"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "single ampersand does not short-circuit. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q8",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about patterns is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a discard arm can hide an omitted case"
+        },
+        {
+          "id": "B",
+          "text": "patterns test evidence and can narrow values"
+        },
+        {
+          "id": "C",
+          "text": "use relational or type patterns for clear domain cases"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a discard arm can hide an omitted case. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "patterns",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q9",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch expressions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "non-exhaustive runtime input can throw"
+        },
+        {
+          "id": "B",
+          "text": "switch expressions map inputs to values"
+        },
+        {
+          "id": "C",
+          "text": "cover finite states explicitly"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "non-exhaustive runtime input can throw. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "switch expressions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q10",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about arrays is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "index equal to Length is invalid"
+        },
+        {
+          "id": "B",
+          "text": "arrays have fixed length and indexed elements"
+        },
+        {
+          "id": "C",
+          "text": "use arrays for fixed-size sequences"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "index equal to Length is invalid. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q11",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about List is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "changing a list during foreach invalidates enumeration"
+        },
+        {
+          "id": "B",
+          "text": "List<T> is an ordered resizable generic collection"
+        },
+        {
+          "id": "C",
+          "text": "use List for variable-size sequences"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "changing a list during foreach invalidates enumeration. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "List",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q12",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Dictionary is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "indexing a missing key throws"
+        },
+        {
+          "id": "B",
+          "text": "Dictionary maps unique keys to values"
+        },
+        {
+          "id": "C",
+          "text": "use TryGetValue for expected absence"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "indexing a missing key throws. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Dictionary",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q13",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about HashSet is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "it does not provide positional indexing"
+        },
+        {
+          "id": "B",
+          "text": "HashSet stores unique values"
+        },
+        {
+          "id": "C",
+          "text": "use it for membership and deduplication"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "it does not provide positional indexing. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "HashSet",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q14",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about deferred LINQ is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "re-enumeration can repeat work and observe changed sources"
+        },
+        {
+          "id": "B",
+          "text": "many LINQ queries execute when enumerated"
+        },
+        {
+          "id": "C",
+          "text": "materialize when a stable snapshot is required"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "re-enumeration can repeat work and observe changed sources. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "deferred LINQ",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q15",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about methods is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "void methods cannot provide a result value"
+        },
+        {
+          "id": "B",
+          "text": "methods declare parameter and return contracts"
+        },
+        {
+          "id": "C",
+          "text": "return domain data instead of only printing"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "void methods cannot provide a result value. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q16",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about argument passing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "object mutation can be visible through copied references"
+        },
+        {
+          "id": "B",
+          "text": "parameters receive values unless ref out or in is explicit"
+        },
+        {
+          "id": "C",
+          "text": "use ordinary returns for most output"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "object mutation can be visible through copied references. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "argument passing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q17",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about records is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "records do not automatically validate domain invariants"
+        },
+        {
+          "id": "B",
+          "text": "records provide value-oriented equality by default"
+        },
+        {
+          "id": "C",
+          "text": "use records for immutable data-like models"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "records do not automatically validate domain invariants. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "records",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q18",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about encapsulation is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "public setters can allow invalid state"
+        },
+        {
+          "id": "B",
+          "text": "private state changes through invariant-preserving methods"
+        },
+        {
+          "id": "C",
+          "text": "restrict setters when updates need validation"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "public setters can allow invalid state. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "encapsulation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q19",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about async Task is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "async void cannot be normally awaited or composed"
+        },
+        {
+          "id": "B",
+          "text": "Task represents asynchronous completion or a future result"
+        },
+        {
+          "id": "C",
+          "text": "await asynchronous I/O and propagate Task"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "async void cannot be normally awaited or composed. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "async Task",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "mock-csharp-beginner-test-03-q20",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about JSON validation is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "successful deserialization does not prove domain validity"
+        },
+        {
+          "id": "B",
+          "text": "deserialized data remains external input"
+        },
+        {
+          "id": "C",
+          "text": "validate null ranges and required fields after deserialization"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "successful deserialization does not prove domain validity. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "JSON validation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.317Z",
+  "updatedAt": "2026-10-31T13:08:48.317Z"
+}

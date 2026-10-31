@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-typescript-main",
+    "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for TypeScript.",
+    "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "typescript-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "TypeScript Setup and Type Inference",
+      "Primitive Types, Unions, and Narrowing",
+      "Object Types, Interfaces, and Optional Properties",
+      "Typed Arrays and Function Contracts",
+      "Generics and Standard Utility Types",
+      "Runtime Validation and a Typed Progress Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

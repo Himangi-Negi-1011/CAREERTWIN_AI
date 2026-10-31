@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "Go",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "Go Foundations: Explicit Errors to a Race-Safe Progress Tracker",
+  "description": "A beginner Go course covering modules, packages, types, explicit errors, control flow, slices, maps, functions, structs, interfaces, goroutines, channels, context, JSON, and a race-tested capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Build, format, diagnose, and test Go modules",
+    "Use explicit errors, control flow, slices, maps, functions, structs, methods, and interfaces",
+    "Build a context-aware, race-tested progress tracker with validated persistence"
+  ],
+  "modules": [
+    {
+      "stableKey": "go-beginner-module-1",
+      "title": "Toolchain, Types, Errors, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "go-toolchain-packages",
+          "title": "Go Toolchain, Modules, and Packages",
+          "summary": "Use modules, packages, formatting, compilation, tests, and diagnostics in a repeatable Go workflow.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Go Toolchain, Modules, and Packages",
+            "Test the contract with build and runtime evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "go-toolchain-packages-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A Go module records an import path and dependency requirements in `go.mod`. Create one with `go mod init`, format source with `gofmt`, run packages with `go run`, build with `go build`, and test with `go test`. Every source file begins with a package declaration; executable programs use package `main` and a `main` function. Imported names start with the package qualifier. Go rejects unused imports and local variables, keeping builds explicit. Read the earliest relevant diagnostic, correct one cause, format, and rebuild rather than running stale output."
+            },
+            {
+              "stableKey": "go-toolchain-packages-example",
+              "type": "code",
+              "heading": "Worked Go example",
+              "bodyMarkdown": "Predict diagnostics and output, format and build, then run and compare evidence.",
+              "codeLanguage": "go",
+              "codeSource": "package main\nimport \"fmt\"\nfunc main() {\n    lessons := 6\n    fmt.Printf(\"Go: %d lessons\\n\", lessons)\n}",
+              "expectedOutput": "Go: 6 lessons"
+            },
+            {
+              "stableKey": "go-toolchain-packages-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "go-toolchain-packages-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a module and main package, run and build it, introduce an unused import and a missing identifier, then explain and correct both diagnostics. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+              "expectedOutcomes": [
+                "Formatted compiling Go source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "go-toolchain-packages-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "go-beg-lesson-1-01-modules",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes modules in Go?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "modules"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "modules define an import path and dependency boundary"
+                  },
+                  {
+                    "key": "B",
+                    "text": "initialize and commit go.mod"
+                  },
+                  {
+                    "key": "C",
+                    "text": "changing module identity breaks import assumptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "modules define an import path and dependency boundary. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-1-02-gofmt",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes gofmt in Go?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "gofmt"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "gofmt applies canonical source formatting"
+                  },
+                  {
+                    "key": "B",
+                    "text": "format before review and tests"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting conventions create needless drift"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "gofmt applies canonical source formatting. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-1-03-packages",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes packages in Go?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "packages"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a package groups compiled declarations"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use package main with main for executables"
+                  },
+                  {
+                    "key": "C",
+                    "text": "imported package names must be used"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a package groups compiled declarations. Confirm with gofmt, go test, and a focused program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A Go module records an import path and dependency requirements in `go.mod`."
+          ],
+          "commonMistakes": [
+            "changing module identity breaks import assumptions",
+            "manual formatting conventions create needless drift"
+          ],
+          "interviewQuestions": [
+            "Explain modules with a minimal Go example."
+          ]
+        },
+        {
+          "stableKey": "go-types-input-errors",
+          "title": "Types, Parsing, and Explicit Errors",
+          "summary": "Use declarations, zero values, numeric conversion, strings, parsing, multiple returns, and explicit error handling.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Types, Parsing, and Explicit Errors",
+            "Test the contract with build and runtime evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "go-types-input-errors-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Go is statically typed and gives every variable a zero value. Short declaration `:=` is for function bodies and must introduce at least one new name. Numeric conversions are explicit and may still lose range or precision, so validate before converting. `strconv.Atoi` and related functions return a value and an error. Handle the error before using the value; do not discard it merely to shorten code. Wrap errors with `%w` when adding context so callers can inspect the original cause. Reserve panics for unrecoverable programmer or initialization failures, not normal invalid input."
+            },
+            {
+              "stableKey": "go-types-input-errors-example",
+              "type": "code",
+              "heading": "Worked Go example",
+              "bodyMarkdown": "Predict diagnostics and output, format and build, then run and compare evidence.",
+              "codeLanguage": "go",
+              "codeSource": "package main\nimport (\"fmt\"; \"strconv\")\nfunc main(){ age, err := strconv.Atoi(\"19\"); if err != nil { fmt.Println(err); return }; fmt.Println(age+1) }",
+              "expectedOutput": "20"
+            },
+            {
+              "stableKey": "go-types-input-errors-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "go-types-input-errors-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Parse weekly study hours, return contextual errors for invalid or negative input, and test zero, malformed text, and an excessive value. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+              "expectedOutcomes": [
+                "Formatted compiling Go source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "go-types-input-errors-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "go-beg-lesson-2-01-modules",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of modules?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "modules"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "initialize and commit go.mod"
+                  },
+                  {
+                    "key": "B",
+                    "text": "modules define an import path and dependency boundary"
+                  },
+                  {
+                    "key": "C",
+                    "text": "changing module identity breaks import assumptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "initialize and commit go.mod. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-2-02-gofmt",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of gofmt?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "gofmt"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "format before review and tests"
+                  },
+                  {
+                    "key": "B",
+                    "text": "gofmt applies canonical source formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting conventions create needless drift"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "format before review and tests. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-2-03-packages",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of packages?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "packages"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use package main with main for executables"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a package groups compiled declarations"
+                  },
+                  {
+                    "key": "C",
+                    "text": "imported package names must be used"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use package main with main for executables. Confirm with gofmt, go test, and a focused program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Go is statically typed and gives every variable a zero value."
+          ],
+          "commonMistakes": [
+            "zero does not always satisfy domain invariants",
+            "it is unavailable at package scope"
+          ],
+          "interviewQuestions": [
+            "Explain zero values with a minimal Go example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "go-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "go-beg-module-1-01-modules",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of modules?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "modules"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "initialize and commit go.mod"
+              },
+              {
+                "key": "B",
+                "text": "modules define an import path and dependency boundary"
+              },
+              {
+                "key": "C",
+                "text": "changing module identity breaks import assumptions"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "initialize and commit go.mod. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-1-02-gofmt",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of gofmt?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "gofmt"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "format before review and tests"
+              },
+              {
+                "key": "B",
+                "text": "gofmt applies canonical source formatting"
+              },
+              {
+                "key": "C",
+                "text": "manual formatting conventions create needless drift"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "format before review and tests. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-1-03-packages",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of packages?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "packages"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use package main with main for executables"
+              },
+              {
+                "key": "B",
+                "text": "a package groups compiled declarations"
+              },
+              {
+                "key": "C",
+                "text": "imported package names must be used"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use package main with main for executables. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-1-04-zero-values",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of zero values?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "zero values"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "design useful zero values where practical"
+              },
+              {
+                "key": "B",
+                "text": "every declared variable receives a type-specific zero value"
+              },
+              {
+                "key": "C",
+                "text": "zero does not always satisfy domain invariants"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "design useful zero values where practical. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-1-05-short-declarations",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of short declarations?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "short declarations"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use it for clear local initialization"
+              },
+              {
+                "key": "B",
+                "text": ":= declares at least one new local name"
+              },
+              {
+                "key": "C",
+                "text": "it is unavailable at package scope"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use it for clear local initialization. Confirm with gofmt, go test, and a focused program."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "go-beginner-module-2",
+      "title": "Slices, Maps, Functions, and Domain Models",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "go-control-flow",
+          "title": "Control Flow, Switches, and Boundaries",
+          "summary": "Write clear decisions and repetition using if, switch, for, short statements, boolean operators, and boundary tests.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Control Flow, Switches, and Boundaries",
+            "Test the contract with build and runtime evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "go-control-flow-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Go uses `if`, `switch`, and one looping construct, `for`. Conditions do not use parentheses and must be boolean. `&&` and `||` short-circuit. An `if` can include a short initialization whose names remain scoped to its branches. Switch cases break automatically unless explicit `fallthrough` is used; conditionless switch can express ranges. Range loops yield index and value copies. Ensure every loop progresses toward termination and test immediately below, at, and above each threshold."
+            },
+            {
+              "stableKey": "go-control-flow-example",
+              "type": "code",
+              "heading": "Worked Go example",
+              "bodyMarkdown": "Predict diagnostics and output, format and build, then run and compare evidence.",
+              "codeLanguage": "go",
+              "codeSource": "package main\nimport \"fmt\"\nfunc main(){ score:=72; submitted:=true; if score>=0 && score<=100 && submitted { fmt.Println(\"recorded\") } else { fmt.Println(\"review input\") } }",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "go-control-flow-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "go-control-flow-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a 0\u2013100 grade classifier with if or switch, reject invalid values, and test every grade boundary. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+              "expectedOutcomes": [
+                "Formatted compiling Go source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "go-control-flow-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "go-beg-lesson-3-01-modules",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about modules is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "modules"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "changing module identity breaks import assumptions"
+                  },
+                  {
+                    "key": "B",
+                    "text": "modules define an import path and dependency boundary"
+                  },
+                  {
+                    "key": "C",
+                    "text": "initialize and commit go.mod"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "changing module identity breaks import assumptions. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-3-02-gofmt",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about gofmt is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "gofmt"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "manual formatting conventions create needless drift"
+                  },
+                  {
+                    "key": "B",
+                    "text": "gofmt applies canonical source formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "format before review and tests"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "manual formatting conventions create needless drift. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-3-03-packages",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about packages is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "packages"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "imported package names must be used"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a package groups compiled declarations"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use package main with main for executables"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "imported package names must be used. Confirm with gofmt, go test, and a focused program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Go uses `if`, `switch`, and one looping construct, `for`."
+          ],
+          "commonMistakes": [
+            "formatting without percent-w prevents errors.Is traversal",
+            "bitwise operators are not logical short circuit"
+          ],
+          "interviewQuestions": [
+            "Explain error wrapping with a minimal Go example."
+          ]
+        },
+        {
+          "stableKey": "go-slices-maps",
+          "title": "Arrays, Slices, Maps, and Iteration",
+          "summary": "Use arrays, slices, append, capacity, copying, maps, comma-ok lookup, range, and ownership-aware mutation.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Arrays, Slices, Maps, and Iteration",
+            "Test the contract with build and runtime evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "go-slices-maps-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Arrays have fixed length and are values. A slice is a descriptor over an underlying array with length and capacity. `append` may reuse the current array or allocate a new one, so retain its returned slice. Sub-slices can keep a large backing array alive and can share mutable elements. Use `copy` when an independent snapshot is required. Maps provide key-value lookup; reading an absent key returns the value type's zero value, so use the comma-ok form when absence differs from a stored zero. Never write to a nil map."
+            },
+            {
+              "stableKey": "go-slices-maps-example",
+              "type": "code",
+              "heading": "Worked Go example",
+              "bodyMarkdown": "Predict diagnostics and output, format and build, then run and compare evidence.",
+              "codeLanguage": "go",
+              "codeSource": "package main\nimport \"fmt\"\nfunc main(){ scores:=[]int{70,82,91}; total:=0; for _,score:=range scores { total+=score }; fmt.Printf(\"%.1f\\n\",float64(total)/float64(len(scores))) }",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "go-slices-maps-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "go-slices-maps-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process a slice of study minutes, reject negatives, calculate summaries, and demonstrate an independent copy versus a shared sub-slice. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+              "expectedOutcomes": [
+                "Formatted compiling Go source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "go-slices-maps-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "go-beg-lesson-4-01-modules",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes modules in Go?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "modules"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "modules define an import path and dependency boundary"
+                  },
+                  {
+                    "key": "B",
+                    "text": "initialize and commit go.mod"
+                  },
+                  {
+                    "key": "C",
+                    "text": "changing module identity breaks import assumptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "modules define an import path and dependency boundary. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-4-02-gofmt",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes gofmt in Go?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "gofmt"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "gofmt applies canonical source formatting"
+                  },
+                  {
+                    "key": "B",
+                    "text": "format before review and tests"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting conventions create needless drift"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "gofmt applies canonical source formatting. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-4-03-packages",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes packages in Go?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "packages"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a package groups compiled declarations"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use package main with main for executables"
+                  },
+                  {
+                    "key": "C",
+                    "text": "imported package names must be used"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a package groups compiled declarations. Confirm with gofmt, go test, and a focused program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Arrays have fixed length and are values."
+          ],
+          "commonMistakes": [
+            "fallthrough must be explicit and is often avoidable",
+            "passing an array copies all elements"
+          ],
+          "interviewQuestions": [
+            "Explain switch with a minimal Go example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "go-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "go-beg-module-2-06-errors",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about errors is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "errors"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "discarding errors hides failure state"
+              },
+              {
+                "key": "B",
+                "text": "errors are ordinary returned values"
+              },
+              {
+                "key": "C",
+                "text": "check errors before consuming dependent results"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "discarding errors hides failure state. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-2-07-error-wrapping",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about error wrapping is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "error wrapping"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "formatting without percent-w prevents errors.Is traversal"
+              },
+              {
+                "key": "B",
+                "text": "percent-w preserves an underlying error while adding context"
+              },
+              {
+                "key": "C",
+                "text": "wrap errors at meaningful boundaries"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "formatting without percent-w prevents errors.Is traversal. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-2-08-short-circuit",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about short circuit is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "short circuit"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "bitwise operators are not logical short circuit"
+              },
+              {
+                "key": "B",
+                "text": "logical operators may skip the right operand"
+              },
+              {
+                "key": "C",
+                "text": "put guards before dependent operations"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "bitwise operators are not logical short circuit. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-2-09-for-loops",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about for loops is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "for loops"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "range values are iteration copies"
+              },
+              {
+                "key": "B",
+                "text": "for expresses all Go loop forms"
+              },
+              {
+                "key": "C",
+                "text": "ensure state advances toward termination"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "range values are iteration copies. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-2-10-switch",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about switch is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "switch"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "fallthrough must be explicit and is often avoidable"
+              },
+              {
+                "key": "B",
+                "text": "switch cases stop automatically"
+              },
+              {
+                "key": "C",
+                "text": "use conditionless switch for readable ranges"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "fallthrough must be explicit and is often avoidable. Confirm with gofmt, go test, and a focused program."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "go-beginner-module-3",
+      "title": "Concurrency, Persistence, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "go-functions-structs-interfaces",
+          "title": "Functions, Structs, Methods, and Interfaces",
+          "summary": "Design focused functions and domain models using multiple returns, pointers, methods, constructors, embedding, and small interfaces.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Functions, Structs, Methods, and Interfaces",
+            "Test the contract with build and runtime evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "go-functions-structs-interfaces-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Functions can return multiple values, commonly a result and error. Go passes arguments by value; a pointer allows deliberate mutation of the pointed object but does not convey ownership. Structs group fields, and methods attach behavior to a named type. Keep fields unexported when updates must preserve invariants, and provide a constructor that validates initial state. Interfaces are satisfied implicitly by method sets. Define small interfaces at the consumer boundary and accept concrete types until substitution is actually useful. A nil interface and an interface containing a typed nil pointer are different."
+            },
+            {
+              "stableKey": "go-functions-structs-interfaces-example",
+              "type": "code",
+              "heading": "Worked Go example",
+              "bodyMarkdown": "Predict diagnostics and output, format and build, then run and compare evidence.",
+              "codeLanguage": "go",
+              "codeSource": "package main\nimport \"fmt\"\ntype Progress struct{ percent int }\nfunc NewProgress(p int)(*Progress,error){ if p<0||p>100{return nil,fmt.Errorf(\"percent: %d\",p)}; return &Progress{p},nil }\nfunc (p Progress) Percent()int{return p.percent}\nfunc main(){p,_:=NewProgress(75);fmt.Println(p.Percent())}",
+              "expectedOutput": "75"
+            },
+            {
+              "stableKey": "go-functions-structs-interfaces-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "go-functions-structs-interfaces-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a Progress type with validated construction and update methods, then test value and pointer receiver behavior plus invalid states. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+              "expectedOutcomes": [
+                "Formatted compiling Go source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "go-functions-structs-interfaces-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "go-beg-lesson-5-01-modules",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of modules?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "modules"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "initialize and commit go.mod"
+                  },
+                  {
+                    "key": "B",
+                    "text": "modules define an import path and dependency boundary"
+                  },
+                  {
+                    "key": "C",
+                    "text": "changing module identity breaks import assumptions"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "initialize and commit go.mod. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-5-02-gofmt",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of gofmt?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "gofmt"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "format before review and tests"
+                  },
+                  {
+                    "key": "B",
+                    "text": "gofmt applies canonical source formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting conventions create needless drift"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "format before review and tests. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-5-03-packages",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of packages?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "packages"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use package main with main for executables"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a package groups compiled declarations"
+                  },
+                  {
+                    "key": "C",
+                    "text": "imported package names must be used"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use package main with main for executables. Confirm with gofmt, go test, and a focused program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Functions can return multiple values, commonly a result and error."
+          ],
+          "commonMistakes": [
+            "writing to a nil map panics",
+            "assigning a slice copies only its descriptor"
+          ],
+          "interviewQuestions": [
+            "Explain maps with a minimal Go example."
+          ]
+        },
+        {
+          "stableKey": "go-concurrency-project",
+          "title": "Goroutines, Channels, Context, and a Tracker",
+          "summary": "Combine goroutines, channels, synchronization, context cancellation, JSON, files, and tests in a race-safe persistent tracker.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Goroutines, Channels, Context, and a Tracker",
+            "Test the contract with build and runtime evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "go-concurrency-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A goroutine runs concurrently and must have a defined completion and cancellation path. Channels communicate typed values and can coordinate ownership, but they are not required for every shared value. Only a sender should close a channel, and closing signals that no more values will arrive. Protect shared mutable state with confinement or synchronization and run tests with `go test -race`. `context.Context` carries cancellation and deadlines across call boundaries; pass it explicitly and do not store it in a struct. Validate decoded JSON before replacing trusted state and write files through a controlled boundary."
+            },
+            {
+              "stableKey": "go-concurrency-project-example",
+              "type": "code",
+              "heading": "Worked Go example",
+              "bodyMarkdown": "Predict diagnostics and output, format and build, then run and compare evidence.",
+              "codeLanguage": "go",
+              "codeSource": "package main\nimport (\"fmt\";\"sync\")\nfunc main(){ var wg sync.WaitGroup; results:=make(chan int,2); for _,n:=range []int{70,100}{wg.Add(1);go func(v int){defer wg.Done();results<-v}(n)}; wg.Wait();close(results);for v:=range results{fmt.Println(v)} }",
+              "expectedOutput": "70\n100"
+            },
+            {
+              "stableKey": "go-concurrency-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "go-concurrency-project-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a race-tested JSON progress tracker with validated models, context-aware saving, worker completion, error propagation, and at least ten tests. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+              "expectedOutcomes": [
+                "Formatted compiling Go source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "go-concurrency-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "go-beg-lesson-6-01-modules",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about modules is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "modules"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "changing module identity breaks import assumptions"
+                  },
+                  {
+                    "key": "B",
+                    "text": "modules define an import path and dependency boundary"
+                  },
+                  {
+                    "key": "C",
+                    "text": "initialize and commit go.mod"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "changing module identity breaks import assumptions. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-6-02-gofmt",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about gofmt is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "gofmt"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "manual formatting conventions create needless drift"
+                  },
+                  {
+                    "key": "B",
+                    "text": "gofmt applies canonical source formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "format before review and tests"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "manual formatting conventions create needless drift. Confirm with gofmt, go test, and a focused program."
+              },
+              {
+                "stableId": "go-beg-lesson-6-03-packages",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about packages is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "packages"
+                ],
+                "objectiveIds": [
+                  "go-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "imported package names must be used"
+                  },
+                  {
+                    "key": "B",
+                    "text": "a package groups compiled declarations"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use package main with main for executables"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs the program"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "imported package names must be used. Confirm with gofmt, go test, and a focused program."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A goroutine runs concurrently and must have a defined completion and cancellation path."
+          ],
+          "commonMistakes": [
+            "mixing receiver styles can alter method sets",
+            "typed nil inside an interface can make the interface non-nil"
+          ],
+          "interviewQuestions": [
+            "Explain methods with a minimal Go example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "go-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "go-beg-module-3-11-arrays",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes arrays in Go?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "arrays"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "arrays have fixed length as part of their type"
+              },
+              {
+                "key": "B",
+                "text": "use them for truly fixed value-sized data"
+              },
+              {
+                "key": "C",
+                "text": "passing an array copies all elements"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "arrays have fixed length as part of their type. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-3-12-slices",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes slices in Go?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "slices"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "slices describe a backing array region"
+              },
+              {
+                "key": "B",
+                "text": "retain append returned value"
+              },
+              {
+                "key": "C",
+                "text": "sub-slices may share mutable storage"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "slices describe a backing array region. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-3-13-maps",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes maps in Go?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "maps"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "maps return a zero value for absent keys"
+              },
+              {
+                "key": "B",
+                "text": "use comma-ok when absence matters"
+              },
+              {
+                "key": "C",
+                "text": "writing to a nil map panics"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "maps return a zero value for absent keys. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-3-14-copy",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes copy in Go?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "copy"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "copy transfers elements between slices"
+              },
+              {
+                "key": "B",
+                "text": "copy when an independent snapshot is needed"
+              },
+              {
+                "key": "C",
+                "text": "assigning a slice copies only its descriptor"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "copy transfers elements between slices. Confirm with gofmt, go test, and a focused program."
+          },
+          {
+            "stableId": "go-beg-module-3-15-multiple-returns",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes multiple returns in Go?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "multiple returns"
+            ],
+            "objectiveIds": [
+              "go-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "functions can return several typed values"
+              },
+              {
+                "key": "B",
+                "text": "return result and error together"
+              },
+              {
+                "key": "C",
+                "text": "using a result after non-nil error may violate its contract"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs the program"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "functions can return several typed values. Confirm with gofmt, go test, and a focused program."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "go-beginner-mock-1",
+      "title": "Go Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "go-beg-mock-1-01-modules",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes modules in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "modules"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "modules define an import path and dependency boundary"
+            },
+            {
+              "key": "B",
+              "text": "initialize and commit go.mod"
+            },
+            {
+              "key": "C",
+              "text": "changing module identity breaks import assumptions"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "modules define an import path and dependency boundary. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-02-gofmt",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes gofmt in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "gofmt"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "gofmt applies canonical source formatting"
+            },
+            {
+              "key": "B",
+              "text": "format before review and tests"
+            },
+            {
+              "key": "C",
+              "text": "manual formatting conventions create needless drift"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "gofmt applies canonical source formatting. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-03-packages",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes packages in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "packages"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a package groups compiled declarations"
+            },
+            {
+              "key": "B",
+              "text": "use package main with main for executables"
+            },
+            {
+              "key": "C",
+              "text": "imported package names must be used"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a package groups compiled declarations. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-04-zero-values",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes zero values in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "zero values"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "every declared variable receives a type-specific zero value"
+            },
+            {
+              "key": "B",
+              "text": "design useful zero values where practical"
+            },
+            {
+              "key": "C",
+              "text": "zero does not always satisfy domain invariants"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "every declared variable receives a type-specific zero value. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-05-short-declarations",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes short declarations in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short declarations"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": ":= declares at least one new local name"
+            },
+            {
+              "key": "B",
+              "text": "use it for clear local initialization"
+            },
+            {
+              "key": "C",
+              "text": "it is unavailable at package scope"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": ":= declares at least one new local name. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-06-errors",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes errors in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "errors"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "errors are ordinary returned values"
+            },
+            {
+              "key": "B",
+              "text": "check errors before consuming dependent results"
+            },
+            {
+              "key": "C",
+              "text": "discarding errors hides failure state"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "errors are ordinary returned values. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-07-error-wrapping",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes error wrapping in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "error wrapping"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "percent-w preserves an underlying error while adding context"
+            },
+            {
+              "key": "B",
+              "text": "wrap errors at meaningful boundaries"
+            },
+            {
+              "key": "C",
+              "text": "formatting without percent-w prevents errors.Is traversal"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "percent-w preserves an underlying error while adding context. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes short circuit in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "B",
+              "text": "put guards before dependent operations"
+            },
+            {
+              "key": "C",
+              "text": "bitwise operators are not logical short circuit"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "logical operators may skip the right operand. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-09-for-loops",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes for loops in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for loops"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "for expresses all Go loop forms"
+            },
+            {
+              "key": "B",
+              "text": "ensure state advances toward termination"
+            },
+            {
+              "key": "C",
+              "text": "range values are iteration copies"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "for expresses all Go loop forms. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-10-switch",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes switch in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "switch cases stop automatically"
+            },
+            {
+              "key": "B",
+              "text": "use conditionless switch for readable ranges"
+            },
+            {
+              "key": "C",
+              "text": "fallthrough must be explicit and is often avoidable"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "switch cases stop automatically. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-11-arrays",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes arrays in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "arrays have fixed length as part of their type"
+            },
+            {
+              "key": "B",
+              "text": "use them for truly fixed value-sized data"
+            },
+            {
+              "key": "C",
+              "text": "passing an array copies all elements"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "arrays have fixed length as part of their type. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-12-slices",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes slices in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "slices"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "slices describe a backing array region"
+            },
+            {
+              "key": "B",
+              "text": "retain append returned value"
+            },
+            {
+              "key": "C",
+              "text": "sub-slices may share mutable storage"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "slices describe a backing array region. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-13-maps",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes maps in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "maps"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "maps return a zero value for absent keys"
+            },
+            {
+              "key": "B",
+              "text": "use comma-ok when absence matters"
+            },
+            {
+              "key": "C",
+              "text": "writing to a nil map panics"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "maps return a zero value for absent keys. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-14-copy",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes copy in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "copy"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "copy transfers elements between slices"
+            },
+            {
+              "key": "B",
+              "text": "copy when an independent snapshot is needed"
+            },
+            {
+              "key": "C",
+              "text": "assigning a slice copies only its descriptor"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "copy transfers elements between slices. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-15-multiple-returns",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes multiple returns in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "multiple returns"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "functions can return several typed values"
+            },
+            {
+              "key": "B",
+              "text": "return result and error together"
+            },
+            {
+              "key": "C",
+              "text": "using a result after non-nil error may violate its contract"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "functions can return several typed values. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-16-methods",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes methods in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "methods attach behavior to named receiver types"
+            },
+            {
+              "key": "B",
+              "text": "choose pointer receivers for mutation or consistency"
+            },
+            {
+              "key": "C",
+              "text": "mixing receiver styles can alter method sets"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "methods attach behavior to named receiver types. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-17-interfaces",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes interfaces in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "interfaces are satisfied implicitly"
+            },
+            {
+              "key": "B",
+              "text": "define small interfaces where consumed"
+            },
+            {
+              "key": "C",
+              "text": "typed nil inside an interface can make the interface non-nil"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "interfaces are satisfied implicitly. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-18-goroutines",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes goroutines in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "goroutines"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "goroutines execute functions concurrently"
+            },
+            {
+              "key": "B",
+              "text": "define completion cancellation and error paths"
+            },
+            {
+              "key": "C",
+              "text": "starting a goroutine without lifecycle control can leak work"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "goroutines execute functions concurrently. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-19-channels",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes channels in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "channels"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "channels communicate typed values"
+            },
+            {
+              "key": "B",
+              "text": "let senders close after all sends"
+            },
+            {
+              "key": "C",
+              "text": "sending on a closed channel panics"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "channels communicate typed values. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-1-20-context",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes context in Go?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "context"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "context carries cancellation and deadlines"
+            },
+            {
+              "key": "B",
+              "text": "pass context as the first parameter across boundaries"
+            },
+            {
+              "key": "C",
+              "text": "storing context in a struct obscures request lifetime"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "context carries cancellation and deadlines. Confirm with gofmt, go test, and a focused program."
+        }
+      ]
+    },
+    {
+      "stableKey": "go-beginner-mock-2",
+      "title": "Go Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "go-beg-mock-2-01-modules",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of modules?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "modules"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "initialize and commit go.mod"
+            },
+            {
+              "key": "B",
+              "text": "modules define an import path and dependency boundary"
+            },
+            {
+              "key": "C",
+              "text": "changing module identity breaks import assumptions"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "initialize and commit go.mod. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-02-gofmt",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of gofmt?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "gofmt"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "format before review and tests"
+            },
+            {
+              "key": "B",
+              "text": "gofmt applies canonical source formatting"
+            },
+            {
+              "key": "C",
+              "text": "manual formatting conventions create needless drift"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "format before review and tests. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-03-packages",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of packages?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "packages"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use package main with main for executables"
+            },
+            {
+              "key": "B",
+              "text": "a package groups compiled declarations"
+            },
+            {
+              "key": "C",
+              "text": "imported package names must be used"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use package main with main for executables. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-04-zero-values",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of zero values?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "zero values"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "design useful zero values where practical"
+            },
+            {
+              "key": "B",
+              "text": "every declared variable receives a type-specific zero value"
+            },
+            {
+              "key": "C",
+              "text": "zero does not always satisfy domain invariants"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "design useful zero values where practical. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-05-short-declarations",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of short declarations?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short declarations"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it for clear local initialization"
+            },
+            {
+              "key": "B",
+              "text": ":= declares at least one new local name"
+            },
+            {
+              "key": "C",
+              "text": "it is unavailable at package scope"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it for clear local initialization. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-06-errors",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of errors?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "errors"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check errors before consuming dependent results"
+            },
+            {
+              "key": "B",
+              "text": "errors are ordinary returned values"
+            },
+            {
+              "key": "C",
+              "text": "discarding errors hides failure state"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check errors before consuming dependent results. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-07-error-wrapping",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of error wrapping?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "error wrapping"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "wrap errors at meaningful boundaries"
+            },
+            {
+              "key": "B",
+              "text": "percent-w preserves an underlying error while adding context"
+            },
+            {
+              "key": "C",
+              "text": "formatting without percent-w prevents errors.Is traversal"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "wrap errors at meaningful boundaries. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of short circuit?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "put guards before dependent operations"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "bitwise operators are not logical short circuit"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "put guards before dependent operations. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-09-for-loops",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of for loops?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for loops"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ensure state advances toward termination"
+            },
+            {
+              "key": "B",
+              "text": "for expresses all Go loop forms"
+            },
+            {
+              "key": "C",
+              "text": "range values are iteration copies"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ensure state advances toward termination. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-10-switch",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of switch?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use conditionless switch for readable ranges"
+            },
+            {
+              "key": "B",
+              "text": "switch cases stop automatically"
+            },
+            {
+              "key": "C",
+              "text": "fallthrough must be explicit and is often avoidable"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use conditionless switch for readable ranges. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-11-arrays",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of arrays?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use them for truly fixed value-sized data"
+            },
+            {
+              "key": "B",
+              "text": "arrays have fixed length as part of their type"
+            },
+            {
+              "key": "C",
+              "text": "passing an array copies all elements"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use them for truly fixed value-sized data. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-12-slices",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of slices?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "slices"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "retain append returned value"
+            },
+            {
+              "key": "B",
+              "text": "slices describe a backing array region"
+            },
+            {
+              "key": "C",
+              "text": "sub-slices may share mutable storage"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "retain append returned value. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-13-maps",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of maps?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "maps"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use comma-ok when absence matters"
+            },
+            {
+              "key": "B",
+              "text": "maps return a zero value for absent keys"
+            },
+            {
+              "key": "C",
+              "text": "writing to a nil map panics"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use comma-ok when absence matters. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-14-copy",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of copy?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "copy"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "copy when an independent snapshot is needed"
+            },
+            {
+              "key": "B",
+              "text": "copy transfers elements between slices"
+            },
+            {
+              "key": "C",
+              "text": "assigning a slice copies only its descriptor"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "copy when an independent snapshot is needed. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-15-multiple-returns",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of multiple returns?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "multiple returns"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return result and error together"
+            },
+            {
+              "key": "B",
+              "text": "functions can return several typed values"
+            },
+            {
+              "key": "C",
+              "text": "using a result after non-nil error may violate its contract"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return result and error together. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-16-methods",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of methods?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "choose pointer receivers for mutation or consistency"
+            },
+            {
+              "key": "B",
+              "text": "methods attach behavior to named receiver types"
+            },
+            {
+              "key": "C",
+              "text": "mixing receiver styles can alter method sets"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "choose pointer receivers for mutation or consistency. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-17-interfaces",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of interfaces?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "define small interfaces where consumed"
+            },
+            {
+              "key": "B",
+              "text": "interfaces are satisfied implicitly"
+            },
+            {
+              "key": "C",
+              "text": "typed nil inside an interface can make the interface non-nil"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "define small interfaces where consumed. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-18-goroutines",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of goroutines?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "goroutines"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "define completion cancellation and error paths"
+            },
+            {
+              "key": "B",
+              "text": "goroutines execute functions concurrently"
+            },
+            {
+              "key": "C",
+              "text": "starting a goroutine without lifecycle control can leak work"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "define completion cancellation and error paths. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-19-channels",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of channels?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "channels"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "let senders close after all sends"
+            },
+            {
+              "key": "B",
+              "text": "channels communicate typed values"
+            },
+            {
+              "key": "C",
+              "text": "sending on a closed channel panics"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "let senders close after all sends. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-2-20-context",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of context?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "context"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "pass context as the first parameter across boundaries"
+            },
+            {
+              "key": "B",
+              "text": "context carries cancellation and deadlines"
+            },
+            {
+              "key": "C",
+              "text": "storing context in a struct obscures request lifetime"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "pass context as the first parameter across boundaries. Confirm with gofmt, go test, and a focused program."
+        }
+      ]
+    },
+    {
+      "stableKey": "go-beginner-mock-3",
+      "title": "Go Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "go-beg-mock-3-01-modules",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about modules is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "modules"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "changing module identity breaks import assumptions"
+            },
+            {
+              "key": "B",
+              "text": "modules define an import path and dependency boundary"
+            },
+            {
+              "key": "C",
+              "text": "initialize and commit go.mod"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "changing module identity breaks import assumptions. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-02-gofmt",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about gofmt is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "gofmt"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "manual formatting conventions create needless drift"
+            },
+            {
+              "key": "B",
+              "text": "gofmt applies canonical source formatting"
+            },
+            {
+              "key": "C",
+              "text": "format before review and tests"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "manual formatting conventions create needless drift. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-03-packages",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about packages is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "packages"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "imported package names must be used"
+            },
+            {
+              "key": "B",
+              "text": "a package groups compiled declarations"
+            },
+            {
+              "key": "C",
+              "text": "use package main with main for executables"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "imported package names must be used. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-04-zero-values",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about zero values is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "zero values"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "zero does not always satisfy domain invariants"
+            },
+            {
+              "key": "B",
+              "text": "every declared variable receives a type-specific zero value"
+            },
+            {
+              "key": "C",
+              "text": "design useful zero values where practical"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "zero does not always satisfy domain invariants. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-05-short-declarations",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about short declarations is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short declarations"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "it is unavailable at package scope"
+            },
+            {
+              "key": "B",
+              "text": ":= declares at least one new local name"
+            },
+            {
+              "key": "C",
+              "text": "use it for clear local initialization"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "it is unavailable at package scope. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-06-errors",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about errors is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "errors"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "discarding errors hides failure state"
+            },
+            {
+              "key": "B",
+              "text": "errors are ordinary returned values"
+            },
+            {
+              "key": "C",
+              "text": "check errors before consuming dependent results"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "discarding errors hides failure state. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-07-error-wrapping",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about error wrapping is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "error wrapping"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "formatting without percent-w prevents errors.Is traversal"
+            },
+            {
+              "key": "B",
+              "text": "percent-w preserves an underlying error while adding context"
+            },
+            {
+              "key": "C",
+              "text": "wrap errors at meaningful boundaries"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "formatting without percent-w prevents errors.Is traversal. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about short circuit is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "bitwise operators are not logical short circuit"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "put guards before dependent operations"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "bitwise operators are not logical short circuit. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-09-for-loops",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about for loops is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for loops"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "range values are iteration copies"
+            },
+            {
+              "key": "B",
+              "text": "for expresses all Go loop forms"
+            },
+            {
+              "key": "C",
+              "text": "ensure state advances toward termination"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "range values are iteration copies. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-10-switch",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about switch is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "fallthrough must be explicit and is often avoidable"
+            },
+            {
+              "key": "B",
+              "text": "switch cases stop automatically"
+            },
+            {
+              "key": "C",
+              "text": "use conditionless switch for readable ranges"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "fallthrough must be explicit and is often avoidable. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-11-arrays",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about arrays is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "passing an array copies all elements"
+            },
+            {
+              "key": "B",
+              "text": "arrays have fixed length as part of their type"
+            },
+            {
+              "key": "C",
+              "text": "use them for truly fixed value-sized data"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "passing an array copies all elements. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-12-slices",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about slices is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "slices"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "sub-slices may share mutable storage"
+            },
+            {
+              "key": "B",
+              "text": "slices describe a backing array region"
+            },
+            {
+              "key": "C",
+              "text": "retain append returned value"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "sub-slices may share mutable storage. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-13-maps",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about maps is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "maps"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "writing to a nil map panics"
+            },
+            {
+              "key": "B",
+              "text": "maps return a zero value for absent keys"
+            },
+            {
+              "key": "C",
+              "text": "use comma-ok when absence matters"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "writing to a nil map panics. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-14-copy",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about copy is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "copy"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assigning a slice copies only its descriptor"
+            },
+            {
+              "key": "B",
+              "text": "copy transfers elements between slices"
+            },
+            {
+              "key": "C",
+              "text": "copy when an independent snapshot is needed"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assigning a slice copies only its descriptor. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-15-multiple-returns",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about multiple returns is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "multiple returns"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using a result after non-nil error may violate its contract"
+            },
+            {
+              "key": "B",
+              "text": "functions can return several typed values"
+            },
+            {
+              "key": "C",
+              "text": "return result and error together"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using a result after non-nil error may violate its contract. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-16-methods",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about methods is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "mixing receiver styles can alter method sets"
+            },
+            {
+              "key": "B",
+              "text": "methods attach behavior to named receiver types"
+            },
+            {
+              "key": "C",
+              "text": "choose pointer receivers for mutation or consistency"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "mixing receiver styles can alter method sets. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-17-interfaces",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about interfaces is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "typed nil inside an interface can make the interface non-nil"
+            },
+            {
+              "key": "B",
+              "text": "interfaces are satisfied implicitly"
+            },
+            {
+              "key": "C",
+              "text": "define small interfaces where consumed"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "typed nil inside an interface can make the interface non-nil. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-18-goroutines",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about goroutines is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "goroutines"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "starting a goroutine without lifecycle control can leak work"
+            },
+            {
+              "key": "B",
+              "text": "goroutines execute functions concurrently"
+            },
+            {
+              "key": "C",
+              "text": "define completion cancellation and error paths"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "starting a goroutine without lifecycle control can leak work. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-19-channels",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about channels is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "channels"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "sending on a closed channel panics"
+            },
+            {
+              "key": "B",
+              "text": "channels communicate typed values"
+            },
+            {
+              "key": "C",
+              "text": "let senders close after all sends"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "sending on a closed channel panics. Confirm with gofmt, go test, and a focused program."
+        },
+        {
+          "stableId": "go-beg-mock-3-20-context",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about context is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "context"
+          ],
+          "objectiveIds": [
+            "go-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "storing context in a struct obscures request lifetime"
+            },
+            {
+              "key": "B",
+              "text": "context carries cancellation and deadlines"
+            },
+            {
+              "key": "C",
+              "text": "pass context as the first parameter across boundaries"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs the program"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "storing context in a struct obscures request lifetime. Confirm with gofmt, go test, and a focused program."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "go-beginner-capstone",
+    "title": "Race-Safe Persistent Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a Go progress tracker using validated unexported models, slices and maps, explicit wrapped errors, JSON persistence, context-aware operations, controlled goroutine lifecycles, race-safe state, and at least ten table-driven tests.",
+    "deliverables": [
+      "Go module source",
+      "Build and run instructions",
+      "Normal, failure, cancellation, and race test output",
+      "Ownership and goroutine lifecycle explanation"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "errors_and_model": 25,
+      "concurrency_and_persistence": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

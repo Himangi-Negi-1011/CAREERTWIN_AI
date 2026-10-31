@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries",
+  "skillName": "C Programming",
+  "moduleId": "mod-2-c-beginner-module-2",
+  "title": "Conditions, Operators, and Boundaries",
+  "summary": "Write explicit decisions using comparisons, logical operators, if/else, switch, and carefully tested boundaries.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Conditions, Operators, and Boundaries",
+    "Compile and test behavior with warnings enabled"
+  ],
+  "objectiveIds": [
+    "c-programming-obj-3",
+    "c-programming-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-sec-1",
+      "heading": "Core model",
+      "content": "In C, zero is false and nonzero is true, while relational and logical operators produce 0 or 1. `&&` and `||` short-circuit, which can guard a later expression such as division or pointer access. Assignment `=` and equality `==` are different; enable warnings and place intentional assignments outside conditions. Use `else if` for mutually exclusive ranges and `switch` for discrete integral cases. Every threshold needs tests below, at, and above it. Parenthesize mixed conditions when the intended grouping is not immediately obvious.",
+      "codeExamples": [],
+      "keyPoints": [
+        "In C, zero is false and nonzero is true, while relational and logical operators produce 0 or 1."
+      ],
+      "commonMistakes": [
+        "atoi cannot report detailed conversion failure",
+        "bitwise operators do not short-circuit"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-sec-2",
+      "heading": "Worked C example",
+      "content": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "c",
+          "code": "#include <stdio.h>\nint main(void) {\n    int score = 72, submitted = 1;\n    if (score >= 0 && score <= 100 && submitted) puts(\"recorded\");\n    else puts(\"review input\");\n    return 0;\n}",
+          "explanation": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+          "expectedOutput": "recorded"
+        }
+      ],
+      "keyPoints": [
+        "In C, zero is false and nonzero is true, while relational and logical operators produce 0 or 1."
+      ],
+      "commonMistakes": [
+        "atoi cannot report detailed conversion failure",
+        "bitwise operators do not short-circuit"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "In C, zero is false and nonzero is true, while relational and logical operators produce 0 or 1."
+      ],
+      "commonMistakes": [
+        "atoi cannot report detailed conversion failure",
+        "bitwise operators do not short-circuit"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C Programming.",
+      "description": "Implement a 0–100 grade classifier, reject invalid input, and test every grade boundary plus -1 and 101. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+      "instructions": [
+        "Implement a 0–100 grade classifier, reject invalid input, and test every grade boundary plus -1 and 101. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling."
+      ],
+      "starterCode": "// C Programming Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C Programming operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about preprocessing is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "macros do textual substitution without type checking"
+        },
+        {
+          "id": "B",
+          "text": "preprocessing handles directives before compilation"
+        },
+        {
+          "id": "C",
+          "text": "use headers for declarations and include guards"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "macros do textual substitution without type checking. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about compiler warnings is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring warnings can leave real defects"
+        },
+        {
+          "id": "B",
+          "text": "warnings identify suspicious but translatable code"
+        },
+        {
+          "id": "C",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring warnings can leave real defects. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l1-conditions-operators-and-boundaries-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linking is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves referenced definitions"
+        },
+        {
+          "id": "C",
+          "text": "provide exactly one matching external definition"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a declaration alone does not satisfy the linker. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Conditions, Operators, and Boundaries in C Programming. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-c-programming-main",
+      "title": "C Programming Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C Programming.",
+      "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "c-programming-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions, Operators, and Boundaries",
+        "Loops, Arrays, and Bounds"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Conditions, Operators, and Boundaries",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Conditions, Operators, and Boundaries."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C Programming",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.151Z"
+}

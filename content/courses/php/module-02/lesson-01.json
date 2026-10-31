@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration",
+  "skillName": "PHP",
+  "moduleId": "mod-2-php-beginner-module-2",
+  "title": "Control Flow, Arrays, and Iteration",
+  "summary": "Write boundary-safe conditions and loops while using indexed arrays, associative arrays, foreach, match, and predictable comparison.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Control Flow, Arrays, and Iteration",
+    "Verify contracts with lint, runtime, and test evidence"
+  ],
+  "objectiveIds": [
+    "php-obj-3",
+    "php-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-sec-1",
+      "heading": "Core model",
+      "content": "Use `if` chains for ranges and `match` for exact value-to-result mapping. Unlike `switch`, match uses strict comparison, returns a value, and must handle unmatched input. PHP arrays serve as ordered maps and can use integer or string keys. `foreach` can iterate keys and values; avoid reference iteration unless mutation is intentional, and unset the reference afterward to prevent accidental later writes. Functions such as `array_map` and `array_filter` are useful when callbacks remain clear. Test every threshold below, at, and above.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Use `if` chains for ranges and `match` for exact value-to-result mapping."
+      ],
+      "commonMistakes": [
+        "null should not replace every error case",
+        "an unmatched value throws"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-sec-2",
+      "heading": "Worked PHP example",
+      "content": "Predict types, failures, and output, then lint, run, and compare the evidence.\n\nIn practical software engineering with PHP, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "php",
+          "code": "<?php\ndeclare(strict_types=1);\n$scores = [70, 82, 91];\n$total = 0;\nforeach ($scores as $score) { $total += $score; }\nprintf(\"%.1f\\n\", $total / count($scores));",
+          "explanation": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+          "expectedOutput": "81.0"
+        }
+      ],
+      "keyPoints": [
+        "Use `if` chains for ranges and `match` for exact value-to-result mapping."
+      ],
+      "commonMistakes": [
+        "null should not replace every error case",
+        "an unmatched value throws"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Use `if` chains for ranges and `match` for exact value-to-result mapping."
+      ],
+      "commonMistakes": [
+        "null should not replace every error case",
+        "an unmatched value throws"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in PHP.",
+      "description": "Process an array of study minutes, reject invalid values, calculate summaries, and demonstrate safe key and value iteration. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+      "instructions": [
+        "Process an array of study minutes, reject invalid values, calculate summaries, and demonstrate safe key and value iteration. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation."
+      ],
+      "starterCode": "// PHP Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core PHP operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict types is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "B",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "C",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "it does not validate HTTP input automatically. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linting is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "B",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "C",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "syntax success does not prove runtime correctness. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l1-control-flow-arrays-and-iteration-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Composer is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "B",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "C",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "vendor output should normally be regenerated. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Control Flow, Arrays, and Iteration in PHP. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-php-main",
+      "title": "PHP Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=OK_JCtrrv-c",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for PHP.",
+      "whatItTeaches": "Step-by-step walkthrough of PHP fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "php-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Control Flow, Arrays, and Iteration",
+        "Functions, Exceptions, and Boundaries"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Control Flow, Arrays, and Iteration",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Control Flow, Arrays, and Iteration."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using PHP",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.521Z"
+}

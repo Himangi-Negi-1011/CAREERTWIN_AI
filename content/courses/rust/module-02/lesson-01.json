@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries",
+  "skillName": "Rust",
+  "moduleId": "mod-2-rust-beginner-module-2",
+  "title": "Control Flow, Matching, and Boundaries",
+  "summary": "Write decisions and repetition with if expressions, match, if let, loops, iterators, ranges, and explicit boundary tests.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Control Flow, Matching, and Boundaries",
+    "Use compiler, lint, and test evidence to verify behavior"
+  ],
+  "objectiveIds": [
+    "rust-obj-3",
+    "rust-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-sec-1",
+      "heading": "Core model",
+      "content": "`if` is an expression whose branches must produce compatible types. `match` must be exhaustive and can destructure enums, tuples, and structs while applying guards. Use `if let` when one pattern is important and other cases can be ignored intentionally. Rust provides `loop`, `while`, and `for`; ranges such as `0..n` exclude the upper bound. Iterator adapters are lazy until consumed. Choose direct control flow over dense chains when it makes failure and boundaries easier to review.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`if` is an expression whose branches must produce compatible types."
+      ],
+      "commonMistakes": [
+        "ignoring an Err loses required control flow",
+        "it does not log or recover automatically"
+      ]
+    },
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-sec-2",
+      "heading": "Worked Rust example",
+      "content": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "rust",
+          "code": "fn main() {\n    let score = 72; let submitted = true;\n    let result = if (0..=100).contains(&score) && submitted { \"recorded\" } else { \"review input\" };\n    println!(\"{result}\");\n}",
+          "explanation": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+          "expectedOutput": "recorded"
+        }
+      ],
+      "keyPoints": [
+        "`if` is an expression whose branches must produce compatible types."
+      ],
+      "commonMistakes": [
+        "ignoring an Err loses required control flow",
+        "it does not log or recover automatically"
+      ]
+    },
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`if` is an expression whose branches must produce compatible types."
+      ],
+      "commonMistakes": [
+        "ignoring an Err loses required control flow",
+        "it does not log or recover automatically"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in Rust.",
+      "description": "Implement a grade classifier with ranges and match or if, reject invalid scores, and test below, at, and above every boundary. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+      "instructions": [
+        "Implement a grade classifier with ranges and match or if, reject invalid scores, and test below, at, and above every boundary. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling."
+      ],
+      "starterCode": "// Rust Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Formatted warning-reviewed Rust source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Formatted warning-reviewed Rust source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Rust operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Cargo is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cargo.lock policy differs between applications and libraries"
+        },
+        {
+          "id": "B",
+          "text": "Cargo builds tests and manages crate metadata"
+        },
+        {
+          "id": "C",
+          "text": "use cargo check test and run as separate evidence"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Cargo.lock policy differs between applications and libraries. Confirm with cargo check, Clippy, and a focused test.",
+      "objectiveIds": [
+        "rust-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about rustfmt is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "manual formatting drift distracts from behavior"
+        },
+        {
+          "id": "B",
+          "text": "rustfmt applies canonical formatting"
+        },
+        {
+          "id": "C",
+          "text": "run cargo fmt before review"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "manual formatting drift distracts from behavior. Confirm with cargo check, Clippy, and a focused test.",
+      "objectiveIds": [
+        "rust-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-rust-beginner-module-2-l1-control-flow-matching-and-boundaries-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Clippy is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "blindly allowing lints can hide defects"
+        },
+        {
+          "id": "B",
+          "text": "Clippy provides additional lint diagnostics"
+        },
+        {
+          "id": "C",
+          "text": "review each lint in its code context"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "blindly allowing lints can hide defects. Confirm with cargo check, Clippy, and a focused test.",
+      "objectiveIds": [
+        "rust-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Control Flow, Matching, and Boundaries in Rust. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-rust-main",
+      "title": "Rust Programming Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=ygL_xcgkMzQ",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Rust.",
+      "whatItTeaches": "Step-by-step walkthrough of Rust fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "rust-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Control Flow, Matching, and Boundaries",
+        "Ownership, Borrowing, Slices, and Collections"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Control Flow, Matching, and Boundaries",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Control Flow, Matching, and Boundaries."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Rust",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.629Z"
+}

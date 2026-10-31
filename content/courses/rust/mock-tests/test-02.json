@@ -1,0 +1,703 @@
+{
+  "id": "mock-rust-beginner-test-02",
+  "skillName": "Rust",
+  "skillSlug": "rust",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Rust Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for Rust at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Cargo",
+    "rustfmt",
+    "Clippy",
+    "immutability",
+    "String and str",
+    "Option",
+    "Result",
+    "question mark",
+    "match",
+    "ranges",
+    "iterators",
+    "ownership",
+    "shared borrowing",
+    "mutable borrowing",
+    "slices",
+    "Vec",
+    "structs",
+    "enums",
+    "traits",
+    "threads"
+  ],
+  "questions": [
+    {
+      "id": "mock-rust-beginner-test-02-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Cargo?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use cargo check test and run as separate evidence"
+        },
+        {
+          "id": "B",
+          "text": "Cargo builds tests and manages crate metadata"
+        },
+        {
+          "id": "C",
+          "text": "Cargo.lock policy differs between applications and libraries"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use cargo check test and run as separate evidence. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Cargo",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of rustfmt?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "run cargo fmt before review"
+        },
+        {
+          "id": "B",
+          "text": "rustfmt applies canonical formatting"
+        },
+        {
+          "id": "C",
+          "text": "manual formatting drift distracts from behavior"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "run cargo fmt before review. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "rustfmt",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Clippy?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "review each lint in its code context"
+        },
+        {
+          "id": "B",
+          "text": "Clippy provides additional lint diagnostics"
+        },
+        {
+          "id": "C",
+          "text": "blindly allowing lints can hide defects"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "review each lint in its code context. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Clippy",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of immutability?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "request mutability only where state changes"
+        },
+        {
+          "id": "B",
+          "text": "bindings are immutable unless marked mut"
+        },
+        {
+          "id": "C",
+          "text": "interior mutability follows separate runtime rules"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "request mutability only where state changes. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "immutability",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of String and str?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "accept &str for read-only text parameters"
+        },
+        {
+          "id": "B",
+          "text": "String owns text while str slices borrow text"
+        },
+        {
+          "id": "C",
+          "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "accept &str for read-only text parameters. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "String and str",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Option?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "match or transform both possibilities intentionally"
+        },
+        {
+          "id": "B",
+          "text": "Option models presence with Some or absence with None"
+        },
+        {
+          "id": "C",
+          "text": "unwrap can panic when absence is possible"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "match or transform both possibilities intentionally. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Option",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Result?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "propagate or handle errors before using output"
+        },
+        {
+          "id": "B",
+          "text": "Result models success or failure"
+        },
+        {
+          "id": "C",
+          "text": "ignoring an Err loses required control flow"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "propagate or handle errors before using output. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Result",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of question mark?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it in compatible Result or Option functions"
+        },
+        {
+          "id": "B",
+          "text": "question mark returns failure to the caller"
+        },
+        {
+          "id": "C",
+          "text": "it does not log or recover automatically"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it in compatible Result or Option functions. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "question mark",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of match?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enumerate domain variants explicitly"
+        },
+        {
+          "id": "B",
+          "text": "match is exhaustive pattern-based control flow"
+        },
+        {
+          "id": "C",
+          "text": "a wildcard can hide newly added variants"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enumerate domain variants explicitly. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of ranges?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use inclusive syntax when the endpoint belongs"
+        },
+        {
+          "id": "B",
+          "text": "exclusive ranges omit their upper endpoint"
+        },
+        {
+          "id": "C",
+          "text": "off-by-one assumptions can skip or overrun values"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use inclusive syntax when the endpoint belongs. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ranges",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of iterators?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "consume with collect sum or a loop"
+        },
+        {
+          "id": "B",
+          "text": "iterator adapters are generally lazy"
+        },
+        {
+          "id": "C",
+          "text": "building a chain alone may perform no work"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "consume with collect sum or a loop. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "iterators",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of ownership?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "move values deliberately across boundaries"
+        },
+        {
+          "id": "B",
+          "text": "one owner controls ordinary value cleanup"
+        },
+        {
+          "id": "C",
+          "text": "using a non-Copy value after a move is rejected"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "move values deliberately across boundaries. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ownership",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of shared borrowing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use &T for temporary read-only borrowing"
+        },
+        {
+          "id": "B",
+          "text": "shared references allow non-mutating access"
+        },
+        {
+          "id": "C",
+          "text": "shared and active mutable borrowing cannot overlap"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use &T for temporary read-only borrowing. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "shared borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of mutable borrowing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "keep mutable borrow scope as short as practical"
+        },
+        {
+          "id": "B",
+          "text": "an exclusive reference enables mutation"
+        },
+        {
+          "id": "C",
+          "text": "only one active mutable borrow to the same data is allowed"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "keep mutable borrow scope as short as practical. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "mutable borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of slices?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "accept slices instead of requiring Vec ownership"
+        },
+        {
+          "id": "B",
+          "text": "slices borrow contiguous sequence regions"
+        },
+        {
+          "id": "C",
+          "text": "a slice cannot outlive its backing storage"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "accept slices instead of requiring Vec ownership. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "slices",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Vec?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use Vec for variable-size owned elements"
+        },
+        {
+          "id": "B",
+          "text": "Vec owns a growable contiguous sequence"
+        },
+        {
+          "id": "C",
+          "text": "growth can relocate elements and invalidate references"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use Vec for variable-size owned elements. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Vec",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of structs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "keep invariant-sensitive fields private"
+        },
+        {
+          "id": "B",
+          "text": "structs group named fields"
+        },
+        {
+          "id": "C",
+          "text": "public fields permit arbitrary invalid combinations"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "keep invariant-sensitive fields private. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "structs",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of enums?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use them for meaningful states and outcomes"
+        },
+        {
+          "id": "B",
+          "text": "enums model one variant from a closed set"
+        },
+        {
+          "id": "C",
+          "text": "parallel booleans can represent impossible states"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use them for meaningful states and outcomes. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "enums",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of traits?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use focused traits and explicit bounds"
+        },
+        {
+          "id": "B",
+          "text": "traits define shared behavior contracts"
+        },
+        {
+          "id": "C",
+          "text": "traits do not automatically imply object safety"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use focused traits and explicit bounds. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "traits",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of threads?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "join workers and propagate errors"
+        },
+        {
+          "id": "B",
+          "text": "threads require safe transferred or shared data"
+        },
+        {
+          "id": "C",
+          "text": "detached work can outlive intended operation scope"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "join workers and propagate errors. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "threads",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.633Z",
+  "updatedAt": "2026-10-31T13:08:48.633Z"
+}

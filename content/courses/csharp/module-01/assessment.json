@@ -1,0 +1,193 @@
+{
+  "id": "phase-csharp-beginner-mod-1",
+  "skillName": "C#",
+  "skillSlug": "csharp",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-csharp-beginner-module-1",
+  "moduleTitle": ".NET, Types, and Control Flow",
+  "title": ".NET, Types, and Control Flow Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in .NET, Types, and Control Flow.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    ".NET SDK",
+    "assemblies",
+    "var",
+    "TryParse",
+    "nullable references"
+  ],
+  "questions": [
+    {
+      "id": "phase-csharp-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of .NET SDK?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use dotnet build to obtain compiler evidence"
+        },
+        {
+          "id": "B",
+          "text": "the SDK includes build run and test tools"
+        },
+        {
+          "id": "C",
+          "text": "a runtime-only installation may not include build tools"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use dotnet build to obtain compiler evidence. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": ".NET SDK",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of assemblies?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "build source into a target-framework assembly"
+        },
+        {
+          "id": "B",
+          "text": "assemblies contain intermediate language and metadata"
+        },
+        {
+          "id": "C",
+          "text": "an assembly is not raw C# source"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "build source into a target-framework assembly. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "assemblies",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of var?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it when the inferred type is clear"
+        },
+        {
+          "id": "B",
+          "text": "var infers one static type from an initializer"
+        },
+        {
+          "id": "C",
+          "text": "var does not permit later values of unrelated types"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it when the inferred type is clear. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "var",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of TryParse?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it for interactive numeric input"
+        },
+        {
+          "id": "B",
+          "text": "TryParse reports expected conversion failure without throwing"
+        },
+        {
+          "id": "C",
+          "text": "ignoring its boolean result can use an unintended default"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it for interactive numeric input. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "TryParse",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of nullable references?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "check string? before dereference"
+        },
+        {
+          "id": "B",
+          "text": "nullable annotations model possible null at compile time"
+        },
+        {
+          "id": "C",
+          "text": "the null-forgiving operator does not validate at runtime"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "check string? before dereference. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "nullable references",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-csharp-beginner-module-1-l1",
+      "recommendedLessonTitle": "The .NET Build and Execution Model"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.316Z",
+  "updatedAt": "2026-10-31T13:08:48.316Z"
+}

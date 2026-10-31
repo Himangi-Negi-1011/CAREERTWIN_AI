@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "PHP",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "PHP Foundations: Typed Domain Code to a Secure PDO Tracker",
+  "description": "A beginner PHP course covering runtime tooling, strict types, validation, arrays, functions, exceptions, object models, Composer, PDO, sessions, authorization, web security, and a tested capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Lint, run, diagnose, and organize typed PHP applications",
+    "Use validated input, strict comparisons, arrays, functions, exceptions, classes, and interfaces",
+    "Build a secure PDO-backed tracker with transactions, authorization, CSRF protection, and tests"
+  ],
+  "modules": [
+    {
+      "stableKey": "php-beginner-module-1",
+      "title": "Runtime, Types, Input, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "php-runtime-composer",
+          "title": "PHP Runtime, Files, and Composer",
+          "summary": "Run PHP from the CLI, understand request execution, configure strict types, inspect diagnostics, and use Composer autoloading safely.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply PHP Runtime, Files, and Composer",
+            "Verify contracts with lint, runtime, and test evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "php-runtime-composer-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "PHP executes server-side scripts per request or from the command line. Begin files with `<?php` and add `declare(strict_types=1);` when building typed application code. Run a script with `php file.php` and use `php -l file.php` for syntax checking. Composer manages packages and generates an autoloader; commit `composer.json` and its lock file for applications, but not the generated vendor directory. Errors should be visible in development and logged without exposing stack traces or secrets to users in production."
+            },
+            {
+              "stableKey": "php-runtime-composer-example",
+              "type": "code",
+              "heading": "Worked PHP example",
+              "bodyMarkdown": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+              "codeLanguage": "php",
+              "codeSource": "<?php\ndeclare(strict_types=1);\n$course = 'PHP';\n$lessons = 6;\necho \"$course: $lessons lessons\\n\";",
+              "expectedOutput": "PHP: 6 lessons"
+            },
+            {
+              "stableKey": "php-runtime-composer-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "php-runtime-composer-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create and lint a strict-types CLI script, introduce a syntax error and an undefined name, then explain and correct the resulting diagnostics. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+              "expectedOutcomes": [
+                "Lint-clean typed PHP source",
+                "Boundary and failure tests",
+                "Evidence-based security explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "php-runtime-composer-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "php-beg-lesson-1-01-strict-types",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes strict types in PHP?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict types"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "strict_types limits scalar coercion for calls from the declaring file"
+                  },
+                  {
+                    "key": "B",
+                    "text": "declare it in typed application source"
+                  },
+                  {
+                    "key": "C",
+                    "text": "it does not validate HTTP input automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "strict_types limits scalar coercion for calls from the declaring file. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-1-02-linting",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes linting in PHP?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linting"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "php lint checks syntax without executing application behavior"
+                  },
+                  {
+                    "key": "B",
+                    "text": "lint before tests and deployment"
+                  },
+                  {
+                    "key": "C",
+                    "text": "syntax success does not prove runtime correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "php lint checks syntax without executing application behavior. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-1-03-Composer",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Composer in PHP?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Composer"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Composer manages dependencies and autoloading"
+                  },
+                  {
+                    "key": "B",
+                    "text": "commit dependency manifests and application lock files"
+                  },
+                  {
+                    "key": "C",
+                    "text": "vendor output should normally be regenerated"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Composer manages dependencies and autoloading. Confirm with linting, focused tests, and observable failure handling."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "PHP executes server-side scripts per request or from the command line."
+          ],
+          "commonMistakes": [
+            "it does not validate HTTP input automatically",
+            "syntax success does not prove runtime correctness"
+          ],
+          "interviewQuestions": [
+            "Explain strict types with a minimal PHP example."
+          ]
+        },
+        {
+          "stableKey": "php-types-input",
+          "title": "Types, Strings, Input, and Validation",
+          "summary": "Use scalar and composite types, strict function signatures, explicit conversion, null handling, filter functions, and validated input.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Types, Strings, Input, and Validation",
+            "Verify contracts with lint, runtime, and test evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "php-types-input-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "PHP supports scalar types, arrays, objects, null, unions, and typed function contracts. Strict types affect scalar argument coercion for calls made from that file; they do not validate external input automatically. Values from command-line arguments, forms, query strings, JSON, and databases remain untrusted. Validate presence, shape, range, and allowed values before constructing domain state. Use `filter_var` only for filters it actually supports, and distinguish missing data from valid zero or empty text. Avoid loose comparisons when types matter."
+            },
+            {
+              "stableKey": "php-types-input-example",
+              "type": "code",
+              "heading": "Worked PHP example",
+              "bodyMarkdown": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+              "codeLanguage": "php",
+              "codeSource": "<?php\ndeclare(strict_types=1);\n$text = '19';\n$age = filter_var($text, FILTER_VALIDATE_INT);\nif ($age === false) { throw new InvalidArgumentException('age'); }\necho ($age + 1) . \"\\n\";",
+              "expectedOutput": "20"
+            },
+            {
+              "stableKey": "php-types-input-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "php-types-input-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Validate weekly hours as an integer in a documented range, preserving the distinction between false, zero, missing data, and malformed text. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+              "expectedOutcomes": [
+                "Lint-clean typed PHP source",
+                "Boundary and failure tests",
+                "Evidence-based security explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "php-types-input-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "php-beg-lesson-2-01-strict-types",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of strict types?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict types"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "declare it in typed application source"
+                  },
+                  {
+                    "key": "B",
+                    "text": "strict_types limits scalar coercion for calls from the declaring file"
+                  },
+                  {
+                    "key": "C",
+                    "text": "it does not validate HTTP input automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "declare it in typed application source. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-2-02-linting",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of linting?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linting"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "lint before tests and deployment"
+                  },
+                  {
+                    "key": "B",
+                    "text": "php lint checks syntax without executing application behavior"
+                  },
+                  {
+                    "key": "C",
+                    "text": "syntax success does not prove runtime correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "lint before tests and deployment. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-2-03-Composer",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of Composer?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Composer"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "commit dependency manifests and application lock files"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Composer manages dependencies and autoloading"
+                  },
+                  {
+                    "key": "C",
+                    "text": "vendor output should normally be regenerated"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "commit dependency manifests and application lock files. Confirm with linting, focused tests, and observable failure handling."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "PHP supports scalar types, arrays, objects, null, unions, and typed function contracts."
+          ],
+          "commonMistakes": [
+            "external data still needs runtime validation",
+            "loose comparison can equate surprising values"
+          ],
+          "interviewQuestions": [
+            "Explain type declarations with a minimal PHP example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "php-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "php-beg-module-1-01-strict-types",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of strict types?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "strict types"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "declare it in typed application source"
+              },
+              {
+                "key": "B",
+                "text": "strict_types limits scalar coercion for calls from the declaring file"
+              },
+              {
+                "key": "C",
+                "text": "it does not validate HTTP input automatically"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "declare it in typed application source. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-1-02-linting",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of linting?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "linting"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "lint before tests and deployment"
+              },
+              {
+                "key": "B",
+                "text": "php lint checks syntax without executing application behavior"
+              },
+              {
+                "key": "C",
+                "text": "syntax success does not prove runtime correctness"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "lint before tests and deployment. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-1-03-Composer",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of Composer?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Composer"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "commit dependency manifests and application lock files"
+              },
+              {
+                "key": "B",
+                "text": "Composer manages dependencies and autoloading"
+              },
+              {
+                "key": "C",
+                "text": "vendor output should normally be regenerated"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "commit dependency manifests and application lock files. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-1-04-type-declarations",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of type declarations?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "type declarations"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "declare meaningful application boundaries"
+              },
+              {
+                "key": "B",
+                "text": "parameter and return declarations express contracts"
+              },
+              {
+                "key": "C",
+                "text": "external data still needs runtime validation"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "declare meaningful application boundaries. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-1-05-strict-comparison",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of strict comparison?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "strict comparison"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use it when false zero and empty string differ"
+              },
+              {
+                "key": "B",
+                "text": "triple equals compares value and type"
+              },
+              {
+                "key": "C",
+                "text": "loose comparison can equate surprising values"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use it when false zero and empty string differ. Confirm with linting, focused tests, and observable failure handling."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "php-beginner-module-2",
+      "title": "Functions, Errors, and Domain Models",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "php-control-arrays",
+          "title": "Control Flow, Arrays, and Iteration",
+          "summary": "Write boundary-safe conditions and loops while using indexed arrays, associative arrays, foreach, match, and predictable comparison.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Control Flow, Arrays, and Iteration",
+            "Verify contracts with lint, runtime, and test evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "php-control-arrays-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Use `if` chains for ranges and `match` for exact value-to-result mapping. Unlike `switch`, match uses strict comparison, returns a value, and must handle unmatched input. PHP arrays serve as ordered maps and can use integer or string keys. `foreach` can iterate keys and values; avoid reference iteration unless mutation is intentional, and unset the reference afterward to prevent accidental later writes. Functions such as `array_map` and `array_filter` are useful when callbacks remain clear. Test every threshold below, at, and above."
+            },
+            {
+              "stableKey": "php-control-arrays-example",
+              "type": "code",
+              "heading": "Worked PHP example",
+              "bodyMarkdown": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+              "codeLanguage": "php",
+              "codeSource": "<?php\ndeclare(strict_types=1);\n$scores = [70, 82, 91];\n$total = 0;\nforeach ($scores as $score) { $total += $score; }\nprintf(\"%.1f\\n\", $total / count($scores));",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "php-control-arrays-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "php-control-arrays-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process an array of study minutes, reject invalid values, calculate summaries, and demonstrate safe key and value iteration. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+              "expectedOutcomes": [
+                "Lint-clean typed PHP source",
+                "Boundary and failure tests",
+                "Evidence-based security explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "php-control-arrays-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "php-beg-lesson-3-01-strict-types",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about strict types is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict types"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "it does not validate HTTP input automatically"
+                  },
+                  {
+                    "key": "B",
+                    "text": "strict_types limits scalar coercion for calls from the declaring file"
+                  },
+                  {
+                    "key": "C",
+                    "text": "declare it in typed application source"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "it does not validate HTTP input automatically. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-3-02-linting",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about linting is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linting"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "syntax success does not prove runtime correctness"
+                  },
+                  {
+                    "key": "B",
+                    "text": "php lint checks syntax without executing application behavior"
+                  },
+                  {
+                    "key": "C",
+                    "text": "lint before tests and deployment"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "syntax success does not prove runtime correctness. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-3-03-Composer",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Composer is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Composer"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "vendor output should normally be regenerated"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Composer manages dependencies and autoloading"
+                  },
+                  {
+                    "key": "C",
+                    "text": "commit dependency manifests and application lock files"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "vendor output should normally be regenerated. Confirm with linting, focused tests, and observable failure handling."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Use `if` chains for ranges and `match` for exact value-to-result mapping."
+          ],
+          "commonMistakes": [
+            "null should not replace every error case",
+            "an unmatched value throws"
+          ],
+          "interviewQuestions": [
+            "Explain null with a minimal PHP example."
+          ]
+        },
+        {
+          "stableKey": "php-functions-errors",
+          "title": "Functions, Exceptions, and Boundaries",
+          "summary": "Design typed functions with focused responsibilities, return values, nullable and union types, exceptions, and explicit failure handling.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Functions, Exceptions, and Boundaries",
+            "Verify contracts with lint, runtime, and test evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "php-functions-errors-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Functions should declare parameter and return types and either return domain data or fail according to a documented contract. Default arguments belong after required ones. Nullable types represent valid absence, not generic failure. Throw specific exceptions for violated contracts and catch them at a boundary that can recover, translate, log, or present an error. Do not catch `Throwable` merely to ignore it. Use `finally` only for cleanup that must occur regardless of success. Preserve the previous exception when adding context."
+            },
+            {
+              "stableKey": "php-functions-errors-example",
+              "type": "code",
+              "heading": "Worked PHP example",
+              "bodyMarkdown": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+              "codeLanguage": "php",
+              "codeSource": "<?php\ndeclare(strict_types=1);\nfunction progress(int $done, int $planned): float {\n  if ($done < 0 || $planned <= 0 || $done > $planned) throw new InvalidArgumentException('progress');\n  return $done * 100 / $planned;\n}\nprintf(\"%.1f\\n\", progress(3, 4));",
+              "expectedOutput": "75.0"
+            },
+            {
+              "stableKey": "php-functions-errors-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "php-functions-errors-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement typed progress and average functions, document their failure contracts, and test normal, boundary, and exception paths. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+              "expectedOutcomes": [
+                "Lint-clean typed PHP source",
+                "Boundary and failure tests",
+                "Evidence-based security explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "php-functions-errors-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "php-beg-lesson-4-01-strict-types",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes strict types in PHP?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict types"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "strict_types limits scalar coercion for calls from the declaring file"
+                  },
+                  {
+                    "key": "B",
+                    "text": "declare it in typed application source"
+                  },
+                  {
+                    "key": "C",
+                    "text": "it does not validate HTTP input automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "strict_types limits scalar coercion for calls from the declaring file. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-4-02-linting",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes linting in PHP?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linting"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "php lint checks syntax without executing application behavior"
+                  },
+                  {
+                    "key": "B",
+                    "text": "lint before tests and deployment"
+                  },
+                  {
+                    "key": "C",
+                    "text": "syntax success does not prove runtime correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "php lint checks syntax without executing application behavior. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-4-03-Composer",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Composer in PHP?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Composer"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Composer manages dependencies and autoloading"
+                  },
+                  {
+                    "key": "B",
+                    "text": "commit dependency manifests and application lock files"
+                  },
+                  {
+                    "key": "C",
+                    "text": "vendor output should normally be regenerated"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Composer manages dependencies and autoloading. Confirm with linting, focused tests, and observable failure handling."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Functions should declare parameter and return types and either return domain data or fail according to a documented contract."
+          ],
+          "commonMistakes": [
+            "the lingering reference should be unset after the loop",
+            "default parameters should follow required parameters"
+          ],
+          "interviewQuestions": [
+            "Explain foreach references with a minimal PHP example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "php-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "php-beg-module-2-06-filter-validation",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about filter validation is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "filter validation"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "zero is valid but loosely equals false"
+              },
+              {
+                "key": "B",
+                "text": "validation filters test supported input formats"
+              },
+              {
+                "key": "C",
+                "text": "compare FILTER_VALIDATE_INT result strictly with false"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "zero is valid but loosely equals false. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-2-07-null",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about null is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "null"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "null should not replace every error case"
+              },
+              {
+                "key": "B",
+                "text": "null represents deliberate absence"
+              },
+              {
+                "key": "C",
+                "text": "use nullable types only when absence is valid"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "null should not replace every error case. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-2-08-match",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about match is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "match"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "an unmatched value throws"
+              },
+              {
+                "key": "B",
+                "text": "match uses strict comparison and returns a value"
+              },
+              {
+                "key": "C",
+                "text": "cover every allowed case or provide an intentional default"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "an unmatched value throws. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-2-09-arrays",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about arrays is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "arrays"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "mixed key coercion can surprise careless input handling"
+              },
+              {
+                "key": "B",
+                "text": "PHP arrays are ordered maps with integer or string keys"
+              },
+              {
+                "key": "C",
+                "text": "choose keys that express the data model"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "mixed key coercion can surprise careless input handling. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-2-10-foreach-references",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about foreach references is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "foreach references"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "the lingering reference should be unset after the loop"
+              },
+              {
+                "key": "B",
+                "text": "reference iteration can mutate original elements"
+              },
+              {
+                "key": "C",
+                "text": "avoid references unless mutation is intended"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "the lingering reference should be unset after the loop. Confirm with linting, focused tests, and observable failure handling."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "php-beginner-module-3",
+      "title": "PDO, Web Security, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "php-oop-models",
+          "title": "Classes, Value Objects, and Encapsulation",
+          "summary": "Model valid state with constructors, private properties, readonly values, methods, interfaces, namespaces, and dependency boundaries.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Classes, Value Objects, and Encapsulation",
+            "Verify contracts with lint, runtime, and test evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "php-oop-models-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A class combines state and behavior. Keep properties private when arbitrary assignment could violate invariants, and validate constructor input before the object becomes observable. Readonly properties can be initialized once and support value objects, but nested referenced objects may still be mutable. Interfaces describe behavior required by consumers; avoid large interfaces that force unrelated methods. Namespaces prevent collisions and map naturally to Composer PSR-4 autoloading. Inject collaborators rather than constructing infrastructure inside domain methods."
+            },
+            {
+              "stableKey": "php-oop-models-example",
+              "type": "code",
+              "heading": "Worked PHP example",
+              "bodyMarkdown": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+              "codeLanguage": "php",
+              "codeSource": "<?php\ndeclare(strict_types=1);\nfinal class Progress {\n  public function __construct(private int $percent) { if ($percent < 0 || $percent > 100) throw new InvalidArgumentException('percent'); }\n  public function percent(): int { return $this->percent; }\n}\necho (new Progress(75))->percent() . \"\\n\";",
+              "expectedOutput": "75"
+            },
+            {
+              "stableKey": "php-oop-models-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "php-oop-models-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create namespaced CourseProgress and Topic value objects with validated construction, controlled updates, an interface boundary, and tests. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+              "expectedOutcomes": [
+                "Lint-clean typed PHP source",
+                "Boundary and failure tests",
+                "Evidence-based security explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "php-oop-models-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "php-beg-lesson-5-01-strict-types",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of strict types?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict types"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "declare it in typed application source"
+                  },
+                  {
+                    "key": "B",
+                    "text": "strict_types limits scalar coercion for calls from the declaring file"
+                  },
+                  {
+                    "key": "C",
+                    "text": "it does not validate HTTP input automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "declare it in typed application source. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-5-02-linting",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of linting?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linting"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "lint before tests and deployment"
+                  },
+                  {
+                    "key": "B",
+                    "text": "php lint checks syntax without executing application behavior"
+                  },
+                  {
+                    "key": "C",
+                    "text": "syntax success does not prove runtime correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "lint before tests and deployment. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-5-03-Composer",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of Composer?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Composer"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "commit dependency manifests and application lock files"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Composer manages dependencies and autoloading"
+                  },
+                  {
+                    "key": "C",
+                    "text": "vendor output should normally be regenerated"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "commit dependency manifests and application lock files. Confirm with linting, focused tests, and observable failure handling."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A class combines state and behavior."
+          ],
+          "commonMistakes": [
+            "returning from finally can obscure earlier results or errors",
+            "public mutable fields permit invalid state"
+          ],
+          "interviewQuestions": [
+            "Explain finally with a minimal PHP example."
+          ]
+        },
+        {
+          "stableKey": "php-pdo-web-project",
+          "title": "PDO, Sessions, Security, and a Progress Tracker",
+          "summary": "Combine PDO transactions, parameterized SQL, sessions, output escaping, CSRF protection, authorization, and tests in a secure tracker.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply PDO, Sessions, Security, and a Progress Tracker",
+            "Verify contracts with lint, runtime, and test evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "php-pdo-web-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Use PDO prepared statements with bound values instead of concatenating SQL, and wrap multi-step writes in a transaction that rolls back on failure. Authentication identifies a user; authorization checks whether that user may access the specific record. Regenerate session identifiers after login and configure secure, HttpOnly, and appropriate SameSite cookies. Escape untrusted text for its output context, usually with `htmlspecialchars` for HTML text. State-changing browser requests need CSRF protection. Store password hashes from `password_hash`, never plaintext passwords, and verify with `password_verify`."
+            },
+            {
+              "stableKey": "php-pdo-web-project-example",
+              "type": "code",
+              "heading": "Worked PHP example",
+              "bodyMarkdown": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+              "codeLanguage": "php",
+              "codeSource": "<?php\ndeclare(strict_types=1);\n$progress = ['Basics' => 100, 'Arrays' => 70];\nforeach ($progress as $topic => $percent) { echo htmlspecialchars($topic, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . \": $percent%\\n\"; }",
+              "expectedOutput": "Basics: 100%\nArrays: 70%"
+            },
+            {
+              "stableKey": "php-pdo-web-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "php-pdo-web-project-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a PDO-backed progress tracker with ownership checks, transactions, validation, escaped output, CSRF-protected mutations, and at least ten tests. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+              "expectedOutcomes": [
+                "Lint-clean typed PHP source",
+                "Boundary and failure tests",
+                "Evidence-based security explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "php-pdo-web-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "php-beg-lesson-6-01-strict-types",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about strict types is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict types"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "it does not validate HTTP input automatically"
+                  },
+                  {
+                    "key": "B",
+                    "text": "strict_types limits scalar coercion for calls from the declaring file"
+                  },
+                  {
+                    "key": "C",
+                    "text": "declare it in typed application source"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "it does not validate HTTP input automatically. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-6-02-linting",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about linting is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linting"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "syntax success does not prove runtime correctness"
+                  },
+                  {
+                    "key": "B",
+                    "text": "php lint checks syntax without executing application behavior"
+                  },
+                  {
+                    "key": "C",
+                    "text": "lint before tests and deployment"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "syntax success does not prove runtime correctness. Confirm with linting, focused tests, and observable failure handling."
+              },
+              {
+                "stableId": "php-beg-lesson-6-03-Composer",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Composer is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Composer"
+                ],
+                "objectiveIds": [
+                  "php-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "vendor output should normally be regenerated"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Composer manages dependencies and autoloading"
+                  },
+                  {
+                    "key": "C",
+                    "text": "commit dependency manifests and application lock files"
+                  },
+                  {
+                    "key": "D",
+                    "text": "PHP automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "vendor output should normally be regenerated. Confirm with linting, focused tests, and observable failure handling."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Use PDO prepared statements with bound values instead of concatenating SQL, and wrap multi-step writes in a transaction that rolls back on failure."
+          ],
+          "commonMistakes": [
+            "large interfaces couple unrelated responsibilities",
+            "string concatenation enables injection risk"
+          ],
+          "interviewQuestions": [
+            "Explain interfaces with a minimal PHP example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "php-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "php-beg-module-3-11-typed-functions",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes typed functions in PHP?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "typed functions"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "typed functions define reusable input and output contracts"
+              },
+              {
+                "key": "B",
+                "text": "return domain data rather than only echoing"
+              },
+              {
+                "key": "C",
+                "text": "default parameters should follow required parameters"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "typed functions define reusable input and output contracts. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-3-12-exceptions",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes exceptions in PHP?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "exceptions"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "exceptions transfer control to a capable boundary"
+              },
+              {
+                "key": "B",
+                "text": "catch only where recovery translation or logging is possible"
+              },
+              {
+                "key": "C",
+                "text": "swallowing Throwable hides failures"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "exceptions transfer control to a capable boundary. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-3-13-finally",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes finally in PHP?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "finally"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "finally executes after try and catch paths"
+              },
+              {
+                "key": "B",
+                "text": "use it for unavoidable cleanup"
+              },
+              {
+                "key": "C",
+                "text": "returning from finally can obscure earlier results or errors"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "finally executes after try and catch paths. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-3-14-private-properties",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes private properties in PHP?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "private properties"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "private properties prevent arbitrary external assignment"
+              },
+              {
+                "key": "B",
+                "text": "preserve invariants through methods"
+              },
+              {
+                "key": "C",
+                "text": "public mutable fields permit invalid state"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "private properties prevent arbitrary external assignment. Confirm with linting, focused tests, and observable failure handling."
+          },
+          {
+            "stableId": "php-beg-module-3-15-readonly",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes readonly in PHP?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "readonly"
+            ],
+            "objectiveIds": [
+              "php-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "readonly properties can be initialized only once"
+              },
+              {
+                "key": "B",
+                "text": "use them for stable value-object fields"
+              },
+              {
+                "key": "C",
+                "text": "readonly is not automatically deep immutability"
+              },
+              {
+                "key": "D",
+                "text": "PHP automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "readonly properties can be initialized only once. Confirm with linting, focused tests, and observable failure handling."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "php-beginner-mock-1",
+      "title": "PHP Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "php-beg-mock-1-01-strict-types",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes strict types in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict types"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "strict_types limits scalar coercion for calls from the declaring file"
+            },
+            {
+              "key": "B",
+              "text": "declare it in typed application source"
+            },
+            {
+              "key": "C",
+              "text": "it does not validate HTTP input automatically"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "strict_types limits scalar coercion for calls from the declaring file. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-02-linting",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes linting in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linting"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "php lint checks syntax without executing application behavior"
+            },
+            {
+              "key": "B",
+              "text": "lint before tests and deployment"
+            },
+            {
+              "key": "C",
+              "text": "syntax success does not prove runtime correctness"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "php lint checks syntax without executing application behavior. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-03-Composer",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Composer in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Composer"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Composer manages dependencies and autoloading"
+            },
+            {
+              "key": "B",
+              "text": "commit dependency manifests and application lock files"
+            },
+            {
+              "key": "C",
+              "text": "vendor output should normally be regenerated"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Composer manages dependencies and autoloading. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-04-type-declarations",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes type declarations in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type declarations"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "parameter and return declarations express contracts"
+            },
+            {
+              "key": "B",
+              "text": "declare meaningful application boundaries"
+            },
+            {
+              "key": "C",
+              "text": "external data still needs runtime validation"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "parameter and return declarations express contracts. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-05-strict-comparison",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes strict comparison in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict comparison"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "triple equals compares value and type"
+            },
+            {
+              "key": "B",
+              "text": "use it when false zero and empty string differ"
+            },
+            {
+              "key": "C",
+              "text": "loose comparison can equate surprising values"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "triple equals compares value and type. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-06-filter-validation",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes filter validation in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "filter validation"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "validation filters test supported input formats"
+            },
+            {
+              "key": "B",
+              "text": "compare FILTER_VALIDATE_INT result strictly with false"
+            },
+            {
+              "key": "C",
+              "text": "zero is valid but loosely equals false"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "validation filters test supported input formats. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-07-null",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes null in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "null represents deliberate absence"
+            },
+            {
+              "key": "B",
+              "text": "use nullable types only when absence is valid"
+            },
+            {
+              "key": "C",
+              "text": "null should not replace every error case"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "null represents deliberate absence. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-08-match",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes match in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "match"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "match uses strict comparison and returns a value"
+            },
+            {
+              "key": "B",
+              "text": "cover every allowed case or provide an intentional default"
+            },
+            {
+              "key": "C",
+              "text": "an unmatched value throws"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "match uses strict comparison and returns a value. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-09-arrays",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes arrays in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "PHP arrays are ordered maps with integer or string keys"
+            },
+            {
+              "key": "B",
+              "text": "choose keys that express the data model"
+            },
+            {
+              "key": "C",
+              "text": "mixed key coercion can surprise careless input handling"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "PHP arrays are ordered maps with integer or string keys. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-10-foreach-references",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes foreach references in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "foreach references"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "reference iteration can mutate original elements"
+            },
+            {
+              "key": "B",
+              "text": "avoid references unless mutation is intended"
+            },
+            {
+              "key": "C",
+              "text": "the lingering reference should be unset after the loop"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "reference iteration can mutate original elements. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-11-typed-functions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes typed functions in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typed functions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "typed functions define reusable input and output contracts"
+            },
+            {
+              "key": "B",
+              "text": "return domain data rather than only echoing"
+            },
+            {
+              "key": "C",
+              "text": "default parameters should follow required parameters"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "typed functions define reusable input and output contracts. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-12-exceptions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes exceptions in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "exceptions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "exceptions transfer control to a capable boundary"
+            },
+            {
+              "key": "B",
+              "text": "catch only where recovery translation or logging is possible"
+            },
+            {
+              "key": "C",
+              "text": "swallowing Throwable hides failures"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "exceptions transfer control to a capable boundary. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-13-finally",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes finally in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "finally"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "finally executes after try and catch paths"
+            },
+            {
+              "key": "B",
+              "text": "use it for unavoidable cleanup"
+            },
+            {
+              "key": "C",
+              "text": "returning from finally can obscure earlier results or errors"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "finally executes after try and catch paths. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-14-private-properties",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes private properties in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "private properties"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "private properties prevent arbitrary external assignment"
+            },
+            {
+              "key": "B",
+              "text": "preserve invariants through methods"
+            },
+            {
+              "key": "C",
+              "text": "public mutable fields permit invalid state"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "private properties prevent arbitrary external assignment. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-15-readonly",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes readonly in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "readonly"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "readonly properties can be initialized only once"
+            },
+            {
+              "key": "B",
+              "text": "use them for stable value-object fields"
+            },
+            {
+              "key": "C",
+              "text": "readonly is not automatically deep immutability"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "readonly properties can be initialized only once. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-16-interfaces",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes interfaces in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "interfaces specify consumer-required behavior"
+            },
+            {
+              "key": "B",
+              "text": "keep interfaces focused"
+            },
+            {
+              "key": "C",
+              "text": "large interfaces couple unrelated responsibilities"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "interfaces specify consumer-required behavior. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-17-prepared-statements",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes prepared statements in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "prepared statements"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "prepared statements separate SQL structure from values"
+            },
+            {
+              "key": "B",
+              "text": "bind every untrusted value"
+            },
+            {
+              "key": "C",
+              "text": "string concatenation enables injection risk"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "prepared statements separate SQL structure from values. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-18-transactions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes transactions in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "transactions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "transactions make related database changes atomic"
+            },
+            {
+              "key": "B",
+              "text": "commit only after all required writes succeed"
+            },
+            {
+              "key": "C",
+              "text": "missing rollback can leave partial work"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "transactions make related database changes atomic. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-19-authorization",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes authorization in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "authorization"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "authorization checks permission for a particular action and resource"
+            },
+            {
+              "key": "B",
+              "text": "scope every record query to the authenticated owner"
+            },
+            {
+              "key": "C",
+              "text": "authentication alone does not grant access to all rows"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "authorization checks permission for a particular action and resource. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-1-20-output-escaping",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes output escaping in PHP?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "output escaping"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "contextual escaping prevents data becoming executable markup"
+            },
+            {
+              "key": "B",
+              "text": "escape at output for the target context"
+            },
+            {
+              "key": "C",
+              "text": "input validation is not a substitute for output encoding"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "contextual escaping prevents data becoming executable markup. Confirm with linting, focused tests, and observable failure handling."
+        }
+      ]
+    },
+    {
+      "stableKey": "php-beginner-mock-2",
+      "title": "PHP Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "php-beg-mock-2-01-strict-types",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of strict types?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict types"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "declare it in typed application source"
+            },
+            {
+              "key": "B",
+              "text": "strict_types limits scalar coercion for calls from the declaring file"
+            },
+            {
+              "key": "C",
+              "text": "it does not validate HTTP input automatically"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "declare it in typed application source. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-02-linting",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of linting?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linting"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "lint before tests and deployment"
+            },
+            {
+              "key": "B",
+              "text": "php lint checks syntax without executing application behavior"
+            },
+            {
+              "key": "C",
+              "text": "syntax success does not prove runtime correctness"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "lint before tests and deployment. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-03-Composer",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Composer?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Composer"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "commit dependency manifests and application lock files"
+            },
+            {
+              "key": "B",
+              "text": "Composer manages dependencies and autoloading"
+            },
+            {
+              "key": "C",
+              "text": "vendor output should normally be regenerated"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "commit dependency manifests and application lock files. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-04-type-declarations",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of type declarations?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type declarations"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "declare meaningful application boundaries"
+            },
+            {
+              "key": "B",
+              "text": "parameter and return declarations express contracts"
+            },
+            {
+              "key": "C",
+              "text": "external data still needs runtime validation"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "declare meaningful application boundaries. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-05-strict-comparison",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of strict comparison?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict comparison"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it when false zero and empty string differ"
+            },
+            {
+              "key": "B",
+              "text": "triple equals compares value and type"
+            },
+            {
+              "key": "C",
+              "text": "loose comparison can equate surprising values"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it when false zero and empty string differ. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-06-filter-validation",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of filter validation?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "filter validation"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "compare FILTER_VALIDATE_INT result strictly with false"
+            },
+            {
+              "key": "B",
+              "text": "validation filters test supported input formats"
+            },
+            {
+              "key": "C",
+              "text": "zero is valid but loosely equals false"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "compare FILTER_VALIDATE_INT result strictly with false. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-07-null",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of null?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use nullable types only when absence is valid"
+            },
+            {
+              "key": "B",
+              "text": "null represents deliberate absence"
+            },
+            {
+              "key": "C",
+              "text": "null should not replace every error case"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use nullable types only when absence is valid. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-08-match",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of match?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "match"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "cover every allowed case or provide an intentional default"
+            },
+            {
+              "key": "B",
+              "text": "match uses strict comparison and returns a value"
+            },
+            {
+              "key": "C",
+              "text": "an unmatched value throws"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "cover every allowed case or provide an intentional default. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-09-arrays",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of arrays?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "choose keys that express the data model"
+            },
+            {
+              "key": "B",
+              "text": "PHP arrays are ordered maps with integer or string keys"
+            },
+            {
+              "key": "C",
+              "text": "mixed key coercion can surprise careless input handling"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "choose keys that express the data model. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-10-foreach-references",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of foreach references?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "foreach references"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "avoid references unless mutation is intended"
+            },
+            {
+              "key": "B",
+              "text": "reference iteration can mutate original elements"
+            },
+            {
+              "key": "C",
+              "text": "the lingering reference should be unset after the loop"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "avoid references unless mutation is intended. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-11-typed-functions",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of typed functions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typed functions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return domain data rather than only echoing"
+            },
+            {
+              "key": "B",
+              "text": "typed functions define reusable input and output contracts"
+            },
+            {
+              "key": "C",
+              "text": "default parameters should follow required parameters"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return domain data rather than only echoing. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-12-exceptions",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of exceptions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "exceptions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "catch only where recovery translation or logging is possible"
+            },
+            {
+              "key": "B",
+              "text": "exceptions transfer control to a capable boundary"
+            },
+            {
+              "key": "C",
+              "text": "swallowing Throwable hides failures"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "catch only where recovery translation or logging is possible. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-13-finally",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of finally?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "finally"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it for unavoidable cleanup"
+            },
+            {
+              "key": "B",
+              "text": "finally executes after try and catch paths"
+            },
+            {
+              "key": "C",
+              "text": "returning from finally can obscure earlier results or errors"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it for unavoidable cleanup. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-14-private-properties",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of private properties?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "private properties"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "preserve invariants through methods"
+            },
+            {
+              "key": "B",
+              "text": "private properties prevent arbitrary external assignment"
+            },
+            {
+              "key": "C",
+              "text": "public mutable fields permit invalid state"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "preserve invariants through methods. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-15-readonly",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of readonly?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "readonly"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use them for stable value-object fields"
+            },
+            {
+              "key": "B",
+              "text": "readonly properties can be initialized only once"
+            },
+            {
+              "key": "C",
+              "text": "readonly is not automatically deep immutability"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use them for stable value-object fields. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-16-interfaces",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of interfaces?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "keep interfaces focused"
+            },
+            {
+              "key": "B",
+              "text": "interfaces specify consumer-required behavior"
+            },
+            {
+              "key": "C",
+              "text": "large interfaces couple unrelated responsibilities"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "keep interfaces focused. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-17-prepared-statements",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of prepared statements?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "prepared statements"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "bind every untrusted value"
+            },
+            {
+              "key": "B",
+              "text": "prepared statements separate SQL structure from values"
+            },
+            {
+              "key": "C",
+              "text": "string concatenation enables injection risk"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "bind every untrusted value. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-18-transactions",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of transactions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "transactions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "commit only after all required writes succeed"
+            },
+            {
+              "key": "B",
+              "text": "transactions make related database changes atomic"
+            },
+            {
+              "key": "C",
+              "text": "missing rollback can leave partial work"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "commit only after all required writes succeed. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-19-authorization",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of authorization?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "authorization"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "scope every record query to the authenticated owner"
+            },
+            {
+              "key": "B",
+              "text": "authorization checks permission for a particular action and resource"
+            },
+            {
+              "key": "C",
+              "text": "authentication alone does not grant access to all rows"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "scope every record query to the authenticated owner. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-2-20-output-escaping",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of output escaping?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "output escaping"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "escape at output for the target context"
+            },
+            {
+              "key": "B",
+              "text": "contextual escaping prevents data becoming executable markup"
+            },
+            {
+              "key": "C",
+              "text": "input validation is not a substitute for output encoding"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "escape at output for the target context. Confirm with linting, focused tests, and observable failure handling."
+        }
+      ]
+    },
+    {
+      "stableKey": "php-beginner-mock-3",
+      "title": "PHP Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "php-beg-mock-3-01-strict-types",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about strict types is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict types"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "it does not validate HTTP input automatically"
+            },
+            {
+              "key": "B",
+              "text": "strict_types limits scalar coercion for calls from the declaring file"
+            },
+            {
+              "key": "C",
+              "text": "declare it in typed application source"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "it does not validate HTTP input automatically. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-02-linting",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about linting is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linting"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "syntax success does not prove runtime correctness"
+            },
+            {
+              "key": "B",
+              "text": "php lint checks syntax without executing application behavior"
+            },
+            {
+              "key": "C",
+              "text": "lint before tests and deployment"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "syntax success does not prove runtime correctness. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-03-Composer",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Composer is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Composer"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "vendor output should normally be regenerated"
+            },
+            {
+              "key": "B",
+              "text": "Composer manages dependencies and autoloading"
+            },
+            {
+              "key": "C",
+              "text": "commit dependency manifests and application lock files"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "vendor output should normally be regenerated. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-04-type-declarations",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about type declarations is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type declarations"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "external data still needs runtime validation"
+            },
+            {
+              "key": "B",
+              "text": "parameter and return declarations express contracts"
+            },
+            {
+              "key": "C",
+              "text": "declare meaningful application boundaries"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "external data still needs runtime validation. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-05-strict-comparison",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about strict comparison is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict comparison"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "loose comparison can equate surprising values"
+            },
+            {
+              "key": "B",
+              "text": "triple equals compares value and type"
+            },
+            {
+              "key": "C",
+              "text": "use it when false zero and empty string differ"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "loose comparison can equate surprising values. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-06-filter-validation",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about filter validation is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "filter validation"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "zero is valid but loosely equals false"
+            },
+            {
+              "key": "B",
+              "text": "validation filters test supported input formats"
+            },
+            {
+              "key": "C",
+              "text": "compare FILTER_VALIDATE_INT result strictly with false"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "zero is valid but loosely equals false. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-07-null",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about null is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "null should not replace every error case"
+            },
+            {
+              "key": "B",
+              "text": "null represents deliberate absence"
+            },
+            {
+              "key": "C",
+              "text": "use nullable types only when absence is valid"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "null should not replace every error case. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-08-match",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about match is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "match"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an unmatched value throws"
+            },
+            {
+              "key": "B",
+              "text": "match uses strict comparison and returns a value"
+            },
+            {
+              "key": "C",
+              "text": "cover every allowed case or provide an intentional default"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an unmatched value throws. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-09-arrays",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about arrays is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "mixed key coercion can surprise careless input handling"
+            },
+            {
+              "key": "B",
+              "text": "PHP arrays are ordered maps with integer or string keys"
+            },
+            {
+              "key": "C",
+              "text": "choose keys that express the data model"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "mixed key coercion can surprise careless input handling. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-10-foreach-references",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about foreach references is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "foreach references"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the lingering reference should be unset after the loop"
+            },
+            {
+              "key": "B",
+              "text": "reference iteration can mutate original elements"
+            },
+            {
+              "key": "C",
+              "text": "avoid references unless mutation is intended"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the lingering reference should be unset after the loop. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-11-typed-functions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about typed functions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typed functions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "default parameters should follow required parameters"
+            },
+            {
+              "key": "B",
+              "text": "typed functions define reusable input and output contracts"
+            },
+            {
+              "key": "C",
+              "text": "return domain data rather than only echoing"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "default parameters should follow required parameters. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-12-exceptions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about exceptions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "exceptions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "swallowing Throwable hides failures"
+            },
+            {
+              "key": "B",
+              "text": "exceptions transfer control to a capable boundary"
+            },
+            {
+              "key": "C",
+              "text": "catch only where recovery translation or logging is possible"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "swallowing Throwable hides failures. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-13-finally",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about finally is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "finally"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "returning from finally can obscure earlier results or errors"
+            },
+            {
+              "key": "B",
+              "text": "finally executes after try and catch paths"
+            },
+            {
+              "key": "C",
+              "text": "use it for unavoidable cleanup"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "returning from finally can obscure earlier results or errors. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-14-private-properties",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about private properties is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "private properties"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "public mutable fields permit invalid state"
+            },
+            {
+              "key": "B",
+              "text": "private properties prevent arbitrary external assignment"
+            },
+            {
+              "key": "C",
+              "text": "preserve invariants through methods"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "public mutable fields permit invalid state. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-15-readonly",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about readonly is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "readonly"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "readonly is not automatically deep immutability"
+            },
+            {
+              "key": "B",
+              "text": "readonly properties can be initialized only once"
+            },
+            {
+              "key": "C",
+              "text": "use them for stable value-object fields"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "readonly is not automatically deep immutability. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-16-interfaces",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about interfaces is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "large interfaces couple unrelated responsibilities"
+            },
+            {
+              "key": "B",
+              "text": "interfaces specify consumer-required behavior"
+            },
+            {
+              "key": "C",
+              "text": "keep interfaces focused"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "large interfaces couple unrelated responsibilities. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-17-prepared-statements",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about prepared statements is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "prepared statements"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "string concatenation enables injection risk"
+            },
+            {
+              "key": "B",
+              "text": "prepared statements separate SQL structure from values"
+            },
+            {
+              "key": "C",
+              "text": "bind every untrusted value"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "string concatenation enables injection risk. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-18-transactions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about transactions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "transactions"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "missing rollback can leave partial work"
+            },
+            {
+              "key": "B",
+              "text": "transactions make related database changes atomic"
+            },
+            {
+              "key": "C",
+              "text": "commit only after all required writes succeed"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "missing rollback can leave partial work. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-19-authorization",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about authorization is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "authorization"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "authentication alone does not grant access to all rows"
+            },
+            {
+              "key": "B",
+              "text": "authorization checks permission for a particular action and resource"
+            },
+            {
+              "key": "C",
+              "text": "scope every record query to the authenticated owner"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "authentication alone does not grant access to all rows. Confirm with linting, focused tests, and observable failure handling."
+        },
+        {
+          "stableId": "php-beg-mock-3-20-output-escaping",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about output escaping is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "output escaping"
+          ],
+          "objectiveIds": [
+            "php-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "input validation is not a substitute for output encoding"
+            },
+            {
+              "key": "B",
+              "text": "contextual escaping prevents data becoming executable markup"
+            },
+            {
+              "key": "C",
+              "text": "escape at output for the target context"
+            },
+            {
+              "key": "D",
+              "text": "PHP automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "input validation is not a substitute for output encoding. Confirm with linting, focused tests, and observable failure handling."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "php-beginner-capstone",
+    "title": "Secure PDO Learning Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a typed PHP progress tracker using validated domain objects, Composer autoloading, PDO prepared statements and transactions, authenticated record ownership, CSRF-protected mutations, contextual output escaping, secure sessions, and at least ten automated tests.",
+    "deliverables": [
+      "PHP and Composer project source",
+      "Database setup and run instructions",
+      "Normal, authorization, validation, and transaction test results",
+      "Threat and security-control explanation"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "domain_model": 20,
+      "database_and_security": 30,
+      "tests": 15,
+      "explanation": 5
+    },
+    "requiresManualReview": true
+  }
+}

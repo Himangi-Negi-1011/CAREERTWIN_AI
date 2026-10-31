@@ -1,0 +1,193 @@
+{
+  "id": "phase-php-beginner-mod-1",
+  "skillName": "PHP",
+  "skillSlug": "php",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-php-beginner-module-1",
+  "moduleTitle": "Runtime, Types, Input, and Control Flow",
+  "title": "Runtime, Types, Input, and Control Flow Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Runtime, Types, Input, and Control Flow.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "strict types",
+    "linting",
+    "Composer",
+    "type declarations",
+    "strict comparison"
+  ],
+  "questions": [
+    {
+      "id": "phase-php-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of strict types?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "B",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "C",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare it in typed application source. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "strict types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "phase-php-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of linting?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "B",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "C",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "lint before tests and deployment. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "linting",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "phase-php-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Composer?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "B",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "C",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "commit dependency manifests and application lock files. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "Composer",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "phase-php-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of type declarations?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare meaningful application boundaries"
+        },
+        {
+          "id": "B",
+          "text": "parameter and return declarations express contracts"
+        },
+        {
+          "id": "C",
+          "text": "external data still needs runtime validation"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare meaningful application boundaries. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "type declarations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "phase-php-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of strict comparison?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it when false zero and empty string differ"
+        },
+        {
+          "id": "B",
+          "text": "triple equals compares value and type"
+        },
+        {
+          "id": "C",
+          "text": "loose comparison can equate surprising values"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it when false zero and empty string differ. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "strict comparison",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.524Z",
+  "updatedAt": "2026-10-31T13:08:48.524Z"
+}

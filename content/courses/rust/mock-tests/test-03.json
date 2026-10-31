@@ -1,0 +1,703 @@
+{
+  "id": "mock-rust-beginner-test-03",
+  "skillName": "Rust",
+  "skillSlug": "rust",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Rust Beginner Mock Test 3",
+  "description": "Comprehensive 50-minute mock examination for Rust at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Cargo",
+    "rustfmt",
+    "Clippy",
+    "immutability",
+    "String and str",
+    "Option",
+    "Result",
+    "question mark",
+    "match",
+    "ranges",
+    "iterators",
+    "ownership",
+    "shared borrowing",
+    "mutable borrowing",
+    "slices",
+    "Vec",
+    "structs",
+    "enums",
+    "traits",
+    "threads"
+  ],
+  "questions": [
+    {
+      "id": "mock-rust-beginner-test-03-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Cargo is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cargo.lock policy differs between applications and libraries"
+        },
+        {
+          "id": "B",
+          "text": "Cargo builds tests and manages crate metadata"
+        },
+        {
+          "id": "C",
+          "text": "use cargo check test and run as separate evidence"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Cargo.lock policy differs between applications and libraries. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Cargo",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about rustfmt is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "manual formatting drift distracts from behavior"
+        },
+        {
+          "id": "B",
+          "text": "rustfmt applies canonical formatting"
+        },
+        {
+          "id": "C",
+          "text": "run cargo fmt before review"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "manual formatting drift distracts from behavior. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "rustfmt",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Clippy is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "blindly allowing lints can hide defects"
+        },
+        {
+          "id": "B",
+          "text": "Clippy provides additional lint diagnostics"
+        },
+        {
+          "id": "C",
+          "text": "review each lint in its code context"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "blindly allowing lints can hide defects. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Clippy",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about immutability is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "interior mutability follows separate runtime rules"
+        },
+        {
+          "id": "B",
+          "text": "bindings are immutable unless marked mut"
+        },
+        {
+          "id": "C",
+          "text": "request mutability only where state changes"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "interior mutability follows separate runtime rules. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "immutability",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about String and str is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+        },
+        {
+          "id": "B",
+          "text": "String owns text while str slices borrow text"
+        },
+        {
+          "id": "C",
+          "text": "accept &str for read-only text parameters"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "byte indexing is unavailable because UTF-8 boundaries matter. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "String and str",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q6",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Option is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "unwrap can panic when absence is possible"
+        },
+        {
+          "id": "B",
+          "text": "Option models presence with Some or absence with None"
+        },
+        {
+          "id": "C",
+          "text": "match or transform both possibilities intentionally"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "unwrap can panic when absence is possible. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Option",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q7",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Result is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring an Err loses required control flow"
+        },
+        {
+          "id": "B",
+          "text": "Result models success or failure"
+        },
+        {
+          "id": "C",
+          "text": "propagate or handle errors before using output"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring an Err loses required control flow. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Result",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q8",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about question mark is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "it does not log or recover automatically"
+        },
+        {
+          "id": "B",
+          "text": "question mark returns failure to the caller"
+        },
+        {
+          "id": "C",
+          "text": "use it in compatible Result or Option functions"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "it does not log or recover automatically. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "question mark",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q9",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about match is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a wildcard can hide newly added variants"
+        },
+        {
+          "id": "B",
+          "text": "match is exhaustive pattern-based control flow"
+        },
+        {
+          "id": "C",
+          "text": "enumerate domain variants explicitly"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a wildcard can hide newly added variants. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q10",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about ranges is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "off-by-one assumptions can skip or overrun values"
+        },
+        {
+          "id": "B",
+          "text": "exclusive ranges omit their upper endpoint"
+        },
+        {
+          "id": "C",
+          "text": "use inclusive syntax when the endpoint belongs"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "off-by-one assumptions can skip or overrun values. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ranges",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q11",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about iterators is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "building a chain alone may perform no work"
+        },
+        {
+          "id": "B",
+          "text": "iterator adapters are generally lazy"
+        },
+        {
+          "id": "C",
+          "text": "consume with collect sum or a loop"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "building a chain alone may perform no work. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "iterators",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q12",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about ownership is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "using a non-Copy value after a move is rejected"
+        },
+        {
+          "id": "B",
+          "text": "one owner controls ordinary value cleanup"
+        },
+        {
+          "id": "C",
+          "text": "move values deliberately across boundaries"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using a non-Copy value after a move is rejected. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ownership",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q13",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about shared borrowing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "shared and active mutable borrowing cannot overlap"
+        },
+        {
+          "id": "B",
+          "text": "shared references allow non-mutating access"
+        },
+        {
+          "id": "C",
+          "text": "use &T for temporary read-only borrowing"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "shared and active mutable borrowing cannot overlap. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "shared borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q14",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about mutable borrowing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "only one active mutable borrow to the same data is allowed"
+        },
+        {
+          "id": "B",
+          "text": "an exclusive reference enables mutation"
+        },
+        {
+          "id": "C",
+          "text": "keep mutable borrow scope as short as practical"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "only one active mutable borrow to the same data is allowed. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "mutable borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q15",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about slices is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a slice cannot outlive its backing storage"
+        },
+        {
+          "id": "B",
+          "text": "slices borrow contiguous sequence regions"
+        },
+        {
+          "id": "C",
+          "text": "accept slices instead of requiring Vec ownership"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a slice cannot outlive its backing storage. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "slices",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q16",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Vec is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "growth can relocate elements and invalidate references"
+        },
+        {
+          "id": "B",
+          "text": "Vec owns a growable contiguous sequence"
+        },
+        {
+          "id": "C",
+          "text": "use Vec for variable-size owned elements"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "growth can relocate elements and invalidate references. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Vec",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q17",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about structs is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "public fields permit arbitrary invalid combinations"
+        },
+        {
+          "id": "B",
+          "text": "structs group named fields"
+        },
+        {
+          "id": "C",
+          "text": "keep invariant-sensitive fields private"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "public fields permit arbitrary invalid combinations. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "structs",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q18",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about enums is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "parallel booleans can represent impossible states"
+        },
+        {
+          "id": "B",
+          "text": "enums model one variant from a closed set"
+        },
+        {
+          "id": "C",
+          "text": "use them for meaningful states and outcomes"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "parallel booleans can represent impossible states. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "enums",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q19",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about traits is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "traits do not automatically imply object safety"
+        },
+        {
+          "id": "B",
+          "text": "traits define shared behavior contracts"
+        },
+        {
+          "id": "C",
+          "text": "use focused traits and explicit bounds"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "traits do not automatically imply object safety. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "traits",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "mock-rust-beginner-test-03-q20",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about threads is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "detached work can outlive intended operation scope"
+        },
+        {
+          "id": "B",
+          "text": "threads require safe transferred or shared data"
+        },
+        {
+          "id": "C",
+          "text": "join workers and propagate errors"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "detached work can outlive intended operation scope. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "threads",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.633Z",
+  "updatedAt": "2026-10-31T13:08:48.633Z"
+}

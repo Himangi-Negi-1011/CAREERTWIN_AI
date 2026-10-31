@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input",
+  "skillName": "Java",
+  "moduleId": "mod-1-java-beginner-module-1",
+  "title": "Primitive Types, Strings, and Input",
+  "summary": "Use primitive types, String, explicit numeric conversion, Scanner input, arithmetic, and predictable equality rules.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Java behavior taught in Primitive Types, Strings, and Input",
+    "Compile, run, and test the behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "java-obj-1",
+    "java-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-sec-1",
+      "heading": "Core model",
+      "content": "Java primitive types store numeric, boolean, and character values; reference types such as `String` refer to objects. Choose `int` or `long` according to range and `double` for approximate decimal calculations, not exact currency. Integer division discards the fractional part when both operands are integers. `Scanner` token methods and `nextLine` interact with line endings, so design input consistently. Use `.equals` for String value comparison; `==` compares primitive values but reference identity for objects. Parse text with methods such as `Integer.parseInt` and handle invalid input explicitly.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Java primitive types store numeric, boolean, and character values; reference types such as `String` refer to objects."
+      ],
+      "commonMistakes": [
+        "double is approximate and unsuitable for exact currency rules",
+        "casting only after integer division cannot restore the fraction"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-sec-2",
+      "heading": "Worked Java example",
+      "content": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+      "codeExamples": [
+        {
+          "language": "java",
+          "code": "int age = Integer.parseInt(\"19\");\nint nextYear = age + 1;\nSystem.out.println(\"Next year: \" + nextYear);",
+          "explanation": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+          "expectedOutput": "Next year: 20"
+        }
+      ],
+      "keyPoints": [
+        "Java primitive types store numeric, boolean, and character values; reference types such as `String` refer to objects."
+      ],
+      "commonMistakes": [
+        "double is approximate and unsuitable for exact currency rules",
+        "casting only after integer division cannot restore the fraction"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Java primitive types store numeric, boolean, and character values; reference types such as `String` refer to objects."
+      ],
+      "commonMistakes": [
+        "double is approximate and unsuitable for exact currency rules",
+        "casting only after integer division cannot restore the fraction"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in Java.",
+      "description": "Read weekly study hours, validate a whole number, calculate a four-week total, and test non-numeric, negative, zero, and unusually large input. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+      "instructions": [
+        "Read weekly study hours, validate a whole number, calculate a four-week total, and test non-numeric, negative, zero, and unusually large input. Submit source, compiler output, runtime output, tests, and a concise explanation."
+      ],
+      "starterCode": "// Java Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Java operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of JDK?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of bytecode?",
+      "options": [
+        {
+          "id": "A",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l2-primitive-types-strings-and-input-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of main method?",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Primitive Types, Strings, and Input in Java. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-java-main",
+      "title": "Java Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Java.",
+      "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "java-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "JDK, Compilation, and Program Structure",
+        "Primitive Types, Strings, and Input"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Primitive Types, Strings, and Input",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Primitive Types, Strings, and Input."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Java",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.435Z"
+}

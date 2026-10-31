@@ -1,0 +1,122 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "C++",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "cpp-obj-1",
+      "statement": "Write and explain small Python programs",
+      "order": 1
+    },
+    {
+      "id": "cpp-obj-2",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 2
+    },
+    {
+      "id": "cpp-obj-3",
+      "statement": "Write and explain small Python programs",
+      "order": 3
+    },
+    {
+      "id": "cpp-obj-4",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 4
+    },
+    {
+      "id": "cpp-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "cpp-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
+    }
+  ],
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-cpp-beginner-module-1",
+      "title": "Builds, Types, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "order": 1,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "cpp-obj-1",
+        "cpp-obj-2"
+      ],
+      "lessonTitles": [
+        "Compiling Modern C++ and Reading Diagnostics",
+        "Values, Types, Initialization, and Streams"
+      ],
+      "checkpoint": "Pass the Builds, Types, and Control Flow assessment with 70%+ score."
+    },
+    {
+      "id": "mod-2-cpp-beginner-module-2",
+      "title": "Containers, Functions, and Classes",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "order": 2,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "cpp-obj-3",
+        "cpp-obj-4"
+      ],
+      "lessonTitles": [
+        "Conditions, Boolean Logic, and Boundaries",
+        "Loops, std::array, and std::vector"
+      ],
+      "checkpoint": "Pass the Containers, Functions, and Classes assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3",
+      "title": "RAII, Algorithms, Files, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "cpp-obj-5",
+        "cpp-obj-6"
+      ],
+      "lessonTitles": [
+        "Functions, References, Classes, and RAII",
+        "STL Algorithms, Maps, and a Progress Tracker"
+      ],
+      "checkpoint": "Pass the RAII, Algorithms, Files, and a Project assessment with 70%+ score."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic in C++",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
+  ],
+  "assessmentCheckpoints": [
+    "Builds, Types, and Control Flow Knowledge Check (70% pass threshold)",
+    "Containers, Functions, and Classes Knowledge Check (70% pass threshold)",
+    "RAII, Algorithms, Files, and a Project Knowledge Check (70% pass threshold)"
+  ],
+  "projects": [
+    "RAII-Based Learning Progress Tracker"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
+  ],
+  "resources": [
+    {
+      "title": "Official C++ Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-31T13:08:48.255Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

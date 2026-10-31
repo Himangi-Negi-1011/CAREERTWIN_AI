@@ -1,0 +1,193 @@
+{
+  "id": "phase-c-programming-beginner-mod-1",
+  "skillName": "C Programming",
+  "skillSlug": "c-programming",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-c-beginner-module-1",
+  "moduleTitle": "Build Process, Types, and Input",
+  "title": "Build Process, Types, and Input Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Build Process, Types, and Input.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "preprocessing",
+    "compiler warnings",
+    "linking",
+    "integer division",
+    "format specifiers"
+  ],
+  "questions": [
+    {
+      "id": "phase-c-programming-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of preprocessing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use headers for declarations and include guards"
+        },
+        {
+          "id": "B",
+          "text": "preprocessing handles directives before compilation"
+        },
+        {
+          "id": "C",
+          "text": "macros do textual substitution without type checking"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "preprocessing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of compiler warnings?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "B",
+          "text": "warnings identify suspicious but translatable code"
+        },
+        {
+          "id": "C",
+          "text": "ignoring warnings can leave real defects"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "compiler warnings",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of linking?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "provide exactly one matching external definition"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves referenced definitions"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "linking",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of integer division?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "cast before division for a fractional result"
+        },
+        {
+          "id": "B",
+          "text": "integer operands produce an integer quotient"
+        },
+        {
+          "id": "C",
+          "text": "casting after division cannot restore the fraction"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "cast before division for a fractional result. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "integer division",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of format specifiers?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "match every conversion with the documented type"
+        },
+        {
+          "id": "B",
+          "text": "formatted I/O relies on matching argument types"
+        },
+        {
+          "id": "C",
+          "text": "a mismatch can cause undefined behavior"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "match every conversion with the documented type. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "format specifiers",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.160Z",
+  "updatedAt": "2026-10-31T13:08:48.160Z"
+}

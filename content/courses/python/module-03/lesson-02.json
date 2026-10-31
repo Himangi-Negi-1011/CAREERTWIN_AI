@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker",
+  "skillName": "Python",
+  "moduleId": "mod-3-python-beginner-module-3",
+  "title": "Collections and a Small Progress Tracker",
+  "summary": "Lists, tuples, dictionaries, and sets model different relationships. This lesson applies their trade-offs in a small progress-tracker project and introduces safe decomposition.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Python behavior taught in Collections and a Small Progress Tracker",
+    "Test the behavior with a small observable program"
+  ],
+  "objectiveIds": [
+    "python-obj-5",
+    "python-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-sec-1",
+      "heading": "Core model",
+      "content": "Choose a collection according to the operations the program needs. Lists preserve order and allow repeated values; tuples represent fixed-position records; dictionaries map unique keys to values; sets keep unique hashable members and provide efficient membership tests. Iterating over a dictionary yields keys, while `.items()` yields key-value pairs. Access with `mapping[key]` raises `KeyError` when absent; `.get(key, default)` expresses an expected fallback. Do not modify a list or dictionary structurally while iterating over the same view—build a new result or iterate over a copy. A useful small program separates input, domain calculation, and output formatting so each part can be tested.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Choose a collection according to the operations the program needs."
+      ],
+      "commonMistakes": [
+        "a local name is unavailable after the function call finishes",
+        "aliasing the same list means mutations are visible through both names"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-sec-2",
+      "heading": "Worked Python example",
+      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "progress = {\"Python basics\": 100, \"Loops\": 70, \"Functions\": 40}\ncompleted = [name for name, percent in progress.items() if percent == 100]\nprint(completed)",
+          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+          "expectedOutput": "['Python basics']"
+        }
+      ],
+      "keyPoints": [
+        "Choose a collection according to the operations the program needs."
+      ],
+      "commonMistakes": [
+        "a local name is unavailable after the function call finishes",
+        "aliasing the same list means mutations are visible through both names"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Choose a collection according to the operations the program needs."
+      ],
+      "commonMistakes": [
+        "a local name is unavailable after the function call finishes",
+        "aliasing the same list means mutations are visible through both names"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-ex-1",
+      "type": "coding",
+      "title": "Build and explain",
+      "objective": "Master Build and explain and apply practical principles in Python.",
+      "description": "Build a progress tracker with functions to add a topic, reject percentages outside 0–100, update progress, list completed topics, and calculate the overall average. Include at least six assertions covering normal and invalid cases. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+      "instructions": [
+        "Build a progress tracker with functions to add a topic, reject percentages outside 0–100, update progress, list completed topics, and calculate the overall average. Include at least six assertions covering normal and invalid cases. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
+      ],
+      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "hints": [
+        "A runnable Python program with descriptive names",
+        "Observed output and at least one boundary or failure test",
+        "An explanation based on program evidence"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "A runnable Python program with descriptive names",
+        "Observed output and at least one boundary or failure test",
+        "An explanation based on program evidence"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-kc-1",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about assignment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "using a name before assignment raises NameError"
+        },
+        {
+          "id": "B",
+          "text": "assignment binds a name to the evaluated object"
+        },
+        {
+          "id": "C",
+          "text": "use `total = price * quantity` when the computed value is needed later"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using a name before assignment raises NameError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-kc-2",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about input?",
+      "options": [
+        {
+          "id": "A",
+          "text": "adding an input string to an integer raises TypeError"
+        },
+        {
+          "id": "B",
+          "text": "input returns a string"
+        },
+        {
+          "id": "C",
+          "text": "convert validated numeric input with int or float before arithmetic"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "adding an input string to an integer raises TypeError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l2-collections-and-a-small-progress-tracker-kc-3",
+      "type": "single-choice",
+      "prompt": "Which warning should a code review raise about integer division?",
+      "options": [
+        {
+          "id": "A",
+          "text": "floor division rounds toward negative infinity, not toward zero"
+        },
+        {
+          "id": "B",
+          "text": "`//` performs floor division"
+        },
+        {
+          "id": "C",
+          "text": "use `minutes // 60` for complete hours"
+        },
+        {
+          "id": "D",
+          "text": "Python requires this feature to be declared in a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "floor division rounds toward negative infinity, not toward zero. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Collections and a Small Progress Tracker in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-python-main",
+      "title": "Python for Beginners - Full Course",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Python.",
+      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "python-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, Parameters, and Return Values",
+        "Collections and a Small Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Collections and a Small Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Collections and a Small Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Python",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.569Z"
+}

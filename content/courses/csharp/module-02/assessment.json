@@ -1,0 +1,193 @@
+{
+  "id": "phase-csharp-beginner-mod-2",
+  "skillName": "C#",
+  "skillSlug": "csharp",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-csharp-beginner-module-2",
+  "moduleTitle": "Collections, LINQ, and Domain Models",
+  "title": "Collections, LINQ, and Domain Models Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Collections, LINQ, and Domain Models.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "null coalescing",
+    "short circuit",
+    "patterns",
+    "switch expressions",
+    "arrays"
+  ],
+  "questions": [
+    {
+      "id": "phase-csharp-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about null coalescing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a fallback can hide missing required data if used carelessly"
+        },
+        {
+          "id": "B",
+          "text": "?? supplies a fallback only for null"
+        },
+        {
+          "id": "C",
+          "text": "use it when an explicit fallback is valid"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a fallback can hide missing required data if used carelessly. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "null coalescing",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-csharp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Patterns, and Boundaries"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "single ampersand does not short-circuit"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "place guards before dependent operations"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "single ampersand does not short-circuit. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-csharp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Patterns, and Boundaries"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about patterns is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a discard arm can hide an omitted case"
+        },
+        {
+          "id": "B",
+          "text": "patterns test evidence and can narrow values"
+        },
+        {
+          "id": "C",
+          "text": "use relational or type patterns for clear domain cases"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a discard arm can hide an omitted case. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "patterns",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-csharp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Patterns, and Boundaries"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch expressions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "non-exhaustive runtime input can throw"
+        },
+        {
+          "id": "B",
+          "text": "switch expressions map inputs to values"
+        },
+        {
+          "id": "C",
+          "text": "cover finite states explicitly"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "non-exhaustive runtime input can throw. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "switch expressions",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-csharp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Patterns, and Boundaries"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about arrays is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "index equal to Length is invalid"
+        },
+        {
+          "id": "B",
+          "text": "arrays have fixed length and indexed elements"
+        },
+        {
+          "id": "C",
+          "text": "use arrays for fixed-size sequences"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "index equal to Length is invalid. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-csharp-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Patterns, and Boundaries"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.316Z",
+  "updatedAt": "2026-10-31T13:08:48.316Z"
+}

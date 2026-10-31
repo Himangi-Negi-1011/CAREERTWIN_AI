@@ -1,5 +1,5 @@
 {
-  "id": "mock-python-beginner-t2",
+  "id": "mock-python-beginner-test-02",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
@@ -7,293 +7,697 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Python BEGINNER Comprehensive Mock Test 2",
-  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Python.",
-  "durationMinutes": 30,
-  "totalMarks": 17,
+  "title": "Python Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for Python at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Memory Management & Generators",
-    "Concurrency & Architecture",
-    "Object-Oriented Programming & Optimization",
-    "Exception Hierarchy & Error Handling",
-    "Decorators & Metaprogramming",
-    "Data Structures & Mutability",
-    "Data Structures & Comprehensions",
-    "Functions & Scope"
+    "01",
+    "02",
+    "integer",
+    "f",
+    "05",
+    "comparison",
+    "07",
+    "08",
+    "for",
+    "while",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "local",
+    "17",
+    "18",
+    "19",
+    "20"
   ],
   "questions": [
     {
-      "id": "mock-python-beginner-t2-q1",
-      "type": "scenario",
-      "prompt": "You are processing a 10GB log file on an instance with 2GB RAM. Which Python approach avoids memory exhaustion?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Read the file line-by-line using a generator iterator (with open(...) as f: for line in f:)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Call f.readlines() to parse all lines into memory at once"
-        },
-        {
-          "id": "opt-3",
-          "text": "Convert the file to a JSON object before looping"
-        },
-        {
-          "id": "opt-4",
-          "text": "Use multiprocessing to load the entire file into 8 concurrent arrays"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Iterating over a file object in Python streams line by line as a generator without loading the entire payload into RAM.",
-      "difficulty": "beginner",
-      "topic": "Memory Management & Generators",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t2-q2",
-      "type": "multiple-select",
-      "prompt": "Which of the following statements about Python's Global Interpreter Lock (GIL) and concurrency are correct?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "The GIL allows only one native thread to execute Python bytecode at a time in CPython"
-        },
-        {
-          "id": "opt-2",
-          "text": "multiprocessing bypasses the GIL by creating separate processes with separate memory spaces"
-        },
-        {
-          "id": "opt-3",
-          "text": "I/O bound operations release the GIL while waiting for network or disk operations"
-        },
-        {
-          "id": "opt-4",
-          "text": "threading provides true multi-core parallel CPU execution for math-heavy loops in CPython"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "In CPython, GIL prevents multi-threaded CPU parallel execution, but I/O releases the lock, and multiprocessing spawns separate OS processes.",
-      "difficulty": "beginner",
-      "topic": "Concurrency & Architecture",
-      "marks": 3,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t2-q3",
+      "id": "mock-python-beginner-test-02-q1",
       "type": "single-choice",
-      "prompt": "What does the '__slots__' attribute do when declared on a Python class?",
+      "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "It restricts valid instance attributes to a fixed set, eliminating __dict__ to optimize memory usage."
+          "id": "A",
+          "text": "use `total = price * quantity` when the computed value is needed later"
         },
         {
-          "id": "opt-2",
-          "text": "It prevents other classes from inheriting from the declared class."
+          "id": "B",
+          "text": "using a name before assignment raises NameError"
         },
         {
-          "id": "opt-3",
-          "text": "It automatically serializes class instances to JSON format."
+          "id": "C",
+          "text": "Suppress every error and continue"
         },
         {
-          "id": "opt-4",
-          "text": "It declares private variables accessible only via getter functions."
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "Defining __slots__ on a class prevents the creation of the default __dict__ per instance, significantly reducing memory consumption for millions of objects.",
+      "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Object-Oriented Programming & Optimization",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "01",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     },
     {
-      "id": "mock-python-beginner-t2-q4",
-      "type": "debugging",
-      "prompt": "What will occur when running: try: 1 / 0 except LookupError: print('A') except ZeroDivisionError: print('B')",
-      "codeSnippet": "try:\n    1 / 0\nexcept LookupError:\n    print(\"A\")\nexcept ZeroDivisionError:\n    print(\"B\")",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Prints 'B' because ZeroDivisionError inherits from ArithmeticError, not LookupError."
-        },
-        {
-          "id": "opt-2",
-          "text": "Prints 'A' because LookupError is the base class for arithmetic exceptions."
-        },
-        {
-          "id": "opt-3",
-          "text": "SyntaxError because multiple except blocks are prohibited."
-        },
-        {
-          "id": "opt-4",
-          "text": "Uncaught exception crash."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "ZeroDivisionError inherits from ArithmeticError, not LookupError (which is the parent of IndexError and KeyError). The second block matches.",
-      "difficulty": "beginner",
-      "topic": "Exception Hierarchy & Error Handling",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
-    },
-    {
-      "id": "mock-python-beginner-t2-q5",
-      "type": "scenario",
-      "prompt": "Which decorator is used to define a method that operates on class state rather than a specific instance?",
+      "id": "mock-python-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "@classmethod (receiving cls as first parameter)"
+          "id": "A",
+          "text": "convert validated numeric input with int or float before arithmetic"
         },
         {
-          "id": "opt-2",
-          "text": "@staticmethod (receiving self as first parameter)"
+          "id": "B",
+          "text": "adding an input string to an integer raises TypeError"
         },
         {
-          "id": "opt-3",
-          "text": "@property"
+          "id": "C",
+          "text": "Suppress every error and continue"
         },
         {
-          "id": "opt-4",
-          "text": "@abstractmethod"
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "@classmethod binds the method to the class namespace, taking cls as its first parameter.",
+      "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Decorators & Metaprogramming",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "02",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     },
     {
-      "id": "mock-python-beginner-t2-q6",
-      "type": "multiple-select",
-      "prompt": "Which of the following built-in Python data types are mutable?",
+      "id": "mock-python-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "list"
+          "id": "A",
+          "text": "use `minutes // 60` for complete hours"
         },
         {
-          "id": "opt-2",
-          "text": "dict"
+          "id": "B",
+          "text": "floor division rounds toward negative infinity, not toward zero"
         },
         {
-          "id": "opt-3",
-          "text": "set"
+          "id": "C",
+          "text": "Suppress every error and continue"
         },
         {
-          "id": "opt-4",
-          "text": "tuple"
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
         }
       ],
       "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
+        "A"
       ],
-      "explanation": "Lists, dicts, and sets can be mutated in place. Tuples and frozensets are immutable.",
+      "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Data Structures & Mutability",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "integer",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     },
     {
-      "id": "mock-python-beginner-t2-q7",
-      "type": "code-output",
-      "prompt": "What is the exact output of the following list comprehension snippet?",
-      "codeSnippet": "matrix = [[1, 2], [3, 4]]\nflattened = [val for row in matrix for val in row]\nprint(flattened)",
+      "id": "mock-python-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply f-strings. Which choice is the most reliable approach?",
+      "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "[1, 2, 3, 4]"
+          "id": "A",
+          "text": "use an f-string to combine labels and calculated values readably"
         },
         {
-          "id": "opt-2",
-          "text": "[[1, 2], [3, 4]]"
+          "id": "B",
+          "text": "forgetting the leading f leaves braces as ordinary text"
         },
         {
-          "id": "opt-3",
-          "text": "[1, 3, 2, 4]"
+          "id": "C",
+          "text": "Suppress every error and continue"
         },
         {
-          "id": "opt-4",
-          "text": "TypeError: list indices must be integers"
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "In nested list comprehensions in Python, outer loops come first from left to right: for row in matrix, then for val in row.",
+      "explanation": "use an f-string to combine labels and calculated values readably. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Data Structures & Comprehensions",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Python"
+      "topic": "f",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     },
     {
-      "id": "mock-python-beginner-t2-q8",
-      "type": "debugging",
-      "prompt": "Identify why the following function mutates state unexpectedly across calls:",
-      "codeSnippet": "def append_item(item, target_list=[]):\n    target_list.append(item)\n    return target_list\n\na = append_item(1)\nb = append_item(2)",
+      "id": "mock-python-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply booleans. Which choice is the most reliable approach?",
+      "codeSnippet": "",
       "options": [
         {
-          "id": "opt-1",
-          "text": "Default arguments are evaluated once at function definition time, sharing the mutable list instance."
+          "id": "A",
+          "text": "name a complex eligibility condition before using it in an if"
         },
         {
-          "id": "opt-2",
-          "text": "Python functions create a global variable when default arguments are used."
+          "id": "B",
+          "text": "the strings 'False' and '0' are non-empty and therefore truthy"
         },
         {
-          "id": "opt-3",
-          "text": "append() returns None rather than the updated list."
+          "id": "C",
+          "text": "Suppress every error and continue"
         },
         {
-          "id": "opt-4",
-          "text": "Integers cannot be appended to untyped lists."
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "A"
       ],
-      "explanation": "Python evaluates default parameter expressions once at definition time. Mutable default arguments (like lists or dicts) are shared across all calls.",
+      "explanation": "name a complex eligibility condition before using it in an if. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
       "difficulty": "beginner",
-      "topic": "Functions & Scope",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Python"
+      "topic": "05",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply comparison boundaries. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "test values immediately below, at, and above a threshold"
+        },
+        {
+          "id": "B",
+          "text": "using `>` accidentally excludes the exact boundary"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "test values immediately below, at, and above a threshold. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "comparison",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply elif. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "order score bands from the most restrictive boundary downward"
+        },
+        {
+          "id": "B",
+          "text": "independent if statements can execute more than one overlapping branch"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "order score bands from the most restrictive boundary downward. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "07",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply range. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use `range(1, 6)` to produce one through five"
+        },
+        {
+          "id": "B",
+          "text": "assuming the stop is included creates off-by-one errors"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use `range(1, 6)` to produce one through five. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "08",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply for loops. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "iterate directly over items when an index is unnecessary"
+        },
+        {
+          "id": "B",
+          "text": "changing the loop variable does not replace the original list element"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "iterate directly over items when an index is unnecessary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "for",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply while loops. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "update the state used by the condition on every normal path"
+        },
+        {
+          "id": "B",
+          "text": "failing to make progress can create an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "update the state used by the condition on every normal path. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "while",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply break. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "stop searching as soon as a verified match is found"
+        },
+        {
+          "id": "B",
+          "text": "break does not exit an enclosing function unless followed by return"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "stop searching as soon as a verified match is found. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "11",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply continue. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "skip invalid records before accumulator logic"
+        },
+        {
+          "id": "B",
+          "text": "placing required state updates after continue can prevent progress"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "skip invalid records before accumulator logic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "12",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply accumulators. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "start a sum at zero and add each validated value exactly once"
+        },
+        {
+          "id": "B",
+          "text": "resetting the accumulator inside the loop loses earlier work"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "start a sum at zero and add each validated value exactly once. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "13",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply functions. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use small functions with explicit inputs and outputs"
+        },
+        {
+          "id": "B",
+          "text": "a function with no return statement returns None"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use small functions with explicit inputs and outputs. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "14",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply return. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return calculated data and format it at the interface boundary"
+        },
+        {
+          "id": "B",
+          "text": "printing a value does not make it available to the caller"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return calculated data and format it at the interface boundary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "15",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply local scope. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "pass dependencies as parameters instead of reading mutable globals"
+        },
+        {
+          "id": "B",
+          "text": "a local name is unavailable after the function call finishes"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "pass dependencies as parameters instead of reading mutable globals. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "local",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply lists. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a list for an ordered sequence that may change"
+        },
+        {
+          "id": "B",
+          "text": "aliasing the same list means mutations are visible through both names"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a list for an ordered sequence that may change. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "17",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply dictionaries. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use `.items()` when both key and value are required"
+        },
+        {
+          "id": "B",
+          "text": "indexing a missing key raises KeyError"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use `.items()` when both key and value are required. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "18",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply sets. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a set for fast membership and duplicate removal"
+        },
+        {
+          "id": "B",
+          "text": "sets do not preserve a meaningful positional index"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a set for fast membership and duplicate removal. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "19",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
+    },
+    {
+      "id": "mock-python-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply exceptions. Which choice is the most reliable approach?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "catch ValueError around a conversion whose failure you can handle"
+        },
+        {
+          "id": "B",
+          "text": "a broad bare except can hide programming defects and interrupts"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "catch ValueError around a conversion whose failure you can handle. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "difficulty": "beginner",
+      "topic": "20",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running Python and Working with Values"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:02:55.093Z",
-  "updatedAt": "2026-10-30T06:02:55.093Z"
+  "createdAt": "2026-10-31T13:08:48.570Z",
+  "updatedAt": "2026-10-31T13:08:48.570Z"
 }

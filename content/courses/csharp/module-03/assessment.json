@@ -1,0 +1,193 @@
+{
+  "id": "phase-csharp-beginner-mod-3",
+  "skillName": "C#",
+  "skillSlug": "csharp",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-csharp-beginner-module-3",
+  "moduleTitle": "JSON, Async I/O, and a Project",
+  "title": "JSON, Async I/O, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in JSON, Async I/O, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "List",
+    "Dictionary",
+    "HashSet",
+    "deferred LINQ",
+    "methods"
+  ],
+  "questions": [
+    {
+      "id": "phase-csharp-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes List in C#?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "List<T> is an ordered resizable generic collection"
+        },
+        {
+          "id": "B",
+          "text": "use List for variable-size sequences"
+        },
+        {
+          "id": "C",
+          "text": "changing a list during foreach invalidates enumeration"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "List<T> is an ordered resizable generic collection. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "List",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-csharp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Records, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Dictionary in C#?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dictionary maps unique keys to values"
+        },
+        {
+          "id": "B",
+          "text": "use TryGetValue for expected absence"
+        },
+        {
+          "id": "C",
+          "text": "indexing a missing key throws"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Dictionary maps unique keys to values. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Dictionary",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-csharp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Records, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes HashSet in C#?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "HashSet stores unique values"
+        },
+        {
+          "id": "B",
+          "text": "use it for membership and deduplication"
+        },
+        {
+          "id": "C",
+          "text": "it does not provide positional indexing"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "HashSet stores unique values. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "HashSet",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-csharp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Records, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes deferred LINQ in C#?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "many LINQ queries execute when enumerated"
+        },
+        {
+          "id": "B",
+          "text": "materialize when a stable snapshot is required"
+        },
+        {
+          "id": "C",
+          "text": "re-enumeration can repeat work and observe changed sources"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "many LINQ queries execute when enumerated. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "deferred LINQ",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-csharp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Records, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-csharp-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes methods in C#?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "methods declare parameter and return contracts"
+        },
+        {
+          "id": "B",
+          "text": "return domain data instead of only printing"
+        },
+        {
+          "id": "C",
+          "text": "void methods cannot provide a result value"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "methods declare parameter and return contracts. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-csharp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Records, Classes, and Encapsulation"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.316Z",
+  "updatedAt": "2026-10-31T13:08:48.316Z"
+}

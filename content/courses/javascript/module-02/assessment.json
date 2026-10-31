@@ -1,0 +1,193 @@
+{
+  "id": "phase-javascript-beginner-mod-2",
+  "skillName": "JavaScript",
+  "skillSlug": "javascript",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-javascript-beginner-module-2",
+  "moduleTitle": "Control Flow and Array Processing",
+  "title": "Control Flow and Array Processing Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow and Array Processing.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "truthiness",
+    "nullish coalescing",
+    "optional chaining",
+    "for of",
+    "array map"
+  ],
+  "questions": [
+    {
+      "id": "phase-javascript-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about truthiness is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "non-empty strings including '0' and 'false' are truthy"
+        },
+        {
+          "id": "B",
+          "text": "conditions convert non-boolean values using defined truthiness rules"
+        },
+        {
+          "id": "C",
+          "text": "convert user intent explicitly when strings such as 'false' are possible"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "non-empty strings including '0' and 'false' are truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "truthiness",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about nullish coalescing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "using || can replace valid zero or empty-string input"
+        },
+        {
+          "id": "B",
+          "text": "?? defaults only null or undefined"
+        },
+        {
+          "id": "C",
+          "text": "use ?? when zero and empty string are valid values"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using || can replace valid zero or empty-string input. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "nullish coalescing",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about optional chaining is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "optional chaining does not validate a present value's type"
+        },
+        {
+          "id": "B",
+          "text": "?. stops a property chain on null or undefined"
+        },
+        {
+          "id": "C",
+          "text": "use optional chaining for genuinely optional nested data"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "optional chaining does not validate a present value's type. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "optional chaining",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about for of is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "for...in yields property keys rather than array values"
+        },
+        {
+          "id": "B",
+          "text": "for...of iterates values from an iterable"
+        },
+        {
+          "id": "C",
+          "text": "use for...of for array values when no index is needed"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "for...in yields property keys rather than array values. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "for of",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions and Boolean Logic"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about array map is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring map's returned array loses the transformed result"
+        },
+        {
+          "id": "B",
+          "text": "map creates a new array from one result per input"
+        },
+        {
+          "id": "C",
+          "text": "use map for a pure one-to-one transformation"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring map's returned array loses the transformed result. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array map",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions and Boolean Logic"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.478Z",
+  "updatedAt": "2026-10-31T13:08:48.478Z"
+}

@@ -1,0 +1,193 @@
+{
+  "id": "phase-c-programming-beginner-mod-3",
+  "skillName": "C Programming",
+  "skillSlug": "c-programming",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-c-beginner-module-3",
+  "moduleTitle": "Pointers, Structs, Files, and a Project",
+  "title": "Pointers, Structs, Files, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Pointers, Structs, Files, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "array bounds",
+    "sizeof array",
+    "size_t",
+    "undefined behavior",
+    "pass by value"
+  ],
+  "questions": [
+    {
+      "id": "phase-c-programming-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes array bounds in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "valid indexes are below the element count"
+        },
+        {
+          "id": "B",
+          "text": "use i < count as the common traversal guard"
+        },
+        {
+          "id": "C",
+          "text": "index equal to count is out of bounds"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "valid indexes are below the element count. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "array bounds",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes sizeof array in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "local array size can derive an element count"
+        },
+        {
+          "id": "B",
+          "text": "divide total array bytes by one element size"
+        },
+        {
+          "id": "C",
+          "text": "a function parameter declared as array is adjusted to a pointer"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "local array size can derive an element count. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "sizeof array",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes size_t in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "size_t represents object sizes and indexes"
+        },
+        {
+          "id": "B",
+          "text": "use size_t with sizeof-derived counts"
+        },
+        {
+          "id": "C",
+          "text": "mixing signed and unsigned values can distort comparisons"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "size_t represents object sizes and indexes. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "size_t",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes undefined behavior in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "undefined behavior imposes no required result"
+        },
+        {
+          "id": "B",
+          "text": "prevent invalid accesses rather than expecting an exception"
+        },
+        {
+          "id": "C",
+          "text": "a successful run does not prove undefined behavior is safe"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "undefined behavior imposes no required result. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "undefined behavior",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes pass by value in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "every C function parameter receives a value copy"
+        },
+        {
+          "id": "B",
+          "text": "pass an address when deliberate caller mutation is needed"
+        },
+        {
+          "id": "C",
+          "text": "reassigning a pointer parameter does not reassign caller pointer"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "every C function parameter receives a value copy. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "pass by value",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.169Z",
+  "updatedAt": "2026-10-31T13:08:48.169Z"
+}

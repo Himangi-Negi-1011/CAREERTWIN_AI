@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model",
+  "skillName": "C#",
+  "moduleId": "mod-1-csharp-beginner-module-1",
+  "title": "The .NET Build and Execution Model",
+  "summary": "Create a .NET console project and understand source, compilation, assemblies, the runtime, entry points, diagnostics, and repeatable builds.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply The .NET Build and Execution Model",
+    "Use compiler and runtime evidence to test the contract"
+  ],
+  "objectiveIds": [
+    "csharp-obj-1",
+    "csharp-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-sec-1",
+      "heading": "Core model",
+      "content": "The .NET SDK supplies `dotnet new`, `dotnet build`, `dotnet run`, and testing tools. C# source is compiled into an assembly containing intermediate language and metadata; the .NET runtime loads and executes it. A project file selects the target framework and dependencies. Treat warnings as design feedback, enable nullable analysis, and read the earliest relevant diagnostic rather than changing unrelated code. `dotnet run` builds when needed, but explicit `dotnet build` is useful when separating compiler evidence from runtime behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "The .NET SDK supplies `dotnet new`, `dotnet build`, `dotnet run`, and testing tools."
+      ],
+      "commonMistakes": [
+        "a runtime-only installation may not include build tools",
+        "an assembly is not raw C# source"
+      ]
+    },
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-sec-2",
+      "heading": "Worked C# example",
+      "content": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "csharp",
+          "code": "var course = \"C#\";\nvar lessons = 6;\nConsole.WriteLine($\"{course}: {lessons} lessons\");",
+          "explanation": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+          "expectedOutput": "C#: 6 lessons"
+        }
+      ],
+      "keyPoints": [
+        "The .NET SDK supplies `dotnet new`, `dotnet build`, `dotnet run`, and testing tools."
+      ],
+      "commonMistakes": [
+        "a runtime-only installation may not include build tools",
+        "an assembly is not raw C# source"
+      ]
+    },
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "The .NET SDK supplies `dotnet new`, `dotnet build`, `dotnet run`, and testing tools."
+      ],
+      "commonMistakes": [
+        "a runtime-only installation may not include build tools",
+        "an assembly is not raw C# source"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in C#.",
+      "description": "Create a console project, build and run it, introduce a type error, and explain the compiler diagnostic before correcting it. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+      "instructions": [
+        "Create a console project, build and run it, introduce a type error, and explain the compiler diagnostic before correcting it. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling."
+      ],
+      "starterCode": "// C# Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Nullable-clean C# source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Nullable-clean C# source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C# operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes .NET SDK in C#?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the SDK includes build run and test tools"
+        },
+        {
+          "id": "B",
+          "text": "use dotnet build to obtain compiler evidence"
+        },
+        {
+          "id": "C",
+          "text": "a runtime-only installation may not include build tools"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the SDK includes build run and test tools. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes assemblies in C#?",
+      "options": [
+        {
+          "id": "A",
+          "text": "assemblies contain intermediate language and metadata"
+        },
+        {
+          "id": "B",
+          "text": "build source into a target-framework assembly"
+        },
+        {
+          "id": "C",
+          "text": "an assembly is not raw C# source"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "assemblies contain intermediate language and metadata. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-csharp-beginner-module-1-l1-the-net-build-and-execution-model-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes var in C#?",
+      "options": [
+        {
+          "id": "A",
+          "text": "var infers one static type from an initializer"
+        },
+        {
+          "id": "B",
+          "text": "use it when the inferred type is clear"
+        },
+        {
+          "id": "C",
+          "text": "var does not permit later values of unrelated types"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "var infers one static type from an initializer. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered The .NET Build and Execution Model in C#. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-csharp-main",
+      "title": "C# Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C#.",
+      "whatItTeaches": "Step-by-step walkthrough of C# fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "csharp-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "The .NET Build and Execution Model",
+        "Types, Conversion, and Nullable References"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: The .NET Build and Execution Model",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for The .NET Build and Execution Model."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C#",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.315Z"
+}

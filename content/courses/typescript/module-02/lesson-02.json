@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts",
+  "skillName": "TypeScript",
+  "moduleId": "mod-2-typescript-beginner-module-2",
+  "title": "Typed Arrays and Function Contracts",
+  "summary": "Use typed arrays, tuples, parameter and return types, optional/default parameters, callbacks, and overload-free union contracts.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the TypeScript behavior taught in Typed Arrays and Function Contracts",
+    "Use strict compiler evidence and runtime tests to verify the contract"
+  ],
+  "objectiveIds": [
+    "typescript-obj-3",
+    "typescript-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-sec-1",
+      "heading": "Core model",
+      "content": "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types. Function parameter types protect callers and explicit return types protect the implementation's contract. Optional parameters come after required ones; default parameters already behave as optional to callers. Callback types describe both inputs and outputs, enabling methods such as `map` to infer results. Prefer a union parameter when behavior and return type are the same for every member; overloads are useful only when input forms imply meaningfully different output types.",
+      "codeExamples": [],
+      "keyPoints": [
+        "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
+      ],
+      "commonMistakes": [
+        "optional does not mean every value type is accepted",
+        "readonly is compile-time protection, not deep runtime freezing"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-sec-2",
+      "heading": "Worked TypeScript example",
+      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "function average(values: readonly number[]): number {\n  if (values.length === 0) throw new Error('values required');\n  return values.reduce((sum, value) => sum + value, 0) / values.length;\n}\nconsole.log(average([70, 82, 91]));",
+          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+          "expectedOutput": "81"
+        }
+      ],
+      "keyPoints": [
+        "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
+      ],
+      "commonMistakes": [
+        "optional does not mean every value type is accepted",
+        "readonly is compile-time protection, not deep runtime freezing"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
+      "codeExamples": [],
+      "keyPoints": [
+        "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
+      ],
+      "commonMistakes": [
+        "optional does not mean every value type is accepted",
+        "readonly is compile-time protection, not deep runtime freezing"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-ex-1",
+      "type": "coding",
+      "title": "Build, check, and explain",
+      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
+      "description": "Implement typed functions that filter completed lessons and calculate an average. Accept readonly arrays, reject empty input explicitly, and add compile-time misuse examples as comments. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "instructions": [
+        "Implement typed functions that filter completed lessons and calculate an average. Accept readonly arrays, reject empty input explicitly, and add compile-time misuse examples as comments. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+      ],
+      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "hints": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes type inference in TypeScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the compiler derives a type from available expressions"
+        },
+        {
+          "id": "B",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict mode in TypeScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "strict enables a coordinated set of stronger checks"
+        },
+        {
+          "id": "B",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes annotations in TypeScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotations state an expected compile-time type"
+        },
+        {
+          "id": "B",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Typed Arrays and Function Contracts in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-typescript-main",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for TypeScript.",
+      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "typescript-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Object Types, Interfaces, and Optional Properties",
+        "Typed Arrays and Function Contracts"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Typed Arrays and Function Contracts",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Typed Arrays and Function Contracts."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using TypeScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.687Z"
+}

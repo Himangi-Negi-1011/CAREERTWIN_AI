@@ -1,0 +1,193 @@
+{
+  "id": "phase-php-beginner-mod-3",
+  "skillName": "PHP",
+  "skillSlug": "php",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-php-beginner-module-3",
+  "moduleTitle": "PDO, Web Security, and a Project",
+  "title": "PDO, Web Security, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in PDO, Web Security, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "typed functions",
+    "exceptions",
+    "finally",
+    "private properties",
+    "readonly"
+  ],
+  "questions": [
+    {
+      "id": "phase-php-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes typed functions in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "typed functions define reusable input and output contracts"
+        },
+        {
+          "id": "B",
+          "text": "return domain data rather than only echoing"
+        },
+        {
+          "id": "C",
+          "text": "default parameters should follow required parameters"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "typed functions define reusable input and output contracts. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "typed functions",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-php-beginner-module-3-l1",
+      "recommendedLessonTitle": "Classes, Value Objects, and Encapsulation"
+    },
+    {
+      "id": "phase-php-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes exceptions in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "exceptions transfer control to a capable boundary"
+        },
+        {
+          "id": "B",
+          "text": "catch only where recovery translation or logging is possible"
+        },
+        {
+          "id": "C",
+          "text": "swallowing Throwable hides failures"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "exceptions transfer control to a capable boundary. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "exceptions",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-php-beginner-module-3-l1",
+      "recommendedLessonTitle": "Classes, Value Objects, and Encapsulation"
+    },
+    {
+      "id": "phase-php-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes finally in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "finally executes after try and catch paths"
+        },
+        {
+          "id": "B",
+          "text": "use it for unavoidable cleanup"
+        },
+        {
+          "id": "C",
+          "text": "returning from finally can obscure earlier results or errors"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "finally executes after try and catch paths. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "finally",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-php-beginner-module-3-l1",
+      "recommendedLessonTitle": "Classes, Value Objects, and Encapsulation"
+    },
+    {
+      "id": "phase-php-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes private properties in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "private properties prevent arbitrary external assignment"
+        },
+        {
+          "id": "B",
+          "text": "preserve invariants through methods"
+        },
+        {
+          "id": "C",
+          "text": "public mutable fields permit invalid state"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "private properties prevent arbitrary external assignment. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "private properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-php-beginner-module-3-l1",
+      "recommendedLessonTitle": "Classes, Value Objects, and Encapsulation"
+    },
+    {
+      "id": "phase-php-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes readonly in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "readonly properties can be initialized only once"
+        },
+        {
+          "id": "B",
+          "text": "use them for stable value-object fields"
+        },
+        {
+          "id": "C",
+          "text": "readonly is not automatically deep immutability"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "readonly properties can be initialized only once. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-php-beginner-module-3-l1",
+      "recommendedLessonTitle": "Classes, Value Objects, and Encapsulation"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.525Z",
+  "updatedAt": "2026-10-31T13:08:48.525Z"
+}

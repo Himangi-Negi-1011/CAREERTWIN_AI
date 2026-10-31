@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker",
+  "skillName": "Java",
+  "moduleId": "mod-3-java-beginner-module-3",
+  "title": "Collections and a Progress Tracker",
+  "summary": "Apply List, Map, Set, generics, iteration, immutable views, exceptions, and modular design in a progress-tracker capstone.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Java behavior taught in Collections and a Progress Tracker",
+    "Compile, run, and test the behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "java-obj-5",
+    "java-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-sec-1",
+      "heading": "Core model",
+      "content": "Use `List` for ordered values, `Set` for uniqueness and membership, and `Map` for key-value relationships. Generic arguments such as `List<String>` preserve element types without casts. Choose an implementation according to behavior: `ArrayList`, `HashSet`, and `HashMap` are common defaults. A missing map key returns null from `get`, so distinguish absence with `containsKey` or use an intentional default. Do not structurally modify a collection during enhanced iteration. Return defensive copies or unmodifiable views when callers must not mutate internal state.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Use `List` for ordered values, `Set` for uniqueness and membership, and `Map` for key-value relationships."
+      ],
+      "commonMistakes": [
+        "public mutable fields allow invalid states",
+        "static code cannot directly use instance fields without an object"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-sec-2",
+      "heading": "Worked Java example",
+      "content": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+      "codeExamples": [
+        {
+          "language": "java",
+          "code": "java.util.Map<String,Integer> progress = new java.util.HashMap<>();\nprogress.put(\"Basics\", 100);\nprogress.put(\"Loops\", 70);\nprogress.forEach((topic, percent) -> System.out.println(topic + \": \" + percent));",
+          "explanation": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+          "expectedOutput": "Basics: 100\nLoops: 70"
+        }
+      ],
+      "keyPoints": [
+        "Use `List` for ordered values, `Set` for uniqueness and membership, and `Map` for key-value relationships."
+      ],
+      "commonMistakes": [
+        "public mutable fields allow invalid states",
+        "static code cannot directly use instance fields without an object"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Use `List` for ordered values, `Set` for uniqueness and membership, and `Map` for key-value relationships."
+      ],
+      "commonMistakes": [
+        "public mutable fields allow invalid states",
+        "static code cannot directly use instance fields without an object"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in Java.",
+      "description": "Build a progress tracker using classes and collections. Validate 0–100 percentages, update topics, list completed work, calculate an average, and include at least ten JUnit-style assertions. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+      "instructions": [
+        "Build a progress tracker using classes and collections. Validate 0–100 percentages, update topics, list completed work, calculate an average, and include at least ten JUnit-style assertions. Submit source, compiler output, runtime output, tests, and a concise explanation."
+      ],
+      "starterCode": "// Java Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Java operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about JDK is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "B",
+          "text": "the JDK includes development tools such as javac"
+        },
+        {
+          "id": "C",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a JRE-only installation may not provide javac. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about bytecode is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "B",
+          "text": "javac emits JVM bytecode in class files"
+        },
+        {
+          "id": "C",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "editing a class file is not a source workflow. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l2-collections-and-a-progress-tracker-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about main method is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "B",
+          "text": "the JVM entry point uses public static void main(String[] args)"
+        },
+        {
+          "id": "C",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a misspelled signature is not selected as the entry point. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Collections and a Progress Tracker in Java. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-java-main",
+      "title": "Java Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Java.",
+      "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "java-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Methods, Classes, and Encapsulation",
+        "Collections and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Collections and a Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Collections and a Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Java",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.435Z"
+}

@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000001",
+  "skillName": "Python",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "Python Foundations: From Execution to a Tested Progress Tracker",
+  "description": "A beginner course that teaches Python through explicit runtime models, worked code, boundary tests, guided practice, and a capstone progress tracker. Learners predict behavior, run evidence-producing programs, explain failures, and revise code rather than memorizing syntax alone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Explain how Python evaluates statements, binds names, and reports errors",
+    "Use types, conditions, loops, functions, and collections in small tested programs",
+    "Build and explain a modular progress tracker with validation and boundary tests"
+  ],
+  "modules": [
+    {
+      "stableKey": "python-beginner-module-1",
+      "title": "Python Execution and Data",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "python-runtime-values",
+          "title": "Running Python and Working with Values",
+          "summary": "Python executes source from top to bottom while names refer to objects. This lesson establishes the edit-run-observe cycle, assignment, naming rules, and how to inspect values without treating a variable as a fixed box.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Python behavior taught in Running Python and Working with Values",
+            "Test the behavior with a small observable program"
+          ],
+          "blocks": [
+            {
+              "stableKey": "python-runtime-values-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Python programs are sequences of statements evaluated by the interpreter. An assignment such as `price = 120` evaluates the expression on the right and binds the resulting integer object to the name on the left. Reassignment changes the binding; it does not alter the earlier object. Use descriptive snake_case names, keep one purpose per name, and inspect uncertain values with `print()` and `type()`. A `NameError` means a name was used before a successful binding. Reading the traceback from its final line upward usually identifies both the exception and the line that caused it."
+            },
+            {
+              "stableKey": "python-runtime-values-example",
+              "type": "code",
+              "heading": "Worked Python example",
+              "bodyMarkdown": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+              "codeLanguage": "python",
+              "codeSource": "price = 120\nquantity = 3\ntotal = price * quantity\nprint(total)\nprint(type(total).__name__)",
+              "expectedOutput": "360\nint"
+            },
+            {
+              "stableKey": "python-runtime-values-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "python-runtime-values-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a price calculator that binds unit price and quantity, calculates a total, prints the result and its type, then deliberately misspells one name and explains the resulting traceback. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+              "expectedOutcomes": [
+                "A runnable Python program with descriptive names",
+                "Observed output and at least one boundary or failure test",
+                "An explanation based on program evidence"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "python-runtime-values-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "py-beg-lesson-1-01-assignment",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes assignment in Python?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "01"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "assignment binds a name to the evaluated object"
+                  },
+                  {
+                    "key": "B",
+                    "text": "using a name before assignment raises NameError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Python automatically selects the correct behavior without code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is available only through third-party packages"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-1-02-input",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes input in Python?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "02"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "input returns a string"
+                  },
+                  {
+                    "key": "B",
+                    "text": "adding an input string to an integer raises TypeError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Python automatically selects the correct behavior without code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is available only through third-party packages"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-1-03-integer-division",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes integer division in Python?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "integer"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "`//` performs floor division"
+                  },
+                  {
+                    "key": "B",
+                    "text": "floor division rounds toward negative infinity, not toward zero"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Python automatically selects the correct behavior without code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is available only through third-party packages"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Python programs are sequences of statements evaluated by the interpreter."
+          ],
+          "commonMistakes": [
+            "using a name before assignment raises NameError",
+            "adding an input string to an integer raises TypeError"
+          ],
+          "interviewQuestions": [
+            "Explain assignment and demonstrate it with a minimal Python example."
+          ]
+        },
+        {
+          "stableKey": "python-types-conversion-io",
+          "title": "Types, Conversion, and Input/Output",
+          "summary": "Values have types that determine supported operations. This lesson teaches strings, integers, floats, booleans, explicit conversion, formatted output, and safe handling of console input.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Python behavior taught in Types, Conversion, and Input/Output",
+            "Test the behavior with a small observable program"
+          ],
+          "blocks": [
+            {
+              "stableKey": "python-types-conversion-io-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "`input()` always returns text, even when the user enters digits. Convert only after deciding the expected domain: `int()` for whole numbers and `float()` for decimal measurements. Conversion can raise `ValueError`, so user-facing programs should validate or handle failure rather than silently inventing a value. F-strings place evaluated expressions inside braces and preserve readable output logic. Equality compares values, while `is` checks object identity and should normally be reserved for singletons such as `None`. Python does not automatically combine strings and numbers with `+`; explicit conversion keeps intent visible."
+            },
+            {
+              "stableKey": "python-types-conversion-io-example",
+              "type": "code",
+              "heading": "Worked Python example",
+              "bodyMarkdown": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+              "codeLanguage": "python",
+              "codeSource": "age_text = \"19\"\nage = int(age_text)\nnext_year = age + 1\nprint(f\"Next year you will be {next_year}.\")",
+              "expectedOutput": "Next year you will be 20."
+            },
+            {
+              "stableKey": "python-types-conversion-io-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "python-types-conversion-io-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Write a console program that accepts a learner's name and weekly study hours, converts the hours safely, and prints a formatted four-week total. Document what happens for non-numeric input. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+              "expectedOutcomes": [
+                "A runnable Python program with descriptive names",
+                "Observed output and at least one boundary or failure test",
+                "An explanation based on program evidence"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "python-types-conversion-io-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "py-beg-lesson-2-01-assignment",
+                "type": "single-choice",
+                "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "01"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use `total = price * quantity` when the computed value is needed later"
+                  },
+                  {
+                    "key": "B",
+                    "text": "using a name before assignment raises NameError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error and continue"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with an unrelated print statement"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-2-02-input",
+                "type": "single-choice",
+                "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "02"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "convert validated numeric input with int or float before arithmetic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "adding an input string to an integer raises TypeError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error and continue"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with an unrelated print statement"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-2-03-integer-division",
+                "type": "single-choice",
+                "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "integer"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use `minutes // 60` for complete hours"
+                  },
+                  {
+                    "key": "B",
+                    "text": "floor division rounds toward negative infinity, not toward zero"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error and continue"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with an unrelated print statement"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "`input()` always returns text, even when the user enters digits."
+          ],
+          "commonMistakes": [
+            "forgetting the leading f leaves braces as ordinary text",
+            "the strings 'False' and '0' are non-empty and therefore truthy"
+          ],
+          "interviewQuestions": [
+            "Explain f-strings and demonstrate it with a minimal Python example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "python-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "py-beg-module-1-01-assignment",
+            "type": "single-choice",
+            "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "01"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use `total = price * quantity` when the computed value is needed later"
+              },
+              {
+                "key": "B",
+                "text": "using a name before assignment raises NameError"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error and continue"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with an unrelated print statement"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-1-02-input",
+            "type": "single-choice",
+            "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "02"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "convert validated numeric input with int or float before arithmetic"
+              },
+              {
+                "key": "B",
+                "text": "adding an input string to an integer raises TypeError"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error and continue"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with an unrelated print statement"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-1-03-integer-division",
+            "type": "single-choice",
+            "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "integer"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use `minutes // 60` for complete hours"
+              },
+              {
+                "key": "B",
+                "text": "floor division rounds toward negative infinity, not toward zero"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error and continue"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with an unrelated print statement"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-1-04-f-strings",
+            "type": "single-choice",
+            "prompt": "A learner needs to apply f-strings. Which choice is the most reliable approach?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "f"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use an f-string to combine labels and calculated values readably"
+              },
+              {
+                "key": "B",
+                "text": "forgetting the leading f leaves braces as ordinary text"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error and continue"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with an unrelated print statement"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use an f-string to combine labels and calculated values readably. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-1-05-booleans",
+            "type": "single-choice",
+            "prompt": "A learner needs to apply booleans. Which choice is the most reliable approach?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "05"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "name a complex eligibility condition before using it in an if"
+              },
+              {
+                "key": "B",
+                "text": "the strings 'False' and '0' are non-empty and therefore truthy"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error and continue"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with an unrelated print statement"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "name a complex eligibility condition before using it in an if. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "python-beginner-module-2",
+      "title": "Control Flow and Repetition",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "python-conditions-logic",
+          "title": "Decisions with Conditions and Boolean Logic",
+          "summary": "Conditional statements select behavior from explicit evidence. This lesson covers comparisons, truth values, if/elif/else, compound conditions, membership checks, and boundary testing.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Python behavior taught in Decisions with Conditions and Boolean Logic",
+            "Test the behavior with a small observable program"
+          ],
+          "blocks": [
+            {
+              "stableKey": "python-conditions-logic-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "An `if` statement executes its indented suite only when its condition is truthy. Use `elif` for mutually exclusive alternatives and `else` for the remaining case. Comparison chains such as `0 <= score <= 100` are clearer than repeating the variable. `and` requires both operands to be truthy, `or` requires at least one, and `not` reverses truth. Boundary values deserve explicit tests: a rule written as `score > 60` excludes 60, while `score >= 60` includes it. Avoid deeply nested conditions by naming meaningful booleans or returning early from functions."
+            },
+            {
+              "stableKey": "python-conditions-logic-example",
+              "type": "code",
+              "heading": "Worked Python example",
+              "bodyMarkdown": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+              "codeLanguage": "python",
+              "codeSource": "score = 72\nsubmitted = True\nif 0 <= score <= 100 and submitted:\n    result = \"recorded\"\nelse:\n    result = \"review input\"\nprint(result)",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "python-conditions-logic-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "python-conditions-logic-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a grade classifier for valid scores from 0 through 100. Test -1, 0, every grade boundary, 100, and 101; explain why each boundary uses `<` or `<=`. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+              "expectedOutcomes": [
+                "A runnable Python program with descriptive names",
+                "Observed output and at least one boundary or failure test",
+                "An explanation based on program evidence"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "python-conditions-logic-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "py-beg-lesson-3-01-assignment",
+                "type": "single-choice",
+                "prompt": "Which warning should a code review raise about assignment?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "01"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "using a name before assignment raises NameError"
+                  },
+                  {
+                    "key": "B",
+                    "text": "assignment binds a name to the evaluated object"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use `total = price * quantity` when the computed value is needed later"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Python requires this feature to be declared in a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "using a name before assignment raises NameError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-3-02-input",
+                "type": "single-choice",
+                "prompt": "Which warning should a code review raise about input?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "02"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "adding an input string to an integer raises TypeError"
+                  },
+                  {
+                    "key": "B",
+                    "text": "input returns a string"
+                  },
+                  {
+                    "key": "C",
+                    "text": "convert validated numeric input with int or float before arithmetic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Python requires this feature to be declared in a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "adding an input string to an integer raises TypeError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-3-03-integer-division",
+                "type": "single-choice",
+                "prompt": "Which warning should a code review raise about integer division?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "integer"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "floor division rounds toward negative infinity, not toward zero"
+                  },
+                  {
+                    "key": "B",
+                    "text": "`//` performs floor division"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use `minutes // 60` for complete hours"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Python requires this feature to be declared in a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "floor division rounds toward negative infinity, not toward zero. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "An `if` statement executes its indented suite only when its condition is truthy."
+          ],
+          "commonMistakes": [
+            "independent if statements can execute more than one overlapping branch",
+            "assuming the stop is included creates off-by-one errors"
+          ],
+          "interviewQuestions": [
+            "Explain elif and demonstrate it with a minimal Python example."
+          ]
+        },
+        {
+          "stableKey": "python-loops-iteration",
+          "title": "Iteration with for, while, and range",
+          "summary": "Loops repeat a well-defined operation. This lesson teaches iteration over collections, numeric ranges, accumulator patterns, controlled while loops, break, continue, and prevention of infinite loops.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Python behavior taught in Iteration with for, while, and range",
+            "Test the behavior with a small observable program"
+          ],
+          "blocks": [
+            {
+              "stableKey": "python-loops-iteration-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A `for` loop asks an iterable for values one at a time; it is preferred when traversing a known collection. `range(start, stop, step)` excludes `stop`, a common source of off-by-one defects. An accumulator starts with an identity value\u2014zero for addition, one for multiplication, or an empty collection for gathering\u2014and updates once per iteration. A `while` loop is appropriate when repetition depends on changing state; its body must make progress toward termination. Use `break` for a deliberate early exit and `continue` to skip only the current iteration, but avoid them when a clearer loop condition expresses the rule."
+            },
+            {
+              "stableKey": "python-loops-iteration-example",
+              "type": "code",
+              "heading": "Worked Python example",
+              "bodyMarkdown": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+              "codeLanguage": "python",
+              "codeSource": "scores = [70, 82, 91]\ntotal = 0\nfor score in scores:\n    total += score\naverage = total / len(scores)\nprint(average)",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "python-loops-iteration-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "python-loops-iteration-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process a list of daily study minutes: ignore negative entries, stop at the sentinel `None`, calculate the valid total and average, and explain how the loop terminates. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+              "expectedOutcomes": [
+                "A runnable Python program with descriptive names",
+                "Observed output and at least one boundary or failure test",
+                "An explanation based on program evidence"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "python-loops-iteration-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "py-beg-lesson-4-01-assignment",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes assignment in Python?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "01"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "assignment binds a name to the evaluated object"
+                  },
+                  {
+                    "key": "B",
+                    "text": "using a name before assignment raises NameError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Python automatically selects the correct behavior without code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is available only through third-party packages"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-4-02-input",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes input in Python?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "02"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "input returns a string"
+                  },
+                  {
+                    "key": "B",
+                    "text": "adding an input string to an integer raises TypeError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Python automatically selects the correct behavior without code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is available only through third-party packages"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-4-03-integer-division",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes integer division in Python?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "integer"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "`//` performs floor division"
+                  },
+                  {
+                    "key": "B",
+                    "text": "floor division rounds toward negative infinity, not toward zero"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Python automatically selects the correct behavior without code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is available only through third-party packages"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A `for` loop asks an iterable for values one at a time; it is preferred when traversing a known collection."
+          ],
+          "commonMistakes": [
+            "failing to make progress can create an infinite loop",
+            "break does not exit an enclosing function unless followed by return"
+          ],
+          "interviewQuestions": [
+            "Explain while loops and demonstrate it with a minimal Python example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "python-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "py-beg-module-2-06-comparison-boundaries",
+            "type": "single-choice",
+            "prompt": "Which warning should a code review raise about comparison boundaries?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "comparison"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "using `>` accidentally excludes the exact boundary"
+              },
+              {
+                "key": "B",
+                "text": "`>=` includes the boundary value"
+              },
+              {
+                "key": "C",
+                "text": "test values immediately below, at, and above a threshold"
+              },
+              {
+                "key": "D",
+                "text": "Python requires this feature to be declared in a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "using `>` accidentally excludes the exact boundary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-2-07-elif",
+            "type": "single-choice",
+            "prompt": "Which warning should a code review raise about elif?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "07"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "independent if statements can execute more than one overlapping branch"
+              },
+              {
+                "key": "B",
+                "text": "only the first true branch in an if/elif chain executes"
+              },
+              {
+                "key": "C",
+                "text": "order score bands from the most restrictive boundary downward"
+              },
+              {
+                "key": "D",
+                "text": "Python requires this feature to be declared in a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "independent if statements can execute more than one overlapping branch. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-2-08-range",
+            "type": "single-choice",
+            "prompt": "Which warning should a code review raise about range?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "08"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "assuming the stop is included creates off-by-one errors"
+              },
+              {
+                "key": "B",
+                "text": "range excludes its stop value"
+              },
+              {
+                "key": "C",
+                "text": "use `range(1, 6)` to produce one through five"
+              },
+              {
+                "key": "D",
+                "text": "Python requires this feature to be declared in a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "assuming the stop is included creates off-by-one errors. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-2-09-for-loops",
+            "type": "single-choice",
+            "prompt": "Which warning should a code review raise about for loops?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "for"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "changing the loop variable does not replace the original list element"
+              },
+              {
+                "key": "B",
+                "text": "a for loop consumes values from an iterable"
+              },
+              {
+                "key": "C",
+                "text": "iterate directly over items when an index is unnecessary"
+              },
+              {
+                "key": "D",
+                "text": "Python requires this feature to be declared in a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "changing the loop variable does not replace the original list element. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-2-10-while-loops",
+            "type": "single-choice",
+            "prompt": "Which warning should a code review raise about while loops?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "while"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "failing to make progress can create an infinite loop"
+              },
+              {
+                "key": "B",
+                "text": "a while loop repeats while its condition remains truthy"
+              },
+              {
+                "key": "C",
+                "text": "update the state used by the condition on every normal path"
+              },
+              {
+                "key": "D",
+                "text": "Python requires this feature to be declared in a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "failing to make progress can create an infinite loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "python-beginner-module-3",
+      "title": "Functions, Collections, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "python-functions-scope",
+          "title": "Functions, Parameters, and Return Values",
+          "summary": "Functions package behavior behind a clear contract. This lesson covers definition, calls, parameters, return values, local scope, default arguments, documentation, and simple tests.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Python behavior taught in Functions, Parameters, and Return Values",
+            "Test the behavior with a small observable program"
+          ],
+          "blocks": [
+            {
+              "stableKey": "python-functions-scope-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A function should perform one coherent task and communicate through parameters and a return value. `return` ends the current call and provides a value to the caller; `print` only displays text and therefore is not a substitute for a return value. Parameters are local names bound when the function is called. Avoid depending on mutable global state because it hides inputs and complicates testing. Default values belong after required parameters and should be immutable in beginner code; use `None` when a fresh list or dictionary is needed for each call. A concise docstring states purpose, accepted inputs, returned output, and important failure behavior."
+            },
+            {
+              "stableKey": "python-functions-scope-example",
+              "type": "code",
+              "heading": "Worked Python example",
+              "bodyMarkdown": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+              "codeLanguage": "python",
+              "codeSource": "def calculate_total(price, quantity=1):\n    \"\"\"Return price multiplied by a non-negative quantity.\"\"\"\n    if quantity < 0:\n        raise ValueError(\"quantity must be non-negative\")\n    return price * quantity\n\nprint(calculate_total(125, 2))",
+              "expectedOutput": "250"
+            },
+            {
+              "stableKey": "python-functions-scope-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "python-functions-scope-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create and test `study_progress(completed, planned)` that returns a percentage, rejects negative values, and handles a zero plan explicitly without division by zero. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+              "expectedOutcomes": [
+                "A runnable Python program with descriptive names",
+                "Observed output and at least one boundary or failure test",
+                "An explanation based on program evidence"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "python-functions-scope-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "py-beg-lesson-5-01-assignment",
+                "type": "single-choice",
+                "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "01"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use `total = price * quantity` when the computed value is needed later"
+                  },
+                  {
+                    "key": "B",
+                    "text": "using a name before assignment raises NameError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error and continue"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with an unrelated print statement"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-5-02-input",
+                "type": "single-choice",
+                "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "02"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "convert validated numeric input with int or float before arithmetic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "adding an input string to an integer raises TypeError"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error and continue"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with an unrelated print statement"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-5-03-integer-division",
+                "type": "single-choice",
+                "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "integer"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use `minutes // 60` for complete hours"
+                  },
+                  {
+                    "key": "B",
+                    "text": "floor division rounds toward negative infinity, not toward zero"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error and continue"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with an unrelated print statement"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A function should perform one coherent task and communicate through parameters and a return value."
+          ],
+          "commonMistakes": [
+            "resetting the accumulator inside the loop loses earlier work",
+            "a function with no return statement returns None"
+          ],
+          "interviewQuestions": [
+            "Explain accumulators and demonstrate it with a minimal Python example."
+          ]
+        },
+        {
+          "stableKey": "python-collections-project",
+          "title": "Collections and a Small Progress Tracker",
+          "summary": "Lists, tuples, dictionaries, and sets model different relationships. This lesson applies their trade-offs in a small progress-tracker project and introduces safe decomposition.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the Python behavior taught in Collections and a Small Progress Tracker",
+            "Test the behavior with a small observable program"
+          ],
+          "blocks": [
+            {
+              "stableKey": "python-collections-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Choose a collection according to the operations the program needs. Lists preserve order and allow repeated values; tuples represent fixed-position records; dictionaries map unique keys to values; sets keep unique hashable members and provide efficient membership tests. Iterating over a dictionary yields keys, while `.items()` yields key-value pairs. Access with `mapping[key]` raises `KeyError` when absent; `.get(key, default)` expresses an expected fallback. Do not modify a list or dictionary structurally while iterating over the same view\u2014build a new result or iterate over a copy. A useful small program separates input, domain calculation, and output formatting so each part can be tested."
+            },
+            {
+              "stableKey": "python-collections-project-example",
+              "type": "code",
+              "heading": "Worked Python example",
+              "bodyMarkdown": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+              "codeLanguage": "python",
+              "codeSource": "progress = {\"Python basics\": 100, \"Loops\": 70, \"Functions\": 40}\ncompleted = [name for name, percent in progress.items() if percent == 100]\nprint(completed)",
+              "expectedOutput": "['Python basics']"
+            },
+            {
+              "stableKey": "python-collections-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "python-collections-project-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a progress tracker with functions to add a topic, reject percentages outside 0\u2013100, update progress, list completed topics, and calculate the overall average. Include at least six assertions covering normal and invalid cases. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+              "expectedOutcomes": [
+                "A runnable Python program with descriptive names",
+                "Observed output and at least one boundary or failure test",
+                "An explanation based on program evidence"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "python-collections-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "py-beg-lesson-6-01-assignment",
+                "type": "single-choice",
+                "prompt": "Which warning should a code review raise about assignment?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "01"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "using a name before assignment raises NameError"
+                  },
+                  {
+                    "key": "B",
+                    "text": "assignment binds a name to the evaluated object"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use `total = price * quantity` when the computed value is needed later"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Python requires this feature to be declared in a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "using a name before assignment raises NameError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-6-02-input",
+                "type": "single-choice",
+                "prompt": "Which warning should a code review raise about input?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "02"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "adding an input string to an integer raises TypeError"
+                  },
+                  {
+                    "key": "B",
+                    "text": "input returns a string"
+                  },
+                  {
+                    "key": "C",
+                    "text": "convert validated numeric input with int or float before arithmetic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Python requires this feature to be declared in a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "adding an input string to an integer raises TypeError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              },
+              {
+                "stableId": "py-beg-lesson-6-03-integer-division",
+                "type": "single-choice",
+                "prompt": "Which warning should a code review raise about integer division?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "integer"
+                ],
+                "objectiveIds": [
+                  "python-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "floor division rounds toward negative infinity, not toward zero"
+                  },
+                  {
+                    "key": "B",
+                    "text": "`//` performs floor division"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use `minutes // 60` for complete hours"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Python requires this feature to be declared in a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "floor division rounds toward negative infinity, not toward zero. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Choose a collection according to the operations the program needs."
+          ],
+          "commonMistakes": [
+            "a local name is unavailable after the function call finishes",
+            "aliasing the same list means mutations are visible through both names"
+          ],
+          "interviewQuestions": [
+            "Explain local scope and demonstrate it with a minimal Python example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "python-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "py-beg-module-3-11-break",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes break in Python?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "11"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "break exits the nearest enclosing loop"
+              },
+              {
+                "key": "B",
+                "text": "break does not exit an enclosing function unless followed by return"
+              },
+              {
+                "key": "C",
+                "text": "Python automatically selects the correct behavior without code"
+              },
+              {
+                "key": "D",
+                "text": "It is available only through third-party packages"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "break exits the nearest enclosing loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-3-12-continue",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes continue in Python?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "12"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "continue skips to the next iteration"
+              },
+              {
+                "key": "B",
+                "text": "placing required state updates after continue can prevent progress"
+              },
+              {
+                "key": "C",
+                "text": "Python automatically selects the correct behavior without code"
+              },
+              {
+                "key": "D",
+                "text": "It is available only through third-party packages"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "continue skips to the next iteration. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-3-13-accumulators",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes accumulators in Python?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "13"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "an accumulator is initialized before and updated inside a loop"
+              },
+              {
+                "key": "B",
+                "text": "resetting the accumulator inside the loop loses earlier work"
+              },
+              {
+                "key": "C",
+                "text": "Python automatically selects the correct behavior without code"
+              },
+              {
+                "key": "D",
+                "text": "It is available only through third-party packages"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "an accumulator is initialized before and updated inside a loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-3-14-functions",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes functions in Python?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "14"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a function call evaluates to its returned value"
+              },
+              {
+                "key": "B",
+                "text": "a function with no return statement returns None"
+              },
+              {
+                "key": "C",
+                "text": "Python automatically selects the correct behavior without code"
+              },
+              {
+                "key": "D",
+                "text": "It is available only through third-party packages"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a function call evaluates to its returned value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          },
+          {
+            "stableId": "py-beg-module-3-15-return",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes return in Python?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "15"
+            ],
+            "objectiveIds": [
+              "python-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "return ends the current function call"
+              },
+              {
+                "key": "B",
+                "text": "printing a value does not make it available to the caller"
+              },
+              {
+                "key": "C",
+                "text": "Python automatically selects the correct behavior without code"
+              },
+              {
+                "key": "D",
+                "text": "It is available only through third-party packages"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "return ends the current function call. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "python-beginner-mock-1",
+      "title": "Python Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "py-beg-mock-1-01-assignment",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes assignment in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "01"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assignment binds a name to the evaluated object"
+            },
+            {
+              "key": "B",
+              "text": "using a name before assignment raises NameError"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-02-input",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes input in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "02"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "input returns a string"
+            },
+            {
+              "key": "B",
+              "text": "adding an input string to an integer raises TypeError"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-03-integer-division",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes integer division in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "`//` performs floor division"
+            },
+            {
+              "key": "B",
+              "text": "floor division rounds toward negative infinity, not toward zero"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-04-f-strings",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes f-strings in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "f"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an f-string evaluates expressions inside braces"
+            },
+            {
+              "key": "B",
+              "text": "forgetting the leading f leaves braces as ordinary text"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an f-string evaluates expressions inside braces. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-05-booleans",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes booleans in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "05"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "comparison expressions produce boolean values"
+            },
+            {
+              "key": "B",
+              "text": "the strings 'False' and '0' are non-empty and therefore truthy"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "comparison expressions produce boolean values. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-06-comparison-boundaries",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes comparison boundaries in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "comparison"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "`>=` includes the boundary value"
+            },
+            {
+              "key": "B",
+              "text": "using `>` accidentally excludes the exact boundary"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "`>=` includes the boundary value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-07-elif",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes elif in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "07"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "only the first true branch in an if/elif chain executes"
+            },
+            {
+              "key": "B",
+              "text": "independent if statements can execute more than one overlapping branch"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "only the first true branch in an if/elif chain executes. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-08-range",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes range in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "08"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "range excludes its stop value"
+            },
+            {
+              "key": "B",
+              "text": "assuming the stop is included creates off-by-one errors"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "range excludes its stop value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-09-for-loops",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes for loops in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a for loop consumes values from an iterable"
+            },
+            {
+              "key": "B",
+              "text": "changing the loop variable does not replace the original list element"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a for loop consumes values from an iterable. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-10-while-loops",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes while loops in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a while loop repeats while its condition remains truthy"
+            },
+            {
+              "key": "B",
+              "text": "failing to make progress can create an infinite loop"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a while loop repeats while its condition remains truthy. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-11-break",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes break in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "11"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "break exits the nearest enclosing loop"
+            },
+            {
+              "key": "B",
+              "text": "break does not exit an enclosing function unless followed by return"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "break exits the nearest enclosing loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-12-continue",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes continue in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "12"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "continue skips to the next iteration"
+            },
+            {
+              "key": "B",
+              "text": "placing required state updates after continue can prevent progress"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "continue skips to the next iteration. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-13-accumulators",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes accumulators in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "13"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an accumulator is initialized before and updated inside a loop"
+            },
+            {
+              "key": "B",
+              "text": "resetting the accumulator inside the loop loses earlier work"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an accumulator is initialized before and updated inside a loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-14-functions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes functions in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "14"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a function call evaluates to its returned value"
+            },
+            {
+              "key": "B",
+              "text": "a function with no return statement returns None"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a function call evaluates to its returned value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-15-return",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes return in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "15"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return ends the current function call"
+            },
+            {
+              "key": "B",
+              "text": "printing a value does not make it available to the caller"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return ends the current function call. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-16-local-scope",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes local scope in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "local"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "parameters and assigned names are local by default"
+            },
+            {
+              "key": "B",
+              "text": "a local name is unavailable after the function call finishes"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "parameters and assigned names are local by default. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-17-lists",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes lists in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "17"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "lists are ordered and mutable"
+            },
+            {
+              "key": "B",
+              "text": "aliasing the same list means mutations are visible through both names"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "lists are ordered and mutable. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-18-dictionaries",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes dictionaries in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "18"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "dictionaries map unique hashable keys to values"
+            },
+            {
+              "key": "B",
+              "text": "indexing a missing key raises KeyError"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "dictionaries map unique hashable keys to values. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-19-sets",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes sets in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "19"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "sets retain unique hashable elements"
+            },
+            {
+              "key": "B",
+              "text": "sets do not preserve a meaningful positional index"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "sets retain unique hashable elements. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-1-20-exceptions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes exceptions in Python?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "20"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "exceptions separate failure handling from the normal path"
+            },
+            {
+              "key": "B",
+              "text": "a broad bare except can hide programming defects and interrupts"
+            },
+            {
+              "key": "C",
+              "text": "Python automatically selects the correct behavior without code"
+            },
+            {
+              "key": "D",
+              "text": "It is available only through third-party packages"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "exceptions separate failure handling from the normal path. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        }
+      ]
+    },
+    {
+      "stableKey": "python-beginner-mock-2",
+      "title": "Python Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "py-beg-mock-2-01-assignment",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "01"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use `total = price * quantity` when the computed value is needed later"
+            },
+            {
+              "key": "B",
+              "text": "using a name before assignment raises NameError"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-02-input",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "02"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "convert validated numeric input with int or float before arithmetic"
+            },
+            {
+              "key": "B",
+              "text": "adding an input string to an integer raises TypeError"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-03-integer-division",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use `minutes // 60` for complete hours"
+            },
+            {
+              "key": "B",
+              "text": "floor division rounds toward negative infinity, not toward zero"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-04-f-strings",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply f-strings. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "f"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use an f-string to combine labels and calculated values readably"
+            },
+            {
+              "key": "B",
+              "text": "forgetting the leading f leaves braces as ordinary text"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use an f-string to combine labels and calculated values readably. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-05-booleans",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply booleans. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "05"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "name a complex eligibility condition before using it in an if"
+            },
+            {
+              "key": "B",
+              "text": "the strings 'False' and '0' are non-empty and therefore truthy"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "name a complex eligibility condition before using it in an if. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-06-comparison-boundaries",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply comparison boundaries. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "comparison"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "test values immediately below, at, and above a threshold"
+            },
+            {
+              "key": "B",
+              "text": "using `>` accidentally excludes the exact boundary"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "test values immediately below, at, and above a threshold. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-07-elif",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply elif. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "07"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "order score bands from the most restrictive boundary downward"
+            },
+            {
+              "key": "B",
+              "text": "independent if statements can execute more than one overlapping branch"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "order score bands from the most restrictive boundary downward. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-08-range",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply range. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "08"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use `range(1, 6)` to produce one through five"
+            },
+            {
+              "key": "B",
+              "text": "assuming the stop is included creates off-by-one errors"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use `range(1, 6)` to produce one through five. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-09-for-loops",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply for loops. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "iterate directly over items when an index is unnecessary"
+            },
+            {
+              "key": "B",
+              "text": "changing the loop variable does not replace the original list element"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "iterate directly over items when an index is unnecessary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-10-while-loops",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply while loops. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "update the state used by the condition on every normal path"
+            },
+            {
+              "key": "B",
+              "text": "failing to make progress can create an infinite loop"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "update the state used by the condition on every normal path. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-11-break",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply break. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "11"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "stop searching as soon as a verified match is found"
+            },
+            {
+              "key": "B",
+              "text": "break does not exit an enclosing function unless followed by return"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "stop searching as soon as a verified match is found. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-12-continue",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply continue. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "12"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "skip invalid records before accumulator logic"
+            },
+            {
+              "key": "B",
+              "text": "placing required state updates after continue can prevent progress"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "skip invalid records before accumulator logic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-13-accumulators",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply accumulators. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "13"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "start a sum at zero and add each validated value exactly once"
+            },
+            {
+              "key": "B",
+              "text": "resetting the accumulator inside the loop loses earlier work"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "start a sum at zero and add each validated value exactly once. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-14-functions",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply functions. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "14"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use small functions with explicit inputs and outputs"
+            },
+            {
+              "key": "B",
+              "text": "a function with no return statement returns None"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use small functions with explicit inputs and outputs. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-15-return",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply return. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "15"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return calculated data and format it at the interface boundary"
+            },
+            {
+              "key": "B",
+              "text": "printing a value does not make it available to the caller"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return calculated data and format it at the interface boundary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-16-local-scope",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply local scope. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "local"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "pass dependencies as parameters instead of reading mutable globals"
+            },
+            {
+              "key": "B",
+              "text": "a local name is unavailable after the function call finishes"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "pass dependencies as parameters instead of reading mutable globals. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-17-lists",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply lists. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "17"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use a list for an ordered sequence that may change"
+            },
+            {
+              "key": "B",
+              "text": "aliasing the same list means mutations are visible through both names"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use a list for an ordered sequence that may change. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-18-dictionaries",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply dictionaries. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "18"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use `.items()` when both key and value are required"
+            },
+            {
+              "key": "B",
+              "text": "indexing a missing key raises KeyError"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use `.items()` when both key and value are required. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-19-sets",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply sets. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "19"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use a set for fast membership and duplicate removal"
+            },
+            {
+              "key": "B",
+              "text": "sets do not preserve a meaningful positional index"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use a set for fast membership and duplicate removal. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-2-20-exceptions",
+          "type": "single-choice",
+          "prompt": "A learner needs to apply exceptions. Which choice is the most reliable approach?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "20"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "catch ValueError around a conversion whose failure you can handle"
+            },
+            {
+              "key": "B",
+              "text": "a broad bare except can hide programming defects and interrupts"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error and continue"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with an unrelated print statement"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "catch ValueError around a conversion whose failure you can handle. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        }
+      ]
+    },
+    {
+      "stableKey": "python-beginner-mock-3",
+      "title": "Python Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "py-beg-mock-3-01-assignment",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about assignment?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "01"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using a name before assignment raises NameError"
+            },
+            {
+              "key": "B",
+              "text": "assignment binds a name to the evaluated object"
+            },
+            {
+              "key": "C",
+              "text": "use `total = price * quantity` when the computed value is needed later"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using a name before assignment raises NameError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-02-input",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about input?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "02"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "adding an input string to an integer raises TypeError"
+            },
+            {
+              "key": "B",
+              "text": "input returns a string"
+            },
+            {
+              "key": "C",
+              "text": "convert validated numeric input with int or float before arithmetic"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "adding an input string to an integer raises TypeError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-03-integer-division",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about integer division?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "floor division rounds toward negative infinity, not toward zero"
+            },
+            {
+              "key": "B",
+              "text": "`//` performs floor division"
+            },
+            {
+              "key": "C",
+              "text": "use `minutes // 60` for complete hours"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "floor division rounds toward negative infinity, not toward zero. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-04-f-strings",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about f-strings?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "f"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "forgetting the leading f leaves braces as ordinary text"
+            },
+            {
+              "key": "B",
+              "text": "an f-string evaluates expressions inside braces"
+            },
+            {
+              "key": "C",
+              "text": "use an f-string to combine labels and calculated values readably"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "forgetting the leading f leaves braces as ordinary text. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-05-booleans",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about booleans?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "05"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the strings 'False' and '0' are non-empty and therefore truthy"
+            },
+            {
+              "key": "B",
+              "text": "comparison expressions produce boolean values"
+            },
+            {
+              "key": "C",
+              "text": "name a complex eligibility condition before using it in an if"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the strings 'False' and '0' are non-empty and therefore truthy. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-06-comparison-boundaries",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about comparison boundaries?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "comparison"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using `>` accidentally excludes the exact boundary"
+            },
+            {
+              "key": "B",
+              "text": "`>=` includes the boundary value"
+            },
+            {
+              "key": "C",
+              "text": "test values immediately below, at, and above a threshold"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using `>` accidentally excludes the exact boundary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-07-elif",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about elif?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "07"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "independent if statements can execute more than one overlapping branch"
+            },
+            {
+              "key": "B",
+              "text": "only the first true branch in an if/elif chain executes"
+            },
+            {
+              "key": "C",
+              "text": "order score bands from the most restrictive boundary downward"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "independent if statements can execute more than one overlapping branch. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-08-range",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about range?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "08"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assuming the stop is included creates off-by-one errors"
+            },
+            {
+              "key": "B",
+              "text": "range excludes its stop value"
+            },
+            {
+              "key": "C",
+              "text": "use `range(1, 6)` to produce one through five"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assuming the stop is included creates off-by-one errors. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-09-for-loops",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about for loops?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "changing the loop variable does not replace the original list element"
+            },
+            {
+              "key": "B",
+              "text": "a for loop consumes values from an iterable"
+            },
+            {
+              "key": "C",
+              "text": "iterate directly over items when an index is unnecessary"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "changing the loop variable does not replace the original list element. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-10-while-loops",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about while loops?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "failing to make progress can create an infinite loop"
+            },
+            {
+              "key": "B",
+              "text": "a while loop repeats while its condition remains truthy"
+            },
+            {
+              "key": "C",
+              "text": "update the state used by the condition on every normal path"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "failing to make progress can create an infinite loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-11-break",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about break?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "11"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "break does not exit an enclosing function unless followed by return"
+            },
+            {
+              "key": "B",
+              "text": "break exits the nearest enclosing loop"
+            },
+            {
+              "key": "C",
+              "text": "stop searching as soon as a verified match is found"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "break does not exit an enclosing function unless followed by return. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-12-continue",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about continue?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "12"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "placing required state updates after continue can prevent progress"
+            },
+            {
+              "key": "B",
+              "text": "continue skips to the next iteration"
+            },
+            {
+              "key": "C",
+              "text": "skip invalid records before accumulator logic"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "placing required state updates after continue can prevent progress. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-13-accumulators",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about accumulators?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "13"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "resetting the accumulator inside the loop loses earlier work"
+            },
+            {
+              "key": "B",
+              "text": "an accumulator is initialized before and updated inside a loop"
+            },
+            {
+              "key": "C",
+              "text": "start a sum at zero and add each validated value exactly once"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "resetting the accumulator inside the loop loses earlier work. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-14-functions",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about functions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "14"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a function with no return statement returns None"
+            },
+            {
+              "key": "B",
+              "text": "a function call evaluates to its returned value"
+            },
+            {
+              "key": "C",
+              "text": "use small functions with explicit inputs and outputs"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a function with no return statement returns None. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-15-return",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about return?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "15"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "printing a value does not make it available to the caller"
+            },
+            {
+              "key": "B",
+              "text": "return ends the current function call"
+            },
+            {
+              "key": "C",
+              "text": "return calculated data and format it at the interface boundary"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "printing a value does not make it available to the caller. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-16-local-scope",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about local scope?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "local"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a local name is unavailable after the function call finishes"
+            },
+            {
+              "key": "B",
+              "text": "parameters and assigned names are local by default"
+            },
+            {
+              "key": "C",
+              "text": "pass dependencies as parameters instead of reading mutable globals"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a local name is unavailable after the function call finishes. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-17-lists",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about lists?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "17"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "aliasing the same list means mutations are visible through both names"
+            },
+            {
+              "key": "B",
+              "text": "lists are ordered and mutable"
+            },
+            {
+              "key": "C",
+              "text": "use a list for an ordered sequence that may change"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "aliasing the same list means mutations are visible through both names. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-18-dictionaries",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about dictionaries?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "18"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "indexing a missing key raises KeyError"
+            },
+            {
+              "key": "B",
+              "text": "dictionaries map unique hashable keys to values"
+            },
+            {
+              "key": "C",
+              "text": "use `.items()` when both key and value are required"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "indexing a missing key raises KeyError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-19-sets",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about sets?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "19"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "sets do not preserve a meaningful positional index"
+            },
+            {
+              "key": "B",
+              "text": "sets retain unique hashable elements"
+            },
+            {
+              "key": "C",
+              "text": "use a set for fast membership and duplicate removal"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "sets do not preserve a meaningful positional index. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        },
+        {
+          "stableId": "py-beg-mock-3-20-exceptions",
+          "type": "single-choice",
+          "prompt": "Which warning should a code review raise about exceptions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "20"
+          ],
+          "objectiveIds": [
+            "python-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a broad bare except can hide programming defects and interrupts"
+            },
+            {
+              "key": "B",
+              "text": "exceptions separate failure handling from the normal path"
+            },
+            {
+              "key": "C",
+              "text": "catch ValueError around a conversion whose failure you can handle"
+            },
+            {
+              "key": "D",
+              "text": "Python requires this feature to be declared in a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a broad bare except can hide programming defects and interrupts. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "python-beginner-capstone",
+    "title": "Learning Progress Tracker Capstone",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a command-line Python learning progress tracker. The program must add and update topics, validate percentages, list completed topics, calculate an average, handle invalid input without hiding unexpected defects, and separate domain logic from input/output. Include a README explaining design choices and at least ten assertions covering normal, boundary, and failure behavior.",
+    "deliverables": [
+      "Python source files",
+      "README with execution and design explanation",
+      "Recorded test output with at least ten assertions",
+      "Short reflection identifying one defect found through testing"
+    ],
+    "rubric": {
+      "correctness": 35,
+      "validation_and_failures": 20,
+      "decomposition": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

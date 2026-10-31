@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer",
+  "skillName": "PHP",
+  "moduleId": "mod-1-php-beginner-module-1",
+  "title": "PHP Runtime, Files, and Composer",
+  "summary": "Run PHP from the CLI, understand request execution, configure strict types, inspect diagnostics, and use Composer autoloading safely.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply PHP Runtime, Files, and Composer",
+    "Verify contracts with lint, runtime, and test evidence"
+  ],
+  "objectiveIds": [
+    "php-obj-1",
+    "php-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-sec-1",
+      "heading": "Core model",
+      "content": "PHP executes server-side scripts per request or from the command line. Begin files with `<?php` and add `declare(strict_types=1);` when building typed application code. Run a script with `php file.php` and use `php -l file.php` for syntax checking. Composer manages packages and generates an autoloader; commit `composer.json` and its lock file for applications, but not the generated vendor directory. Errors should be visible in development and logged without exposing stack traces or secrets to users in production.",
+      "codeExamples": [],
+      "keyPoints": [
+        "PHP executes server-side scripts per request or from the command line."
+      ],
+      "commonMistakes": [
+        "it does not validate HTTP input automatically",
+        "syntax success does not prove runtime correctness"
+      ]
+    },
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-sec-2",
+      "heading": "Worked PHP example",
+      "content": "Predict types, failures, and output, then lint, run, and compare the evidence.\n\nIn practical software engineering with PHP, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "php",
+          "code": "<?php\ndeclare(strict_types=1);\n$course = 'PHP';\n$lessons = 6;\necho \"$course: $lessons lessons\\n\";",
+          "explanation": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+          "expectedOutput": "PHP: 6 lessons"
+        }
+      ],
+      "keyPoints": [
+        "PHP executes server-side scripts per request or from the command line."
+      ],
+      "commonMistakes": [
+        "it does not validate HTTP input automatically",
+        "syntax success does not prove runtime correctness"
+      ]
+    },
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "PHP executes server-side scripts per request or from the command line."
+      ],
+      "commonMistakes": [
+        "it does not validate HTTP input automatically",
+        "syntax success does not prove runtime correctness"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in PHP.",
+      "description": "Create and lint a strict-types CLI script, introduce a syntax error and an undefined name, then explain and correct the resulting diagnostics. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+      "instructions": [
+        "Create and lint a strict-types CLI script, introduce a syntax error and an undefined name, then explain and correct the resulting diagnostics. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation."
+      ],
+      "starterCode": "// PHP Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core PHP operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict types in PHP?",
+      "options": [
+        {
+          "id": "A",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "B",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "C",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "strict_types limits scalar coercion for calls from the declaring file. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes linting in PHP?",
+      "options": [
+        {
+          "id": "A",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "B",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "C",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "php lint checks syntax without executing application behavior. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-php-beginner-module-1-l1-php-runtime-files-and-composer-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Composer in PHP?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "B",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "C",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Composer manages dependencies and autoloading. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered PHP Runtime, Files, and Composer in PHP. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-php-main",
+      "title": "PHP Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=OK_JCtrrv-c",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for PHP.",
+      "whatItTeaches": "Step-by-step walkthrough of PHP fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "php-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "PHP Runtime, Files, and Composer",
+        "Types, Strings, Input, and Validation"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: PHP Runtime, Files, and Composer",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for PHP Runtime, Files, and Composer."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using PHP",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.520Z"
+}

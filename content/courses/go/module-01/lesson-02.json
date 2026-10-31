@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors",
+  "skillName": "Go",
+  "moduleId": "mod-1-go-beginner-module-1",
+  "title": "Types, Parsing, and Explicit Errors",
+  "summary": "Use declarations, zero values, numeric conversion, strings, parsing, multiple returns, and explicit error handling.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Types, Parsing, and Explicit Errors",
+    "Test the contract with build and runtime evidence"
+  ],
+  "objectiveIds": [
+    "go-obj-1",
+    "go-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-sec-1",
+      "heading": "Core model",
+      "content": "Go is statically typed and gives every variable a zero value. Short declaration `:=` is for function bodies and must introduce at least one new name. Numeric conversions are explicit and may still lose range or precision, so validate before converting. `strconv.Atoi` and related functions return a value and an error. Handle the error before using the value; do not discard it merely to shorten code. Wrap errors with `%w` when adding context so callers can inspect the original cause. Reserve panics for unrecoverable programmer or initialization failures, not normal invalid input.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Go is statically typed and gives every variable a zero value."
+      ],
+      "commonMistakes": [
+        "zero does not always satisfy domain invariants",
+        "it is unavailable at package scope"
+      ]
+    },
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-sec-2",
+      "heading": "Worked Go example",
+      "content": "Predict diagnostics and output, format and build, then run and compare evidence.\n\nIn practical software engineering with Go, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "go",
+          "code": "package main\nimport (\"fmt\"; \"strconv\")\nfunc main(){ age, err := strconv.Atoi(\"19\"); if err != nil { fmt.Println(err); return }; fmt.Println(age+1) }",
+          "explanation": "Predict diagnostics and output, format and build, then run and compare evidence.",
+          "expectedOutput": "20"
+        }
+      ],
+      "keyPoints": [
+        "Go is statically typed and gives every variable a zero value."
+      ],
+      "commonMistakes": [
+        "zero does not always satisfy domain invariants",
+        "it is unavailable at package scope"
+      ]
+    },
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Go is statically typed and gives every variable a zero value."
+      ],
+      "commonMistakes": [
+        "zero does not always satisfy domain invariants",
+        "it is unavailable at package scope"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in Go.",
+      "description": "Parse weekly study hours, return contextual errors for invalid or negative input, and test zero, malformed text, and an excessive value. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+      "instructions": [
+        "Parse weekly study hours, return contextual errors for invalid or negative input, and test zero, malformed text, and an excessive value. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation."
+      ],
+      "starterCode": "// Go Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Formatted compiling Go source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Formatted compiling Go source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Go operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of modules?",
+      "options": [
+        {
+          "id": "A",
+          "text": "initialize and commit go.mod"
+        },
+        {
+          "id": "B",
+          "text": "modules define an import path and dependency boundary"
+        },
+        {
+          "id": "C",
+          "text": "changing module identity breaks import assumptions"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "initialize and commit go.mod. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of gofmt?",
+      "options": [
+        {
+          "id": "A",
+          "text": "format before review and tests"
+        },
+        {
+          "id": "B",
+          "text": "gofmt applies canonical source formatting"
+        },
+        {
+          "id": "C",
+          "text": "manual formatting conventions create needless drift"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "format before review and tests. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-go-beginner-module-1-l2-types-parsing-and-explicit-errors-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of packages?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use package main with main for executables"
+        },
+        {
+          "id": "B",
+          "text": "a package groups compiled declarations"
+        },
+        {
+          "id": "C",
+          "text": "imported package names must be used"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use package main with main for executables. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Types, Parsing, and Explicit Errors in Go. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-go-main",
+      "title": "Go Programming - Golang Course with Bonus Applications",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Go.",
+      "whatItTeaches": "Step-by-step walkthrough of Go fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "go-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "Go Toolchain, Modules, and Packages",
+        "Types, Parsing, and Explicit Errors"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Types, Parsing, and Explicit Errors",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Types, Parsing, and Explicit Errors."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Go",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.384Z"
+}

@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure",
+  "skillName": "Java",
+  "moduleId": "mod-1-java-beginner-module-1",
+  "title": "JDK, Compilation, and Program Structure",
+  "summary": "Set up a Java development workflow and understand source files, classes, the main method, compilation, bytecode, and actionable compiler diagnostics.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Java behavior taught in JDK, Compilation, and Program Structure",
+    "Compile, run, and test the behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "java-obj-1",
+    "java-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-sec-1",
+      "heading": "Core model",
+      "content": "The JDK provides the compiler and runtime tools. `javac Main.java` checks source and emits bytecode in `Main.class`; `java Main` starts the JVM and invokes `public static void main(String[] args)`. A public class name must match its source filename. Java is statically typed, so many invalid operations are rejected before execution. Read the first relevant compiler diagnostic, correct one cause at a time, and recompile. Packages organize names and should match directory structure in normal projects. Do not edit generated `.class` files or commit them as source.",
+      "codeExamples": [],
+      "keyPoints": [
+        "The JDK provides the compiler and runtime tools."
+      ],
+      "commonMistakes": [
+        "a JRE-only installation may not provide javac",
+        "editing a class file is not a source workflow"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-sec-2",
+      "heading": "Worked Java example",
+      "content": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+      "codeExamples": [
+        {
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    String course = \"Java\";\n    int lessons = 6;\n    System.out.println(course + \": \" + lessons + \" lessons\");\n  }\n}",
+          "explanation": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+          "expectedOutput": "Java: 6 lessons"
+        }
+      ],
+      "keyPoints": [
+        "The JDK provides the compiler and runtime tools."
+      ],
+      "commonMistakes": [
+        "a JRE-only installation may not provide javac",
+        "editing a class file is not a source workflow"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "The JDK provides the compiler and runtime tools."
+      ],
+      "commonMistakes": [
+        "a JRE-only installation may not provide javac",
+        "editing a class file is not a source workflow"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in Java.",
+      "description": "Create Main.java, compile and run it, then introduce a filename/class mismatch and explain the compiler diagnostic before correcting it. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+      "instructions": [
+        "Create Main.java, compile and run it, then introduce a filename/class mismatch and explain the compiler diagnostic before correcting it. Submit source, compiler output, runtime output, tests, and a concise explanation."
+      ],
+      "starterCode": "// Java Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Java operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes JDK in Java?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the JDK includes development tools such as javac"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes bytecode in Java?",
+      "options": [
+        {
+          "id": "A",
+          "text": "javac emits JVM bytecode in class files"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-java-beginner-module-1-l1-jdk-compilation-and-program-structure-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes main method in Java?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the JVM entry point uses public static void main(String[] args)"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered JDK, Compilation, and Program Structure in Java. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-java-main",
+      "title": "Java Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Java.",
+      "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "java-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "JDK, Compilation, and Program Structure",
+        "Primitive Types, Strings, and Input"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: JDK, Compilation, and Program Structure",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for JDK, Compilation, and Program Structure."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Java",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.434Z"
+}

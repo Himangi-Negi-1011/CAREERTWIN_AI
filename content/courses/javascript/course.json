@@ -1,0 +1,122 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000002",
+  "skillName": "JavaScript",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "javascript-obj-1",
+      "statement": "Write and explain small Python programs",
+      "order": 1
+    },
+    {
+      "id": "javascript-obj-2",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 2
+    },
+    {
+      "id": "javascript-obj-3",
+      "statement": "Write and explain small Python programs",
+      "order": 3
+    },
+    {
+      "id": "javascript-obj-4",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 4
+    },
+    {
+      "id": "javascript-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "javascript-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
+    }
+  ],
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-javascript-beginner-module-1",
+      "title": "JavaScript Runtime and Data",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "order": 1,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "javascript-obj-1",
+        "javascript-obj-2"
+      ],
+      "lessonTitles": [
+        "Running JavaScript and Understanding Values",
+        "Types, Conversion, and Strict Equality"
+      ],
+      "checkpoint": "Pass the JavaScript Runtime and Data assessment with 70%+ score."
+    },
+    {
+      "id": "mod-2-javascript-beginner-module-2",
+      "title": "Control Flow and Array Processing",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "order": 2,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "javascript-obj-3",
+        "javascript-obj-4"
+      ],
+      "lessonTitles": [
+        "Conditions and Boolean Logic",
+        "Loops and Array Iteration"
+      ],
+      "checkpoint": "Pass the Control Flow and Array Processing assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-javascript-beginner-module-3",
+      "title": "Functions, Collections, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "javascript-obj-5",
+        "javascript-obj-6"
+      ],
+      "lessonTitles": [
+        "Functions, Parameters, and Scope",
+        "Objects, Collections, and a Progress Tracker"
+      ],
+      "checkpoint": "Pass the Functions, Collections, and a Project assessment with 70%+ score."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic in JavaScript",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
+  ],
+  "assessmentCheckpoints": [
+    "JavaScript Runtime and Data Knowledge Check (70% pass threshold)",
+    "Control Flow and Array Processing Knowledge Check (70% pass threshold)",
+    "Functions, Collections, and a Project Knowledge Check (70% pass threshold)"
+  ],
+  "projects": [
+    "JavaScript Learning Progress Tracker Capstone"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
+  ],
+  "resources": [
+    {
+      "title": "Official JavaScript Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-31T13:08:48.476Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

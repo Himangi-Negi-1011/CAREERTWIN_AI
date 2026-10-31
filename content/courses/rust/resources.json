@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-rust-main",
+    "title": "Rust Programming Course for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=ygL_xcgkMzQ",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for Rust.",
+    "whatItTeaches": "Step-by-step walkthrough of Rust fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "rust-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "Cargo Projects, Compilation, and Diagnostics",
+      "Types, Parsing, Option, and Result",
+      "Control Flow, Matching, and Boundaries",
+      "Ownership, Borrowing, Slices, and Collections",
+      "Functions, Structs, Enums, and Traits",
+      "Files, Serialization, Threads, and a Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

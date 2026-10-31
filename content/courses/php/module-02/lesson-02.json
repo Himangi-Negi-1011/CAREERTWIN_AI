@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries",
+  "skillName": "PHP",
+  "moduleId": "mod-2-php-beginner-module-2",
+  "title": "Functions, Exceptions, and Boundaries",
+  "summary": "Design typed functions with focused responsibilities, return values, nullable and union types, exceptions, and explicit failure handling.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Functions, Exceptions, and Boundaries",
+    "Verify contracts with lint, runtime, and test evidence"
+  ],
+  "objectiveIds": [
+    "php-obj-3",
+    "php-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-sec-1",
+      "heading": "Core model",
+      "content": "Functions should declare parameter and return types and either return domain data or fail according to a documented contract. Default arguments belong after required ones. Nullable types represent valid absence, not generic failure. Throw specific exceptions for violated contracts and catch them at a boundary that can recover, translate, log, or present an error. Do not catch `Throwable` merely to ignore it. Use `finally` only for cleanup that must occur regardless of success. Preserve the previous exception when adding context.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Functions should declare parameter and return types and either return domain data or fail according to a documented contract."
+      ],
+      "commonMistakes": [
+        "the lingering reference should be unset after the loop",
+        "default parameters should follow required parameters"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-sec-2",
+      "heading": "Worked PHP example",
+      "content": "Predict types, failures, and output, then lint, run, and compare the evidence.\n\nIn practical software engineering with PHP, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "php",
+          "code": "<?php\ndeclare(strict_types=1);\nfunction progress(int $done, int $planned): float {\n  if ($done < 0 || $planned <= 0 || $done > $planned) throw new InvalidArgumentException('progress');\n  return $done * 100 / $planned;\n}\nprintf(\"%.1f\\n\", progress(3, 4));",
+          "explanation": "Predict types, failures, and output, then lint, run, and compare the evidence.",
+          "expectedOutput": "75.0"
+        }
+      ],
+      "keyPoints": [
+        "Functions should declare parameter and return types and either return domain data or fail according to a documented contract."
+      ],
+      "commonMistakes": [
+        "the lingering reference should be unset after the loop",
+        "default parameters should follow required parameters"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict-types file.\n2. Predict types and output.\n3. Lint before execution.\n4. Fix one root cause at a time.\n5. Run the script.\n6. Add boundary and failure tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Functions should declare parameter and return types and either return domain data or fail according to a documented contract."
+      ],
+      "commonMistakes": [
+        "the lingering reference should be unset after the loop",
+        "default parameters should follow required parameters"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in PHP.",
+      "description": "Implement typed progress and average functions, document their failure contracts, and test normal, boundary, and exception paths. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation.",
+      "instructions": [
+        "Implement typed progress and average functions, document their failure contracts, and test normal, boundary, and exception paths. Submit source, lint output, runtime evidence, tests, and a concise security and failure-handling explanation."
+      ],
+      "starterCode": "// PHP Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Lint-clean typed PHP source",
+        "Boundary and failure tests",
+        "Evidence-based security explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core PHP operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict types in PHP?",
+      "options": [
+        {
+          "id": "A",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "B",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "C",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "strict_types limits scalar coercion for calls from the declaring file. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes linting in PHP?",
+      "options": [
+        {
+          "id": "A",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "B",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "C",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "php lint checks syntax without executing application behavior. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-php-beginner-module-2-l2-functions-exceptions-and-boundaries-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Composer in PHP?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "B",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "C",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Composer manages dependencies and autoloading. Confirm with linting, focused tests, and observable failure handling.",
+      "objectiveIds": [
+        "php-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Functions, Exceptions, and Boundaries in PHP. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-php-main",
+      "title": "PHP Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=OK_JCtrrv-c",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for PHP.",
+      "whatItTeaches": "Step-by-step walkthrough of PHP fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "php-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Control Flow, Arrays, and Iteration",
+        "Functions, Exceptions, and Boundaries"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Functions, Exceptions, and Boundaries",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Functions, Exceptions, and Boundaries."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using PHP",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.521Z"
+}

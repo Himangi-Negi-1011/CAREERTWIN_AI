@@ -1,0 +1,703 @@
+{
+  "id": "mock-php-beginner-test-03",
+  "skillName": "PHP",
+  "skillSlug": "php",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "PHP Beginner Mock Test 3",
+  "description": "Comprehensive 50-minute mock examination for PHP at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "strict types",
+    "linting",
+    "Composer",
+    "type declarations",
+    "strict comparison",
+    "filter validation",
+    "null",
+    "match",
+    "arrays",
+    "foreach references",
+    "typed functions",
+    "exceptions",
+    "finally",
+    "private properties",
+    "readonly",
+    "interfaces",
+    "prepared statements",
+    "transactions",
+    "authorization",
+    "output escaping"
+  ],
+  "questions": [
+    {
+      "id": "mock-php-beginner-test-03-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict types is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "B",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "C",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "it does not validate HTTP input automatically. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "strict types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linting is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "B",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "C",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "syntax success does not prove runtime correctness. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "linting",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Composer is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "B",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "C",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "vendor output should normally be regenerated. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "Composer",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about type declarations is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "external data still needs runtime validation"
+        },
+        {
+          "id": "B",
+          "text": "parameter and return declarations express contracts"
+        },
+        {
+          "id": "C",
+          "text": "declare meaningful application boundaries"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "external data still needs runtime validation. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "type declarations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict comparison is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "loose comparison can equate surprising values"
+        },
+        {
+          "id": "B",
+          "text": "triple equals compares value and type"
+        },
+        {
+          "id": "C",
+          "text": "use it when false zero and empty string differ"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "loose comparison can equate surprising values. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "strict comparison",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q6",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about filter validation is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "zero is valid but loosely equals false"
+        },
+        {
+          "id": "B",
+          "text": "validation filters test supported input formats"
+        },
+        {
+          "id": "C",
+          "text": "compare FILTER_VALIDATE_INT result strictly with false"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "zero is valid but loosely equals false. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "filter validation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q7",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about null is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "null should not replace every error case"
+        },
+        {
+          "id": "B",
+          "text": "null represents deliberate absence"
+        },
+        {
+          "id": "C",
+          "text": "use nullable types only when absence is valid"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "null should not replace every error case. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "null",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q8",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about match is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an unmatched value throws"
+        },
+        {
+          "id": "B",
+          "text": "match uses strict comparison and returns a value"
+        },
+        {
+          "id": "C",
+          "text": "cover every allowed case or provide an intentional default"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an unmatched value throws. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q9",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about arrays is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "mixed key coercion can surprise careless input handling"
+        },
+        {
+          "id": "B",
+          "text": "PHP arrays are ordered maps with integer or string keys"
+        },
+        {
+          "id": "C",
+          "text": "choose keys that express the data model"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "mixed key coercion can surprise careless input handling. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q10",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about foreach references is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "the lingering reference should be unset after the loop"
+        },
+        {
+          "id": "B",
+          "text": "reference iteration can mutate original elements"
+        },
+        {
+          "id": "C",
+          "text": "avoid references unless mutation is intended"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the lingering reference should be unset after the loop. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "foreach references",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q11",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about typed functions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "default parameters should follow required parameters"
+        },
+        {
+          "id": "B",
+          "text": "typed functions define reusable input and output contracts"
+        },
+        {
+          "id": "C",
+          "text": "return domain data rather than only echoing"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "default parameters should follow required parameters. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "typed functions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q12",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about exceptions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "swallowing Throwable hides failures"
+        },
+        {
+          "id": "B",
+          "text": "exceptions transfer control to a capable boundary"
+        },
+        {
+          "id": "C",
+          "text": "catch only where recovery translation or logging is possible"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "swallowing Throwable hides failures. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "exceptions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q13",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about finally is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "returning from finally can obscure earlier results or errors"
+        },
+        {
+          "id": "B",
+          "text": "finally executes after try and catch paths"
+        },
+        {
+          "id": "C",
+          "text": "use it for unavoidable cleanup"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "returning from finally can obscure earlier results or errors. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "finally",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q14",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about private properties is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "public mutable fields permit invalid state"
+        },
+        {
+          "id": "B",
+          "text": "private properties prevent arbitrary external assignment"
+        },
+        {
+          "id": "C",
+          "text": "preserve invariants through methods"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "public mutable fields permit invalid state. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "private properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q15",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about readonly is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "readonly is not automatically deep immutability"
+        },
+        {
+          "id": "B",
+          "text": "readonly properties can be initialized only once"
+        },
+        {
+          "id": "C",
+          "text": "use them for stable value-object fields"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "readonly is not automatically deep immutability. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q16",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about interfaces is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "large interfaces couple unrelated responsibilities"
+        },
+        {
+          "id": "B",
+          "text": "interfaces specify consumer-required behavior"
+        },
+        {
+          "id": "C",
+          "text": "keep interfaces focused"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "large interfaces couple unrelated responsibilities. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q17",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about prepared statements is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "string concatenation enables injection risk"
+        },
+        {
+          "id": "B",
+          "text": "prepared statements separate SQL structure from values"
+        },
+        {
+          "id": "C",
+          "text": "bind every untrusted value"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "string concatenation enables injection risk. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "prepared statements",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q18",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about transactions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "missing rollback can leave partial work"
+        },
+        {
+          "id": "B",
+          "text": "transactions make related database changes atomic"
+        },
+        {
+          "id": "C",
+          "text": "commit only after all required writes succeed"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "missing rollback can leave partial work. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "transactions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q19",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about authorization is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "authentication alone does not grant access to all rows"
+        },
+        {
+          "id": "B",
+          "text": "authorization checks permission for a particular action and resource"
+        },
+        {
+          "id": "C",
+          "text": "scope every record query to the authenticated owner"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "authentication alone does not grant access to all rows. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "authorization",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-03-q20",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about output escaping is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "input validation is not a substitute for output encoding"
+        },
+        {
+          "id": "B",
+          "text": "contextual escaping prevents data becoming executable markup"
+        },
+        {
+          "id": "C",
+          "text": "escape at output for the target context"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "input validation is not a substitute for output encoding. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "output escaping",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.526Z",
+  "updatedAt": "2026-10-31T13:08:48.527Z"
+}

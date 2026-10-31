@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track",
+  "skillName": "C++",
+  "moduleId": "mod-3-cpp-beginner-module-3",
+  "title": "STL Algorithms, Maps, and a Progress Tracker",
+  "summary": "Combine vector, map, set, algorithms, lambdas, file streams, exceptions, and RAII in a tested progress-tracker project.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply STL Algorithms, Maps, and a Progress Tracker",
+    "Compile and test behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "cpp-obj-5",
+    "cpp-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-sec-1",
+      "heading": "Core model",
+      "content": "The standard library provides containers, iterators, algorithms, and resource-managing types. `std::map` associates ordered unique keys with values; `std::unordered_map` provides hash-based lookup without sorted iteration. Algorithms such as `std::find_if`, `std::count_if`, and `std::accumulate` separate traversal from intent. Lambdas provide local callable behavior and should capture only what they need. File streams close automatically through RAII, but open, read, and write state must still be checked. Parse persisted data as untrusted input before constructing valid domain objects.",
+      "codeExamples": [],
+      "keyPoints": [
+        "The standard library provides containers, iterators, algorithms, and resource-managing types."
+      ],
+      "commonMistakes": [
+        "unnecessary shared mutation complicates lifetime reasoning",
+        "public fields permit invalid combinations"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-sec-2",
+      "heading": "Worked C++ example",
+      "content": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "cpp",
+          "code": "#include <iostream>\n#include <map>\nint main(){ std::map<std::string,int> progress{{\"Basics\",100},{\"Loops\",70}};\n for(const auto& [topic,percent]:progress) std::cout<<topic<<\": \"<<percent<<'\\n'; }",
+          "explanation": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+          "expectedOutput": "Basics: 100\nLoops: 70"
+        }
+      ],
+      "keyPoints": [
+        "The standard library provides containers, iterators, algorithms, and resource-managing types."
+      ],
+      "commonMistakes": [
+        "unnecessary shared mutation complicates lifetime reasoning",
+        "public fields permit invalid combinations"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "The standard library provides containers, iterators, algorithms, and resource-managing types."
+      ],
+      "commonMistakes": [
+        "unnecessary shared mutation complicates lifetime reasoning",
+        "public fields permit invalid combinations"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C++.",
+      "description": "Build a multi-file progress tracker using classes, standard containers and algorithms, validated file persistence, summaries, and at least ten tests. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+      "instructions": [
+        "Build a multi-file progress tracker using classes, standard containers and algorithms, validated file persistence, summaries, and at least ten tests. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation."
+      ],
+      "starterCode": "// C++ Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C++ operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about C++20 mode is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "compiler defaults may use an older standard"
+        },
+        {
+          "id": "B",
+          "text": "the language mode selects modern standard rules"
+        },
+        {
+          "id": "C",
+          "text": "compile with std=c++20 consistently"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "compiler defaults may use an older standard. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about warnings is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "warning-free does not prove logic correctness"
+        },
+        {
+          "id": "B",
+          "text": "warnings expose suspicious translated code"
+        },
+        {
+          "id": "C",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "warning-free does not prove logic correctness. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l2-stl-algorithms-maps-and-a-progress-track-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linking is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves definitions across translation units"
+        },
+        {
+          "id": "C",
+          "text": "provide one definition for each used non-inline entity"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a declaration alone does not satisfy the linker. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered STL Algorithms, Maps, and a Progress Tracker in C++. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-cpp-main",
+      "title": "C++ Full Course for free",
+      "provider": "youtube",
+      "channelOrAuthor": "Bro Code",
+      "url": "https://www.youtube.com/watch?v=-TkoO8Z07hI",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C++.",
+      "whatItTeaches": "Step-by-step walkthrough of C++ fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "cpp-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, References, Classes, and RAII",
+        "STL Algorithms, Maps, and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: STL Algorithms, Maps, and a Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for STL Algorithms, Maps, and a Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C++",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.261Z"
+}

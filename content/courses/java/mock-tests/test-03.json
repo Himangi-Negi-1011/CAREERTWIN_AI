@@ -1,0 +1,703 @@
+{
+  "id": "mock-java-beginner-test-03",
+  "skillName": "Java",
+  "skillSlug": "java",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Java Beginner Mock Test 3",
+  "description": "Comprehensive 50-minute mock examination for Java at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "JDK",
+    "bytecode",
+    "main method",
+    "primitive types",
+    "integer division",
+    "String equality",
+    "parsing",
+    "short circuit logic",
+    "if chains",
+    "switch",
+    "arrays",
+    "enhanced for",
+    "while loops",
+    "methods",
+    "pass by value",
+    "encapsulation",
+    "static",
+    "List",
+    "Map",
+    "Set"
+  ],
+  "questions": [
+    {
+      "id": "mock-java-beginner-test-03-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about JDK is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "B",
+          "text": "the JDK includes development tools such as javac"
+        },
+        {
+          "id": "C",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a JRE-only installation may not provide javac. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "JDK",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about bytecode is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "B",
+          "text": "javac emits JVM bytecode in class files"
+        },
+        {
+          "id": "C",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "editing a class file is not a source workflow. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "bytecode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about main method is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "B",
+          "text": "the JVM entry point uses public static void main(String[] args)"
+        },
+        {
+          "id": "C",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a misspelled signature is not selected as the entry point. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "main method",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about primitive types is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "double is approximate and unsuitable for exact currency rules"
+        },
+        {
+          "id": "B",
+          "text": "primitive variables directly hold primitive values"
+        },
+        {
+          "id": "C",
+          "text": "choose types according to range and operation semantics"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "double is approximate and unsuitable for exact currency rules. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "primitive types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about integer division is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "casting only after integer division cannot restore the fraction"
+        },
+        {
+          "id": "B",
+          "text": "division of two integers produces an integer result"
+        },
+        {
+          "id": "C",
+          "text": "cast an operand before division when a fraction is required"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "casting only after integer division cannot restore the fraction. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "integer division",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q6",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about String equality is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "== compares object references rather than String content"
+        },
+        {
+          "id": "B",
+          "text": "String content is compared with equals"
+        },
+        {
+          "id": "C",
+          "text": "use constant.equals(value) when value may be null"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "== compares object references rather than String content. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "String equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q7",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about parsing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "parseInt does not accept arbitrary decimal text"
+        },
+        {
+          "id": "B",
+          "text": "parse methods convert valid text or throw on invalid text"
+        },
+        {
+          "id": "C",
+          "text": "catch NumberFormatException only where recovery is defined"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "parseInt does not accept arbitrary decimal text. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "parsing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q8",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit logic is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "using non-short-circuit operators can evaluate unsafe expressions"
+        },
+        {
+          "id": "B",
+          "text": "&& and || may skip evaluation of the right operand"
+        },
+        {
+          "id": "C",
+          "text": "place safety checks before dependent expressions"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using non-short-circuit operators can evaluate unsafe expressions. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "short circuit logic",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q9",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about if chains is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "separate if statements can execute overlapping branches"
+        },
+        {
+          "id": "B",
+          "text": "only the first matched branch of an if/else-if chain runs"
+        },
+        {
+          "id": "C",
+          "text": "order mutually exclusive boundaries intentionally"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "separate if statements can execute overlapping branches. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "if chains",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q10",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "switch does not replace range-oriented conditions cleanly"
+        },
+        {
+          "id": "B",
+          "text": "switch is useful for finite discrete choices"
+        },
+        {
+          "id": "C",
+          "text": "handle every allowed category or provide an intentional default"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "switch does not replace range-oriented conditions cleanly. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q11",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about arrays is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "access at index length throws an exception"
+        },
+        {
+          "id": "B",
+          "text": "arrays have fixed length and zero-based indexes"
+        },
+        {
+          "id": "C",
+          "text": "use length minus one as the final valid index"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "access at index length throws an exception. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q12",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about enhanced for is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "assigning the loop variable does not replace an array element"
+        },
+        {
+          "id": "B",
+          "text": "enhanced for iterates values without exposing indexes"
+        },
+        {
+          "id": "C",
+          "text": "use it when position is irrelevant"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "assigning the loop variable does not replace an array element. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "enhanced for",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q13",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about while loops is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "missing progress can produce an infinite loop"
+        },
+        {
+          "id": "B",
+          "text": "while repeats while a boolean remains true"
+        },
+        {
+          "id": "C",
+          "text": "update termination state on each normal path"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "missing progress can produce an infinite loop. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q14",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about methods is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a void method cannot provide a result expression"
+        },
+        {
+          "id": "B",
+          "text": "methods declare parameter and return contracts"
+        },
+        {
+          "id": "C",
+          "text": "return calculated data instead of only printing it"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a void method cannot provide a result expression. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q15",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about pass by value is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "reassigning a parameter does not reassign the caller variable"
+        },
+        {
+          "id": "B",
+          "text": "Java copies every argument value during a call"
+        },
+        {
+          "id": "C",
+          "text": "remember that a copied object reference can still reach shared mutable state"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reassigning a parameter does not reassign the caller variable. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "pass by value",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q16",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about encapsulation is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "public mutable fields allow invalid states"
+        },
+        {
+          "id": "B",
+          "text": "private state is changed through invariant-preserving behavior"
+        },
+        {
+          "id": "C",
+          "text": "validate inputs in constructors and mutation methods"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "public mutable fields allow invalid states. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "encapsulation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q17",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about static is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "static code cannot directly use instance fields without an object"
+        },
+        {
+          "id": "B",
+          "text": "static members belong to the class rather than one instance"
+        },
+        {
+          "id": "C",
+          "text": "use static for stateless utilities and the main entry point"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "static code cannot directly use instance fields without an object. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "static",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q18",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about List is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "removing during enhanced iteration can cause concurrent modification"
+        },
+        {
+          "id": "B",
+          "text": "List preserves order and allows duplicates"
+        },
+        {
+          "id": "C",
+          "text": "use ArrayList as a common resizable sequence"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "removing during enhanced iteration can cause concurrent modification. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "List",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q19",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Map is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "get on a missing key commonly returns null"
+        },
+        {
+          "id": "B",
+          "text": "Map associates unique keys with values"
+        },
+        {
+          "id": "C",
+          "text": "check absence explicitly before unboxing a nullable result"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "get on a missing key commonly returns null. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "Map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-03-q20",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Set is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Set does not provide positional indexing"
+        },
+        {
+          "id": "B",
+          "text": "Set retains unique elements"
+        },
+        {
+          "id": "C",
+          "text": "use HashSet for membership and duplicate removal"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Set does not provide positional indexing. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "Set",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.437Z",
+  "updatedAt": "2026-10-31T13:08:48.437Z"
+}

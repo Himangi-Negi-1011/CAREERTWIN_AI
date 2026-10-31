@@ -1,0 +1,193 @@
+{
+  "id": "phase-javascript-beginner-mod-1",
+  "skillName": "JavaScript",
+  "skillSlug": "javascript",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-javascript-beginner-module-1",
+  "moduleTitle": "JavaScript Runtime and Data",
+  "title": "JavaScript Runtime and Data Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in JavaScript Runtime and Data.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "const and let",
+    "typeof",
+    "Number conversion",
+    "strict equality",
+    "template literals"
+  ],
+  "questions": [
+    {
+      "id": "phase-javascript-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare stable bindings with const and state that changes with let"
+        },
+        {
+          "id": "B",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "const and let",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use typeof while diagnosing values at an input boundary"
+        },
+        {
+          "id": "B",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "typeof",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "convert then check Number.isNaN before arithmetic"
+        },
+        {
+          "id": "B",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Number conversion",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "A program needs to apply strict equality. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use strict equality for predictable branch conditions"
+        },
+        {
+          "id": "B",
+          "text": "0 == false is true but 0 === false is false"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use strict equality for predictable branch conditions. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "strict equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "A program needs to apply template literals. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use template literals for readable calculated output"
+        },
+        {
+          "id": "B",
+          "text": "ordinary quoted strings do not interpolate ${expressions}"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use template literals for readable calculated output. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "template literals",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.478Z",
+  "updatedAt": "2026-10-31T13:08:48.478Z"
+}

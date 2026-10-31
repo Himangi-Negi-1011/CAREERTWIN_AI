@@ -1,0 +1,193 @@
+{
+  "id": "phase-rust-beginner-mod-1",
+  "skillName": "Rust",
+  "skillSlug": "rust",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-rust-beginner-module-1",
+  "moduleTitle": "Cargo, Types, Results, and Control Flow",
+  "title": "Cargo, Types, Results, and Control Flow Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Cargo, Types, Results, and Control Flow.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Cargo",
+    "rustfmt",
+    "Clippy",
+    "immutability",
+    "String and str"
+  ],
+  "questions": [
+    {
+      "id": "phase-rust-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Cargo?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use cargo check test and run as separate evidence"
+        },
+        {
+          "id": "B",
+          "text": "Cargo builds tests and manages crate metadata"
+        },
+        {
+          "id": "C",
+          "text": "Cargo.lock policy differs between applications and libraries"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use cargo check test and run as separate evidence. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Cargo",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "phase-rust-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of rustfmt?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "run cargo fmt before review"
+        },
+        {
+          "id": "B",
+          "text": "rustfmt applies canonical formatting"
+        },
+        {
+          "id": "C",
+          "text": "manual formatting drift distracts from behavior"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "run cargo fmt before review. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "rustfmt",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "phase-rust-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of Clippy?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "review each lint in its code context"
+        },
+        {
+          "id": "B",
+          "text": "Clippy provides additional lint diagnostics"
+        },
+        {
+          "id": "C",
+          "text": "blindly allowing lints can hide defects"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "review each lint in its code context. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Clippy",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "phase-rust-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of immutability?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "request mutability only where state changes"
+        },
+        {
+          "id": "B",
+          "text": "bindings are immutable unless marked mut"
+        },
+        {
+          "id": "C",
+          "text": "interior mutability follows separate runtime rules"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "request mutability only where state changes. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "immutability",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    },
+    {
+      "id": "phase-rust-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of String and str?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "accept &str for read-only text parameters"
+        },
+        {
+          "id": "B",
+          "text": "String owns text while str slices borrow text"
+        },
+        {
+          "id": "C",
+          "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "accept &str for read-only text parameters. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "String and str",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-rust-beginner-module-1-l1",
+      "recommendedLessonTitle": "Cargo Projects, Compilation, and Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.631Z",
+  "updatedAt": "2026-10-31T13:08:48.631Z"
+}

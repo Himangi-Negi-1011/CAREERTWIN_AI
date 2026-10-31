@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000003",
+  "skillName": "TypeScript",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "TypeScript Foundations: Strict Types to Validated Applications",
+  "description": "A strict beginner TypeScript course covering inference, unions, narrowing, object contracts, typed functions, generics, utility types, runtime validation, testing, and a typed progress-tracker capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Configure and explain a strict TypeScript compilation workflow",
+    "Model and narrow primitive, union, object, collection, and generic types safely",
+    "Validate unknown runtime data and build a modular typed progress tracker"
+  ],
+  "modules": [
+    {
+      "stableKey": "typescript-beginner-module-1",
+      "title": "Compiler, Values, and Narrowing",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "typescript-setup-inference",
+          "title": "TypeScript Setup and Type Inference",
+          "summary": "Configure a small strict TypeScript project and understand how the compiler infers types from values and reports unsafe operations before JavaScript runs.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the TypeScript behavior taught in TypeScript Setup and Type Inference",
+            "Use strict compiler evidence and runtime tests to verify the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "typescript-setup-inference-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "TypeScript is a static analysis layer over JavaScript. The compiler checks source and emits JavaScript; types do not normally exist at runtime. Start with `tsconfig.json`, enable `strict`, and compile with `tsc --noEmit` during checking. Type inference derives useful types from initial values, so `const count = 3` needs no `: number`. Add annotations at public boundaries or where inference is too broad, not to repeat obvious facts. A compiler error is evidence of a mismatch between operations and declared possibilities; fix the model or narrow the value instead of silencing it with assertions."
+            },
+            {
+              "stableKey": "typescript-setup-inference-example",
+              "type": "code",
+              "heading": "Worked TypeScript example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+              "codeLanguage": "typescript",
+              "codeSource": "const course = 'TypeScript';\nconst lessons = 6;\nconst label: string = `${course}: ${lessons} lessons`;\nconsole.log(label);",
+              "expectedOutput": "TypeScript: 6 lessons"
+            },
+            {
+              "stableKey": "typescript-setup-inference-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "typescript-setup-inference-practice",
+              "title": "Build, check, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a strict TypeScript project, declare inferred and annotated bindings, run `tsc --noEmit`, and explain one compiler diagnostic you intentionally produced. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+              "expectedOutcomes": [
+                "Strictly typed source without unchecked any",
+                "Compiler and runtime evidence",
+                "Boundary and invalid-input tests"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "typescript-setup-inference-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "ts-beg-lesson-1-01-type-inference",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes type inference in TypeScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "type inference"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the compiler derives a type from available expressions"
+                  },
+                  {
+                    "key": "B",
+                    "text": "reassigning an inferred string variable to a number is rejected"
+                  },
+                  {
+                    "key": "C",
+                    "text": "It changes the JavaScript runtime automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires a paid compiler plugin"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-1-02-strict-mode",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes strict mode in TypeScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict mode"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "strict enables a coordinated set of stronger checks"
+                  },
+                  {
+                    "key": "B",
+                    "text": "disabling strict can hide null and implicit-any defects"
+                  },
+                  {
+                    "key": "C",
+                    "text": "It changes the JavaScript runtime automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires a paid compiler plugin"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-1-03-annotations",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes annotations in TypeScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "annotations"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "annotations state an expected compile-time type"
+                  },
+                  {
+                    "key": "B",
+                    "text": "annotations do not convert values at runtime"
+                  },
+                  {
+                    "key": "C",
+                    "text": "It changes the JavaScript runtime automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires a paid compiler plugin"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "TypeScript is a static analysis layer over JavaScript."
+          ],
+          "commonMistakes": [
+            "reassigning an inferred string variable to a number is rejected",
+            "disabling strict can hide null and implicit-any defects"
+          ],
+          "interviewQuestions": [
+            "Explain type inference and show a minimal strict TypeScript example."
+          ]
+        },
+        {
+          "stableKey": "typescript-primitives-unions",
+          "title": "Primitive Types, Unions, and Narrowing",
+          "summary": "Model values with primitive types and unions, then narrow uncertain inputs through runtime checks before using type-specific operations.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the TypeScript behavior taught in Primitive Types, Unions, and Narrowing",
+            "Use strict compiler evidence and runtime tests to verify the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "typescript-primitives-unions-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`. A union such as `string | number` says either representation is valid. Code must narrow the union before calling operations available to only one member. `typeof`, equality checks, `in`, and discriminant properties provide evidence the compiler can follow. Prefer `unknown` for untrusted input because it requires narrowing; `any` disables checking and lets defects spread. Literal unions such as `'planned' | 'complete'` restrict values more precisely than a general string."
+            },
+            {
+              "stableKey": "typescript-primitives-unions-example",
+              "type": "code",
+              "heading": "Worked TypeScript example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+              "codeLanguage": "typescript",
+              "codeSource": "function formatId(id: string | number): string {\n  return typeof id === 'number' ? id.toFixed(0) : id.trim();\n}\nconsole.log(formatId(42));\nconsole.log(formatId(' CT-7 '));",
+              "expectedOutput": "42\nCT-7"
+            },
+            {
+              "stableKey": "typescript-primitives-unions-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "typescript-primitives-unions-practice",
+              "title": "Build, check, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Write a formatter accepting string, number, or null. Narrow every case explicitly, return a string, and prove with calls that no unsafe assertion is required. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+              "expectedOutcomes": [
+                "Strictly typed source without unchecked any",
+                "Compiler and runtime evidence",
+                "Boundary and invalid-input tests"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "typescript-primitives-unions-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "ts-beg-lesson-2-01-type-inference",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of type inference?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "type inference"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "rely on inference for obvious local values and annotate public boundaries"
+                  },
+                  {
+                    "key": "B",
+                    "text": "reassigning an inferred string variable to a number is rejected"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Replace the type with any"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Use an unchecked assertion at every call"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-2-02-strict-mode",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of strict mode?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict mode"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "enable strict in tsconfig for new application code"
+                  },
+                  {
+                    "key": "B",
+                    "text": "disabling strict can hide null and implicit-any defects"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Replace the type with any"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Use an unchecked assertion at every call"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-2-03-annotations",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of annotations?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "annotations"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "annotate function boundaries when the contract should remain stable"
+                  },
+                  {
+                    "key": "B",
+                    "text": "annotations do not convert values at runtime"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Replace the type with any"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Use an unchecked assertion at every call"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
+          ],
+          "commonMistakes": [
+            "calling a string-only method on string | number is unsafe",
+            "casting unknown directly avoids checking but does not make data safe"
+          ],
+          "interviewQuestions": [
+            "Explain union types and show a minimal strict TypeScript example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "typescript-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "ts-beg-module-1-01-type-inference",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of type inference?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "type inference"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "rely on inference for obvious local values and annotate public boundaries"
+              },
+              {
+                "key": "B",
+                "text": "reassigning an inferred string variable to a number is rejected"
+              },
+              {
+                "key": "C",
+                "text": "Replace the type with any"
+              },
+              {
+                "key": "D",
+                "text": "Use an unchecked assertion at every call"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-1-02-strict-mode",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of strict mode?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "strict mode"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "enable strict in tsconfig for new application code"
+              },
+              {
+                "key": "B",
+                "text": "disabling strict can hide null and implicit-any defects"
+              },
+              {
+                "key": "C",
+                "text": "Replace the type with any"
+              },
+              {
+                "key": "D",
+                "text": "Use an unchecked assertion at every call"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-1-03-annotations",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of annotations?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "annotations"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "annotate function boundaries when the contract should remain stable"
+              },
+              {
+                "key": "B",
+                "text": "annotations do not convert values at runtime"
+              },
+              {
+                "key": "C",
+                "text": "Replace the type with any"
+              },
+              {
+                "key": "D",
+                "text": "Use an unchecked assertion at every call"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-1-04-union-types",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of union types?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "union types"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "narrow a union before using member-specific operations"
+              },
+              {
+                "key": "B",
+                "text": "calling a string-only method on string | number is unsafe"
+              },
+              {
+                "key": "C",
+                "text": "Replace the type with any"
+              },
+              {
+                "key": "D",
+                "text": "Use an unchecked assertion at every call"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "narrow a union before using member-specific operations. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-1-05-unknown",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of unknown?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "unknown"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "represent untrusted external data as unknown"
+              },
+              {
+                "key": "B",
+                "text": "casting unknown directly avoids checking but does not make data safe"
+              },
+              {
+                "key": "C",
+                "text": "Replace the type with any"
+              },
+              {
+                "key": "D",
+                "text": "Use an unchecked assertion at every call"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "represent untrusted external data as unknown. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "typescript-beginner-module-2",
+      "title": "Typed Objects, Arrays, and Functions",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "typescript-objects-interfaces",
+          "title": "Object Types, Interfaces, and Optional Properties",
+          "summary": "Describe object shapes with interfaces and type aliases, distinguish optional properties from undefined values, and preserve excess-property checks.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the TypeScript behavior taught in Object Types, Interfaces, and Optional Properties",
+            "Use strict compiler evidence and runtime tests to verify the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "typescript-objects-interfaces-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Object types document required fields and their value types. Interfaces are well suited to extendable object contracts; type aliases can represent objects, unions, primitives, and tuples. `name?: string` means a property may be absent, while `name: string | undefined` requires the property key even when its value is undefined. Mark data immutable with `readonly` when mutation is not part of the contract. Fresh object literals receive excess-property checks that catch misspelled fields. Avoid broad index signatures unless every unknown key genuinely follows the same value rule."
+            },
+            {
+              "stableKey": "typescript-objects-interfaces-example",
+              "type": "code",
+              "heading": "Worked TypeScript example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+              "codeLanguage": "typescript",
+              "codeSource": "interface Skill {\n  readonly id: string;\n  name: string;\n  level?: 'beginner' | 'intermediate';\n}\nconst skill: Skill = { id: 's1', name: 'TypeScript' };\nconsole.log(skill.name);",
+              "expectedOutput": "TypeScript"
+            },
+            {
+              "stableKey": "typescript-objects-interfaces-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "typescript-objects-interfaces-practice",
+              "title": "Build, check, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Define typed Learner and Course records, include one optional field and one readonly field, and demonstrate a compiler error for a misspelled property. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+              "expectedOutcomes": [
+                "Strictly typed source without unchecked any",
+                "Compiler and runtime evidence",
+                "Boundary and invalid-input tests"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "typescript-objects-interfaces-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "ts-beg-lesson-3-01-type-inference",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about type inference is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "type inference"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "reassigning an inferred string variable to a number is rejected"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the compiler derives a type from available expressions"
+                  },
+                  {
+                    "key": "C",
+                    "text": "rely on inference for obvious local values and annotate public boundaries"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is valid only in class declarations"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-3-02-strict-mode",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about strict mode is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict mode"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "disabling strict can hide null and implicit-any defects"
+                  },
+                  {
+                    "key": "B",
+                    "text": "strict enables a coordinated set of stronger checks"
+                  },
+                  {
+                    "key": "C",
+                    "text": "enable strict in tsconfig for new application code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is valid only in class declarations"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-3-03-annotations",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about annotations is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "annotations"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "annotations do not convert values at runtime"
+                  },
+                  {
+                    "key": "B",
+                    "text": "annotations state an expected compile-time type"
+                  },
+                  {
+                    "key": "C",
+                    "text": "annotate function boundaries when the contract should remain stable"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is valid only in class declarations"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Object types document required fields and their value types."
+          ],
+          "commonMistakes": [
+            "a general string loses exhaustiveness checking",
+            "a type assertion is not runtime evidence"
+          ],
+          "interviewQuestions": [
+            "Explain literal unions and show a minimal strict TypeScript example."
+          ]
+        },
+        {
+          "stableKey": "typescript-arrays-functions",
+          "title": "Typed Arrays and Function Contracts",
+          "summary": "Use typed arrays, tuples, parameter and return types, optional/default parameters, callbacks, and overload-free union contracts.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the TypeScript behavior taught in Typed Arrays and Function Contracts",
+            "Use strict compiler evidence and runtime tests to verify the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "typescript-arrays-functions-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types. Function parameter types protect callers and explicit return types protect the implementation's contract. Optional parameters come after required ones; default parameters already behave as optional to callers. Callback types describe both inputs and outputs, enabling methods such as `map` to infer results. Prefer a union parameter when behavior and return type are the same for every member; overloads are useful only when input forms imply meaningfully different output types."
+            },
+            {
+              "stableKey": "typescript-arrays-functions-example",
+              "type": "code",
+              "heading": "Worked TypeScript example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+              "codeLanguage": "typescript",
+              "codeSource": "function average(values: readonly number[]): number {\n  if (values.length === 0) throw new Error('values required');\n  return values.reduce((sum, value) => sum + value, 0) / values.length;\n}\nconsole.log(average([70, 82, 91]));",
+              "expectedOutput": "81"
+            },
+            {
+              "stableKey": "typescript-arrays-functions-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "typescript-arrays-functions-practice",
+              "title": "Build, check, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement typed functions that filter completed lessons and calculate an average. Accept readonly arrays, reject empty input explicitly, and add compile-time misuse examples as comments. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+              "expectedOutcomes": [
+                "Strictly typed source without unchecked any",
+                "Compiler and runtime evidence",
+                "Boundary and invalid-input tests"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "typescript-arrays-functions-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "ts-beg-lesson-4-01-type-inference",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes type inference in TypeScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "type inference"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the compiler derives a type from available expressions"
+                  },
+                  {
+                    "key": "B",
+                    "text": "reassigning an inferred string variable to a number is rejected"
+                  },
+                  {
+                    "key": "C",
+                    "text": "It changes the JavaScript runtime automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires a paid compiler plugin"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-4-02-strict-mode",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes strict mode in TypeScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict mode"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "strict enables a coordinated set of stronger checks"
+                  },
+                  {
+                    "key": "B",
+                    "text": "disabling strict can hide null and implicit-any defects"
+                  },
+                  {
+                    "key": "C",
+                    "text": "It changes the JavaScript runtime automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires a paid compiler plugin"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-4-03-annotations",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes annotations in TypeScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "annotations"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "annotations state an expected compile-time type"
+                  },
+                  {
+                    "key": "B",
+                    "text": "annotations do not convert values at runtime"
+                  },
+                  {
+                    "key": "C",
+                    "text": "It changes the JavaScript runtime automatically"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires a paid compiler plugin"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
+          ],
+          "commonMistakes": [
+            "optional does not mean every value type is accepted",
+            "readonly is compile-time protection, not deep runtime freezing"
+          ],
+          "interviewQuestions": [
+            "Explain optional properties and show a minimal strict TypeScript example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "typescript-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "ts-beg-module-2-06-any",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about any is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "any"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "any can propagate unsound operations through otherwise typed code"
+              },
+              {
+                "key": "B",
+                "text": "any disables most useful type checking for that value"
+              },
+              {
+                "key": "C",
+                "text": "isolate unavoidable any at a boundary and replace it quickly"
+              },
+              {
+                "key": "D",
+                "text": "It is valid only in class declarations"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "any can propagate unsound operations through otherwise typed code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-2-07-literal-unions",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about literal unions is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "literal unions"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a general string loses exhaustiveness checking"
+              },
+              {
+                "key": "B",
+                "text": "literal unions restrict values to named constants"
+              },
+              {
+                "key": "C",
+                "text": "model finite statuses with a literal union"
+              },
+              {
+                "key": "D",
+                "text": "It is valid only in class declarations"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a general string loses exhaustiveness checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-2-08-narrowing",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about narrowing is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "narrowing"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a type assertion is not runtime evidence"
+              },
+              {
+                "key": "B",
+                "text": "narrowing refines possibilities using runtime evidence"
+              },
+              {
+                "key": "C",
+                "text": "use typeof or discriminants before member-specific access"
+              },
+              {
+                "key": "D",
+                "text": "It is valid only in class declarations"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a type assertion is not runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-2-09-interfaces",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about interfaces is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "interfaces"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "an interface disappears from emitted JavaScript"
+              },
+              {
+                "key": "B",
+                "text": "interfaces describe object contracts and support extension"
+              },
+              {
+                "key": "C",
+                "text": "use an interface for a named extendable object shape"
+              },
+              {
+                "key": "D",
+                "text": "It is valid only in class declarations"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "an interface disappears from emitted JavaScript. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-2-10-optional-properties",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about optional properties is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "optional properties"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "optional does not mean every value type is accepted"
+              },
+              {
+                "key": "B",
+                "text": "an optional property may be absent"
+              },
+              {
+                "key": "C",
+                "text": "check or default an optional value before use"
+              },
+              {
+                "key": "D",
+                "text": "It is valid only in class declarations"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "optional does not mean every value type is accepted. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "typescript-beginner-module-3",
+      "title": "Generics, Validation, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "typescript-generics-utility",
+          "title": "Generics and Standard Utility Types",
+          "summary": "Use constrained generics when behavior is independent of a specific type, and derive focused types with Pick, Omit, Partial, and Record.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the TypeScript behavior taught in Generics and Standard Utility Types",
+            "Use strict compiler evidence and runtime tests to verify the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "typescript-generics-utility-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A generic parameter preserves a relationship between inputs and outputs. `function first<T>(items: readonly T[]): T | undefined` returns the same element type supplied by the caller. Add a constraint such as `T extends { id: string }` only when the implementation uses that capability. Do not introduce a generic used in only one position; a concrete or union type is clearer. Utility types transform existing contracts: `Pick` selects keys, `Omit` removes keys, `Partial` makes properties optional for patch operations, and `Record` maps a known key union to one value type. These are compile-time transformations, not runtime validation."
+            },
+            {
+              "stableKey": "typescript-generics-utility-example",
+              "type": "code",
+              "heading": "Worked TypeScript example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+              "codeLanguage": "typescript",
+              "codeSource": "function findById<T extends { id: string }>(items: readonly T[], id: string): T | undefined {\n  return items.find(item => item.id === id);\n}\nconst result = findById([{ id: 'a', score: 90 }], 'a');\nconsole.log(result?.score);",
+              "expectedOutput": "90"
+            },
+            {
+              "stableKey": "typescript-generics-utility-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "typescript-generics-utility-practice",
+              "title": "Build, check, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a generic `indexById` returning a Record, constrain inputs to string IDs, and define a safe Partial update type for a progress record. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+              "expectedOutcomes": [
+                "Strictly typed source without unchecked any",
+                "Compiler and runtime evidence",
+                "Boundary and invalid-input tests"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "typescript-generics-utility-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "ts-beg-lesson-5-01-type-inference",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of type inference?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "type inference"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "rely on inference for obvious local values and annotate public boundaries"
+                  },
+                  {
+                    "key": "B",
+                    "text": "reassigning an inferred string variable to a number is rejected"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Replace the type with any"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Use an unchecked assertion at every call"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-5-02-strict-mode",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of strict mode?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict mode"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "enable strict in tsconfig for new application code"
+                  },
+                  {
+                    "key": "B",
+                    "text": "disabling strict can hide null and implicit-any defects"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Replace the type with any"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Use an unchecked assertion at every call"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-5-03-annotations",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of annotations?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "annotations"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "annotate function boundaries when the contract should remain stable"
+                  },
+                  {
+                    "key": "B",
+                    "text": "annotations do not convert values at runtime"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Replace the type with any"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Use an unchecked assertion at every call"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A generic parameter preserves a relationship between inputs and outputs."
+          ],
+          "commonMistakes": [
+            "a tuple and an array express different positional guarantees",
+            "console output is not a returned value"
+          ],
+          "interviewQuestions": [
+            "Explain typed arrays and show a minimal strict TypeScript example."
+          ]
+        },
+        {
+          "stableKey": "typescript-runtime-validation-project",
+          "title": "Runtime Validation and a Typed Progress Tracker",
+          "summary": "Combine compile-time contracts with runtime validation for untrusted data in a modular progress-tracker capstone.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the TypeScript behavior taught in Runtime Validation and a Typed Progress Tracker",
+            "Use strict compiler evidence and runtime tests to verify the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "typescript-runtime-validation-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "TypeScript cannot guarantee data arriving from JSON, forms, storage, or network responses. Parse external values as `unknown`, inspect their structure at runtime, and only then return a trusted domain type. A type assertion does not validate anything; it merely tells the compiler to trust the author. User-defined type guards return predicates such as `value is ProgressRecord` after checking required evidence. Keep validation at system boundaries and let internal functions operate on validated types. The capstone separates raw input, validation, domain updates, calculations, and presentation so each layer can be tested."
+            },
+            {
+              "stableKey": "typescript-runtime-validation-project-example",
+              "type": "code",
+              "heading": "Worked TypeScript example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+              "codeLanguage": "typescript",
+              "codeSource": "type Progress = { topic: string; percent: number };\nfunction isProgress(value: unknown): value is Progress {\n  if (typeof value !== 'object' || value === null) return false;\n  const item = value as Record<string, unknown>;\n  return typeof item.topic === 'string' && typeof item.percent === 'number' && item.percent >= 0 && item.percent <= 100;\n}\nconsole.log(isProgress({ topic: 'Types', percent: 80 }));",
+              "expectedOutput": "true"
+            },
+            {
+              "stableKey": "typescript-runtime-validation-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "typescript-runtime-validation-project-practice",
+              "title": "Build, check, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a typed progress tracker that validates unknown JSON, rejects invalid percentages, updates records immutably, calculates mastery, and includes runtime plus compile-time test cases. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+              "expectedOutcomes": [
+                "Strictly typed source without unchecked any",
+                "Compiler and runtime evidence",
+                "Boundary and invalid-input tests"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "typescript-runtime-validation-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "ts-beg-lesson-6-01-type-inference",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about type inference is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "type inference"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "reassigning an inferred string variable to a number is rejected"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the compiler derives a type from available expressions"
+                  },
+                  {
+                    "key": "C",
+                    "text": "rely on inference for obvious local values and annotate public boundaries"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is valid only in class declarations"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-6-02-strict-mode",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about strict mode is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "strict mode"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "disabling strict can hide null and implicit-any defects"
+                  },
+                  {
+                    "key": "B",
+                    "text": "strict enables a coordinated set of stronger checks"
+                  },
+                  {
+                    "key": "C",
+                    "text": "enable strict in tsconfig for new application code"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is valid only in class declarations"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              },
+              {
+                "stableId": "ts-beg-lesson-6-03-annotations",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about annotations is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "annotations"
+                ],
+                "objectiveIds": [
+                  "typescript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "annotations do not convert values at runtime"
+                  },
+                  {
+                    "key": "B",
+                    "text": "annotations state an expected compile-time type"
+                  },
+                  {
+                    "key": "C",
+                    "text": "annotate function boundaries when the contract should remain stable"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It is valid only in class declarations"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "TypeScript cannot guarantee data arriving from JSON, forms, storage, or network responses."
+          ],
+          "commonMistakes": [
+            "a constraint does not create missing runtime properties",
+            "utility types do not validate runtime objects"
+          ],
+          "interviewQuestions": [
+            "Explain generic constraints and show a minimal strict TypeScript example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "typescript-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "ts-beg-module-3-11-readonly",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes readonly in TypeScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "readonly"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "readonly prevents assignment through that typed reference"
+              },
+              {
+                "key": "B",
+                "text": "readonly is compile-time protection, not deep runtime freezing"
+              },
+              {
+                "key": "C",
+                "text": "It changes the JavaScript runtime automatically"
+              },
+              {
+                "key": "D",
+                "text": "It requires a paid compiler plugin"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "readonly prevents assignment through that typed reference. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-3-12-excess-property-checks",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes excess property checks in TypeScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "excess property checks"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "fresh object literals are checked for unexpected keys"
+              },
+              {
+                "key": "B",
+                "text": "assigning through a broad variable can bypass the fresh-literal check"
+              },
+              {
+                "key": "C",
+                "text": "It changes the JavaScript runtime automatically"
+              },
+              {
+                "key": "D",
+                "text": "It requires a paid compiler plugin"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "fresh object literals are checked for unexpected keys. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-3-13-typed-arrays",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes typed arrays in TypeScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "typed arrays"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "T[] constrains each array element to T"
+              },
+              {
+                "key": "B",
+                "text": "a tuple and an array express different positional guarantees"
+              },
+              {
+                "key": "C",
+                "text": "It changes the JavaScript runtime automatically"
+              },
+              {
+                "key": "D",
+                "text": "It requires a paid compiler plugin"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "T[] constrains each array element to T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-3-14-function-return-types",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes function return types in TypeScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "function return types"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a return annotation protects the promised output contract"
+              },
+              {
+                "key": "B",
+                "text": "console output is not a returned value"
+              },
+              {
+                "key": "C",
+                "text": "It changes the JavaScript runtime automatically"
+              },
+              {
+                "key": "D",
+                "text": "It requires a paid compiler plugin"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a return annotation protects the promised output contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          },
+          {
+            "stableId": "ts-beg-module-3-15-generics",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes generics in TypeScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "generics"
+            ],
+            "objectiveIds": [
+              "typescript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "generics preserve type relationships across positions"
+              },
+              {
+                "key": "B",
+                "text": "a generic appearing once adds complexity without a relationship"
+              },
+              {
+                "key": "C",
+                "text": "It changes the JavaScript runtime automatically"
+              },
+              {
+                "key": "D",
+                "text": "It requires a paid compiler plugin"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "generics preserve type relationships across positions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "typescript-beginner-mock-1",
+      "title": "TypeScript Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "ts-beg-mock-1-01-type-inference",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes type inference in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type inference"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the compiler derives a type from available expressions"
+            },
+            {
+              "key": "B",
+              "text": "reassigning an inferred string variable to a number is rejected"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-02-strict-mode",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes strict mode in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict mode"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "strict enables a coordinated set of stronger checks"
+            },
+            {
+              "key": "B",
+              "text": "disabling strict can hide null and implicit-any defects"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-03-annotations",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes annotations in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "annotations"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "annotations state an expected compile-time type"
+            },
+            {
+              "key": "B",
+              "text": "annotations do not convert values at runtime"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-04-union-types",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes union types in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "union types"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a union permits values from any listed member type"
+            },
+            {
+              "key": "B",
+              "text": "calling a string-only method on string | number is unsafe"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a union permits values from any listed member type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-05-unknown",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes unknown in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "unknown"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "unknown accepts any value but requires evidence before use"
+            },
+            {
+              "key": "B",
+              "text": "casting unknown directly avoids checking but does not make data safe"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "unknown accepts any value but requires evidence before use. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-06-any",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes any in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "any"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "any disables most useful type checking for that value"
+            },
+            {
+              "key": "B",
+              "text": "any can propagate unsound operations through otherwise typed code"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "any disables most useful type checking for that value. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-07-literal-unions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes literal unions in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "literal unions"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "literal unions restrict values to named constants"
+            },
+            {
+              "key": "B",
+              "text": "a general string loses exhaustiveness checking"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "literal unions restrict values to named constants. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-08-narrowing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes narrowing in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "narrowing"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "narrowing refines possibilities using runtime evidence"
+            },
+            {
+              "key": "B",
+              "text": "a type assertion is not runtime evidence"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "narrowing refines possibilities using runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-09-interfaces",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes interfaces in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "interfaces describe object contracts and support extension"
+            },
+            {
+              "key": "B",
+              "text": "an interface disappears from emitted JavaScript"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "interfaces describe object contracts and support extension. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-10-optional-properties",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes optional properties in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "optional properties"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an optional property may be absent"
+            },
+            {
+              "key": "B",
+              "text": "optional does not mean every value type is accepted"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an optional property may be absent. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-11-readonly",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes readonly in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "readonly"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "readonly prevents assignment through that typed reference"
+            },
+            {
+              "key": "B",
+              "text": "readonly is compile-time protection, not deep runtime freezing"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "readonly prevents assignment through that typed reference. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-12-excess-property-checks",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes excess property checks in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "excess property checks"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "fresh object literals are checked for unexpected keys"
+            },
+            {
+              "key": "B",
+              "text": "assigning through a broad variable can bypass the fresh-literal check"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "fresh object literals are checked for unexpected keys. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-13-typed-arrays",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes typed arrays in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typed arrays"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "T[] constrains each array element to T"
+            },
+            {
+              "key": "B",
+              "text": "a tuple and an array express different positional guarantees"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "T[] constrains each array element to T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-14-function-return-types",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes function return types in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "function return types"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a return annotation protects the promised output contract"
+            },
+            {
+              "key": "B",
+              "text": "console output is not a returned value"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a return annotation protects the promised output contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-15-generics",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes generics in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "generics"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "generics preserve type relationships across positions"
+            },
+            {
+              "key": "B",
+              "text": "a generic appearing once adds complexity without a relationship"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "generics preserve type relationships across positions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-16-generic-constraints",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes generic constraints in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "generic constraints"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "constraints require capabilities used by generic code"
+            },
+            {
+              "key": "B",
+              "text": "a constraint does not create missing runtime properties"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "constraints require capabilities used by generic code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-17-Pick-and-Omit",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Pick and Omit in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Pick and Omit"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Pick selects keys and Omit excludes keys from an existing type"
+            },
+            {
+              "key": "B",
+              "text": "utility types do not validate runtime objects"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Pick selects keys and Omit excludes keys from an existing type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-18-Partial",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Partial in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Partial"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Partial makes every property optional at compile time"
+            },
+            {
+              "key": "B",
+              "text": "Partial can permit empty updates unless separately checked"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Partial makes every property optional at compile time. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-19-type-guards",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes type guards in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type guards"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a type guard links runtime checks to a type predicate"
+            },
+            {
+              "key": "B",
+              "text": "returning true without complete checks creates unsound trust"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a type guard links runtime checks to a type predicate. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-1-20-type-assertions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes type assertions in TypeScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type assertions"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an assertion overrides compiler inference without runtime checking"
+            },
+            {
+              "key": "B",
+              "text": "asserting parsed JSON does not validate its shape"
+            },
+            {
+              "key": "C",
+              "text": "It changes the JavaScript runtime automatically"
+            },
+            {
+              "key": "D",
+              "text": "It requires a paid compiler plugin"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an assertion overrides compiler inference without runtime checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        }
+      ]
+    },
+    {
+      "stableKey": "typescript-beginner-mock-2",
+      "title": "TypeScript Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "ts-beg-mock-2-01-type-inference",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of type inference?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type inference"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "rely on inference for obvious local values and annotate public boundaries"
+            },
+            {
+              "key": "B",
+              "text": "reassigning an inferred string variable to a number is rejected"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-02-strict-mode",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of strict mode?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict mode"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "enable strict in tsconfig for new application code"
+            },
+            {
+              "key": "B",
+              "text": "disabling strict can hide null and implicit-any defects"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-03-annotations",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of annotations?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "annotations"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "annotate function boundaries when the contract should remain stable"
+            },
+            {
+              "key": "B",
+              "text": "annotations do not convert values at runtime"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-04-union-types",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of union types?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "union types"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "narrow a union before using member-specific operations"
+            },
+            {
+              "key": "B",
+              "text": "calling a string-only method on string | number is unsafe"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "narrow a union before using member-specific operations. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-05-unknown",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of unknown?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "unknown"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "represent untrusted external data as unknown"
+            },
+            {
+              "key": "B",
+              "text": "casting unknown directly avoids checking but does not make data safe"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "represent untrusted external data as unknown. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-06-any",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of any?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "any"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "isolate unavoidable any at a boundary and replace it quickly"
+            },
+            {
+              "key": "B",
+              "text": "any can propagate unsound operations through otherwise typed code"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "isolate unavoidable any at a boundary and replace it quickly. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-07-literal-unions",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of literal unions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "literal unions"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "model finite statuses with a literal union"
+            },
+            {
+              "key": "B",
+              "text": "a general string loses exhaustiveness checking"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "model finite statuses with a literal union. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-08-narrowing",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of narrowing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "narrowing"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use typeof or discriminants before member-specific access"
+            },
+            {
+              "key": "B",
+              "text": "a type assertion is not runtime evidence"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use typeof or discriminants before member-specific access. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-09-interfaces",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of interfaces?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use an interface for a named extendable object shape"
+            },
+            {
+              "key": "B",
+              "text": "an interface disappears from emitted JavaScript"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use an interface for a named extendable object shape. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-10-optional-properties",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of optional properties?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "optional properties"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check or default an optional value before use"
+            },
+            {
+              "key": "B",
+              "text": "optional does not mean every value type is accepted"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check or default an optional value before use. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-11-readonly",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of readonly?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "readonly"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use readonly for inputs a function must not mutate"
+            },
+            {
+              "key": "B",
+              "text": "readonly is compile-time protection, not deep runtime freezing"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use readonly for inputs a function must not mutate. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-12-excess-property-checks",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of excess property checks?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "excess property checks"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use them to catch misspelled fields at creation"
+            },
+            {
+              "key": "B",
+              "text": "assigning through a broad variable can bypass the fresh-literal check"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use them to catch misspelled fields at creation. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-13-typed-arrays",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of typed arrays?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typed arrays"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use readonly T[] for non-mutating function inputs"
+            },
+            {
+              "key": "B",
+              "text": "a tuple and an array express different positional guarantees"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use readonly T[] for non-mutating function inputs. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-14-function-return-types",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of function return types?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "function return types"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "annotate exported functions and domain boundaries"
+            },
+            {
+              "key": "B",
+              "text": "console output is not a returned value"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "annotate exported functions and domain boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-15-generics",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of generics?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "generics"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use a generic when output type depends on input type"
+            },
+            {
+              "key": "B",
+              "text": "a generic appearing once adds complexity without a relationship"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use a generic when output type depends on input type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-16-generic-constraints",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of generic constraints?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "generic constraints"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "constrain T to an id-bearing object when reading id"
+            },
+            {
+              "key": "B",
+              "text": "a constraint does not create missing runtime properties"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "constrain T to an id-bearing object when reading id. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-17-Pick-and-Omit",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Pick and Omit?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Pick and Omit"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "derive view and creation types from a canonical domain contract"
+            },
+            {
+              "key": "B",
+              "text": "utility types do not validate runtime objects"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "derive view and creation types from a canonical domain contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-18-Partial",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Partial?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Partial"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use Partial for controlled patch inputs then validate invariants"
+            },
+            {
+              "key": "B",
+              "text": "Partial can permit empty updates unless separately checked"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use Partial for controlled patch inputs then validate invariants. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-19-type-guards",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of type guards?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type guards"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check every required field before returning value is T"
+            },
+            {
+              "key": "B",
+              "text": "returning true without complete checks creates unsound trust"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check every required field before returning value is T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-2-20-type-assertions",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of type assertions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type assertions"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "reserve assertions for evidence the compiler cannot express"
+            },
+            {
+              "key": "B",
+              "text": "asserting parsed JSON does not validate its shape"
+            },
+            {
+              "key": "C",
+              "text": "Replace the type with any"
+            },
+            {
+              "key": "D",
+              "text": "Use an unchecked assertion at every call"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "reserve assertions for evidence the compiler cannot express. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        }
+      ]
+    },
+    {
+      "stableKey": "typescript-beginner-mock-3",
+      "title": "TypeScript Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "ts-beg-mock-3-01-type-inference",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about type inference is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type inference"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "reassigning an inferred string variable to a number is rejected"
+            },
+            {
+              "key": "B",
+              "text": "the compiler derives a type from available expressions"
+            },
+            {
+              "key": "C",
+              "text": "rely on inference for obvious local values and annotate public boundaries"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-02-strict-mode",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about strict mode is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict mode"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "disabling strict can hide null and implicit-any defects"
+            },
+            {
+              "key": "B",
+              "text": "strict enables a coordinated set of stronger checks"
+            },
+            {
+              "key": "C",
+              "text": "enable strict in tsconfig for new application code"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-03-annotations",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about annotations is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "annotations"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "annotations do not convert values at runtime"
+            },
+            {
+              "key": "B",
+              "text": "annotations state an expected compile-time type"
+            },
+            {
+              "key": "C",
+              "text": "annotate function boundaries when the contract should remain stable"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-04-union-types",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about union types is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "union types"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "calling a string-only method on string | number is unsafe"
+            },
+            {
+              "key": "B",
+              "text": "a union permits values from any listed member type"
+            },
+            {
+              "key": "C",
+              "text": "narrow a union before using member-specific operations"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "calling a string-only method on string | number is unsafe. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-05-unknown",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about unknown is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "unknown"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "casting unknown directly avoids checking but does not make data safe"
+            },
+            {
+              "key": "B",
+              "text": "unknown accepts any value but requires evidence before use"
+            },
+            {
+              "key": "C",
+              "text": "represent untrusted external data as unknown"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "casting unknown directly avoids checking but does not make data safe. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-06-any",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about any is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "any"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "any can propagate unsound operations through otherwise typed code"
+            },
+            {
+              "key": "B",
+              "text": "any disables most useful type checking for that value"
+            },
+            {
+              "key": "C",
+              "text": "isolate unavoidable any at a boundary and replace it quickly"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "any can propagate unsound operations through otherwise typed code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-07-literal-unions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about literal unions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "literal unions"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a general string loses exhaustiveness checking"
+            },
+            {
+              "key": "B",
+              "text": "literal unions restrict values to named constants"
+            },
+            {
+              "key": "C",
+              "text": "model finite statuses with a literal union"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a general string loses exhaustiveness checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-08-narrowing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about narrowing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "narrowing"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a type assertion is not runtime evidence"
+            },
+            {
+              "key": "B",
+              "text": "narrowing refines possibilities using runtime evidence"
+            },
+            {
+              "key": "C",
+              "text": "use typeof or discriminants before member-specific access"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a type assertion is not runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-09-interfaces",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about interfaces is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "interfaces"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an interface disappears from emitted JavaScript"
+            },
+            {
+              "key": "B",
+              "text": "interfaces describe object contracts and support extension"
+            },
+            {
+              "key": "C",
+              "text": "use an interface for a named extendable object shape"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an interface disappears from emitted JavaScript. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-10-optional-properties",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about optional properties is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "optional properties"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "optional does not mean every value type is accepted"
+            },
+            {
+              "key": "B",
+              "text": "an optional property may be absent"
+            },
+            {
+              "key": "C",
+              "text": "check or default an optional value before use"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "optional does not mean every value type is accepted. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-11-readonly",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about readonly is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "readonly"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "readonly is compile-time protection, not deep runtime freezing"
+            },
+            {
+              "key": "B",
+              "text": "readonly prevents assignment through that typed reference"
+            },
+            {
+              "key": "C",
+              "text": "use readonly for inputs a function must not mutate"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "readonly is compile-time protection, not deep runtime freezing. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-12-excess-property-checks",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about excess property checks is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "excess property checks"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assigning through a broad variable can bypass the fresh-literal check"
+            },
+            {
+              "key": "B",
+              "text": "fresh object literals are checked for unexpected keys"
+            },
+            {
+              "key": "C",
+              "text": "use them to catch misspelled fields at creation"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assigning through a broad variable can bypass the fresh-literal check. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-13-typed-arrays",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about typed arrays is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typed arrays"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a tuple and an array express different positional guarantees"
+            },
+            {
+              "key": "B",
+              "text": "T[] constrains each array element to T"
+            },
+            {
+              "key": "C",
+              "text": "use readonly T[] for non-mutating function inputs"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a tuple and an array express different positional guarantees. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-14-function-return-types",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about function return types is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "function return types"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "console output is not a returned value"
+            },
+            {
+              "key": "B",
+              "text": "a return annotation protects the promised output contract"
+            },
+            {
+              "key": "C",
+              "text": "annotate exported functions and domain boundaries"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "console output is not a returned value. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-15-generics",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about generics is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "generics"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a generic appearing once adds complexity without a relationship"
+            },
+            {
+              "key": "B",
+              "text": "generics preserve type relationships across positions"
+            },
+            {
+              "key": "C",
+              "text": "use a generic when output type depends on input type"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a generic appearing once adds complexity without a relationship. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-16-generic-constraints",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about generic constraints is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "generic constraints"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a constraint does not create missing runtime properties"
+            },
+            {
+              "key": "B",
+              "text": "constraints require capabilities used by generic code"
+            },
+            {
+              "key": "C",
+              "text": "constrain T to an id-bearing object when reading id"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a constraint does not create missing runtime properties. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-17-Pick-and-Omit",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Pick and Omit is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Pick and Omit"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "utility types do not validate runtime objects"
+            },
+            {
+              "key": "B",
+              "text": "Pick selects keys and Omit excludes keys from an existing type"
+            },
+            {
+              "key": "C",
+              "text": "derive view and creation types from a canonical domain contract"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "utility types do not validate runtime objects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-18-Partial",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Partial is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Partial"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Partial can permit empty updates unless separately checked"
+            },
+            {
+              "key": "B",
+              "text": "Partial makes every property optional at compile time"
+            },
+            {
+              "key": "C",
+              "text": "use Partial for controlled patch inputs then validate invariants"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Partial can permit empty updates unless separately checked. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-19-type-guards",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about type guards is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type guards"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "returning true without complete checks creates unsound trust"
+            },
+            {
+              "key": "B",
+              "text": "a type guard links runtime checks to a type predicate"
+            },
+            {
+              "key": "C",
+              "text": "check every required field before returning value is T"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "returning true without complete checks creates unsound trust. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        },
+        {
+          "stableId": "ts-beg-mock-3-20-type-assertions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about type assertions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "type assertions"
+          ],
+          "objectiveIds": [
+            "typescript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "asserting parsed JSON does not validate its shape"
+            },
+            {
+              "key": "B",
+              "text": "an assertion overrides compiler inference without runtime checking"
+            },
+            {
+              "key": "C",
+              "text": "reserve assertions for evidence the compiler cannot express"
+            },
+            {
+              "key": "D",
+              "text": "It is valid only in class declarations"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "asserting parsed JSON does not validate its shape. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "typescript-beginner-capstone",
+    "title": "Validated TypeScript Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a strict TypeScript progress tracker that parses unknown JSON, validates every required field, models finite statuses, performs immutable updates, calculates completion, and separates validation, domain logic, and presentation. Include compiler checks and at least ten runtime tests.",
+    "deliverables": [
+      "TypeScript source and strict tsconfig",
+      "Runtime validator for unknown input",
+      "Compiler output and at least ten test results",
+      "README explaining type and runtime boundaries"
+    ],
+    "rubric": {
+      "type_model": 25,
+      "runtime_validation": 25,
+      "correctness": 25,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

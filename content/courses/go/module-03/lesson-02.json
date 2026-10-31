@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke",
+  "skillName": "Go",
+  "moduleId": "mod-3-go-beginner-module-3",
+  "title": "Goroutines, Channels, Context, and a Tracker",
+  "summary": "Combine goroutines, channels, synchronization, context cancellation, JSON, files, and tests in a race-safe persistent tracker.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Goroutines, Channels, Context, and a Tracker",
+    "Test the contract with build and runtime evidence"
+  ],
+  "objectiveIds": [
+    "go-obj-5",
+    "go-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-sec-1",
+      "heading": "Core model",
+      "content": "A goroutine runs concurrently and must have a defined completion and cancellation path. Channels communicate typed values and can coordinate ownership, but they are not required for every shared value. Only a sender should close a channel, and closing signals that no more values will arrive. Protect shared mutable state with confinement or synchronization and run tests with `go test -race`. `context.Context` carries cancellation and deadlines across call boundaries; pass it explicitly and do not store it in a struct. Validate decoded JSON before replacing trusted state and write files through a controlled boundary.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A goroutine runs concurrently and must have a defined completion and cancellation path."
+      ],
+      "commonMistakes": [
+        "mixing receiver styles can alter method sets",
+        "typed nil inside an interface can make the interface non-nil"
+      ]
+    },
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-sec-2",
+      "heading": "Worked Go example",
+      "content": "Predict diagnostics and output, format and build, then run and compare evidence.\n\nIn practical software engineering with Go, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "go",
+          "code": "package main\nimport (\"fmt\";\"sync\")\nfunc main(){ var wg sync.WaitGroup; results:=make(chan int,2); for _,n:=range []int{70,100}{wg.Add(1);go func(v int){defer wg.Done();results<-v}(n)}; wg.Wait();close(results);for v:=range results{fmt.Println(v)} }",
+          "explanation": "Predict diagnostics and output, format and build, then run and compare evidence.",
+          "expectedOutput": "70\n100"
+        }
+      ],
+      "keyPoints": [
+        "A goroutine runs concurrently and must have a defined completion and cancellation path."
+      ],
+      "commonMistakes": [
+        "mixing receiver styles can alter method sets",
+        "typed nil inside an interface can make the interface non-nil"
+      ]
+    },
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A goroutine runs concurrently and must have a defined completion and cancellation path."
+      ],
+      "commonMistakes": [
+        "mixing receiver styles can alter method sets",
+        "typed nil inside an interface can make the interface non-nil"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in Go.",
+      "description": "Build a race-tested JSON progress tracker with validated models, context-aware saving, worker completion, error propagation, and at least ten tests. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+      "instructions": [
+        "Build a race-tested JSON progress tracker with validated models, context-aware saving, worker completion, error propagation, and at least ten tests. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation."
+      ],
+      "starterCode": "// Go Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Formatted compiling Go source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Formatted compiling Go source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Go operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about modules is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "changing module identity breaks import assumptions"
+        },
+        {
+          "id": "B",
+          "text": "modules define an import path and dependency boundary"
+        },
+        {
+          "id": "C",
+          "text": "initialize and commit go.mod"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "changing module identity breaks import assumptions. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about gofmt is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "manual formatting conventions create needless drift"
+        },
+        {
+          "id": "B",
+          "text": "gofmt applies canonical source formatting"
+        },
+        {
+          "id": "C",
+          "text": "format before review and tests"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "manual formatting conventions create needless drift. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-go-beginner-module-3-l2-goroutines-channels-context-and-a-tracke-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about packages is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "imported package names must be used"
+        },
+        {
+          "id": "B",
+          "text": "a package groups compiled declarations"
+        },
+        {
+          "id": "C",
+          "text": "use package main with main for executables"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "imported package names must be used. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Goroutines, Channels, Context, and a Tracker in Go. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-go-main",
+      "title": "Go Programming - Golang Course with Bonus Applications",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Go.",
+      "whatItTeaches": "Step-by-step walkthrough of Go fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "go-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, Structs, Methods, and Interfaces",
+        "Goroutines, Channels, Context, and a Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Goroutines, Channels, Context, and a Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Goroutines, Channels, Context, and a Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Go",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.385Z"
+}

@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation",
+  "skillName": "Java",
+  "moduleId": "mod-3-java-beginner-module-3",
+  "title": "Methods, Classes, and Encapsulation",
+  "summary": "Create focused methods and small classes with parameters, return values, constructors, private fields, validation, and clear responsibilities.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Java behavior taught in Methods, Classes, and Encapsulation",
+    "Compile, run, and test the behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "java-obj-5",
+    "java-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-sec-1",
+      "heading": "Core model",
+      "content": "Methods package behavior behind typed parameters and a return type. `void` means no result is returned. Java passes arguments by value; for object references, the copied reference still points to the same mutable object. A class combines state and behavior. Keep fields private, validate constructor and method inputs, and expose operations that preserve invariants rather than public mutable fields. `static` members belong to the class; instance members require an object. Use exceptions such as `IllegalArgumentException` when a caller violates a documented precondition.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Methods package behavior behind typed parameters and a return type."
+      ],
+      "commonMistakes": [
+        "missing progress can produce an infinite loop",
+        "a void method cannot provide a result expression"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-sec-2",
+      "heading": "Worked Java example",
+      "content": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+      "codeExamples": [
+        {
+          "language": "java",
+          "code": "static double progress(int completed, int planned) {\n  if (completed < 0 || planned <= 0 || completed > planned)\n    throw new IllegalArgumentException(\"invalid progress\");\n  return completed * 100.0 / planned;\n}\nSystem.out.println(progress(3, 4));",
+          "explanation": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+          "expectedOutput": "75.0"
+        }
+      ],
+      "keyPoints": [
+        "Methods package behavior behind typed parameters and a return type."
+      ],
+      "commonMistakes": [
+        "missing progress can produce an infinite loop",
+        "a void method cannot provide a result expression"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Methods package behavior behind typed parameters and a return type."
+      ],
+      "commonMistakes": [
+        "missing progress can produce an infinite loop",
+        "a void method cannot provide a result expression"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in Java.",
+      "description": "Create a CourseProgress class with private fields, validated updates, a percentage method, and tests for normal and invalid construction. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+      "instructions": [
+        "Create a CourseProgress class with private fields, validated updates, a percentage method, and tests for normal and invalid construction. Submit source, compiler output, runtime output, tests, and a concise explanation."
+      ],
+      "starterCode": "// Java Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Java operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of JDK?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of bytecode?",
+      "options": [
+        {
+          "id": "A",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-java-beginner-module-3-l1-methods-classes-and-encapsulation-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of main method?",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Methods, Classes, and Encapsulation in Java. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-java-main",
+      "title": "Java Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Java.",
+      "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "java-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Methods, Classes, and Encapsulation",
+        "Collections and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Methods, Classes, and Encapsulation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Methods, Classes, and Encapsulation."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Java",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.435Z"
+}

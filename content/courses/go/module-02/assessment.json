@@ -1,0 +1,193 @@
+{
+  "id": "phase-go-beginner-mod-2",
+  "skillName": "Go",
+  "skillSlug": "go",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-go-beginner-module-2",
+  "moduleTitle": "Slices, Maps, Functions, and Domain Models",
+  "title": "Slices, Maps, Functions, and Domain Models Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Slices, Maps, Functions, and Domain Models.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "errors",
+    "error wrapping",
+    "short circuit",
+    "for loops",
+    "switch"
+  ],
+  "questions": [
+    {
+      "id": "phase-go-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about errors is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "discarding errors hides failure state"
+        },
+        {
+          "id": "B",
+          "text": "errors are ordinary returned values"
+        },
+        {
+          "id": "C",
+          "text": "check errors before consuming dependent results"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "discarding errors hides failure state. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "errors",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-go-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Switches, and Boundaries"
+    },
+    {
+      "id": "phase-go-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about error wrapping is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "formatting without percent-w prevents errors.Is traversal"
+        },
+        {
+          "id": "B",
+          "text": "percent-w preserves an underlying error while adding context"
+        },
+        {
+          "id": "C",
+          "text": "wrap errors at meaningful boundaries"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "formatting without percent-w prevents errors.Is traversal. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "error wrapping",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-go-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Switches, and Boundaries"
+    },
+    {
+      "id": "phase-go-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "bitwise operators are not logical short circuit"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "put guards before dependent operations"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "bitwise operators are not logical short circuit. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-go-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Switches, and Boundaries"
+    },
+    {
+      "id": "phase-go-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about for loops is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "range values are iteration copies"
+        },
+        {
+          "id": "B",
+          "text": "for expresses all Go loop forms"
+        },
+        {
+          "id": "C",
+          "text": "ensure state advances toward termination"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "range values are iteration copies. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "for loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-go-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Switches, and Boundaries"
+    },
+    {
+      "id": "phase-go-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "fallthrough must be explicit and is often avoidable"
+        },
+        {
+          "id": "B",
+          "text": "switch cases stop automatically"
+        },
+        {
+          "id": "C",
+          "text": "use conditionless switch for readable ranges"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "fallthrough must be explicit and is often avoidable. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-go-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Switches, and Boundaries"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.386Z",
+  "updatedAt": "2026-10-31T13:08:48.386Z"
+}

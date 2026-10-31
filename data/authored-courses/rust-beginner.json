@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "Rust",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "Rust Foundations: Ownership to a Safe Persistent Tracker",
+  "description": "A beginner Rust course covering Cargo, types, Option, Result, patterns, ownership, borrowing, collections, structs, enums, traits, file errors, threads, channels, and a tested capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Build, format, lint, diagnose, and test Rust crates",
+    "Use explicit result types, patterns, ownership, borrowing, collections, structs, enums, and traits",
+    "Build a persistent tracker with validated state, contextual errors, safe concurrency, and tests"
+  ],
+  "modules": [
+    {
+      "stableKey": "rust-beginner-module-1",
+      "title": "Cargo, Types, Results, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "rust-cargo-build",
+          "title": "Cargo Projects, Compilation, and Diagnostics",
+          "summary": "Create, format, check, test, and run a Rust project while using compiler and Clippy diagnostics as design feedback.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Cargo Projects, Compilation, and Diagnostics",
+            "Use compiler, lint, and test evidence to verify behavior"
+          ],
+          "blocks": [
+            {
+              "stableKey": "rust-cargo-build-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Cargo manages Rust packages, called crates. `cargo new` creates a package, `cargo fmt` applies standard formatting, `cargo check` performs fast type and borrow checking, `cargo test` runs tests, and `cargo run` builds and executes a binary. `Cargo.toml` records package metadata and dependencies; `Cargo.lock` records resolved versions for reproducible application builds. Rust compiler diagnostics often include source spans and suggestions, but understand the violated rule before applying a fix. Run Clippy to identify suspicious or unnecessarily complex code."
+            },
+            {
+              "stableKey": "rust-cargo-build-example",
+              "type": "code",
+              "heading": "Worked Rust example",
+              "bodyMarkdown": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+              "codeLanguage": "rust",
+              "codeSource": "fn main() {\n    let lessons = 6;\n    println!(\"Rust: {lessons} lessons\");\n}",
+              "expectedOutput": "Rust: 6 lessons"
+            },
+            {
+              "stableKey": "rust-cargo-build-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "rust-cargo-build-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a Cargo binary, format and check it, introduce a type mismatch and unused value, then interpret and correct the diagnostics. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+              "expectedOutcomes": [
+                "Formatted warning-reviewed Rust source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "rust-cargo-build-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "rust-beg-lesson-1-01-Cargo",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Cargo in Rust?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Cargo"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Cargo builds tests and manages crate metadata"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use cargo check test and run as separate evidence"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Cargo.lock policy differs between applications and libraries"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Cargo builds tests and manages crate metadata. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-1-02-rustfmt",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes rustfmt in Rust?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "rustfmt"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "rustfmt applies canonical formatting"
+                  },
+                  {
+                    "key": "B",
+                    "text": "run cargo fmt before review"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting drift distracts from behavior"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "rustfmt applies canonical formatting. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-1-03-Clippy",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Clippy in Rust?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Clippy"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Clippy provides additional lint diagnostics"
+                  },
+                  {
+                    "key": "B",
+                    "text": "review each lint in its code context"
+                  },
+                  {
+                    "key": "C",
+                    "text": "blindly allowing lints can hide defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Clippy provides additional lint diagnostics. Confirm with cargo check, Clippy, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Cargo manages Rust packages, called crates."
+          ],
+          "commonMistakes": [
+            "Cargo.lock policy differs between applications and libraries",
+            "manual formatting drift distracts from behavior"
+          ],
+          "interviewQuestions": [
+            "Explain Cargo with a minimal Rust example."
+          ]
+        },
+        {
+          "stableKey": "rust-types-results",
+          "title": "Types, Parsing, Option, and Result",
+          "summary": "Use immutable bindings, explicit mutability, scalar and compound types, parsing, pattern matching, Option, Result, and error propagation.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Types, Parsing, Option, and Result",
+            "Use compiler, lint, and test evidence to verify behavior"
+          ],
+          "blocks": [
+            {
+              "stableKey": "rust-types-results-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Bindings are immutable unless declared `mut`. Rust infers many local types but public contracts should remain clear. Tuples and arrays have fixed shape; `String` owns growable UTF-8 text while `&str` is a borrowed string slice. Parsing returns `Result`, so success and failure must be handled. `Option<T>` represents a value that may be absent without using null. Match both variants or use combinators when they remain readable. The `?` operator returns an error to the caller after conversion; it does not ignore failure."
+            },
+            {
+              "stableKey": "rust-types-results-example",
+              "type": "code",
+              "heading": "Worked Rust example",
+              "bodyMarkdown": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+              "codeLanguage": "rust",
+              "codeSource": "fn main() {\n    let text = \"19\";\n    match text.parse::<u32>() {\n        Ok(age) => println!(\"{}\", age + 1),\n        Err(error) => eprintln!(\"invalid age: {error}\"),\n    }\n}",
+              "expectedOutput": "20"
+            },
+            {
+              "stableKey": "rust-types-results-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "rust-types-results-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Parse weekly hours into a bounded integer, return descriptive errors for malformed or excessive input, and test every failure branch. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+              "expectedOutcomes": [
+                "Formatted warning-reviewed Rust source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "rust-types-results-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "rust-beg-lesson-2-01-Cargo",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of Cargo?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Cargo"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use cargo check test and run as separate evidence"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Cargo builds tests and manages crate metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Cargo.lock policy differs between applications and libraries"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use cargo check test and run as separate evidence. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-2-02-rustfmt",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of rustfmt?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "rustfmt"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "run cargo fmt before review"
+                  },
+                  {
+                    "key": "B",
+                    "text": "rustfmt applies canonical formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting drift distracts from behavior"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "run cargo fmt before review. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-2-03-Clippy",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of Clippy?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Clippy"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "review each lint in its code context"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Clippy provides additional lint diagnostics"
+                  },
+                  {
+                    "key": "C",
+                    "text": "blindly allowing lints can hide defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "review each lint in its code context. Confirm with cargo check, Clippy, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Bindings are immutable unless declared `mut`."
+          ],
+          "commonMistakes": [
+            "interior mutability follows separate runtime rules",
+            "byte indexing is unavailable because UTF-8 boundaries matter"
+          ],
+          "interviewQuestions": [
+            "Explain immutability with a minimal Rust example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "rust-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "rust-beg-module-1-01-Cargo",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of Cargo?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Cargo"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use cargo check test and run as separate evidence"
+              },
+              {
+                "key": "B",
+                "text": "Cargo builds tests and manages crate metadata"
+              },
+              {
+                "key": "C",
+                "text": "Cargo.lock policy differs between applications and libraries"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use cargo check test and run as separate evidence. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-1-02-rustfmt",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of rustfmt?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "rustfmt"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "run cargo fmt before review"
+              },
+              {
+                "key": "B",
+                "text": "rustfmt applies canonical formatting"
+              },
+              {
+                "key": "C",
+                "text": "manual formatting drift distracts from behavior"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "run cargo fmt before review. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-1-03-Clippy",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of Clippy?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Clippy"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "review each lint in its code context"
+              },
+              {
+                "key": "B",
+                "text": "Clippy provides additional lint diagnostics"
+              },
+              {
+                "key": "C",
+                "text": "blindly allowing lints can hide defects"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "review each lint in its code context. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-1-04-immutability",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of immutability?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "immutability"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "request mutability only where state changes"
+              },
+              {
+                "key": "B",
+                "text": "bindings are immutable unless marked mut"
+              },
+              {
+                "key": "C",
+                "text": "interior mutability follows separate runtime rules"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "request mutability only where state changes. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-1-05-String-and-str",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of String and str?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "String and str"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "accept &str for read-only text parameters"
+              },
+              {
+                "key": "B",
+                "text": "String owns text while str slices borrow text"
+              },
+              {
+                "key": "C",
+                "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "accept &str for read-only text parameters. Confirm with cargo check, Clippy, and a focused test."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "rust-beginner-module-2",
+      "title": "Ownership, Collections, and Domain Models",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "rust-control-patterns",
+          "title": "Control Flow, Matching, and Boundaries",
+          "summary": "Write decisions and repetition with if expressions, match, if let, loops, iterators, ranges, and explicit boundary tests.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Control Flow, Matching, and Boundaries",
+            "Use compiler, lint, and test evidence to verify behavior"
+          ],
+          "blocks": [
+            {
+              "stableKey": "rust-control-patterns-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "`if` is an expression whose branches must produce compatible types. `match` must be exhaustive and can destructure enums, tuples, and structs while applying guards. Use `if let` when one pattern is important and other cases can be ignored intentionally. Rust provides `loop`, `while`, and `for`; ranges such as `0..n` exclude the upper bound. Iterator adapters are lazy until consumed. Choose direct control flow over dense chains when it makes failure and boundaries easier to review."
+            },
+            {
+              "stableKey": "rust-control-patterns-example",
+              "type": "code",
+              "heading": "Worked Rust example",
+              "bodyMarkdown": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+              "codeLanguage": "rust",
+              "codeSource": "fn main() {\n    let score = 72; let submitted = true;\n    let result = if (0..=100).contains(&score) && submitted { \"recorded\" } else { \"review input\" };\n    println!(\"{result}\");\n}",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "rust-control-patterns-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "rust-control-patterns-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a grade classifier with ranges and match or if, reject invalid scores, and test below, at, and above every boundary. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+              "expectedOutcomes": [
+                "Formatted warning-reviewed Rust source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "rust-control-patterns-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "rust-beg-lesson-3-01-Cargo",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Cargo is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Cargo"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Cargo.lock policy differs between applications and libraries"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Cargo builds tests and manages crate metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use cargo check test and run as separate evidence"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Cargo.lock policy differs between applications and libraries. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-3-02-rustfmt",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about rustfmt is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "rustfmt"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "manual formatting drift distracts from behavior"
+                  },
+                  {
+                    "key": "B",
+                    "text": "rustfmt applies canonical formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "run cargo fmt before review"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "manual formatting drift distracts from behavior. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-3-03-Clippy",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Clippy is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Clippy"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "blindly allowing lints can hide defects"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Clippy provides additional lint diagnostics"
+                  },
+                  {
+                    "key": "C",
+                    "text": "review each lint in its code context"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "blindly allowing lints can hide defects. Confirm with cargo check, Clippy, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "`if` is an expression whose branches must produce compatible types."
+          ],
+          "commonMistakes": [
+            "ignoring an Err loses required control flow",
+            "it does not log or recover automatically"
+          ],
+          "interviewQuestions": [
+            "Explain Result with a minimal Rust example."
+          ]
+        },
+        {
+          "stableKey": "rust-ownership-borrowing",
+          "title": "Ownership, Borrowing, Slices, and Collections",
+          "summary": "Apply moves, copies, shared and mutable borrows, lifetimes, slices, String, Vec, and HashMap without invalid references.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Ownership, Borrowing, Slices, and Collections",
+            "Use compiler, lint, and test evidence to verify behavior"
+          ],
+          "blocks": [
+            {
+              "stableKey": "rust-ownership-borrowing-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Each Rust value has an owner and is dropped when that owner leaves scope. Assignment of a non-Copy value usually moves ownership, preventing accidental double use. A shared reference `&T` permits reading; an exclusive reference `&mut T` permits mutation, and their active use cannot conflict. References must never outlive the data they borrow. Slices borrow contiguous regions without ownership. `Vec<T>` owns a growable sequence, but pushing may reallocate and invalidate element references, so keep borrows short. HashMap lookup returns an Option."
+            },
+            {
+              "stableKey": "rust-ownership-borrowing-example",
+              "type": "code",
+              "heading": "Worked Rust example",
+              "bodyMarkdown": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+              "codeLanguage": "rust",
+              "codeSource": "fn main() {\n    let scores = vec![70, 82, 91];\n    let total: i32 = scores.iter().sum();\n    let average = total as f64 / scores.len() as f64;\n    println!(\"{average:.1}\");\n}",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "rust-ownership-borrowing-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "rust-ownership-borrowing-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process a vector of minutes using borrowed slices, reject negatives, calculate summaries, and explain why no borrow overlaps a mutation. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+              "expectedOutcomes": [
+                "Formatted warning-reviewed Rust source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "rust-ownership-borrowing-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "rust-beg-lesson-4-01-Cargo",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Cargo in Rust?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Cargo"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Cargo builds tests and manages crate metadata"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use cargo check test and run as separate evidence"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Cargo.lock policy differs between applications and libraries"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Cargo builds tests and manages crate metadata. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-4-02-rustfmt",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes rustfmt in Rust?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "rustfmt"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "rustfmt applies canonical formatting"
+                  },
+                  {
+                    "key": "B",
+                    "text": "run cargo fmt before review"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting drift distracts from behavior"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "rustfmt applies canonical formatting. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-4-03-Clippy",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Clippy in Rust?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Clippy"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Clippy provides additional lint diagnostics"
+                  },
+                  {
+                    "key": "B",
+                    "text": "review each lint in its code context"
+                  },
+                  {
+                    "key": "C",
+                    "text": "blindly allowing lints can hide defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Clippy provides additional lint diagnostics. Confirm with cargo check, Clippy, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Each Rust value has an owner and is dropped when that owner leaves scope."
+          ],
+          "commonMistakes": [
+            "off-by-one assumptions can skip or overrun values",
+            "building a chain alone may perform no work"
+          ],
+          "interviewQuestions": [
+            "Explain ranges with a minimal Rust example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "rust-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "rust-beg-module-2-06-Option",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about Option is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Option"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "unwrap can panic when absence is possible"
+              },
+              {
+                "key": "B",
+                "text": "Option models presence with Some or absence with None"
+              },
+              {
+                "key": "C",
+                "text": "match or transform both possibilities intentionally"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "unwrap can panic when absence is possible. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-2-07-Result",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about Result is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Result"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "ignoring an Err loses required control flow"
+              },
+              {
+                "key": "B",
+                "text": "Result models success or failure"
+              },
+              {
+                "key": "C",
+                "text": "propagate or handle errors before using output"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "ignoring an Err loses required control flow. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-2-08-question-mark",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about question mark is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "question mark"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "it does not log or recover automatically"
+              },
+              {
+                "key": "B",
+                "text": "question mark returns failure to the caller"
+              },
+              {
+                "key": "C",
+                "text": "use it in compatible Result or Option functions"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "it does not log or recover automatically. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-2-09-match",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about match is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "match"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a wildcard can hide newly added variants"
+              },
+              {
+                "key": "B",
+                "text": "match is exhaustive pattern-based control flow"
+              },
+              {
+                "key": "C",
+                "text": "enumerate domain variants explicitly"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a wildcard can hide newly added variants. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-2-10-ranges",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about ranges is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "ranges"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "off-by-one assumptions can skip or overrun values"
+              },
+              {
+                "key": "B",
+                "text": "exclusive ranges omit their upper endpoint"
+              },
+              {
+                "key": "C",
+                "text": "use inclusive syntax when the endpoint belongs"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "off-by-one assumptions can skip or overrun values. Confirm with cargo check, Clippy, and a focused test."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "rust-beginner-module-3",
+      "title": "Persistence, Concurrency, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "rust-structs-traits",
+          "title": "Functions, Structs, Enums, and Traits",
+          "summary": "Design domain models with typed functions, structs, impl blocks, enums, traits, generics, visibility, and invariant-preserving constructors.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Functions, Structs, Enums, and Traits",
+            "Use compiler, lint, and test evidence to verify behavior"
+          ],
+          "blocks": [
+            {
+              "stableKey": "rust-structs-traits-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Functions declare parameter and return types. Structs model related data, enums model a value that is exactly one of several variants, and methods live in `impl` blocks. Keep fields private when arbitrary mutation could violate invariants. A constructor conventionally named `new` can return `Result<Self, Error>` when validation may fail. Traits define shared behavior and are implemented explicitly. Generic bounds state required capabilities. Prefer enums over boolean combinations for meaningful states, because exhaustive matching keeps transitions visible."
+            },
+            {
+              "stableKey": "rust-structs-traits-example",
+              "type": "code",
+              "heading": "Worked Rust example",
+              "bodyMarkdown": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+              "codeLanguage": "rust",
+              "codeSource": "struct Progress { percent: u8 }\nimpl Progress {\n    fn new(percent: u8) -> Result<Self, &'static str> { if percent <= 100 { Ok(Self { percent }) } else { Err(\"percent exceeds 100\") } }\n    fn percent(&self) -> u8 { self.percent }\n}\nfn main(){ println!(\"{}\", Progress::new(75).unwrap().percent()); }",
+              "expectedOutput": "75"
+            },
+            {
+              "stableKey": "rust-structs-traits-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "rust-structs-traits-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a private Progress model with validated construction and updates, a status enum, a display trait, and tests for every state transition. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+              "expectedOutcomes": [
+                "Formatted warning-reviewed Rust source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "rust-structs-traits-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "rust-beg-lesson-5-01-Cargo",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of Cargo?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Cargo"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use cargo check test and run as separate evidence"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Cargo builds tests and manages crate metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Cargo.lock policy differs between applications and libraries"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use cargo check test and run as separate evidence. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-5-02-rustfmt",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of rustfmt?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "rustfmt"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "run cargo fmt before review"
+                  },
+                  {
+                    "key": "B",
+                    "text": "rustfmt applies canonical formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "manual formatting drift distracts from behavior"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "run cargo fmt before review. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-5-03-Clippy",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of Clippy?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Clippy"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "review each lint in its code context"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Clippy provides additional lint diagnostics"
+                  },
+                  {
+                    "key": "C",
+                    "text": "blindly allowing lints can hide defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "review each lint in its code context. Confirm with cargo check, Clippy, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Functions declare parameter and return types."
+          ],
+          "commonMistakes": [
+            "shared and active mutable borrowing cannot overlap",
+            "only one active mutable borrow to the same data is allowed"
+          ],
+          "interviewQuestions": [
+            "Explain shared borrowing with a minimal Rust example."
+          ]
+        },
+        {
+          "stableKey": "rust-files-concurrency-project",
+          "title": "Files, Serialization, Threads, and a Tracker",
+          "summary": "Combine validated models, file errors, serialization boundaries, threads or channels, shared ownership, synchronization, and tests in a persistent tracker.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Files, Serialization, Threads, and a Tracker",
+            "Use compiler, lint, and test evidence to verify behavior"
+          ],
+          "blocks": [
+            {
+              "stableKey": "rust-files-concurrency-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "File operations return `Result` and should add path and operation context while preserving the source error. Deserialized data is untrusted and must pass domain constructors before becoming application state. Threads require transferred values to satisfy lifetime and thread-safety rules; `move` closures transfer captured ownership. Channels support message passing. Shared mutable state commonly uses `Arc<Mutex<T>>`; handle poisoned locks deliberately and keep critical sections short. Join worker threads and propagate failures instead of allowing detached work to outlive the operation."
+            },
+            {
+              "stableKey": "rust-files-concurrency-project-example",
+              "type": "code",
+              "heading": "Worked Rust example",
+              "bodyMarkdown": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+              "codeLanguage": "rust",
+              "codeSource": "use std::sync::mpsc;\nuse std::thread;\nfn main(){ let (tx,rx)=mpsc::channel(); let worker=thread::spawn(move||tx.send(75).unwrap()); worker.join().unwrap(); println!(\"{}\",rx.recv().unwrap()); }",
+              "expectedOutput": "75"
+            },
+            {
+              "stableKey": "rust-files-concurrency-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "rust-files-concurrency-project-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a persistent progress tracker with validated loading, contextual errors, bounded worker lifecycles or channels, safe shared state, and at least ten tests. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+              "expectedOutcomes": [
+                "Formatted warning-reviewed Rust source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "rust-files-concurrency-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "rust-beg-lesson-6-01-Cargo",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Cargo is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Cargo"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Cargo.lock policy differs between applications and libraries"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Cargo builds tests and manages crate metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use cargo check test and run as separate evidence"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Cargo.lock policy differs between applications and libraries. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-6-02-rustfmt",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about rustfmt is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "rustfmt"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "manual formatting drift distracts from behavior"
+                  },
+                  {
+                    "key": "B",
+                    "text": "rustfmt applies canonical formatting"
+                  },
+                  {
+                    "key": "C",
+                    "text": "run cargo fmt before review"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "manual formatting drift distracts from behavior. Confirm with cargo check, Clippy, and a focused test."
+              },
+              {
+                "stableId": "rust-beg-lesson-6-03-Clippy",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Clippy is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Clippy"
+                ],
+                "objectiveIds": [
+                  "rust-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "blindly allowing lints can hide defects"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Clippy provides additional lint diagnostics"
+                  },
+                  {
+                    "key": "C",
+                    "text": "review each lint in its code context"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler silently repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "blindly allowing lints can hide defects. Confirm with cargo check, Clippy, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "File operations return `Result` and should add path and operation context while preserving the source error."
+          ],
+          "commonMistakes": [
+            "growth can relocate elements and invalidate references",
+            "public fields permit arbitrary invalid combinations"
+          ],
+          "interviewQuestions": [
+            "Explain Vec with a minimal Rust example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "rust-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "rust-beg-module-3-11-iterators",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes iterators in Rust?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "iterators"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "iterator adapters are generally lazy"
+              },
+              {
+                "key": "B",
+                "text": "consume with collect sum or a loop"
+              },
+              {
+                "key": "C",
+                "text": "building a chain alone may perform no work"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "iterator adapters are generally lazy. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-3-12-ownership",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes ownership in Rust?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "ownership"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "one owner controls ordinary value cleanup"
+              },
+              {
+                "key": "B",
+                "text": "move values deliberately across boundaries"
+              },
+              {
+                "key": "C",
+                "text": "using a non-Copy value after a move is rejected"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "one owner controls ordinary value cleanup. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-3-13-shared-borrowing",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes shared borrowing in Rust?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "shared borrowing"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "shared references allow non-mutating access"
+              },
+              {
+                "key": "B",
+                "text": "use &T for temporary read-only borrowing"
+              },
+              {
+                "key": "C",
+                "text": "shared and active mutable borrowing cannot overlap"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "shared references allow non-mutating access. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-3-14-mutable-borrowing",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes mutable borrowing in Rust?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "mutable borrowing"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "an exclusive reference enables mutation"
+              },
+              {
+                "key": "B",
+                "text": "keep mutable borrow scope as short as practical"
+              },
+              {
+                "key": "C",
+                "text": "only one active mutable borrow to the same data is allowed"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "an exclusive reference enables mutation. Confirm with cargo check, Clippy, and a focused test."
+          },
+          {
+            "stableId": "rust-beg-module-3-15-slices",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes slices in Rust?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "slices"
+            ],
+            "objectiveIds": [
+              "rust-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "slices borrow contiguous sequence regions"
+              },
+              {
+                "key": "B",
+                "text": "accept slices instead of requiring Vec ownership"
+              },
+              {
+                "key": "C",
+                "text": "a slice cannot outlive its backing storage"
+              },
+              {
+                "key": "D",
+                "text": "The compiler silently repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "slices borrow contiguous sequence regions. Confirm with cargo check, Clippy, and a focused test."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "rust-beginner-mock-1",
+      "title": "Rust Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "rust-beg-mock-1-01-Cargo",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Cargo in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Cargo"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Cargo builds tests and manages crate metadata"
+            },
+            {
+              "key": "B",
+              "text": "use cargo check test and run as separate evidence"
+            },
+            {
+              "key": "C",
+              "text": "Cargo.lock policy differs between applications and libraries"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Cargo builds tests and manages crate metadata. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-02-rustfmt",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes rustfmt in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "rustfmt"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "rustfmt applies canonical formatting"
+            },
+            {
+              "key": "B",
+              "text": "run cargo fmt before review"
+            },
+            {
+              "key": "C",
+              "text": "manual formatting drift distracts from behavior"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "rustfmt applies canonical formatting. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-03-Clippy",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Clippy in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Clippy"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Clippy provides additional lint diagnostics"
+            },
+            {
+              "key": "B",
+              "text": "review each lint in its code context"
+            },
+            {
+              "key": "C",
+              "text": "blindly allowing lints can hide defects"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Clippy provides additional lint diagnostics. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-04-immutability",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes immutability in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "immutability"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "bindings are immutable unless marked mut"
+            },
+            {
+              "key": "B",
+              "text": "request mutability only where state changes"
+            },
+            {
+              "key": "C",
+              "text": "interior mutability follows separate runtime rules"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "bindings are immutable unless marked mut. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-05-String-and-str",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes String and str in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "String and str"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "String owns text while str slices borrow text"
+            },
+            {
+              "key": "B",
+              "text": "accept &str for read-only text parameters"
+            },
+            {
+              "key": "C",
+              "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "String owns text while str slices borrow text. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-06-Option",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Option in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Option"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Option models presence with Some or absence with None"
+            },
+            {
+              "key": "B",
+              "text": "match or transform both possibilities intentionally"
+            },
+            {
+              "key": "C",
+              "text": "unwrap can panic when absence is possible"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Option models presence with Some or absence with None. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-07-Result",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Result in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Result"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Result models success or failure"
+            },
+            {
+              "key": "B",
+              "text": "propagate or handle errors before using output"
+            },
+            {
+              "key": "C",
+              "text": "ignoring an Err loses required control flow"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Result models success or failure. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-08-question-mark",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes question mark in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "question mark"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "question mark returns failure to the caller"
+            },
+            {
+              "key": "B",
+              "text": "use it in compatible Result or Option functions"
+            },
+            {
+              "key": "C",
+              "text": "it does not log or recover automatically"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "question mark returns failure to the caller. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-09-match",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes match in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "match"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "match is exhaustive pattern-based control flow"
+            },
+            {
+              "key": "B",
+              "text": "enumerate domain variants explicitly"
+            },
+            {
+              "key": "C",
+              "text": "a wildcard can hide newly added variants"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "match is exhaustive pattern-based control flow. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-10-ranges",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes ranges in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "ranges"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "exclusive ranges omit their upper endpoint"
+            },
+            {
+              "key": "B",
+              "text": "use inclusive syntax when the endpoint belongs"
+            },
+            {
+              "key": "C",
+              "text": "off-by-one assumptions can skip or overrun values"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "exclusive ranges omit their upper endpoint. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-11-iterators",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes iterators in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "iterators"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "iterator adapters are generally lazy"
+            },
+            {
+              "key": "B",
+              "text": "consume with collect sum or a loop"
+            },
+            {
+              "key": "C",
+              "text": "building a chain alone may perform no work"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "iterator adapters are generally lazy. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-12-ownership",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes ownership in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "ownership"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "one owner controls ordinary value cleanup"
+            },
+            {
+              "key": "B",
+              "text": "move values deliberately across boundaries"
+            },
+            {
+              "key": "C",
+              "text": "using a non-Copy value after a move is rejected"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "one owner controls ordinary value cleanup. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-13-shared-borrowing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes shared borrowing in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "shared borrowing"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "shared references allow non-mutating access"
+            },
+            {
+              "key": "B",
+              "text": "use &T for temporary read-only borrowing"
+            },
+            {
+              "key": "C",
+              "text": "shared and active mutable borrowing cannot overlap"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "shared references allow non-mutating access. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-14-mutable-borrowing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes mutable borrowing in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "mutable borrowing"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an exclusive reference enables mutation"
+            },
+            {
+              "key": "B",
+              "text": "keep mutable borrow scope as short as practical"
+            },
+            {
+              "key": "C",
+              "text": "only one active mutable borrow to the same data is allowed"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an exclusive reference enables mutation. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-15-slices",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes slices in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "slices"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "slices borrow contiguous sequence regions"
+            },
+            {
+              "key": "B",
+              "text": "accept slices instead of requiring Vec ownership"
+            },
+            {
+              "key": "C",
+              "text": "a slice cannot outlive its backing storage"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "slices borrow contiguous sequence regions. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-16-Vec",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Vec in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Vec"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Vec owns a growable contiguous sequence"
+            },
+            {
+              "key": "B",
+              "text": "use Vec for variable-size owned elements"
+            },
+            {
+              "key": "C",
+              "text": "growth can relocate elements and invalidate references"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Vec owns a growable contiguous sequence. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-17-structs",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes structs in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "structs"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "structs group named fields"
+            },
+            {
+              "key": "B",
+              "text": "keep invariant-sensitive fields private"
+            },
+            {
+              "key": "C",
+              "text": "public fields permit arbitrary invalid combinations"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "structs group named fields. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-18-enums",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes enums in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "enums"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "enums model one variant from a closed set"
+            },
+            {
+              "key": "B",
+              "text": "use them for meaningful states and outcomes"
+            },
+            {
+              "key": "C",
+              "text": "parallel booleans can represent impossible states"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "enums model one variant from a closed set. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-19-traits",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes traits in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "traits"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "traits define shared behavior contracts"
+            },
+            {
+              "key": "B",
+              "text": "use focused traits and explicit bounds"
+            },
+            {
+              "key": "C",
+              "text": "traits do not automatically imply object safety"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "traits define shared behavior contracts. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-1-20-threads",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes threads in Rust?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "threads"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "threads require safe transferred or shared data"
+            },
+            {
+              "key": "B",
+              "text": "join workers and propagate errors"
+            },
+            {
+              "key": "C",
+              "text": "detached work can outlive intended operation scope"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "threads require safe transferred or shared data. Confirm with cargo check, Clippy, and a focused test."
+        }
+      ]
+    },
+    {
+      "stableKey": "rust-beginner-mock-2",
+      "title": "Rust Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "rust-beg-mock-2-01-Cargo",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Cargo?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Cargo"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use cargo check test and run as separate evidence"
+            },
+            {
+              "key": "B",
+              "text": "Cargo builds tests and manages crate metadata"
+            },
+            {
+              "key": "C",
+              "text": "Cargo.lock policy differs between applications and libraries"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use cargo check test and run as separate evidence. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-02-rustfmt",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of rustfmt?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "rustfmt"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "run cargo fmt before review"
+            },
+            {
+              "key": "B",
+              "text": "rustfmt applies canonical formatting"
+            },
+            {
+              "key": "C",
+              "text": "manual formatting drift distracts from behavior"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "run cargo fmt before review. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-03-Clippy",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Clippy?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Clippy"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "review each lint in its code context"
+            },
+            {
+              "key": "B",
+              "text": "Clippy provides additional lint diagnostics"
+            },
+            {
+              "key": "C",
+              "text": "blindly allowing lints can hide defects"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "review each lint in its code context. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-04-immutability",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of immutability?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "immutability"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "request mutability only where state changes"
+            },
+            {
+              "key": "B",
+              "text": "bindings are immutable unless marked mut"
+            },
+            {
+              "key": "C",
+              "text": "interior mutability follows separate runtime rules"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "request mutability only where state changes. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-05-String-and-str",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of String and str?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "String and str"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "accept &str for read-only text parameters"
+            },
+            {
+              "key": "B",
+              "text": "String owns text while str slices borrow text"
+            },
+            {
+              "key": "C",
+              "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "accept &str for read-only text parameters. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-06-Option",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Option?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Option"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "match or transform both possibilities intentionally"
+            },
+            {
+              "key": "B",
+              "text": "Option models presence with Some or absence with None"
+            },
+            {
+              "key": "C",
+              "text": "unwrap can panic when absence is possible"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "match or transform both possibilities intentionally. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-07-Result",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Result?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Result"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "propagate or handle errors before using output"
+            },
+            {
+              "key": "B",
+              "text": "Result models success or failure"
+            },
+            {
+              "key": "C",
+              "text": "ignoring an Err loses required control flow"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "propagate or handle errors before using output. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-08-question-mark",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of question mark?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "question mark"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it in compatible Result or Option functions"
+            },
+            {
+              "key": "B",
+              "text": "question mark returns failure to the caller"
+            },
+            {
+              "key": "C",
+              "text": "it does not log or recover automatically"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it in compatible Result or Option functions. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-09-match",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of match?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "match"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "enumerate domain variants explicitly"
+            },
+            {
+              "key": "B",
+              "text": "match is exhaustive pattern-based control flow"
+            },
+            {
+              "key": "C",
+              "text": "a wildcard can hide newly added variants"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "enumerate domain variants explicitly. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-10-ranges",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of ranges?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "ranges"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use inclusive syntax when the endpoint belongs"
+            },
+            {
+              "key": "B",
+              "text": "exclusive ranges omit their upper endpoint"
+            },
+            {
+              "key": "C",
+              "text": "off-by-one assumptions can skip or overrun values"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use inclusive syntax when the endpoint belongs. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-11-iterators",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of iterators?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "iterators"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "consume with collect sum or a loop"
+            },
+            {
+              "key": "B",
+              "text": "iterator adapters are generally lazy"
+            },
+            {
+              "key": "C",
+              "text": "building a chain alone may perform no work"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "consume with collect sum or a loop. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-12-ownership",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of ownership?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "ownership"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "move values deliberately across boundaries"
+            },
+            {
+              "key": "B",
+              "text": "one owner controls ordinary value cleanup"
+            },
+            {
+              "key": "C",
+              "text": "using a non-Copy value after a move is rejected"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "move values deliberately across boundaries. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-13-shared-borrowing",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of shared borrowing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "shared borrowing"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use &T for temporary read-only borrowing"
+            },
+            {
+              "key": "B",
+              "text": "shared references allow non-mutating access"
+            },
+            {
+              "key": "C",
+              "text": "shared and active mutable borrowing cannot overlap"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use &T for temporary read-only borrowing. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-14-mutable-borrowing",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of mutable borrowing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "mutable borrowing"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "keep mutable borrow scope as short as practical"
+            },
+            {
+              "key": "B",
+              "text": "an exclusive reference enables mutation"
+            },
+            {
+              "key": "C",
+              "text": "only one active mutable borrow to the same data is allowed"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "keep mutable borrow scope as short as practical. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-15-slices",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of slices?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "slices"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "accept slices instead of requiring Vec ownership"
+            },
+            {
+              "key": "B",
+              "text": "slices borrow contiguous sequence regions"
+            },
+            {
+              "key": "C",
+              "text": "a slice cannot outlive its backing storage"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "accept slices instead of requiring Vec ownership. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-16-Vec",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Vec?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Vec"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use Vec for variable-size owned elements"
+            },
+            {
+              "key": "B",
+              "text": "Vec owns a growable contiguous sequence"
+            },
+            {
+              "key": "C",
+              "text": "growth can relocate elements and invalidate references"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use Vec for variable-size owned elements. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-17-structs",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of structs?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "structs"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "keep invariant-sensitive fields private"
+            },
+            {
+              "key": "B",
+              "text": "structs group named fields"
+            },
+            {
+              "key": "C",
+              "text": "public fields permit arbitrary invalid combinations"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "keep invariant-sensitive fields private. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-18-enums",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of enums?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "enums"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use them for meaningful states and outcomes"
+            },
+            {
+              "key": "B",
+              "text": "enums model one variant from a closed set"
+            },
+            {
+              "key": "C",
+              "text": "parallel booleans can represent impossible states"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use them for meaningful states and outcomes. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-19-traits",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of traits?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "traits"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use focused traits and explicit bounds"
+            },
+            {
+              "key": "B",
+              "text": "traits define shared behavior contracts"
+            },
+            {
+              "key": "C",
+              "text": "traits do not automatically imply object safety"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use focused traits and explicit bounds. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-2-20-threads",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of threads?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "threads"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "join workers and propagate errors"
+            },
+            {
+              "key": "B",
+              "text": "threads require safe transferred or shared data"
+            },
+            {
+              "key": "C",
+              "text": "detached work can outlive intended operation scope"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "join workers and propagate errors. Confirm with cargo check, Clippy, and a focused test."
+        }
+      ]
+    },
+    {
+      "stableKey": "rust-beginner-mock-3",
+      "title": "Rust Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "rust-beg-mock-3-01-Cargo",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Cargo is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Cargo"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Cargo.lock policy differs between applications and libraries"
+            },
+            {
+              "key": "B",
+              "text": "Cargo builds tests and manages crate metadata"
+            },
+            {
+              "key": "C",
+              "text": "use cargo check test and run as separate evidence"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Cargo.lock policy differs between applications and libraries. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-02-rustfmt",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about rustfmt is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "rustfmt"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "manual formatting drift distracts from behavior"
+            },
+            {
+              "key": "B",
+              "text": "rustfmt applies canonical formatting"
+            },
+            {
+              "key": "C",
+              "text": "run cargo fmt before review"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "manual formatting drift distracts from behavior. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-03-Clippy",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Clippy is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Clippy"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "blindly allowing lints can hide defects"
+            },
+            {
+              "key": "B",
+              "text": "Clippy provides additional lint diagnostics"
+            },
+            {
+              "key": "C",
+              "text": "review each lint in its code context"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "blindly allowing lints can hide defects. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-04-immutability",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about immutability is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "immutability"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "interior mutability follows separate runtime rules"
+            },
+            {
+              "key": "B",
+              "text": "bindings are immutable unless marked mut"
+            },
+            {
+              "key": "C",
+              "text": "request mutability only where state changes"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "interior mutability follows separate runtime rules. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-05-String-and-str",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about String and str is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "String and str"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "byte indexing is unavailable because UTF-8 boundaries matter"
+            },
+            {
+              "key": "B",
+              "text": "String owns text while str slices borrow text"
+            },
+            {
+              "key": "C",
+              "text": "accept &str for read-only text parameters"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "byte indexing is unavailable because UTF-8 boundaries matter. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-06-Option",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Option is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Option"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "unwrap can panic when absence is possible"
+            },
+            {
+              "key": "B",
+              "text": "Option models presence with Some or absence with None"
+            },
+            {
+              "key": "C",
+              "text": "match or transform both possibilities intentionally"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "unwrap can panic when absence is possible. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-07-Result",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Result is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Result"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ignoring an Err loses required control flow"
+            },
+            {
+              "key": "B",
+              "text": "Result models success or failure"
+            },
+            {
+              "key": "C",
+              "text": "propagate or handle errors before using output"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ignoring an Err loses required control flow. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-08-question-mark",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about question mark is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "question mark"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "it does not log or recover automatically"
+            },
+            {
+              "key": "B",
+              "text": "question mark returns failure to the caller"
+            },
+            {
+              "key": "C",
+              "text": "use it in compatible Result or Option functions"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "it does not log or recover automatically. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-09-match",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about match is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "match"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a wildcard can hide newly added variants"
+            },
+            {
+              "key": "B",
+              "text": "match is exhaustive pattern-based control flow"
+            },
+            {
+              "key": "C",
+              "text": "enumerate domain variants explicitly"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a wildcard can hide newly added variants. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-10-ranges",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about ranges is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "ranges"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "off-by-one assumptions can skip or overrun values"
+            },
+            {
+              "key": "B",
+              "text": "exclusive ranges omit their upper endpoint"
+            },
+            {
+              "key": "C",
+              "text": "use inclusive syntax when the endpoint belongs"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "off-by-one assumptions can skip or overrun values. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-11-iterators",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about iterators is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "iterators"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "building a chain alone may perform no work"
+            },
+            {
+              "key": "B",
+              "text": "iterator adapters are generally lazy"
+            },
+            {
+              "key": "C",
+              "text": "consume with collect sum or a loop"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "building a chain alone may perform no work. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-12-ownership",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about ownership is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "ownership"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using a non-Copy value after a move is rejected"
+            },
+            {
+              "key": "B",
+              "text": "one owner controls ordinary value cleanup"
+            },
+            {
+              "key": "C",
+              "text": "move values deliberately across boundaries"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using a non-Copy value after a move is rejected. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-13-shared-borrowing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about shared borrowing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "shared borrowing"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "shared and active mutable borrowing cannot overlap"
+            },
+            {
+              "key": "B",
+              "text": "shared references allow non-mutating access"
+            },
+            {
+              "key": "C",
+              "text": "use &T for temporary read-only borrowing"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "shared and active mutable borrowing cannot overlap. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-14-mutable-borrowing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about mutable borrowing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "mutable borrowing"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "only one active mutable borrow to the same data is allowed"
+            },
+            {
+              "key": "B",
+              "text": "an exclusive reference enables mutation"
+            },
+            {
+              "key": "C",
+              "text": "keep mutable borrow scope as short as practical"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "only one active mutable borrow to the same data is allowed. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-15-slices",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about slices is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "slices"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a slice cannot outlive its backing storage"
+            },
+            {
+              "key": "B",
+              "text": "slices borrow contiguous sequence regions"
+            },
+            {
+              "key": "C",
+              "text": "accept slices instead of requiring Vec ownership"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a slice cannot outlive its backing storage. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-16-Vec",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Vec is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Vec"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "growth can relocate elements and invalidate references"
+            },
+            {
+              "key": "B",
+              "text": "Vec owns a growable contiguous sequence"
+            },
+            {
+              "key": "C",
+              "text": "use Vec for variable-size owned elements"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "growth can relocate elements and invalidate references. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-17-structs",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about structs is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "structs"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "public fields permit arbitrary invalid combinations"
+            },
+            {
+              "key": "B",
+              "text": "structs group named fields"
+            },
+            {
+              "key": "C",
+              "text": "keep invariant-sensitive fields private"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "public fields permit arbitrary invalid combinations. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-18-enums",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about enums is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "enums"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "parallel booleans can represent impossible states"
+            },
+            {
+              "key": "B",
+              "text": "enums model one variant from a closed set"
+            },
+            {
+              "key": "C",
+              "text": "use them for meaningful states and outcomes"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "parallel booleans can represent impossible states. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-19-traits",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about traits is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "traits"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "traits do not automatically imply object safety"
+            },
+            {
+              "key": "B",
+              "text": "traits define shared behavior contracts"
+            },
+            {
+              "key": "C",
+              "text": "use focused traits and explicit bounds"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "traits do not automatically imply object safety. Confirm with cargo check, Clippy, and a focused test."
+        },
+        {
+          "stableId": "rust-beg-mock-3-20-threads",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about threads is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "threads"
+          ],
+          "objectiveIds": [
+            "rust-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "detached work can outlive intended operation scope"
+            },
+            {
+              "key": "B",
+              "text": "threads require safe transferred or shared data"
+            },
+            {
+              "key": "C",
+              "text": "join workers and propagate errors"
+            },
+            {
+              "key": "D",
+              "text": "The compiler silently repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "detached work can outlive intended operation scope. Confirm with cargo check, Clippy, and a focused test."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "rust-beginner-capstone",
+    "title": "Ownership-Safe Persistent Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a Rust progress tracker using private validated models, enums, Result-based contextual errors, borrowed interfaces, safe persistence, bounded thread or channel lifecycles, synchronized state where necessary, and at least ten automated tests.",
+    "deliverables": [
+      "Cargo project source",
+      "Build and run instructions",
+      "Normal, failure, and concurrency test results",
+      "Ownership, borrowing, and synchronization explanation"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "ownership_and_model": 25,
+      "errors_and_persistence": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

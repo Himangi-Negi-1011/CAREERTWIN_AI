@@ -1,0 +1,193 @@
+{
+  "id": "phase-c-programming-beginner-mod-2",
+  "skillName": "C Programming",
+  "skillSlug": "c-programming",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-c-beginner-module-2",
+  "moduleTitle": "Control Flow, Arrays, and Functions",
+  "title": "Control Flow, Arrays, and Functions Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow, Arrays, and Functions.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "fgets",
+    "strtol",
+    "short circuit",
+    "assignment equality",
+    "switch"
+  ],
+  "questions": [
+    {
+      "id": "phase-c-programming-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about fgets is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "assuming every line fits can leave unread fragments"
+        },
+        {
+          "id": "B",
+          "text": "fgets reads a bounded line and retains a newline when present"
+        },
+        {
+          "id": "C",
+          "text": "read text then parse and validate it"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "assuming every line fits can leave unread fragments. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "fgets",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strtol is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "atoi cannot report detailed conversion failure"
+        },
+        {
+          "id": "B",
+          "text": "strtol reports where numeric parsing stopped"
+        },
+        {
+          "id": "C",
+          "text": "check end pointer errno and target range"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "atoi cannot report detailed conversion failure. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "strtol",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "bitwise operators do not short-circuit"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "put validity checks before dependent expressions"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "bitwise operators do not short-circuit. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about assignment equality is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "using assignment in a condition can silently alter state"
+        },
+        {
+          "id": "B",
+          "text": "single equals assigns while double equals compares"
+        },
+        {
+          "id": "C",
+          "text": "keep assignment out of conditions unless intentional and clear"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using assignment in a condition can silently alter state. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "assignment equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+    },
+    {
+      "id": "phase-c-programming-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "missing break can execute later cases"
+        },
+        {
+          "id": "B",
+          "text": "switch selects integral cases"
+        },
+        {
+          "id": "C",
+          "text": "use breaks or explicit fallthrough comments"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "missing break can execute later cases. Verify with strict warnings, a minimal program, and observable output.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.168Z",
+  "updatedAt": "2026-10-31T13:08:48.169Z"
+}

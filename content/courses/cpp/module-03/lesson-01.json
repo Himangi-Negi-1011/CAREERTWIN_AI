@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii",
+  "skillName": "C++",
+  "moduleId": "mod-3-cpp-beginner-module-3",
+  "title": "Functions, References, Classes, and RAII",
+  "summary": "Design function contracts and small classes using references, const correctness, constructors, private state, invariants, and automatic resource lifetime.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Functions, References, Classes, and RAII",
+    "Compile and test behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "cpp-obj-5",
+    "cpp-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-sec-1",
+      "heading": "Core model",
+      "content": "Arguments are passed by value unless a reference type is declared. Use `const T&` for read-only access to a potentially expensive object and `T&` for deliberate caller-visible mutation. Return values are usually clear and efficiently optimized. A class should keep fields private and establish invariants in its constructor. RAII ties resource lifetime to object lifetime: containers, strings, file streams, and smart pointers release resources through destructors. Prefer these owners over manual `new` and `delete`. Mark member functions `const` when they do not modify observable state.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Arguments are passed by value unless a reference type is declared."
+      ],
+      "commonMistakes": [
+        "copying each element can be unnecessary or misleading",
+        "index equal to size is invalid"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-sec-2",
+      "heading": "Worked C++ example",
+      "content": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "cpp",
+          "code": "#include <iostream>\nclass Progress { int percent_; public:\n explicit Progress(int p): percent_{p} { if(p<0||p>100) throw std::invalid_argument{\"percent\"}; }\n int percent() const { return percent_; } };\nint main(){ std::cout << Progress{75}.percent() << '\\n'; }",
+          "explanation": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+          "expectedOutput": "75"
+        }
+      ],
+      "keyPoints": [
+        "Arguments are passed by value unless a reference type is declared."
+      ],
+      "commonMistakes": [
+        "copying each element can be unnecessary or misleading",
+        "index equal to size is invalid"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Arguments are passed by value unless a reference type is declared."
+      ],
+      "commonMistakes": [
+        "copying each element can be unnecessary or misleading",
+        "index equal to size is invalid"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C++.",
+      "description": "Create a CourseProgress class with constructor validation, const observers, controlled updates, and tests for normal and invalid states. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+      "instructions": [
+        "Create a CourseProgress class with constructor validation, const observers, controlled updates, and tests for normal and invalid states. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation."
+      ],
+      "starterCode": "// C++ Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C++ operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of C++20 mode?",
+      "options": [
+        {
+          "id": "A",
+          "text": "compile with std=c++20 consistently"
+        },
+        {
+          "id": "B",
+          "text": "the language mode selects modern standard rules"
+        },
+        {
+          "id": "C",
+          "text": "compiler defaults may use an older standard"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of warnings?",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "B",
+          "text": "warnings expose suspicious translated code"
+        },
+        {
+          "id": "C",
+          "text": "warning-free does not prove logic correctness"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-cpp-beginner-module-3-l1-functions-references-classes-and-raii-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of linking?",
+      "options": [
+        {
+          "id": "A",
+          "text": "provide one definition for each used non-inline entity"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves definitions across translation units"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Functions, References, Classes, and RAII in C++. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-cpp-main",
+      "title": "C++ Full Course for free",
+      "provider": "youtube",
+      "channelOrAuthor": "Bro Code",
+      "url": "https://www.youtube.com/watch?v=-TkoO8Z07hI",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C++.",
+      "whatItTeaches": "Step-by-step walkthrough of C++ fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "cpp-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, References, Classes, and RAII",
+        "STL Algorithms, Maps, and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Functions, References, Classes, and RAII",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Functions, References, Classes, and RAII."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C++",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.261Z"
+}

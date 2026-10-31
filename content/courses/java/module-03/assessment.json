@@ -1,0 +1,193 @@
+{
+  "id": "phase-java-beginner-mod-3",
+  "skillName": "Java",
+  "skillSlug": "java",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-java-beginner-module-3",
+  "moduleTitle": "Classes, Collections, and a Project",
+  "title": "Classes, Collections, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Classes, Collections, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "arrays",
+    "enhanced for",
+    "while loops",
+    "methods",
+    "pass by value"
+  ],
+  "questions": [
+    {
+      "id": "phase-java-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes arrays in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "arrays have fixed length and zero-based indexes"
+        },
+        {
+          "id": "B",
+          "text": "access at index length throws an exception"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "arrays have fixed length and zero-based indexes. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-java-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-java-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes enhanced for in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enhanced for iterates values without exposing indexes"
+        },
+        {
+          "id": "B",
+          "text": "assigning the loop variable does not replace an array element"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enhanced for iterates values without exposing indexes. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "enhanced for",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-java-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-java-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes while loops in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "while repeats while a boolean remains true"
+        },
+        {
+          "id": "B",
+          "text": "missing progress can produce an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "while repeats while a boolean remains true. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-java-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-java-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes methods in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "methods declare parameter and return contracts"
+        },
+        {
+          "id": "B",
+          "text": "a void method cannot provide a result expression"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "methods declare parameter and return contracts. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-java-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Classes, and Encapsulation"
+    },
+    {
+      "id": "phase-java-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes pass by value in Java?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Java copies every argument value during a call"
+        },
+        {
+          "id": "B",
+          "text": "reassigning a parameter does not reassign the caller variable"
+        },
+        {
+          "id": "C",
+          "text": "The JVM chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external paid library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Java copies every argument value during a call. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "pass by value",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-java-beginner-module-3-l1",
+      "recommendedLessonTitle": "Methods, Classes, and Encapsulation"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.436Z",
+  "updatedAt": "2026-10-31T13:08:48.436Z"
+}

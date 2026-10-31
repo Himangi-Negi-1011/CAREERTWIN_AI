@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "C Programming",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "C Programming Foundations: Compilation, Memory Safety, and a File-Backed Tracker",
+  "description": "A beginner C course covering translation, diagnostics, types, safe input, control flow, arrays, functions, pointers, structs, file I/O, testing, and a file-backed progress-tracker capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Compile and diagnose C17 programs with strict warnings",
+    "Use types, control flow, arrays, functions, and pointers within documented bounds and lifetimes",
+    "Build and test a modular struct-based progress tracker with validated file input"
+  ],
+  "modules": [
+    {
+      "stableKey": "c-beginner-module-1",
+      "title": "Build Process, Types, and Input",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "c-build-model",
+          "title": "Compiling C and Reading Diagnostics",
+          "summary": "Understand source, preprocessing, compilation, linking, executable output, warnings, and a repeatable build-run-debug cycle.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Compiling C and Reading Diagnostics",
+            "Compile and test behavior with warnings enabled"
+          ],
+          "blocks": [
+            {
+              "stableKey": "c-build-model-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A C implementation translates source through preprocessing, compilation, assembly, and linking. Use a command such as `cc -std=c17 -Wall -Wextra -Wpedantic main.c -o main` so warnings expose suspicious conversions and unused values. The compiler checks syntax and types but cannot prove every memory access is valid. Linker errors usually indicate a declared function or object has no matching definition. Read the first relevant diagnostic, correct one cause, rebuild, and never run a stale executable after compilation fails."
+            },
+            {
+              "stableKey": "c-build-model-example",
+              "type": "code",
+              "heading": "Worked C example",
+              "bodyMarkdown": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+              "codeLanguage": "c",
+              "codeSource": "#include <stdio.h>\nint main(void) {\n    int lessons = 6;\n    printf(\"C Programming: %d lessons\\n\", lessons);\n    return 0;\n}",
+              "expectedOutput": "C Programming: 6 lessons"
+            },
+            {
+              "stableKey": "c-build-model-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "c-build-model-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Compile with strict warnings, introduce an undeclared name and then an undefined function, and distinguish compiler from linker diagnostics. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+              "expectedOutcomes": [
+                "Warning-clean C17 source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "c-build-model-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "c-beg-lesson-1-01-preprocessing",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes preprocessing in C?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "preprocessing"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "preprocessing handles directives before compilation"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use headers for declarations and include guards"
+                  },
+                  {
+                    "key": "C",
+                    "text": "macros do textual substitution without type checking"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "preprocessing handles directives before compilation. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-1-02-compiler-warnings",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes compiler warnings in C?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "compiler warnings"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "warnings identify suspicious but translatable code"
+                  },
+                  {
+                    "key": "B",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "C",
+                    "text": "ignoring warnings can leave real defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "warnings identify suspicious but translatable code. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-1-03-linking",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes linking in C?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "linking resolves referenced definitions"
+                  },
+                  {
+                    "key": "B",
+                    "text": "provide exactly one matching external definition"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "linking resolves referenced definitions. Verify with strict warnings, a minimal program, and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A C implementation translates source through preprocessing, compilation, assembly, and linking."
+          ],
+          "commonMistakes": [
+            "macros do textual substitution without type checking",
+            "ignoring warnings can leave real defects"
+          ],
+          "interviewQuestions": [
+            "Explain preprocessing with a minimal C example."
+          ]
+        },
+        {
+          "stableKey": "c-types-io",
+          "title": "Types, Expressions, and Safe Input",
+          "summary": "Use integer and floating types, declarations, conversions, format specifiers, arithmetic, and checked text input.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Types, Expressions, and Safe Input",
+            "Compile and test behavior with warnings enabled"
+          ],
+          "blocks": [
+            {
+              "stableKey": "c-types-io-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "C objects have declared types that determine representation and operations. Integer division truncates toward zero, so cast before division when a fraction is required. `sizeof` reports storage in bytes as `size_t`. `printf` and `scanf` format specifiers must match argument types; a mismatch can cause undefined behavior. For robust interactive input, read a line with `fgets`, then parse with `strtol` while checking the end pointer and range. Initialize objects before reading them and never assume failed input leaves a useful value."
+            },
+            {
+              "stableKey": "c-types-io-example",
+              "type": "code",
+              "heading": "Worked C example",
+              "bodyMarkdown": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+              "codeLanguage": "c",
+              "codeSource": "#include <stdio.h>\nint main(void) {\n    int total = 243, count = 3;\n    double average = (double)total / count;\n    printf(\"%.1f\\n\", average);\n    return 0;\n}",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "c-types-io-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "c-types-io-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Read weekly minutes with fgets and strtol, reject trailing text and values outside a documented range, then calculate a four-week total. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+              "expectedOutcomes": [
+                "Warning-clean C17 source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "c-types-io-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "c-beg-lesson-2-01-preprocessing",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of preprocessing?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "preprocessing"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use headers for declarations and include guards"
+                  },
+                  {
+                    "key": "B",
+                    "text": "preprocessing handles directives before compilation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "macros do textual substitution without type checking"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-2-02-compiler-warnings",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of compiler warnings?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "compiler warnings"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings identify suspicious but translatable code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "ignoring warnings can leave real defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-2-03-linking",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of linking?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "provide exactly one matching external definition"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves referenced definitions"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "C objects have declared types that determine representation and operations."
+          ],
+          "commonMistakes": [
+            "casting after division cannot restore the fraction",
+            "a mismatch can cause undefined behavior"
+          ],
+          "interviewQuestions": [
+            "Explain integer division with a minimal C example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "c-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "c-beg-module-1-01-preprocessing",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of preprocessing?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "preprocessing"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use headers for declarations and include guards"
+              },
+              {
+                "key": "B",
+                "text": "preprocessing handles directives before compilation"
+              },
+              {
+                "key": "C",
+                "text": "macros do textual substitution without type checking"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-1-02-compiler-warnings",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of compiler warnings?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "compiler warnings"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "enable Wall Wextra and Wpedantic"
+              },
+              {
+                "key": "B",
+                "text": "warnings identify suspicious but translatable code"
+              },
+              {
+                "key": "C",
+                "text": "ignoring warnings can leave real defects"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-1-03-linking",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of linking?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "linking"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "provide exactly one matching external definition"
+              },
+              {
+                "key": "B",
+                "text": "linking resolves referenced definitions"
+              },
+              {
+                "key": "C",
+                "text": "a declaration alone does not satisfy the linker"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-1-04-integer-division",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of integer division?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "integer division"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "cast before division for a fractional result"
+              },
+              {
+                "key": "B",
+                "text": "integer operands produce an integer quotient"
+              },
+              {
+                "key": "C",
+                "text": "casting after division cannot restore the fraction"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "cast before division for a fractional result. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-1-05-format-specifiers",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of format specifiers?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "format specifiers"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "match every conversion with the documented type"
+              },
+              {
+                "key": "B",
+                "text": "formatted I/O relies on matching argument types"
+              },
+              {
+                "key": "C",
+                "text": "a mismatch can cause undefined behavior"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "match every conversion with the documented type. Verify with strict warnings, a minimal program, and observable output."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "c-beginner-module-2",
+      "title": "Control Flow, Arrays, and Functions",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "c-conditions",
+          "title": "Conditions, Operators, and Boundaries",
+          "summary": "Write explicit decisions using comparisons, logical operators, if/else, switch, and carefully tested boundaries.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Conditions, Operators, and Boundaries",
+            "Compile and test behavior with warnings enabled"
+          ],
+          "blocks": [
+            {
+              "stableKey": "c-conditions-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "In C, zero is false and nonzero is true, while relational and logical operators produce 0 or 1. `&&` and `||` short-circuit, which can guard a later expression such as division or pointer access. Assignment `=` and equality `==` are different; enable warnings and place intentional assignments outside conditions. Use `else if` for mutually exclusive ranges and `switch` for discrete integral cases. Every threshold needs tests below, at, and above it. Parenthesize mixed conditions when the intended grouping is not immediately obvious."
+            },
+            {
+              "stableKey": "c-conditions-example",
+              "type": "code",
+              "heading": "Worked C example",
+              "bodyMarkdown": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+              "codeLanguage": "c",
+              "codeSource": "#include <stdio.h>\nint main(void) {\n    int score = 72, submitted = 1;\n    if (score >= 0 && score <= 100 && submitted) puts(\"recorded\");\n    else puts(\"review input\");\n    return 0;\n}",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "c-conditions-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "c-conditions-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a 0\u2013100 grade classifier, reject invalid input, and test every grade boundary plus -1 and 101. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+              "expectedOutcomes": [
+                "Warning-clean C17 source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "c-conditions-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "c-beg-lesson-3-01-preprocessing",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about preprocessing is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "preprocessing"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "macros do textual substitution without type checking"
+                  },
+                  {
+                    "key": "B",
+                    "text": "preprocessing handles directives before compilation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use headers for declarations and include guards"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "macros do textual substitution without type checking. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-3-02-compiler-warnings",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about compiler warnings is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "compiler warnings"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "ignoring warnings can leave real defects"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings identify suspicious but translatable code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "ignoring warnings can leave real defects. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-3-03-linking",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about linking is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves referenced definitions"
+                  },
+                  {
+                    "key": "C",
+                    "text": "provide exactly one matching external definition"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a declaration alone does not satisfy the linker. Verify with strict warnings, a minimal program, and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "In C, zero is false and nonzero is true, while relational and logical operators produce 0 or 1."
+          ],
+          "commonMistakes": [
+            "atoi cannot report detailed conversion failure",
+            "bitwise operators do not short-circuit"
+          ],
+          "interviewQuestions": [
+            "Explain strtol with a minimal C example."
+          ]
+        },
+        {
+          "stableKey": "c-loops-arrays",
+          "title": "Loops, Arrays, and Bounds",
+          "summary": "Use for, while, arrays, indexes, accumulators, break, continue, and invariants that prevent out-of-bounds access.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Loops, Arrays, and Bounds",
+            "Compile and test behavior with warnings enabled"
+          ],
+          "blocks": [
+            {
+              "stableKey": "c-loops-arrays-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "C arrays contain a fixed number of adjacent elements and do not carry their length into a called function. Valid indexes run from zero through length minus one. Compute a local array count with `sizeof array / sizeof array[0]` only where `array` is still an array, not a pointer parameter. Use `size_t` for sizes and indexes. A loop invariant states what remains valid before each iteration; conditions such as `i < count` protect bounds. Out-of-range access is undefined behavior, not a guaranteed exception."
+            },
+            {
+              "stableKey": "c-loops-arrays-example",
+              "type": "code",
+              "heading": "Worked C example",
+              "bodyMarkdown": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+              "codeLanguage": "c",
+              "codeSource": "#include <stdio.h>\nint main(void) {\n    int scores[] = {70,82,91};\n    size_t count = sizeof scores / sizeof scores[0];\n    int total = 0;\n    for (size_t i=0; i<count; ++i) total += scores[i];\n    printf(\"%.1f\\n\", (double)total/count);\n    return 0;\n}",
+              "expectedOutput": "81.0"
+            },
+            {
+              "stableKey": "c-loops-arrays-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "c-loops-arrays-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process an array of study minutes, skip negatives, calculate total and average, and explain why every index remains in bounds. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+              "expectedOutcomes": [
+                "Warning-clean C17 source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "c-loops-arrays-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "c-beg-lesson-4-01-preprocessing",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes preprocessing in C?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "preprocessing"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "preprocessing handles directives before compilation"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use headers for declarations and include guards"
+                  },
+                  {
+                    "key": "C",
+                    "text": "macros do textual substitution without type checking"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "preprocessing handles directives before compilation. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-4-02-compiler-warnings",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes compiler warnings in C?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "compiler warnings"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "warnings identify suspicious but translatable code"
+                  },
+                  {
+                    "key": "B",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "C",
+                    "text": "ignoring warnings can leave real defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "warnings identify suspicious but translatable code. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-4-03-linking",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes linking in C?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "linking resolves referenced definitions"
+                  },
+                  {
+                    "key": "B",
+                    "text": "provide exactly one matching external definition"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "linking resolves referenced definitions. Verify with strict warnings, a minimal program, and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "C arrays contain a fixed number of adjacent elements and do not carry their length into a called function."
+          ],
+          "commonMistakes": [
+            "missing break can execute later cases",
+            "index equal to count is out of bounds"
+          ],
+          "interviewQuestions": [
+            "Explain switch with a minimal C example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "c-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "c-beg-module-2-06-fgets",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about fgets is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "fgets"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "assuming every line fits can leave unread fragments"
+              },
+              {
+                "key": "B",
+                "text": "fgets reads a bounded line and retains a newline when present"
+              },
+              {
+                "key": "C",
+                "text": "read text then parse and validate it"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "assuming every line fits can leave unread fragments. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-2-07-strtol",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about strtol is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "strtol"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "atoi cannot report detailed conversion failure"
+              },
+              {
+                "key": "B",
+                "text": "strtol reports where numeric parsing stopped"
+              },
+              {
+                "key": "C",
+                "text": "check end pointer errno and target range"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "atoi cannot report detailed conversion failure. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-2-08-short-circuit",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about short circuit is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "short circuit"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "bitwise operators do not short-circuit"
+              },
+              {
+                "key": "B",
+                "text": "logical operators may skip the right operand"
+              },
+              {
+                "key": "C",
+                "text": "put validity checks before dependent expressions"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "bitwise operators do not short-circuit. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-2-09-assignment-equality",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about assignment equality is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "assignment equality"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "using assignment in a condition can silently alter state"
+              },
+              {
+                "key": "B",
+                "text": "single equals assigns while double equals compares"
+              },
+              {
+                "key": "C",
+                "text": "keep assignment out of conditions unless intentional and clear"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "using assignment in a condition can silently alter state. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-2-10-switch",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about switch is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "switch"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "missing break can execute later cases"
+              },
+              {
+                "key": "B",
+                "text": "switch selects integral cases"
+              },
+              {
+                "key": "C",
+                "text": "use breaks or explicit fallthrough comments"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "missing break can execute later cases. Verify with strict warnings, a minimal program, and observable output."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "c-beginner-module-3",
+      "title": "Pointers, Structs, Files, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "c-functions-pointers",
+          "title": "Functions, Pointers, and Ownership",
+          "summary": "Define function contracts, pass values and addresses, use const pointers, validate null, and avoid dangling references.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Functions, Pointers, and Ownership",
+            "Compile and test behavior with warnings enabled"
+          ],
+          "blocks": [
+            {
+              "stableKey": "c-functions-pointers-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "C passes arguments by value. To let a function modify a caller object, pass its address and dereference a validated pointer. A pointer stores an address; it is not an array length or ownership guarantee. Test against `NULL` before dereferencing when null is permitted. Use `const int *` when a function may read but not modify the pointed-to integer. Never return a pointer to an automatic local object because its lifetime ends when the function returns. Document who owns allocated memory and who must release it."
+            },
+            {
+              "stableKey": "c-functions-pointers-example",
+              "type": "code",
+              "heading": "Worked C example",
+              "bodyMarkdown": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+              "codeLanguage": "c",
+              "codeSource": "#include <stdio.h>\nint add_progress(int *value, int amount) {\n    if (value == NULL || amount < 0 || *value > 100-amount) return 0;\n    *value += amount;\n    return 1;\n}\nint main(void){ int p=40; add_progress(&p,20); printf(\"%d\\n\",p); }",
+              "expectedOutput": "60"
+            },
+            {
+              "stableKey": "c-functions-pointers-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "c-functions-pointers-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement checked update and average functions using const-correct pointers, status returns, null tests, and boundary tests. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+              "expectedOutcomes": [
+                "Warning-clean C17 source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "c-functions-pointers-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "c-beg-lesson-5-01-preprocessing",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of preprocessing?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "preprocessing"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use headers for declarations and include guards"
+                  },
+                  {
+                    "key": "B",
+                    "text": "preprocessing handles directives before compilation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "macros do textual substitution without type checking"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-5-02-compiler-warnings",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of compiler warnings?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "compiler warnings"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings identify suspicious but translatable code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "ignoring warnings can leave real defects"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-5-03-linking",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of linking?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "provide exactly one matching external definition"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves referenced definitions"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "C passes arguments by value."
+          ],
+          "commonMistakes": [
+            "mixing signed and unsigned values can distort comparisons",
+            "a successful run does not prove undefined behavior is safe"
+          ],
+          "interviewQuestions": [
+            "Explain size_t with a minimal C example."
+          ]
+        },
+        {
+          "stableKey": "c-structs-files-project",
+          "title": "Structs, Text Files, and a Progress Tracker",
+          "summary": "Combine structs, enums, fixed buffers, checked file I/O, parsing, and modular functions in a small persistent tracker.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Structs, Text Files, and a Progress Tracker",
+            "Compile and test behavior with warnings enabled"
+          ],
+          "blocks": [
+            {
+              "stableKey": "c-structs-files-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "A struct groups related fields into one record; an enum gives meaningful names to integral states. Fixed character arrays require space for the terminating null character. Copy and format with bounded functions, always checking truncation and return values. File functions return status: verify `fopen`, check each read or write, and call `fclose`. Text persistence needs a documented format and validation when loaded because files are untrusted input. Separate parsing, domain updates, calculations, and presentation so each function has a testable contract."
+            },
+            {
+              "stableKey": "c-structs-files-project-example",
+              "type": "code",
+              "heading": "Worked C example",
+              "bodyMarkdown": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+              "codeLanguage": "c",
+              "codeSource": "#include <stdio.h>\ntypedef struct { char topic[32]; int percent; } Progress;\nint main(void){ Progress p={\"Pointers\",70}; printf(\"%s: %d%%\\n\",p.topic,p.percent); }",
+              "expectedOutput": "Pointers: 70%"
+            },
+            {
+              "stableKey": "c-structs-files-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "c-structs-files-project-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a multi-file progress tracker using structs and enums, validated 0\u2013100 updates, safe text-file persistence, summaries, and at least ten tests. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+              "expectedOutcomes": [
+                "Warning-clean C17 source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "c-structs-files-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "c-beg-lesson-6-01-preprocessing",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about preprocessing is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "preprocessing"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "macros do textual substitution without type checking"
+                  },
+                  {
+                    "key": "B",
+                    "text": "preprocessing handles directives before compilation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use headers for declarations and include guards"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "macros do textual substitution without type checking. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-6-02-compiler-warnings",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about compiler warnings is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "compiler warnings"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "ignoring warnings can leave real defects"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings identify suspicious but translatable code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "ignoring warnings can leave real defects. Verify with strict warnings, a minimal program, and observable output."
+              },
+              {
+                "stableId": "c-beg-lesson-6-03-linking",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about linking is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "c-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves referenced definitions"
+                  },
+                  {
+                    "key": "C",
+                    "text": "provide exactly one matching external definition"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The language automatically repairs the issue"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a declaration alone does not satisfy the linker. Verify with strict warnings, a minimal program, and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "A struct groups related fields into one record; an enum gives meaningful names to integral states."
+          ],
+          "commonMistakes": [
+            "dereferencing null is undefined behavior",
+            "const does not necessarily make the original object globally immutable"
+          ],
+          "interviewQuestions": [
+            "Explain null pointers with a minimal C example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "c-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "c-beg-module-3-11-array-bounds",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes array bounds in C?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "array bounds"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "valid indexes are below the element count"
+              },
+              {
+                "key": "B",
+                "text": "use i < count as the common traversal guard"
+              },
+              {
+                "key": "C",
+                "text": "index equal to count is out of bounds"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "valid indexes are below the element count. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-3-12-sizeof-array",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes sizeof array in C?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "sizeof array"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "local array size can derive an element count"
+              },
+              {
+                "key": "B",
+                "text": "divide total array bytes by one element size"
+              },
+              {
+                "key": "C",
+                "text": "a function parameter declared as array is adjusted to a pointer"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "local array size can derive an element count. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-3-13-size_t",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes size_t in C?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "size_t"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "size_t represents object sizes and indexes"
+              },
+              {
+                "key": "B",
+                "text": "use size_t with sizeof-derived counts"
+              },
+              {
+                "key": "C",
+                "text": "mixing signed and unsigned values can distort comparisons"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "size_t represents object sizes and indexes. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-3-14-undefined-behavior",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes undefined behavior in C?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "undefined behavior"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "undefined behavior imposes no required result"
+              },
+              {
+                "key": "B",
+                "text": "prevent invalid accesses rather than expecting an exception"
+              },
+              {
+                "key": "C",
+                "text": "a successful run does not prove undefined behavior is safe"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "undefined behavior imposes no required result. Verify with strict warnings, a minimal program, and observable output."
+          },
+          {
+            "stableId": "c-beg-module-3-15-pass-by-value",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes pass by value in C?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "pass by value"
+            ],
+            "objectiveIds": [
+              "c-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "every C function parameter receives a value copy"
+              },
+              {
+                "key": "B",
+                "text": "pass an address when deliberate caller mutation is needed"
+              },
+              {
+                "key": "C",
+                "text": "reassigning a pointer parameter does not reassign caller pointer"
+              },
+              {
+                "key": "D",
+                "text": "The language automatically repairs the issue"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "every C function parameter receives a value copy. Verify with strict warnings, a minimal program, and observable output."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "c-beginner-mock-1",
+      "title": "C Programming Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "c-beg-mock-1-01-preprocessing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes preprocessing in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "preprocessing"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "preprocessing handles directives before compilation"
+            },
+            {
+              "key": "B",
+              "text": "use headers for declarations and include guards"
+            },
+            {
+              "key": "C",
+              "text": "macros do textual substitution without type checking"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "preprocessing handles directives before compilation. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-02-compiler-warnings",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes compiler warnings in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "compiler warnings"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "warnings identify suspicious but translatable code"
+            },
+            {
+              "key": "B",
+              "text": "enable Wall Wextra and Wpedantic"
+            },
+            {
+              "key": "C",
+              "text": "ignoring warnings can leave real defects"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "warnings identify suspicious but translatable code. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-03-linking",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes linking in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linking"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "linking resolves referenced definitions"
+            },
+            {
+              "key": "B",
+              "text": "provide exactly one matching external definition"
+            },
+            {
+              "key": "C",
+              "text": "a declaration alone does not satisfy the linker"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "linking resolves referenced definitions. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-04-integer-division",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes integer division in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer division"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "integer operands produce an integer quotient"
+            },
+            {
+              "key": "B",
+              "text": "cast before division for a fractional result"
+            },
+            {
+              "key": "C",
+              "text": "casting after division cannot restore the fraction"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "integer operands produce an integer quotient. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-05-format-specifiers",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes format specifiers in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "format specifiers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "formatted I/O relies on matching argument types"
+            },
+            {
+              "key": "B",
+              "text": "match every conversion with the documented type"
+            },
+            {
+              "key": "C",
+              "text": "a mismatch can cause undefined behavior"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "formatted I/O relies on matching argument types. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-06-fgets",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes fgets in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "fgets"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "fgets reads a bounded line and retains a newline when present"
+            },
+            {
+              "key": "B",
+              "text": "read text then parse and validate it"
+            },
+            {
+              "key": "C",
+              "text": "assuming every line fits can leave unread fragments"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "fgets reads a bounded line and retains a newline when present. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-07-strtol",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes strtol in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strtol"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "strtol reports where numeric parsing stopped"
+            },
+            {
+              "key": "B",
+              "text": "check end pointer errno and target range"
+            },
+            {
+              "key": "C",
+              "text": "atoi cannot report detailed conversion failure"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "strtol reports where numeric parsing stopped. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes short circuit in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "B",
+              "text": "put validity checks before dependent expressions"
+            },
+            {
+              "key": "C",
+              "text": "bitwise operators do not short-circuit"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "logical operators may skip the right operand. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-09-assignment-equality",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes assignment equality in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "assignment equality"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "single equals assigns while double equals compares"
+            },
+            {
+              "key": "B",
+              "text": "keep assignment out of conditions unless intentional and clear"
+            },
+            {
+              "key": "C",
+              "text": "using assignment in a condition can silently alter state"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "single equals assigns while double equals compares. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-10-switch",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes switch in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "switch selects integral cases"
+            },
+            {
+              "key": "B",
+              "text": "use breaks or explicit fallthrough comments"
+            },
+            {
+              "key": "C",
+              "text": "missing break can execute later cases"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "switch selects integral cases. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-11-array-bounds",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes array bounds in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array bounds"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "valid indexes are below the element count"
+            },
+            {
+              "key": "B",
+              "text": "use i < count as the common traversal guard"
+            },
+            {
+              "key": "C",
+              "text": "index equal to count is out of bounds"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "valid indexes are below the element count. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-12-sizeof-array",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes sizeof array in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "sizeof array"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "local array size can derive an element count"
+            },
+            {
+              "key": "B",
+              "text": "divide total array bytes by one element size"
+            },
+            {
+              "key": "C",
+              "text": "a function parameter declared as array is adjusted to a pointer"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "local array size can derive an element count. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-13-size_t",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes size_t in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "size_t"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "size_t represents object sizes and indexes"
+            },
+            {
+              "key": "B",
+              "text": "use size_t with sizeof-derived counts"
+            },
+            {
+              "key": "C",
+              "text": "mixing signed and unsigned values can distort comparisons"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "size_t represents object sizes and indexes. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-14-undefined-behavior",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes undefined behavior in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "undefined behavior"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "undefined behavior imposes no required result"
+            },
+            {
+              "key": "B",
+              "text": "prevent invalid accesses rather than expecting an exception"
+            },
+            {
+              "key": "C",
+              "text": "a successful run does not prove undefined behavior is safe"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "undefined behavior imposes no required result. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-15-pass-by-value",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes pass by value in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "pass by value"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "every C function parameter receives a value copy"
+            },
+            {
+              "key": "B",
+              "text": "pass an address when deliberate caller mutation is needed"
+            },
+            {
+              "key": "C",
+              "text": "reassigning a pointer parameter does not reassign caller pointer"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "every C function parameter receives a value copy. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-16-null-pointers",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes null pointers in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null pointers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "NULL represents no pointed-to object"
+            },
+            {
+              "key": "B",
+              "text": "validate nullable pointers before dereference"
+            },
+            {
+              "key": "C",
+              "text": "dereferencing null is undefined behavior"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "NULL represents no pointed-to object. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-17-const-pointers",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes const pointers in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const pointers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "pointer-to-const prevents modification through that pointer"
+            },
+            {
+              "key": "B",
+              "text": "use const for read-only input buffers and objects"
+            },
+            {
+              "key": "C",
+              "text": "const does not necessarily make the original object globally immutable"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "pointer-to-const prevents modification through that pointer. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-18-object-lifetime",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes object lifetime in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "object lifetime"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "automatic locals end lifetime when their block exits"
+            },
+            {
+              "key": "B",
+              "text": "return values or caller-owned storage instead of local addresses"
+            },
+            {
+              "key": "C",
+              "text": "returning an address of a local creates a dangling pointer"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "automatic locals end lifetime when their block exits. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-19-structs",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes structs in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "structs"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "structs group named fields into a record"
+            },
+            {
+              "key": "B",
+              "text": "use a typedef struct for repeated domain records"
+            },
+            {
+              "key": "C",
+              "text": "struct assignment is shallow for pointer fields"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "structs group named fields into a record. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-1-20-file-I/O",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes file I/O in C?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "file I/O"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "file operations report failure through returns and stream state"
+            },
+            {
+              "key": "B",
+              "text": "check fopen reads writes and close results"
+            },
+            {
+              "key": "C",
+              "text": "assuming a file is trusted can corrupt program state"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "file operations report failure through returns and stream state. Verify with strict warnings, a minimal program, and observable output."
+        }
+      ]
+    },
+    {
+      "stableKey": "c-beginner-mock-2",
+      "title": "C Programming Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "c-beg-mock-2-01-preprocessing",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of preprocessing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "preprocessing"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use headers for declarations and include guards"
+            },
+            {
+              "key": "B",
+              "text": "preprocessing handles directives before compilation"
+            },
+            {
+              "key": "C",
+              "text": "macros do textual substitution without type checking"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-02-compiler-warnings",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of compiler warnings?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "compiler warnings"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "enable Wall Wextra and Wpedantic"
+            },
+            {
+              "key": "B",
+              "text": "warnings identify suspicious but translatable code"
+            },
+            {
+              "key": "C",
+              "text": "ignoring warnings can leave real defects"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-03-linking",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of linking?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linking"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "provide exactly one matching external definition"
+            },
+            {
+              "key": "B",
+              "text": "linking resolves referenced definitions"
+            },
+            {
+              "key": "C",
+              "text": "a declaration alone does not satisfy the linker"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-04-integer-division",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of integer division?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer division"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "cast before division for a fractional result"
+            },
+            {
+              "key": "B",
+              "text": "integer operands produce an integer quotient"
+            },
+            {
+              "key": "C",
+              "text": "casting after division cannot restore the fraction"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "cast before division for a fractional result. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-05-format-specifiers",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of format specifiers?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "format specifiers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "match every conversion with the documented type"
+            },
+            {
+              "key": "B",
+              "text": "formatted I/O relies on matching argument types"
+            },
+            {
+              "key": "C",
+              "text": "a mismatch can cause undefined behavior"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "match every conversion with the documented type. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-06-fgets",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of fgets?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "fgets"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "read text then parse and validate it"
+            },
+            {
+              "key": "B",
+              "text": "fgets reads a bounded line and retains a newline when present"
+            },
+            {
+              "key": "C",
+              "text": "assuming every line fits can leave unread fragments"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "read text then parse and validate it. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-07-strtol",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of strtol?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strtol"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check end pointer errno and target range"
+            },
+            {
+              "key": "B",
+              "text": "strtol reports where numeric parsing stopped"
+            },
+            {
+              "key": "C",
+              "text": "atoi cannot report detailed conversion failure"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check end pointer errno and target range. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of short circuit?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "put validity checks before dependent expressions"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "bitwise operators do not short-circuit"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "put validity checks before dependent expressions. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-09-assignment-equality",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of assignment equality?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "assignment equality"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "keep assignment out of conditions unless intentional and clear"
+            },
+            {
+              "key": "B",
+              "text": "single equals assigns while double equals compares"
+            },
+            {
+              "key": "C",
+              "text": "using assignment in a condition can silently alter state"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "keep assignment out of conditions unless intentional and clear. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-10-switch",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of switch?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use breaks or explicit fallthrough comments"
+            },
+            {
+              "key": "B",
+              "text": "switch selects integral cases"
+            },
+            {
+              "key": "C",
+              "text": "missing break can execute later cases"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use breaks or explicit fallthrough comments. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-11-array-bounds",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of array bounds?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array bounds"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use i < count as the common traversal guard"
+            },
+            {
+              "key": "B",
+              "text": "valid indexes are below the element count"
+            },
+            {
+              "key": "C",
+              "text": "index equal to count is out of bounds"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use i < count as the common traversal guard. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-12-sizeof-array",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of sizeof array?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "sizeof array"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "divide total array bytes by one element size"
+            },
+            {
+              "key": "B",
+              "text": "local array size can derive an element count"
+            },
+            {
+              "key": "C",
+              "text": "a function parameter declared as array is adjusted to a pointer"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "divide total array bytes by one element size. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-13-size_t",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of size_t?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "size_t"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use size_t with sizeof-derived counts"
+            },
+            {
+              "key": "B",
+              "text": "size_t represents object sizes and indexes"
+            },
+            {
+              "key": "C",
+              "text": "mixing signed and unsigned values can distort comparisons"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use size_t with sizeof-derived counts. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-14-undefined-behavior",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of undefined behavior?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "undefined behavior"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "prevent invalid accesses rather than expecting an exception"
+            },
+            {
+              "key": "B",
+              "text": "undefined behavior imposes no required result"
+            },
+            {
+              "key": "C",
+              "text": "a successful run does not prove undefined behavior is safe"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "prevent invalid accesses rather than expecting an exception. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-15-pass-by-value",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of pass by value?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "pass by value"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "pass an address when deliberate caller mutation is needed"
+            },
+            {
+              "key": "B",
+              "text": "every C function parameter receives a value copy"
+            },
+            {
+              "key": "C",
+              "text": "reassigning a pointer parameter does not reassign caller pointer"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "pass an address when deliberate caller mutation is needed. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-16-null-pointers",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of null pointers?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null pointers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "validate nullable pointers before dereference"
+            },
+            {
+              "key": "B",
+              "text": "NULL represents no pointed-to object"
+            },
+            {
+              "key": "C",
+              "text": "dereferencing null is undefined behavior"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "validate nullable pointers before dereference. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-17-const-pointers",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of const pointers?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const pointers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use const for read-only input buffers and objects"
+            },
+            {
+              "key": "B",
+              "text": "pointer-to-const prevents modification through that pointer"
+            },
+            {
+              "key": "C",
+              "text": "const does not necessarily make the original object globally immutable"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use const for read-only input buffers and objects. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-18-object-lifetime",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of object lifetime?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "object lifetime"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return values or caller-owned storage instead of local addresses"
+            },
+            {
+              "key": "B",
+              "text": "automatic locals end lifetime when their block exits"
+            },
+            {
+              "key": "C",
+              "text": "returning an address of a local creates a dangling pointer"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return values or caller-owned storage instead of local addresses. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-19-structs",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of structs?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "structs"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use a typedef struct for repeated domain records"
+            },
+            {
+              "key": "B",
+              "text": "structs group named fields into a record"
+            },
+            {
+              "key": "C",
+              "text": "struct assignment is shallow for pointer fields"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use a typedef struct for repeated domain records. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-2-20-file-I/O",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of file I/O?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "file I/O"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check fopen reads writes and close results"
+            },
+            {
+              "key": "B",
+              "text": "file operations report failure through returns and stream state"
+            },
+            {
+              "key": "C",
+              "text": "assuming a file is trusted can corrupt program state"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check fopen reads writes and close results. Verify with strict warnings, a minimal program, and observable output."
+        }
+      ]
+    },
+    {
+      "stableKey": "c-beginner-mock-3",
+      "title": "C Programming Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "c-beg-mock-3-01-preprocessing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about preprocessing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "preprocessing"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "macros do textual substitution without type checking"
+            },
+            {
+              "key": "B",
+              "text": "preprocessing handles directives before compilation"
+            },
+            {
+              "key": "C",
+              "text": "use headers for declarations and include guards"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "macros do textual substitution without type checking. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-02-compiler-warnings",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about compiler warnings is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "compiler warnings"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ignoring warnings can leave real defects"
+            },
+            {
+              "key": "B",
+              "text": "warnings identify suspicious but translatable code"
+            },
+            {
+              "key": "C",
+              "text": "enable Wall Wextra and Wpedantic"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ignoring warnings can leave real defects. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-03-linking",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about linking is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linking"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a declaration alone does not satisfy the linker"
+            },
+            {
+              "key": "B",
+              "text": "linking resolves referenced definitions"
+            },
+            {
+              "key": "C",
+              "text": "provide exactly one matching external definition"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a declaration alone does not satisfy the linker. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-04-integer-division",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about integer division is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "integer division"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "casting after division cannot restore the fraction"
+            },
+            {
+              "key": "B",
+              "text": "integer operands produce an integer quotient"
+            },
+            {
+              "key": "C",
+              "text": "cast before division for a fractional result"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "casting after division cannot restore the fraction. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-05-format-specifiers",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about format specifiers is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "format specifiers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a mismatch can cause undefined behavior"
+            },
+            {
+              "key": "B",
+              "text": "formatted I/O relies on matching argument types"
+            },
+            {
+              "key": "C",
+              "text": "match every conversion with the documented type"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a mismatch can cause undefined behavior. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-06-fgets",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about fgets is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "fgets"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assuming every line fits can leave unread fragments"
+            },
+            {
+              "key": "B",
+              "text": "fgets reads a bounded line and retains a newline when present"
+            },
+            {
+              "key": "C",
+              "text": "read text then parse and validate it"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assuming every line fits can leave unread fragments. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-07-strtol",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about strtol is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strtol"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "atoi cannot report detailed conversion failure"
+            },
+            {
+              "key": "B",
+              "text": "strtol reports where numeric parsing stopped"
+            },
+            {
+              "key": "C",
+              "text": "check end pointer errno and target range"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "atoi cannot report detailed conversion failure. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about short circuit is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "bitwise operators do not short-circuit"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "put validity checks before dependent expressions"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "bitwise operators do not short-circuit. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-09-assignment-equality",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about assignment equality is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "assignment equality"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using assignment in a condition can silently alter state"
+            },
+            {
+              "key": "B",
+              "text": "single equals assigns while double equals compares"
+            },
+            {
+              "key": "C",
+              "text": "keep assignment out of conditions unless intentional and clear"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using assignment in a condition can silently alter state. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-10-switch",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about switch is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "missing break can execute later cases"
+            },
+            {
+              "key": "B",
+              "text": "switch selects integral cases"
+            },
+            {
+              "key": "C",
+              "text": "use breaks or explicit fallthrough comments"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "missing break can execute later cases. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-11-array-bounds",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about array bounds is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array bounds"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "index equal to count is out of bounds"
+            },
+            {
+              "key": "B",
+              "text": "valid indexes are below the element count"
+            },
+            {
+              "key": "C",
+              "text": "use i < count as the common traversal guard"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "index equal to count is out of bounds. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-12-sizeof-array",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about sizeof array is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "sizeof array"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a function parameter declared as array is adjusted to a pointer"
+            },
+            {
+              "key": "B",
+              "text": "local array size can derive an element count"
+            },
+            {
+              "key": "C",
+              "text": "divide total array bytes by one element size"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a function parameter declared as array is adjusted to a pointer. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-13-size_t",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about size_t is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "size_t"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "mixing signed and unsigned values can distort comparisons"
+            },
+            {
+              "key": "B",
+              "text": "size_t represents object sizes and indexes"
+            },
+            {
+              "key": "C",
+              "text": "use size_t with sizeof-derived counts"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "mixing signed and unsigned values can distort comparisons. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-14-undefined-behavior",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about undefined behavior is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "undefined behavior"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a successful run does not prove undefined behavior is safe"
+            },
+            {
+              "key": "B",
+              "text": "undefined behavior imposes no required result"
+            },
+            {
+              "key": "C",
+              "text": "prevent invalid accesses rather than expecting an exception"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a successful run does not prove undefined behavior is safe. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-15-pass-by-value",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about pass by value is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "pass by value"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "reassigning a pointer parameter does not reassign caller pointer"
+            },
+            {
+              "key": "B",
+              "text": "every C function parameter receives a value copy"
+            },
+            {
+              "key": "C",
+              "text": "pass an address when deliberate caller mutation is needed"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "reassigning a pointer parameter does not reassign caller pointer. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-16-null-pointers",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about null pointers is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null pointers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "dereferencing null is undefined behavior"
+            },
+            {
+              "key": "B",
+              "text": "NULL represents no pointed-to object"
+            },
+            {
+              "key": "C",
+              "text": "validate nullable pointers before dereference"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "dereferencing null is undefined behavior. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-17-const-pointers",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about const pointers is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const pointers"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "const does not necessarily make the original object globally immutable"
+            },
+            {
+              "key": "B",
+              "text": "pointer-to-const prevents modification through that pointer"
+            },
+            {
+              "key": "C",
+              "text": "use const for read-only input buffers and objects"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "const does not necessarily make the original object globally immutable. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-18-object-lifetime",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about object lifetime is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "object lifetime"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "returning an address of a local creates a dangling pointer"
+            },
+            {
+              "key": "B",
+              "text": "automatic locals end lifetime when their block exits"
+            },
+            {
+              "key": "C",
+              "text": "return values or caller-owned storage instead of local addresses"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "returning an address of a local creates a dangling pointer. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-19-structs",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about structs is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "structs"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "struct assignment is shallow for pointer fields"
+            },
+            {
+              "key": "B",
+              "text": "structs group named fields into a record"
+            },
+            {
+              "key": "C",
+              "text": "use a typedef struct for repeated domain records"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "struct assignment is shallow for pointer fields. Verify with strict warnings, a minimal program, and observable output."
+        },
+        {
+          "stableId": "c-beg-mock-3-20-file-I/O",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about file I/O is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "file I/O"
+          ],
+          "objectiveIds": [
+            "c-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assuming a file is trusted can corrupt program state"
+            },
+            {
+              "key": "B",
+              "text": "file operations report failure through returns and stream state"
+            },
+            {
+              "key": "C",
+              "text": "check fopen reads writes and close results"
+            },
+            {
+              "key": "D",
+              "text": "The language automatically repairs the issue"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assuming a file is trusted can corrupt program state. Verify with strict warnings, a minimal program, and observable output."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "c-beginner-capstone",
+    "title": "Safe File-Backed Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a warning-clean C17 progress tracker using structs, validated text parsing, bounded strings, explicit status returns, modular functions, safe file persistence, and documented ownership. Include normal, boundary, malformed-file, and failure-path tests.",
+    "deliverables": [
+      "C source and headers",
+      "Build and run instructions",
+      "At least ten recorded tests",
+      "Memory and ownership explanation"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "bounds_and_validation": 25,
+      "modularity": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

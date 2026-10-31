@@ -1,0 +1,703 @@
+{
+  "id": "mock-typescript-beginner-test-03",
+  "skillName": "TypeScript",
+  "skillSlug": "typescript",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "TypeScript Beginner Mock Test 3",
+  "description": "Comprehensive 50-minute mock examination for TypeScript at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "type inference",
+    "strict mode",
+    "annotations",
+    "union types",
+    "unknown",
+    "any",
+    "literal unions",
+    "narrowing",
+    "interfaces",
+    "optional properties",
+    "readonly",
+    "excess property checks",
+    "typed arrays",
+    "function return types",
+    "generics",
+    "generic constraints",
+    "Pick and Omit",
+    "Partial",
+    "type guards",
+    "type assertions"
+  ],
+  "questions": [
+    {
+      "id": "mock-typescript-beginner-test-03-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about type inference is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "B",
+          "text": "the compiler derives a type from available expressions"
+        },
+        {
+          "id": "C",
+          "text": "rely on inference for obvious local values and annotate public boundaries"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type inference",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about strict mode is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "B",
+          "text": "strict enables a coordinated set of stronger checks"
+        },
+        {
+          "id": "C",
+          "text": "enable strict in tsconfig for new application code"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "strict mode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about annotations is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "B",
+          "text": "annotations state an expected compile-time type"
+        },
+        {
+          "id": "C",
+          "text": "annotate function boundaries when the contract should remain stable"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "annotations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about union types is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "calling a string-only method on string | number is unsafe"
+        },
+        {
+          "id": "B",
+          "text": "a union permits values from any listed member type"
+        },
+        {
+          "id": "C",
+          "text": "narrow a union before using member-specific operations"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "calling a string-only method on string | number is unsafe. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "union types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about unknown is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "casting unknown directly avoids checking but does not make data safe"
+        },
+        {
+          "id": "B",
+          "text": "unknown accepts any value but requires evidence before use"
+        },
+        {
+          "id": "C",
+          "text": "represent untrusted external data as unknown"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "casting unknown directly avoids checking but does not make data safe. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "unknown",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q6",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about any is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "any can propagate unsound operations through otherwise typed code"
+        },
+        {
+          "id": "B",
+          "text": "any disables most useful type checking for that value"
+        },
+        {
+          "id": "C",
+          "text": "isolate unavoidable any at a boundary and replace it quickly"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "any can propagate unsound operations through otherwise typed code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "any",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q7",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about literal unions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a general string loses exhaustiveness checking"
+        },
+        {
+          "id": "B",
+          "text": "literal unions restrict values to named constants"
+        },
+        {
+          "id": "C",
+          "text": "model finite statuses with a literal union"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a general string loses exhaustiveness checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "literal unions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q8",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about narrowing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a type assertion is not runtime evidence"
+        },
+        {
+          "id": "B",
+          "text": "narrowing refines possibilities using runtime evidence"
+        },
+        {
+          "id": "C",
+          "text": "use typeof or discriminants before member-specific access"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a type assertion is not runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "narrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q9",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about interfaces is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an interface disappears from emitted JavaScript"
+        },
+        {
+          "id": "B",
+          "text": "interfaces describe object contracts and support extension"
+        },
+        {
+          "id": "C",
+          "text": "use an interface for a named extendable object shape"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an interface disappears from emitted JavaScript. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q10",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about optional properties is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "optional does not mean every value type is accepted"
+        },
+        {
+          "id": "B",
+          "text": "an optional property may be absent"
+        },
+        {
+          "id": "C",
+          "text": "check or default an optional value before use"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "optional does not mean every value type is accepted. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "optional properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q11",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about readonly is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "readonly is compile-time protection, not deep runtime freezing"
+        },
+        {
+          "id": "B",
+          "text": "readonly prevents assignment through that typed reference"
+        },
+        {
+          "id": "C",
+          "text": "use readonly for inputs a function must not mutate"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "readonly is compile-time protection, not deep runtime freezing. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q12",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about excess property checks is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "assigning through a broad variable can bypass the fresh-literal check"
+        },
+        {
+          "id": "B",
+          "text": "fresh object literals are checked for unexpected keys"
+        },
+        {
+          "id": "C",
+          "text": "use them to catch misspelled fields at creation"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "assigning through a broad variable can bypass the fresh-literal check. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "excess property checks",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q13",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about typed arrays is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a tuple and an array express different positional guarantees"
+        },
+        {
+          "id": "B",
+          "text": "T[] constrains each array element to T"
+        },
+        {
+          "id": "C",
+          "text": "use readonly T[] for non-mutating function inputs"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a tuple and an array express different positional guarantees. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "typed arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q14",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about function return types is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "console output is not a returned value"
+        },
+        {
+          "id": "B",
+          "text": "a return annotation protects the promised output contract"
+        },
+        {
+          "id": "C",
+          "text": "annotate exported functions and domain boundaries"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "console output is not a returned value. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "function return types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q15",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about generics is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a generic appearing once adds complexity without a relationship"
+        },
+        {
+          "id": "B",
+          "text": "generics preserve type relationships across positions"
+        },
+        {
+          "id": "C",
+          "text": "use a generic when output type depends on input type"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a generic appearing once adds complexity without a relationship. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generics",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q16",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about generic constraints is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a constraint does not create missing runtime properties"
+        },
+        {
+          "id": "B",
+          "text": "constraints require capabilities used by generic code"
+        },
+        {
+          "id": "C",
+          "text": "constrain T to an id-bearing object when reading id"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a constraint does not create missing runtime properties. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generic constraints",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q17",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Pick and Omit is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "utility types do not validate runtime objects"
+        },
+        {
+          "id": "B",
+          "text": "Pick selects keys and Omit excludes keys from an existing type"
+        },
+        {
+          "id": "C",
+          "text": "derive view and creation types from a canonical domain contract"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "utility types do not validate runtime objects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "Pick and Omit",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q18",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Partial is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Partial can permit empty updates unless separately checked"
+        },
+        {
+          "id": "B",
+          "text": "Partial makes every property optional at compile time"
+        },
+        {
+          "id": "C",
+          "text": "use Partial for controlled patch inputs then validate invariants"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Partial can permit empty updates unless separately checked. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "Partial",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q19",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about type guards is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "returning true without complete checks creates unsound trust"
+        },
+        {
+          "id": "B",
+          "text": "a type guard links runtime checks to a type predicate"
+        },
+        {
+          "id": "C",
+          "text": "check every required field before returning value is T"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "returning true without complete checks creates unsound trust. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type guards",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-03-q20",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about type assertions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "asserting parsed JSON does not validate its shape"
+        },
+        {
+          "id": "B",
+          "text": "an assertion overrides compiler inference without runtime checking"
+        },
+        {
+          "id": "C",
+          "text": "reserve assertions for evidence the compiler cannot express"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "asserting parsed JSON does not validate its shape. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type assertions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.693Z",
+  "updatedAt": "2026-10-31T13:08:48.693Z"
+}

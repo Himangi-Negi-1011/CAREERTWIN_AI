@@ -1,0 +1,193 @@
+{
+  "id": "phase-java-beginner-mod-1",
+  "skillName": "Java",
+  "skillSlug": "java",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-java-beginner-module-1",
+  "moduleTitle": "Compilation, Types, and Input",
+  "title": "Compilation, Types, and Input Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Compilation, Types, and Input.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "JDK",
+    "bytecode",
+    "main method",
+    "primitive types",
+    "integer division"
+  ],
+  "questions": [
+    {
+      "id": "phase-java-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of JDK?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "JDK",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "phase-java-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of bytecode?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "bytecode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "phase-java-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of main method?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "main method",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "phase-java-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of primitive types?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "choose types according to range and operation semantics"
+        },
+        {
+          "id": "B",
+          "text": "double is approximate and unsuitable for exact currency rules"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "choose types according to range and operation semantics. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "primitive types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "phase-java-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of integer division?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "cast an operand before division when a fraction is required"
+        },
+        {
+          "id": "B",
+          "text": "casting only after integer division cannot restore the fraction"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "cast an operand before division when a fraction is required. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "integer division",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.435Z",
+  "updatedAt": "2026-10-31T13:08:48.435Z"
+}

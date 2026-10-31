@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000002",
+  "skillName": "JavaScript",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "JavaScript Foundations: Runtime Reasoning to a Tested Progress Tracker",
+  "description": "A browser-and-Node compatible beginner course covering JavaScript runtime values, explicit conversion, conditions, iteration, functions, collections, debugging, and a tested progress-tracker capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Explain JavaScript bindings, runtime types, coercion, and common errors",
+    "Use control flow, arrays, functions, objects, Map, and Set in tested programs",
+    "Build a modular progress tracker with explicit validation and immutable updates"
+  ],
+  "modules": [
+    {
+      "stableKey": "javascript-beginner-module-1",
+      "title": "JavaScript Runtime and Data",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "javascript-runtime-values",
+          "title": "Running JavaScript and Understanding Values",
+          "summary": "Learn how a JavaScript engine evaluates statements, how `const` and `let` bind names, and how to inspect values and runtime errors.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the JavaScript behavior taught in Running JavaScript and Understanding Values",
+            "Test behavior using observable output and assertions"
+          ],
+          "blocks": [
+            {
+              "stableKey": "javascript-runtime-values-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "JavaScript executes statements through an engine in a browser or Node.js. Prefer `const` when a binding will not be reassigned and `let` when reassignment is part of the design; avoid `var` in new beginner code because function scope and hoisting are easy to misread. A variable holds a value with a runtime type. Use `console.log` and `typeof` to inspect evidence. Read an error from its name and first relevant stack frame instead of guessing. `ReferenceError` commonly indicates an unavailable name, while `TypeError` means an operation was not supported by the received value."
+            },
+            {
+              "stableKey": "javascript-runtime-values-example",
+              "type": "code",
+              "heading": "Worked JavaScript example",
+              "bodyMarkdown": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+              "codeLanguage": "javascript",
+              "codeSource": "const price = 120;\nconst quantity = 3;\nconst total = price * quantity;\nconsole.log(total);\nconsole.log(typeof total);",
+              "expectedOutput": "360\nnumber"
+            },
+            {
+              "stableKey": "javascript-runtime-values-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "javascript-runtime-values-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a price calculator with `const`, print the result and type, then deliberately reference a misspelled name and explain the stack trace. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+              "expectedOutcomes": [
+                "Runnable JavaScript with clear bindings",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "javascript-runtime-values-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "js-beg-lesson-1-01-const-and-let",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes const and let in JavaScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "const and let"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "const prevents rebinding while let permits deliberate reassignment"
+                  },
+                  {
+                    "key": "B",
+                    "text": "const does not make a referenced object deeply immutable"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The engine chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-1-02-typeof",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes typeof in JavaScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "typeof"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "typeof reports a runtime type string"
+                  },
+                  {
+                    "key": "B",
+                    "text": "typeof null is historically 'object'"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The engine chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-1-03-Number-conversion",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Number conversion in JavaScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Number conversion"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Number converts an entire value to numeric form"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Number('') produces zero, which may require separate empty-input validation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The engine chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "JavaScript executes statements through an engine in a browser or Node.js."
+          ],
+          "commonMistakes": [
+            "const does not make a referenced object deeply immutable",
+            "typeof null is historically 'object'"
+          ],
+          "interviewQuestions": [
+            "Explain const and let with a minimal JavaScript example."
+          ]
+        },
+        {
+          "stableKey": "javascript-types-coercion",
+          "title": "Types, Conversion, and Strict Equality",
+          "summary": "Work with strings, numbers, booleans, null, undefined, explicit conversion, template literals, and strict equality without relying on surprising coercion.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the JavaScript behavior taught in Types, Conversion, and Strict Equality",
+            "Test behavior using observable output and assertions"
+          ],
+          "blocks": [
+            {
+              "stableKey": "javascript-types-coercion-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "JavaScript values include strings, numbers, booleans, `null`, `undefined`, bigints, symbols, and objects. Browser form values are normally strings. Convert intentionally with `Number`, `parseInt`, or `parseFloat`, then verify `Number.isNaN` when failure matters. The `+` operator concatenates when either operand becomes a string, so explicit conversion protects arithmetic. Prefer `===` and `!==` because they compare without type coercion. Template literals use backticks and `${expression}` for readable output. `null` is an intentional empty value; `undefined` commonly means no value was supplied or assigned."
+            },
+            {
+              "stableKey": "javascript-types-coercion-example",
+              "type": "code",
+              "heading": "Worked JavaScript example",
+              "bodyMarkdown": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+              "codeLanguage": "javascript",
+              "codeSource": "const ageText = '19';\nconst age = Number(ageText);\nconsole.log(`Next year: ${age + 1}`);\nconsole.log(Number.isNaN(age));",
+              "expectedOutput": "Next year: 20\nfalse"
+            },
+            {
+              "stableKey": "javascript-types-coercion-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "javascript-types-coercion-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Accept a weekly-hours string, convert and validate it, then display a four-week total. Test empty text, whitespace, decimal input, and non-numeric input. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+              "expectedOutcomes": [
+                "Runnable JavaScript with clear bindings",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "javascript-types-coercion-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "js-beg-lesson-2-01-const-and-let",
+                "type": "single-choice",
+                "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "const and let"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "declare stable bindings with const and state that changes with let"
+                  },
+                  {
+                    "key": "B",
+                    "text": "const does not make a referenced object deeply immutable"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with console.log"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-2-02-typeof",
+                "type": "single-choice",
+                "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "typeof"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use typeof while diagnosing values at an input boundary"
+                  },
+                  {
+                    "key": "B",
+                    "text": "typeof null is historically 'object'"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with console.log"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-2-03-Number-conversion",
+                "type": "single-choice",
+                "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Number conversion"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "convert then check Number.isNaN before arithmetic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Number('') produces zero, which may require separate empty-input validation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with console.log"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "JavaScript values include strings, numbers, booleans, `null`, `undefined`, bigints, symbols, and objects."
+          ],
+          "commonMistakes": [
+            "0 == false is true but 0 === false is false",
+            "ordinary quoted strings do not interpolate ${expressions}"
+          ],
+          "interviewQuestions": [
+            "Explain strict equality with a minimal JavaScript example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "javascript-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "js-beg-module-1-01-const-and-let",
+            "type": "single-choice",
+            "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "const and let"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "declare stable bindings with const and state that changes with let"
+              },
+              {
+                "key": "B",
+                "text": "const does not make a referenced object deeply immutable"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with console.log"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-1-02-typeof",
+            "type": "single-choice",
+            "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "typeof"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use typeof while diagnosing values at an input boundary"
+              },
+              {
+                "key": "B",
+                "text": "typeof null is historically 'object'"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with console.log"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-1-03-Number-conversion",
+            "type": "single-choice",
+            "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Number conversion"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "convert then check Number.isNaN before arithmetic"
+              },
+              {
+                "key": "B",
+                "text": "Number('') produces zero, which may require separate empty-input validation"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with console.log"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-1-04-strict-equality",
+            "type": "single-choice",
+            "prompt": "A program needs to apply strict equality. Which approach is most reliable?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "strict equality"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use strict equality for predictable branch conditions"
+              },
+              {
+                "key": "B",
+                "text": "0 == false is true but 0 === false is false"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with console.log"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use strict equality for predictable branch conditions. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-1-05-template-literals",
+            "type": "single-choice",
+            "prompt": "A program needs to apply template literals. Which approach is most reliable?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "template literals"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use template literals for readable calculated output"
+              },
+              {
+                "key": "B",
+                "text": "ordinary quoted strings do not interpolate ${expressions}"
+              },
+              {
+                "key": "C",
+                "text": "Suppress every error"
+              },
+              {
+                "key": "D",
+                "text": "Replace the operation with console.log"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use template literals for readable calculated output. Verify this behavior with a minimal runnable example and observable output."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "javascript-beginner-module-2",
+      "title": "Control Flow and Array Processing",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "javascript-conditions",
+          "title": "Conditions and Boolean Logic",
+          "summary": "Write explicit decisions with comparisons, truthiness, logical operators, optional chaining, and tested boundaries.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the JavaScript behavior taught in Conditions and Boolean Logic",
+            "Test behavior using observable output and assertions"
+          ],
+          "blocks": [
+            {
+              "stableKey": "javascript-conditions-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "An `if` statement selects a branch based on a boolean or a value converted to boolean. Empty strings, zero, `NaN`, `null`, `undefined`, and `false` are falsy; strings such as `'false'` are truthy. Use `&&` when both conditions are required, `||` for alternatives, and `!` to negate. The nullish-coalescing operator `??` supplies a default only for `null` or `undefined`, unlike `||`, which also replaces valid values such as zero. Optional chaining `?.` safely stops property access when the receiver is nullish. Always test values immediately below, at, and above a policy boundary."
+            },
+            {
+              "stableKey": "javascript-conditions-example",
+              "type": "code",
+              "heading": "Worked JavaScript example",
+              "bodyMarkdown": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+              "codeLanguage": "javascript",
+              "codeSource": "const score = 72;\nconst submitted = true;\nconst result = score >= 0 && score <= 100 && submitted ? 'recorded' : 'review input';\nconsole.log(result);",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "javascript-conditions-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "javascript-conditions-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a grade classifier for scores 0\u2013100. Test every boundary plus -1 and 101, and explain why strict equality and each comparison operator were selected. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+              "expectedOutcomes": [
+                "Runnable JavaScript with clear bindings",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "javascript-conditions-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "js-beg-lesson-3-01-const-and-let",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about const and let is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "const and let"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "const does not make a referenced object deeply immutable"
+                  },
+                  {
+                    "key": "B",
+                    "text": "const prevents rebinding while let permits deliberate reassignment"
+                  },
+                  {
+                    "key": "C",
+                    "text": "declare stable bindings with const and state that changes with let"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can only be used inside a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-3-02-typeof",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about typeof is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "typeof"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "typeof null is historically 'object'"
+                  },
+                  {
+                    "key": "B",
+                    "text": "typeof reports a runtime type string"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use typeof while diagnosing values at an input boundary"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can only be used inside a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-3-03-Number-conversion",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Number conversion is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Number conversion"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Number('') produces zero, which may require separate empty-input validation"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Number converts an entire value to numeric form"
+                  },
+                  {
+                    "key": "C",
+                    "text": "convert then check Number.isNaN before arithmetic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can only be used inside a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "An `if` statement selects a branch based on a boolean or a value converted to boolean."
+          ],
+          "commonMistakes": [
+            "using || can replace valid zero or empty-string input",
+            "optional chaining does not validate a present value's type"
+          ],
+          "interviewQuestions": [
+            "Explain nullish coalescing with a minimal JavaScript example."
+          ]
+        },
+        {
+          "stableKey": "javascript-loops-arrays",
+          "title": "Loops and Array Iteration",
+          "summary": "Use `for...of`, indexed loops, `while`, array methods, accumulators, and clear termination rules.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the JavaScript behavior taught in Loops and Array Iteration",
+            "Test behavior using observable output and assertions"
+          ],
+          "blocks": [
+            {
+              "stableKey": "javascript-loops-arrays-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Use `for...of` to consume array values directly and a classic indexed `for` loop when the index is part of the problem. `for...in` enumerates property keys and is usually the wrong choice for array values. An accumulator is initialized once before a loop and updated once per accepted item. `while` loops suit state-dependent repetition but must make progress on every normal path. Array methods such as `map`, `filter`, and `reduce` create expressive transformations; begin with a loop when it makes state changes easier to inspect. Avoid modifying an array's length while iterating over that same array."
+            },
+            {
+              "stableKey": "javascript-loops-arrays-example",
+              "type": "code",
+              "heading": "Worked JavaScript example",
+              "bodyMarkdown": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+              "codeLanguage": "javascript",
+              "codeSource": "const scores = [70, 82, 91];\nlet total = 0;\nfor (const score of scores) total += score;\nconsole.log(total / scores.length);",
+              "expectedOutput": "81"
+            },
+            {
+              "stableKey": "javascript-loops-arrays-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "javascript-loops-arrays-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process daily study minutes, ignore invalid negatives, stop at a null sentinel, and calculate a total and average without mutating the original array. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+              "expectedOutcomes": [
+                "Runnable JavaScript with clear bindings",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "javascript-loops-arrays-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "js-beg-lesson-4-01-const-and-let",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes const and let in JavaScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "const and let"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "const prevents rebinding while let permits deliberate reassignment"
+                  },
+                  {
+                    "key": "B",
+                    "text": "const does not make a referenced object deeply immutable"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The engine chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-4-02-typeof",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes typeof in JavaScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "typeof"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "typeof reports a runtime type string"
+                  },
+                  {
+                    "key": "B",
+                    "text": "typeof null is historically 'object'"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The engine chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-4-03-Number-conversion",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes Number conversion in JavaScript?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Number conversion"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Number converts an entire value to numeric form"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Number('') produces zero, which may require separate empty-input validation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "The engine chooses behavior randomly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It requires an external library"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Use `for...of` to consume array values directly and a classic indexed `for` loop when the index is part of the problem."
+          ],
+          "commonMistakes": [
+            "ignoring map's returned array loses the transformed result",
+            "filter does not modify each selected item"
+          ],
+          "interviewQuestions": [
+            "Explain array map with a minimal JavaScript example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "javascript-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "js-beg-module-2-06-truthiness",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about truthiness is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "truthiness"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "non-empty strings including '0' and 'false' are truthy"
+              },
+              {
+                "key": "B",
+                "text": "conditions convert non-boolean values using defined truthiness rules"
+              },
+              {
+                "key": "C",
+                "text": "convert user intent explicitly when strings such as 'false' are possible"
+              },
+              {
+                "key": "D",
+                "text": "It can only be used inside a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "non-empty strings including '0' and 'false' are truthy. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-2-07-nullish-coalescing",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about nullish coalescing is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "nullish coalescing"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "using || can replace valid zero or empty-string input"
+              },
+              {
+                "key": "B",
+                "text": "?? defaults only null or undefined"
+              },
+              {
+                "key": "C",
+                "text": "use ?? when zero and empty string are valid values"
+              },
+              {
+                "key": "D",
+                "text": "It can only be used inside a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "using || can replace valid zero or empty-string input. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-2-08-optional-chaining",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about optional chaining is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "optional chaining"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "optional chaining does not validate a present value's type"
+              },
+              {
+                "key": "B",
+                "text": "?. stops a property chain on null or undefined"
+              },
+              {
+                "key": "C",
+                "text": "use optional chaining for genuinely optional nested data"
+              },
+              {
+                "key": "D",
+                "text": "It can only be used inside a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "optional chaining does not validate a present value's type. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-2-09-for-of",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about for of is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "for of"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "for...in yields property keys rather than array values"
+              },
+              {
+                "key": "B",
+                "text": "for...of iterates values from an iterable"
+              },
+              {
+                "key": "C",
+                "text": "use for...of for array values when no index is needed"
+              },
+              {
+                "key": "D",
+                "text": "It can only be used inside a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "for...in yields property keys rather than array values. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-2-10-array-map",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about array map is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "array map"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "ignoring map's returned array loses the transformed result"
+              },
+              {
+                "key": "B",
+                "text": "map creates a new array from one result per input"
+              },
+              {
+                "key": "C",
+                "text": "use map for a pure one-to-one transformation"
+              },
+              {
+                "key": "D",
+                "text": "It can only be used inside a class"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "ignoring map's returned array loses the transformed result. Verify this behavior with a minimal runnable example and observable output."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "javascript-beginner-module-3",
+      "title": "Functions, Collections, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "javascript-functions",
+          "title": "Functions, Parameters, and Scope",
+          "summary": "Create focused functions with explicit contracts, return values, defaults, lexical scope, and testable behavior.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the JavaScript behavior taught in Functions, Parameters, and Scope",
+            "Test behavior using observable output and assertions"
+          ],
+          "blocks": [
+            {
+              "stableKey": "javascript-functions-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Functions should receive dependencies as parameters and return useful values. A function without an explicit return evaluates to `undefined`; logging is not a substitute for returning data. Function declarations are hoisted, while function expressions assigned to `const` are not usable before initialization. JavaScript uses lexical scope: inner code can read bindings from surrounding scopes, but local bindings do not escape. Default parameters apply when an argument is `undefined`. Arrow functions are concise and capture surrounding `this`; use ordinary functions when dynamic method `this` behavior is intended. Avoid hidden mutation of globals because it makes tests order-dependent."
+            },
+            {
+              "stableKey": "javascript-functions-example",
+              "type": "code",
+              "heading": "Worked JavaScript example",
+              "bodyMarkdown": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+              "codeLanguage": "javascript",
+              "codeSource": "function calculateTotal(price, quantity = 1) {\n  if (quantity < 0) throw new RangeError('quantity must be non-negative');\n  return price * quantity;\n}\nconsole.log(calculateTotal(125, 2));",
+              "expectedOutput": "250"
+            },
+            {
+              "stableKey": "javascript-functions-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "javascript-functions-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement `studyProgress(completed, planned)` with explicit validation, zero-plan behavior, a returned percentage, and tests for normal, boundary, and invalid inputs. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+              "expectedOutcomes": [
+                "Runnable JavaScript with clear bindings",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "javascript-functions-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "js-beg-lesson-5-01-const-and-let",
+                "type": "single-choice",
+                "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "const and let"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "declare stable bindings with const and state that changes with let"
+                  },
+                  {
+                    "key": "B",
+                    "text": "const does not make a referenced object deeply immutable"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with console.log"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-5-02-typeof",
+                "type": "single-choice",
+                "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "typeof"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use typeof while diagnosing values at an input boundary"
+                  },
+                  {
+                    "key": "B",
+                    "text": "typeof null is historically 'object'"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with console.log"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-5-03-Number-conversion",
+                "type": "single-choice",
+                "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Number conversion"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "convert then check Number.isNaN before arithmetic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Number('') produces zero, which may require separate empty-input validation"
+                  },
+                  {
+                    "key": "C",
+                    "text": "Suppress every error"
+                  },
+                  {
+                    "key": "D",
+                    "text": "Replace the operation with console.log"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Functions should receive dependencies as parameters and return useful values."
+          ],
+          "commonMistakes": [
+            "no progress toward termination can create an infinite loop",
+            "console.log does not return the displayed value"
+          ],
+          "interviewQuestions": [
+            "Explain while loops with a minimal JavaScript example."
+          ]
+        },
+        {
+          "stableKey": "javascript-objects-project",
+          "title": "Objects, Collections, and a Progress Tracker",
+          "summary": "Apply arrays, objects, Map, Set, destructuring, immutable updates, and modular design in a progress-tracker capstone.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply the JavaScript behavior taught in Objects, Collections, and a Progress Tracker",
+            "Test behavior using observable output and assertions"
+          ],
+          "blocks": [
+            {
+              "stableKey": "javascript-objects-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Arrays represent ordered sequences. Plain objects are effective records with string or symbol property keys. `Map` supports keys of any type and predictable iteration, while `Set` stores unique values. Destructuring extracts named fields and spread syntax can create shallow copies for immutable updates. A shallow copy does not clone nested objects, so update nested state deliberately. Check own properties with `Object.hasOwn` when inherited names must not count. Separate input/output from domain functions so progress calculations can be tested without a browser. Persisted JSON cannot represent functions, Map, Set, `undefined`, or circular references directly."
+            },
+            {
+              "stableKey": "javascript-objects-project-example",
+              "type": "code",
+              "heading": "Worked JavaScript example",
+              "bodyMarkdown": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+              "codeLanguage": "javascript",
+              "codeSource": "const progress = { basics: 100, loops: 70, functions: 40 };\nconst completed = Object.entries(progress)\n  .filter(([, percent]) => percent === 100)\n  .map(([topic]) => topic);\nconsole.log(completed);",
+              "expectedOutput": "[ 'basics' ]"
+            },
+            {
+              "stableKey": "javascript-objects-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "javascript-objects-project-practice",
+              "title": "Build and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a progress tracker that adds and updates topics immutably, validates 0\u2013100 percentages, lists completed topics, and computes an average. Include at least ten assertions. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+              "expectedOutcomes": [
+                "Runnable JavaScript with clear bindings",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 35
+            }
+          ],
+          "quiz": {
+            "stableKey": "javascript-objects-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "js-beg-lesson-6-01-const-and-let",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about const and let is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "const and let"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "const does not make a referenced object deeply immutable"
+                  },
+                  {
+                    "key": "B",
+                    "text": "const prevents rebinding while let permits deliberate reassignment"
+                  },
+                  {
+                    "key": "C",
+                    "text": "declare stable bindings with const and state that changes with let"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can only be used inside a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-6-02-typeof",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about typeof is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "typeof"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "typeof null is historically 'object'"
+                  },
+                  {
+                    "key": "B",
+                    "text": "typeof reports a runtime type string"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use typeof while diagnosing values at an input boundary"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can only be used inside a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output."
+              },
+              {
+                "stableId": "js-beg-lesson-6-03-Number-conversion",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about Number conversion is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "Number conversion"
+                ],
+                "objectiveIds": [
+                  "javascript-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "Number('') produces zero, which may require separate empty-input validation"
+                  },
+                  {
+                    "key": "B",
+                    "text": "Number converts an entire value to numeric form"
+                  },
+                  {
+                    "key": "C",
+                    "text": "convert then check Number.isNaN before arithmetic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "It can only be used inside a class"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Arrays represent ordered sequences."
+          ],
+          "commonMistakes": [
+            "passing null does not activate a default parameter",
+            "spread creates only a shallow copy"
+          ],
+          "interviewQuestions": [
+            "Explain default parameters with a minimal JavaScript example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "javascript-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "js-beg-module-3-11-array-filter",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes array filter in JavaScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "array filter"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "filter returns items whose callback is truthy"
+              },
+              {
+                "key": "B",
+                "text": "filter does not modify each selected item"
+              },
+              {
+                "key": "C",
+                "text": "The engine chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "filter returns items whose callback is truthy. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-3-12-reduce",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes reduce in JavaScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "reduce"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "reduce combines values through an accumulator"
+              },
+              {
+                "key": "B",
+                "text": "omitting the initial value changes behavior and fails on an empty array"
+              },
+              {
+                "key": "C",
+                "text": "The engine chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "reduce combines values through an accumulator. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-3-13-while-loops",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes while loops in JavaScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "while loops"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "while repeats while its condition remains truthy"
+              },
+              {
+                "key": "B",
+                "text": "no progress toward termination can create an infinite loop"
+              },
+              {
+                "key": "C",
+                "text": "The engine chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "while repeats while its condition remains truthy. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-3-14-return",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes return in JavaScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "return"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "return ends a function call and supplies its result"
+              },
+              {
+                "key": "B",
+                "text": "console.log does not return the displayed value"
+              },
+              {
+                "key": "C",
+                "text": "The engine chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "return ends a function call and supplies its result. Verify this behavior with a minimal runnable example and observable output."
+          },
+          {
+            "stableId": "js-beg-module-3-15-lexical-scope",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes lexical scope in JavaScript?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "lexical scope"
+            ],
+            "objectiveIds": [
+              "javascript-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "name lookup follows the scopes where functions are defined"
+              },
+              {
+                "key": "B",
+                "text": "local bindings cannot be read outside their scope"
+              },
+              {
+                "key": "C",
+                "text": "The engine chooses behavior randomly"
+              },
+              {
+                "key": "D",
+                "text": "It requires an external library"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "name lookup follows the scopes where functions are defined. Verify this behavior with a minimal runnable example and observable output."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "javascript-beginner-mock-1",
+      "title": "JavaScript Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "js-beg-mock-1-01-const-and-let",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes const and let in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const and let"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "const prevents rebinding while let permits deliberate reassignment"
+            },
+            {
+              "key": "B",
+              "text": "const does not make a referenced object deeply immutable"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-02-typeof",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes typeof in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typeof"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "typeof reports a runtime type string"
+            },
+            {
+              "key": "B",
+              "text": "typeof null is historically 'object'"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-03-Number-conversion",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Number conversion in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Number conversion"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Number converts an entire value to numeric form"
+            },
+            {
+              "key": "B",
+              "text": "Number('') produces zero, which may require separate empty-input validation"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-04-strict-equality",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes strict equality in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict equality"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "=== compares without type coercion"
+            },
+            {
+              "key": "B",
+              "text": "0 == false is true but 0 === false is false"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "=== compares without type coercion. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-05-template-literals",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes template literals in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "template literals"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "backtick strings interpolate expressions with ${}"
+            },
+            {
+              "key": "B",
+              "text": "ordinary quoted strings do not interpolate ${expressions}"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "backtick strings interpolate expressions with ${}. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-06-truthiness",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes truthiness in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "truthiness"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "conditions convert non-boolean values using defined truthiness rules"
+            },
+            {
+              "key": "B",
+              "text": "non-empty strings including '0' and 'false' are truthy"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "conditions convert non-boolean values using defined truthiness rules. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-07-nullish-coalescing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes nullish coalescing in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "nullish coalescing"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "?? defaults only null or undefined"
+            },
+            {
+              "key": "B",
+              "text": "using || can replace valid zero or empty-string input"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "?? defaults only null or undefined. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-08-optional-chaining",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes optional chaining in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "optional chaining"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "?. stops a property chain on null or undefined"
+            },
+            {
+              "key": "B",
+              "text": "optional chaining does not validate a present value's type"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "?. stops a property chain on null or undefined. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-09-for-of",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes for of in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for of"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "for...of iterates values from an iterable"
+            },
+            {
+              "key": "B",
+              "text": "for...in yields property keys rather than array values"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "for...of iterates values from an iterable. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-10-array-map",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes array map in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array map"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "map creates a new array from one result per input"
+            },
+            {
+              "key": "B",
+              "text": "ignoring map's returned array loses the transformed result"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "map creates a new array from one result per input. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-11-array-filter",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes array filter in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array filter"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "filter returns items whose callback is truthy"
+            },
+            {
+              "key": "B",
+              "text": "filter does not modify each selected item"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "filter returns items whose callback is truthy. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-12-reduce",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes reduce in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "reduce"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "reduce combines values through an accumulator"
+            },
+            {
+              "key": "B",
+              "text": "omitting the initial value changes behavior and fails on an empty array"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "reduce combines values through an accumulator. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-13-while-loops",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes while loops in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while loops"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "while repeats while its condition remains truthy"
+            },
+            {
+              "key": "B",
+              "text": "no progress toward termination can create an infinite loop"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "while repeats while its condition remains truthy. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-14-return",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes return in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "return"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return ends a function call and supplies its result"
+            },
+            {
+              "key": "B",
+              "text": "console.log does not return the displayed value"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return ends a function call and supplies its result. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-15-lexical-scope",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes lexical scope in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "lexical scope"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "name lookup follows the scopes where functions are defined"
+            },
+            {
+              "key": "B",
+              "text": "local bindings cannot be read outside their scope"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "name lookup follows the scopes where functions are defined. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-16-default-parameters",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes default parameters in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "default parameters"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "defaults apply when an argument is undefined"
+            },
+            {
+              "key": "B",
+              "text": "passing null does not activate a default parameter"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "defaults apply when an argument is undefined. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-17-objects",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes objects in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "objects"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "objects group named properties"
+            },
+            {
+              "key": "B",
+              "text": "spread creates only a shallow copy"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "objects group named properties. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-18-Map",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Map in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Map"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Map supports any key type and preserves insertion iteration"
+            },
+            {
+              "key": "B",
+              "text": "JSON.stringify does not serialize Map entries directly"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Map supports any key type and preserves insertion iteration. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-19-Set",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Set in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Set"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Set stores unique values"
+            },
+            {
+              "key": "B",
+              "text": "Set has no positional indexing"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Set stores unique values. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-1-20-exceptions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes exceptions in JavaScript?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "exceptions"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "throw communicates a failure that normal output cannot represent"
+            },
+            {
+              "key": "B",
+              "text": "a broad catch that discards the error hides defects"
+            },
+            {
+              "key": "C",
+              "text": "The engine chooses behavior randomly"
+            },
+            {
+              "key": "D",
+              "text": "It requires an external library"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "throw communicates a failure that normal output cannot represent. Verify this behavior with a minimal runnable example and observable output."
+        }
+      ]
+    },
+    {
+      "stableKey": "javascript-beginner-mock-2",
+      "title": "JavaScript Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "js-beg-mock-2-01-const-and-let",
+          "type": "single-choice",
+          "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const and let"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "declare stable bindings with const and state that changes with let"
+            },
+            {
+              "key": "B",
+              "text": "const does not make a referenced object deeply immutable"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-02-typeof",
+          "type": "single-choice",
+          "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typeof"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use typeof while diagnosing values at an input boundary"
+            },
+            {
+              "key": "B",
+              "text": "typeof null is historically 'object'"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-03-Number-conversion",
+          "type": "single-choice",
+          "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Number conversion"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "convert then check Number.isNaN before arithmetic"
+            },
+            {
+              "key": "B",
+              "text": "Number('') produces zero, which may require separate empty-input validation"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-04-strict-equality",
+          "type": "single-choice",
+          "prompt": "A program needs to apply strict equality. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict equality"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use strict equality for predictable branch conditions"
+            },
+            {
+              "key": "B",
+              "text": "0 == false is true but 0 === false is false"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use strict equality for predictable branch conditions. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-05-template-literals",
+          "type": "single-choice",
+          "prompt": "A program needs to apply template literals. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "template literals"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use template literals for readable calculated output"
+            },
+            {
+              "key": "B",
+              "text": "ordinary quoted strings do not interpolate ${expressions}"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use template literals for readable calculated output. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-06-truthiness",
+          "type": "single-choice",
+          "prompt": "A program needs to apply truthiness. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "truthiness"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "convert user intent explicitly when strings such as 'false' are possible"
+            },
+            {
+              "key": "B",
+              "text": "non-empty strings including '0' and 'false' are truthy"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "convert user intent explicitly when strings such as 'false' are possible. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-07-nullish-coalescing",
+          "type": "single-choice",
+          "prompt": "A program needs to apply nullish coalescing. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "nullish coalescing"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use ?? when zero and empty string are valid values"
+            },
+            {
+              "key": "B",
+              "text": "using || can replace valid zero or empty-string input"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use ?? when zero and empty string are valid values. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-08-optional-chaining",
+          "type": "single-choice",
+          "prompt": "A program needs to apply optional chaining. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "optional chaining"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use optional chaining for genuinely optional nested data"
+            },
+            {
+              "key": "B",
+              "text": "optional chaining does not validate a present value's type"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use optional chaining for genuinely optional nested data. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-09-for-of",
+          "type": "single-choice",
+          "prompt": "A program needs to apply for of. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for of"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use for...of for array values when no index is needed"
+            },
+            {
+              "key": "B",
+              "text": "for...in yields property keys rather than array values"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use for...of for array values when no index is needed. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-10-array-map",
+          "type": "single-choice",
+          "prompt": "A program needs to apply array map. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array map"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use map for a pure one-to-one transformation"
+            },
+            {
+              "key": "B",
+              "text": "ignoring map's returned array loses the transformed result"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use map for a pure one-to-one transformation. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-11-array-filter",
+          "type": "single-choice",
+          "prompt": "A program needs to apply array filter. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array filter"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use filter to select records without mutating the source"
+            },
+            {
+              "key": "B",
+              "text": "filter does not modify each selected item"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use filter to select records without mutating the source. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-12-reduce",
+          "type": "single-choice",
+          "prompt": "A program needs to apply reduce. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "reduce"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "provide an explicit initial accumulator value"
+            },
+            {
+              "key": "B",
+              "text": "omitting the initial value changes behavior and fails on an empty array"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "provide an explicit initial accumulator value. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-13-while-loops",
+          "type": "single-choice",
+          "prompt": "A program needs to apply while loops. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while loops"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "update condition state on every normal path"
+            },
+            {
+              "key": "B",
+              "text": "no progress toward termination can create an infinite loop"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "update condition state on every normal path. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-14-return",
+          "type": "single-choice",
+          "prompt": "A program needs to apply return. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "return"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return calculated data and format it at the interface"
+            },
+            {
+              "key": "B",
+              "text": "console.log does not return the displayed value"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return calculated data and format it at the interface. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-15-lexical-scope",
+          "type": "single-choice",
+          "prompt": "A program needs to apply lexical scope. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "lexical scope"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "pass changing dependencies as parameters"
+            },
+            {
+              "key": "B",
+              "text": "local bindings cannot be read outside their scope"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "pass changing dependencies as parameters. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-16-default-parameters",
+          "type": "single-choice",
+          "prompt": "A program needs to apply default parameters. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "default parameters"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use defaults for documented optional arguments"
+            },
+            {
+              "key": "B",
+              "text": "passing null does not activate a default parameter"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use defaults for documented optional arguments. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-17-objects",
+          "type": "single-choice",
+          "prompt": "A program needs to apply objects. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "objects"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use objects for records with known named fields"
+            },
+            {
+              "key": "B",
+              "text": "spread creates only a shallow copy"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use objects for records with known named fields. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-18-Map",
+          "type": "single-choice",
+          "prompt": "A program needs to apply Map. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Map"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use Map when non-string keys or frequent keyed updates matter"
+            },
+            {
+              "key": "B",
+              "text": "JSON.stringify does not serialize Map entries directly"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use Map when non-string keys or frequent keyed updates matter. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-19-Set",
+          "type": "single-choice",
+          "prompt": "A program needs to apply Set. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Set"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use Set for membership and duplicate removal"
+            },
+            {
+              "key": "B",
+              "text": "Set has no positional indexing"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use Set for membership and duplicate removal. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-2-20-exceptions",
+          "type": "single-choice",
+          "prompt": "A program needs to apply exceptions. Which approach is most reliable?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "exceptions"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "throw a specific Error subtype and catch only where recovery is possible"
+            },
+            {
+              "key": "B",
+              "text": "a broad catch that discards the error hides defects"
+            },
+            {
+              "key": "C",
+              "text": "Suppress every error"
+            },
+            {
+              "key": "D",
+              "text": "Replace the operation with console.log"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "throw a specific Error subtype and catch only where recovery is possible. Verify this behavior with a minimal runnable example and observable output."
+        }
+      ]
+    },
+    {
+      "stableKey": "javascript-beginner-mock-3",
+      "title": "JavaScript Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "js-beg-mock-3-01-const-and-let",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about const and let is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const and let"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "const does not make a referenced object deeply immutable"
+            },
+            {
+              "key": "B",
+              "text": "const prevents rebinding while let permits deliberate reassignment"
+            },
+            {
+              "key": "C",
+              "text": "declare stable bindings with const and state that changes with let"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-02-typeof",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about typeof is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "typeof"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "typeof null is historically 'object'"
+            },
+            {
+              "key": "B",
+              "text": "typeof reports a runtime type string"
+            },
+            {
+              "key": "C",
+              "text": "use typeof while diagnosing values at an input boundary"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-03-Number-conversion",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Number conversion is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Number conversion"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Number('') produces zero, which may require separate empty-input validation"
+            },
+            {
+              "key": "B",
+              "text": "Number converts an entire value to numeric form"
+            },
+            {
+              "key": "C",
+              "text": "convert then check Number.isNaN before arithmetic"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-04-strict-equality",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about strict equality is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "strict equality"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "0 == false is true but 0 === false is false"
+            },
+            {
+              "key": "B",
+              "text": "=== compares without type coercion"
+            },
+            {
+              "key": "C",
+              "text": "use strict equality for predictable branch conditions"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "0 == false is true but 0 === false is false. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-05-template-literals",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about template literals is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "template literals"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ordinary quoted strings do not interpolate ${expressions}"
+            },
+            {
+              "key": "B",
+              "text": "backtick strings interpolate expressions with ${}"
+            },
+            {
+              "key": "C",
+              "text": "use template literals for readable calculated output"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ordinary quoted strings do not interpolate ${expressions}. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-06-truthiness",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about truthiness is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "truthiness"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "non-empty strings including '0' and 'false' are truthy"
+            },
+            {
+              "key": "B",
+              "text": "conditions convert non-boolean values using defined truthiness rules"
+            },
+            {
+              "key": "C",
+              "text": "convert user intent explicitly when strings such as 'false' are possible"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "non-empty strings including '0' and 'false' are truthy. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-07-nullish-coalescing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about nullish coalescing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "nullish coalescing"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "using || can replace valid zero or empty-string input"
+            },
+            {
+              "key": "B",
+              "text": "?? defaults only null or undefined"
+            },
+            {
+              "key": "C",
+              "text": "use ?? when zero and empty string are valid values"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "using || can replace valid zero or empty-string input. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-08-optional-chaining",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about optional chaining is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "optional chaining"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "optional chaining does not validate a present value's type"
+            },
+            {
+              "key": "B",
+              "text": "?. stops a property chain on null or undefined"
+            },
+            {
+              "key": "C",
+              "text": "use optional chaining for genuinely optional nested data"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "optional chaining does not validate a present value's type. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-09-for-of",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about for of is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "for of"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "for...in yields property keys rather than array values"
+            },
+            {
+              "key": "B",
+              "text": "for...of iterates values from an iterable"
+            },
+            {
+              "key": "C",
+              "text": "use for...of for array values when no index is needed"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "for...in yields property keys rather than array values. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-10-array-map",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about array map is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array map"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ignoring map's returned array loses the transformed result"
+            },
+            {
+              "key": "B",
+              "text": "map creates a new array from one result per input"
+            },
+            {
+              "key": "C",
+              "text": "use map for a pure one-to-one transformation"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ignoring map's returned array loses the transformed result. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-11-array-filter",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about array filter is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "array filter"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "filter does not modify each selected item"
+            },
+            {
+              "key": "B",
+              "text": "filter returns items whose callback is truthy"
+            },
+            {
+              "key": "C",
+              "text": "use filter to select records without mutating the source"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "filter does not modify each selected item. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-12-reduce",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about reduce is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "reduce"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "omitting the initial value changes behavior and fails on an empty array"
+            },
+            {
+              "key": "B",
+              "text": "reduce combines values through an accumulator"
+            },
+            {
+              "key": "C",
+              "text": "provide an explicit initial accumulator value"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "omitting the initial value changes behavior and fails on an empty array. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-13-while-loops",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about while loops is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "while loops"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "no progress toward termination can create an infinite loop"
+            },
+            {
+              "key": "B",
+              "text": "while repeats while its condition remains truthy"
+            },
+            {
+              "key": "C",
+              "text": "update condition state on every normal path"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "no progress toward termination can create an infinite loop. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-14-return",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about return is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "return"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "console.log does not return the displayed value"
+            },
+            {
+              "key": "B",
+              "text": "return ends a function call and supplies its result"
+            },
+            {
+              "key": "C",
+              "text": "return calculated data and format it at the interface"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "console.log does not return the displayed value. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-15-lexical-scope",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about lexical scope is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "lexical scope"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "local bindings cannot be read outside their scope"
+            },
+            {
+              "key": "B",
+              "text": "name lookup follows the scopes where functions are defined"
+            },
+            {
+              "key": "C",
+              "text": "pass changing dependencies as parameters"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "local bindings cannot be read outside their scope. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-16-default-parameters",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about default parameters is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "default parameters"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "passing null does not activate a default parameter"
+            },
+            {
+              "key": "B",
+              "text": "defaults apply when an argument is undefined"
+            },
+            {
+              "key": "C",
+              "text": "use defaults for documented optional arguments"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "passing null does not activate a default parameter. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-17-objects",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about objects is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "objects"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "spread creates only a shallow copy"
+            },
+            {
+              "key": "B",
+              "text": "objects group named properties"
+            },
+            {
+              "key": "C",
+              "text": "use objects for records with known named fields"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "spread creates only a shallow copy. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-18-Map",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Map is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Map"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "JSON.stringify does not serialize Map entries directly"
+            },
+            {
+              "key": "B",
+              "text": "Map supports any key type and preserves insertion iteration"
+            },
+            {
+              "key": "C",
+              "text": "use Map when non-string keys or frequent keyed updates matter"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "JSON.stringify does not serialize Map entries directly. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-19-Set",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Set is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Set"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Set has no positional indexing"
+            },
+            {
+              "key": "B",
+              "text": "Set stores unique values"
+            },
+            {
+              "key": "C",
+              "text": "use Set for membership and duplicate removal"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Set has no positional indexing. Verify this behavior with a minimal runnable example and observable output."
+        },
+        {
+          "stableId": "js-beg-mock-3-20-exceptions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about exceptions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "exceptions"
+          ],
+          "objectiveIds": [
+            "javascript-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a broad catch that discards the error hides defects"
+            },
+            {
+              "key": "B",
+              "text": "throw communicates a failure that normal output cannot represent"
+            },
+            {
+              "key": "C",
+              "text": "throw a specific Error subtype and catch only where recovery is possible"
+            },
+            {
+              "key": "D",
+              "text": "It can only be used inside a class"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a broad catch that discards the error hides defects. Verify this behavior with a minimal runnable example and observable output."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "javascript-beginner-capstone",
+    "title": "JavaScript Learning Progress Tracker Capstone",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a JavaScript progress tracker that adds and updates topics without hidden global mutation, validates percentages, lists completed topics, calculates an average, handles invalid input explicitly, and separates domain functions from browser or console input/output. Include a README and at least ten assertions.",
+    "deliverables": [
+      "JavaScript source files",
+      "README with runtime instructions",
+      "Output from at least ten assertions",
+      "Reflection on one defect found through testing"
+    ],
+    "rubric": {
+      "correctness": 35,
+      "validation": 20,
+      "decomposition": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

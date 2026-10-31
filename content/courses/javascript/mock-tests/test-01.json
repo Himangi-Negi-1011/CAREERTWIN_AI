@@ -1,0 +1,703 @@
+{
+  "id": "mock-javascript-beginner-test-01",
+  "skillName": "JavaScript",
+  "skillSlug": "javascript",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "JavaScript Beginner Mock Test 1",
+  "description": "Comprehensive 50-minute mock examination for JavaScript at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "const and let",
+    "typeof",
+    "Number conversion",
+    "strict equality",
+    "template literals",
+    "truthiness",
+    "nullish coalescing",
+    "optional chaining",
+    "for of",
+    "array map",
+    "array filter",
+    "reduce",
+    "while loops",
+    "return",
+    "lexical scope",
+    "default parameters",
+    "objects",
+    "Map",
+    "Set",
+    "exceptions"
+  ],
+  "questions": [
+    {
+      "id": "mock-javascript-beginner-test-01-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes const and let in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "const prevents rebinding while let permits deliberate reassignment"
+        },
+        {
+          "id": "B",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "const and let",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes typeof in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "typeof reports a runtime type string"
+        },
+        {
+          "id": "B",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "typeof",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Number conversion in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Number converts an entire value to numeric form"
+        },
+        {
+          "id": "B",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Number conversion",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict equality in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "=== compares without type coercion"
+        },
+        {
+          "id": "B",
+          "text": "0 == false is true but 0 === false is false"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "=== compares without type coercion. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "strict equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes template literals in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "backtick strings interpolate expressions with ${}"
+        },
+        {
+          "id": "B",
+          "text": "ordinary quoted strings do not interpolate ${expressions}"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "backtick strings interpolate expressions with ${}. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "template literals",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q6",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes truthiness in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "conditions convert non-boolean values using defined truthiness rules"
+        },
+        {
+          "id": "B",
+          "text": "non-empty strings including '0' and 'false' are truthy"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "conditions convert non-boolean values using defined truthiness rules. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "truthiness",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q7",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes nullish coalescing in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "?? defaults only null or undefined"
+        },
+        {
+          "id": "B",
+          "text": "using || can replace valid zero or empty-string input"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "?? defaults only null or undefined. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "nullish coalescing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q8",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes optional chaining in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "?. stops a property chain on null or undefined"
+        },
+        {
+          "id": "B",
+          "text": "optional chaining does not validate a present value's type"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "?. stops a property chain on null or undefined. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "optional chaining",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q9",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes for of in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "for...of iterates values from an iterable"
+        },
+        {
+          "id": "B",
+          "text": "for...in yields property keys rather than array values"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "for...of iterates values from an iterable. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "for of",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q10",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes array map in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "map creates a new array from one result per input"
+        },
+        {
+          "id": "B",
+          "text": "ignoring map's returned array loses the transformed result"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "map creates a new array from one result per input. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q11",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes array filter in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "filter returns items whose callback is truthy"
+        },
+        {
+          "id": "B",
+          "text": "filter does not modify each selected item"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "filter returns items whose callback is truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array filter",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q12",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes reduce in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "reduce combines values through an accumulator"
+        },
+        {
+          "id": "B",
+          "text": "omitting the initial value changes behavior and fails on an empty array"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reduce combines values through an accumulator. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "reduce",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q13",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes while loops in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "while repeats while its condition remains truthy"
+        },
+        {
+          "id": "B",
+          "text": "no progress toward termination can create an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "while repeats while its condition remains truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q14",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes return in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return ends a function call and supplies its result"
+        },
+        {
+          "id": "B",
+          "text": "console.log does not return the displayed value"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return ends a function call and supplies its result. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "return",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q15",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes lexical scope in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "name lookup follows the scopes where functions are defined"
+        },
+        {
+          "id": "B",
+          "text": "local bindings cannot be read outside their scope"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "name lookup follows the scopes where functions are defined. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "lexical scope",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q16",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes default parameters in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "defaults apply when an argument is undefined"
+        },
+        {
+          "id": "B",
+          "text": "passing null does not activate a default parameter"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "defaults apply when an argument is undefined. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "default parameters",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q17",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes objects in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "objects group named properties"
+        },
+        {
+          "id": "B",
+          "text": "spread creates only a shallow copy"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "objects group named properties. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "objects",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q18",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Map in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Map supports any key type and preserves insertion iteration"
+        },
+        {
+          "id": "B",
+          "text": "JSON.stringify does not serialize Map entries directly"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Map supports any key type and preserves insertion iteration. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q19",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Set in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Set stores unique values"
+        },
+        {
+          "id": "B",
+          "text": "Set has no positional indexing"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Set stores unique values. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Set",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-01-q20",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes exceptions in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "throw communicates a failure that normal output cannot represent"
+        },
+        {
+          "id": "B",
+          "text": "a broad catch that discards the error hides defects"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "throw communicates a failure that normal output cannot represent. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "exceptions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.478Z",
+  "updatedAt": "2026-10-31T13:08:48.478Z"
+}

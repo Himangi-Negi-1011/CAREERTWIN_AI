@@ -1,0 +1,193 @@
+{
+  "id": "phase-javascript-beginner-mod-3",
+  "skillName": "JavaScript",
+  "skillSlug": "javascript",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-javascript-beginner-module-3",
+  "moduleTitle": "Functions, Collections, and a Project",
+  "title": "Functions, Collections, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Functions, Collections, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "array filter",
+    "reduce",
+    "while loops",
+    "return",
+    "lexical scope"
+  ],
+  "questions": [
+    {
+      "id": "phase-javascript-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes array filter in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "filter returns items whose callback is truthy"
+        },
+        {
+          "id": "B",
+          "text": "filter does not modify each selected item"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "filter returns items whose callback is truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array filter",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes reduce in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "reduce combines values through an accumulator"
+        },
+        {
+          "id": "B",
+          "text": "omitting the initial value changes behavior and fails on an empty array"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reduce combines values through an accumulator. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "reduce",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes while loops in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "while repeats while its condition remains truthy"
+        },
+        {
+          "id": "B",
+          "text": "no progress toward termination can create an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "while repeats while its condition remains truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes return in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return ends a function call and supplies its result"
+        },
+        {
+          "id": "B",
+          "text": "console.log does not return the displayed value"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return ends a function call and supplies its result. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "return",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+    },
+    {
+      "id": "phase-javascript-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes lexical scope in JavaScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "name lookup follows the scopes where functions are defined"
+        },
+        {
+          "id": "B",
+          "text": "local bindings cannot be read outside their scope"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "name lookup follows the scopes where functions are defined. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "lexical scope",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.478Z",
+  "updatedAt": "2026-10-31T13:08:48.478Z"
+}

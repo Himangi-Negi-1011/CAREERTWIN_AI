@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries",
+  "skillName": "Java",
+  "moduleId": "mod-2-java-beginner-module-2",
+  "title": "Conditions, Boolean Logic, and Boundaries",
+  "summary": "Express mutually exclusive decisions with comparisons, boolean operators, if/else, switch expressions, and explicit boundary tests.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Java behavior taught in Conditions, Boolean Logic, and Boundaries",
+    "Compile, run, and test the behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "java-obj-3",
+    "java-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-sec-1",
+      "heading": "Core model",
+      "content": "`if`, `else if`, and `else` select one path according to boolean conditions. `&&` and `||` short-circuit, which can protect later operations from invalid state. Use parentheses when operator precedence is not immediately clear. Compare strings and value objects with `.equals`, using a constant on the left when null is possible. Modern switch expressions work well for finite categories and require intentional exhaustiveness. Test values below, at, and above every threshold; `score >= 60` includes 60 while `score > 60` does not.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`if`, `else if`, and `else` select one path according to boolean conditions."
+      ],
+      "commonMistakes": [
+        "parseInt does not accept arbitrary decimal text",
+        "using non-short-circuit operators can evaluate unsafe expressions"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-sec-2",
+      "heading": "Worked Java example",
+      "content": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+      "codeExamples": [
+        {
+          "language": "java",
+          "code": "int score = 72;\nboolean submitted = true;\nif (score >= 0 && score <= 100 && submitted) {\n  System.out.println(\"recorded\");\n} else {\n  System.out.println(\"review input\");\n}",
+          "explanation": "Predict compiler and runtime behavior, compile the source, then run and compare the evidence.",
+          "expectedOutput": "recorded"
+        }
+      ],
+      "keyPoints": [
+        "`if`, `else if`, and `else` select one path according to boolean conditions."
+      ],
+      "commonMistakes": [
+        "parseInt does not accept arbitrary decimal text",
+        "using non-short-circuit operators can evaluate unsafe expressions"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the example in the matching source file.\n2. Predict compiler and runtime results.\n3. Compile with javac.\n4. Correct diagnostics one cause at a time.\n5. Run with java.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`if`, `else if`, and `else` select one path according to boolean conditions."
+      ],
+      "commonMistakes": [
+        "parseInt does not accept arbitrary decimal text",
+        "using non-short-circuit operators can evaluate unsafe expressions"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in Java.",
+      "description": "Implement a grade classifier for 0–100, reject invalid scores, and test every grade boundary plus -1 and 101. Submit source, compiler output, runtime output, tests, and a concise explanation.",
+      "instructions": [
+        "Implement a grade classifier for 0–100, reject invalid scores, and test every grade boundary plus -1 and 101. Submit source, compiler output, runtime output, tests, and a concise explanation."
+      ],
+      "starterCode": "// Java Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Compiling Java source with descriptive names",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Java operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about JDK is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "B",
+          "text": "the JDK includes development tools such as javac"
+        },
+        {
+          "id": "C",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a JRE-only installation may not provide javac. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about bytecode is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "B",
+          "text": "javac emits JVM bytecode in class files"
+        },
+        {
+          "id": "C",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "editing a class file is not a source workflow. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-java-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about main method is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "B",
+          "text": "the JVM entry point uses public static void main(String[] args)"
+        },
+        {
+          "id": "C",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a misspelled signature is not selected as the entry point. Confirm the rule by compiling and running a minimal program.",
+      "objectiveIds": [
+        "java-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Conditions, Boolean Logic, and Boundaries in Java. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-java-main",
+      "title": "Java Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Java.",
+      "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "java-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions, Boolean Logic, and Boundaries",
+        "Loops, Arrays, and Iteration"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Conditions, Boolean Logic, and Boundaries",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Conditions, Boolean Logic, and Boundaries."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Java",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.435Z"
+}

@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing",
+  "skillName": "TypeScript",
+  "moduleId": "mod-1-typescript-beginner-module-1",
+  "title": "Primitive Types, Unions, and Narrowing",
+  "summary": "Model values with primitive types and unions, then narrow uncertain inputs through runtime checks before using type-specific operations.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the TypeScript behavior taught in Primitive Types, Unions, and Narrowing",
+    "Use strict compiler evidence and runtime tests to verify the contract"
+  ],
+  "objectiveIds": [
+    "typescript-obj-1",
+    "typescript-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-sec-1",
+      "heading": "Core model",
+      "content": "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`. A union such as `string | number` says either representation is valid. Code must narrow the union before calling operations available to only one member. `typeof`, equality checks, `in`, and discriminant properties provide evidence the compiler can follow. Prefer `unknown` for untrusted input because it requires narrowing; `any` disables checking and lets defects spread. Literal unions such as `'planned' | 'complete'` restrict values more precisely than a general string.",
+      "codeExamples": [],
+      "keyPoints": [
+        "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
+      ],
+      "commonMistakes": [
+        "calling a string-only method on string | number is unsafe",
+        "casting unknown directly avoids checking but does not make data safe"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-sec-2",
+      "heading": "Worked TypeScript example",
+      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "function formatId(id: string | number): string {\n  return typeof id === 'number' ? id.toFixed(0) : id.trim();\n}\nconsole.log(formatId(42));\nconsole.log(formatId(' CT-7 '));",
+          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+          "expectedOutput": "42\nCT-7"
+        }
+      ],
+      "keyPoints": [
+        "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
+      ],
+      "commonMistakes": [
+        "calling a string-only method on string | number is unsafe",
+        "casting unknown directly avoids checking but does not make data safe"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
+      "codeExamples": [],
+      "keyPoints": [
+        "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
+      ],
+      "commonMistakes": [
+        "calling a string-only method on string | number is unsafe",
+        "casting unknown directly avoids checking but does not make data safe"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-ex-1",
+      "type": "coding",
+      "title": "Build, check, and explain",
+      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
+      "description": "Write a formatter accepting string, number, or null. Narrow every case explicitly, return a string, and prove with calls that no unsafe assertion is required. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "instructions": [
+        "Write a formatter accepting string, number, or null. Narrow every case explicitly, return a string, and prove with calls that no unsafe assertion is required. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+      ],
+      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "hints": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of type inference?",
+      "options": [
+        {
+          "id": "A",
+          "text": "rely on inference for obvious local values and annotate public boundaries"
+        },
+        {
+          "id": "B",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of strict mode?",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable strict in tsconfig for new application code"
+        },
+        {
+          "id": "B",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of annotations?",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotate function boundaries when the contract should remain stable"
+        },
+        {
+          "id": "B",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "C",
+          "text": "Replace the type with any"
+        },
+        {
+          "id": "D",
+          "text": "Use an unchecked assertion at every call"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Primitive Types, Unions, and Narrowing in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-typescript-main",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for TypeScript.",
+      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "typescript-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "TypeScript Setup and Type Inference",
+        "Primitive Types, Unions, and Narrowing"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Primitive Types, Unions, and Narrowing",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Primitive Types, Unions, and Narrowing."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using TypeScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.687Z"
+}

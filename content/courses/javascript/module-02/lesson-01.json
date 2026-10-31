@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic",
+  "skillName": "JavaScript",
+  "moduleId": "mod-2-javascript-beginner-module-2",
+  "title": "Conditions and Boolean Logic",
+  "summary": "Write explicit decisions with comparisons, truthiness, logical operators, optional chaining, and tested boundaries.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the JavaScript behavior taught in Conditions and Boolean Logic",
+    "Test behavior using observable output and assertions"
+  ],
+  "objectiveIds": [
+    "javascript-obj-3",
+    "javascript-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-sec-1",
+      "heading": "Core model",
+      "content": "An `if` statement selects a branch based on a boolean or a value converted to boolean. Empty strings, zero, `NaN`, `null`, `undefined`, and `false` are falsy; strings such as `'false'` are truthy. Use `&&` when both conditions are required, `||` for alternatives, and `!` to negate. The nullish-coalescing operator `??` supplies a default only for `null` or `undefined`, unlike `||`, which also replaces valid values such as zero. Optional chaining `?.` safely stops property access when the receiver is nullish. Always test values immediately below, at, and above a policy boundary.",
+      "codeExamples": [],
+      "keyPoints": [
+        "An `if` statement selects a branch based on a boolean or a value converted to boolean."
+      ],
+      "commonMistakes": [
+        "using || can replace valid zero or empty-string input",
+        "optional chaining does not validate a present value's type"
+      ]
+    },
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-sec-2",
+      "heading": "Worked JavaScript example",
+      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "const score = 72;\nconst submitted = true;\nconst result = score >= 0 && score <= 100 && submitted ? 'recorded' : 'review input';\nconsole.log(result);",
+          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+          "expectedOutput": "recorded"
+        }
+      ],
+      "keyPoints": [
+        "An `if` statement selects a branch based on a boolean or a value converted to boolean."
+      ],
+      "commonMistakes": [
+        "using || can replace valid zero or empty-string input",
+        "optional chaining does not validate a present value's type"
+      ]
+    },
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "An `if` statement selects a branch based on a boolean or a value converted to boolean."
+      ],
+      "commonMistakes": [
+        "using || can replace valid zero or empty-string input",
+        "optional chaining does not validate a present value's type"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-ex-1",
+      "type": "coding",
+      "title": "Build and explain",
+      "objective": "Master Build and explain and apply practical principles in JavaScript.",
+      "description": "Implement a grade classifier for scores 0–100. Test every boundary plus -1 and 101, and explain why strict equality and each comparison operator were selected. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "instructions": [
+        "Implement a grade classifier for scores 0–100. Test every boundary plus -1 and 101, and explain why strict equality and each comparison operator were selected. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+      ],
+      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "hints": [
+        "Runnable JavaScript with clear bindings",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Runnable JavaScript with clear bindings",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about const and let is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "B",
+          "text": "const prevents rebinding while let permits deliberate reassignment"
+        },
+        {
+          "id": "C",
+          "text": "declare stable bindings with const and state that changes with let"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about typeof is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "B",
+          "text": "typeof reports a runtime type string"
+        },
+        {
+          "id": "C",
+          "text": "use typeof while diagnosing values at an input boundary"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Number conversion is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "B",
+          "text": "Number converts an entire value to numeric form"
+        },
+        {
+          "id": "C",
+          "text": "convert then check Number.isNaN before arithmetic"
+        },
+        {
+          "id": "D",
+          "text": "It can only be used inside a class"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Conditions and Boolean Logic in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-javascript-main",
+      "title": "JavaScript Programming - Full Course",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for JavaScript.",
+      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "javascript-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions and Boolean Logic",
+        "Loops and Array Iteration"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Conditions and Boolean Logic",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Conditions and Boolean Logic."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using JavaScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.477Z"
+}

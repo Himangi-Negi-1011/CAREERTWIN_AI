@@ -1,0 +1,703 @@
+{
+  "id": "mock-go-beginner-test-02",
+  "skillName": "Go",
+  "skillSlug": "go",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Go Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for Go at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "modules",
+    "gofmt",
+    "packages",
+    "zero values",
+    "short declarations",
+    "errors",
+    "error wrapping",
+    "short circuit",
+    "for loops",
+    "switch",
+    "arrays",
+    "slices",
+    "maps",
+    "copy",
+    "multiple returns",
+    "methods",
+    "interfaces",
+    "goroutines",
+    "channels",
+    "context"
+  ],
+  "questions": [
+    {
+      "id": "mock-go-beginner-test-02-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of modules?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "initialize and commit go.mod"
+        },
+        {
+          "id": "B",
+          "text": "modules define an import path and dependency boundary"
+        },
+        {
+          "id": "C",
+          "text": "changing module identity breaks import assumptions"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "initialize and commit go.mod. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "modules",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of gofmt?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "format before review and tests"
+        },
+        {
+          "id": "B",
+          "text": "gofmt applies canonical source formatting"
+        },
+        {
+          "id": "C",
+          "text": "manual formatting conventions create needless drift"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "format before review and tests. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "gofmt",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of packages?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use package main with main for executables"
+        },
+        {
+          "id": "B",
+          "text": "a package groups compiled declarations"
+        },
+        {
+          "id": "C",
+          "text": "imported package names must be used"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use package main with main for executables. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "packages",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of zero values?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "design useful zero values where practical"
+        },
+        {
+          "id": "B",
+          "text": "every declared variable receives a type-specific zero value"
+        },
+        {
+          "id": "C",
+          "text": "zero does not always satisfy domain invariants"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "design useful zero values where practical. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "zero values",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of short declarations?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it for clear local initialization"
+        },
+        {
+          "id": "B",
+          "text": ":= declares at least one new local name"
+        },
+        {
+          "id": "C",
+          "text": "it is unavailable at package scope"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it for clear local initialization. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "short declarations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of errors?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "check errors before consuming dependent results"
+        },
+        {
+          "id": "B",
+          "text": "errors are ordinary returned values"
+        },
+        {
+          "id": "C",
+          "text": "discarding errors hides failure state"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "check errors before consuming dependent results. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "errors",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of error wrapping?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "wrap errors at meaningful boundaries"
+        },
+        {
+          "id": "B",
+          "text": "percent-w preserves an underlying error while adding context"
+        },
+        {
+          "id": "C",
+          "text": "formatting without percent-w prevents errors.Is traversal"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "wrap errors at meaningful boundaries. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "error wrapping",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of short circuit?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "put guards before dependent operations"
+        },
+        {
+          "id": "B",
+          "text": "logical operators may skip the right operand"
+        },
+        {
+          "id": "C",
+          "text": "bitwise operators are not logical short circuit"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "put guards before dependent operations. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "short circuit",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of for loops?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ensure state advances toward termination"
+        },
+        {
+          "id": "B",
+          "text": "for expresses all Go loop forms"
+        },
+        {
+          "id": "C",
+          "text": "range values are iteration copies"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ensure state advances toward termination. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "for loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of switch?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use conditionless switch for readable ranges"
+        },
+        {
+          "id": "B",
+          "text": "switch cases stop automatically"
+        },
+        {
+          "id": "C",
+          "text": "fallthrough must be explicit and is often avoidable"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use conditionless switch for readable ranges. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of arrays?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use them for truly fixed value-sized data"
+        },
+        {
+          "id": "B",
+          "text": "arrays have fixed length as part of their type"
+        },
+        {
+          "id": "C",
+          "text": "passing an array copies all elements"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use them for truly fixed value-sized data. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of slices?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "retain append returned value"
+        },
+        {
+          "id": "B",
+          "text": "slices describe a backing array region"
+        },
+        {
+          "id": "C",
+          "text": "sub-slices may share mutable storage"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "retain append returned value. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "slices",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of maps?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use comma-ok when absence matters"
+        },
+        {
+          "id": "B",
+          "text": "maps return a zero value for absent keys"
+        },
+        {
+          "id": "C",
+          "text": "writing to a nil map panics"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use comma-ok when absence matters. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "maps",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of copy?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "copy when an independent snapshot is needed"
+        },
+        {
+          "id": "B",
+          "text": "copy transfers elements between slices"
+        },
+        {
+          "id": "C",
+          "text": "assigning a slice copies only its descriptor"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "copy when an independent snapshot is needed. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "copy",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of multiple returns?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return result and error together"
+        },
+        {
+          "id": "B",
+          "text": "functions can return several typed values"
+        },
+        {
+          "id": "C",
+          "text": "using a result after non-nil error may violate its contract"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return result and error together. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "multiple returns",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of methods?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "choose pointer receivers for mutation or consistency"
+        },
+        {
+          "id": "B",
+          "text": "methods attach behavior to named receiver types"
+        },
+        {
+          "id": "C",
+          "text": "mixing receiver styles can alter method sets"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "choose pointer receivers for mutation or consistency. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of interfaces?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "define small interfaces where consumed"
+        },
+        {
+          "id": "B",
+          "text": "interfaces are satisfied implicitly"
+        },
+        {
+          "id": "C",
+          "text": "typed nil inside an interface can make the interface non-nil"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "define small interfaces where consumed. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of goroutines?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "define completion cancellation and error paths"
+        },
+        {
+          "id": "B",
+          "text": "goroutines execute functions concurrently"
+        },
+        {
+          "id": "C",
+          "text": "starting a goroutine without lifecycle control can leak work"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "define completion cancellation and error paths. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "goroutines",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of channels?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "let senders close after all sends"
+        },
+        {
+          "id": "B",
+          "text": "channels communicate typed values"
+        },
+        {
+          "id": "C",
+          "text": "sending on a closed channel panics"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "let senders close after all sends. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "channels",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    },
+    {
+      "id": "mock-go-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of context?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "pass context as the first parameter across boundaries"
+        },
+        {
+          "id": "B",
+          "text": "context carries cancellation and deadlines"
+        },
+        {
+          "id": "C",
+          "text": "storing context in a struct obscures request lifetime"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "pass context as the first parameter across boundaries. Confirm with gofmt, go test, and a focused program.",
+      "difficulty": "beginner",
+      "topic": "context",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-go-beginner-module-1-l1",
+      "recommendedLessonTitle": "Go Toolchain, Modules, and Packages"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.387Z",
+  "updatedAt": "2026-10-31T13:08:48.387Z"
+}

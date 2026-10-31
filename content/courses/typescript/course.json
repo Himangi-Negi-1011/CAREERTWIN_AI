@@ -1,0 +1,122 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000003",
+  "skillName": "TypeScript",
+  "learnerLevel": "beginner",
+  "preferredLanguage": "English",
+  "objectives": [
+    {
+      "id": "typescript-obj-1",
+      "statement": "Write and explain small Python programs",
+      "order": 1
+    },
+    {
+      "id": "typescript-obj-2",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 2
+    },
+    {
+      "id": "typescript-obj-3",
+      "statement": "Write and explain small Python programs",
+      "order": 3
+    },
+    {
+      "id": "typescript-obj-4",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 4
+    },
+    {
+      "id": "typescript-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "typescript-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
+    }
+  ],
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "modules": [
+    {
+      "id": "mod-1-typescript-beginner-module-1",
+      "title": "Compiler, Values, and Narrowing",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "order": 1,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "typescript-obj-1",
+        "typescript-obj-2"
+      ],
+      "lessonTitles": [
+        "TypeScript Setup and Type Inference",
+        "Primitive Types, Unions, and Narrowing"
+      ],
+      "checkpoint": "Pass the Compiler, Values, and Narrowing assessment with 70%+ score."
+    },
+    {
+      "id": "mod-2-typescript-beginner-module-2",
+      "title": "Typed Objects, Arrays, and Functions",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "order": 2,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "typescript-obj-3",
+        "typescript-obj-4"
+      ],
+      "lessonTitles": [
+        "Object Types, Interfaces, and Optional Properties",
+        "Typed Arrays and Function Contracts"
+      ],
+      "checkpoint": "Pass the Typed Objects, Arrays, and Functions assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3",
+      "title": "Generics, Validation, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "typescript-obj-5",
+        "typescript-obj-6"
+      ],
+      "lessonTitles": [
+        "Generics and Standard Utility Types",
+        "Runtime Validation and a Typed Progress Tracker"
+      ],
+      "checkpoint": "Pass the Generics, Validation, and a Project assessment with 70%+ score."
+    }
+  ],
+  "practiceActivities": [
+    "Hands-on coding labs for each core topic in TypeScript",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
+  ],
+  "assessmentCheckpoints": [
+    "Compiler, Values, and Narrowing Knowledge Check (70% pass threshold)",
+    "Typed Objects, Arrays, and Functions Knowledge Check (70% pass threshold)",
+    "Generics, Validation, and a Project Knowledge Check (70% pass threshold)"
+  ],
+  "projects": [
+    "Validated TypeScript Progress Tracker"
+  ],
+  "proficiencyCriteria": [
+    "Demonstrate 70%+ score on all concept knowledge checks",
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
+  ],
+  "resources": [
+    {
+      "title": "Official TypeScript Reference",
+      "organization": "Industry Standard Documentation",
+      "url": "https://developer.mozilla.org/en-US/",
+      "retrievedAt": "2026-10-31T13:08:48.686Z",
+      "reviewStatus": "curated"
+    }
+  ],
+  "contentVersion": 1,
+  "generationMode": "curated",
+  "reviewStatus": "approved"
+}

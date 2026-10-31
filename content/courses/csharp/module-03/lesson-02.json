@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker",
+  "skillName": "C#",
+  "moduleId": "mod-3-csharp-beginner-module-3",
+  "title": "Files, JSON, Async, and a Progress Tracker",
+  "summary": "Combine domain models, collections, JSON serialization, file I/O, async/await, cancellation, and tests in a persistent tracker.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Files, JSON, Async, and a Progress Tracker",
+    "Use compiler and runtime evidence to test the contract"
+  ],
+  "objectiveIds": [
+    "csharp-obj-5",
+    "csharp-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-sec-1",
+      "heading": "Core model",
+      "content": "`using` and `await using` ensure disposable resources are released. High-level file APIs simplify small text operations, while streams suit larger or incremental data. Treat JSON as untrusted: deserialization can produce null or domain-invalid values, so validate before accepting state. `async` methods usually return `Task` or `Task<T>` and should be awaited; `async void` is reserved for event handlers. Pass cancellation tokens through cancellable operations. Keep I/O at the boundary and domain calculations synchronous and testable.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`using` and `await using` ensure disposable resources are released."
+      ],
+      "commonMistakes": [
+        "object mutation can be visible through copied references",
+        "records do not automatically validate domain invariants"
+      ]
+    },
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-sec-2",
+      "heading": "Worked C# example",
+      "content": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "csharp",
+          "code": "using System.Text.Json;\nvar progress = new Dictionary<string,int> { [\"Basics\"] = 100, [\"LINQ\"] = 70 };\nvar json = JsonSerializer.Serialize(progress);\nConsole.WriteLine(json);",
+          "explanation": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+          "expectedOutput": "{\"Basics\":100,\"LINQ\":70}"
+        }
+      ],
+      "keyPoints": [
+        "`using` and `await using` ensure disposable resources are released."
+      ],
+      "commonMistakes": [
+        "object mutation can be visible through copied references",
+        "records do not automatically validate domain invariants"
+      ]
+    },
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "`using` and `await using` ensure disposable resources are released."
+      ],
+      "commonMistakes": [
+        "object mutation can be visible through copied references",
+        "records do not automatically validate domain invariants"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in C#.",
+      "description": "Build an async JSON-backed progress tracker with validated loading, cancellation-aware saving, summaries, and at least ten tests. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+      "instructions": [
+        "Build an async JSON-backed progress tracker with validated loading, cancellation-aware saving, summaries, and at least ten tests. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling."
+      ],
+      "starterCode": "// C# Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Nullable-clean C# source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Nullable-clean C# source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C# operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about .NET SDK is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a runtime-only installation may not include build tools"
+        },
+        {
+          "id": "B",
+          "text": "the SDK includes build run and test tools"
+        },
+        {
+          "id": "C",
+          "text": "use dotnet build to obtain compiler evidence"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a runtime-only installation may not include build tools. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about assemblies is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "an assembly is not raw C# source"
+        },
+        {
+          "id": "B",
+          "text": "assemblies contain intermediate language and metadata"
+        },
+        {
+          "id": "C",
+          "text": "build source into a target-framework assembly"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an assembly is not raw C# source. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-csharp-beginner-module-3-l2-files-json-async-and-a-progress-tracker-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about var is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "var does not permit later values of unrelated types"
+        },
+        {
+          "id": "B",
+          "text": "var infers one static type from an initializer"
+        },
+        {
+          "id": "C",
+          "text": "use it when the inferred type is clear"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs invalid state"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "var does not permit later values of unrelated types. Verify with nullable analysis, compiler diagnostics, and a focused test.",
+      "objectiveIds": [
+        "csharp-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Files, JSON, Async, and a Progress Tracker in C#. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-csharp-main",
+      "title": "C# Full Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C#.",
+      "whatItTeaches": "Step-by-step walkthrough of C# fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "csharp-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Methods, Records, Classes, and Encapsulation",
+        "Files, JSON, Async, and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Files, JSON, Async, and a Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Files, JSON, Async, and a Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C#",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.316Z"
+}

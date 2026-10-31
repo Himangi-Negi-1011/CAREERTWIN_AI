@@ -1,0 +1,193 @@
+{
+  "id": "phase-php-beginner-mod-2",
+  "skillName": "PHP",
+  "skillSlug": "php",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-php-beginner-module-2",
+  "moduleTitle": "Functions, Errors, and Domain Models",
+  "title": "Functions, Errors, and Domain Models Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Functions, Errors, and Domain Models.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "filter validation",
+    "null",
+    "match",
+    "arrays",
+    "foreach references"
+  ],
+  "questions": [
+    {
+      "id": "phase-php-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about filter validation is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "zero is valid but loosely equals false"
+        },
+        {
+          "id": "B",
+          "text": "validation filters test supported input formats"
+        },
+        {
+          "id": "C",
+          "text": "compare FILTER_VALIDATE_INT result strictly with false"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "zero is valid but loosely equals false. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "filter validation",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-php-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Arrays, and Iteration"
+    },
+    {
+      "id": "phase-php-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about null is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "null should not replace every error case"
+        },
+        {
+          "id": "B",
+          "text": "null represents deliberate absence"
+        },
+        {
+          "id": "C",
+          "text": "use nullable types only when absence is valid"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "null should not replace every error case. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "null",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-php-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Arrays, and Iteration"
+    },
+    {
+      "id": "phase-php-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about match is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an unmatched value throws"
+        },
+        {
+          "id": "B",
+          "text": "match uses strict comparison and returns a value"
+        },
+        {
+          "id": "C",
+          "text": "cover every allowed case or provide an intentional default"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an unmatched value throws. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-php-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Arrays, and Iteration"
+    },
+    {
+      "id": "phase-php-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about arrays is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "mixed key coercion can surprise careless input handling"
+        },
+        {
+          "id": "B",
+          "text": "PHP arrays are ordered maps with integer or string keys"
+        },
+        {
+          "id": "C",
+          "text": "choose keys that express the data model"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "mixed key coercion can surprise careless input handling. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-php-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Arrays, and Iteration"
+    },
+    {
+      "id": "phase-php-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about foreach references is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "the lingering reference should be unset after the loop"
+        },
+        {
+          "id": "B",
+          "text": "reference iteration can mutate original elements"
+        },
+        {
+          "id": "C",
+          "text": "avoid references unless mutation is intended"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the lingering reference should be unset after the loop. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "foreach references",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-php-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Arrays, and Iteration"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.524Z",
+  "updatedAt": "2026-10-31T13:08:48.524Z"
+}

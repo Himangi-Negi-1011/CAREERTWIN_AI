@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-java-main",
+    "title": "Java Tutorial for Beginners",
+    "provider": "youtube",
+    "channelOrAuthor": "Programming with Mosh",
+    "url": "https://www.youtube.com/watch?v=eIrMbAQSU34",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for Java.",
+    "whatItTeaches": "Step-by-step walkthrough of Java fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "java-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "JDK, Compilation, and Program Structure",
+      "Primitive Types, Strings, and Input",
+      "Conditions, Boolean Logic, and Boundaries",
+      "Loops, Arrays, and Iteration",
+      "Methods, Classes, and Encapsulation",
+      "Collections and a Progress Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

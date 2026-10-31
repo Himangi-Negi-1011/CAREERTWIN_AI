@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti",
+  "skillName": "C++",
+  "moduleId": "mod-1-cpp-beginner-module-1",
+  "title": "Compiling Modern C++ and Reading Diagnostics",
+  "summary": "Build a repeatable C++20 edit-compile-link-run workflow and distinguish compiler, linker, runtime, and logic failures.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Compiling Modern C++ and Reading Diagnostics",
+    "Compile and test behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "cpp-obj-1",
+    "cpp-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-sec-1",
+      "heading": "Core model",
+      "content": "Compile with a modern language mode and strict warnings, for example `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app`. Source is translated to object code and linked into an executable. Headers normally contain declarations while one or more source files provide definitions. A compiler diagnostic reports an invalid translation unit; a linker error reports a missing or duplicate definition. Read the earliest relevant message, fix one cause, rebuild, and do not run a stale executable after a failed build. Prefer standard facilities over compiler-specific extensions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Compile with a modern language mode and strict warnings, for example `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app`."
+      ],
+      "commonMistakes": [
+        "compiler defaults may use an older standard",
+        "warning-free does not prove logic correctness"
+      ]
+    },
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-sec-2",
+      "heading": "Worked C++ example",
+      "content": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "cpp",
+          "code": "#include <iostream>\nint main() {\n  const int lessons{6};\n  std::cout << \"C++: \" << lessons << \" lessons\\n\";\n}",
+          "explanation": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+          "expectedOutput": "C++: 6 lessons"
+        }
+      ],
+      "keyPoints": [
+        "Compile with a modern language mode and strict warnings, for example `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app`."
+      ],
+      "commonMistakes": [
+        "compiler defaults may use an older standard",
+        "warning-free does not prove logic correctness"
+      ]
+    },
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Compile with a modern language mode and strict warnings, for example `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app`."
+      ],
+      "commonMistakes": [
+        "compiler defaults may use an older standard",
+        "warning-free does not prove logic correctness"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C++.",
+      "description": "Compile as C++20 with strict warnings, create one type error and one missing-definition linker error, then explain and fix each diagnostic. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+      "instructions": [
+        "Compile as C++20 with strict warnings, create one type error and one missing-definition linker error, then explain and fix each diagnostic. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation."
+      ],
+      "starterCode": "// C++ Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C++ operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes C++20 mode in C++?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the language mode selects modern standard rules"
+        },
+        {
+          "id": "B",
+          "text": "compile with std=c++20 consistently"
+        },
+        {
+          "id": "C",
+          "text": "compiler defaults may use an older standard"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the language mode selects modern standard rules. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes warnings in C++?",
+      "options": [
+        {
+          "id": "A",
+          "text": "warnings expose suspicious translated code"
+        },
+        {
+          "id": "B",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "C",
+          "text": "warning-free does not prove logic correctness"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "warnings expose suspicious translated code. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-cpp-beginner-module-1-l1-compiling-modern-c-and-reading-diagnosti-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes linking in C++?",
+      "options": [
+        {
+          "id": "A",
+          "text": "linking resolves definitions across translation units"
+        },
+        {
+          "id": "B",
+          "text": "provide one definition for each used non-inline entity"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "linking resolves definitions across translation units. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Compiling Modern C++ and Reading Diagnostics in C++. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-cpp-main",
+      "title": "C++ Full Course for free",
+      "provider": "youtube",
+      "channelOrAuthor": "Bro Code",
+      "url": "https://www.youtube.com/watch?v=-TkoO8Z07hI",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C++.",
+      "whatItTeaches": "Step-by-step walkthrough of C++ fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "cpp-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "Compiling Modern C++ and Reading Diagnostics",
+        "Values, Types, Initialization, and Streams"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Compiling Modern C++ and Reading Diagnostics",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Compiling Modern C++ and Reading Diagnostics."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C++",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.259Z"
+}

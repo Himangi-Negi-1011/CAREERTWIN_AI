@@ -396,11 +396,8 @@ export function Landing() {
               </div>
 
               <div className="hero-trust">
-                <div className="avatar-stack" aria-hidden="true">
-                  <span>AK</span><span>RS</span><span>MJ</span><span>+</span>
-                </div>
                 <p>
-                  <strong>12,400+</strong> careers mapped this year <span className="dot-sep">•</span> 4.9/5 average rating
+                  <strong>100% Free & Private</strong> <span className="dot-sep">•</span> Verified skill roadmaps & AI mock interviews
                 </p>
               </div>
             </div>
@@ -459,16 +456,6 @@ export function Landing() {
           </div>
         </section>
 
-        {/* ============================== MARQUEE ============================== */}
-        <section className="marquee-wrap" aria-label="Trusted by people from">
-          <p className="marquee-label">Trusted by students and career-switchers from</p>
-          <div className="marquee">
-            <div className="marquee-track">
-              <span>Google</span><span>Microsoft</span><span>Amazon</span><span>Infosys</span><span>Flipkart</span><span>Adobe</span><span>Zoho</span><span>Swiggy</span><span>Razorpay</span><span>TCS</span>
-              <span aria-hidden="true">Google</span><span aria-hidden="true">Microsoft</span><span aria-hidden="true">Amazon</span><span aria-hidden="true">Infosys</span><span aria-hidden="true">Flipkart</span><span aria-hidden="true">Adobe</span><span aria-hidden="true">Zoho</span><span aria-hidden="true">Swiggy</span><span aria-hidden="true">Razorpay</span><span aria-hidden="true">TCS</span>
-            </div>
-          </div>
-        </section>
 
         {/* ============================== FEATURES ============================== */}
         <section id="features" className="section">
@@ -617,8 +604,8 @@ export function Landing() {
               <span>personalised roadmaps generated</span>
             </div>
             <div className="stat reveal">
-              <b><span>4.9</span></b>
-              <span>average learner rating</span>
+              <b><span>14+</span></b>
+              <span>production-ready skill courses</span>
             </div>
           </div>
         </section>

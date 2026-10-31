@@ -1,0 +1,193 @@
+{
+  "id": "phase-typescript-beginner-mod-3",
+  "skillName": "TypeScript",
+  "skillSlug": "typescript",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-typescript-beginner-module-3",
+  "moduleTitle": "Generics, Validation, and a Project",
+  "title": "Generics, Validation, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Generics, Validation, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "readonly",
+    "excess property checks",
+    "typed arrays",
+    "function return types",
+    "generics"
+  ],
+  "questions": [
+    {
+      "id": "phase-typescript-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes readonly in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "readonly prevents assignment through that typed reference"
+        },
+        {
+          "id": "B",
+          "text": "readonly is compile-time protection, not deep runtime freezing"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "readonly prevents assignment through that typed reference. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Generics and Standard Utility Types"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes excess property checks in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "fresh object literals are checked for unexpected keys"
+        },
+        {
+          "id": "B",
+          "text": "assigning through a broad variable can bypass the fresh-literal check"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "fresh object literals are checked for unexpected keys. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "excess property checks",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Generics and Standard Utility Types"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes typed arrays in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "T[] constrains each array element to T"
+        },
+        {
+          "id": "B",
+          "text": "a tuple and an array express different positional guarantees"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "T[] constrains each array element to T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "typed arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Generics and Standard Utility Types"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes function return types in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a return annotation protects the promised output contract"
+        },
+        {
+          "id": "B",
+          "text": "console output is not a returned value"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a return annotation protects the promised output contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "function return types",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Generics and Standard Utility Types"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes generics in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "generics preserve type relationships across positions"
+        },
+        {
+          "id": "B",
+          "text": "a generic appearing once adds complexity without a relationship"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "generics preserve type relationships across positions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generics",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
+      "recommendedLessonTitle": "Generics and Standard Utility Types"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.691Z",
+  "updatedAt": "2026-10-31T13:08:48.691Z"
+}

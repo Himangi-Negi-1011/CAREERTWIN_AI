@@ -52,6 +52,11 @@ PROJECT_RULES.md
 VERSION
 adapters/
 model_capabilities.yaml
-scripts/
+scripts/*
 !scripts/generate-advance-library.ts
+!scripts/generate-courses.ts
+!scripts/validate-courses.ts
+!scripts/seed-courses.ts
+!scripts/audit-courses.ts
+!scripts/import-authored-courses.ts
 *.zip

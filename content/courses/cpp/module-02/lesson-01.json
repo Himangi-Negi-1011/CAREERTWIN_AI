@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries",
+  "skillName": "C++",
+  "moduleId": "mod-2-cpp-beginner-module-2",
+  "title": "Conditions, Boolean Logic, and Boundaries",
+  "summary": "Write clear decisions with comparisons, short-circuit operators, if/else, switch, scoped declarations, and boundary tests.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Conditions, Boolean Logic, and Boundaries",
+    "Compile and test behavior with observable evidence"
+  ],
+  "objectiveIds": [
+    "cpp-obj-3",
+    "cpp-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-sec-1",
+      "heading": "Core model",
+      "content": "Conditions use `bool`, and `&&` plus `||` short-circuit. Place validity checks before dependent expressions such as division or indexing. Use `if` chains for ranges and `switch` for discrete integral or enumeration values. Every case should terminate intentionally with `break`, `return`, or a documented fallthrough. Keep variables in the smallest useful scope. Do not confuse assignment with equality, and enable warnings that identify suspicious conditions. Test immediately below, at, and above each threshold.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Conditions use `bool`, and `&&` plus `||` short-circuit."
+      ],
+      "commonMistakes": [
+        "failed extraction does not guarantee useful destination input",
+        "bitwise operators do not short-circuit"
+      ]
+    },
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-sec-2",
+      "heading": "Worked C++ example",
+      "content": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "cpp",
+          "code": "#include <iostream>\nint main(){ int score{72}; bool submitted{true};\n  if(score>=0 && score<=100 && submitted) std::cout<<\"recorded\\n\";\n  else std::cout<<\"review input\\n\";\n}",
+          "explanation": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+          "expectedOutput": "recorded"
+        }
+      ],
+      "keyPoints": [
+        "Conditions use `bool`, and `&&` plus `||` short-circuit."
+      ],
+      "commonMistakes": [
+        "failed extraction does not guarantee useful destination input",
+        "bitwise operators do not short-circuit"
+      ]
+    },
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Conditions use `bool`, and `&&` plus `||` short-circuit."
+      ],
+      "commonMistakes": [
+        "failed extraction does not guarantee useful destination input",
+        "bitwise operators do not short-circuit"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C++.",
+      "description": "Implement a grade classifier for 0–100 using clear mutually exclusive branches and test every boundary plus invalid values. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+      "instructions": [
+        "Implement a grade classifier for 0–100 using clear mutually exclusive branches and test every boundary plus invalid values. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation."
+      ],
+      "starterCode": "// C++ Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C++20 source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C++ operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about C++20 mode is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "compiler defaults may use an older standard"
+        },
+        {
+          "id": "B",
+          "text": "the language mode selects modern standard rules"
+        },
+        {
+          "id": "C",
+          "text": "compile with std=c++20 consistently"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "compiler defaults may use an older standard. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about warnings is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "warning-free does not prove logic correctness"
+        },
+        {
+          "id": "B",
+          "text": "warnings expose suspicious translated code"
+        },
+        {
+          "id": "C",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "warning-free does not prove logic correctness. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-cpp-beginner-module-2-l1-conditions-boolean-logic-and-boundaries-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linking is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves definitions across translation units"
+        },
+        {
+          "id": "C",
+          "text": "provide one definition for each used non-inline entity"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a declaration alone does not satisfy the linker. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "objectiveIds": [
+        "cpp-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Conditions, Boolean Logic, and Boundaries in C++. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-cpp-main",
+      "title": "C++ Full Course for free",
+      "provider": "youtube",
+      "channelOrAuthor": "Bro Code",
+      "url": "https://www.youtube.com/watch?v=-TkoO8Z07hI",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C++.",
+      "whatItTeaches": "Step-by-step walkthrough of C++ fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "cpp-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions, Boolean Logic, and Boundaries",
+        "Loops, std::array, and std::vector"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Conditions, Boolean Logic, and Boundaries",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Conditions, Boolean Logic, and Boundaries."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C++",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.260Z"
+}

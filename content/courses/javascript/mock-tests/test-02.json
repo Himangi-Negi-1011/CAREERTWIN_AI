@@ -1,0 +1,703 @@
+{
+  "id": "mock-javascript-beginner-test-02",
+  "skillName": "JavaScript",
+  "skillSlug": "javascript",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "JavaScript Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for JavaScript at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "const and let",
+    "typeof",
+    "Number conversion",
+    "strict equality",
+    "template literals",
+    "truthiness",
+    "nullish coalescing",
+    "optional chaining",
+    "for of",
+    "array map",
+    "array filter",
+    "reduce",
+    "while loops",
+    "return",
+    "lexical scope",
+    "default parameters",
+    "objects",
+    "Map",
+    "Set",
+    "exceptions"
+  ],
+  "questions": [
+    {
+      "id": "mock-javascript-beginner-test-02-q1",
+      "type": "single-choice",
+      "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare stable bindings with const and state that changes with let"
+        },
+        {
+          "id": "B",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "const and let",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use typeof while diagnosing values at an input boundary"
+        },
+        {
+          "id": "B",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "typeof",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "convert then check Number.isNaN before arithmetic"
+        },
+        {
+          "id": "B",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Number conversion",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "A program needs to apply strict equality. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use strict equality for predictable branch conditions"
+        },
+        {
+          "id": "B",
+          "text": "0 == false is true but 0 === false is false"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use strict equality for predictable branch conditions. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "strict equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "A program needs to apply template literals. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use template literals for readable calculated output"
+        },
+        {
+          "id": "B",
+          "text": "ordinary quoted strings do not interpolate ${expressions}"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use template literals for readable calculated output. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "template literals",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "A program needs to apply truthiness. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "convert user intent explicitly when strings such as 'false' are possible"
+        },
+        {
+          "id": "B",
+          "text": "non-empty strings including '0' and 'false' are truthy"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "convert user intent explicitly when strings such as 'false' are possible. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "truthiness",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "A program needs to apply nullish coalescing. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use ?? when zero and empty string are valid values"
+        },
+        {
+          "id": "B",
+          "text": "using || can replace valid zero or empty-string input"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use ?? when zero and empty string are valid values. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "nullish coalescing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "A program needs to apply optional chaining. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use optional chaining for genuinely optional nested data"
+        },
+        {
+          "id": "B",
+          "text": "optional chaining does not validate a present value's type"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use optional chaining for genuinely optional nested data. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "optional chaining",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "A program needs to apply for of. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use for...of for array values when no index is needed"
+        },
+        {
+          "id": "B",
+          "text": "for...in yields property keys rather than array values"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use for...of for array values when no index is needed. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "for of",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "A program needs to apply array map. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use map for a pure one-to-one transformation"
+        },
+        {
+          "id": "B",
+          "text": "ignoring map's returned array loses the transformed result"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use map for a pure one-to-one transformation. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "A program needs to apply array filter. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use filter to select records without mutating the source"
+        },
+        {
+          "id": "B",
+          "text": "filter does not modify each selected item"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use filter to select records without mutating the source. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "array filter",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "A program needs to apply reduce. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "provide an explicit initial accumulator value"
+        },
+        {
+          "id": "B",
+          "text": "omitting the initial value changes behavior and fails on an empty array"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "provide an explicit initial accumulator value. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "reduce",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "A program needs to apply while loops. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "update condition state on every normal path"
+        },
+        {
+          "id": "B",
+          "text": "no progress toward termination can create an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "update condition state on every normal path. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "A program needs to apply return. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return calculated data and format it at the interface"
+        },
+        {
+          "id": "B",
+          "text": "console.log does not return the displayed value"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return calculated data and format it at the interface. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "return",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "A program needs to apply lexical scope. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "pass changing dependencies as parameters"
+        },
+        {
+          "id": "B",
+          "text": "local bindings cannot be read outside their scope"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "pass changing dependencies as parameters. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "lexical scope",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "A program needs to apply default parameters. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use defaults for documented optional arguments"
+        },
+        {
+          "id": "B",
+          "text": "passing null does not activate a default parameter"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use defaults for documented optional arguments. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "default parameters",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "A program needs to apply objects. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use objects for records with known named fields"
+        },
+        {
+          "id": "B",
+          "text": "spread creates only a shallow copy"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use objects for records with known named fields. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "objects",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "A program needs to apply Map. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use Map when non-string keys or frequent keyed updates matter"
+        },
+        {
+          "id": "B",
+          "text": "JSON.stringify does not serialize Map entries directly"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use Map when non-string keys or frequent keyed updates matter. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "A program needs to apply Set. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use Set for membership and duplicate removal"
+        },
+        {
+          "id": "B",
+          "text": "Set has no positional indexing"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use Set for membership and duplicate removal. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "Set",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    },
+    {
+      "id": "mock-javascript-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "A program needs to apply exceptions. Which approach is most reliable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "throw a specific Error subtype and catch only where recovery is possible"
+        },
+        {
+          "id": "B",
+          "text": "a broad catch that discards the error hides defects"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with console.log"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "throw a specific Error subtype and catch only where recovery is possible. Verify this behavior with a minimal runnable example and observable output.",
+      "difficulty": "beginner",
+      "topic": "exceptions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
+      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.479Z",
+  "updatedAt": "2026-10-31T13:08:48.479Z"
+}

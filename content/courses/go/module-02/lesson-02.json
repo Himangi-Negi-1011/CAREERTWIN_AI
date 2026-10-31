@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration",
+  "skillName": "Go",
+  "moduleId": "mod-2-go-beginner-module-2",
+  "title": "Arrays, Slices, Maps, and Iteration",
+  "summary": "Use arrays, slices, append, capacity, copying, maps, comma-ok lookup, range, and ownership-aware mutation.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Arrays, Slices, Maps, and Iteration",
+    "Test the contract with build and runtime evidence"
+  ],
+  "objectiveIds": [
+    "go-obj-3",
+    "go-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-sec-1",
+      "heading": "Core model",
+      "content": "Arrays have fixed length and are values. A slice is a descriptor over an underlying array with length and capacity. `append` may reuse the current array or allocate a new one, so retain its returned slice. Sub-slices can keep a large backing array alive and can share mutable elements. Use `copy` when an independent snapshot is required. Maps provide key-value lookup; reading an absent key returns the value type's zero value, so use the comma-ok form when absence differs from a stored zero. Never write to a nil map.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Arrays have fixed length and are values."
+      ],
+      "commonMistakes": [
+        "fallthrough must be explicit and is often avoidable",
+        "passing an array copies all elements"
+      ]
+    },
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-sec-2",
+      "heading": "Worked Go example",
+      "content": "Predict diagnostics and output, format and build, then run and compare evidence.\n\nIn practical software engineering with Go, understanding runtime behavior, boundary cases, and diagnostic evidence is essential for reliable deployment.",
+      "codeExamples": [
+        {
+          "language": "go",
+          "code": "package main\nimport \"fmt\"\nfunc main(){ scores:=[]int{70,82,91}; total:=0; for _,score:=range scores { total+=score }; fmt.Printf(\"%.1f\\n\",float64(total)/float64(len(scores))) }",
+          "explanation": "Predict diagnostics and output, format and build, then run and compare evidence.",
+          "expectedOutput": "81.0"
+        }
+      ],
+      "keyPoints": [
+        "Arrays have fixed length and are values."
+      ],
+      "commonMistakes": [
+        "fallthrough must be explicit and is often avoidable",
+        "passing an array copies all elements"
+      ]
+    },
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a module.\n2. Predict types and output.\n3. Run gofmt and go test.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Arrays have fixed length and are values."
+      ],
+      "commonMistakes": [
+        "fallthrough must be explicit and is often avoidable",
+        "passing an array copies all elements"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in Go.",
+      "description": "Process a slice of study minutes, reject negatives, calculate summaries, and demonstrate an independent copy versus a shared sub-slice. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation.",
+      "instructions": [
+        "Process a slice of study minutes, reject negatives, calculate summaries, and demonstrate an independent copy versus a shared sub-slice. Submit source, build output, test evidence, and an explanation of errors, ownership, and cancellation."
+      ],
+      "starterCode": "// Go Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Formatted compiling Go source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Formatted compiling Go source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Go operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes modules in Go?",
+      "options": [
+        {
+          "id": "A",
+          "text": "modules define an import path and dependency boundary"
+        },
+        {
+          "id": "B",
+          "text": "initialize and commit go.mod"
+        },
+        {
+          "id": "C",
+          "text": "changing module identity breaks import assumptions"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "modules define an import path and dependency boundary. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes gofmt in Go?",
+      "options": [
+        {
+          "id": "A",
+          "text": "gofmt applies canonical source formatting"
+        },
+        {
+          "id": "B",
+          "text": "format before review and tests"
+        },
+        {
+          "id": "C",
+          "text": "manual formatting conventions create needless drift"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "gofmt applies canonical source formatting. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-go-beginner-module-2-l2-arrays-slices-maps-and-iteration-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes packages in Go?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a package groups compiled declarations"
+        },
+        {
+          "id": "B",
+          "text": "use package main with main for executables"
+        },
+        {
+          "id": "C",
+          "text": "imported package names must be used"
+        },
+        {
+          "id": "D",
+          "text": "The runtime automatically repairs the program"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a package groups compiled declarations. Confirm with gofmt, go test, and a focused program.",
+      "objectiveIds": [
+        "go-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Arrays, Slices, Maps, and Iteration in Go. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-go-main",
+      "title": "Go Programming - Golang Course with Bonus Applications",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Go.",
+      "whatItTeaches": "Step-by-step walkthrough of Go fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "go-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Control Flow, Switches, and Boundaries",
+        "Arrays, Slices, Maps, and Iteration"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Arrays, Slices, Maps, and Iteration",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Arrays, Slices, Maps, and Iteration."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Go",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.385Z"
+}

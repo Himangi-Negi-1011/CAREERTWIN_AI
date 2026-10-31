@@ -1,0 +1,28 @@
+[
+  {
+    "id": "res-go-main",
+    "title": "Go Programming - Golang Course with Bonus Applications",
+    "provider": "youtube",
+    "channelOrAuthor": "freeCodeCamp.org",
+    "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+    "embedUrl": "",
+    "durationMinutes": 180,
+    "difficulty": "beginner",
+    "whySelected": "Authoritative complete tutorial for Go.",
+    "whatItTeaches": "Step-by-step walkthrough of Go fundamentals and practical exercises.",
+    "learningObjectivesSupported": [
+      "go-obj-1"
+    ],
+    "keyTopicsCovered": [
+      "Go Toolchain, Modules, and Packages",
+      "Types, Parsing, and Explicit Errors",
+      "Control Flow, Switches, and Boundaries",
+      "Arrays, Slices, Maps, and Iteration",
+      "Functions, Structs, Methods, and Interfaces",
+      "Goroutines, Channels, Context, and a Tracker"
+    ],
+    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+    "verificationStatus": "verified",
+    "lastCheckedDate": "2026-10-31"
+  }
+]

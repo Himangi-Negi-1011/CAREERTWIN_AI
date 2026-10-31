@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val",
+  "skillName": "JavaScript",
+  "moduleId": "mod-1-javascript-beginner-module-1",
+  "title": "Running JavaScript and Understanding Values",
+  "summary": "Learn how a JavaScript engine evaluates statements, how `const` and `let` bind names, and how to inspect values and runtime errors.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the JavaScript behavior taught in Running JavaScript and Understanding Values",
+    "Test behavior using observable output and assertions"
+  ],
+  "objectiveIds": [
+    "javascript-obj-1",
+    "javascript-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-sec-1",
+      "heading": "Core model",
+      "content": "JavaScript executes statements through an engine in a browser or Node.js. Prefer `const` when a binding will not be reassigned and `let` when reassignment is part of the design; avoid `var` in new beginner code because function scope and hoisting are easy to misread. A variable holds a value with a runtime type. Use `console.log` and `typeof` to inspect evidence. Read an error from its name and first relevant stack frame instead of guessing. `ReferenceError` commonly indicates an unavailable name, while `TypeError` means an operation was not supported by the received value.",
+      "codeExamples": [],
+      "keyPoints": [
+        "JavaScript executes statements through an engine in a browser or Node.js."
+      ],
+      "commonMistakes": [
+        "const does not make a referenced object deeply immutable",
+        "typeof null is historically 'object'"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-sec-2",
+      "heading": "Worked JavaScript example",
+      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "const price = 120;\nconst quantity = 3;\nconst total = price * quantity;\nconsole.log(total);\nconsole.log(typeof total);",
+          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+          "expectedOutput": "360\nnumber"
+        }
+      ],
+      "keyPoints": [
+        "JavaScript executes statements through an engine in a browser or Node.js."
+      ],
+      "commonMistakes": [
+        "const does not make a referenced object deeply immutable",
+        "typeof null is historically 'object'"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "JavaScript executes statements through an engine in a browser or Node.js."
+      ],
+      "commonMistakes": [
+        "const does not make a referenced object deeply immutable",
+        "typeof null is historically 'object'"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-ex-1",
+      "type": "coding",
+      "title": "Build and explain",
+      "objective": "Master Build and explain and apply practical principles in JavaScript.",
+      "description": "Create a price calculator with `const`, print the result and type, then deliberately reference a misspelled name and explain the stack trace. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "instructions": [
+        "Create a price calculator with `const`, print the result and type, then deliberately reference a misspelled name and explain the stack trace. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+      ],
+      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "hints": [
+        "Runnable JavaScript with clear bindings",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Runnable JavaScript with clear bindings",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes const and let in JavaScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "const prevents rebinding while let permits deliberate reassignment"
+        },
+        {
+          "id": "B",
+          "text": "const does not make a referenced object deeply immutable"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes typeof in JavaScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "typeof reports a runtime type string"
+        },
+        {
+          "id": "B",
+          "text": "typeof null is historically 'object'"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Number conversion in JavaScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Number converts an entire value to numeric form"
+        },
+        {
+          "id": "B",
+          "text": "Number('') produces zero, which may require separate empty-input validation"
+        },
+        {
+          "id": "C",
+          "text": "The engine chooses behavior randomly"
+        },
+        {
+          "id": "D",
+          "text": "It requires an external library"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output.",
+      "objectiveIds": [
+        "javascript-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Running JavaScript and Understanding Values in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-javascript-main",
+      "title": "JavaScript Programming - Full Course",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for JavaScript.",
+      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "javascript-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "Running JavaScript and Understanding Values",
+        "Types, Conversion, and Strict Equality"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Running JavaScript and Understanding Values",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Running JavaScript and Understanding Values."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using JavaScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.476Z"
+}

@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values",
+  "skillName": "Python",
+  "moduleId": "mod-3-python-beginner-module-3",
+  "title": "Functions, Parameters, and Return Values",
+  "summary": "Functions package behavior behind a clear contract. This lesson covers definition, calls, parameters, return values, local scope, default arguments, documentation, and simple tests.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the Python behavior taught in Functions, Parameters, and Return Values",
+    "Test the behavior with a small observable program"
+  ],
+  "objectiveIds": [
+    "python-obj-5",
+    "python-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-sec-1",
+      "heading": "Core model",
+      "content": "A function should perform one coherent task and communicate through parameters and a return value. `return` ends the current call and provides a value to the caller; `print` only displays text and therefore is not a substitute for a return value. Parameters are local names bound when the function is called. Avoid depending on mutable global state because it hides inputs and complicates testing. Default values belong after required parameters and should be immutable in beginner code; use `None` when a fresh list or dictionary is needed for each call. A concise docstring states purpose, accepted inputs, returned output, and important failure behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A function should perform one coherent task and communicate through parameters and a return value."
+      ],
+      "commonMistakes": [
+        "resetting the accumulator inside the loop loses earlier work",
+        "a function with no return statement returns None"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-sec-2",
+      "heading": "Worked Python example",
+      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "def calculate_total(price, quantity=1):\n    \"\"\"Return price multiplied by a non-negative quantity.\"\"\"\n    if quantity < 0:\n        raise ValueError(\"quantity must be non-negative\")\n    return price * quantity\n\nprint(calculate_total(125, 2))",
+          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+          "expectedOutput": "250"
+        }
+      ],
+      "keyPoints": [
+        "A function should perform one coherent task and communicate through parameters and a return value."
+      ],
+      "commonMistakes": [
+        "resetting the accumulator inside the loop loses earlier work",
+        "a function with no return statement returns None"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A function should perform one coherent task and communicate through parameters and a return value."
+      ],
+      "commonMistakes": [
+        "resetting the accumulator inside the loop loses earlier work",
+        "a function with no return statement returns None"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-ex-1",
+      "type": "coding",
+      "title": "Build and explain",
+      "objective": "Master Build and explain and apply practical principles in Python.",
+      "description": "Create and test `study_progress(completed, planned)` that returns a percentage, rejects negative values, and handles a zero plan explicitly without division by zero. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+      "instructions": [
+        "Create and test `study_progress(completed, planned)` that returns a percentage, rejects negative values, and handles a zero plan explicitly without division by zero. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
+      ],
+      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "hints": [
+        "A runnable Python program with descriptive names",
+        "Observed output and at least one boundary or failure test",
+        "An explanation based on program evidence"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "A runnable Python program with descriptive names",
+        "Observed output and at least one boundary or failure test",
+        "An explanation based on program evidence"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-kc-1",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use `total = price * quantity` when the computed value is needed later"
+        },
+        {
+          "id": "B",
+          "text": "using a name before assignment raises NameError"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-kc-2",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+      "options": [
+        {
+          "id": "A",
+          "text": "convert validated numeric input with int or float before arithmetic"
+        },
+        {
+          "id": "B",
+          "text": "adding an input string to an integer raises TypeError"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-kc-3",
+      "type": "single-choice",
+      "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use `minutes // 60` for complete hours"
+        },
+        {
+          "id": "B",
+          "text": "floor division rounds toward negative infinity, not toward zero"
+        },
+        {
+          "id": "C",
+          "text": "Suppress every error and continue"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with an unrelated print statement"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "objectiveIds": [
+        "python-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Functions, Parameters, and Return Values in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-python-main",
+      "title": "Python for Beginners - Full Course",
+      "provider": "youtube",
+      "channelOrAuthor": "Programming with Mosh",
+      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Python.",
+      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "python-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, Parameters, and Return Values",
+        "Collections and a Small Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Functions, Parameters, and Return Values",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Functions, Parameters, and Return Values."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Python",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.569Z"
+}

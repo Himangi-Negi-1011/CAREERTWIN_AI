@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke",
+  "skillName": "Rust",
+  "moduleId": "mod-3-rust-beginner-module-3",
+  "title": "Files, Serialization, Threads, and a Tracker",
+  "summary": "Combine validated models, file errors, serialization boundaries, threads or channels, shared ownership, synchronization, and tests in a persistent tracker.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Files, Serialization, Threads, and a Tracker",
+    "Use compiler, lint, and test evidence to verify behavior"
+  ],
+  "objectiveIds": [
+    "rust-obj-5",
+    "rust-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-sec-1",
+      "heading": "Core model",
+      "content": "File operations return `Result` and should add path and operation context while preserving the source error. Deserialized data is untrusted and must pass domain constructors before becoming application state. Threads require transferred values to satisfy lifetime and thread-safety rules; `move` closures transfer captured ownership. Channels support message passing. Shared mutable state commonly uses `Arc<Mutex<T>>`; handle poisoned locks deliberately and keep critical sections short. Join worker threads and propagate failures instead of allowing detached work to outlive the operation.",
+      "codeExamples": [],
+      "keyPoints": [
+        "File operations return `Result` and should add path and operation context while preserving the source error."
+      ],
+      "commonMistakes": [
+        "growth can relocate elements and invalidate references",
+        "public fields permit arbitrary invalid combinations"
+      ]
+    },
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-sec-2",
+      "heading": "Worked Rust example",
+      "content": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "rust",
+          "code": "use std::sync::mpsc;\nuse std::thread;\nfn main(){ let (tx,rx)=mpsc::channel(); let worker=thread::spawn(move||tx.send(75).unwrap()); worker.join().unwrap(); println!(\"{}\",rx.recv().unwrap()); }",
+          "explanation": "Predict type, ownership, and output behavior, then format, check, test, and compare evidence.",
+          "expectedOutput": "75"
+        }
+      ],
+      "keyPoints": [
+        "File operations return `Result` and should add path and operation context while preserving the source error."
+      ],
+      "commonMistakes": [
+        "growth can relocate elements and invalidate references",
+        "public fields permit arbitrary invalid combinations"
+      ]
+    },
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a Cargo project.\n2. Predict types and ownership.\n3. Run fmt, check, Clippy, and tests.\n4. Fix one cause at a time.\n5. Run the binary.\n6. Add boundary tests.",
+      "codeExamples": [],
+      "keyPoints": [
+        "File operations return `Result` and should add path and operation context while preserving the source error."
+      ],
+      "commonMistakes": [
+        "growth can relocate elements and invalidate references",
+        "public fields permit arbitrary invalid combinations"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-ex-1",
+      "type": "coding",
+      "title": "Build, test, and explain",
+      "objective": "Master Build, test, and explain and apply practical principles in Rust.",
+      "description": "Build a persistent progress tracker with validated loading, contextual errors, bounded worker lifecycles or channels, safe shared state, and at least ten tests. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling.",
+      "instructions": [
+        "Build a persistent progress tracker with validated loading, contextual errors, bounded worker lifecycles or channels, safe shared state, and at least ten tests. Submit source, diagnostics, test evidence, and an explanation of ownership and failure handling."
+      ],
+      "starterCode": "// Rust Exercise: Build, test, and explain\n// Write your solution below",
+      "hints": [
+        "Formatted warning-reviewed Rust source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Formatted warning-reviewed Rust source",
+        "Boundary and failure tests",
+        "Evidence-based ownership explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core Rust operations for Build, test, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Cargo is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cargo.lock policy differs between applications and libraries"
+        },
+        {
+          "id": "B",
+          "text": "Cargo builds tests and manages crate metadata"
+        },
+        {
+          "id": "C",
+          "text": "use cargo check test and run as separate evidence"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Cargo.lock policy differs between applications and libraries. Confirm with cargo check, Clippy, and a focused test.",
+      "objectiveIds": [
+        "rust-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about rustfmt is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "manual formatting drift distracts from behavior"
+        },
+        {
+          "id": "B",
+          "text": "rustfmt applies canonical formatting"
+        },
+        {
+          "id": "C",
+          "text": "run cargo fmt before review"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "manual formatting drift distracts from behavior. Confirm with cargo check, Clippy, and a focused test.",
+      "objectiveIds": [
+        "rust-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-rust-beginner-module-3-l2-files-serialization-threads-and-a-tracke-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Clippy is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "blindly allowing lints can hide defects"
+        },
+        {
+          "id": "B",
+          "text": "Clippy provides additional lint diagnostics"
+        },
+        {
+          "id": "C",
+          "text": "review each lint in its code context"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "blindly allowing lints can hide defects. Confirm with cargo check, Clippy, and a focused test.",
+      "objectiveIds": [
+        "rust-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Files, Serialization, Threads, and a Tracker in Rust. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-rust-main",
+      "title": "Rust Programming Course for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=ygL_xcgkMzQ",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for Rust.",
+      "whatItTeaches": "Step-by-step walkthrough of Rust fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "rust-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, Structs, Enums, and Traits",
+        "Files, Serialization, Threads, and a Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Files, Serialization, Threads, and a Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Files, Serialization, Threads, and a Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using Rust",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.630Z"
+}

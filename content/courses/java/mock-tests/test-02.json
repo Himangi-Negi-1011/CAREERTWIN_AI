@@ -1,0 +1,703 @@
+{
+  "id": "mock-java-beginner-test-02",
+  "skillName": "Java",
+  "skillSlug": "java",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "Java Beginner Mock Test 2",
+  "description": "Comprehensive 50-minute mock examination for Java at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "JDK",
+    "bytecode",
+    "main method",
+    "primitive types",
+    "integer division",
+    "String equality",
+    "parsing",
+    "short circuit logic",
+    "if chains",
+    "switch",
+    "arrays",
+    "enhanced for",
+    "while loops",
+    "methods",
+    "pass by value",
+    "encapsulation",
+    "static",
+    "List",
+    "Map",
+    "Set"
+  ],
+  "questions": [
+    {
+      "id": "mock-java-beginner-test-02-q1",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of JDK?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use a JDK to compile source before running bytecode"
+        },
+        {
+          "id": "B",
+          "text": "a JRE-only installation may not provide javac"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use a JDK to compile source before running bytecode. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "JDK",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q2",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of bytecode?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "recompile source after changes before running"
+        },
+        {
+          "id": "B",
+          "text": "editing a class file is not a source workflow"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "recompile source after changes before running. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "bytecode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q3",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of main method?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "declare the exact entry-point signature in an executable class"
+        },
+        {
+          "id": "B",
+          "text": "a misspelled signature is not selected as the entry point"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "declare the exact entry-point signature in an executable class. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "main method",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q4",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of primitive types?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "choose types according to range and operation semantics"
+        },
+        {
+          "id": "B",
+          "text": "double is approximate and unsuitable for exact currency rules"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "choose types according to range and operation semantics. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "primitive types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q5",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of integer division?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "cast an operand before division when a fraction is required"
+        },
+        {
+          "id": "B",
+          "text": "casting only after integer division cannot restore the fraction"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "cast an operand before division when a fraction is required. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "integer division",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q6",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of String equality?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use constant.equals(value) when value may be null"
+        },
+        {
+          "id": "B",
+          "text": "== compares object references rather than String content"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use constant.equals(value) when value may be null. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "String equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q7",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of parsing?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "catch NumberFormatException only where recovery is defined"
+        },
+        {
+          "id": "B",
+          "text": "parseInt does not accept arbitrary decimal text"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "catch NumberFormatException only where recovery is defined. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "parsing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q8",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of short circuit logic?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "place safety checks before dependent expressions"
+        },
+        {
+          "id": "B",
+          "text": "using non-short-circuit operators can evaluate unsafe expressions"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "place safety checks before dependent expressions. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "short circuit logic",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q9",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of if chains?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "order mutually exclusive boundaries intentionally"
+        },
+        {
+          "id": "B",
+          "text": "separate if statements can execute overlapping branches"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "order mutually exclusive boundaries intentionally. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "if chains",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q10",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of switch?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "handle every allowed category or provide an intentional default"
+        },
+        {
+          "id": "B",
+          "text": "switch does not replace range-oriented conditions cleanly"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "handle every allowed category or provide an intentional default. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q11",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of arrays?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use length minus one as the final valid index"
+        },
+        {
+          "id": "B",
+          "text": "access at index length throws an exception"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use length minus one as the final valid index. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q12",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of enhanced for?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use it when position is irrelevant"
+        },
+        {
+          "id": "B",
+          "text": "assigning the loop variable does not replace an array element"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use it when position is irrelevant. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "enhanced for",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q13",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of while loops?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "update termination state on each normal path"
+        },
+        {
+          "id": "B",
+          "text": "missing progress can produce an infinite loop"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "update termination state on each normal path. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "while loops",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q14",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of methods?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "return calculated data instead of only printing it"
+        },
+        {
+          "id": "B",
+          "text": "a void method cannot provide a result expression"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "return calculated data instead of only printing it. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "methods",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q15",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of pass by value?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "remember that a copied object reference can still reach shared mutable state"
+        },
+        {
+          "id": "B",
+          "text": "reassigning a parameter does not reassign the caller variable"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "remember that a copied object reference can still reach shared mutable state. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "pass by value",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q16",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of encapsulation?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "validate inputs in constructors and mutation methods"
+        },
+        {
+          "id": "B",
+          "text": "public mutable fields allow invalid states"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "validate inputs in constructors and mutation methods. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "encapsulation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q17",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of static?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use static for stateless utilities and the main entry point"
+        },
+        {
+          "id": "B",
+          "text": "static code cannot directly use instance fields without an object"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use static for stateless utilities and the main entry point. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "static",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q18",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of List?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use ArrayList as a common resizable sequence"
+        },
+        {
+          "id": "B",
+          "text": "removing during enhanced iteration can cause concurrent modification"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use ArrayList as a common resizable sequence. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "List",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q19",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of Map?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "check absence explicitly before unboxing a nullable result"
+        },
+        {
+          "id": "B",
+          "text": "get on a missing key commonly returns null"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "check absence explicitly before unboxing a nullable result. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "Map",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    },
+    {
+      "id": "mock-java-beginner-test-02-q20",
+      "type": "single-choice",
+      "prompt": "Which is the most reliable beginner application of Set?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use HashSet for membership and duplicate removal"
+        },
+        {
+          "id": "B",
+          "text": "Set does not provide positional indexing"
+        },
+        {
+          "id": "C",
+          "text": "Suppress all exceptions"
+        },
+        {
+          "id": "D",
+          "text": "Replace the operation with println"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use HashSet for membership and duplicate removal. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "Set",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
+      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.436Z",
+  "updatedAt": "2026-10-31T13:08:48.436Z"
+}

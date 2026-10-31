@@ -1,0 +1,193 @@
+{
+  "id": "phase-java-beginner-mod-2",
+  "skillName": "Java",
+  "skillSlug": "java",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-java-beginner-module-2",
+  "moduleTitle": "Control Flow, Arrays, and Methods",
+  "title": "Control Flow, Arrays, and Methods Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow, Arrays, and Methods.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "String equality",
+    "parsing",
+    "short circuit logic",
+    "if chains",
+    "switch"
+  ],
+  "questions": [
+    {
+      "id": "phase-java-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about String equality is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "== compares object references rather than String content"
+        },
+        {
+          "id": "B",
+          "text": "String content is compared with equals"
+        },
+        {
+          "id": "C",
+          "text": "use constant.equals(value) when value may be null"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "== compares object references rather than String content. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "String equality",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-java-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-java-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about parsing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "parseInt does not accept arbitrary decimal text"
+        },
+        {
+          "id": "B",
+          "text": "parse methods convert valid text or throw on invalid text"
+        },
+        {
+          "id": "C",
+          "text": "catch NumberFormatException only where recovery is defined"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "parseInt does not accept arbitrary decimal text. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "parsing",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-java-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-java-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about short circuit logic is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "using non-short-circuit operators can evaluate unsafe expressions"
+        },
+        {
+          "id": "B",
+          "text": "&& and || may skip evaluation of the right operand"
+        },
+        {
+          "id": "C",
+          "text": "place safety checks before dependent expressions"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "using non-short-circuit operators can evaluate unsafe expressions. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "short circuit logic",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-java-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-java-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about if chains is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "separate if statements can execute overlapping branches"
+        },
+        {
+          "id": "B",
+          "text": "only the first matched branch of an if/else-if chain runs"
+        },
+        {
+          "id": "C",
+          "text": "order mutually exclusive boundaries intentionally"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "separate if statements can execute overlapping branches. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "if chains",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-java-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    },
+    {
+      "id": "phase-java-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about switch is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "switch does not replace range-oriented conditions cleanly"
+        },
+        {
+          "id": "B",
+          "text": "switch is useful for finite discrete choices"
+        },
+        {
+          "id": "C",
+          "text": "handle every allowed category or provide an intentional default"
+        },
+        {
+          "id": "D",
+          "text": "It can be used only inside an interface"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "switch does not replace range-oriented conditions cleanly. Confirm the rule by compiling and running a minimal program.",
+      "difficulty": "beginner",
+      "topic": "switch",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-java-beginner-module-2-l1",
+      "recommendedLessonTitle": "Conditions, Boolean Logic, and Boundaries"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.435Z",
+  "updatedAt": "2026-10-31T13:08:48.435Z"
+}

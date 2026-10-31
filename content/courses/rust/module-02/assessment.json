@@ -1,0 +1,193 @@
+{
+  "id": "phase-rust-beginner-mod-2",
+  "skillName": "Rust",
+  "skillSlug": "rust",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-rust-beginner-module-2",
+  "moduleTitle": "Ownership, Collections, and Domain Models",
+  "title": "Ownership, Collections, and Domain Models Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Ownership, Collections, and Domain Models.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Option",
+    "Result",
+    "question mark",
+    "match",
+    "ranges"
+  ],
+  "questions": [
+    {
+      "id": "phase-rust-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Option is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "unwrap can panic when absence is possible"
+        },
+        {
+          "id": "B",
+          "text": "Option models presence with Some or absence with None"
+        },
+        {
+          "id": "C",
+          "text": "match or transform both possibilities intentionally"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "unwrap can panic when absence is possible. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Option",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-rust-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Matching, and Boundaries"
+    },
+    {
+      "id": "phase-rust-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about Result is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring an Err loses required control flow"
+        },
+        {
+          "id": "B",
+          "text": "Result models success or failure"
+        },
+        {
+          "id": "C",
+          "text": "propagate or handle errors before using output"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring an Err loses required control flow. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "Result",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-rust-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Matching, and Boundaries"
+    },
+    {
+      "id": "phase-rust-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about question mark is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "it does not log or recover automatically"
+        },
+        {
+          "id": "B",
+          "text": "question mark returns failure to the caller"
+        },
+        {
+          "id": "C",
+          "text": "use it in compatible Result or Option functions"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "it does not log or recover automatically. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "question mark",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-rust-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Matching, and Boundaries"
+    },
+    {
+      "id": "phase-rust-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about match is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a wildcard can hide newly added variants"
+        },
+        {
+          "id": "B",
+          "text": "match is exhaustive pattern-based control flow"
+        },
+        {
+          "id": "C",
+          "text": "enumerate domain variants explicitly"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a wildcard can hide newly added variants. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-rust-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Matching, and Boundaries"
+    },
+    {
+      "id": "phase-rust-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about ranges is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "off-by-one assumptions can skip or overrun values"
+        },
+        {
+          "id": "B",
+          "text": "exclusive ranges omit their upper endpoint"
+        },
+        {
+          "id": "C",
+          "text": "use inclusive syntax when the endpoint belongs"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "off-by-one assumptions can skip or overrun values. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ranges",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-rust-beginner-module-2-l1",
+      "recommendedLessonTitle": "Control Flow, Matching, and Boundaries"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.631Z",
+  "updatedAt": "2026-10-31T13:08:48.631Z"
+}

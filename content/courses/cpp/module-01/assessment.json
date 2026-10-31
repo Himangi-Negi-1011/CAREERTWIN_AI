@@ -1,0 +1,193 @@
+{
+  "id": "phase-cpp-beginner-mod-1",
+  "skillName": "C++",
+  "skillSlug": "cpp",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-1-cpp-beginner-module-1",
+  "moduleTitle": "Builds, Types, and Control Flow",
+  "title": "Builds, Types, and Control Flow Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Builds, Types, and Control Flow.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "C++20 mode",
+    "warnings",
+    "linking",
+    "brace initialization",
+    "const"
+  ],
+  "questions": [
+    {
+      "id": "phase-cpp-beginner-mod-1-q1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of C++20 mode?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "compile with std=c++20 consistently"
+        },
+        {
+          "id": "B",
+          "text": "the language mode selects modern standard rules"
+        },
+        {
+          "id": "C",
+          "text": "compiler defaults may use an older standard"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "C++20 mode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-1-q2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of warnings?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "B",
+          "text": "warnings expose suspicious translated code"
+        },
+        {
+          "id": "C",
+          "text": "warning-free does not prove logic correctness"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "warnings",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-1-q3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of linking?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "provide one definition for each used non-inline entity"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves definitions across translation units"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "linking",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-1-q4",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of brace initialization?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "use braces for clear initialization"
+        },
+        {
+          "id": "B",
+          "text": "braces reject many narrowing conversions"
+        },
+        {
+          "id": "C",
+          "text": "uninitialized fundamental locals have indeterminate values"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use braces for clear initialization. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "brace initialization",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-1-q5",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of const?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "mark stable values and observers const"
+        },
+        {
+          "id": "B",
+          "text": "const prevents modification through that name or access path"
+        },
+        {
+          "id": "C",
+          "text": "const is not automatically deep for referenced objects"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "mark stable values and observers const. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "const",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-cpp-beginner-module-1-l1",
+      "recommendedLessonTitle": "Compiling Modern C++ and Reading Diagnostics"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.262Z",
+  "updatedAt": "2026-10-31T13:08:48.262Z"
+}

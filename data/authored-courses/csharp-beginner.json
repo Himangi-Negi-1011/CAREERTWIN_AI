@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "C#",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "C# and .NET Foundations: Typed Models to an Async Progress Tracker",
+  "description": "A beginner C# course covering the .NET build model, types, nullable references, patterns, collections, LINQ, methods, records, classes, JSON, async I/O, and a tested progress-tracker capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Build and diagnose nullable-enabled .NET console applications",
+    "Use typed control flow, generic collections, LINQ, methods, records, and encapsulated classes",
+    "Build an async JSON-backed progress tracker with runtime validation and tests"
+  ],
+  "modules": [
+    {
+      "stableKey": "csharp-beginner-module-1",
+      "title": ".NET, Types, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "csharp-dotnet-project",
+          "title": "The .NET Build and Execution Model",
+          "summary": "Create a .NET console project and understand source, compilation, assemblies, the runtime, entry points, diagnostics, and repeatable builds.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply The .NET Build and Execution Model",
+            "Use compiler and runtime evidence to test the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "csharp-dotnet-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "The .NET SDK supplies `dotnet new`, `dotnet build`, `dotnet run`, and testing tools. C# source is compiled into an assembly containing intermediate language and metadata; the .NET runtime loads and executes it. A project file selects the target framework and dependencies. Treat warnings as design feedback, enable nullable analysis, and read the earliest relevant diagnostic rather than changing unrelated code. `dotnet run` builds when needed, but explicit `dotnet build` is useful when separating compiler evidence from runtime behavior."
+            },
+            {
+              "stableKey": "csharp-dotnet-project-example",
+              "type": "code",
+              "heading": "Worked C# example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+              "codeLanguage": "csharp",
+              "codeSource": "var course = \"C#\";\nvar lessons = 6;\nConsole.WriteLine($\"{course}: {lessons} lessons\");",
+              "expectedOutput": "C#: 6 lessons"
+            },
+            {
+              "stableKey": "csharp-dotnet-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "csharp-dotnet-project-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a console project, build and run it, introduce a type error, and explain the compiler diagnostic before correcting it. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+              "expectedOutcomes": [
+                "Nullable-clean C# source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "csharp-dotnet-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "csharp-beg-lesson-1-01-.NET-SDK",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes .NET SDK in C#?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  ".NET SDK"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the SDK includes build run and test tools"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use dotnet build to obtain compiler evidence"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a runtime-only installation may not include build tools"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the SDK includes build run and test tools. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-1-02-assemblies",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes assemblies in C#?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "assemblies"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "assemblies contain intermediate language and metadata"
+                  },
+                  {
+                    "key": "B",
+                    "text": "build source into a target-framework assembly"
+                  },
+                  {
+                    "key": "C",
+                    "text": "an assembly is not raw C# source"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "assemblies contain intermediate language and metadata. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-1-03-var",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes var in C#?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "var"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "var infers one static type from an initializer"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use it when the inferred type is clear"
+                  },
+                  {
+                    "key": "C",
+                    "text": "var does not permit later values of unrelated types"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "var infers one static type from an initializer. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "The .NET SDK supplies `dotnet new`, `dotnet build`, `dotnet run`, and testing tools."
+          ],
+          "commonMistakes": [
+            "a runtime-only installation may not include build tools",
+            "an assembly is not raw C# source"
+          ],
+          "interviewQuestions": [
+            "Explain .NET SDK with a minimal C# example."
+          ]
+        },
+        {
+          "stableKey": "csharp-types-nullability",
+          "title": "Types, Conversion, and Nullable References",
+          "summary": "Use value and reference types, type inference, strings, parsing, nullable reference analysis, and explicit handling of absent values.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Types, Conversion, and Nullable References",
+            "Use compiler and runtime evidence to test the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "csharp-types-nullability-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "C# is statically typed. `var` asks the compiler to infer one fixed type from the initializer; it is not dynamic typing. Numeric conversions can be implicit when safe or explicit when information may be lost. Prefer `TryParse` for expected user-input failure. With nullable reference types enabled, `string` means non-null and `string?` admits null. Narrow a nullable value with a null check, pattern, or `??` default before dereferencing. The null-forgiving operator `!` suppresses analysis but performs no runtime validation, so it requires independent evidence."
+            },
+            {
+              "stableKey": "csharp-types-nullability-example",
+              "type": "code",
+              "heading": "Worked C# example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+              "codeLanguage": "csharp",
+              "codeSource": "var text = \"19\";\nif (int.TryParse(text, out var age))\n    Console.WriteLine($\"Next year: {age + 1}\");",
+              "expectedOutput": "Next year: 20"
+            },
+            {
+              "stableKey": "csharp-types-nullability-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "csharp-types-nullability-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Read weekly hours with TryParse, reject invalid or negative values, and explain every nullable or conversion decision. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+              "expectedOutcomes": [
+                "Nullable-clean C# source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "csharp-types-nullability-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "csharp-beg-lesson-2-01-.NET-SDK",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of .NET SDK?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  ".NET SDK"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use dotnet build to obtain compiler evidence"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the SDK includes build run and test tools"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a runtime-only installation may not include build tools"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use dotnet build to obtain compiler evidence. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-2-02-assemblies",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of assemblies?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "assemblies"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "build source into a target-framework assembly"
+                  },
+                  {
+                    "key": "B",
+                    "text": "assemblies contain intermediate language and metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "an assembly is not raw C# source"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "build source into a target-framework assembly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-2-03-var",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of var?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "var"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use it when the inferred type is clear"
+                  },
+                  {
+                    "key": "B",
+                    "text": "var infers one static type from an initializer"
+                  },
+                  {
+                    "key": "C",
+                    "text": "var does not permit later values of unrelated types"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use it when the inferred type is clear. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "C# is statically typed."
+          ],
+          "commonMistakes": [
+            "ignoring its boolean result can use an unintended default",
+            "the null-forgiving operator does not validate at runtime"
+          ],
+          "interviewQuestions": [
+            "Explain TryParse with a minimal C# example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "csharp-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "csharp-beg-module-1-01-.NET-SDK",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of .NET SDK?",
+            "difficulty": "beginner",
+            "topicTags": [
+              ".NET SDK"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use dotnet build to obtain compiler evidence"
+              },
+              {
+                "key": "B",
+                "text": "the SDK includes build run and test tools"
+              },
+              {
+                "key": "C",
+                "text": "a runtime-only installation may not include build tools"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use dotnet build to obtain compiler evidence. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-1-02-assemblies",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of assemblies?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "assemblies"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "build source into a target-framework assembly"
+              },
+              {
+                "key": "B",
+                "text": "assemblies contain intermediate language and metadata"
+              },
+              {
+                "key": "C",
+                "text": "an assembly is not raw C# source"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "build source into a target-framework assembly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-1-03-var",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of var?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "var"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use it when the inferred type is clear"
+              },
+              {
+                "key": "B",
+                "text": "var infers one static type from an initializer"
+              },
+              {
+                "key": "C",
+                "text": "var does not permit later values of unrelated types"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use it when the inferred type is clear. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-1-04-TryParse",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of TryParse?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "TryParse"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use it for interactive numeric input"
+              },
+              {
+                "key": "B",
+                "text": "TryParse reports expected conversion failure without throwing"
+              },
+              {
+                "key": "C",
+                "text": "ignoring its boolean result can use an unintended default"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use it for interactive numeric input. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-1-05-nullable-references",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of nullable references?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "nullable references"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "check string? before dereference"
+              },
+              {
+                "key": "B",
+                "text": "nullable annotations model possible null at compile time"
+              },
+              {
+                "key": "C",
+                "text": "the null-forgiving operator does not validate at runtime"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "check string? before dereference. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "csharp-beginner-module-2",
+      "title": "Collections, LINQ, and Domain Models",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "csharp-control-flow",
+          "title": "Conditions, Patterns, and Boundaries",
+          "summary": "Write clear decisions with boolean logic, if/else, switch expressions, relational and property patterns, and tested boundaries.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Conditions, Patterns, and Boundaries",
+            "Use compiler and runtime evidence to test the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "csharp-control-flow-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "`if` chains suit numeric ranges, while switch expressions provide concise exhaustive mappings for finite cases. `&&` and `||` short-circuit, protecting later expressions from invalid state. Pattern matching can test type, null, property, and relational evidence while introducing narrowed variables. Use parentheses when mixed operators obscure intent. A switch over an enum should handle every expected value; a discard arm should be intentional rather than hiding missing domain cases. Test below, at, and above each threshold."
+            },
+            {
+              "stableKey": "csharp-control-flow-example",
+              "type": "code",
+              "heading": "Worked C# example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+              "codeLanguage": "csharp",
+              "codeSource": "var score = 72;\nvar submitted = true;\nvar result = score is >= 0 and <= 100 && submitted ? \"recorded\" : \"review input\";\nConsole.WriteLine(result);",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "csharp-control-flow-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "csharp-control-flow-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a grade classifier with relational patterns or explicit conditions, reject values outside 0\u2013100, and test every boundary. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+              "expectedOutcomes": [
+                "Nullable-clean C# source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "csharp-control-flow-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "csharp-beg-lesson-3-01-.NET-SDK",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about .NET SDK is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  ".NET SDK"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a runtime-only installation may not include build tools"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the SDK includes build run and test tools"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use dotnet build to obtain compiler evidence"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a runtime-only installation may not include build tools. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-3-02-assemblies",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about assemblies is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "assemblies"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "an assembly is not raw C# source"
+                  },
+                  {
+                    "key": "B",
+                    "text": "assemblies contain intermediate language and metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "build source into a target-framework assembly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "an assembly is not raw C# source. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-3-03-var",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about var is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "var"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "var does not permit later values of unrelated types"
+                  },
+                  {
+                    "key": "B",
+                    "text": "var infers one static type from an initializer"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use it when the inferred type is clear"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "var does not permit later values of unrelated types. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "`if` chains suit numeric ranges, while switch expressions provide concise exhaustive mappings for finite cases."
+          ],
+          "commonMistakes": [
+            "single ampersand does not short-circuit",
+            "a discard arm can hide an omitted case"
+          ],
+          "interviewQuestions": [
+            "Explain short circuit with a minimal C# example."
+          ]
+        },
+        {
+          "stableKey": "csharp-collections-linq",
+          "title": "Collections, Iteration, and LINQ",
+          "summary": "Use arrays, List, Dictionary, HashSet, foreach, generic types, and LINQ without hiding mutation or repeated enumeration.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Collections, Iteration, and LINQ",
+            "Use compiler and runtime evidence to test the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "csharp-collections-linq-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Arrays have fixed length; `List<T>` provides an ordered resizable sequence; `Dictionary<TKey,TValue>` maps unique keys; `HashSet<T>` enforces uniqueness. Generics preserve element types. `foreach` expresses value traversal, while an indexed loop is appropriate when position matters. LINQ operators such as `Where`, `Select`, and `Average` describe queries and often use deferred execution, meaning results may reflect later source changes. Materialize with `ToList` when a stable snapshot is required. Do not structurally modify a collection during its enumeration."
+            },
+            {
+              "stableKey": "csharp-collections-linq-example",
+              "type": "code",
+              "heading": "Worked C# example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+              "codeLanguage": "csharp",
+              "codeSource": "var scores = new List<int> { 70, 82, 91 };\nvar average = scores.Average();\nConsole.WriteLine(average);",
+              "expectedOutput": "81"
+            },
+            {
+              "stableKey": "csharp-collections-linq-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "csharp-collections-linq-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process study minutes with List and LINQ, reject invalid entries, calculate summaries, and demonstrate when a materialized snapshot differs from a deferred query. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+              "expectedOutcomes": [
+                "Nullable-clean C# source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "csharp-collections-linq-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "csharp-beg-lesson-4-01-.NET-SDK",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes .NET SDK in C#?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  ".NET SDK"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the SDK includes build run and test tools"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use dotnet build to obtain compiler evidence"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a runtime-only installation may not include build tools"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the SDK includes build run and test tools. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-4-02-assemblies",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes assemblies in C#?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "assemblies"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "assemblies contain intermediate language and metadata"
+                  },
+                  {
+                    "key": "B",
+                    "text": "build source into a target-framework assembly"
+                  },
+                  {
+                    "key": "C",
+                    "text": "an assembly is not raw C# source"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "assemblies contain intermediate language and metadata. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-4-03-var",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes var in C#?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "var"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "var infers one static type from an initializer"
+                  },
+                  {
+                    "key": "B",
+                    "text": "use it when the inferred type is clear"
+                  },
+                  {
+                    "key": "C",
+                    "text": "var does not permit later values of unrelated types"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "var infers one static type from an initializer. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Arrays have fixed length; `List<T>` provides an ordered resizable sequence; `Dictionary<TKey,TValue>` maps unique keys; `HashSet<T>` enforces uniqueness."
+          ],
+          "commonMistakes": [
+            "index equal to Length is invalid",
+            "changing a list during foreach invalidates enumeration"
+          ],
+          "interviewQuestions": [
+            "Explain arrays with a minimal C# example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "csharp-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "csharp-beg-module-2-06-null-coalescing",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about null coalescing is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "null coalescing"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a fallback can hide missing required data if used carelessly"
+              },
+              {
+                "key": "B",
+                "text": "?? supplies a fallback only for null"
+              },
+              {
+                "key": "C",
+                "text": "use it when an explicit fallback is valid"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a fallback can hide missing required data if used carelessly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-2-07-short-circuit",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about short circuit is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "short circuit"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "single ampersand does not short-circuit"
+              },
+              {
+                "key": "B",
+                "text": "logical operators may skip the right operand"
+              },
+              {
+                "key": "C",
+                "text": "place guards before dependent operations"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "single ampersand does not short-circuit. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-2-08-patterns",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about patterns is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "patterns"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "a discard arm can hide an omitted case"
+              },
+              {
+                "key": "B",
+                "text": "patterns test evidence and can narrow values"
+              },
+              {
+                "key": "C",
+                "text": "use relational or type patterns for clear domain cases"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "a discard arm can hide an omitted case. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-2-09-switch-expressions",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about switch expressions is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "switch expressions"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "non-exhaustive runtime input can throw"
+              },
+              {
+                "key": "B",
+                "text": "switch expressions map inputs to values"
+              },
+              {
+                "key": "C",
+                "text": "cover finite states explicitly"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "non-exhaustive runtime input can throw. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-2-10-arrays",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about arrays is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "arrays"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "index equal to Length is invalid"
+              },
+              {
+                "key": "B",
+                "text": "arrays have fixed length and indexed elements"
+              },
+              {
+                "key": "C",
+                "text": "use arrays for fixed-size sequences"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "index equal to Length is invalid. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "csharp-beginner-module-3",
+      "title": "JSON, Async I/O, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "csharp-methods-classes",
+          "title": "Methods, Records, Classes, and Encapsulation",
+          "summary": "Design typed methods and small domain models using parameters, return values, properties, constructors, records, exceptions, and invariants.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Methods, Records, Classes, and Encapsulation",
+            "Use compiler and runtime evidence to test the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "csharp-methods-classes-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Methods declare input and output contracts. Use optional parameters sparingly and place them after required parameters. C# passes arguments by value unless `ref`, `out`, or `in` is explicit; reference-type values still identify shared objects. Records are useful for value-oriented data, while classes suit identity and encapsulated mutable behavior. Keep setters private when updates require validation. Constructors should establish valid state, and public methods must preserve it. Throw specific exceptions for violated programming contracts and use result-style handling for expected user mistakes."
+            },
+            {
+              "stableKey": "csharp-methods-classes-example",
+              "type": "code",
+              "heading": "Worked C# example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+              "codeLanguage": "csharp",
+              "codeSource": "public sealed class Progress {\n    public int Percent { get; private set; }\n    public Progress(int percent) => Set(percent);\n    public void Set(int value) { if (value is < 0 or > 100) throw new ArgumentOutOfRangeException(nameof(value)); Percent=value; }\n}\nConsole.WriteLine(new Progress(75).Percent);",
+              "expectedOutput": "75"
+            },
+            {
+              "stableKey": "csharp-methods-classes-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "csharp-methods-classes-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create CourseProgress with validated properties, controlled updates, value-based topic records, and tests for valid and invalid states. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+              "expectedOutcomes": [
+                "Nullable-clean C# source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "csharp-methods-classes-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "csharp-beg-lesson-5-01-.NET-SDK",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of .NET SDK?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  ".NET SDK"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use dotnet build to obtain compiler evidence"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the SDK includes build run and test tools"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a runtime-only installation may not include build tools"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use dotnet build to obtain compiler evidence. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-5-02-assemblies",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of assemblies?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "assemblies"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "build source into a target-framework assembly"
+                  },
+                  {
+                    "key": "B",
+                    "text": "assemblies contain intermediate language and metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "an assembly is not raw C# source"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "build source into a target-framework assembly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-5-03-var",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of var?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "var"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "use it when the inferred type is clear"
+                  },
+                  {
+                    "key": "B",
+                    "text": "var infers one static type from an initializer"
+                  },
+                  {
+                    "key": "C",
+                    "text": "var does not permit later values of unrelated types"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "use it when the inferred type is clear. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Methods declare input and output contracts."
+          ],
+          "commonMistakes": [
+            "it does not provide positional indexing",
+            "re-enumeration can repeat work and observe changed sources"
+          ],
+          "interviewQuestions": [
+            "Explain HashSet with a minimal C# example."
+          ]
+        },
+        {
+          "stableKey": "csharp-files-async-project",
+          "title": "Files, JSON, Async, and a Progress Tracker",
+          "summary": "Combine domain models, collections, JSON serialization, file I/O, async/await, cancellation, and tests in a persistent tracker.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Files, JSON, Async, and a Progress Tracker",
+            "Use compiler and runtime evidence to test the contract"
+          ],
+          "blocks": [
+            {
+              "stableKey": "csharp-files-async-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "`using` and `await using` ensure disposable resources are released. High-level file APIs simplify small text operations, while streams suit larger or incremental data. Treat JSON as untrusted: deserialization can produce null or domain-invalid values, so validate before accepting state. `async` methods usually return `Task` or `Task<T>` and should be awaited; `async void` is reserved for event handlers. Pass cancellation tokens through cancellable operations. Keep I/O at the boundary and domain calculations synchronous and testable."
+            },
+            {
+              "stableKey": "csharp-files-async-project-example",
+              "type": "code",
+              "heading": "Worked C# example",
+              "bodyMarkdown": "Predict compiler and runtime behavior, build with nullable analysis, then run and compare evidence.",
+              "codeLanguage": "csharp",
+              "codeSource": "using System.Text.Json;\nvar progress = new Dictionary<string,int> { [\"Basics\"] = 100, [\"LINQ\"] = 70 };\nvar json = JsonSerializer.Serialize(progress);\nConsole.WriteLine(json);",
+              "expectedOutput": "{\"Basics\":100,\"LINQ\":70}"
+            },
+            {
+              "stableKey": "csharp-files-async-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Add the example to a console project.\n2. Predict types and output.\n3. Build with warnings enabled.\n4. Fix one cause at a time.\n5. Run the program.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "csharp-files-async-project-practice",
+              "title": "Build, test, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build an async JSON-backed progress tracker with validated loading, cancellation-aware saving, summaries, and at least ten tests. Submit source, build output, runtime evidence, tests, and an explanation of null and failure handling.",
+              "expectedOutcomes": [
+                "Nullable-clean C# source",
+                "Boundary and failure tests",
+                "Evidence-based explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "csharp-files-async-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "csharp-beg-lesson-6-01-.NET-SDK",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about .NET SDK is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  ".NET SDK"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a runtime-only installation may not include build tools"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the SDK includes build run and test tools"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use dotnet build to obtain compiler evidence"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a runtime-only installation may not include build tools. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-6-02-assemblies",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about assemblies is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "assemblies"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "an assembly is not raw C# source"
+                  },
+                  {
+                    "key": "B",
+                    "text": "assemblies contain intermediate language and metadata"
+                  },
+                  {
+                    "key": "C",
+                    "text": "build source into a target-framework assembly"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "an assembly is not raw C# source. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              },
+              {
+                "stableId": "csharp-beg-lesson-6-03-var",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about var is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "var"
+                ],
+                "objectiveIds": [
+                  "csharp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "var does not permit later values of unrelated types"
+                  },
+                  {
+                    "key": "B",
+                    "text": "var infers one static type from an initializer"
+                  },
+                  {
+                    "key": "C",
+                    "text": "use it when the inferred type is clear"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The runtime automatically repairs invalid state"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "var does not permit later values of unrelated types. Verify with nullable analysis, compiler diagnostics, and a focused test."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "`using` and `await using` ensure disposable resources are released."
+          ],
+          "commonMistakes": [
+            "object mutation can be visible through copied references",
+            "records do not automatically validate domain invariants"
+          ],
+          "interviewQuestions": [
+            "Explain argument passing with a minimal C# example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "csharp-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "csharp-beg-module-3-11-List",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes List in C#?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "List"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "List<T> is an ordered resizable generic collection"
+              },
+              {
+                "key": "B",
+                "text": "use List for variable-size sequences"
+              },
+              {
+                "key": "C",
+                "text": "changing a list during foreach invalidates enumeration"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "List<T> is an ordered resizable generic collection. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-3-12-Dictionary",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes Dictionary in C#?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "Dictionary"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "Dictionary maps unique keys to values"
+              },
+              {
+                "key": "B",
+                "text": "use TryGetValue for expected absence"
+              },
+              {
+                "key": "C",
+                "text": "indexing a missing key throws"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "Dictionary maps unique keys to values. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-3-13-HashSet",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes HashSet in C#?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "HashSet"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "HashSet stores unique values"
+              },
+              {
+                "key": "B",
+                "text": "use it for membership and deduplication"
+              },
+              {
+                "key": "C",
+                "text": "it does not provide positional indexing"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "HashSet stores unique values. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-3-14-deferred-LINQ",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes deferred LINQ in C#?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "deferred LINQ"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "many LINQ queries execute when enumerated"
+              },
+              {
+                "key": "B",
+                "text": "materialize when a stable snapshot is required"
+              },
+              {
+                "key": "C",
+                "text": "re-enumeration can repeat work and observe changed sources"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "many LINQ queries execute when enumerated. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          },
+          {
+            "stableId": "csharp-beg-module-3-15-methods",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes methods in C#?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "methods"
+            ],
+            "objectiveIds": [
+              "csharp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "methods declare parameter and return contracts"
+              },
+              {
+                "key": "B",
+                "text": "return domain data instead of only printing"
+              },
+              {
+                "key": "C",
+                "text": "void methods cannot provide a result value"
+              },
+              {
+                "key": "D",
+                "text": "The runtime automatically repairs invalid state"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "methods declare parameter and return contracts. Verify with nullable analysis, compiler diagnostics, and a focused test."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "csharp-beginner-mock-1",
+      "title": "C# Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "csharp-beg-mock-1-01-.NET-SDK",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes .NET SDK in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            ".NET SDK"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the SDK includes build run and test tools"
+            },
+            {
+              "key": "B",
+              "text": "use dotnet build to obtain compiler evidence"
+            },
+            {
+              "key": "C",
+              "text": "a runtime-only installation may not include build tools"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the SDK includes build run and test tools. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-02-assemblies",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes assemblies in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "assemblies"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "assemblies contain intermediate language and metadata"
+            },
+            {
+              "key": "B",
+              "text": "build source into a target-framework assembly"
+            },
+            {
+              "key": "C",
+              "text": "an assembly is not raw C# source"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "assemblies contain intermediate language and metadata. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-03-var",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes var in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "var"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "var infers one static type from an initializer"
+            },
+            {
+              "key": "B",
+              "text": "use it when the inferred type is clear"
+            },
+            {
+              "key": "C",
+              "text": "var does not permit later values of unrelated types"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "var infers one static type from an initializer. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-04-TryParse",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes TryParse in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "TryParse"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "TryParse reports expected conversion failure without throwing"
+            },
+            {
+              "key": "B",
+              "text": "use it for interactive numeric input"
+            },
+            {
+              "key": "C",
+              "text": "ignoring its boolean result can use an unintended default"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "TryParse reports expected conversion failure without throwing. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-05-nullable-references",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes nullable references in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "nullable references"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "nullable annotations model possible null at compile time"
+            },
+            {
+              "key": "B",
+              "text": "check string? before dereference"
+            },
+            {
+              "key": "C",
+              "text": "the null-forgiving operator does not validate at runtime"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "nullable annotations model possible null at compile time. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-06-null-coalescing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes null coalescing in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null coalescing"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "?? supplies a fallback only for null"
+            },
+            {
+              "key": "B",
+              "text": "use it when an explicit fallback is valid"
+            },
+            {
+              "key": "C",
+              "text": "a fallback can hide missing required data if used carelessly"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "?? supplies a fallback only for null. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-07-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes short circuit in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "B",
+              "text": "place guards before dependent operations"
+            },
+            {
+              "key": "C",
+              "text": "single ampersand does not short-circuit"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "logical operators may skip the right operand. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-08-patterns",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes patterns in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "patterns"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "patterns test evidence and can narrow values"
+            },
+            {
+              "key": "B",
+              "text": "use relational or type patterns for clear domain cases"
+            },
+            {
+              "key": "C",
+              "text": "a discard arm can hide an omitted case"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "patterns test evidence and can narrow values. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-09-switch-expressions",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes switch expressions in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch expressions"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "switch expressions map inputs to values"
+            },
+            {
+              "key": "B",
+              "text": "cover finite states explicitly"
+            },
+            {
+              "key": "C",
+              "text": "non-exhaustive runtime input can throw"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "switch expressions map inputs to values. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-10-arrays",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes arrays in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "arrays have fixed length and indexed elements"
+            },
+            {
+              "key": "B",
+              "text": "use arrays for fixed-size sequences"
+            },
+            {
+              "key": "C",
+              "text": "index equal to Length is invalid"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "arrays have fixed length and indexed elements. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-11-List",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes List in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "List"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "List<T> is an ordered resizable generic collection"
+            },
+            {
+              "key": "B",
+              "text": "use List for variable-size sequences"
+            },
+            {
+              "key": "C",
+              "text": "changing a list during foreach invalidates enumeration"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "List<T> is an ordered resizable generic collection. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-12-Dictionary",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes Dictionary in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Dictionary"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Dictionary maps unique keys to values"
+            },
+            {
+              "key": "B",
+              "text": "use TryGetValue for expected absence"
+            },
+            {
+              "key": "C",
+              "text": "indexing a missing key throws"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Dictionary maps unique keys to values. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-13-HashSet",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes HashSet in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "HashSet"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "HashSet stores unique values"
+            },
+            {
+              "key": "B",
+              "text": "use it for membership and deduplication"
+            },
+            {
+              "key": "C",
+              "text": "it does not provide positional indexing"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "HashSet stores unique values. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-14-deferred-LINQ",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes deferred LINQ in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "deferred LINQ"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "many LINQ queries execute when enumerated"
+            },
+            {
+              "key": "B",
+              "text": "materialize when a stable snapshot is required"
+            },
+            {
+              "key": "C",
+              "text": "re-enumeration can repeat work and observe changed sources"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "many LINQ queries execute when enumerated. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-15-methods",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes methods in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "methods declare parameter and return contracts"
+            },
+            {
+              "key": "B",
+              "text": "return domain data instead of only printing"
+            },
+            {
+              "key": "C",
+              "text": "void methods cannot provide a result value"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "methods declare parameter and return contracts. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-16-argument-passing",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes argument passing in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "argument passing"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "parameters receive values unless ref out or in is explicit"
+            },
+            {
+              "key": "B",
+              "text": "use ordinary returns for most output"
+            },
+            {
+              "key": "C",
+              "text": "object mutation can be visible through copied references"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "parameters receive values unless ref out or in is explicit. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-17-records",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes records in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "records"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "records provide value-oriented equality by default"
+            },
+            {
+              "key": "B",
+              "text": "use records for immutable data-like models"
+            },
+            {
+              "key": "C",
+              "text": "records do not automatically validate domain invariants"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "records provide value-oriented equality by default. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-18-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes encapsulation in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "private state changes through invariant-preserving methods"
+            },
+            {
+              "key": "B",
+              "text": "restrict setters when updates need validation"
+            },
+            {
+              "key": "C",
+              "text": "public setters can allow invalid state"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "private state changes through invariant-preserving methods. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-19-async-Task",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes async Task in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "async Task"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "Task represents asynchronous completion or a future result"
+            },
+            {
+              "key": "B",
+              "text": "await asynchronous I/O and propagate Task"
+            },
+            {
+              "key": "C",
+              "text": "async void cannot be normally awaited or composed"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "Task represents asynchronous completion or a future result. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-1-20-JSON-validation",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes JSON validation in C#?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "JSON validation"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "deserialized data remains external input"
+            },
+            {
+              "key": "B",
+              "text": "validate null ranges and required fields after deserialization"
+            },
+            {
+              "key": "C",
+              "text": "successful deserialization does not prove domain validity"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "deserialized data remains external input. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        }
+      ]
+    },
+    {
+      "stableKey": "csharp-beginner-mock-2",
+      "title": "C# Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "csharp-beg-mock-2-01-.NET-SDK",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of .NET SDK?",
+          "difficulty": "beginner",
+          "topicTags": [
+            ".NET SDK"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use dotnet build to obtain compiler evidence"
+            },
+            {
+              "key": "B",
+              "text": "the SDK includes build run and test tools"
+            },
+            {
+              "key": "C",
+              "text": "a runtime-only installation may not include build tools"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use dotnet build to obtain compiler evidence. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-02-assemblies",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of assemblies?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "assemblies"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "build source into a target-framework assembly"
+            },
+            {
+              "key": "B",
+              "text": "assemblies contain intermediate language and metadata"
+            },
+            {
+              "key": "C",
+              "text": "an assembly is not raw C# source"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "build source into a target-framework assembly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-03-var",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of var?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "var"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it when the inferred type is clear"
+            },
+            {
+              "key": "B",
+              "text": "var infers one static type from an initializer"
+            },
+            {
+              "key": "C",
+              "text": "var does not permit later values of unrelated types"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it when the inferred type is clear. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-04-TryParse",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of TryParse?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "TryParse"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it for interactive numeric input"
+            },
+            {
+              "key": "B",
+              "text": "TryParse reports expected conversion failure without throwing"
+            },
+            {
+              "key": "C",
+              "text": "ignoring its boolean result can use an unintended default"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it for interactive numeric input. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-05-nullable-references",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of nullable references?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "nullable references"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check string? before dereference"
+            },
+            {
+              "key": "B",
+              "text": "nullable annotations model possible null at compile time"
+            },
+            {
+              "key": "C",
+              "text": "the null-forgiving operator does not validate at runtime"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check string? before dereference. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-06-null-coalescing",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of null coalescing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null coalescing"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it when an explicit fallback is valid"
+            },
+            {
+              "key": "B",
+              "text": "?? supplies a fallback only for null"
+            },
+            {
+              "key": "C",
+              "text": "a fallback can hide missing required data if used carelessly"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it when an explicit fallback is valid. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-07-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of short circuit?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "place guards before dependent operations"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "single ampersand does not short-circuit"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "place guards before dependent operations. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-08-patterns",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of patterns?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "patterns"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use relational or type patterns for clear domain cases"
+            },
+            {
+              "key": "B",
+              "text": "patterns test evidence and can narrow values"
+            },
+            {
+              "key": "C",
+              "text": "a discard arm can hide an omitted case"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use relational or type patterns for clear domain cases. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-09-switch-expressions",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of switch expressions?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch expressions"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "cover finite states explicitly"
+            },
+            {
+              "key": "B",
+              "text": "switch expressions map inputs to values"
+            },
+            {
+              "key": "C",
+              "text": "non-exhaustive runtime input can throw"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "cover finite states explicitly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-10-arrays",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of arrays?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use arrays for fixed-size sequences"
+            },
+            {
+              "key": "B",
+              "text": "arrays have fixed length and indexed elements"
+            },
+            {
+              "key": "C",
+              "text": "index equal to Length is invalid"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use arrays for fixed-size sequences. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-11-List",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of List?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "List"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use List for variable-size sequences"
+            },
+            {
+              "key": "B",
+              "text": "List<T> is an ordered resizable generic collection"
+            },
+            {
+              "key": "C",
+              "text": "changing a list during foreach invalidates enumeration"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use List for variable-size sequences. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-12-Dictionary",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of Dictionary?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Dictionary"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use TryGetValue for expected absence"
+            },
+            {
+              "key": "B",
+              "text": "Dictionary maps unique keys to values"
+            },
+            {
+              "key": "C",
+              "text": "indexing a missing key throws"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use TryGetValue for expected absence. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-13-HashSet",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of HashSet?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "HashSet"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it for membership and deduplication"
+            },
+            {
+              "key": "B",
+              "text": "HashSet stores unique values"
+            },
+            {
+              "key": "C",
+              "text": "it does not provide positional indexing"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it for membership and deduplication. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-14-deferred-LINQ",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of deferred LINQ?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "deferred LINQ"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "materialize when a stable snapshot is required"
+            },
+            {
+              "key": "B",
+              "text": "many LINQ queries execute when enumerated"
+            },
+            {
+              "key": "C",
+              "text": "re-enumeration can repeat work and observe changed sources"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "materialize when a stable snapshot is required. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-15-methods",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of methods?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "return domain data instead of only printing"
+            },
+            {
+              "key": "B",
+              "text": "methods declare parameter and return contracts"
+            },
+            {
+              "key": "C",
+              "text": "void methods cannot provide a result value"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "return domain data instead of only printing. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-16-argument-passing",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of argument passing?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "argument passing"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use ordinary returns for most output"
+            },
+            {
+              "key": "B",
+              "text": "parameters receive values unless ref out or in is explicit"
+            },
+            {
+              "key": "C",
+              "text": "object mutation can be visible through copied references"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use ordinary returns for most output. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-17-records",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of records?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "records"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use records for immutable data-like models"
+            },
+            {
+              "key": "B",
+              "text": "records provide value-oriented equality by default"
+            },
+            {
+              "key": "C",
+              "text": "records do not automatically validate domain invariants"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use records for immutable data-like models. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-18-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of encapsulation?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "restrict setters when updates need validation"
+            },
+            {
+              "key": "B",
+              "text": "private state changes through invariant-preserving methods"
+            },
+            {
+              "key": "C",
+              "text": "public setters can allow invalid state"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "restrict setters when updates need validation. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-19-async-Task",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of async Task?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "async Task"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "await asynchronous I/O and propagate Task"
+            },
+            {
+              "key": "B",
+              "text": "Task represents asynchronous completion or a future result"
+            },
+            {
+              "key": "C",
+              "text": "async void cannot be normally awaited or composed"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "await asynchronous I/O and propagate Task. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-2-20-JSON-validation",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of JSON validation?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "JSON validation"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "validate null ranges and required fields after deserialization"
+            },
+            {
+              "key": "B",
+              "text": "deserialized data remains external input"
+            },
+            {
+              "key": "C",
+              "text": "successful deserialization does not prove domain validity"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "validate null ranges and required fields after deserialization. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        }
+      ]
+    },
+    {
+      "stableKey": "csharp-beginner-mock-3",
+      "title": "C# Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "csharp-beg-mock-3-01-.NET-SDK",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about .NET SDK is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            ".NET SDK"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a runtime-only installation may not include build tools"
+            },
+            {
+              "key": "B",
+              "text": "the SDK includes build run and test tools"
+            },
+            {
+              "key": "C",
+              "text": "use dotnet build to obtain compiler evidence"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a runtime-only installation may not include build tools. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-02-assemblies",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about assemblies is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "assemblies"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "an assembly is not raw C# source"
+            },
+            {
+              "key": "B",
+              "text": "assemblies contain intermediate language and metadata"
+            },
+            {
+              "key": "C",
+              "text": "build source into a target-framework assembly"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "an assembly is not raw C# source. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-03-var",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about var is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "var"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "var does not permit later values of unrelated types"
+            },
+            {
+              "key": "B",
+              "text": "var infers one static type from an initializer"
+            },
+            {
+              "key": "C",
+              "text": "use it when the inferred type is clear"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "var does not permit later values of unrelated types. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-04-TryParse",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about TryParse is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "TryParse"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ignoring its boolean result can use an unintended default"
+            },
+            {
+              "key": "B",
+              "text": "TryParse reports expected conversion failure without throwing"
+            },
+            {
+              "key": "C",
+              "text": "use it for interactive numeric input"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ignoring its boolean result can use an unintended default. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-05-nullable-references",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about nullable references is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "nullable references"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the null-forgiving operator does not validate at runtime"
+            },
+            {
+              "key": "B",
+              "text": "nullable annotations model possible null at compile time"
+            },
+            {
+              "key": "C",
+              "text": "check string? before dereference"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the null-forgiving operator does not validate at runtime. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-06-null-coalescing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about null coalescing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "null coalescing"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a fallback can hide missing required data if used carelessly"
+            },
+            {
+              "key": "B",
+              "text": "?? supplies a fallback only for null"
+            },
+            {
+              "key": "C",
+              "text": "use it when an explicit fallback is valid"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a fallback can hide missing required data if used carelessly. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-07-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about short circuit is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "single ampersand does not short-circuit"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "place guards before dependent operations"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "single ampersand does not short-circuit. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-08-patterns",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about patterns is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "patterns"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a discard arm can hide an omitted case"
+            },
+            {
+              "key": "B",
+              "text": "patterns test evidence and can narrow values"
+            },
+            {
+              "key": "C",
+              "text": "use relational or type patterns for clear domain cases"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a discard arm can hide an omitted case. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-09-switch-expressions",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about switch expressions is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch expressions"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "non-exhaustive runtime input can throw"
+            },
+            {
+              "key": "B",
+              "text": "switch expressions map inputs to values"
+            },
+            {
+              "key": "C",
+              "text": "cover finite states explicitly"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "non-exhaustive runtime input can throw. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-10-arrays",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about arrays is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "arrays"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "index equal to Length is invalid"
+            },
+            {
+              "key": "B",
+              "text": "arrays have fixed length and indexed elements"
+            },
+            {
+              "key": "C",
+              "text": "use arrays for fixed-size sequences"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "index equal to Length is invalid. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-11-List",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about List is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "List"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "changing a list during foreach invalidates enumeration"
+            },
+            {
+              "key": "B",
+              "text": "List<T> is an ordered resizable generic collection"
+            },
+            {
+              "key": "C",
+              "text": "use List for variable-size sequences"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "changing a list during foreach invalidates enumeration. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-12-Dictionary",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about Dictionary is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "Dictionary"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "indexing a missing key throws"
+            },
+            {
+              "key": "B",
+              "text": "Dictionary maps unique keys to values"
+            },
+            {
+              "key": "C",
+              "text": "use TryGetValue for expected absence"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "indexing a missing key throws. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-13-HashSet",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about HashSet is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "HashSet"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "it does not provide positional indexing"
+            },
+            {
+              "key": "B",
+              "text": "HashSet stores unique values"
+            },
+            {
+              "key": "C",
+              "text": "use it for membership and deduplication"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "it does not provide positional indexing. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-14-deferred-LINQ",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about deferred LINQ is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "deferred LINQ"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "re-enumeration can repeat work and observe changed sources"
+            },
+            {
+              "key": "B",
+              "text": "many LINQ queries execute when enumerated"
+            },
+            {
+              "key": "C",
+              "text": "materialize when a stable snapshot is required"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "re-enumeration can repeat work and observe changed sources. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-15-methods",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about methods is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "methods"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "void methods cannot provide a result value"
+            },
+            {
+              "key": "B",
+              "text": "methods declare parameter and return contracts"
+            },
+            {
+              "key": "C",
+              "text": "return domain data instead of only printing"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "void methods cannot provide a result value. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-16-argument-passing",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about argument passing is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "argument passing"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "object mutation can be visible through copied references"
+            },
+            {
+              "key": "B",
+              "text": "parameters receive values unless ref out or in is explicit"
+            },
+            {
+              "key": "C",
+              "text": "use ordinary returns for most output"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "object mutation can be visible through copied references. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-17-records",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about records is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "records"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "records do not automatically validate domain invariants"
+            },
+            {
+              "key": "B",
+              "text": "records provide value-oriented equality by default"
+            },
+            {
+              "key": "C",
+              "text": "use records for immutable data-like models"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "records do not automatically validate domain invariants. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-18-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about encapsulation is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "public setters can allow invalid state"
+            },
+            {
+              "key": "B",
+              "text": "private state changes through invariant-preserving methods"
+            },
+            {
+              "key": "C",
+              "text": "restrict setters when updates need validation"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "public setters can allow invalid state. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-19-async-Task",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about async Task is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "async Task"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "async void cannot be normally awaited or composed"
+            },
+            {
+              "key": "B",
+              "text": "Task represents asynchronous completion or a future result"
+            },
+            {
+              "key": "C",
+              "text": "await asynchronous I/O and propagate Task"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "async void cannot be normally awaited or composed. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        },
+        {
+          "stableId": "csharp-beg-mock-3-20-JSON-validation",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about JSON validation is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "JSON validation"
+          ],
+          "objectiveIds": [
+            "csharp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "successful deserialization does not prove domain validity"
+            },
+            {
+              "key": "B",
+              "text": "deserialized data remains external input"
+            },
+            {
+              "key": "C",
+              "text": "validate null ranges and required fields after deserialization"
+            },
+            {
+              "key": "D",
+              "text": "The runtime automatically repairs invalid state"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "successful deserialization does not prove domain validity. Verify with nullable analysis, compiler diagnostics, and a focused test."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "csharp-beginner-capstone",
+    "title": "Async JSON Learning Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a nullable-enabled C# progress tracker using encapsulated models, generic collections and LINQ, validated JSON loading, cancellation-aware async saving, summaries, clear failure reporting, and at least ten automated tests.",
+    "deliverables": [
+      "C# project source",
+      "Build and run instructions",
+      "At least ten test results",
+      "Nullability and async design explanation"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "model_and_nullability": 25,
+      "persistence_and_async": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

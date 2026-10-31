@@ -1,0 +1,3862 @@
+{
+  "skillId": "00000000-0000-4000-8000-000000000004",
+  "skillName": "C++",
+  "level": "beginner",
+  "language": "English",
+  "version": 1,
+  "title": "Modern C++ Foundations: Value Semantics, RAII, and a Tested Tracker",
+  "description": "A beginner C++20 course covering builds, types, streams, control flow, containers, references, classes, RAII, standard algorithms, file I/O, and a tested progress-tracker capstone.",
+  "estimatedMinutes": 720,
+  "prerequisites": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "learningOutcomes": [
+    "Compile and diagnose warning-clean C++20 programs",
+    "Use values, control flow, standard containers, functions, references, and classes safely",
+    "Build a modular RAII-based progress tracker with validated persistence and tests"
+  ],
+  "modules": [
+    {
+      "stableKey": "cpp-beginner-module-1",
+      "title": "Builds, Types, and Control Flow",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "cpp-build-model",
+          "title": "Compiling Modern C++ and Reading Diagnostics",
+          "summary": "Build a repeatable C++20 edit-compile-link-run workflow and distinguish compiler, linker, runtime, and logic failures.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Compiling Modern C++ and Reading Diagnostics",
+            "Compile and test behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "cpp-build-model-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Compile with a modern language mode and strict warnings, for example `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app`. Source is translated to object code and linked into an executable. Headers normally contain declarations while one or more source files provide definitions. A compiler diagnostic reports an invalid translation unit; a linker error reports a missing or duplicate definition. Read the earliest relevant message, fix one cause, rebuild, and do not run a stale executable after a failed build. Prefer standard facilities over compiler-specific extensions."
+            },
+            {
+              "stableKey": "cpp-build-model-example",
+              "type": "code",
+              "heading": "Worked C++ example",
+              "bodyMarkdown": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+              "codeLanguage": "cpp",
+              "codeSource": "#include <iostream>\nint main() {\n  const int lessons{6};\n  std::cout << \"C++: \" << lessons << \" lessons\\n\";\n}",
+              "expectedOutput": "C++: 6 lessons"
+            },
+            {
+              "stableKey": "cpp-build-model-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "cpp-build-model-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Compile as C++20 with strict warnings, create one type error and one missing-definition linker error, then explain and fix each diagnostic. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+              "expectedOutcomes": [
+                "Warning-clean C++20 source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "cpp-build-model-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "cpp-beg-lesson-1-01-C++20-mode",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes C++20 mode in C++?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "C++20 mode"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the language mode selects modern standard rules"
+                  },
+                  {
+                    "key": "B",
+                    "text": "compile with std=c++20 consistently"
+                  },
+                  {
+                    "key": "C",
+                    "text": "compiler defaults may use an older standard"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the language mode selects modern standard rules. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-1-02-warnings",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes warnings in C++?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "warnings"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "warnings expose suspicious translated code"
+                  },
+                  {
+                    "key": "B",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "C",
+                    "text": "warning-free does not prove logic correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "warnings expose suspicious translated code. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-1-03-linking",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes linking in C++?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "linking resolves definitions across translation units"
+                  },
+                  {
+                    "key": "B",
+                    "text": "provide one definition for each used non-inline entity"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "linking resolves definitions across translation units. Confirm with a minimal C++20 program, strict warnings, and tests."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Compile with a modern language mode and strict warnings, for example `c++ -std=c++20 -Wall -Wextra -Wpedantic main.cpp -o app`."
+          ],
+          "commonMistakes": [
+            "compiler defaults may use an older standard",
+            "warning-free does not prove logic correctness"
+          ],
+          "interviewQuestions": [
+            "Explain C++20 mode with a minimal C++ example."
+          ]
+        },
+        {
+          "stableKey": "cpp-types-io",
+          "title": "Values, Types, Initialization, and Streams",
+          "summary": "Use fundamental and library types, brace initialization, const, explicit conversion, strings, streams, and validated input.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Values, Types, Initialization, and Streams",
+            "Compile and test behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "cpp-types-io-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "C++ is statically typed and supports value semantics. Brace initialization makes narrowing conversions visible. Use `const` for values that should not change and `auto` when the initializer makes the exact type clear, not to hide an important contract. Integer division discards a fractional part; convert an operand before division. `std::string` manages text storage safely. Stream extraction reports failure through stream state, so validate `std::cin` before using the destination value. Prefer explicit conversions and avoid C-style casts."
+            },
+            {
+              "stableKey": "cpp-types-io-example",
+              "type": "code",
+              "heading": "Worked C++ example",
+              "bodyMarkdown": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+              "codeLanguage": "cpp",
+              "codeSource": "#include <iostream>\nint main(){\n  const int total{243}; const int count{3};\n  const double average = static_cast<double>(total) / count;\n  std::cout << average << '\\n';\n}",
+              "expectedOutput": "81"
+            },
+            {
+              "stableKey": "cpp-types-io-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "cpp-types-io-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Read weekly minutes into an integer, reject failed or out-of-range input, calculate a four-week total, and explain the chosen initialization and conversion. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+              "expectedOutcomes": [
+                "Warning-clean C++20 source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "cpp-types-io-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "cpp-beg-lesson-2-01-C++20-mode",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of C++20 mode?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "C++20 mode"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "compile with std=c++20 consistently"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the language mode selects modern standard rules"
+                  },
+                  {
+                    "key": "C",
+                    "text": "compiler defaults may use an older standard"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-2-02-warnings",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of warnings?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "warnings"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings expose suspicious translated code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "warning-free does not prove logic correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-2-03-linking",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of linking?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "provide one definition for each used non-inline entity"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves definitions across translation units"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "C++ is statically typed and supports value semantics."
+          ],
+          "commonMistakes": [
+            "uninitialized fundamental locals have indeterminate values",
+            "const is not automatically deep for referenced objects"
+          ],
+          "interviewQuestions": [
+            "Explain brace initialization with a minimal C++ example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "cpp-beginner-module-1-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "cpp-beg-module-1-01-C++20-mode",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of C++20 mode?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "C++20 mode"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "compile with std=c++20 consistently"
+              },
+              {
+                "key": "B",
+                "text": "the language mode selects modern standard rules"
+              },
+              {
+                "key": "C",
+                "text": "compiler defaults may use an older standard"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-1-02-warnings",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of warnings?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "warnings"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "enable Wall Wextra and Wpedantic"
+              },
+              {
+                "key": "B",
+                "text": "warnings expose suspicious translated code"
+              },
+              {
+                "key": "C",
+                "text": "warning-free does not prove logic correctness"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-1-03-linking",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of linking?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "linking"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "provide one definition for each used non-inline entity"
+              },
+              {
+                "key": "B",
+                "text": "linking resolves definitions across translation units"
+              },
+              {
+                "key": "C",
+                "text": "a declaration alone does not satisfy the linker"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-1-04-brace-initialization",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of brace initialization?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "brace initialization"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "use braces for clear initialization"
+              },
+              {
+                "key": "B",
+                "text": "braces reject many narrowing conversions"
+              },
+              {
+                "key": "C",
+                "text": "uninitialized fundamental locals have indeterminate values"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "use braces for clear initialization. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-1-05-const",
+            "type": "single-choice",
+            "prompt": "Which is the safest beginner application of const?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "const"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "mark stable values and observers const"
+              },
+              {
+                "key": "B",
+                "text": "const prevents modification through that name or access path"
+              },
+              {
+                "key": "C",
+                "text": "const is not automatically deep for referenced objects"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "mark stable values and observers const. Confirm with a minimal C++20 program, strict warnings, and tests."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "cpp-beginner-module-2",
+      "title": "Containers, Functions, and Classes",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "cpp-control-flow",
+          "title": "Conditions, Boolean Logic, and Boundaries",
+          "summary": "Write clear decisions with comparisons, short-circuit operators, if/else, switch, scoped declarations, and boundary tests.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Conditions, Boolean Logic, and Boundaries",
+            "Compile and test behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "cpp-control-flow-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Conditions use `bool`, and `&&` plus `||` short-circuit. Place validity checks before dependent expressions such as division or indexing. Use `if` chains for ranges and `switch` for discrete integral or enumeration values. Every case should terminate intentionally with `break`, `return`, or a documented fallthrough. Keep variables in the smallest useful scope. Do not confuse assignment with equality, and enable warnings that identify suspicious conditions. Test immediately below, at, and above each threshold."
+            },
+            {
+              "stableKey": "cpp-control-flow-example",
+              "type": "code",
+              "heading": "Worked C++ example",
+              "bodyMarkdown": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+              "codeLanguage": "cpp",
+              "codeSource": "#include <iostream>\nint main(){ int score{72}; bool submitted{true};\n  if(score>=0 && score<=100 && submitted) std::cout<<\"recorded\\n\";\n  else std::cout<<\"review input\\n\";\n}",
+              "expectedOutput": "recorded"
+            },
+            {
+              "stableKey": "cpp-control-flow-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "cpp-control-flow-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Implement a grade classifier for 0\u2013100 using clear mutually exclusive branches and test every boundary plus invalid values. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+              "expectedOutcomes": [
+                "Warning-clean C++20 source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "cpp-control-flow-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "cpp-beg-lesson-3-01-C++20-mode",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about C++20 mode is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "C++20 mode"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "compiler defaults may use an older standard"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the language mode selects modern standard rules"
+                  },
+                  {
+                    "key": "C",
+                    "text": "compile with std=c++20 consistently"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "compiler defaults may use an older standard. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-3-02-warnings",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about warnings is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "warnings"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "warning-free does not prove logic correctness"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings expose suspicious translated code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "warning-free does not prove logic correctness. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-3-03-linking",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about linking is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves definitions across translation units"
+                  },
+                  {
+                    "key": "C",
+                    "text": "provide one definition for each used non-inline entity"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a declaration alone does not satisfy the linker. Confirm with a minimal C++20 program, strict warnings, and tests."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Conditions use `bool`, and `&&` plus `||` short-circuit."
+          ],
+          "commonMistakes": [
+            "failed extraction does not guarantee useful destination input",
+            "bitwise operators do not short-circuit"
+          ],
+          "interviewQuestions": [
+            "Explain stream state with a minimal C++ example."
+          ]
+        },
+        {
+          "stableKey": "cpp-containers-loops",
+          "title": "Loops, std::array, and std::vector",
+          "summary": "Traverse fixed and dynamic sequences with range-for and indexed loops while preserving bounds, iterator validity, and accumulator invariants.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Loops, std::array, and std::vector",
+            "Compile and test behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "cpp-containers-loops-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "`std::array<T,N>` represents a fixed-size sequence and `std::vector<T>` owns a dynamically sized contiguous sequence. Prefer range-based `for` when only values matter and use a reference when mutation is intentional. `size()` returns an unsigned size type; use consistent index types. `at()` checks bounds and throws, while `operator[]` requires the caller to guarantee a valid index. Adding to a vector can invalidate iterators, pointers, and references, so do not grow it while traversing through those handles. Standard algorithms often express intent more clearly than manual loops."
+            },
+            {
+              "stableKey": "cpp-containers-loops-example",
+              "type": "code",
+              "heading": "Worked C++ example",
+              "bodyMarkdown": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+              "codeLanguage": "cpp",
+              "codeSource": "#include <iostream>\n#include <vector>\nint main(){ std::vector<int> scores{70,82,91}; int total{};\n  for(const int score : scores) total += score;\n  std::cout << static_cast<double>(total)/scores.size() << '\\n';\n}",
+              "expectedOutput": "81"
+            },
+            {
+              "stableKey": "cpp-containers-loops-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "cpp-containers-loops-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Process a vector of study minutes, skip invalid negatives, calculate total and average, and explain why no iterator or index is invalidated. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+              "expectedOutcomes": [
+                "Warning-clean C++20 source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "cpp-containers-loops-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "cpp-beg-lesson-4-01-C++20-mode",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes C++20 mode in C++?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "C++20 mode"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "the language mode selects modern standard rules"
+                  },
+                  {
+                    "key": "B",
+                    "text": "compile with std=c++20 consistently"
+                  },
+                  {
+                    "key": "C",
+                    "text": "compiler defaults may use an older standard"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "the language mode selects modern standard rules. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-4-02-warnings",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes warnings in C++?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "warnings"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "warnings expose suspicious translated code"
+                  },
+                  {
+                    "key": "B",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "C",
+                    "text": "warning-free does not prove logic correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "warnings expose suspicious translated code. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-4-03-linking",
+                "type": "single-choice",
+                "prompt": "Which statement accurately describes linking in C++?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "linking resolves definitions across translation units"
+                  },
+                  {
+                    "key": "B",
+                    "text": "provide one definition for each used non-inline entity"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "linking resolves definitions across translation units. Confirm with a minimal C++20 program, strict warnings, and tests."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "`std::array<T,N>` represents a fixed-size sequence and `std::vector<T>` owns a dynamically sized contiguous sequence."
+          ],
+          "commonMistakes": [
+            "wide mutable scope increases coupling",
+            "its size cannot grow at runtime"
+          ],
+          "interviewQuestions": [
+            "Explain scope with a minimal C++ example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "cpp-beginner-module-2-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "cpp-beg-module-2-06-auto",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about auto is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "auto"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "auto does not make a value dynamically typed"
+              },
+              {
+                "key": "B",
+                "text": "auto deduces a type from an initializer"
+              },
+              {
+                "key": "C",
+                "text": "use it when the type is obvious or verbose"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "auto does not make a value dynamically typed. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-2-07-stream-state",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about stream state is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "stream state"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "failed extraction does not guarantee useful destination input"
+              },
+              {
+                "key": "B",
+                "text": "streams record extraction and I/O failure"
+              },
+              {
+                "key": "C",
+                "text": "test the stream before using extracted data"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "failed extraction does not guarantee useful destination input. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-2-08-short-circuit",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about short circuit is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "short circuit"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "bitwise operators do not short-circuit"
+              },
+              {
+                "key": "B",
+                "text": "logical operators may skip the right operand"
+              },
+              {
+                "key": "C",
+                "text": "place guards before dependent operations"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "bitwise operators do not short-circuit. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-2-09-switch",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about switch is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "switch"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "accidental fallthrough executes later cases"
+              },
+              {
+                "key": "B",
+                "text": "switch handles discrete integral choices"
+              },
+              {
+                "key": "C",
+                "text": "terminate every case intentionally"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "accidental fallthrough executes later cases. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-2-10-scope",
+            "type": "single-choice",
+            "prompt": "Which code-review warning about scope is valid?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "scope"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "wide mutable scope increases coupling"
+              },
+              {
+                "key": "B",
+                "text": "block scope limits name lifetime and visibility"
+              },
+              {
+                "key": "C",
+                "text": "declare values near first valid use"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "wide mutable scope increases coupling. Confirm with a minimal C++20 program, strict warnings, and tests."
+          }
+        ]
+      }
+    },
+    {
+      "stableKey": "cpp-beginner-module-3",
+      "title": "RAII, Algorithms, Files, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "estimatedMinutes": 220,
+      "objectives": [
+        "Write and explain small Python programs",
+        "Use evidence from output and tests to diagnose behavior"
+      ],
+      "lessons": [
+        {
+          "stableKey": "cpp-functions-classes-raii",
+          "title": "Functions, References, Classes, and RAII",
+          "summary": "Design function contracts and small classes using references, const correctness, constructors, private state, invariants, and automatic resource lifetime.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply Functions, References, Classes, and RAII",
+            "Compile and test behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "cpp-functions-classes-raii-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "Arguments are passed by value unless a reference type is declared. Use `const T&` for read-only access to a potentially expensive object and `T&` for deliberate caller-visible mutation. Return values are usually clear and efficiently optimized. A class should keep fields private and establish invariants in its constructor. RAII ties resource lifetime to object lifetime: containers, strings, file streams, and smart pointers release resources through destructors. Prefer these owners over manual `new` and `delete`. Mark member functions `const` when they do not modify observable state."
+            },
+            {
+              "stableKey": "cpp-functions-classes-raii-example",
+              "type": "code",
+              "heading": "Worked C++ example",
+              "bodyMarkdown": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+              "codeLanguage": "cpp",
+              "codeSource": "#include <iostream>\nclass Progress { int percent_; public:\n explicit Progress(int p): percent_{p} { if(p<0||p>100) throw std::invalid_argument{\"percent\"}; }\n int percent() const { return percent_; } };\nint main(){ std::cout << Progress{75}.percent() << '\\n'; }",
+              "expectedOutput": "75"
+            },
+            {
+              "stableKey": "cpp-functions-classes-raii-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "cpp-functions-classes-raii-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Create a CourseProgress class with constructor validation, const observers, controlled updates, and tests for normal and invalid states. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+              "expectedOutcomes": [
+                "Warning-clean C++20 source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "cpp-functions-classes-raii-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "cpp-beg-lesson-5-01-C++20-mode",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of C++20 mode?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "C++20 mode"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "compile with std=c++20 consistently"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the language mode selects modern standard rules"
+                  },
+                  {
+                    "key": "C",
+                    "text": "compiler defaults may use an older standard"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-5-02-warnings",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of warnings?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "warnings"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings expose suspicious translated code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "warning-free does not prove logic correctness"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-5-03-linking",
+                "type": "single-choice",
+                "prompt": "Which is the safest beginner application of linking?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "provide one definition for each used non-inline entity"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves definitions across translation units"
+                  },
+                  {
+                    "key": "C",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "Arguments are passed by value unless a reference type is declared."
+          ],
+          "commonMistakes": [
+            "copying each element can be unnecessary or misleading",
+            "index equal to size is invalid"
+          ],
+          "interviewQuestions": [
+            "Explain range for with a minimal C++ example."
+          ]
+        },
+        {
+          "stableKey": "cpp-stl-project",
+          "title": "STL Algorithms, Maps, and a Progress Tracker",
+          "summary": "Combine vector, map, set, algorithms, lambdas, file streams, exceptions, and RAII in a tested progress-tracker project.",
+          "estimatedMinutes": 75,
+          "objectives": [
+            "Explain and apply STL Algorithms, Maps, and a Progress Tracker",
+            "Compile and test behavior with observable evidence"
+          ],
+          "blocks": [
+            {
+              "stableKey": "cpp-stl-project-explanation",
+              "type": "explanation",
+              "heading": "Core model",
+              "bodyMarkdown": "The standard library provides containers, iterators, algorithms, and resource-managing types. `std::map` associates ordered unique keys with values; `std::unordered_map` provides hash-based lookup without sorted iteration. Algorithms such as `std::find_if`, `std::count_if`, and `std::accumulate` separate traversal from intent. Lambdas provide local callable behavior and should capture only what they need. File streams close automatically through RAII, but open, read, and write state must still be checked. Parse persisted data as untrusted input before constructing valid domain objects."
+            },
+            {
+              "stableKey": "cpp-stl-project-example",
+              "type": "code",
+              "heading": "Worked C++ example",
+              "bodyMarkdown": "Predict diagnostics and output, compile as C++20 with strict warnings, then run and compare evidence.",
+              "codeLanguage": "cpp",
+              "codeSource": "#include <iostream>\n#include <map>\nint main(){ std::map<std::string,int> progress{{\"Basics\",100},{\"Loops\",70}};\n for(const auto& [topic,percent]:progress) std::cout<<topic<<\": \"<<percent<<'\\n'; }",
+              "expectedOutput": "Basics: 100\nLoops: 70"
+            },
+            {
+              "stableKey": "cpp-stl-project-steps",
+              "type": "steps",
+              "heading": "Guided practice",
+              "bodyMarkdown": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C++20 with strict warnings.\n4. Fix one cause at a time.\n5. Run the executable.\n6. Add boundary tests."
+            }
+          ],
+          "exercises": [
+            {
+              "stableKey": "cpp-stl-project-practice",
+              "title": "Build, compile, and explain",
+              "type": "code",
+              "instructionsMarkdown": "Build a multi-file progress tracker using classes, standard containers and algorithms, validated file persistence, summaries, and at least ten tests. Submit source, build output, runtime evidence, tests, and a concise lifetime explanation.",
+              "expectedOutcomes": [
+                "Warning-clean C++20 source",
+                "Boundary and failure tests",
+                "Evidence-based ownership explanation"
+              ],
+              "requiresManualReview": true,
+              "estimatedMinutes": 40
+            }
+          ],
+          "quiz": {
+            "stableKey": "cpp-stl-project-quiz",
+            "durationMinutes": 8,
+            "passPercent": 70,
+            "questions": [
+              {
+                "stableId": "cpp-beg-lesson-6-01-C++20-mode",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about C++20 mode is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "C++20 mode"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "compiler defaults may use an older standard"
+                  },
+                  {
+                    "key": "B",
+                    "text": "the language mode selects modern standard rules"
+                  },
+                  {
+                    "key": "C",
+                    "text": "compile with std=c++20 consistently"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "compiler defaults may use an older standard. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-6-02-warnings",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about warnings is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "warnings"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "warning-free does not prove logic correctness"
+                  },
+                  {
+                    "key": "B",
+                    "text": "warnings expose suspicious translated code"
+                  },
+                  {
+                    "key": "C",
+                    "text": "enable Wall Wextra and Wpedantic"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "warning-free does not prove logic correctness. Confirm with a minimal C++20 program, strict warnings, and tests."
+              },
+              {
+                "stableId": "cpp-beg-lesson-6-03-linking",
+                "type": "single-choice",
+                "prompt": "Which code-review warning about linking is valid?",
+                "difficulty": "beginner",
+                "topicTags": [
+                  "linking"
+                ],
+                "objectiveIds": [
+                  "cpp-beginner-core"
+                ],
+                "marks": 1,
+                "autoGradable": true,
+                "options": [
+                  {
+                    "key": "A",
+                    "text": "a declaration alone does not satisfy the linker"
+                  },
+                  {
+                    "key": "B",
+                    "text": "linking resolves definitions across translation units"
+                  },
+                  {
+                    "key": "C",
+                    "text": "provide one definition for each used non-inline entity"
+                  },
+                  {
+                    "key": "D",
+                    "text": "The compiler automatically repairs the design"
+                  }
+                ],
+                "correctOptionKeys": [
+                  "A"
+                ],
+                "explanation": "a declaration alone does not satisfy the linker. Confirm with a minimal C++20 program, strict warnings, and tests."
+              }
+            ]
+          },
+          "revisionNotes": [
+            "The standard library provides containers, iterators, algorithms, and resource-managing types."
+          ],
+          "commonMistakes": [
+            "unnecessary shared mutation complicates lifetime reasoning",
+            "public fields permit invalid combinations"
+          ],
+          "interviewQuestions": [
+            "Explain value semantics with a minimal C++ example."
+          ]
+        }
+      ],
+      "assessment": {
+        "stableKey": "cpp-beginner-module-3-assessment",
+        "durationMinutes": 20,
+        "passPercent": 70,
+        "questions": [
+          {
+            "stableId": "cpp-beg-module-3-11-std::array",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes std::array in C++?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "std::array"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "std::array owns a fixed number of elements"
+              },
+              {
+                "key": "B",
+                "text": "use it when size is known at compile time"
+              },
+              {
+                "key": "C",
+                "text": "its size cannot grow at runtime"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "std::array owns a fixed number of elements. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-3-12-std::vector",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes std::vector in C++?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "std::vector"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "vector owns a dynamic contiguous sequence"
+              },
+              {
+                "key": "B",
+                "text": "use vector as the default variable-size sequence"
+              },
+              {
+                "key": "C",
+                "text": "growth can invalidate iterators and references"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "vector owns a dynamic contiguous sequence. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-3-13-range-for",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes range for in C++?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "range for"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "range-for traverses every element"
+              },
+              {
+                "key": "B",
+                "text": "use const references for read-only complex elements"
+              },
+              {
+                "key": "C",
+                "text": "copying each element can be unnecessary or misleading"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "range-for traverses every element. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-3-14-bounds",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes bounds in C++?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "bounds"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "operator[] requires a valid index while at checks"
+              },
+              {
+                "key": "B",
+                "text": "use at when checked access is valuable"
+              },
+              {
+                "key": "C",
+                "text": "index equal to size is invalid"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "operator[] requires a valid index while at checks. Confirm with a minimal C++20 program, strict warnings, and tests."
+          },
+          {
+            "stableId": "cpp-beg-module-3-15-references",
+            "type": "single-choice",
+            "prompt": "Which statement accurately describes references in C++?",
+            "difficulty": "beginner",
+            "topicTags": [
+              "references"
+            ],
+            "objectiveIds": [
+              "cpp-beginner-core"
+            ],
+            "marks": 1,
+            "autoGradable": true,
+            "options": [
+              {
+                "key": "A",
+                "text": "references alias existing objects and cannot be reseated"
+              },
+              {
+                "key": "B",
+                "text": "use const references for read-only non-owning access"
+              },
+              {
+                "key": "C",
+                "text": "returning a reference to a local creates a dangling reference"
+              },
+              {
+                "key": "D",
+                "text": "The compiler automatically repairs the design"
+              }
+            ],
+            "correctOptionKeys": [
+              "A"
+            ],
+            "explanation": "references alias existing objects and cannot be reseated. Confirm with a minimal C++20 program, strict warnings, and tests."
+          }
+        ]
+      }
+    }
+  ],
+  "mockTests": [
+    {
+      "stableKey": "cpp-beginner-mock-1",
+      "title": "C++ Beginner Mock Test 1",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "cpp-beg-mock-1-01-C++20-mode",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes C++20 mode in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "C++20 mode"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "the language mode selects modern standard rules"
+            },
+            {
+              "key": "B",
+              "text": "compile with std=c++20 consistently"
+            },
+            {
+              "key": "C",
+              "text": "compiler defaults may use an older standard"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "the language mode selects modern standard rules. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-02-warnings",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes warnings in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "warnings"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "warnings expose suspicious translated code"
+            },
+            {
+              "key": "B",
+              "text": "enable Wall Wextra and Wpedantic"
+            },
+            {
+              "key": "C",
+              "text": "warning-free does not prove logic correctness"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "warnings expose suspicious translated code. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-03-linking",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes linking in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linking"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "linking resolves definitions across translation units"
+            },
+            {
+              "key": "B",
+              "text": "provide one definition for each used non-inline entity"
+            },
+            {
+              "key": "C",
+              "text": "a declaration alone does not satisfy the linker"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "linking resolves definitions across translation units. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-04-brace-initialization",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes brace initialization in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "brace initialization"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "braces reject many narrowing conversions"
+            },
+            {
+              "key": "B",
+              "text": "use braces for clear initialization"
+            },
+            {
+              "key": "C",
+              "text": "uninitialized fundamental locals have indeterminate values"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "braces reject many narrowing conversions. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-05-const",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes const in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "const prevents modification through that name or access path"
+            },
+            {
+              "key": "B",
+              "text": "mark stable values and observers const"
+            },
+            {
+              "key": "C",
+              "text": "const is not automatically deep for referenced objects"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "const prevents modification through that name or access path. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-06-auto",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes auto in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "auto"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "auto deduces a type from an initializer"
+            },
+            {
+              "key": "B",
+              "text": "use it when the type is obvious or verbose"
+            },
+            {
+              "key": "C",
+              "text": "auto does not make a value dynamically typed"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "auto deduces a type from an initializer. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-07-stream-state",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes stream state in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "stream state"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "streams record extraction and I/O failure"
+            },
+            {
+              "key": "B",
+              "text": "test the stream before using extracted data"
+            },
+            {
+              "key": "C",
+              "text": "failed extraction does not guarantee useful destination input"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "streams record extraction and I/O failure. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes short circuit in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "B",
+              "text": "place guards before dependent operations"
+            },
+            {
+              "key": "C",
+              "text": "bitwise operators do not short-circuit"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "logical operators may skip the right operand. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-09-switch",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes switch in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "switch handles discrete integral choices"
+            },
+            {
+              "key": "B",
+              "text": "terminate every case intentionally"
+            },
+            {
+              "key": "C",
+              "text": "accidental fallthrough executes later cases"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "switch handles discrete integral choices. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-10-scope",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes scope in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "scope"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "block scope limits name lifetime and visibility"
+            },
+            {
+              "key": "B",
+              "text": "declare values near first valid use"
+            },
+            {
+              "key": "C",
+              "text": "wide mutable scope increases coupling"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "block scope limits name lifetime and visibility. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-11-std::array",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes std::array in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "std::array"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "std::array owns a fixed number of elements"
+            },
+            {
+              "key": "B",
+              "text": "use it when size is known at compile time"
+            },
+            {
+              "key": "C",
+              "text": "its size cannot grow at runtime"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "std::array owns a fixed number of elements. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-12-std::vector",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes std::vector in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "std::vector"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "vector owns a dynamic contiguous sequence"
+            },
+            {
+              "key": "B",
+              "text": "use vector as the default variable-size sequence"
+            },
+            {
+              "key": "C",
+              "text": "growth can invalidate iterators and references"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "vector owns a dynamic contiguous sequence. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-13-range-for",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes range for in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "range for"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "range-for traverses every element"
+            },
+            {
+              "key": "B",
+              "text": "use const references for read-only complex elements"
+            },
+            {
+              "key": "C",
+              "text": "copying each element can be unnecessary or misleading"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "range-for traverses every element. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-14-bounds",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes bounds in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "bounds"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "operator[] requires a valid index while at checks"
+            },
+            {
+              "key": "B",
+              "text": "use at when checked access is valuable"
+            },
+            {
+              "key": "C",
+              "text": "index equal to size is invalid"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "operator[] requires a valid index while at checks. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-15-references",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes references in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "references"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "references alias existing objects and cannot be reseated"
+            },
+            {
+              "key": "B",
+              "text": "use const references for read-only non-owning access"
+            },
+            {
+              "key": "C",
+              "text": "returning a reference to a local creates a dangling reference"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "references alias existing objects and cannot be reseated. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-16-value-semantics",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes value semantics in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "value semantics"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "ordinary objects manage their own values and lifetimes"
+            },
+            {
+              "key": "B",
+              "text": "prefer values and standard owners when practical"
+            },
+            {
+              "key": "C",
+              "text": "unnecessary shared mutation complicates lifetime reasoning"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "ordinary objects manage their own values and lifetimes. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-17-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes encapsulation in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "private state is changed through invariant-preserving operations"
+            },
+            {
+              "key": "B",
+              "text": "validate in constructors and methods"
+            },
+            {
+              "key": "C",
+              "text": "public fields permit invalid combinations"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "private state is changed through invariant-preserving operations. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-18-RAII",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes RAII in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "RAII"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "resource ownership follows object lifetime"
+            },
+            {
+              "key": "B",
+              "text": "use containers streams and smart pointers as owners"
+            },
+            {
+              "key": "C",
+              "text": "manual new and delete invite leaks and mismatched lifetime"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "resource ownership follows object lifetime. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-19-algorithms",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes algorithms in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "algorithms"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "standard algorithms express common traversal intent"
+            },
+            {
+              "key": "B",
+              "text": "use count_if or find_if with focused predicates"
+            },
+            {
+              "key": "C",
+              "text": "mutating a container structurally can invalidate algorithm iterators"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "standard algorithms express common traversal intent. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-1-20-file-streams",
+          "type": "single-choice",
+          "prompt": "Which statement accurately describes file streams in C++?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "file streams"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "fstream objects manage file handles through RAII"
+            },
+            {
+              "key": "B",
+              "text": "check opening and every required operation"
+            },
+            {
+              "key": "C",
+              "text": "automatic closing does not make malformed input valid"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "fstream objects manage file handles through RAII. Confirm with a minimal C++20 program, strict warnings, and tests."
+        }
+      ]
+    },
+    {
+      "stableKey": "cpp-beginner-mock-2",
+      "title": "C++ Beginner Mock Test 2",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "cpp-beg-mock-2-01-C++20-mode",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of C++20 mode?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "C++20 mode"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "compile with std=c++20 consistently"
+            },
+            {
+              "key": "B",
+              "text": "the language mode selects modern standard rules"
+            },
+            {
+              "key": "C",
+              "text": "compiler defaults may use an older standard"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "compile with std=c++20 consistently. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-02-warnings",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of warnings?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "warnings"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "enable Wall Wextra and Wpedantic"
+            },
+            {
+              "key": "B",
+              "text": "warnings expose suspicious translated code"
+            },
+            {
+              "key": "C",
+              "text": "warning-free does not prove logic correctness"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "enable Wall Wextra and Wpedantic. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-03-linking",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of linking?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linking"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "provide one definition for each used non-inline entity"
+            },
+            {
+              "key": "B",
+              "text": "linking resolves definitions across translation units"
+            },
+            {
+              "key": "C",
+              "text": "a declaration alone does not satisfy the linker"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "provide one definition for each used non-inline entity. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-04-brace-initialization",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of brace initialization?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "brace initialization"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use braces for clear initialization"
+            },
+            {
+              "key": "B",
+              "text": "braces reject many narrowing conversions"
+            },
+            {
+              "key": "C",
+              "text": "uninitialized fundamental locals have indeterminate values"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use braces for clear initialization. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-05-const",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of const?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "mark stable values and observers const"
+            },
+            {
+              "key": "B",
+              "text": "const prevents modification through that name or access path"
+            },
+            {
+              "key": "C",
+              "text": "const is not automatically deep for referenced objects"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "mark stable values and observers const. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-06-auto",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of auto?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "auto"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it when the type is obvious or verbose"
+            },
+            {
+              "key": "B",
+              "text": "auto deduces a type from an initializer"
+            },
+            {
+              "key": "C",
+              "text": "auto does not make a value dynamically typed"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it when the type is obvious or verbose. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-07-stream-state",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of stream state?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "stream state"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "test the stream before using extracted data"
+            },
+            {
+              "key": "B",
+              "text": "streams record extraction and I/O failure"
+            },
+            {
+              "key": "C",
+              "text": "failed extraction does not guarantee useful destination input"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "test the stream before using extracted data. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of short circuit?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "place guards before dependent operations"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "bitwise operators do not short-circuit"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "place guards before dependent operations. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-09-switch",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of switch?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "terminate every case intentionally"
+            },
+            {
+              "key": "B",
+              "text": "switch handles discrete integral choices"
+            },
+            {
+              "key": "C",
+              "text": "accidental fallthrough executes later cases"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "terminate every case intentionally. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-10-scope",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of scope?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "scope"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "declare values near first valid use"
+            },
+            {
+              "key": "B",
+              "text": "block scope limits name lifetime and visibility"
+            },
+            {
+              "key": "C",
+              "text": "wide mutable scope increases coupling"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "declare values near first valid use. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-11-std::array",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of std::array?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "std::array"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use it when size is known at compile time"
+            },
+            {
+              "key": "B",
+              "text": "std::array owns a fixed number of elements"
+            },
+            {
+              "key": "C",
+              "text": "its size cannot grow at runtime"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use it when size is known at compile time. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-12-std::vector",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of std::vector?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "std::vector"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use vector as the default variable-size sequence"
+            },
+            {
+              "key": "B",
+              "text": "vector owns a dynamic contiguous sequence"
+            },
+            {
+              "key": "C",
+              "text": "growth can invalidate iterators and references"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use vector as the default variable-size sequence. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-13-range-for",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of range for?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "range for"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use const references for read-only complex elements"
+            },
+            {
+              "key": "B",
+              "text": "range-for traverses every element"
+            },
+            {
+              "key": "C",
+              "text": "copying each element can be unnecessary or misleading"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use const references for read-only complex elements. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-14-bounds",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of bounds?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "bounds"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use at when checked access is valuable"
+            },
+            {
+              "key": "B",
+              "text": "operator[] requires a valid index while at checks"
+            },
+            {
+              "key": "C",
+              "text": "index equal to size is invalid"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use at when checked access is valuable. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-15-references",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of references?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "references"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use const references for read-only non-owning access"
+            },
+            {
+              "key": "B",
+              "text": "references alias existing objects and cannot be reseated"
+            },
+            {
+              "key": "C",
+              "text": "returning a reference to a local creates a dangling reference"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use const references for read-only non-owning access. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-16-value-semantics",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of value semantics?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "value semantics"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "prefer values and standard owners when practical"
+            },
+            {
+              "key": "B",
+              "text": "ordinary objects manage their own values and lifetimes"
+            },
+            {
+              "key": "C",
+              "text": "unnecessary shared mutation complicates lifetime reasoning"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "prefer values and standard owners when practical. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-17-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of encapsulation?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "validate in constructors and methods"
+            },
+            {
+              "key": "B",
+              "text": "private state is changed through invariant-preserving operations"
+            },
+            {
+              "key": "C",
+              "text": "public fields permit invalid combinations"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "validate in constructors and methods. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-18-RAII",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of RAII?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "RAII"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use containers streams and smart pointers as owners"
+            },
+            {
+              "key": "B",
+              "text": "resource ownership follows object lifetime"
+            },
+            {
+              "key": "C",
+              "text": "manual new and delete invite leaks and mismatched lifetime"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use containers streams and smart pointers as owners. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-19-algorithms",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of algorithms?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "algorithms"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "use count_if or find_if with focused predicates"
+            },
+            {
+              "key": "B",
+              "text": "standard algorithms express common traversal intent"
+            },
+            {
+              "key": "C",
+              "text": "mutating a container structurally can invalidate algorithm iterators"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "use count_if or find_if with focused predicates. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-2-20-file-streams",
+          "type": "single-choice",
+          "prompt": "Which is the safest beginner application of file streams?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "file streams"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "check opening and every required operation"
+            },
+            {
+              "key": "B",
+              "text": "fstream objects manage file handles through RAII"
+            },
+            {
+              "key": "C",
+              "text": "automatic closing does not make malformed input valid"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "check opening and every required operation. Confirm with a minimal C++20 program, strict warnings, and tests."
+        }
+      ]
+    },
+    {
+      "stableKey": "cpp-beginner-mock-3",
+      "title": "C++ Beginner Mock Test 3",
+      "durationMinutes": 35,
+      "passPercent": 70,
+      "questions": [
+        {
+          "stableId": "cpp-beg-mock-3-01-C++20-mode",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about C++20 mode is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "C++20 mode"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "compiler defaults may use an older standard"
+            },
+            {
+              "key": "B",
+              "text": "the language mode selects modern standard rules"
+            },
+            {
+              "key": "C",
+              "text": "compile with std=c++20 consistently"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "compiler defaults may use an older standard. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-02-warnings",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about warnings is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "warnings"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "warning-free does not prove logic correctness"
+            },
+            {
+              "key": "B",
+              "text": "warnings expose suspicious translated code"
+            },
+            {
+              "key": "C",
+              "text": "enable Wall Wextra and Wpedantic"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "warning-free does not prove logic correctness. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-03-linking",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about linking is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "linking"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "a declaration alone does not satisfy the linker"
+            },
+            {
+              "key": "B",
+              "text": "linking resolves definitions across translation units"
+            },
+            {
+              "key": "C",
+              "text": "provide one definition for each used non-inline entity"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "a declaration alone does not satisfy the linker. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-04-brace-initialization",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about brace initialization is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "brace initialization"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "uninitialized fundamental locals have indeterminate values"
+            },
+            {
+              "key": "B",
+              "text": "braces reject many narrowing conversions"
+            },
+            {
+              "key": "C",
+              "text": "use braces for clear initialization"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "uninitialized fundamental locals have indeterminate values. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-05-const",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about const is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "const"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "const is not automatically deep for referenced objects"
+            },
+            {
+              "key": "B",
+              "text": "const prevents modification through that name or access path"
+            },
+            {
+              "key": "C",
+              "text": "mark stable values and observers const"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "const is not automatically deep for referenced objects. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-06-auto",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about auto is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "auto"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "auto does not make a value dynamically typed"
+            },
+            {
+              "key": "B",
+              "text": "auto deduces a type from an initializer"
+            },
+            {
+              "key": "C",
+              "text": "use it when the type is obvious or verbose"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "auto does not make a value dynamically typed. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-07-stream-state",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about stream state is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "stream state"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "failed extraction does not guarantee useful destination input"
+            },
+            {
+              "key": "B",
+              "text": "streams record extraction and I/O failure"
+            },
+            {
+              "key": "C",
+              "text": "test the stream before using extracted data"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "failed extraction does not guarantee useful destination input. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-08-short-circuit",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about short circuit is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "short circuit"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "bitwise operators do not short-circuit"
+            },
+            {
+              "key": "B",
+              "text": "logical operators may skip the right operand"
+            },
+            {
+              "key": "C",
+              "text": "place guards before dependent operations"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "bitwise operators do not short-circuit. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-09-switch",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about switch is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "switch"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "accidental fallthrough executes later cases"
+            },
+            {
+              "key": "B",
+              "text": "switch handles discrete integral choices"
+            },
+            {
+              "key": "C",
+              "text": "terminate every case intentionally"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "accidental fallthrough executes later cases. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-10-scope",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about scope is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "scope"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "wide mutable scope increases coupling"
+            },
+            {
+              "key": "B",
+              "text": "block scope limits name lifetime and visibility"
+            },
+            {
+              "key": "C",
+              "text": "declare values near first valid use"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "wide mutable scope increases coupling. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-11-std::array",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about std::array is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "std::array"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "its size cannot grow at runtime"
+            },
+            {
+              "key": "B",
+              "text": "std::array owns a fixed number of elements"
+            },
+            {
+              "key": "C",
+              "text": "use it when size is known at compile time"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "its size cannot grow at runtime. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-12-std::vector",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about std::vector is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "std::vector"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "growth can invalidate iterators and references"
+            },
+            {
+              "key": "B",
+              "text": "vector owns a dynamic contiguous sequence"
+            },
+            {
+              "key": "C",
+              "text": "use vector as the default variable-size sequence"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "growth can invalidate iterators and references. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-13-range-for",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about range for is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "range for"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "copying each element can be unnecessary or misleading"
+            },
+            {
+              "key": "B",
+              "text": "range-for traverses every element"
+            },
+            {
+              "key": "C",
+              "text": "use const references for read-only complex elements"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "copying each element can be unnecessary or misleading. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-14-bounds",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about bounds is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "bounds"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "index equal to size is invalid"
+            },
+            {
+              "key": "B",
+              "text": "operator[] requires a valid index while at checks"
+            },
+            {
+              "key": "C",
+              "text": "use at when checked access is valuable"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "index equal to size is invalid. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-15-references",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about references is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "references"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "returning a reference to a local creates a dangling reference"
+            },
+            {
+              "key": "B",
+              "text": "references alias existing objects and cannot be reseated"
+            },
+            {
+              "key": "C",
+              "text": "use const references for read-only non-owning access"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "returning a reference to a local creates a dangling reference. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-16-value-semantics",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about value semantics is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "value semantics"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "unnecessary shared mutation complicates lifetime reasoning"
+            },
+            {
+              "key": "B",
+              "text": "ordinary objects manage their own values and lifetimes"
+            },
+            {
+              "key": "C",
+              "text": "prefer values and standard owners when practical"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "unnecessary shared mutation complicates lifetime reasoning. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-17-encapsulation",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about encapsulation is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "encapsulation"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "public fields permit invalid combinations"
+            },
+            {
+              "key": "B",
+              "text": "private state is changed through invariant-preserving operations"
+            },
+            {
+              "key": "C",
+              "text": "validate in constructors and methods"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "public fields permit invalid combinations. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-18-RAII",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about RAII is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "RAII"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "manual new and delete invite leaks and mismatched lifetime"
+            },
+            {
+              "key": "B",
+              "text": "resource ownership follows object lifetime"
+            },
+            {
+              "key": "C",
+              "text": "use containers streams and smart pointers as owners"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "manual new and delete invite leaks and mismatched lifetime. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-19-algorithms",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about algorithms is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "algorithms"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "mutating a container structurally can invalidate algorithm iterators"
+            },
+            {
+              "key": "B",
+              "text": "standard algorithms express common traversal intent"
+            },
+            {
+              "key": "C",
+              "text": "use count_if or find_if with focused predicates"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "mutating a container structurally can invalidate algorithm iterators. Confirm with a minimal C++20 program, strict warnings, and tests."
+        },
+        {
+          "stableId": "cpp-beg-mock-3-20-file-streams",
+          "type": "single-choice",
+          "prompt": "Which code-review warning about file streams is valid?",
+          "difficulty": "beginner",
+          "topicTags": [
+            "file streams"
+          ],
+          "objectiveIds": [
+            "cpp-beginner-core"
+          ],
+          "marks": 1,
+          "autoGradable": true,
+          "options": [
+            {
+              "key": "A",
+              "text": "automatic closing does not make malformed input valid"
+            },
+            {
+              "key": "B",
+              "text": "fstream objects manage file handles through RAII"
+            },
+            {
+              "key": "C",
+              "text": "check opening and every required operation"
+            },
+            {
+              "key": "D",
+              "text": "The compiler automatically repairs the design"
+            }
+          ],
+          "correctOptionKeys": [
+            "A"
+          ],
+          "explanation": "automatic closing does not make malformed input valid. Confirm with a minimal C++20 program, strict warnings, and tests."
+        }
+      ]
+    }
+  ],
+  "finalAssessment": {
+    "stableKey": "cpp-beginner-capstone",
+    "title": "RAII-Based Learning Progress Tracker",
+    "type": "capstone",
+    "instructionsMarkdown": "Build a C++20 progress tracker using encapsulated classes, standard containers and algorithms, const-correct interfaces, validated updates, checked file persistence, RAII ownership, and at least ten automated tests.",
+    "deliverables": [
+      "C++ source and headers",
+      "Portable build instructions",
+      "At least ten recorded tests",
+      "Ownership and invalidation explanation"
+    ],
+    "rubric": {
+      "correctness": 30,
+      "design_and_raii": 25,
+      "validation": 20,
+      "tests": 15,
+      "explanation": 10
+    },
+    "requiresManualReview": true
+  }
+}

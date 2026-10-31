@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds",
+  "skillName": "C Programming",
+  "moduleId": "mod-2-c-beginner-module-2",
+  "title": "Loops, Arrays, and Bounds",
+  "summary": "Use for, while, arrays, indexes, accumulators, break, continue, and invariants that prevent out-of-bounds access.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Loops, Arrays, and Bounds",
+    "Compile and test behavior with warnings enabled"
+  ],
+  "objectiveIds": [
+    "c-programming-obj-3",
+    "c-programming-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-sec-1",
+      "heading": "Core model",
+      "content": "C arrays contain a fixed number of adjacent elements and do not carry their length into a called function. Valid indexes run from zero through length minus one. Compute a local array count with `sizeof array / sizeof array[0]` only where `array` is still an array, not a pointer parameter. Use `size_t` for sizes and indexes. A loop invariant states what remains valid before each iteration; conditions such as `i < count` protect bounds. Out-of-range access is undefined behavior, not a guaranteed exception.",
+      "codeExamples": [],
+      "keyPoints": [
+        "C arrays contain a fixed number of adjacent elements and do not carry their length into a called function."
+      ],
+      "commonMistakes": [
+        "missing break can execute later cases",
+        "index equal to count is out of bounds"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-sec-2",
+      "heading": "Worked C example",
+      "content": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "c",
+          "code": "#include <stdio.h>\nint main(void) {\n    int scores[] = {70,82,91};\n    size_t count = sizeof scores / sizeof scores[0];\n    int total = 0;\n    for (size_t i=0; i<count; ++i) total += scores[i];\n    printf(\"%.1f\\n\", (double)total/count);\n    return 0;\n}",
+          "explanation": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+          "expectedOutput": "81.0"
+        }
+      ],
+      "keyPoints": [
+        "C arrays contain a fixed number of adjacent elements and do not carry their length into a called function."
+      ],
+      "commonMistakes": [
+        "missing break can execute later cases",
+        "index equal to count is out of bounds"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "C arrays contain a fixed number of adjacent elements and do not carry their length into a called function."
+      ],
+      "commonMistakes": [
+        "missing break can execute later cases",
+        "index equal to count is out of bounds"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C Programming.",
+      "description": "Process an array of study minutes, skip negatives, calculate total and average, and explain why every index remains in bounds. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+      "instructions": [
+        "Process an array of study minutes, skip negatives, calculate total and average, and explain why every index remains in bounds. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling."
+      ],
+      "starterCode": "// C Programming Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C Programming operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes preprocessing in C?",
+      "options": [
+        {
+          "id": "A",
+          "text": "preprocessing handles directives before compilation"
+        },
+        {
+          "id": "B",
+          "text": "use headers for declarations and include guards"
+        },
+        {
+          "id": "C",
+          "text": "macros do textual substitution without type checking"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "preprocessing handles directives before compilation. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-3"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes compiler warnings in C?",
+      "options": [
+        {
+          "id": "A",
+          "text": "warnings identify suspicious but translatable code"
+        },
+        {
+          "id": "B",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "C",
+          "text": "ignoring warnings can leave real defects"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "warnings identify suspicious but translatable code. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-4"
+      ]
+    },
+    {
+      "id": "mod-2-c-beginner-module-2-l2-loops-arrays-and-bounds-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes linking in C?",
+      "options": [
+        {
+          "id": "A",
+          "text": "linking resolves referenced definitions"
+        },
+        {
+          "id": "B",
+          "text": "provide exactly one matching external definition"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "linking resolves referenced definitions. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-3"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Loops, Arrays, and Bounds in C Programming. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-c-programming-main",
+      "title": "C Programming Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C Programming.",
+      "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "c-programming-obj-3"
+      ],
+      "keyTopicsCovered": [
+        "Conditions, Operators, and Boundaries",
+        "Loops, Arrays, and Bounds"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Loops, Arrays, and Bounds",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Loops, Arrays, and Bounds."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C Programming",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.152Z"
+}

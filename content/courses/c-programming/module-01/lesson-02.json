@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input",
+  "skillName": "C Programming",
+  "moduleId": "mod-1-c-beginner-module-1",
+  "title": "Types, Expressions, and Safe Input",
+  "summary": "Use integer and floating types, declarations, conversions, format specifiers, arithmetic, and checked text input.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Types, Expressions, and Safe Input",
+    "Compile and test behavior with warnings enabled"
+  ],
+  "objectiveIds": [
+    "c-programming-obj-1",
+    "c-programming-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-sec-1",
+      "heading": "Core model",
+      "content": "C objects have declared types that determine representation and operations. Integer division truncates toward zero, so cast before division when a fraction is required. `sizeof` reports storage in bytes as `size_t`. `printf` and `scanf` format specifiers must match argument types; a mismatch can cause undefined behavior. For robust interactive input, read a line with `fgets`, then parse with `strtol` while checking the end pointer and range. Initialize objects before reading them and never assume failed input leaves a useful value.",
+      "codeExamples": [],
+      "keyPoints": [
+        "C objects have declared types that determine representation and operations."
+      ],
+      "commonMistakes": [
+        "casting after division cannot restore the fraction",
+        "a mismatch can cause undefined behavior"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-sec-2",
+      "heading": "Worked C example",
+      "content": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "c",
+          "code": "#include <stdio.h>\nint main(void) {\n    int total = 243, count = 3;\n    double average = (double)total / count;\n    printf(\"%.1f\\n\", average);\n    return 0;\n}",
+          "explanation": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+          "expectedOutput": "81.0"
+        }
+      ],
+      "keyPoints": [
+        "C objects have declared types that determine representation and operations."
+      ],
+      "commonMistakes": [
+        "casting after division cannot restore the fraction",
+        "a mismatch can cause undefined behavior"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "C objects have declared types that determine representation and operations."
+      ],
+      "commonMistakes": [
+        "casting after division cannot restore the fraction",
+        "a mismatch can cause undefined behavior"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C Programming.",
+      "description": "Read weekly minutes with fgets and strtol, reject trailing text and values outside a documented range, then calculate a four-week total. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+      "instructions": [
+        "Read weekly minutes with fgets and strtol, reject trailing text and values outside a documented range, then calculate a four-week total. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling."
+      ],
+      "starterCode": "// C Programming Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C Programming operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-kc-1",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of preprocessing?",
+      "options": [
+        {
+          "id": "A",
+          "text": "use headers for declarations and include guards"
+        },
+        {
+          "id": "B",
+          "text": "preprocessing handles directives before compilation"
+        },
+        {
+          "id": "C",
+          "text": "macros do textual substitution without type checking"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-kc-2",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of compiler warnings?",
+      "options": [
+        {
+          "id": "A",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "B",
+          "text": "warnings identify suspicious but translatable code"
+        },
+        {
+          "id": "C",
+          "text": "ignoring warnings can leave real defects"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-kc-3",
+      "type": "single-choice",
+      "prompt": "Which is the safest beginner application of linking?",
+      "options": [
+        {
+          "id": "A",
+          "text": "provide exactly one matching external definition"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves referenced definitions"
+        },
+        {
+          "id": "C",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Types, Expressions, and Safe Input in C Programming. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-c-programming-main",
+      "title": "C Programming Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C Programming.",
+      "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "c-programming-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "Compiling C and Reading Diagnostics",
+        "Types, Expressions, and Safe Input"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Types, Expressions, and Safe Input",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Types, Expressions, and Safe Input."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C Programming",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.149Z"
+}

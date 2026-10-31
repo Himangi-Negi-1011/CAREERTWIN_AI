@@ -1,0 +1,703 @@
+{
+  "id": "mock-php-beginner-test-01",
+  "skillName": "PHP",
+  "skillSlug": "php",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "PHP Beginner Mock Test 1",
+  "description": "Comprehensive 50-minute mock examination for PHP at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "strict types",
+    "linting",
+    "Composer",
+    "type declarations",
+    "strict comparison",
+    "filter validation",
+    "null",
+    "match",
+    "arrays",
+    "foreach references",
+    "typed functions",
+    "exceptions",
+    "finally",
+    "private properties",
+    "readonly",
+    "interfaces",
+    "prepared statements",
+    "transactions",
+    "authorization",
+    "output escaping"
+  ],
+  "questions": [
+    {
+      "id": "mock-php-beginner-test-01-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict types in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "strict_types limits scalar coercion for calls from the declaring file"
+        },
+        {
+          "id": "B",
+          "text": "declare it in typed application source"
+        },
+        {
+          "id": "C",
+          "text": "it does not validate HTTP input automatically"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "strict_types limits scalar coercion for calls from the declaring file. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "strict types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes linting in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "php lint checks syntax without executing application behavior"
+        },
+        {
+          "id": "B",
+          "text": "lint before tests and deployment"
+        },
+        {
+          "id": "C",
+          "text": "syntax success does not prove runtime correctness"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "php lint checks syntax without executing application behavior. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "linting",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Composer in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Composer manages dependencies and autoloading"
+        },
+        {
+          "id": "B",
+          "text": "commit dependency manifests and application lock files"
+        },
+        {
+          "id": "C",
+          "text": "vendor output should normally be regenerated"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Composer manages dependencies and autoloading. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "Composer",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes type declarations in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "parameter and return declarations express contracts"
+        },
+        {
+          "id": "B",
+          "text": "declare meaningful application boundaries"
+        },
+        {
+          "id": "C",
+          "text": "external data still needs runtime validation"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "parameter and return declarations express contracts. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "type declarations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict comparison in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "triple equals compares value and type"
+        },
+        {
+          "id": "B",
+          "text": "use it when false zero and empty string differ"
+        },
+        {
+          "id": "C",
+          "text": "loose comparison can equate surprising values"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "triple equals compares value and type. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "strict comparison",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q6",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes filter validation in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "validation filters test supported input formats"
+        },
+        {
+          "id": "B",
+          "text": "compare FILTER_VALIDATE_INT result strictly with false"
+        },
+        {
+          "id": "C",
+          "text": "zero is valid but loosely equals false"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "validation filters test supported input formats. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "filter validation",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q7",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes null in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "null represents deliberate absence"
+        },
+        {
+          "id": "B",
+          "text": "use nullable types only when absence is valid"
+        },
+        {
+          "id": "C",
+          "text": "null should not replace every error case"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "null represents deliberate absence. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "null",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q8",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes match in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "match uses strict comparison and returns a value"
+        },
+        {
+          "id": "B",
+          "text": "cover every allowed case or provide an intentional default"
+        },
+        {
+          "id": "C",
+          "text": "an unmatched value throws"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "match uses strict comparison and returns a value. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "match",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q9",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes arrays in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "PHP arrays are ordered maps with integer or string keys"
+        },
+        {
+          "id": "B",
+          "text": "choose keys that express the data model"
+        },
+        {
+          "id": "C",
+          "text": "mixed key coercion can surprise careless input handling"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "PHP arrays are ordered maps with integer or string keys. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q10",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes foreach references in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "reference iteration can mutate original elements"
+        },
+        {
+          "id": "B",
+          "text": "avoid references unless mutation is intended"
+        },
+        {
+          "id": "C",
+          "text": "the lingering reference should be unset after the loop"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "reference iteration can mutate original elements. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "foreach references",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q11",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes typed functions in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "typed functions define reusable input and output contracts"
+        },
+        {
+          "id": "B",
+          "text": "return domain data rather than only echoing"
+        },
+        {
+          "id": "C",
+          "text": "default parameters should follow required parameters"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "typed functions define reusable input and output contracts. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "typed functions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q12",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes exceptions in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "exceptions transfer control to a capable boundary"
+        },
+        {
+          "id": "B",
+          "text": "catch only where recovery translation or logging is possible"
+        },
+        {
+          "id": "C",
+          "text": "swallowing Throwable hides failures"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "exceptions transfer control to a capable boundary. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "exceptions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q13",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes finally in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "finally executes after try and catch paths"
+        },
+        {
+          "id": "B",
+          "text": "use it for unavoidable cleanup"
+        },
+        {
+          "id": "C",
+          "text": "returning from finally can obscure earlier results or errors"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "finally executes after try and catch paths. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "finally",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q14",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes private properties in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "private properties prevent arbitrary external assignment"
+        },
+        {
+          "id": "B",
+          "text": "preserve invariants through methods"
+        },
+        {
+          "id": "C",
+          "text": "public mutable fields permit invalid state"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "private properties prevent arbitrary external assignment. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "private properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q15",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes readonly in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "readonly properties can be initialized only once"
+        },
+        {
+          "id": "B",
+          "text": "use them for stable value-object fields"
+        },
+        {
+          "id": "C",
+          "text": "readonly is not automatically deep immutability"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "readonly properties can be initialized only once. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q16",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes interfaces in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "interfaces specify consumer-required behavior"
+        },
+        {
+          "id": "B",
+          "text": "keep interfaces focused"
+        },
+        {
+          "id": "C",
+          "text": "large interfaces couple unrelated responsibilities"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "interfaces specify consumer-required behavior. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q17",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes prepared statements in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "prepared statements separate SQL structure from values"
+        },
+        {
+          "id": "B",
+          "text": "bind every untrusted value"
+        },
+        {
+          "id": "C",
+          "text": "string concatenation enables injection risk"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "prepared statements separate SQL structure from values. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "prepared statements",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q18",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes transactions in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "transactions make related database changes atomic"
+        },
+        {
+          "id": "B",
+          "text": "commit only after all required writes succeed"
+        },
+        {
+          "id": "C",
+          "text": "missing rollback can leave partial work"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "transactions make related database changes atomic. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "transactions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q19",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes authorization in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "authorization checks permission for a particular action and resource"
+        },
+        {
+          "id": "B",
+          "text": "scope every record query to the authenticated owner"
+        },
+        {
+          "id": "C",
+          "text": "authentication alone does not grant access to all rows"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "authorization checks permission for a particular action and resource. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "authorization",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    },
+    {
+      "id": "mock-php-beginner-test-01-q20",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes output escaping in PHP?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "contextual escaping prevents data becoming executable markup"
+        },
+        {
+          "id": "B",
+          "text": "escape at output for the target context"
+        },
+        {
+          "id": "C",
+          "text": "input validation is not a substitute for output encoding"
+        },
+        {
+          "id": "D",
+          "text": "PHP automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "contextual escaping prevents data becoming executable markup. Confirm with linting, focused tests, and observable failure handling.",
+      "difficulty": "beginner",
+      "topic": "output escaping",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-php-beginner-module-1-l1",
+      "recommendedLessonTitle": "PHP Runtime, Files, and Composer"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.525Z",
+  "updatedAt": "2026-10-31T13:08:48.525Z"
+}

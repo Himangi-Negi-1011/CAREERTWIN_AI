@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference",
+  "skillName": "TypeScript",
+  "moduleId": "mod-1-typescript-beginner-module-1",
+  "title": "TypeScript Setup and Type Inference",
+  "summary": "Configure a small strict TypeScript project and understand how the compiler infers types from values and reports unsafe operations before JavaScript runs.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply the TypeScript behavior taught in TypeScript Setup and Type Inference",
+    "Use strict compiler evidence and runtime tests to verify the contract"
+  ],
+  "objectiveIds": [
+    "typescript-obj-1",
+    "typescript-obj-2"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-sec-1",
+      "heading": "Core model",
+      "content": "TypeScript is a static analysis layer over JavaScript. The compiler checks source and emits JavaScript; types do not normally exist at runtime. Start with `tsconfig.json`, enable `strict`, and compile with `tsc --noEmit` during checking. Type inference derives useful types from initial values, so `const count = 3` needs no `: number`. Add annotations at public boundaries or where inference is too broad, not to repeat obvious facts. A compiler error is evidence of a mismatch between operations and declared possibilities; fix the model or narrow the value instead of silencing it with assertions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "TypeScript is a static analysis layer over JavaScript."
+      ],
+      "commonMistakes": [
+        "reassigning an inferred string variable to a number is rejected",
+        "disabling strict can hide null and implicit-any defects"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-sec-2",
+      "heading": "Worked TypeScript example",
+      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "const course = 'TypeScript';\nconst lessons = 6;\nconst label: string = `${course}: ${lessons} lessons`;\nconsole.log(label);",
+          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+          "expectedOutput": "TypeScript: 6 lessons"
+        }
+      ],
+      "keyPoints": [
+        "TypeScript is a static analysis layer over JavaScript."
+      ],
+      "commonMistakes": [
+        "reassigning an inferred string variable to a number is rejected",
+        "disabling strict can hide null and implicit-any defects"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
+      "codeExamples": [],
+      "keyPoints": [
+        "TypeScript is a static analysis layer over JavaScript."
+      ],
+      "commonMistakes": [
+        "reassigning an inferred string variable to a number is rejected",
+        "disabling strict can hide null and implicit-any defects"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-ex-1",
+      "type": "coding",
+      "title": "Build, check, and explain",
+      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
+      "description": "Create a strict TypeScript project, declare inferred and annotated bindings, run `tsc --noEmit`, and explain one compiler diagnostic you intentionally produced. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "instructions": [
+        "Create a strict TypeScript project, declare inferred and annotated bindings, run `tsc --noEmit`, and explain one compiler diagnostic you intentionally produced. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+      ],
+      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "hints": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Strictly typed source without unchecked any",
+        "Compiler and runtime evidence",
+        "Boundary and invalid-input tests"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-kc-1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes type inference in TypeScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "the compiler derives a type from available expressions"
+        },
+        {
+          "id": "B",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-1"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-kc-2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict mode in TypeScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "strict enables a coordinated set of stronger checks"
+        },
+        {
+          "id": "B",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-2"
+      ]
+    },
+    {
+      "id": "mod-1-typescript-beginner-module-1-l1-typescript-setup-and-type-inference-kc-3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes annotations in TypeScript?",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotations state an expected compile-time type"
+        },
+        {
+          "id": "B",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "objectiveIds": [
+        "typescript-obj-1"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered TypeScript Setup and Type Inference in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-typescript-main",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for TypeScript.",
+      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "typescript-obj-1"
+      ],
+      "keyTopicsCovered": [
+        "TypeScript Setup and Type Inference",
+        "Primitive Types, Unions, and Narrowing"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: TypeScript Setup and Type Inference",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for TypeScript Setup and Type Inference."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using TypeScript",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.686Z"
+}

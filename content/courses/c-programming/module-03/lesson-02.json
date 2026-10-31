@@ -1,0 +1,226 @@
+{
+  "lessonId": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke",
+  "skillName": "C Programming",
+  "moduleId": "mod-3-c-beginner-module-3",
+  "title": "Structs, Text Files, and a Progress Tracker",
+  "summary": "Combine structs, enums, fixed buffers, checked file I/O, parsing, and modular functions in a small persistent tracker.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 75,
+  "learningObjectives": [
+    "Explain and apply Structs, Text Files, and a Progress Tracker",
+    "Compile and test behavior with warnings enabled"
+  ],
+  "objectiveIds": [
+    "c-programming-obj-5",
+    "c-programming-obj-6"
+  ],
+  "prerequisiteConcepts": [
+    "Ability to create and save a text file",
+    "No prior programming experience required"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-sec-1",
+      "heading": "Core model",
+      "content": "A struct groups related fields into one record; an enum gives meaningful names to integral states. Fixed character arrays require space for the terminating null character. Copy and format with bounded functions, always checking truncation and return values. File functions return status: verify `fopen`, check each read or write, and call `fclose`. Text persistence needs a documented format and validation when loaded because files are untrusted input. Separate parsing, domain updates, calculations, and presentation so each function has a testable contract.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A struct groups related fields into one record; an enum gives meaningful names to integral states."
+      ],
+      "commonMistakes": [
+        "dereferencing null is undefined behavior",
+        "const does not necessarily make the original object globally immutable"
+      ]
+    },
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-sec-2",
+      "heading": "Worked C example",
+      "content": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+      "codeExamples": [
+        {
+          "language": "c",
+          "code": "#include <stdio.h>\ntypedef struct { char topic[32]; int percent; } Progress;\nint main(void){ Progress p={\"Pointers\",70}; printf(\"%s: %d%%\\n\",p.topic,p.percent); }",
+          "explanation": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+          "expectedOutput": "Pointers: 70%"
+        }
+      ],
+      "keyPoints": [
+        "A struct groups related fields into one record; an enum gives meaningful names to integral states."
+      ],
+      "commonMistakes": [
+        "dereferencing null is undefined behavior",
+        "const does not necessarily make the original object globally immutable"
+      ]
+    },
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-sec-3",
+      "heading": "Guided practice",
+      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions.",
+      "codeExamples": [],
+      "keyPoints": [
+        "A struct groups related fields into one record; an enum gives meaningful names to integral states."
+      ],
+      "commonMistakes": [
+        "dereferencing null is undefined behavior",
+        "const does not necessarily make the original object globally immutable"
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-ex-1",
+      "type": "coding",
+      "title": "Build, compile, and explain",
+      "objective": "Master Build, compile, and explain and apply practical principles in C Programming.",
+      "description": "Build a multi-file progress tracker using structs and enums, validated 0–100 updates, safe text-file persistence, summaries, and at least ten tests. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+      "instructions": [
+        "Build a multi-file progress tracker using structs and enums, validated 0–100 updates, safe text-file persistence, summaries, and at least ten tests. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling."
+      ],
+      "starterCode": "// C Programming Exercise: Build, compile, and explain\n// Write your solution below",
+      "hints": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "evaluationCriteria": [
+        "Warning-clean C17 source",
+        "Boundary and failure tests",
+        "Evidence-based explanation"
+      ],
+      "solutionExplanation": "Verified reference implementation demonstrating core C Programming operations for Build, compile, and explain."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-kc-1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about preprocessing is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "macros do textual substitution without type checking"
+        },
+        {
+          "id": "B",
+          "text": "preprocessing handles directives before compilation"
+        },
+        {
+          "id": "C",
+          "text": "use headers for declarations and include guards"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "macros do textual substitution without type checking. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-5"
+      ]
+    },
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-kc-2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about compiler warnings is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ignoring warnings can leave real defects"
+        },
+        {
+          "id": "B",
+          "text": "warnings identify suspicious but translatable code"
+        },
+        {
+          "id": "C",
+          "text": "enable Wall Wextra and Wpedantic"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "ignoring warnings can leave real defects. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-6"
+      ]
+    },
+    {
+      "id": "mod-3-c-beginner-module-3-l2-structs-text-files-and-a-progress-tracke-kc-3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about linking is valid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "a declaration alone does not satisfy the linker"
+        },
+        {
+          "id": "B",
+          "text": "linking resolves referenced definitions"
+        },
+        {
+          "id": "C",
+          "text": "provide exactly one matching external definition"
+        },
+        {
+          "id": "D",
+          "text": "The language automatically repairs the issue"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a declaration alone does not satisfy the linker. Verify with strict warnings, a minimal program, and observable output.",
+      "objectiveIds": [
+        "c-programming-obj-5"
+      ]
+    }
+  ],
+  "recap": "In this lesson, you covered Structs, Text Files, and a Progress Tracker in C Programming. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "videoResources": [
+    {
+      "id": "vid-c-programming-main",
+      "title": "C Programming Tutorial for Beginners",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp.org",
+      "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+      "embedUrl": "",
+      "durationMinutes": 180,
+      "difficulty": "beginner",
+      "whySelected": "Authoritative complete tutorial for C Programming.",
+      "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+      "learningObjectivesSupported": [
+        "c-programming-obj-5"
+      ],
+      "keyTopicsCovered": [
+        "Functions, Pointers, and Ownership",
+        "Structs, Text Files, and a Progress Tracker"
+      ],
+      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
+      "verificationStatus": "verified",
+      "lastCheckedDate": "2026-10-31"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Official Documentation: Structs, Text Files, and a Progress Tracker",
+      "url": "https://developer.mozilla.org/en-US/",
+      "description": "Authoritative reference documentation for Structs, Text Files, and a Progress Tracker."
+    }
+  ],
+  "realWorldApplications": [
+    "Production application development using C Programming",
+    "Automated software quality verification and debugging"
+  ],
+  "generationMode": "ai-draft",
+  "reviewStatus": "draft",
+  "contentVersion": 1,
+  "generatedAt": "2026-10-31T13:08:48.158Z"
+}

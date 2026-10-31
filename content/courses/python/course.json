@@ -1,89 +1,118 @@
 {
-  "skillId": "441ffd1e-4468-458f-aae6-45f0b0095c36",
+  "skillId": "00000000-0000-4000-8000-000000000001",
   "skillName": "Python",
   "learnerLevel": "beginner",
   "preferredLanguage": "English",
   "objectives": [
     {
       "id": "python-obj-1",
-      "statement": "Understand foundational mental models and syntax of Python",
+      "statement": "Write and explain small Python programs",
       "order": 1
     },
     {
       "id": "python-obj-2",
-      "statement": "Implement reliable patterns and error handling in Python",
+      "statement": "Use evidence from output and tests to diagnose behavior",
       "order": 2
     },
     {
       "id": "python-obj-3",
-      "statement": "Apply Python in production-ready real-world scenarios",
+      "statement": "Write and explain small Python programs",
       "order": 3
     },
     {
       "id": "python-obj-4",
-      "statement": "Evaluate security, performance, and best practices for Python",
+      "statement": "Use evidence from output and tests to diagnose behavior",
       "order": 4
+    },
+    {
+      "id": "python-obj-5",
+      "statement": "Write and explain small Python programs",
+      "order": 5
+    },
+    {
+      "id": "python-obj-6",
+      "statement": "Use evidence from output and tests to diagnose behavior",
+      "order": 6
     }
   ],
   "prerequisites": [
-    "Basic digital literacy and analytical reasoning"
+    "Ability to create and save a text file",
+    "No prior programming experience required"
   ],
   "modules": [
     {
-      "id": "mod-1-foundations",
-      "title": "Module 1: Foundations & Core Concepts of Python",
-      "summary": "Explore the fundamental concepts, terminology, and development workflow.",
+      "id": "mod-1-python-beginner-module-1",
+      "title": "Python Execution and Data",
+      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
       "order": 1,
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 220,
       "objectiveIds": [
         "python-obj-1",
         "python-obj-2"
       ],
       "lessonTitles": [
-        "Introduction to Python",
-        "Core Syntax and Primitives in Python"
+        "Running Python and Working with Values",
+        "Types, Conversion, and Input/Output"
       ],
-      "checkpoint": "Build a functional baseline demonstration verifying syntax and flow."
+      "checkpoint": "Pass the Python Execution and Data assessment with 70%+ score."
     },
     {
-      "id": "mod-2-application",
-      "title": "Module 2: Practical Implementation & Production Patterns",
-      "summary": "Deep dive into resilient design, test automation, and real-world deployment.",
+      "id": "mod-2-python-beginner-module-2",
+      "title": "Control Flow and Repetition",
+      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
       "order": 2,
-      "estimatedMinutes": 90,
+      "estimatedMinutes": 220,
       "objectiveIds": [
         "python-obj-3",
         "python-obj-4"
       ],
       "lessonTitles": [
-        "Production Patterns and Resilience in Python",
-        "Capstone Lab: Verifiable Python Implementation"
+        "Decisions with Conditions and Boolean Logic",
+        "Iteration with for, while, and range"
       ],
-      "checkpoint": "Complete a verifiable project applying defense-in-depth principles."
+      "checkpoint": "Pass the Control Flow and Repetition assessment with 70%+ score."
+    },
+    {
+      "id": "mod-3-python-beginner-module-3",
+      "title": "Functions, Collections, and a Project",
+      "summary": "Decompose programs into testable functions and select collections that match the problem.",
+      "order": 3,
+      "estimatedMinutes": 220,
+      "objectiveIds": [
+        "python-obj-5",
+        "python-obj-6"
+      ],
+      "lessonTitles": [
+        "Functions, Parameters, and Return Values",
+        "Collections and a Small Progress Tracker"
+      ],
+      "checkpoint": "Pass the Functions, Collections, and a Project assessment with 70%+ score."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic",
-    "Interactive boundary condition exercises",
-    "Production code review simulations"
+    "Hands-on coding labs for each core topic in Python",
+    "Interactive code modification and debugging exercises",
+    "Module-end practical synthesis challenge"
   ],
   "assessmentCheckpoints": [
-    "Module 1 Knowledge Check (70% pass threshold)",
-    "Module 2 Production Readiness Evaluation"
+    "Python Execution and Data Knowledge Check (70% pass threshold)",
+    "Control Flow and Repetition Knowledge Check (70% pass threshold)",
+    "Functions, Collections, and a Project Knowledge Check (70% pass threshold)"
   ],
   "projects": [
-    "Production-ready Python portfolio module with automated test suite and documentation"
+    "Learning Progress Tracker Capstone"
   ],
   "proficiencyCriteria": [
     "Demonstrate 70%+ score on all concept knowledge checks",
-    "Submit verifiable implementation satisfying acceptance criteria"
+    "Pass all 3 comprehensive mock tests and practical debugging tasks",
+    "Complete hands-on verified capstone review"
   ],
   "resources": [
     {
       "title": "Official Python Reference",
       "organization": "Industry Standard Documentation",
       "url": "https://developer.mozilla.org/en-US/",
-      "retrievedAt": "2026-10-30T06:22:04.112Z",
+      "retrievedAt": "2026-10-31T13:08:48.568Z",
       "reviewStatus": "curated"
     }
   ],

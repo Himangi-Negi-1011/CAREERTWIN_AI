@@ -13,7 +13,8 @@ import {
   Save,
   ChevronRight,
   CircleUserRound,
-  FolderKanban,
+  Compass,
+  FileText,
   Gauge,
   GraduationCap,
   Menu,
@@ -21,6 +22,7 @@ import {
   Route,
   Search,
   ShieldCheck,
+  Sparkles,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -36,7 +38,6 @@ import { CareerIntelligence } from "./career-intelligence";
 import { DevelopmentHub } from "./development-hub";
 import { LearningStudio } from "./learning-studio";
 import { WeeklyPlanner } from "./weekly-planner";
-import { RobotCharacter } from "../robot/robot-character";
 import "./dashboard-clone.css";
 
 function ModuleLoading() {
@@ -54,7 +55,7 @@ function ModuleLoading() {
 import { SkillEvidence } from "./skill-evidence";
 
 
-type View = "overview" | "intelligence" | "skills" | "roadmap" | "learning" | "interviews" | "documents" | "progress" | "settings";
+type View = "overview" | "intelligence" | "skills" | "roadmap" | "learning" | "interviews" | "progress" | "settings";
 
 const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
   { id: "overview", label: "Dashboard", icon: Gauge },
@@ -63,7 +64,6 @@ const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
   { id: "roadmap", label: "Career Roadmap", icon: Route },
   { id: "learning", label: "Learning Studio", icon: BookOpen },
   { id: "interviews", label: "AI Career Coach", icon: MessageSquareText },
-  { id: "documents", label: "My Documents", icon: FolderKanban },
   { id: "progress", label: "Progress & Weekly Tests", icon: CalendarDays },
   { id: "settings", label: "Privacy & Settings", icon: ShieldCheck },
 ];
@@ -75,9 +75,8 @@ const commands: CommandItem[] = [
   { id: "roadmap", label: "Career Roadmap", description: "Plan and complete practical learning tasks.", keywords: "tasks study plan", icon: Route },
   { id: "learning", label: "Learning Studio", description: "Search skills and prepare validated, reviewable curricula.", keywords: "course lesson curriculum quiz", icon: BookOpen },
   { id: "interviews", label: "AI Career Coach", description: "Practise interviews with text, supported voice, and evidence-aware feedback.", keywords: "coach behavioral technical communication", icon: MessageSquareText },
-  { id: "documents", label: "My Documents", description: "Manage resume selection, review, and document status.", keywords: "files upload cv", icon: FolderKanban },
   { id: "progress", label: "Progress & Weekly Tests", description: "Schedule roadmap work, record time, and complete curated assessments.", keywords: "week quiz assessment calendar progress", icon: CalendarDays },
-  { id: "settings", label: "Privacy & Settings", description: "Review data controls, export, and AI processing information.", keywords: "security privacy account", icon: ShieldCheck },
+  { id: "settings", label: "Privacy & Settings", description: "Review data controls, resume document settings, and account data.", keywords: "security privacy account files documents resume upload", icon: ShieldCheck },
 ];
 
 type WorkspaceSnapshot = {
@@ -180,30 +179,38 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
   const focusAction = !role ? "Choose a career" : snapshot.reviewedSkills === 0 ? "Review my skills" : snapshot.tasksTotal === 0 ? "Build my roadmap" : snapshot.nextTask ? "Continue this task" : snapshot.practiceCount === 0 ? "Start interview practice" : "Review evidence";
   return (
     <div className="space-y-5">
-      {/* 3D Robot Command Header from clone */}
-      <div className="command flex flex-col md:flex-row items-center justify-between gap-6 rounded-3xl border border-ink/8 bg-white p-6 md:p-8">
+      {/* Command Header */}
+      <div className="command flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 rounded-3xl border border-ink/8 bg-white p-6 md:p-8 shadow-sm">
         <div className="command-copy max-w-xl">
           <p className="dash-eyebrow text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-2">
             <span className="live-dot size-2 rounded-full bg-accent animate-pulse" aria-hidden="true" />
-            Career command centre
+            Career command centre · v2
           </p>
           <h1 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight text-ink">Make your next move visible.</h1>
           <p className="mt-2 text-sm text-slate">A private place to turn real evidence into focused, reviewable action.</p>
+          <div className="mt-4 flex flex-wrap items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/15 px-3 py-1 text-xs font-semibold text-mint-900 border border-mint/25">
+              <ShieldCheck size={13} className="text-accent" /> Private & Verified
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-accent border border-violet-100">
+              <Sparkles size={13} /> {snapshot.reviewedSkills > 0 ? `${snapshot.reviewedSkills} Skills Confirmed` : "Ready for Skills Review"}
+            </span>
+          </div>
         </div>
-        <div className="command-visual relative w-48 h-48 md:w-56 md:h-56 shrink-0 flex items-center justify-center" style={{ minWidth: "192px", minHeight: "192px" }}>
-          <div className="visual-glow absolute inset-2 rounded-full bg-accent/20 blur-xl -z-10" aria-hidden="true" />
-          <RobotCharacter pose="dash" canvasId="dashRobot" />
+        <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 justify-center">
           <button
             type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("careertwin:cheer"))}
-            className="robot-chip absolute bottom-1 right-2 inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white/95 backdrop-blur px-3 py-1 text-xs font-bold text-[#2c1170] shadow-sm transition hover:bg-white hover:scale-105 cursor-pointer z-10"
+            onClick={() => onOpen("learning")}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-ink/90 cursor-pointer"
           >
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M7 11V7a2 2 0 1 1 4 0v3" />
-              <path d="M11 10V5.5a2 2 0 1 1 4 0V10" />
-              <path d="M15 10.5V8a2 2 0 1 1 4 0v6a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-2a2 2 0 1 1 4 0" />
-            </svg>
-            Say hi
+            <BookOpen size={14} /> Open Learning Studio
+          </button>
+          <button
+            type="button"
+            onClick={() => onOpen("skills")}
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-ink/10 bg-app px-4 py-2.5 text-xs font-bold text-ink transition hover:bg-white cursor-pointer"
+          >
+            <Compass size={14} /> Review Skill Gaps
           </button>
         </div>
       </div>
@@ -289,23 +296,192 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
 
 type PrivacyPreferences = { allowProfileContext: boolean; allowHistoryPersonalization: boolean; retainTranscripts: boolean };
 const DEFAULT_PRIVACY: PrivacyPreferences = { allowProfileContext: false, allowHistoryPersonalization: false, retainTranscripts: true };
-function SettingsModule() {
-  const [preferences,setPreferences]=useState(DEFAULT_PRIVACY); const [loaded,setLoaded]=useState(false); const [saving,setSaving]=useState(false); const [message,setMessage]=useState("");
-  useEffect(()=>{const controller=new AbortController();void fetch("/api/settings",{signal:controller.signal}).then(async response=>{const payload=await response.json() as {data?:PrivacyPreferences;error?:{message?:string}};if(!response.ok||!payload.data){setMessage(payload.error?.message??"Privacy settings could not be loaded.");return}setPreferences(payload.data)}).catch((error)=>{if(error instanceof Error&&error.name!=="AbortError")setMessage("Privacy settings could not be loaded.")}).finally(()=>setLoaded(true));return()=>controller.abort()},[]);
-  async function save(){setSaving(true);setMessage("");try{const response=await fetch("/api/settings",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(preferences)});const payload=await response.json() as {error?:{message?:string}};if(!response.ok){setMessage(payload.error?.message??"Privacy settings were not saved.");return}setMessage("Privacy settings saved securely.")}catch{setMessage("Privacy settings were not saved. Try again.")}finally{setSaving(false)}}
-  async function exportData(){setMessage("");try{const response=await fetch("/api/account/export");if(!response.ok){const payload=await response.json() as {error?:{message?:string}};setMessage(payload.error?.message??"Your data export could not be prepared.");return}const url=URL.createObjectURL(await response.blob());const anchor=document.createElement("a");anchor.href=url;anchor.download=`careertwin-export-${new Date().toISOString().slice(0,10)}.json`;anchor.click();URL.revokeObjectURL(url);setMessage("Your data export was prepared.")}catch{setMessage("Your data export could not be prepared.")}}
-  if(!loaded)return <section className="rounded-2xl border border-ink/8 bg-white p-7" aria-busy="true">Loading privacy settings…</section>;
-  const options:Array<[keyof PrivacyPreferences,string,string]>=[
-    ["retainTranscripts","Retain submitted interview transcripts","When off, new answer text is evaluated but not retained, so reassessment of that answer is unavailable. Audio is never retained by default."],
-  ];
-  return <div className="grid gap-5 lg:grid-cols-[1.2fr_.8fr]"><section className="rounded-2xl border border-ink/8 bg-white p-7"><p className="label">Privacy & settings</p><h2 className="mt-3 text-2xl font-bold">Control how your private career data is used.</h2><div className="mt-6 space-y-3">{options.map(([key,label,description])=><label key={key} className="flex cursor-pointer items-start justify-between gap-5 rounded-2xl border border-ink/8 p-4"><span><strong className="block text-sm">{label}</strong><span className="mt-1 block text-xs leading-5 text-slate">{description}</span></span><input type="checkbox" checked={preferences[key]} onChange={(event)=>setPreferences(current=>({...current,[key]:event.target.checked}))} className="mt-1 size-4"/></label>)}</div><div className="mt-6 flex flex-wrap gap-3"><button type="button" onClick={()=>void save()} disabled={saving} className="button-primary disabled:opacity-40"><Save size={15}/>{saving?"Saving…":"Save preferences"}</button><button type="button" onClick={()=>void exportData()} className="button-secondary"><Download size={15}/>Export my data</button></div>{message&&<p role="status" className="mt-4 rounded-xl bg-app p-3 text-sm">{message}</p>}</section><aside className="rounded-2xl border border-violet-100 bg-violet-50/60 p-6"><ShieldCheck className="text-accent" size={22}/><h3 className="mt-6 font-bold">Privacy behavior</h3><p className="mt-2 text-sm leading-6 text-slate">Settings are saved against your authenticated account. AI profile/history personalization is not exposed until its authorization flow is fully implemented, and unavailable providers never receive your data.</p></aside></div>;
-}
 
-function WorkspaceModule({ view, onOpen }: { view: "documents"; onOpen: (view: View)=>void }) {
-  const content = {
-    documents: { title: "My Documents", text: "Manage resume details from your profile wizard. Secure upload, reviewed extraction, replacement, and deletion appear only when their backend operations are available.", action: "Open resume profile step", target: "onboarding" },
-  }[view];
-  return <div className="grid gap-5 lg:grid-cols-[1.2fr_.8fr]"><section className="rounded-2xl border border-ink/8 bg-white p-7"><p className="label">CareerTwin workspace</p><h2 className="mt-3 text-2xl font-bold">{content.title}</h2><p className="mt-4 max-w-2xl text-sm leading-7 text-slate">{content.text}</p>{content.target==="onboarding"?<Link href="/onboarding" className="button-primary mt-7">{content.action}<ArrowRight size={15}/></Link>:<button onClick={()=>onOpen(content.target as View)} className="button-primary mt-7">{content.action}<ArrowRight size={15}/></button>}</section><aside className="rounded-2xl border border-violet-100 bg-violet-50/60 p-6"><ShieldCheck className="text-accent" size={22}/><h3 className="mt-6 font-bold">Honest system state</h3><p className="mt-2 text-sm leading-6 text-slate">CareerTwin does not display invented analysis, document status, profile completion, market claims, or readiness scores. Missing data is presented as a next action.</p></aside></div>;
+function SettingsModule({ ownerKey }: { ownerKey?: string }) {
+  const [preferences, setPreferences] = useState(DEFAULT_PRIVACY);
+  const [loaded, setLoaded] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const [resumeName, setResumeName] = useState("");
+
+  useEffect(() => {
+    try {
+      const wizardKey = ownerKey ? `careertwin-profile-wizard:${ownerKey}` : "careertwin-profile-wizard";
+      const raw = window.localStorage.getItem(wizardKey) || window.localStorage.getItem("careertwin-profile-wizard");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed.resume?.fileName) setResumeName(parsed.resume.fileName);
+      }
+    } catch {
+      // safe fallback
+    }
+  }, [ownerKey]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    void fetch("/api/settings", { signal: controller.signal })
+      .then(async (response) => {
+        const payload = (await response.json()) as { data?: PrivacyPreferences; error?: { message?: string } };
+        if (!response.ok || !payload.data) {
+          setMessage(payload.error?.message ?? "Privacy settings could not be loaded.");
+          return;
+        }
+        setPreferences(payload.data);
+      })
+      .catch((error) => {
+        if (error instanceof Error && error.name !== "AbortError") setMessage("Privacy settings could not be loaded.");
+      })
+      .finally(() => setLoaded(true));
+    return () => controller.abort();
+  }, []);
+
+  async function save() {
+    setSaving(true);
+    setMessage("");
+    try {
+      const response = await fetch("/api/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(preferences),
+      });
+      const payload = (await response.json()) as { error?: { message?: string } };
+      if (!response.ok) {
+        setMessage(payload.error?.message ?? "Privacy settings were not saved.");
+        return;
+      }
+      setMessage("Privacy settings saved securely.");
+    } catch {
+      setMessage("Privacy settings were not saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function exportData() {
+    setMessage("");
+    try {
+      const response = await fetch("/api/account/export");
+      if (!response.ok) {
+        const payload = (await response.json()) as { error?: { message?: string } };
+        setMessage(payload.error?.message ?? "Your data export could not be prepared.");
+        return;
+      }
+      const url = URL.createObjectURL(await response.blob());
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = `careertwin-export-${new Date().toISOString().slice(0, 10)}.json`;
+      anchor.click();
+      URL.revokeObjectURL(url);
+      setMessage("Your data export was prepared.");
+    } catch {
+      setMessage("Your data export could not be prepared.");
+    }
+  }
+
+  if (!loaded) return <section className="rounded-2xl border border-ink/8 bg-white p-7" aria-busy="true">Loading privacy & document settings…</section>;
+
+  const options: Array<[keyof PrivacyPreferences, string, string]> = [
+    ["retainTranscripts", "Retain submitted interview transcripts", "When off, new answer text is evaluated but not retained, so reassessment of that answer is unavailable. Audio is never retained by default."],
+  ];
+
+  return (
+    <div className="space-y-6">
+      <div className="grid gap-5 lg:grid-cols-[1.2fr_.8fr]">
+        <section className="rounded-2xl border border-ink/8 bg-white p-7">
+          <p className="label">Privacy & data controls</p>
+          <h2 className="mt-3 text-2xl font-bold">Control how your private career data is used.</h2>
+          <div className="mt-6 space-y-3">
+            {options.map(([key, label, description]) => (
+              <label key={key} className="flex cursor-pointer items-start justify-between gap-5 rounded-2xl border border-ink/8 p-4">
+                <span>
+                  <strong className="block text-sm">{label}</strong>
+                  <span className="mt-1 block text-xs leading-5 text-slate">{description}</span>
+                </span>
+                <input
+                  type="checkbox"
+                  checked={preferences[key]}
+                  onChange={(event) => setPreferences((current) => ({ ...current, [key]: event.target.checked }))}
+                  className="mt-1 size-4"
+                />
+              </label>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <button type="button" onClick={() => void save()} disabled={saving} className="button-primary disabled:opacity-40">
+              <Save size={15} />
+              {saving ? "Saving…" : "Save preferences"}
+            </button>
+            <button type="button" onClick={() => void exportData()} className="button-secondary">
+              <Download size={15} />
+              Export my data
+            </button>
+          </div>
+          {message && <p role="status" className="mt-4 rounded-xl bg-app p-3 text-sm">{message}</p>}
+        </section>
+
+        <aside className="rounded-2xl border border-violet-100 bg-violet-50/60 p-6">
+          <ShieldCheck className="text-accent" size={22} />
+          <h3 className="mt-6 font-bold">Privacy behavior</h3>
+          <p className="mt-2 text-sm leading-6 text-slate">
+            Settings are saved against your authenticated account. AI profile/history personalization is not exposed until its authorization flow is fully implemented, and unavailable providers never receive your data.
+          </p>
+        </aside>
+      </div>
+
+      {/* Document & Resume Settings */}
+      <section className="rounded-2xl border border-ink/8 bg-white p-7">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="label">Documents & resume</p>
+            <h2 className="mt-2 text-2xl font-bold">Resume evidence & file management</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate">
+              Manage your uploaded resume, view parsing status, and control document privacy for your Career Twin.
+            </p>
+          </div>
+          <Link href="/onboarding" className="button-secondary">
+            {resumeName ? "Update or replace resume" : "Add resume file"}
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-ink/8 bg-app/60 p-5">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 place-items-center rounded-xl bg-violet-100 text-accent">
+                <FileText size={18} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-slate">Attached Resume</span>
+                <p className="truncate text-sm font-bold text-ink">
+                  {resumeName ? resumeName : "No document currently connected"}
+                </p>
+              </div>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-slate">
+              {resumeName
+                ? "This file was analyzed locally to assist with initial skill identification and roadmap planning."
+                : "You can add a resume in the onboarding wizard to populate initial skills without manual typing."}
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-ink/8 bg-app/60 p-5">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 place-items-center rounded-xl bg-mint/35 text-ink">
+                <ShieldCheck size={18} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <span className="text-xs text-slate">Extraction & Storage</span>
+                <p className="text-sm font-bold text-ink">Private & Non-Public</p>
+              </div>
+            </div>
+            <p className="mt-3 text-xs leading-5 text-slate">
+              CareerTwin does not display invented document status, fake ATS parsing scores, or send raw files to public datasets.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
@@ -340,6 +516,10 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
 
   useEffect(() => {
     const requestedView = searchParams.get("view");
+    if (requestedView === "documents") {
+      const task = window.setTimeout(() => setView("settings"), 0);
+      return () => window.clearTimeout(task);
+    }
     if (!navigation.some((item) => item.id === requestedView)) return;
     const task = window.setTimeout(() => setView(requestedView as View), 0);
     return () => window.clearTimeout(task);
@@ -429,7 +609,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         {syncState && <div role="status" className={`mb-5 rounded-xl border px-4 py-3 text-sm ${syncState.status === "error" ? "border-red-200 bg-red-50 text-red-800" : syncState.status === "saving" ? "border-amber-200 bg-amber-50 text-amber-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>{syncState.message}</div>}
         <AnimatePresence mode="wait">
           <motion.div key={view} initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -4 }} transition={{ duration: .2 }}>
-            {twinLoadState === "loading" && view !== "overview" ? <ModuleLoading/> : view === "overview" ? <Overview role={role} profileCompletion={profileCompletion} displayName={displayName} ownerKey={storageOwnerKey} twin={twin} twinSource={twinSource} onOpen={changeView}/> : view === "skills" ? <SkillEvidence role={role} ownerKey={storageOwnerKey} onOpenProgress={()=>changeView("progress")}/> : view === "roadmap" || view === "interviews" ? <DevelopmentHub view={view} role={role} ownerKey={storageOwnerKey} onOpen={(next)=>changeView(next === "interviews" ? "interviews" : next === "progress" ? "progress" : "roadmap")}/> : view === "intelligence" ? <CareerIntelligence role={role} ownerKey={storageOwnerKey} onOpenRoadmap={()=>changeView("roadmap")}/> : view === "learning" ? <LearningStudio role={role} initialSkill={searchParams.get("skill") ?? undefined}/> : view === "progress" ? <WeeklyPlanner ownerKey={storageOwnerKey} role={role} onOpenRoadmap={()=>changeView("roadmap")}/> : view === "settings" ? <SettingsModule/> : <WorkspaceModule view="documents" onOpen={changeView}/>} 
+            {twinLoadState === "loading" && view !== "overview" ? <ModuleLoading/> : view === "overview" ? <Overview role={role} profileCompletion={profileCompletion} displayName={displayName} ownerKey={storageOwnerKey} twin={twin} twinSource={twinSource} onOpen={changeView}/> : view === "skills" ? <SkillEvidence role={role} ownerKey={storageOwnerKey} onOpenProgress={()=>changeView("progress")}/> : view === "roadmap" || view === "interviews" ? <DevelopmentHub view={view} role={role} ownerKey={storageOwnerKey} onOpen={(next)=>changeView(next === "interviews" ? "interviews" : next === "progress" ? "progress" : "roadmap")}/> : view === "intelligence" ? <CareerIntelligence role={role} ownerKey={storageOwnerKey} onOpenRoadmap={()=>changeView("roadmap")}/> : view === "learning" ? <LearningStudio role={role} initialSkill={searchParams.get("skill") ?? undefined}/> : view === "progress" ? <WeeklyPlanner ownerKey={storageOwnerKey} role={role} onOpenRoadmap={()=>changeView("roadmap")}/> : <SettingsModule ownerKey={storageOwnerKey}/>} 
           </motion.div>
         </AnimatePresence>
       </main>

@@ -1,0 +1,703 @@
+{
+  "id": "mock-typescript-beginner-test-01",
+  "skillName": "TypeScript",
+  "skillSlug": "typescript",
+  "level": "beginner",
+  "testNumber": 1,
+  "isPhaseAssessment": false,
+  "moduleId": "",
+  "moduleTitle": "",
+  "title": "TypeScript Beginner Mock Test 1",
+  "description": "Comprehensive 50-minute mock examination for TypeScript at beginner level.",
+  "durationMinutes": 35,
+  "totalMarks": 20,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "type inference",
+    "strict mode",
+    "annotations",
+    "union types",
+    "unknown",
+    "any",
+    "literal unions",
+    "narrowing",
+    "interfaces",
+    "optional properties",
+    "readonly",
+    "excess property checks",
+    "typed arrays",
+    "function return types",
+    "generics",
+    "generic constraints",
+    "Pick and Omit",
+    "Partial",
+    "type guards",
+    "type assertions"
+  ],
+  "questions": [
+    {
+      "id": "mock-typescript-beginner-test-01-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes type inference in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "the compiler derives a type from available expressions"
+        },
+        {
+          "id": "B",
+          "text": "reassigning an inferred string variable to a number is rejected"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type inference",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes strict mode in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "strict enables a coordinated set of stronger checks"
+        },
+        {
+          "id": "B",
+          "text": "disabling strict can hide null and implicit-any defects"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "strict mode",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes annotations in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "annotations state an expected compile-time type"
+        },
+        {
+          "id": "B",
+          "text": "annotations do not convert values at runtime"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "annotations",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes union types in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a union permits values from any listed member type"
+        },
+        {
+          "id": "B",
+          "text": "calling a string-only method on string | number is unsafe"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a union permits values from any listed member type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "union types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes unknown in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "unknown accepts any value but requires evidence before use"
+        },
+        {
+          "id": "B",
+          "text": "casting unknown directly avoids checking but does not make data safe"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "unknown accepts any value but requires evidence before use. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "unknown",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q6",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes any in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "any disables most useful type checking for that value"
+        },
+        {
+          "id": "B",
+          "text": "any can propagate unsound operations through otherwise typed code"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "any disables most useful type checking for that value. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "any",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q7",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes literal unions in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "literal unions restrict values to named constants"
+        },
+        {
+          "id": "B",
+          "text": "a general string loses exhaustiveness checking"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "literal unions restrict values to named constants. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "literal unions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q8",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes narrowing in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "narrowing refines possibilities using runtime evidence"
+        },
+        {
+          "id": "B",
+          "text": "a type assertion is not runtime evidence"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "narrowing refines possibilities using runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "narrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q9",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes interfaces in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "interfaces describe object contracts and support extension"
+        },
+        {
+          "id": "B",
+          "text": "an interface disappears from emitted JavaScript"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "interfaces describe object contracts and support extension. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q10",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes optional properties in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an optional property may be absent"
+        },
+        {
+          "id": "B",
+          "text": "optional does not mean every value type is accepted"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an optional property may be absent. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "optional properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q11",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes readonly in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "readonly prevents assignment through that typed reference"
+        },
+        {
+          "id": "B",
+          "text": "readonly is compile-time protection, not deep runtime freezing"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "readonly prevents assignment through that typed reference. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "readonly",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q12",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes excess property checks in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "fresh object literals are checked for unexpected keys"
+        },
+        {
+          "id": "B",
+          "text": "assigning through a broad variable can bypass the fresh-literal check"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "fresh object literals are checked for unexpected keys. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "excess property checks",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q13",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes typed arrays in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "T[] constrains each array element to T"
+        },
+        {
+          "id": "B",
+          "text": "a tuple and an array express different positional guarantees"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "T[] constrains each array element to T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "typed arrays",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q14",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes function return types in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a return annotation protects the promised output contract"
+        },
+        {
+          "id": "B",
+          "text": "console output is not a returned value"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a return annotation protects the promised output contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "function return types",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q15",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes generics in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "generics preserve type relationships across positions"
+        },
+        {
+          "id": "B",
+          "text": "a generic appearing once adds complexity without a relationship"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "generics preserve type relationships across positions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generics",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q16",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes generic constraints in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "constraints require capabilities used by generic code"
+        },
+        {
+          "id": "B",
+          "text": "a constraint does not create missing runtime properties"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "constraints require capabilities used by generic code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "generic constraints",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q17",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Pick and Omit in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pick selects keys and Omit excludes keys from an existing type"
+        },
+        {
+          "id": "B",
+          "text": "utility types do not validate runtime objects"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Pick selects keys and Omit excludes keys from an existing type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "Pick and Omit",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q18",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes Partial in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "Partial makes every property optional at compile time"
+        },
+        {
+          "id": "B",
+          "text": "Partial can permit empty updates unless separately checked"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "Partial makes every property optional at compile time. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "Partial",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q19",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes type guards in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a type guard links runtime checks to a type predicate"
+        },
+        {
+          "id": "B",
+          "text": "returning true without complete checks creates unsound trust"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a type guard links runtime checks to a type predicate. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type guards",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    },
+    {
+      "id": "mock-typescript-beginner-test-01-q20",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes type assertions in TypeScript?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an assertion overrides compiler inference without runtime checking"
+        },
+        {
+          "id": "B",
+          "text": "asserting parsed JSON does not validate its shape"
+        },
+        {
+          "id": "C",
+          "text": "It changes the JavaScript runtime automatically"
+        },
+        {
+          "id": "D",
+          "text": "It requires a paid compiler plugin"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an assertion overrides compiler inference without runtime checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "type assertions",
+      "marks": 1,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
+      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.691Z",
+  "updatedAt": "2026-10-31T13:08:48.691Z"
+}

@@ -1,0 +1,193 @@
+{
+  "id": "phase-cpp-beginner-mod-3",
+  "skillName": "C++",
+  "skillSlug": "cpp",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-cpp-beginner-module-3",
+  "moduleTitle": "RAII, Algorithms, Files, and a Project",
+  "title": "RAII, Algorithms, Files, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in RAII, Algorithms, Files, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "std::array",
+    "std::vector",
+    "range for",
+    "bounds",
+    "references"
+  ],
+  "questions": [
+    {
+      "id": "phase-cpp-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes std::array in C++?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "std::array owns a fixed number of elements"
+        },
+        {
+          "id": "B",
+          "text": "use it when size is known at compile time"
+        },
+        {
+          "id": "C",
+          "text": "its size cannot grow at runtime"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "std::array owns a fixed number of elements. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "std::array",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-cpp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, References, Classes, and RAII"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes std::vector in C++?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "vector owns a dynamic contiguous sequence"
+        },
+        {
+          "id": "B",
+          "text": "use vector as the default variable-size sequence"
+        },
+        {
+          "id": "C",
+          "text": "growth can invalidate iterators and references"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "vector owns a dynamic contiguous sequence. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "std::vector",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-cpp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, References, Classes, and RAII"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes range for in C++?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "range-for traverses every element"
+        },
+        {
+          "id": "B",
+          "text": "use const references for read-only complex elements"
+        },
+        {
+          "id": "C",
+          "text": "copying each element can be unnecessary or misleading"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "range-for traverses every element. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "range for",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-cpp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, References, Classes, and RAII"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes bounds in C++?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "operator[] requires a valid index while at checks"
+        },
+        {
+          "id": "B",
+          "text": "use at when checked access is valuable"
+        },
+        {
+          "id": "C",
+          "text": "index equal to size is invalid"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "operator[] requires a valid index while at checks. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "bounds",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-cpp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, References, Classes, and RAII"
+    },
+    {
+      "id": "phase-cpp-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes references in C++?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "references alias existing objects and cannot be reseated"
+        },
+        {
+          "id": "B",
+          "text": "use const references for read-only non-owning access"
+        },
+        {
+          "id": "C",
+          "text": "returning a reference to a local creates a dangling reference"
+        },
+        {
+          "id": "D",
+          "text": "The compiler automatically repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "references alias existing objects and cannot be reseated. Confirm with a minimal C++20 program, strict warnings, and tests.",
+      "difficulty": "beginner",
+      "topic": "references",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-cpp-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, References, Classes, and RAII"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.262Z",
+  "updatedAt": "2026-10-31T13:08:48.262Z"
+}

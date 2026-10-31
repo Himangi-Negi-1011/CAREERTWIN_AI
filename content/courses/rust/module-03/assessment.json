@@ -1,0 +1,193 @@
+{
+  "id": "phase-rust-beginner-mod-3",
+  "skillName": "Rust",
+  "skillSlug": "rust",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-rust-beginner-module-3",
+  "moduleTitle": "Persistence, Concurrency, and a Project",
+  "title": "Persistence, Concurrency, and a Project Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Persistence, Concurrency, and a Project.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "iterators",
+    "ownership",
+    "shared borrowing",
+    "mutable borrowing",
+    "slices"
+  ],
+  "questions": [
+    {
+      "id": "phase-rust-beginner-mod-3-q1",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes iterators in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "iterator adapters are generally lazy"
+        },
+        {
+          "id": "B",
+          "text": "consume with collect sum or a loop"
+        },
+        {
+          "id": "C",
+          "text": "building a chain alone may perform no work"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "iterator adapters are generally lazy. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "iterators",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-rust-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Enums, and Traits"
+    },
+    {
+      "id": "phase-rust-beginner-mod-3-q2",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes ownership in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "one owner controls ordinary value cleanup"
+        },
+        {
+          "id": "B",
+          "text": "move values deliberately across boundaries"
+        },
+        {
+          "id": "C",
+          "text": "using a non-Copy value after a move is rejected"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "one owner controls ordinary value cleanup. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "ownership",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-rust-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Enums, and Traits"
+    },
+    {
+      "id": "phase-rust-beginner-mod-3-q3",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes shared borrowing in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "shared references allow non-mutating access"
+        },
+        {
+          "id": "B",
+          "text": "use &T for temporary read-only borrowing"
+        },
+        {
+          "id": "C",
+          "text": "shared and active mutable borrowing cannot overlap"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "shared references allow non-mutating access. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "shared borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-rust-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Enums, and Traits"
+    },
+    {
+      "id": "phase-rust-beginner-mod-3-q4",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes mutable borrowing in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an exclusive reference enables mutation"
+        },
+        {
+          "id": "B",
+          "text": "keep mutable borrow scope as short as practical"
+        },
+        {
+          "id": "C",
+          "text": "only one active mutable borrow to the same data is allowed"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an exclusive reference enables mutation. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "mutable borrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-rust-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Enums, and Traits"
+    },
+    {
+      "id": "phase-rust-beginner-mod-3-q5",
+      "type": "single-choice",
+      "prompt": "Which statement accurately describes slices in Rust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "slices borrow contiguous sequence regions"
+        },
+        {
+          "id": "B",
+          "text": "accept slices instead of requiring Vec ownership"
+        },
+        {
+          "id": "C",
+          "text": "a slice cannot outlive its backing storage"
+        },
+        {
+          "id": "D",
+          "text": "The compiler silently repairs the design"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "slices borrow contiguous sequence regions. Confirm with cargo check, Clippy, and a focused test.",
+      "difficulty": "beginner",
+      "topic": "slices",
+      "marks": 1,
+      "recommendedLessonId": "mod-3-rust-beginner-module-3-l1",
+      "recommendedLessonTitle": "Functions, Structs, Enums, and Traits"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.631Z",
+  "updatedAt": "2026-10-31T13:08:48.631Z"
+}

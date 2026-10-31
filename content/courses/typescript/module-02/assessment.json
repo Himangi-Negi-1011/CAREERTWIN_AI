@@ -1,0 +1,193 @@
+{
+  "id": "phase-typescript-beginner-mod-2",
+  "skillName": "TypeScript",
+  "skillSlug": "typescript",
+  "level": "beginner",
+  "testNumber": 2,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-2-typescript-beginner-module-2",
+  "moduleTitle": "Typed Objects, Arrays, and Functions",
+  "title": "Typed Objects, Arrays, and Functions Phase Assessment",
+  "description": "Comprehensive phase-end assessment covering all lessons in Typed Objects, Arrays, and Functions.",
+  "durationMinutes": 20,
+  "totalMarks": 5,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "any",
+    "literal unions",
+    "narrowing",
+    "interfaces",
+    "optional properties"
+  ],
+  "questions": [
+    {
+      "id": "phase-typescript-beginner-mod-2-q1",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about any is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "any can propagate unsound operations through otherwise typed code"
+        },
+        {
+          "id": "B",
+          "text": "any disables most useful type checking for that value"
+        },
+        {
+          "id": "C",
+          "text": "isolate unavoidable any at a boundary and replace it quickly"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "any can propagate unsound operations through otherwise typed code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "any",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-2-q2",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about literal unions is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a general string loses exhaustiveness checking"
+        },
+        {
+          "id": "B",
+          "text": "literal unions restrict values to named constants"
+        },
+        {
+          "id": "C",
+          "text": "model finite statuses with a literal union"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a general string loses exhaustiveness checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "literal unions",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-2-q3",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about narrowing is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "a type assertion is not runtime evidence"
+        },
+        {
+          "id": "B",
+          "text": "narrowing refines possibilities using runtime evidence"
+        },
+        {
+          "id": "C",
+          "text": "use typeof or discriminants before member-specific access"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "a type assertion is not runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "narrowing",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-2-q4",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about interfaces is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "an interface disappears from emitted JavaScript"
+        },
+        {
+          "id": "B",
+          "text": "interfaces describe object contracts and support extension"
+        },
+        {
+          "id": "C",
+          "text": "use an interface for a named extendable object shape"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "an interface disappears from emitted JavaScript. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "interfaces",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+    },
+    {
+      "id": "phase-typescript-beginner-mod-2-q5",
+      "type": "single-choice",
+      "prompt": "Which code-review warning about optional properties is valid?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "A",
+          "text": "optional does not mean every value type is accepted"
+        },
+        {
+          "id": "B",
+          "text": "an optional property may be absent"
+        },
+        {
+          "id": "C",
+          "text": "check or default an optional value before use"
+        },
+        {
+          "id": "D",
+          "text": "It is valid only in class declarations"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "explanation": "optional does not mean every value type is accepted. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "difficulty": "beginner",
+      "topic": "optional properties",
+      "marks": 1,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
+      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+    }
+  ],
+  "contentVersion": 1,
+  "reviewStatus": "approved",
+  "createdAt": "2026-10-31T13:08:48.690Z",
+  "updatedAt": "2026-10-31T13:08:48.690Z"
+}
