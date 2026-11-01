@@ -27,3 +27,4 @@ describe("CourseCatalogueView", () => {
     expect(screen.getByText(/Syllabus & Structured Modules/i)).toBeInTheDocument();
   });
 });
+

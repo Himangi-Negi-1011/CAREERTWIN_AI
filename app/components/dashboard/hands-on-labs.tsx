@@ -598,3 +598,4 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
     </div>
   );
 }
+

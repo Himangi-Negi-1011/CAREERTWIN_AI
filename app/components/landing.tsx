@@ -372,34 +372,45 @@ export function Landing() {
               </p>
 
               <div className="hero-cta">
-                <Link
-                  href="/sign-up?redirect_url=/onboarding"
-                  aria-label="Build My Career Twin"
-                  className="btn btn-primary btn-lg magnetic shine"
-                >
-                  Build My Career Twin
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </Link>
                 <button
                   type="button"
-                  className="btn btn-outline btn-lg"
+                  className="btn btn-primary btn-lg magnetic shine"
                   onClick={() => {
                     setAnalyzeOpen(true);
                     setAnalyzeStep(1);
                   }}
                 >
                   Analyze My Career
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
                 </button>
+                <a className="btn btn-outline btn-lg" href="#features">
+                  Learn More
+                </a>
               </div>
 
-              <div className="hero-trust">
-                <p>
-                  <strong>100% Free & Private</strong> <span className="dot-sep">•</span> Verified skill roadmaps & AI mock interviews
-                </p>
-              </div>
+              <ul className="hero-facts">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Free to start
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  No credit card
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Your resume stays private
+                </li>
+              </ul>
             </div>
 
             {/* Hero Visual with 3D Robot Canvas */}
@@ -447,13 +458,21 @@ export function Landing() {
                 </div>
               </div>
 
-              <div className="float-chip float-card--c">⚡ Analysing 1,284 skill signals</div>
+              <div className="float-card float-chip float-card--c" data-float>
+                <span className="chip-dot" aria-hidden="true" />
+                Analyzing your profile…
+              </div>
             </div>
           </div>
 
-          <div className="scroll-hint" aria-hidden="true">
-            <span />Scroll to explore
-          </div>
+          <button
+            className="scroll-hint cursor-pointer"
+            id="scrollHint"
+            type="button"
+            onClick={() => document.getElementById("flowStrip")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            <span aria-hidden="true"><i /></span>Scroll to explore
+          </button>
         </section>
 
 

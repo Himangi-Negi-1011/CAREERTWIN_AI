@@ -406,3 +406,4 @@ export function recommendLearningPath(targetRole: string, knownSkills: string[] 
   // Default to Python Developer
   return LEARNING_PATHS[0];
 }
+

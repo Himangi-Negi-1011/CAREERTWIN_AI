@@ -885,3 +885,4 @@ export function CourseCatalogueView({ onSelectCourse, onNavigatePaths }: CourseC
     </div>
   );
 }
+

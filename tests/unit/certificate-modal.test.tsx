@@ -40,3 +40,4 @@ describe("CertificateModal", () => {
     printSpy.mockRestore();
   });
 });
+

@@ -52,6 +52,8 @@ import { CourseCatalogueView } from "./course-catalogue";
 import { HandsOnLabsView } from "./hands-on-labs";
 import { MockExamsHubView } from "./mock-exams-hub";
 import { CertificateModal } from "./certificate-modal";
+import { BeginnerGuide } from "./beginner-guide";
+import { FeedbackDialog } from "./feedback-dialog";
 import "./dashboard-clone.css";
 
 function ModuleLoading() {
@@ -282,6 +284,15 @@ function Overview({
         </div>
         {profileCompletion !== null && <div className="w-full"><div className="flex justify-between text-xs"><span className="text-slate">Profile completion</span><strong>{profileCompletion}%</strong></div><div className="mt-2 h-2 overflow-hidden rounded-full bg-app"><div className="h-full rounded-full bg-[linear-gradient(90deg,#6547f1,#a127ec)]" style={{width:`${profileCompletion}%`}}/></div></div>}
       </section>
+
+      {/* Student Beginner Orientation Guide: Answers the 7 Core Student Questions */}
+      <BeginnerGuide
+        userRole={role}
+        onNavigatePaths={() => onOpen("paths")}
+        onNavigateCatalogue={() => onOpen("catalogue")}
+        onNavigateLabs={() => onOpen("labs")}
+        onNavigateExams={() => onOpen("mock-exams")}
+      />
       <section className="grid gap-5 xl:grid-cols-[1.35fr_.65fr]">
         <article className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(125deg,#5542e8_0%,#6d3df5_58%,#a125eb_125%)] p-6 text-white shadow-[0_22px_50px_rgba(24,48,52,.14)] md:p-8">
           <div className="relative z-10 max-w-2xl">
@@ -845,6 +856,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
   }
 
   const [certModalOpen, setCertModalOpen] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   function preloadView(next: View) {
     if (next === "skills") void import("./skill-evidence");
@@ -877,7 +889,17 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     <div className="lg:pl-[280px]">
       <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-ink/[.07] bg-[#f2f4f1]/82 px-4 backdrop-blur-2xl md:px-7 lg:px-10">
         <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="grid size-10 place-items-center rounded-xl border border-ink/10 bg-white shadow-sm lg:hidden" aria-label="Open workspace navigation"><Menu size={18}/></button><div><div className="flex items-center gap-2"><span className="hidden size-1.5 rounded-full bg-accent sm:block"/><p className="text-sm font-bold tracking-[-.015em]">{active.label}</p></div><p className="hidden text-[11px] text-slate sm:block">Private career workspace</p></div></div>
-        <div className="flex items-center gap-2"><button type="button" onClick={()=>setCommandOpen(true)} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-[0_8px_24px_rgba(24,48,52,.045)] transition hover:-translate-y-0.5 hover:border-accent/20 hover:bg-white hover:text-ink" aria-label="Open quick navigation"><Search size={14}/><span className="hidden md:inline">Quick find</span><kbd className="hidden rounded-md border border-ink/10 bg-cream/60 px-1.5 py-0.5 font-mono text-[9px] text-slate lg:inline">⌘K</kbd></button><Link href="/onboarding" className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/80 px-3.5 py-2 text-xs font-bold shadow-[0_8px_24px_rgba(24,48,52,.06)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white"><span className="grid size-6 place-items-center rounded-full bg-mint/35 text-accent"><CircleUserRound size={13}/></span><span className="hidden max-w-36 truncate sm:inline">{role || "Complete profile"}</span></Link></div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setFeedbackOpen(true)}
+            className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-xs transition hover:border-accent/20 hover:bg-white hover:text-ink cursor-pointer"
+            aria-label="Give student feedback"
+          >
+            <MessageSquareText size={14} className="text-accent" />
+            <span className="hidden sm:inline">Feedback</span>
+          </button>
+          <button type="button" onClick={()=>setCommandOpen(true)} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-[0_8px_24px_rgba(24,48,52,.045)] transition hover:-translate-y-0.5 hover:border-accent/20 hover:bg-white hover:text-ink" aria-label="Open quick navigation"><Search size={14}/><span className="hidden md:inline">Quick find</span><kbd className="hidden rounded-md border border-ink/10 bg-cream/60 px-1.5 py-0.5 font-mono text-[9px] text-slate lg:inline">⌘K</kbd></button><Link href="/onboarding" className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/80 px-3.5 py-2 text-xs font-bold shadow-[0_8px_24px_rgba(24,48,52,.06)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white"><span className="grid size-6 place-items-center rounded-full bg-mint/35 text-accent"><CircleUserRound size={13}/></span><span className="hidden max-w-36 truncate sm:inline">{role || "Complete profile"}</span></Link></div>
       </header>
 
       <main className="mx-auto max-w-[1320px] px-4 py-7 md:px-7 lg:px-10 lg:py-10">
@@ -997,5 +1019,6 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         onClose={() => setCertModalOpen(false)}
       />
     )}
+    {feedbackOpen && <FeedbackDialog onClose={() => setFeedbackOpen(false)} />}
   </div>;
 }

@@ -464,6 +464,38 @@ html[data-theme="light"] .visual-glow { opacity: .55; }
   animation: floaty 7s ease-in-out infinite;
 }
 
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.hero-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.2px;
+  font-weight: 550;
+  color: var(--muted);
+}
+.hero-facts svg {
+  width: 14px;
+  height: 14px;
+  color: #34d399;
+  flex: none;
+}
+.chip-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  margin-right: 6px;
+  box-shadow: 0 0 8px #34d399;
+}
+
 .float-card {
   position: absolute;
   display: flex;
