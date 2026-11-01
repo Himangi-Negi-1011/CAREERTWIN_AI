@@ -102,27 +102,89 @@ type View =
   | "progress"
   | "settings";
 
+export type TopSectionId = "home" | "twin" | "learning" | "practice" | "projects" | "career" | "settings";
+
+export interface PrimaryNavItem {
+  id: TopSectionId;
+  defaultView: View;
+  label: string;
+  icon: typeof Gauge;
+  subViews: View[];
+}
+
+export const primaryNavigation: PrimaryNavItem[] = [
+  {
+    id: "home",
+    defaultView: "overview",
+    label: "Home",
+    icon: Gauge,
+    subViews: ["overview"],
+  },
+  {
+    id: "twin",
+    defaultView: "twin",
+    label: "My Career Twin",
+    icon: Sparkles,
+    subViews: ["twin", "skills", "intelligence", "roadmap"],
+  },
+  {
+    id: "learning",
+    defaultView: "learning",
+    label: "Learning",
+    icon: BookOpen,
+    subViews: ["learning", "paths", "catalogue"],
+  },
+  {
+    id: "practice",
+    defaultView: "mock-exams",
+    label: "Practice & Assessments",
+    icon: Award,
+    subViews: ["mock-exams", "progress", "labs"],
+  },
+  {
+    id: "projects",
+    defaultView: "projects",
+    label: "Projects & Portfolio",
+    icon: FolderKanban,
+    subViews: ["projects", "portfolio"],
+  },
+  {
+    id: "career",
+    defaultView: "opportunities",
+    label: "Career Center",
+    icon: Briefcase,
+    subViews: ["opportunities", "applications", "resume", "certificates", "readiness", "interviews"],
+  },
+  {
+    id: "settings",
+    defaultView: "settings",
+    label: "Profile & Settings",
+    icon: ShieldCheck,
+    subViews: ["settings"],
+  },
+];
+
 const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
-  { id: "overview", label: "Dashboard", icon: Gauge },
-  { id: "twin", label: "My Career Twin", icon: Sparkles },
-  { id: "readiness", label: "Career Readiness", icon: TrendingUp },
-  { id: "paths", label: "Learning Paths", icon: Compass },
-  { id: "catalogue", label: "Course Catalogue", icon: Layers },
-  { id: "learning", label: "Learning Studio", icon: BookOpen },
-  { id: "labs", label: "Hands-on Labs", icon: Terminal },
-  { id: "mock-exams", label: "Mock Exams Hub", icon: Award },
-  { id: "projects", label: "Applied Projects", icon: FolderKanban },
-  { id: "opportunities", label: "Opportunities", icon: Briefcase },
-  { id: "applications", label: "Applications Tracker", icon: Bookmark },
-  { id: "resume", label: "Resume & ATS Review", icon: FileText },
-  { id: "portfolio", label: "Student Portfolio", icon: Globe },
-  { id: "certificates", label: "Verified Credentials", icon: Award },
+  { id: "overview", label: "Home", icon: Gauge },
+  { id: "twin", label: "Career Twin Overview", icon: Sparkles },
   { id: "skills", label: "Skill Gap Analysis", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", icon: Route },
-  { id: "interviews", label: "AI Career Coach", icon: MessageSquareText },
-  { id: "progress", label: "Progress & Weekly Tests", icon: CalendarDays },
-  { id: "settings", label: "Privacy & Settings", icon: ShieldCheck },
+  { id: "learning", label: "Learning Studio", icon: BookOpen },
+  { id: "paths", label: "Learning Paths", icon: Compass },
+  { id: "catalogue", label: "Course Catalogue", icon: Layers },
+  { id: "mock-exams", label: "Mock Exams Hub", icon: Award },
+  { id: "progress", label: "Weekly Tests & Progress", icon: CalendarDays },
+  { id: "labs", label: "Hands-on Labs", icon: Terminal },
+  { id: "projects", label: "Applied Projects", icon: FolderKanban },
+  { id: "portfolio", label: "Student Portfolio", icon: Globe },
+  { id: "opportunities", label: "Opportunities", icon: Briefcase },
+  { id: "applications", label: "Applications Tracker", icon: Bookmark },
+  { id: "resume", label: "Resume & ATS Review", icon: FileText },
+  { id: "certificates", label: "Verified Credentials", icon: Award },
+  { id: "readiness", label: "Career Readiness", icon: TrendingUp },
+  { id: "interviews", label: "AI Interview Coach", icon: MessageSquareText },
+  { id: "settings", label: "Profile & Settings", icon: ShieldCheck },
 ];
 
 const commands: CommandItem[] = [
@@ -905,25 +967,61 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     if (next === "roadmap") void import("./development-hub");
   }
 
-  const active = navigation.find((item) => item.id === view)!;
+  const activeSection = primaryNavigation.find((item) => item.subViews.includes(view)) || primaryNavigation[0];
+  const active = navigation.find((item) => item.id === view) || navigation[0];
 
   if (!ownerKey && !isLoaded) return <main className="grid min-h-dvh place-items-center bg-app text-ink"><div className="text-center"><div className="mx-auto size-10 animate-pulse rounded-2xl bg-mint"/><p className="mt-4 text-sm font-semibold text-slate">Loading your private workspace…</p></div></main>;
 
   return <div className="career-dashboard min-h-screen bg-[#f5f6fb] text-ink">
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[280px] flex-col overflow-hidden border-r border-ink/10 bg-[#f8f7f2] p-5 text-ink shadow-[18px_0_60px_rgba(31,46,41,.05)] lg:flex">
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col overflow-y-auto overflow-x-hidden border-r border-ink/10 bg-[#f8f7f2] text-ink shadow-[18px_0_60px_rgba(31,46,41,.05)] lg:flex">
       <div className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full border-[44px] border-ink/[.025]" />
-      <div className="relative border-b border-ink/10 px-1 pb-5 pt-2"><Brand /></div>
-      <p className="relative mt-7 px-3 font-mono text-[9px] font-bold uppercase tracking-[.2em] text-slate">Workspace</p>
-      <nav className="relative mt-3 space-y-1" aria-label="Career workspace">
-        {navigation.map((item) => <button key={item.id} onMouseEnter={() => preloadView(item.id)} onFocus={() => preloadView(item.id)} onClick={() => changeView(item.id)} className={`relative flex w-full items-center gap-3 border px-3 py-2.5 text-sm font-semibold transition ${view === item.id ? "border-violet-200 bg-violet-50 text-accent shadow-[0_8px_20px_rgba(109,61,245,.08)] before:absolute before:inset-y-2.5 before:left-0 before:w-[3px] before:bg-accent" : "border-transparent text-slate hover:border-ink/10 hover:bg-white hover:text-ink"}`} aria-current={view === item.id ? "page" : undefined}><span className={`grid size-7 place-items-center ${view === item.id ? "bg-white text-accent" : "text-slate"}`}><item.icon size={16}/></span>{item.label}</button>)}
+      {/* Brand */}
+      <div className="sticky top-0 z-10 border-b border-ink/10 bg-[#f8f7f2] px-5 pb-4 pt-5"><Brand /></div>
+      {/* Primary 7-Section Navigation */}
+      <nav className="flex-1 px-3 py-4 space-y-1.5" aria-label="Career workspace">
+        <p className="px-2 pb-1 font-mono text-[9px] font-bold uppercase tracking-[.18em] text-slate/70">
+          Navigation
+        </p>
+        {primaryNavigation.map((item) => {
+          const isSelected = activeSection.id === item.id;
+          return (
+            <button
+              key={item.id}
+              onMouseEnter={() => preloadView(item.defaultView)}
+              onFocus={() => preloadView(item.defaultView)}
+              onClick={() => changeView(item.defaultView)}
+              className={`relative flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-[13px] font-semibold transition-all cursor-pointer ${
+                isSelected
+                  ? "border-violet-200 bg-violet-50 text-accent shadow-[0_4px_14px_rgba(109,61,245,.10)] before:absolute before:inset-y-2.5 before:left-0 before:w-[3px] before:rounded-r before:bg-accent"
+                  : "border-transparent text-slate hover:border-ink/8 hover:bg-white hover:text-ink"
+              }`}
+              aria-current={isSelected ? "page" : undefined}
+            >
+              <span className={`grid size-7 shrink-0 place-items-center rounded-lg ${isSelected ? "bg-white text-accent" : "text-slate/75"}`}>
+                <item.icon size={15}/>
+              </span>
+              <span className="truncate">{item.label}</span>
+            </button>
+          );
+        })}
       </nav>
-      <div className="relative mt-auto space-y-2 border-t border-ink/10 pt-4">
-        <Link href="/onboarding" className="flex items-center gap-3 border border-transparent px-3 py-2.5 text-sm font-semibold text-slate transition hover:border-ink/10 hover:bg-white hover:text-ink"><CircleUserRound size={17}/>Career profile</Link>
-        <div className="mt-3 border border-ink/10 bg-white/70 p-4"><div className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-accent"/><p className="text-xs font-bold text-ink">Private workspace</p></div><p className="mt-2 text-[11px] leading-[1.55] text-slate">{syncState?.status === "saved" ? "Secure database sync is connected for this workspace." : "Browser drafts remain available while secure database sync is unavailable."}</p></div>
+      {/* Footer */}
+      <div className="sticky bottom-0 border-t border-ink/10 bg-[#f8f7f2] px-3 pb-4 pt-3 space-y-1">
+        <Link href="/onboarding" className="flex items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 text-[13px] font-semibold text-slate transition hover:border-ink/8 hover:bg-white hover:text-ink">
+          <CircleUserRound size={15} className="shrink-0"/>
+          <span className="truncate">Career Profile</span>
+        </Link>
+        <div className="mt-1 rounded-xl border border-ink/10 bg-white/70 px-3 py-2.5">
+          <div className="flex items-center gap-1.5">
+            <span className={`size-1.5 rounded-full ${syncState?.status === "saved" ? "bg-emerald-500" : "bg-amber-400"}`}/>
+            <p className="text-[11px] font-bold text-ink">Private workspace</p>
+          </div>
+          <p className="mt-1 text-[10px] leading-[1.5] text-slate">{syncState?.status === "saved" ? "Synced to secure database." : "Using browser drafts."}</p>
+        </div>
       </div>
     </aside>
 
-    <div className="lg:pl-[280px]">
+    <div className="lg:pl-[260px]">
       <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-ink/[.07] bg-[#f2f4f1]/82 px-4 backdrop-blur-2xl md:px-7 lg:px-10">
         <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="grid size-10 place-items-center rounded-xl border border-ink/10 bg-white shadow-sm lg:hidden" aria-label="Open workspace navigation"><Menu size={18}/></button><div><div className="flex items-center gap-2"><span className="hidden size-1.5 rounded-full bg-accent sm:block"/><p className="text-sm font-bold tracking-[-.015em]">{active.label}</p></div><p className="hidden text-[11px] text-slate sm:block">Private career workspace</p></div></div>
         <div className="flex items-center gap-2">
@@ -942,6 +1040,131 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
       <main className="mx-auto max-w-[1320px] px-4 py-7 md:px-7 lg:px-10 lg:py-10">
         <div className="mb-8 flex items-end justify-between gap-5"><div><p className="label">{view === "overview" ? "Career command centre" : "Plan · practise · prove"}</p><h1 className="mt-3 text-[clamp(1.75rem,3vw,2.6rem)] font-[720] leading-[1.05] tracking-[-.055em]">{view === "overview" ? "Make your next move visible." : active.label}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-slate">{view === "overview" ? "A private place to turn real evidence into focused, reviewable action." : "Review and update only the information you record—without invented scores or claims."}</p></div>{view !== "overview" && <button onClick={() => changeView("overview")} className="hidden rounded-full border border-ink/9 bg-white/80 px-4 py-2 text-sm font-bold text-accent shadow-[0_8px_22px_rgba(24,48,52,.05)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white sm:block">Back to overview</button>}</div>
         {syncState && <div role="status" className={`mb-5 rounded-xl border px-4 py-3 text-sm ${syncState.status === "error" ? "border-red-200 bg-red-50 text-red-800" : syncState.status === "saving" ? "border-amber-200 bg-amber-50 text-amber-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>{syncState.message}</div>}
+
+        {/* Secondary Navigation Tabs for Consolidated Sections */}
+        {activeSection.id === "twin" && (
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Career Twin tabs">
+            {[
+              { id: "twin" as View, label: "Twin Overview", icon: Sparkles },
+              { id: "skills" as View, label: "Skill Gap Analysis", icon: GraduationCap },
+              { id: "intelligence" as View, label: "Career Intelligence", icon: BrainCircuit },
+              { id: "roadmap" as View, label: "Career Roadmap", icon: Route },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => changeView(tab.id)}
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  view === tab.id
+                    ? "bg-accent text-white shadow-sm"
+                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                }`}
+              >
+                <tab.icon size={13} />
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        {activeSection.id === "learning" && (
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Learning tabs">
+            {[
+              { id: "learning" as View, label: "Learning Studio", icon: BookOpen },
+              { id: "paths" as View, label: "Learning Paths", icon: Compass },
+              { id: "catalogue" as View, label: "Course Catalogue", icon: Layers },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => changeView(tab.id)}
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  view === tab.id
+                    ? "bg-accent text-white shadow-sm"
+                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                }`}
+              >
+                <tab.icon size={13} />
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        {activeSection.id === "practice" && (
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Practice tabs">
+            {[
+              { id: "mock-exams" as View, label: "Mock Exams Hub", icon: Award },
+              { id: "progress" as View, label: "Weekly Tests & Progress", icon: CalendarDays },
+              { id: "labs" as View, label: "Hands-on Labs", icon: Terminal },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => changeView(tab.id)}
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  view === tab.id
+                    ? "bg-accent text-white shadow-sm"
+                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                }`}
+              >
+                <tab.icon size={13} />
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        {activeSection.id === "projects" && (
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Projects tabs">
+            {[
+              { id: "projects" as View, label: "Applied Projects", icon: FolderKanban },
+              { id: "portfolio" as View, label: "Student Portfolio", icon: Globe },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => changeView(tab.id)}
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  view === tab.id
+                    ? "bg-accent text-white shadow-sm"
+                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                }`}
+              >
+                <tab.icon size={13} />
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        {activeSection.id === "career" && (
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Career Center tabs">
+            {[
+              { id: "opportunities" as View, label: "Opportunities", icon: Briefcase },
+              { id: "applications" as View, label: "Applications Tracker", icon: Bookmark },
+              { id: "resume" as View, label: "Resume & ATS Review", icon: FileText },
+              { id: "certificates" as View, label: "Verified Credentials", icon: Award },
+              { id: "readiness" as View, label: "Career Readiness", icon: TrendingUp },
+              { id: "interviews" as View, label: "AI Mock Interviews", icon: MessageSquareText },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => changeView(tab.id)}
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
+                  view === tab.id
+                    ? "bg-accent text-white shadow-sm"
+                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                }`}
+              >
+                <tab.icon size={13} />
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        )}
+
         <AnimatePresence mode="wait">
           <motion.div key={view} initial={reduceMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? undefined : { opacity: 0, y: -4 }} transition={{ duration: .2 }}>
             {twinLoadState === "loading" && view !== "overview" ? (
@@ -1079,7 +1302,59 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
       </main>
     </div>
 
-    <AnimatePresence>{mobileOpen && <><motion.button initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-40 bg-ink/25 backdrop-blur-sm lg:hidden" onClick={() => setMobileOpen(false)} aria-label="Close workspace navigation overlay"/><motion.aside initial={reduceMotion ? false : {x:"-100%"}} animate={{x:0}} exit={{x:"-100%"}} transition={{duration:.22,ease:[.22,1,.36,1]}} className="fixed inset-y-0 left-0 z-50 w-[min(310px,88vw)] bg-[#f8f7f2] p-5 text-ink shadow-2xl lg:hidden"><div className="flex items-center justify-between border-b border-ink/10 px-1 pb-5 pt-2"><Brand/><button onClick={() => setMobileOpen(false)} className="grid size-9 place-items-center text-slate hover:bg-white hover:text-ink" aria-label="Close workspace navigation"><X size={18}/></button></div><p className="mt-8 px-3 font-mono text-[9px] font-bold uppercase tracking-[.2em] text-slate">Workspace</p><nav className="mt-3 space-y-1" aria-label="Mobile career workspace">{navigation.map((item)=><button key={item.id} onFocus={()=>preloadView(item.id)} onClick={()=>changeView(item.id)} className={`flex w-full items-center gap-3 border px-3 py-3 text-sm font-semibold ${view===item.id?"border-violet-200 bg-violet-50 text-accent":"border-transparent text-slate"}`}><span className={`grid size-7 place-items-center ${view===item.id?"bg-white text-accent":""}`}><item.icon size={16}/></span>{item.label}</button>)}</nav><div className="mt-6 border-t border-ink/10 pt-4"><Link href="/onboarding" className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-slate"><CircleUserRound size={17}/>Career profile</Link></div></motion.aside></>}</AnimatePresence>
+    <AnimatePresence>
+      {mobileOpen && (
+        <>
+          <motion.button
+            initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
+            className="fixed inset-0 z-40 bg-ink/25 backdrop-blur-sm lg:hidden"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close workspace navigation overlay"
+          />
+          <motion.aside
+            initial={reduceMotion ? false : {x:"-100%"}}
+            animate={{x:0}}
+            exit={{x:"-100%"}}
+            transition={{duration:.22,ease:[.22,1,.36,1]}}
+            className="fixed inset-y-0 left-0 z-50 flex w-[min(300px,88vw)] flex-col overflow-y-auto bg-[#f8f7f2] text-ink shadow-2xl lg:hidden"
+          >
+            <div className="flex items-center justify-between border-b border-ink/10 px-5 pb-4 pt-5">
+              <Brand/>
+              <button onClick={() => setMobileOpen(false)} className="grid size-9 place-items-center rounded-lg text-slate hover:bg-white hover:text-ink" aria-label="Close workspace navigation">
+                <X size={18}/>
+              </button>
+            </div>
+            <nav className="flex-1 px-3 py-3 space-y-1" aria-label="Mobile career workspace">
+              <p className="px-2 pb-1 font-mono text-[9px] font-bold uppercase tracking-[.18em] text-slate/70">Navigation</p>
+              {primaryNavigation.map((item) => {
+                const isSelected = activeSection.id === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onFocus={() => preloadView(item.defaultView)}
+                    onClick={() => changeView(item.defaultView)}
+                    className={isSelected
+                      ? "flex w-full items-center gap-2.5 rounded-xl border border-violet-200 bg-violet-50 px-3 py-2.5 text-[13px] font-semibold text-accent transition-all"
+                      : "flex w-full items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-semibold text-slate transition-all"
+                    }
+                  >
+                    <span className={isSelected ? "grid size-6 shrink-0 place-items-center rounded-md bg-white text-accent" : "grid size-6 shrink-0 place-items-center rounded-md text-slate/70"}>
+                      <item.icon size={14}/>
+                    </span>
+                    <span className="truncate">{item.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+            <div className="border-t border-ink/10 px-3 pb-4 pt-3">
+              <Link href="/onboarding" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-slate">
+                <CircleUserRound size={15} className="shrink-0"/>Career Profile
+              </Link>
+            </div>
+          </motion.aside>
+        </>
+      )}
+    </AnimatePresence>
     <CommandPalette open={commandOpen} items={commands} onClose={()=>setCommandOpen(false)} onSelect={(id)=>changeView(id as View)} />
     <Pip storageNamespace={storageOwnerKey} twin={twin} twinSource={twinSource} />
     {certModalOpen && (

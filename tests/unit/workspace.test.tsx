@@ -23,7 +23,9 @@ describe("CareerWorkspace", () => {
   it("records an evidence-backed skill review locally", async () => {
     window.localStorage.setItem("careertwin-role-draft", "Frontend Developer");
     render(<CareerWorkspace />);
-    fireEvent.click(screen.getByRole("button", { name: "Skill Gap Analysis" }));
+    const nav = screen.getByRole("navigation", { name: "Career workspace" });
+    fireEvent.click(within(nav).getByRole("button", { name: "My Career Twin" }));
+    fireEvent.click(await screen.findByRole("button", { name: "Skill Gap Analysis" }));
 
     expect(await screen.findByRole("heading", { name: /document what you can show/i }, { timeout: 5000 })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Can demonstrate" }));
@@ -110,9 +112,9 @@ describe("CareerWorkspace", () => {
     window.localStorage.setItem("careertwin-role-draft:test-user", "Software Engineer");
     render(<CareerWorkspace />);
     const nav = screen.getByRole("navigation", { name: "Career workspace" });
-    fireEvent.click(within(nav).getByRole("button", { name: "Applied Projects" }));
+    fireEvent.click(within(nav).getByRole("button", { name: "Projects & Portfolio" }));
 
-    expect(await screen.findByText(/Applied Portfolio Projects/i, {}, { timeout: 5000 })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Create project/i })).toBeInTheDocument();
+    expect(await screen.findByText(/Guided Industry Projects & Verifiable Proof/i, {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /View Verified Achievements/i })).toBeInTheDocument();
   });
 });
