@@ -4,27 +4,32 @@ import { useUser } from "@clerk/nextjs";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
-  BriefcaseBusiness,
-  BrainCircuit,
+  Award,
   BookOpen,
+  BrainCircuit,
+  BriefcaseBusiness,
   CalendarDays,
   CheckCircle2,
-  Download,
-  FolderKanban,
-  Save,
   ChevronRight,
   CircleUserRound,
   Compass,
+  Download,
   FileText,
+  FolderKanban,
   Gauge,
   GraduationCap,
+  Layers,
   Menu,
   MessageSquareText,
+  Network,
   RefreshCw,
   Route,
+  Save,
   Search,
+  Shield,
   ShieldCheck,
   Sparkles,
+  Terminal,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -40,6 +45,13 @@ import { CareerIntelligence } from "./career-intelligence";
 import { DevelopmentHub } from "./development-hub";
 import { LearningStudio } from "./learning-studio";
 import { WeeklyPlanner } from "./weekly-planner";
+import { SkillEvidence } from "./skill-evidence";
+import { MyCareerTwin } from "./my-career-twin";
+import { LearningPathsView } from "./learning-paths";
+import { CourseCatalogueView } from "./course-catalogue";
+import { HandsOnLabsView } from "./hands-on-labs";
+import { MockExamsHubView } from "./mock-exams-hub";
+import { CertificateModal } from "./certificate-modal";
 import "./dashboard-clone.css";
 
 function ModuleLoading() {
@@ -54,18 +66,33 @@ function ModuleLoading() {
   );
 }
 
-import { SkillEvidence } from "./skill-evidence";
-import { MyCareerTwin } from "./my-career-twin";
-
-type View = "overview" | "twin" | "skills" | "intelligence" | "roadmap" | "learning" | "projects" | "interviews" | "progress" | "settings";
+type View =
+  | "overview"
+  | "twin"
+  | "paths"
+  | "catalogue"
+  | "learning"
+  | "labs"
+  | "mock-exams"
+  | "skills"
+  | "intelligence"
+  | "roadmap"
+  | "projects"
+  | "interviews"
+  | "progress"
+  | "settings";
 
 const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
   { id: "overview", label: "Dashboard", icon: Gauge },
   { id: "twin", label: "My Career Twin", icon: Sparkles },
+  { id: "paths", label: "Learning Paths", icon: Compass },
+  { id: "catalogue", label: "Course Catalogue", icon: Layers },
+  { id: "learning", label: "Learning Studio", icon: BookOpen },
+  { id: "labs", label: "Hands-on Labs", icon: Terminal },
+  { id: "mock-exams", label: "Mock Exams Hub", icon: Award },
   { id: "skills", label: "Skill Gap Analysis", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", icon: Route },
-  { id: "learning", label: "Learning Studio", icon: BookOpen },
   { id: "projects", label: "Applied Projects", icon: FolderKanban },
   { id: "interviews", label: "AI Career Coach", icon: MessageSquareText },
   { id: "progress", label: "Progress & Weekly Tests", icon: CalendarDays },
@@ -75,10 +102,14 @@ const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
 const commands: CommandItem[] = [
   { id: "overview", label: "Dashboard", description: "See your profile, target, evidence, weekly work, and recommended next action.", keywords: "home overview", icon: Gauge },
   { id: "twin", label: "My Career Twin", description: "Inspect your calculated Career Twin, evidence coverage, verified skills, and persona.", keywords: "twin ai identity profile persona", icon: Sparkles },
+  { id: "paths", label: "Learning Paths", description: "Explore 8 structured multi-course learning paths inspired by Cisco NetAcad.", keywords: "paths track python fullstack network cloud security", icon: Compass },
+  { id: "catalogue", label: "Course Catalogue", description: "Browse 14 production courses across engineering, cloud, and data.", keywords: "courses catalog syllabus subjects lessons", icon: Layers },
+  { id: "learning", label: "Learning Studio", description: "Search skills and study 14 validated production courses.", keywords: "course lesson curriculum quiz python sql", icon: BookOpen },
+  { id: "labs", label: "Hands-on Labs", description: "Complete practical engineering sandboxes: Python, CIDR, SOC Logs, Cloud IAM, SQL.", keywords: "labs sandbox practical packet tracer code networking terminal", icon: Terminal },
+  { id: "mock-exams", label: "Mock Exams Hub", description: "Take timed 30-minute certification mock exams with diagnostic score reports.", keywords: "exams test quiz exam certification score timed assessment", icon: Award },
   { id: "skills", label: "Skill Gap Analysis", description: "Record skills, evidence, and target-role priorities.", keywords: "proficiency assessment", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", description: "Review evidence-grounded career context and next steps.", keywords: "analysis paths strengths", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", description: "Plan and complete practical learning tasks.", keywords: "tasks study plan", icon: Route },
-  { id: "learning", label: "Learning Studio", description: "Search skills and study 14 validated production courses.", keywords: "course lesson curriculum quiz python sql", icon: BookOpen },
   { id: "projects", label: "Applied Projects", description: "Build and document real-world evidence projects with code deliverables.", keywords: "projects portfolio github demo artifact", icon: FolderKanban },
   { id: "interviews", label: "AI Career Coach", description: "Practise interviews with text, supported voice, and evidence-aware feedback.", keywords: "coach behavioral technical communication", icon: MessageSquareText },
   { id: "progress", label: "Progress & Weekly Tests", description: "Schedule roadmap work, record time, and complete curated assessments.", keywords: "week quiz assessment calendar progress", icon: CalendarDays },
@@ -159,7 +190,27 @@ function readWorkspaceSnapshot(ownerKey: string, role: string, canonical?: TwinS
   return snapshot;
 }
 
-function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSource, onOpen, onOpenLearning }: { role: string; profileCompletion: number | null; displayName: string; ownerKey: string; twin: TwinOutput | null; twinSource: TwinSourceState | null; onOpen: (view: View) => void; onOpenLearning?: (skill: string) => void }) {
+function Overview({
+  role,
+  profileCompletion,
+  displayName,
+  ownerKey,
+  twin,
+  twinSource,
+  onOpen,
+  onOpenLearning,
+  onOpenCert,
+}: {
+  role: string;
+  profileCompletion: number | null;
+  displayName: string;
+  ownerKey: string;
+  twin: TwinOutput | null;
+  twinSource: TwinSourceState | null;
+  onOpen: (view: View) => void;
+  onOpenLearning?: (skill: string) => void;
+  onOpenCert?: () => void;
+}) {
   const router = useRouter();
   const [snapshot, setSnapshot] = useState<WorkspaceSnapshot>(EMPTY_SNAPSHOT);
   useEffect(() => {
@@ -330,6 +381,116 @@ function Overview({ role, profileCompletion, displayName, ownerKey, twin, twinSo
               {snapshot.projectsTotal + snapshot.profileProjects} Tracked · {snapshot.projectsDone} Done
             </strong>
             <span className="text-[11px] text-slate mt-0.5 block">Code Deliverables</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Cisco-Inspired Technical Academy & Hands-on Practice */}
+      <section className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7 shadow-xs">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="label">Cisco-Inspired Technical Academy</p>
+            <h3 className="mt-2 text-xl font-bold tracking-tight">
+              Structured Curriculum, Interactive Labs & Timed Checkpoints
+            </h3>
+            <p className="mt-2 text-sm text-slate max-w-2xl">
+              Engineered with the educational structure of Cisco Networking Academy & Cisco U. Progress through multi-course learning paths, practice in real sandboxes, and earn verified credentials.
+            </p>
+          </div>
+          {onOpenCert && (
+            <button
+              type="button"
+              onClick={onOpenCert}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-4 py-2.5 text-xs font-semibold text-amber-900 shadow-xs hover:bg-amber-100 transition-all cursor-pointer"
+            >
+              <Award size={15} className="text-amber-600" /> View Verified Certificate
+            </button>
+          )}
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            onClick={() => onOpen("paths")}
+            className="group rounded-2xl border border-ink/8 bg-surface p-5 hover:border-brand-forest/40 hover:bg-white cursor-pointer transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-2 text-brand-forest">
+                <Compass size={18} />
+                <span className="text-xs font-bold uppercase tracking-wider">Learning Paths</span>
+              </div>
+              <h4 className="mt-2 font-bold text-ink group-hover:text-brand-forest transition-colors">
+                8 Role-Aligned Paths
+              </h4>
+              <p className="mt-1 text-xs text-slate">
+                Python, Full-Stack, Cyber, Cloud, Data, AI/ML, Network, DevOps.
+              </p>
+            </div>
+            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand-forest group-hover:underline">
+              Explore Paths <ArrowRight size={13} />
+            </span>
+          </div>
+
+          <div
+            onClick={() => onOpen("catalogue")}
+            className="group rounded-2xl border border-ink/8 bg-surface p-5 hover:border-brand-forest/40 hover:bg-white cursor-pointer transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-2 text-indigo-600">
+                <Layers size={18} />
+                <span className="text-xs font-bold uppercase tracking-wider">Course Catalogue</span>
+              </div>
+              <h4 className="mt-2 font-bold text-ink group-hover:text-indigo-600 transition-colors">
+                14 Production Courses
+              </h4>
+              <p className="mt-1 text-xs text-slate">
+                Complete modules, lessons, and tests with Cisco U-style syllabus previews.
+              </p>
+            </div>
+            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 group-hover:underline">
+              Browse Courses <ArrowRight size={13} />
+            </span>
+          </div>
+
+          <div
+            onClick={() => onOpen("labs")}
+            className="group rounded-2xl border border-ink/8 bg-surface p-5 hover:border-teal-600/40 hover:bg-white cursor-pointer transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-2 text-teal-700">
+                <Terminal size={18} />
+                <span className="text-xs font-bold uppercase tracking-wider">Hands-On Labs</span>
+              </div>
+              <h4 className="mt-2 font-bold text-ink group-hover:text-teal-700 transition-colors">
+                5 Practical Sandboxes
+              </h4>
+              <p className="mt-1 text-xs text-slate">
+                Python validation, IPv4 Subnetting, SOC logs, Cloud IAM, SQL queries.
+              </p>
+            </div>
+            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-teal-700 group-hover:underline">
+              Launch Labs <ArrowRight size={13} />
+            </span>
+          </div>
+
+          <div
+            onClick={() => onOpen("mock-exams")}
+            className="group rounded-2xl border border-ink/8 bg-surface p-5 hover:border-amber-600/40 hover:bg-white cursor-pointer transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-2 text-amber-700">
+                <Award size={18} />
+                <span className="text-xs font-bold uppercase tracking-wider">Mock Exams Hub</span>
+              </div>
+              <h4 className="mt-2 font-bold text-ink group-hover:text-amber-700 transition-colors">
+                42 Timed Assessments
+              </h4>
+              <p className="mt-1 text-xs text-slate">
+                30-minute exam engine with topic diagnostics and question explanations.
+              </p>
+            </div>
+            <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-amber-700 group-hover:underline">
+              Take Exam <ArrowRight size={13} />
+            </span>
           </div>
         </div>
       </section>
@@ -683,9 +844,15 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     setCommandOpen(false);
   }
 
+  const [certModalOpen, setCertModalOpen] = useState(false);
+
   function preloadView(next: View) {
     if (next === "skills") void import("./skill-evidence");
     if (next === "twin") void import("./my-career-twin");
+    if (next === "paths") void import("./learning-paths");
+    if (next === "catalogue") void import("./course-catalogue");
+    if (next === "labs") void import("./hands-on-labs");
+    if (next === "mock-exams") void import("./mock-exams-hub");
     if (next === "projects" || next === "roadmap") void import("./development-hub");
   }
 
@@ -730,6 +897,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 twinSource={twinSource}
                 onOpen={changeView}
                 onOpenLearning={openLearningWithSkill}
+                onOpenCert={() => setCertModalOpen(true)}
               />
             ) : view === "twin" ? (
               <MyCareerTwin
@@ -743,6 +911,31 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 onOpenLearning={openLearningWithSkill}
                 onOpenSkills={() => changeView("skills")}
                 onOpenRoadmap={() => changeView("roadmap")}
+              />
+            ) : view === "paths" ? (
+              <LearningPathsView
+                userRole={role}
+                ownerKey={storageOwnerKey}
+                onSelectCourse={openLearningWithSkill}
+                onNavigateLabs={() => changeView("labs")}
+                onNavigateExams={() => changeView("mock-exams")}
+                onNavigateProjects={() => changeView("projects")}
+              />
+            ) : view === "catalogue" ? (
+              <CourseCatalogueView
+                onSelectCourse={openLearningWithSkill}
+                onNavigatePaths={() => changeView("paths")}
+              />
+            ) : view === "labs" ? (
+              <HandsOnLabsView
+                ownerKey={storageOwnerKey}
+                onNavigateTwin={() => changeView("twin")}
+              />
+            ) : view === "mock-exams" ? (
+              <MockExamsHubView
+                ownerKey={storageOwnerKey}
+                onNavigateTwin={() => changeView("twin")}
+                onSelectCourse={openLearningWithSkill}
               />
             ) : view === "skills" ? (
               <SkillEvidence
@@ -796,5 +989,13 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     <AnimatePresence>{mobileOpen && <><motion.button initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="fixed inset-0 z-40 bg-ink/25 backdrop-blur-sm lg:hidden" onClick={() => setMobileOpen(false)} aria-label="Close workspace navigation overlay"/><motion.aside initial={reduceMotion ? false : {x:"-100%"}} animate={{x:0}} exit={{x:"-100%"}} transition={{duration:.22,ease:[.22,1,.36,1]}} className="fixed inset-y-0 left-0 z-50 w-[min(310px,88vw)] bg-[#f8f7f2] p-5 text-ink shadow-2xl lg:hidden"><div className="flex items-center justify-between border-b border-ink/10 px-1 pb-5 pt-2"><Brand/><button onClick={() => setMobileOpen(false)} className="grid size-9 place-items-center text-slate hover:bg-white hover:text-ink" aria-label="Close workspace navigation"><X size={18}/></button></div><p className="mt-8 px-3 font-mono text-[9px] font-bold uppercase tracking-[.2em] text-slate">Workspace</p><nav className="mt-3 space-y-1" aria-label="Mobile career workspace">{navigation.map((item)=><button key={item.id} onFocus={()=>preloadView(item.id)} onClick={()=>changeView(item.id)} className={`flex w-full items-center gap-3 border px-3 py-3 text-sm font-semibold ${view===item.id?"border-violet-200 bg-violet-50 text-accent":"border-transparent text-slate"}`}><span className={`grid size-7 place-items-center ${view===item.id?"bg-white text-accent":""}`}><item.icon size={16}/></span>{item.label}</button>)}</nav><div className="mt-6 border-t border-ink/10 pt-4"><Link href="/onboarding" className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-slate"><CircleUserRound size={17}/>Career profile</Link></div></motion.aside></>}</AnimatePresence>
     <CommandPalette open={commandOpen} items={commands} onClose={()=>setCommandOpen(false)} onSelect={(id)=>changeView(id as View)} />
     <Pip storageNamespace={storageOwnerKey} twin={twin} twinSource={twinSource} />
+    {certModalOpen && (
+      <CertificateModal
+        studentName={displayName || role || "CareerTwin Scholar"}
+        courseTitle={role ? `${role} Professional Curriculum` : "Software & Systems Engineering"}
+        skills={twin?.demonstratedSkills?.map((s) => s.name) || ["Python", "SQL", "Cloud Infrastructure", "Cyber Defense"]}
+        onClose={() => setCertModalOpen(false)}
+      />
+    )}
   </div>;
 }

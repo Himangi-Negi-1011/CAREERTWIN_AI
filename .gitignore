@@ -25,6 +25,7 @@
 *.log
 *.zip
 _zip_extracted/
+.cache-clone/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

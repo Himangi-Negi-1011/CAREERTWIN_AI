@@ -493,7 +493,7 @@ export function Landing() {
                     setAnalyzeStep(1);
                   }}
                 >
-                  Try it free
+                  Explore Skills Analysis
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
@@ -521,7 +521,7 @@ export function Landing() {
                     setAnalyzeStep(1);
                   }}
                 >
-                  Try it free
+                  View Learning Roadmaps
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
@@ -548,7 +548,7 @@ export function Landing() {
                     setAnalyzeStep(1);
                   }}
                 >
-                  Try it free
+                  Practice Interviews
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
@@ -667,7 +667,7 @@ export function Landing() {
                 <span /><span /><span />
               </div>
               <h2>Ready to Build Your Future?</h2>
-              <p>Start with a free AI career analysis and take the first step towards the job you will love.</p>
+              <p>Build verifiable technical skills, complete hands-on labs, and prepare for your chosen career.</p>
               <button
                 type="button"
                 className="btn btn-light btn-lg magnetic shine"
@@ -676,7 +676,7 @@ export function Landing() {
                   setAnalyzeStep(1);
                 }}
               >
-                Get Your Free Analysis
+                Begin Career Analysis
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                 </svg>
@@ -735,7 +735,7 @@ export function Landing() {
             {/* Step 1 */}
             {analyzeStep === 1 && (
               <div className="analyze-step is-active" data-step="1">
-                <span className="kicker">Free analysis</span>
+                <span className="kicker">Skills & Career Analysis</span>
                 <h2>Let&apos;s find your best-fit career</h2>
                 <p className="analyze-sub">Paste your resume, or drop a PDF. Your report takes about 8 seconds.</p>
 
