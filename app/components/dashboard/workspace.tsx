@@ -6,7 +6,9 @@ import {
   ArrowRight,
   Award,
   BookOpen,
+  Bookmark,
   BrainCircuit,
+  Briefcase,
   BriefcaseBusiness,
   CalendarDays,
   CheckCircle2,
@@ -15,8 +17,10 @@ import {
   Compass,
   Download,
   FileText,
+  FolderGit2,
   FolderKanban,
   Gauge,
+  Globe,
   GraduationCap,
   Layers,
   Menu,
@@ -30,6 +34,7 @@ import {
   ShieldCheck,
   Sparkles,
   Terminal,
+  TrendingUp,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -54,6 +59,13 @@ import { MockExamsHubView } from "./mock-exams-hub";
 import { CertificateModal } from "./certificate-modal";
 import { BeginnerGuide } from "./beginner-guide";
 import { FeedbackDialog } from "./feedback-dialog";
+import { CareerReadinessView } from "./career-readiness-view";
+import { CareerOpportunitiesView } from "./career-opportunities-view";
+import { ApplicationsTrackerView } from "./applications-tracker-view";
+import { ResumeReviewView } from "./resume-review-view";
+import { PortfolioView } from "./portfolio-view";
+import { GuidedProjectsView } from "./guided-projects-view";
+import { AchievementsView } from "./achievements-view";
 import "./dashboard-clone.css";
 
 function ModuleLoading() {
@@ -71,15 +83,21 @@ function ModuleLoading() {
 type View =
   | "overview"
   | "twin"
+  | "readiness"
   | "paths"
   | "catalogue"
   | "learning"
   | "labs"
   | "mock-exams"
+  | "projects"
+  | "opportunities"
+  | "applications"
+  | "resume"
+  | "portfolio"
+  | "certificates"
   | "skills"
   | "intelligence"
   | "roadmap"
-  | "projects"
   | "interviews"
   | "progress"
   | "settings";
@@ -87,15 +105,21 @@ type View =
 const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
   { id: "overview", label: "Dashboard", icon: Gauge },
   { id: "twin", label: "My Career Twin", icon: Sparkles },
+  { id: "readiness", label: "Career Readiness", icon: TrendingUp },
   { id: "paths", label: "Learning Paths", icon: Compass },
   { id: "catalogue", label: "Course Catalogue", icon: Layers },
   { id: "learning", label: "Learning Studio", icon: BookOpen },
   { id: "labs", label: "Hands-on Labs", icon: Terminal },
   { id: "mock-exams", label: "Mock Exams Hub", icon: Award },
+  { id: "projects", label: "Applied Projects", icon: FolderKanban },
+  { id: "opportunities", label: "Opportunities", icon: Briefcase },
+  { id: "applications", label: "Applications Tracker", icon: Bookmark },
+  { id: "resume", label: "Resume & ATS Review", icon: FileText },
+  { id: "portfolio", label: "Student Portfolio", icon: Globe },
+  { id: "certificates", label: "Verified Credentials", icon: Award },
   { id: "skills", label: "Skill Gap Analysis", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", icon: Route },
-  { id: "projects", label: "Applied Projects", icon: FolderKanban },
   { id: "interviews", label: "AI Career Coach", icon: MessageSquareText },
   { id: "progress", label: "Progress & Weekly Tests", icon: CalendarDays },
   { id: "settings", label: "Privacy & Settings", icon: ShieldCheck },
@@ -104,15 +128,21 @@ const navigation: Array<{ id: View; label: string; icon: typeof Gauge }> = [
 const commands: CommandItem[] = [
   { id: "overview", label: "Dashboard", description: "See your profile, target, evidence, weekly work, and recommended next action.", keywords: "home overview", icon: Gauge },
   { id: "twin", label: "My Career Twin", description: "Inspect your calculated Career Twin, evidence coverage, verified skills, and persona.", keywords: "twin ai identity profile persona", icon: Sparkles },
+  { id: "readiness", label: "Career Readiness", description: "Evidence-based analysis of demonstrated capabilities, priority gaps, and next milestones.", keywords: "readiness report gap proof capability", icon: TrendingUp },
   { id: "paths", label: "Learning Paths", description: "Explore 8 structured multi-course learning paths inspired by Cisco NetAcad.", keywords: "paths track python fullstack network cloud security", icon: Compass },
   { id: "catalogue", label: "Course Catalogue", description: "Browse 14 production courses across engineering, cloud, and data.", keywords: "courses catalog syllabus subjects lessons", icon: Layers },
   { id: "learning", label: "Learning Studio", description: "Search skills and study 14 validated production courses.", keywords: "course lesson curriculum quiz python sql", icon: BookOpen },
   { id: "labs", label: "Hands-on Labs", description: "Complete practical engineering sandboxes: Python, CIDR, SOC Logs, Cloud IAM, SQL.", keywords: "labs sandbox practical packet tracer code networking terminal", icon: Terminal },
   { id: "mock-exams", label: "Mock Exams Hub", description: "Take timed 30-minute certification mock exams with diagnostic score reports.", keywords: "exams test quiz exam certification score timed assessment", icon: Award },
+  { id: "projects", label: "Applied Projects", description: "Build and document real-world evidence projects with code deliverables.", keywords: "projects portfolio github demo artifact", icon: FolderKanban },
+  { id: "opportunities", label: "Career Opportunities", description: "Discover verified internships, early-career roles, fellowships, and hackathons.", keywords: "jobs internships opportunities earlycareer openings", icon: Briefcase },
+  { id: "applications", label: "Applications Tracker", description: "Track application statuses, interview dates, resume versions, and next actions.", keywords: "tracker applied interview offer status follow-up", icon: Bookmark },
+  { id: "resume", label: "Resume & ATS Review", description: "Analyze your resume against target roles and quantify measurable outcomes.", keywords: "resume cv ats score bullet points review", icon: FileText },
+  { id: "portfolio", label: "Student Portfolio", description: "Configure your public recruiter portfolio and verified skill showcase.", keywords: "portfolio public share link showcase github", icon: Globe },
+  { id: "certificates", label: "Verified Credentials", description: "View and share your authentic verifiable skill demonstration records.", keywords: "certificates credentials verification badge achievements", icon: Award },
   { id: "skills", label: "Skill Gap Analysis", description: "Record skills, evidence, and target-role priorities.", keywords: "proficiency assessment", icon: GraduationCap },
   { id: "intelligence", label: "Career Intelligence", description: "Review evidence-grounded career context and next steps.", keywords: "analysis paths strengths", icon: BrainCircuit },
   { id: "roadmap", label: "Career Roadmap", description: "Plan and complete practical learning tasks.", keywords: "tasks study plan", icon: Route },
-  { id: "projects", label: "Applied Projects", description: "Build and document real-world evidence projects with code deliverables.", keywords: "projects portfolio github demo artifact", icon: FolderKanban },
   { id: "interviews", label: "AI Career Coach", description: "Practise interviews with text, supported voice, and evidence-aware feedback.", keywords: "coach behavioral technical communication", icon: MessageSquareText },
   { id: "progress", label: "Progress & Weekly Tests", description: "Schedule roadmap work, record time, and complete curated assessments.", keywords: "week quiz assessment calendar progress", icon: CalendarDays },
   { id: "settings", label: "Privacy & Settings", description: "Review data controls, resume document settings, and account data.", keywords: "security privacy account files documents resume upload", icon: ShieldCheck },
@@ -259,17 +289,17 @@ function Overview({
         <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 justify-center">
           <button
             type="button"
-            onClick={() => onOpen("learning")}
+            onClick={() => onOpen("readiness")}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-ink/90 cursor-pointer"
           >
-            <BookOpen size={14} /> Open Learning Studio
+            <TrendingUp size={14} /> Career Readiness Audit
           </button>
           <button
             type="button"
-            onClick={() => onOpen("skills")}
+            onClick={() => onOpen("opportunities")}
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-ink/10 bg-app px-4 py-2.5 text-xs font-bold text-ink transition hover:bg-white cursor-pointer"
           >
-            <Compass size={14} /> Review Skill Gaps
+            <Briefcase size={14} /> View Opportunities
           </button>
         </div>
       </div>
@@ -865,7 +895,14 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     if (next === "catalogue") void import("./course-catalogue");
     if (next === "labs") void import("./hands-on-labs");
     if (next === "mock-exams") void import("./mock-exams-hub");
-    if (next === "projects" || next === "roadmap") void import("./development-hub");
+    if (next === "readiness") void import("./career-readiness-view");
+    if (next === "opportunities") void import("./career-opportunities-view");
+    if (next === "applications") void import("./applications-tracker-view");
+    if (next === "resume") void import("./resume-review-view");
+    if (next === "portfolio") void import("./portfolio-view");
+    if (next === "certificates") void import("./achievements-view");
+    if (next === "projects") void import("./guided-projects-view");
+    if (next === "roadmap") void import("./development-hub");
   }
 
   const active = navigation.find((item) => item.id === view)!;
@@ -966,6 +1003,43 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 onOpenProgress={() => changeView("progress")}
                 onOpenLearning={openLearningWithSkill}
               />
+            ) : view === "readiness" ? (
+              <CareerReadinessView
+                role={role}
+                twin={twin}
+                source={twinSource}
+                onNavigateView={changeView}
+                onOpenLearning={openLearningWithSkill}
+              />
+            ) : view === "opportunities" ? (
+              <CareerOpportunitiesView
+                twin={twin}
+                onNavigateLearning={openLearningWithSkill}
+                onNavigateLabs={() => changeView("labs")}
+                onNavigateApplications={() => changeView("applications")}
+              />
+            ) : view === "applications" ? (
+              <ApplicationsTrackerView
+                ownerKey={storageOwnerKey}
+                onNavigateOpportunities={() => changeView("opportunities")}
+              />
+            ) : view === "resume" ? (
+              <ResumeReviewView
+                role={role}
+                onNavigateProjects={() => changeView("projects")}
+              />
+            ) : view === "portfolio" ? (
+              <PortfolioView
+                role={role}
+                twin={twin}
+                ownerKey={storageOwnerKey}
+              />
+            ) : view === "certificates" ? (
+              <AchievementsView
+                onNavigateExams={() => changeView("mock-exams")}
+                onNavigateLabs={() => changeView("labs")}
+                onNavigateProjects={() => changeView("projects")}
+              />
             ) : view === "roadmap" || view === "interviews" ? (
               <DevelopmentHub
                 view={view}
@@ -975,12 +1049,9 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 onOpenLearning={openLearningWithSkill}
               />
             ) : view === "projects" ? (
-              <DevelopmentHub
-                view="projects"
+              <GuidedProjectsView
                 role={role}
-                ownerKey={storageOwnerKey}
-                onOpen={(next) => changeView(next === "interviews" ? "interviews" : next === "progress" ? "progress" : "roadmap")}
-                onOpenLearning={openLearningWithSkill}
+                onNavigateAchievements={() => changeView("certificates")}
               />
             ) : view === "intelligence" ? (
               <CareerIntelligence
