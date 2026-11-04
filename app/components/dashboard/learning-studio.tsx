@@ -4,12 +4,17 @@ import {
   ArrowLeft,
   Award,
   BookOpen,
+  Briefcase,
   Check,
   CheckCircle2,
   Clock3,
+  Code2,
+  Copy,
   ExternalLink,
+  FileText,
   GraduationCap,
   HelpCircle,
+  Layers,
   Lightbulb,
   MessageSquare,
   Play,
@@ -25,6 +30,13 @@ import {
 import Link from "next/link";
 import { FormEvent, useEffect, useState, useCallback, useRef } from "react";
 import { gradeKnowledgeChecks, type LessonDocument, type GradedKnowledgeCheck } from "@/lib/learning/lesson-schema";
+import {
+  AGENT_MODES,
+  AGENT_MODE_METADATA,
+  type AgentMode,
+  type StudentLevel,
+  type AgentResponse,
+} from "@/lib/learning/agent";
 
 type SkillResult = { id: string; canonicalName: string; domain: string; description: string; difficulty: string; reviewStatus: string };
 type Registration = { canonicalName: string; available: boolean; reason: string };
@@ -56,10 +68,16 @@ type CourseJob = {
 };
 
 type TutorMessage = {
+  id?: string;
   role: "user" | "tutor";
   text: string;
+  mode?: AgentMode;
+  codeExamples?: Array<{ language: string; code: string; explanation: string; expectedOutput?: string }>;
+  quizQuestions?: Array<{ question: string; options: string[]; correctIndex: number; explanation: string; topic: string }>;
   relatedConcepts?: string[];
   suggestedAction?: string;
+  careerImpact?: string;
+  keyTakeaways?: string[];
 };
 
 const POPULAR_TRACKS = [
@@ -111,11 +129,16 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
   const [showSolution, setShowSolution] = useState(false);
   const [revealedHints, setRevealedHints] = useState<Record<string, boolean>>({});
 
-  // Tutor Chat State
+  // AI Learning Agent State
   const [tutorOpen, setTutorOpen] = useState(false);
   const [tutorQuestion, setTutorQuestion] = useState("");
   const [tutorLoading, setTutorLoading] = useState(false);
   const [tutorMessages, setTutorMessages] = useState<TutorMessage[]>([]);
+  const [agentMode, setAgentMode] = useState<AgentMode>("explain_concept");
+  const [agentLevel, setAgentLevel] = useState<StudentLevel>("beginner");
+  const [agentQuizSelections, setAgentQuizSelections] = useState<Record<string, number>>({});
+  const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null);
+  const [notesExported, setNotesExported] = useState(false);
 
   // Persistent Progress & Mastery
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>(() => {
@@ -569,12 +592,19 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
     }
   }
 
-  async function askTutor(e: FormEvent) {
-    e.preventDefault();
-    if (!tutorQuestion.trim() || tutorLoading || !activeLesson) return;
-    const q = tutorQuestion.trim();
+  async function askTutor(e?: FormEvent, overrideQuestion?: string, overrideMode?: AgentMode) {
+    if (e) e.preventDefault();
+    const activeMode = overrideMode || agentMode;
+    const q = (overrideQuestion || tutorQuestion).trim();
+    if (!q || tutorLoading || !activeLesson) return;
     setTutorQuestion("");
-    setTutorMessages((prev) => [...prev, { role: "user", text: q }]);
+    const userMsg: TutorMessage = {
+      id: Math.random().toString(36).slice(2),
+      role: "user",
+      text: q,
+      mode: activeMode,
+    };
+    setTutorMessages((prev) => [...prev, userMsg]);
     setTutorLoading(true);
 
     try {
@@ -583,20 +613,33 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           question: q,
+          mode: activeMode,
           skillName: activeLesson.skillName,
           lessonTitle: activeLesson.title,
+          courseTitle: curriculum?.skillName || selected,
+          studentLevel: agentLevel,
           contextText: activeLesson.sections.map((s) => s.content).join(" ").slice(0, 1500),
+          history: tutorMessages.slice(-4).map((m) => ({
+            role: m.role === "user" ? "user" : "assistant",
+            content: m.text,
+          })),
         }),
       });
-      const payload = (await response.json()) as { data?: { answer: string; relatedConcepts: string[]; suggestedAction: string } };
+      const payload = (await response.json()) as { data?: AgentResponse };
       if (response.ok && payload.data) {
         setTutorMessages((prev) => [
           ...prev,
           {
+            id: Math.random().toString(36).slice(2),
             role: "tutor",
             text: payload.data!.answer,
+            mode: payload.data!.mode,
+            codeExamples: payload.data!.codeExamples,
+            quizQuestions: payload.data!.quizQuestions,
             relatedConcepts: payload.data!.relatedConcepts,
             suggestedAction: payload.data!.suggestedAction,
+            careerImpact: payload.data!.careerImpact,
+            keyTakeaways: payload.data!.keyTakeaways,
           },
         ]);
       }
@@ -604,14 +647,48 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
       setTutorMessages((prev) => [
         ...prev,
         {
+          id: Math.random().toString(36).slice(2),
           role: "tutor",
-          text: "I'm temporarily unable to connect to the reasoning service, but focus on the fundamentals outlined in the lesson sections.",
+          text: "I am temporarily operating in offline mode. Review the lesson examples and fundamental concepts outlined in this section.",
         },
       ]);
     } finally {
       setTutorLoading(false);
     }
   }
+
+  const copyCodeToClipboard = (code: string, id: string) => {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(code);
+      setCopiedSnippet(id);
+      setTimeout(() => setCopiedSnippet(null), 2000);
+    }
+  };
+
+  const exportRevisionSheet = () => {
+    if (!activeLesson) return;
+    const notes = [
+      `# CareerTwin Revision Sheet: ${activeLesson.title}`,
+      `Skill: ${activeLesson.skillName} | Level: ${agentLevel}`,
+      `Date: ${new Date().toLocaleDateString()}`,
+      `\n## Learning Objectives:`,
+      ...activeLesson.learningObjectives.map((o) => `- ${o}`),
+      `\n## Agent Key Takeaways & Study Notes:`,
+      ...tutorMessages
+        .filter((m) => m.role === "tutor")
+        .map((m) => `\n### [${m.mode ? AGENT_MODE_METADATA[m.mode].label : "Tutor"}]\n${m.text}`),
+    ].join("\n");
+
+    const blob = new Blob([notes], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `careertwin-revision-${activeLesson.lessonId}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
+    setNotesExported(true);
+    setTimeout(() => setNotesExported(false), 2500);
+  };
 
   return (
     <div className="space-y-6">
@@ -1289,9 +1366,14 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
               <button
                 type="button"
                 onClick={() => setTutorOpen(!tutorOpen)}
-                className="inline-flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-bold text-white transition hover:bg-ink/80"
+                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition shadow-sm ${
+                  tutorOpen
+                    ? "bg-accent text-white hover:bg-accent/90"
+                    : "bg-ink text-white hover:bg-ink/80"
+                }`}
               >
-                <MessageSquare size={13} /> {tutorOpen ? "Hide AI Tutor" : "Ask AI Tutor"}
+                <Sparkles size={13} className="text-mint" />
+                {tutorOpen ? "Hide AI Agent" : "AI Learning Agent (9 Modes)"}
               </button>
             </div>
           </div>
@@ -1723,68 +1805,373 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
             </form>
           )}
 
-          {/* AI Tutor Assistant Panel */}
+          {/* AI Learning Agent Assistant Panel */}
           {tutorOpen && (
-            <div className="rounded-2xl border border-accent/30 bg-violet-50/40 p-5 space-y-4">
-              <div className="flex items-center justify-between border-b border-accent/15 pb-3">
+            <div className="rounded-2xl border border-accent/30 bg-gradient-to-b from-violet-50/70 via-white to-white p-5 space-y-4 shadow-md">
+              {/* Header */}
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-accent/15 pb-3">
                 <div className="flex items-center gap-2">
-                  <Sparkles size={16} className="text-accent" />
-                  <h4 className="text-sm font-bold text-ink">Interactive AI Tutor</h4>
+                  <div className="flex size-7 items-center justify-center rounded-lg bg-accent text-white shadow-sm">
+                    <Sparkles size={16} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-sm font-bold text-ink">AI Learning Agent</h4>
+                      <span className="rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-bold text-accent">
+                        9 Pedagogical Modes
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate">
+                      Context: <span className="font-semibold text-ink">{activeLesson.title}</span> ({activeLesson.skillName})
+                    </p>
+                  </div>
                 </div>
-                <span className="text-[11px] font-mono text-slate">Direct pedagogical help</span>
+
+                <div className="flex items-center gap-2">
+                  {/* Student Level Selector */}
+                  <div className="flex items-center rounded-lg border border-ink/10 bg-white p-0.5 text-[11px]">
+                    {(["beginner", "intermediate", "advanced"] as StudentLevel[]).map((lvl) => (
+                      <button
+                        key={lvl}
+                        type="button"
+                        onClick={() => setAgentLevel(lvl)}
+                        className={`rounded-md px-2 py-0.5 font-semibold capitalize transition ${
+                          agentLevel === lvl ? "bg-ink text-white shadow-xs" : "text-slate hover:text-ink"
+                        }`}
+                      >
+                        {lvl}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Reset conversation */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTutorMessages([]);
+                      setAgentQuizSelections({});
+                    }}
+                    title="Reset conversation"
+                    className="inline-flex items-center gap-1 rounded-lg border border-ink/10 bg-white px-2 py-1 text-[11px] font-semibold text-slate hover:bg-cream hover:text-ink transition"
+                  >
+                    <RotateCcw size={12} /> Reset
+                  </button>
+
+                  {/* Export study notes */}
+                  <button
+                    type="button"
+                    onClick={exportRevisionSheet}
+                    title="Export study notes as Markdown"
+                    className="inline-flex items-center gap-1 rounded-lg border border-ink/10 bg-white px-2 py-1 text-[11px] font-semibold text-slate hover:bg-cream hover:text-ink transition"
+                  >
+                    <FileText size={12} /> {notesExported ? "Exported!" : "Export Notes"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Mode Selector Ribbon */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate">Teaching Mode:</span>
+                  <span className="text-[11px] font-medium text-accent">
+                    {AGENT_MODE_METADATA[agentMode].shortDesc}
+                  </span>
+                </div>
+                <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
+                  {AGENT_MODES.map((mode) => {
+                    const meta = AGENT_MODE_METADATA[mode];
+                    const isActive = agentMode === mode;
+                    return (
+                      <button
+                        key={mode}
+                        type="button"
+                        onClick={() => setAgentMode(mode)}
+                        className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition ${
+                          isActive
+                            ? "bg-accent text-white shadow-sm ring-2 ring-accent/30"
+                            : "border border-ink/10 bg-white text-slate hover:border-accent/40 hover:text-ink"
+                        }`}
+                      >
+                        <span>{meta.icon}</span>
+                        <span>{meta.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Quick Action Chips */}
+              <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                <span className="text-[10px] font-bold text-slate">Quick Prompts:</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAgentMode("teach_from_zero");
+                    askTutor(undefined, "Teach me this entire lesson from zero prior knowledge.", "teach_from_zero");
+                  }}
+                  className="rounded-full border border-accent/20 bg-violet-50 px-2.5 py-0.5 text-[10px] font-semibold text-accent hover:bg-accent hover:text-white transition"
+                >
+                  🌱 Teach from Zero
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAgentMode("quiz_me");
+                    askTutor(undefined, "Generate 2 diagnostic quiz questions for this lesson.", "quiz_me");
+                  }}
+                  className="rounded-full border border-accent/20 bg-violet-50 px-2.5 py-0.5 text-[10px] font-semibold text-accent hover:bg-accent hover:text-white transition"
+                >
+                  ⚡ Quiz Me
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAgentMode("career_connection");
+                    askTutor(undefined, "How is this skill used in real engineering jobs & interviews?", "career_connection");
+                  }}
+                  className="rounded-full border border-accent/20 bg-violet-50 px-2.5 py-0.5 text-[10px] font-semibold text-accent hover:bg-accent hover:text-white transition"
+                >
+                  🚀 Career Connection
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAgentMode("revision_mode");
+                    askTutor(undefined, "Create a high-yield revision sheet with essential rules & traps.", "revision_mode");
+                  }}
+                  className="rounded-full border border-accent/20 bg-violet-50 px-2.5 py-0.5 text-[10px] font-semibold text-accent hover:bg-accent hover:text-white transition"
+                >
+                  📝 Revision Sheet
+                </button>
               </div>
 
               {/* Messages list */}
-              <div className="max-h-72 overflow-y-auto space-y-3 pr-1">
+              <div className="max-h-96 overflow-y-auto space-y-3.5 pr-1">
                 {tutorMessages.length === 0 && (
-                  <p className="text-xs text-slate">
-                    Have a question about {activeLesson.title}? Ask below and get targeted conceptual clarification, code guidance, and practice suggestions.
-                  </p>
+                  <div className="rounded-xl border border-dashed border-accent/25 bg-white p-4 text-center">
+                    <p className="text-xs font-semibold text-ink">
+                      Ready to learn <span className="text-accent">{activeLesson.title}</span>!
+                    </p>
+                    <p className="mt-1 text-[11px] text-slate max-w-md mx-auto">
+                      Select one of the 9 teaching modes above or click a Quick Prompt to get step-by-step guidance, code debugging, or a customized quiz.
+                    </p>
+                  </div>
                 )}
+
                 {tutorMessages.map((msg, i) => (
                   <div
-                    key={i}
-                    className={`rounded-xl p-3 text-xs leading-relaxed ${
-                      msg.role === "user" ? "ml-6 bg-ink text-white" : "mr-6 border border-ink/10 bg-white text-ink shadow-sm"
+                    key={msg.id || i}
+                    className={`rounded-2xl p-4 text-xs leading-relaxed transition ${
+                      msg.role === "user"
+                        ? "ml-8 bg-ink text-white shadow-sm"
+                        : "mr-4 border border-ink/10 bg-white text-ink shadow-sm space-y-3"
                     }`}
                   >
-                    <p className="font-semibold">{msg.text}</p>
+                    {/* Role / Mode Header */}
+                    <div className="flex items-center justify-between text-[10px] pb-1 border-b border-ink/5">
+                      <span className="font-bold flex items-center gap-1.5">
+                        {msg.role === "user" ? (
+                          <><span>👤</span> You</>
+                        ) : (
+                          <>
+                            <span>{msg.mode ? AGENT_MODE_METADATA[msg.mode]?.icon : "🎓"}</span>
+                            <span>{msg.mode ? AGENT_MODE_METADATA[msg.mode]?.label : "AI Agent"}</span>
+                          </>
+                        )}
+                      </span>
+                      {msg.role === "tutor" && (
+                        <span className="text-slate font-mono">Pedagogical Guide</span>
+                      )}
+                    </div>
+
+                    {/* Main Content */}
+                    <div className="whitespace-pre-wrap font-sans text-xs space-y-2">
+                      {msg.text}
+                    </div>
+
+                    {/* Key Takeaways */}
+                    {msg.keyTakeaways && msg.keyTakeaways.length > 0 && (
+                      <div className="rounded-xl bg-violet-50/70 p-2.5 border border-accent/15 space-y-1">
+                        <span className="text-[10px] font-bold text-accent uppercase tracking-wider block">
+                          Key Takeaways:
+                        </span>
+                        <ul className="space-y-1 text-[11px]">
+                          {msg.keyTakeaways.map((point, pIdx) => (
+                            <li key={pIdx} className="flex items-start gap-1.5">
+                              <CheckCircle2 size={12} className="text-accent shrink-0 mt-0.5" />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Code Examples */}
+                    {msg.codeExamples && msg.codeExamples.length > 0 && (
+                      <div className="space-y-2 pt-1">
+                        {msg.codeExamples.map((ex, exIdx) => {
+                          const snippetId = `snippet-${i}-${exIdx}`;
+                          const isCopied = copiedSnippet === snippetId;
+                          return (
+                            <div key={exIdx} className="rounded-xl border border-ink/15 bg-ink text-white overflow-hidden shadow-sm">
+                              <div className="flex items-center justify-between bg-white/10 px-3 py-1.5 text-[10px] font-mono">
+                                <span className="uppercase text-mint font-bold">{ex.language}</span>
+                                <button
+                                  type="button"
+                                  onClick={() => copyCodeToClipboard(ex.code, snippetId)}
+                                  className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition"
+                                >
+                                  {isCopied ? <Check size={11} className="text-mint" /> : <Copy size={11} />}
+                                  <span>{isCopied ? "Copied!" : "Copy Code"}</span>
+                                </button>
+                              </div>
+                              <pre className="p-3 font-mono text-[11px] overflow-x-auto text-emerald-300 leading-relaxed">
+                                <code>{ex.code}</code>
+                              </pre>
+                              {ex.explanation && (
+                                <div className="border-t border-white/10 bg-white/5 p-2.5 text-[10px] text-slate-300">
+                                  <span className="font-bold text-white">Explanation: </span>
+                                  {ex.explanation}
+                                </div>
+                              )}
+                              {ex.expectedOutput && (
+                                <div className="border-t border-white/10 bg-black/40 px-3 py-1.5 text-[10px] font-mono text-slate-400">
+                                  <span className="text-slate-500">Output: </span>
+                                  {ex.expectedOutput}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Interactive Quiz Questions (Quiz Me Mode) */}
+                    {msg.quizQuestions && msg.quizQuestions.length > 0 && (
+                      <div className="space-y-3 pt-1">
+                        <span className="text-[11px] font-bold text-ink flex items-center gap-1.5">
+                          <span>⚡</span> Interactive Knowledge Check:
+                        </span>
+                        {msg.quizQuestions.map((q, qIdx) => {
+                          const qKey = `${i}-${qIdx}`;
+                          const selectedAnswer = agentQuizSelections[qKey];
+                          const hasAnswered = selectedAnswer !== undefined;
+                          return (
+                            <div key={qIdx} className="rounded-xl border border-ink/10 bg-cream/40 p-3 space-y-2">
+                              <p className="font-semibold text-[11px] text-ink">{qIdx + 1}. {q.question}</p>
+                              <div className="space-y-1.5">
+                                {q.options.map((opt, optIdx) => {
+                                  const isSelected = selectedAnswer === optIdx;
+                                  const isCorrect = optIdx === q.correctIndex;
+                                  let btnClass = "border border-ink/10 bg-white text-slate-800 hover:border-accent hover:bg-violet-50/50";
+
+                                  if (hasAnswered) {
+                                    if (isCorrect) {
+                                      btnClass = "border border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold";
+                                    } else if (isSelected && !isCorrect) {
+                                      btnClass = "border border-rose-500 bg-rose-50 text-rose-900 line-through";
+                                    } else {
+                                      btnClass = "opacity-50 border border-ink/5 bg-white text-slate-500";
+                                    }
+                                  }
+
+                                  return (
+                                    <button
+                                      key={optIdx}
+                                      type="button"
+                                      disabled={hasAnswered}
+                                      onClick={() => setAgentQuizSelections((prev) => ({ ...prev, [qKey]: optIdx }))}
+                                      className={`w-full text-left rounded-lg p-2 text-[11px] transition flex items-center justify-between ${btnClass}`}
+                                    >
+                                      <span>{opt}</span>
+                                      {hasAnswered && isCorrect && (
+                                        <Check size={13} className="text-emerald-600 shrink-0 ml-1" />
+                                      )}
+                                      {hasAnswered && isSelected && !isCorrect && (
+                                        <XCircle size={13} className="text-rose-600 shrink-0 ml-1" />
+                                      )}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              {hasAnswered && (
+                                <div className="rounded-lg bg-emerald-50/70 border border-emerald-200/80 p-2 text-[10px] text-emerald-950 mt-1">
+                                  <span className="font-bold">Explanation: </span>
+                                  {q.explanation}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Career Impact Callout */}
+                    {msg.careerImpact && (
+                      <div className="rounded-xl border border-amber-300/60 bg-amber-50/60 p-2.5 flex items-start gap-2 text-[11px] text-amber-950">
+                        <Briefcase size={14} className="text-amber-700 shrink-0 mt-0.5" />
+                        <div>
+                          <span className="font-bold">Career & Interview Relevance: </span>
+                          <span>{msg.careerImpact}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Related Concepts */}
                     {msg.relatedConcepts && msg.relatedConcepts.length > 0 && (
-                      <div className="mt-2 flex flex-wrap gap-1.5 pt-2 border-t border-ink/5">
+                      <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-ink/5">
                         <span className="text-[10px] text-slate font-bold">Related:</span>
                         {msg.relatedConcepts.map((concept, cIdx) => (
-                          <span key={cIdx} className="rounded-full bg-cream px-2 py-0.5 text-[10px] text-slate-800">
+                          <button
+                            key={cIdx}
+                            type="button"
+                            onClick={() => {
+                              setTutorQuestion(`Explain ${concept} and how it connects to ${activeLesson.title}`);
+                            }}
+                            className="rounded-full bg-cream hover:bg-violet-100 hover:text-accent transition px-2 py-0.5 text-[10px] text-slate-800"
+                          >
                             {concept}
-                          </span>
+                          </button>
                         ))}
                       </div>
                     )}
+
+                    {/* Suggested Action */}
                     {msg.suggestedAction && (
-                      <p className="mt-1.5 text-[11px] font-medium text-accent">
-                        💡 Next step: {msg.suggestedAction}
+                      <p className="text-[11px] font-medium text-accent flex items-center gap-1.5 pt-1">
+                        <Lightbulb size={13} className="shrink-0" />
+                        <span>Recommended action: {msg.suggestedAction}</span>
                       </p>
                     )}
                   </div>
                 ))}
+
                 {tutorLoading && (
-                  <div className="text-xs text-slate italic">AI Tutor is thinking…</div>
+                  <div className="flex items-center gap-2 rounded-xl border border-accent/20 bg-violet-50/60 p-3 text-xs text-accent">
+                    <div className="size-3.5 animate-spin rounded-full border-2 border-accent border-t-transparent" />
+                    <span className="font-semibold italic">
+                      AI Learning Agent is thinking in &quot;{AGENT_MODE_METADATA[agentMode].label}&quot; mode…
+                    </span>
+                  </div>
                 )}
               </div>
 
               {/* Question input */}
-              <form onSubmit={askTutor} className="flex gap-2">
+              <form onSubmit={askTutor} className="flex gap-2 pt-1">
                 <input
                   value={tutorQuestion}
                   onChange={(e) => setTutorQuestion(e.target.value)}
-                  placeholder={`Ask a question about ${activeLesson.title}…`}
-                  className="flex-1 rounded-xl border border-ink/15 bg-white px-3 py-2 text-xs outline-none focus:border-accent"
+                  placeholder={AGENT_MODE_METADATA[agentMode].placeholder}
+                  className="flex-1 rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-xs outline-none focus:border-accent shadow-xs"
                 />
                 <button
                   type="submit"
                   disabled={!tutorQuestion.trim() || tutorLoading}
-                  className="button-primary h-9 px-3 disabled:opacity-40 text-xs"
+                  className="button-primary h-10 px-4 disabled:opacity-40 text-xs shrink-0 flex items-center gap-1.5"
                 >
                   <Send size={13} />
+                  <span>Ask Agent</span>
                 </button>
               </form>
             </div>

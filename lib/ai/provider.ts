@@ -6,6 +6,13 @@ import { getServerEnv } from "@/lib/env/server";
 import { assertRubricIntegrity, interviewEvaluationSchema, rubricDefinitions, type InterviewEvaluation } from "./interview";
 import { assertCurriculumIntegrity, curriculumSchema, type Curriculum } from "@/lib/learning/schema";
 import { assertLessonIntegrity, type LessonDocument } from "@/lib/learning/lesson-schema";
+import {
+  type AgentRequest,
+  type AgentResponse,
+  agentResponseSchema,
+  buildAgentPrompt,
+  generateDeterministicAgentResponse,
+} from "@/lib/learning/agent";
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
@@ -102,6 +109,48 @@ export const tutorResponseSchema = z.object({
   suggestedAction: z.string().trim().min(5).max(500),
 });
 export type TutorResponse = z.infer<typeof tutorResponseSchema>;
+
+const agentResponseJsonSchema = {
+  type: "object",
+  properties: {
+    answer: { type: "string" },
+    mode: { type: "string" },
+    keyTakeaways: { type: "array", items: { type: "string" }, maxItems: 6 },
+    codeExamples: {
+      type: "array",
+      maxItems: 4,
+      items: {
+        type: "object",
+        properties: {
+          language: { type: "string" },
+          code: { type: "string" },
+          explanation: { type: "string" },
+          expectedOutput: { type: "string" },
+        },
+        required: ["language", "code", "explanation"],
+      },
+    },
+    quizQuestions: {
+      type: "array",
+      maxItems: 3,
+      items: {
+        type: "object",
+        properties: {
+          question: { type: "string" },
+          options: { type: "array", items: { type: "string" }, minItems: 2, maxItems: 6 },
+          correctIndex: { type: "integer", minimum: 0 },
+          explanation: { type: "string" },
+          topic: { type: "string" },
+        },
+        required: ["question", "options", "correctIndex", "explanation", "topic"],
+      },
+    },
+    relatedConcepts: { type: "array", items: { type: "string" }, maxItems: 6 },
+    suggestedAction: { type: "string" },
+    careerImpact: { type: "string" },
+  },
+  required: ["answer", "mode", "keyTakeaways", "relatedConcepts", "suggestedAction"],
+} as const;
 
 const lessonJsonSchema = {
   type: "object",
@@ -343,14 +392,44 @@ export async function generateLesson(input: {
   return assertLessonIntegrity(raw);
 }
 
+export async function askAILearningAgent(input: AgentRequest, signal: AbortSignal): Promise<AgentResponse> {
+  const prompt = buildAgentPrompt(input);
+  try {
+    const raw = await generateJson(prompt, agentResponseJsonSchema, signal);
+    const parsed = agentResponseSchema.safeParse(raw);
+    if (parsed.success) {
+      return parsed.data;
+    }
+    console.warn("AI Learning Agent returned unexpected schema, falling back:", parsed.error);
+  } catch (err) {
+    console.warn("AI Learning Agent generation failed, using pedagogical fallback:", err instanceof Error ? err.message : err);
+  }
+  return generateDeterministicAgentResponse(input);
+}
+
 export async function askAITutor(input: {
   question: string;
   skillName: string;
   lessonTitle?: string;
   contextText?: string;
 }, signal: AbortSignal): Promise<TutorResponse> {
-  const prompt = `You are the CareerTwin AI Tutor for ${input.skillName}. Help the student understand the following topic or answer their question clearly, accurately, and pedagogically.\n${input.lessonTitle ? `Active Lesson: ${input.lessonTitle}\n` : ""}${input.contextText ? `Relevant Lesson Context: ${input.contextText}\n` : ""}Student Question: ${input.question}\nProvide a direct, clear answer without filler, list up to 4 related technical concepts, and suggest a practical follow-up action or exercise to reinforce the concept. Return only JSON.`;
-  const raw = await generateJson(prompt, tutorJsonSchema, signal);
-  return tutorResponseSchema.parse(raw);
+  const agentRes = await askAILearningAgent(
+    {
+      question: input.question,
+      skillName: input.skillName,
+      lessonTitle: input.lessonTitle,
+      contextText: input.contextText,
+      mode: "ask_tutor",
+      studentLevel: "beginner",
+      weakTopics: [],
+      history: [],
+    },
+    signal
+  );
+  return {
+    answer: agentRes.answer,
+    relatedConcepts: agentRes.relatedConcepts,
+    suggestedAction: agentRes.suggestedAction,
+  };
 }
 

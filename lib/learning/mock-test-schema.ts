@@ -118,6 +118,7 @@ export interface MockTestGradedReport {
   questions: QuestionGradingResult[];
   incorrectQuestionCount: number;
   recommendedLessons: Array<{ title: string; topic: string }>;
+  weakTopics: string[];
   completedAt: string;
 }
 
@@ -198,6 +199,9 @@ export function gradeMockTest(
     questions: questionResults,
     incorrectQuestionCount: questionResults.filter((q) => !q.isCorrect).length,
     recommendedLessons,
+    weakTopics: Object.values(topicWiseScores)
+      .filter((t) => t.percentage < 70)
+      .map((t) => t.topic),
     completedAt: new Date().toISOString(),
   };
 }
