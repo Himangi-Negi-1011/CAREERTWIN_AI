@@ -5,6 +5,7 @@ import { generateLesson, getAIProviderStatus } from "@/lib/ai/provider";
 import { buildDeterministicLesson } from "@/lib/learning/lesson-service";
 import { assertLessonIntegrity } from "@/lib/learning/lesson-schema";
 import { getLesson, listLessonsForCurriculum, saveLesson } from "@/lib/learning/repository";
+import { loadCoursePackage, normalizeCourseSlug } from "@/lib/learning/course-content-store";
 
 const postRequestSchema = z.object({
   curriculumId: z.string().trim().min(1).max(120).optional(),
@@ -62,7 +63,17 @@ export async function POST(request: Request) {
 
   // 1. Check if already saved in repository
   const currId = curriculumId || `curr-${skillName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${learnerLevel}`;
-  const existing = await getLesson(currId, lessonId);
+  let existing = await getLesson(currId, lessonId);
+  if (!existing && lessonTitle) {
+    const slug = normalizeCourseSlug(skillName);
+    const pkg = await loadCoursePackage(slug);
+    if (pkg) {
+      const match = pkg.lessons.find(
+        (l) => l.title.toLowerCase().trim() === lessonTitle.toLowerCase().trim()
+      );
+      if (match) existing = match;
+    }
+  }
   const aiStatus = getAIProviderStatus();
   if (existing) {
     const source = aiStatus.configured ? "ai" : "curated-fallback";

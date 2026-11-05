@@ -4,6 +4,13 @@ import { type Curriculum, curriculumSchema } from "./schema";
 import { type LessonDocument, lessonDocumentSchema } from "./lesson-schema";
 import { type MockTestDocument, mockTestDocumentSchema, type MockTestGradedReport } from "./mock-test-schema";
 import { loadCoursePackage, listAllCourseSlugs, hasCoursePackage, normalizeCourseSlug } from "./course-content-store";
+import {
+  type StudentMasteryState,
+  type MasteryEvidence,
+  evaluateTopicMastery,
+  normalizeTopicKey,
+} from "./mastery-engine";
+import { enqueueTopicForRevision } from "./spaced-revision";
 
 export type CourseJobStatus =
   | "requested"
@@ -331,11 +338,18 @@ export async function saveLesson(curriculumId: string, lesson: LessonDocument): 
 }
 
 export async function getLesson(curriculumId: string, lessonId: string): Promise<LessonDocument | null> {
+  const normId = lessonId.toLowerCase().trim();
+
   // 1. Try version-controlled content/courses/
   for (const s of await listAllCourseSlugs()) {
     const pkg = await loadCoursePackage(s);
     if (pkg) {
-      const match = pkg.lessons.find((l) => l.lessonId === lessonId);
+      const match = pkg.lessons.find((l) => {
+        if (l.lessonId === lessonId || l.lessonId.toLowerCase() === normId) return true;
+        const lSlug = l.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        if (normId.includes(lSlug) || lSlug.includes(normId)) return true;
+        return false;
+      });
       if (match) return match;
     }
   }
@@ -1246,4 +1260,21 @@ export async function syncAllLocalToSupabase(): Promise<{
     totalFailed: (curricula.length - curriculaSynced) + (lessons.length - lessonsSynced) + (mockTests.length - testsSynced),
     errors: errors.slice(0, 15),
   };
+}
+
+export async function recordTopicEvidence(userId: string, evidence: MasteryEvidence): Promise<void> {
+  const filePath = path.join(DATA_DIR, "mastery", `${userId}.json`);
+  let state: StudentMasteryState = { userId, topics: {}, updatedAt: new Date().toISOString() };
+  try {
+    const raw = await fs.readFile(filePath, "utf-8");
+    state = JSON.parse(raw);
+  } catch {
+    // initialize new
+  }
+  const key = `${evidence.courseSlug}-${normalizeTopicKey(evidence.topic)}`;
+  const existing = state.topics[key] || null;
+  state.topics[key] = evaluateTopicMastery(existing, evidence);
+  state.updatedAt = new Date().toISOString();
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, JSON.stringify(state, null, 2), "utf-8");
 }

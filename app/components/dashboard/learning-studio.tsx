@@ -2,16 +2,20 @@
 
 import {
   ArrowLeft,
+  ArrowRight,
   Award,
   BookOpen,
   Briefcase,
   Check,
   CheckCircle2,
+  ChevronDown,
+  ChevronUp,
   Clock3,
   Code2,
   Copy,
   ExternalLink,
   FileText,
+  Filter,
   GraduationCap,
   HelpCircle,
   Layers,
@@ -22,10 +26,12 @@ import {
   Search,
   Send,
   Sparkles,
+  Star,
   Terminal,
   Timer,
   Video,
   XCircle,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useEffect, useState, useCallback, useRef } from "react";
@@ -37,6 +43,7 @@ import {
   type StudentLevel,
   type AgentResponse,
 } from "@/lib/learning/agent";
+import { CATALOGUE_COURSES, type CourseCatalogueItem } from "./course-catalogue";
 
 type SkillResult = { id: string; canonicalName: string; domain: string; description: string; difficulty: string; reviewStatus: string };
 type Registration = { canonicalName: string; available: boolean; reason: string };
@@ -218,6 +225,36 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
   } | null>(null);
   const [submittingMock, setSubmittingMock] = useState(false);
   const [mockTimer, setMockTimer] = useState<number>(1800);
+
+  // Cisco NetAcad Course Library & Interactive Catalog State
+  const [catalogCategory, setCatalogCategory] = useState<"all" | "programming" | "cloud" | "data" | "security">("all");
+  const [catalogSearch, setCatalogSearch] = useState("");
+  const [expandedCourseSlug, setExpandedCourseSlug] = useState<string | null>(null);
+  const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
+  const [lastCourseName, setLastCourseName] = useState<string>("Python Programming");
+  const [lastLessonName, setLastLessonName] = useState<string>("Python Syntax and Data Types");
+  const [showCustomGenerator, setShowCustomGenerator] = useState(false);
+
+  useEffect(() => {
+    try {
+      const c = localStorage.getItem("careertwin-last-course");
+      const l = localStorage.getItem("careertwin-last-lesson-title");
+      if (c) setLastCourseName(c);
+      if (l) setLastLessonName(l);
+    } catch {
+      // safe
+    }
+  }, []);
+
+  const copyCodeToClipboard = (code: string, id: string) => {
+    try {
+      navigator.clipboard.writeText(code);
+      setCopiedSnippetId(id);
+      setTimeout(() => setCopiedSnippetId(null), 2000);
+    } catch {
+      // safe
+    }
+  };
 
   // Fetch initial progress and restore previous state
   useEffect(() => {
@@ -485,6 +522,18 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
     setTutorMessages([]);
 
     try {
+      localStorage.setItem("careertwin-last-course", curriculum.skillName);
+      localStorage.setItem("careertwin-last-course-level", curriculum.learnerLevel);
+      localStorage.setItem("careertwin-last-lesson-title", lessonTitle);
+      localStorage.setItem("careertwin-last-module-id", moduleId);
+      localStorage.setItem("careertwin-last-module-index", String(moduleIndex));
+      setLastCourseName(curriculum.skillName);
+      setLastLessonName(lessonTitle);
+    } catch {
+      // safe
+    }
+
+    try {
       const response = await fetch("/api/learning/lessons", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -657,14 +706,6 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
     }
   }
 
-  const copyCodeToClipboard = (code: string, id: string) => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(code);
-      setCopiedSnippet(id);
-      setTimeout(() => setCopiedSnippet(null), 2000);
-    }
-  };
-
   const exportRevisionSheet = () => {
     if (!activeLesson) return;
     const notes = [
@@ -689,6 +730,27 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
     setNotesExported(true);
     setTimeout(() => setNotesExported(false), 2500);
   };
+
+  const allCourseLessons = curriculum?.modules.flatMap((m, mIdx) =>
+    m.lessonTitles.map((t, lIdx) => ({
+      moduleIndex: mIdx,
+      moduleId: m.id,
+      moduleTitle: m.title,
+      lessonTitle: t,
+      lessonIndex: lIdx,
+    }))
+  ) ?? [];
+
+  const currentLessonIdx = allCourseLessons.findIndex(
+    (l) =>
+      Boolean(activeLesson && (
+        l.lessonTitle.toLowerCase() === activeLesson.title.toLowerCase() ||
+        (activeLesson.lessonId && activeLesson.lessonId.includes(l.lessonTitle.replace(/\s+/g, "-").toLowerCase()))
+      ))
+  );
+
+  const prevLesson = currentLessonIdx > 0 ? allCourseLessons[currentLessonIdx - 1] : null;
+  const nextLesson = currentLessonIdx >= 0 && currentLessonIdx < allCourseLessons.length - 1 ? allCourseLessons[currentLessonIdx + 1] : null;
 
   return (
     <div className="space-y-6">
@@ -719,126 +781,390 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
         </p>
       </section>
 
-      {/* Published Production Courses Quick Picker */}
+      {/* Cisco NetAcad-Inspired Learning Studio Homepage */}
       {!activeLesson && !curriculum && (
-        <section className="rounded-2xl border border-ink/8 bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between gap-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Published Production Courses (14 Ready):</h4>
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800 border border-emerald-200">
-              <CheckCircle2 size={12} /> Instant Access · Zero Wait Time
-            </span>
-          </div>
-          <div className="mt-3.5 flex flex-wrap gap-2.5">
-            {POPULAR_TRACKS.map((track) => (
-              <button
-                key={track.name}
-                type="button"
-                onClick={() => {
-                  setSelected(track.name);
-                  setQuery(track.name);
-                  setLevel(track.level);
-                  void startCourseGeneration(track.name, track.level);
-                }}
-                className="inline-flex items-center gap-2 rounded-xl border border-ink/10 bg-cream/40 px-3.5 py-2.5 text-xs font-semibold text-ink transition hover:border-accent hover:bg-violet-50 hover:text-accent cursor-pointer shadow-xs"
-              >
-                <Play size={11} className="text-accent" />
-                <span className="font-bold">{track.name}</span>
-                <span className="text-[10px] text-accent/80 font-medium bg-white/80 px-1.5 py-0.5 rounded-md border border-ink/5">{track.tag}</span>
-              </button>
-            ))}
-          </div>
-        </section>
-      )}
+        <div className="space-y-8">
+          {/* 1. Continue Learning Hero Card */}
+          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900 p-6 md:p-8 text-white shadow-2xl">
+            <div className="absolute right-0 top-0 -mr-16 -mt-16 size-72 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="max-w-xl space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/30 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-light">
+                    <Sparkles size={12} className="text-mint" />
+                    Continue Learning
+                  </span>
+                  <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-mono text-white/70">
+                    Active Track
+                  </span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                  {lastCourseName}
+                </h3>
+                <p className="text-xs md:text-sm text-slate-300">
+                  Current Lesson: <strong className="text-white">{lastLessonName}</strong>
+                </p>
 
-      {/* Skill Search & Request Form */}
-      {!activeLesson && (
-        <form onSubmit={prepare} className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7 shadow-sm">
-          <div className="grid gap-4 lg:grid-cols-[1fr_180px_180px_auto] lg:items-end">
-            <label className="text-xs font-bold text-ink">
-              Skill or learning goal
-              <div className="relative mt-2">
-                <Search className="absolute left-3 top-3.5 text-slate" size={16} />
+                {/* Progress Bar */}
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex justify-between text-[11px] font-semibold text-slate-300">
+                    <span>Progress: 33% Completed</span>
+                    <span>2 of 6 Lessons Mastered</span>
+                  </div>
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                    <div className="h-full rounded-full bg-gradient-to-r from-accent to-mint" style={{ width: "33%" }} />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => void startCourseGeneration(lastCourseName, "beginner")}
+                    className="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold shadow-lg shadow-accent/25"
+                  >
+                    <span>Resume Learning</span>
+                    <ArrowRight size={14} />
+                  </button>
+                  <a
+                    href="#all-courses"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-semibold text-white hover:bg-white/10 transition"
+                  >
+                    <BookOpen size={13} />
+                    <span>Browse All 14 Tracks</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Quick Stat Pill Widget */}
+              <div className="grid grid-cols-2 gap-3 sm:w-80">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Total Courses</span>
+                  <strong className="mt-1 block text-2xl font-bold text-white">14 Ready</strong>
+                  <span className="text-[10px] text-emerald-400">Self-paced with labs</span>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Lessons</span>
+                  <strong className="mt-1 block text-2xl font-bold text-white">84 Total</strong>
+                  <span className="text-[10px] text-accent-light">Runnable code & tests</span>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Mastery Level</span>
+                  <strong className="mt-1 block text-2xl font-bold text-white capitalize">{masteryLevel}</strong>
+                  <span className="text-[10px] text-emerald-400">{masteryScore}% verified</span>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Assessments</span>
+                  <strong className="mt-1 block text-2xl font-bold text-white">42 Exams</strong>
+                  <span className="text-[10px] text-mint">With instant grading</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 2. Quick Enrolled Tracks Summary */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-slate">My Enrolled Learning Tracks</h4>
+                <p className="text-xs text-slate">Resume your active curricula or jump into a new module.</p>
+              </div>
+              <span className="text-xs font-semibold text-accent">3 In Progress</span>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                { name: "Python Programming", tag: "Programming", progress: 33, lessons: "2 / 6 Lessons", slug: "python" },
+                { name: "Modern JavaScript (ES6+)", tag: "Web & Frontend", progress: 17, lessons: "1 / 6 Lessons", slug: "javascript" },
+                { name: "Cloud Computing & AWS", tag: "Cloud Infrastructure", progress: 0, lessons: "0 / 4 Lessons", slug: "cloud-computing" },
+              ].map((trk) => (
+                <div key={trk.slug} className="rounded-2xl border border-ink/8 bg-white p-4 shadow-xs flex flex-col justify-between hover:border-accent/40 transition">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-[11px]">
+                      <span className="font-semibold text-accent">{trk.tag}</span>
+                      <span className="text-slate font-medium">{trk.lessons}</span>
+                    </div>
+                    <h5 className="font-bold text-sm text-ink">{trk.name}</h5>
+                    <div className="h-1.5 w-full rounded-full bg-ink/5 overflow-hidden">
+                      <div className="h-full rounded-full bg-accent" style={{ width: `${trk.progress}%` }} />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => void startCourseGeneration(trk.name, "beginner")}
+                    className="mt-4 inline-flex items-center justify-between rounded-xl bg-cream/70 hover:bg-violet-50 hover:text-accent px-3 py-2 text-xs font-bold text-ink transition"
+                  >
+                    <span>{trk.progress > 0 ? "Resume Track" : "Start Track"}</span>
+                    <ArrowRight size={13} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 3. Explore Learning Catalog (All 14 Cisco NetAcad Courses) */}
+          <section id="all-courses" className="space-y-6 pt-2">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-ink/8 pb-5">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-200">
+                    Cisco NetAcad Inspired
+                  </span>
+                  <span className="text-xs font-semibold text-slate">14 Published Curricula</span>
+                </div>
+                <h3 className="mt-1 text-2xl font-extrabold text-ink">Explore Course Library</h3>
+                <p className="mt-1 text-xs text-slate">
+                  Deep technical curricula designed for genuine mastery: hands-on exercises, runnable code examples, and verified assessments.
+                </p>
+              </div>
+
+              {/* Search Bar */}
+              <div className="relative w-full md:w-72">
+                <Search size={15} className="absolute left-3.5 top-3 text-slate pointer-events-none" />
                 <input
-                  value={query}
-                  onChange={(event) => {
-                    setQuery(event.target.value);
-                    setSelected(event.target.value);
-                  }}
-                  maxLength={120}
-                  className="w-full rounded-xl border border-ink/10 bg-cream/35 py-3 pl-10 pr-3 text-sm font-normal outline-none focus:border-accent"
-                  placeholder="e.g. Python from zero, AWS Cloud Security, SQL Data Analysis…"
+                  type="text"
+                  value={catalogSearch}
+                  onChange={(e) => setCatalogSearch(e.target.value)}
+                  placeholder="Filter courses by name or topic…"
+                  className="w-full rounded-xl border border-ink/10 bg-white py-2 pl-9 pr-3 text-xs text-ink outline-none focus:border-accent"
                 />
               </div>
-            </label>
-            <label className="text-xs font-bold text-ink">
-              Starting level
-              <select
-                value={level}
-                onChange={(event) => setLevel(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-ink/10 bg-white px-3 py-3 text-sm font-normal"
-              >
-                <option value="foundation">Foundation (Zero Experience)</option>
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-              </select>
-            </label>
-            <label className="text-xs font-bold text-ink">
-              Explanation language
-              <input
-                value={language}
-                onChange={(event) => setLanguage(event.target.value)}
-                maxLength={80}
-                className="mt-2 w-full rounded-xl border border-ink/10 bg-white px-3 py-3 text-sm font-normal"
-              />
-            </label>
-            <button disabled={!selected.trim() || loading} aria-label="Prepare path" className="button-primary h-11 disabled:opacity-40">
-              <Sparkles size={15} />
-              {loading ? "Preparing…" : "Prepare path"}
-            </button>
-          </div>
+            </div>
 
-          {(query.trim() || skills.length > 0) && (
-            <div className="mt-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-              {skills.map((skill) => (
+            {/* Category Filter Tabs */}
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+              {[
+                { id: "all", label: "All Tracks (14)" },
+                { id: "programming", label: "Programming (10)" },
+                { id: "cloud", label: "Cloud & DevOps (1)" },
+                { id: "data", label: "Data & AI (2)" },
+                { id: "security", label: "Cybersecurity (1)" },
+              ].map((tab) => (
                 <button
+                  key={tab.id}
                   type="button"
-                  key={skill.id}
-                  onClick={() => {
-                    setSelected(skill.canonicalName);
-                    setQuery(skill.canonicalName);
-                  }}
-                  className={`rounded-xl border p-3 text-left transition ${
-                    selected === skill.canonicalName ? "border-accent bg-violet-50" : "border-ink/8 hover:border-accent/40"
+                  onClick={() => setCatalogCategory(tab.id as typeof catalogCategory)}
+                  className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-bold transition ${
+                    catalogCategory === tab.id
+                      ? "bg-ink text-white shadow-sm"
+                      : "border border-ink/10 bg-white text-slate hover:border-accent/40 hover:text-ink"
                   }`}
                 >
-                  <strong className="block text-sm">{skill.canonicalName}</strong>
-                  <span className="mt-1 block text-xs text-slate">
-                    {skill.domain} · {skill.reviewStatus}
-                  </span>
+                  {tab.label}
                 </button>
               ))}
-              {registration?.available && (
-                <button
-                  type="button"
-                  onClick={() => setSelected(registration.canonicalName)}
-                  className={`rounded-xl border border-dashed p-3 text-left ${
-                    selected === registration.canonicalName ? "border-accent bg-violet-50" : "border-ink/20"
-                  }`}
-                >
-                  <strong className="block text-sm">Register “{registration.canonicalName}”</strong>
-                  <span className="mt-1 block text-xs leading-5 text-slate">{registration.reason}</span>
-                </button>
-              )}
             </div>
-          )}
 
-          {status && (
-            <p role="status" className="mt-4 rounded-xl border border-ink/8 bg-app p-3 text-sm text-ink">
-              {status}
-            </p>
-          )}
-        </form>
+            {/* Course Cards Grid */}
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {CATALOGUE_COURSES.filter((course) => {
+                const matchesCategory = catalogCategory === "all" || course.category === catalogCategory;
+                const matchesSearch = !catalogSearch.trim() ||
+                  course.title.toLowerCase().includes(catalogSearch.toLowerCase()) ||
+                  course.shortDescription.toLowerCase().includes(catalogSearch.toLowerCase());
+                return matchesCategory && matchesSearch;
+              }).map((course) => {
+                const isExpanded = expandedCourseSlug === course.slug;
+                return (
+                  <article
+                    key={course.slug}
+                    className="flex flex-col justify-between rounded-2xl border border-ink/10 bg-white p-5 shadow-xs hover:border-accent/50 hover:shadow-md transition"
+                  >
+                    <div className="space-y-3">
+                      {/* Top Badges */}
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="rounded-md bg-accent/10 px-2 py-0.5 font-bold uppercase tracking-wider text-accent">
+                          {course.categoryLabel}
+                        </span>
+                        <span className="font-semibold text-slate capitalize">
+                          {course.level} · {course.duration.split("·")[0]}
+                        </span>
+                      </div>
+
+                      <h4 className="text-lg font-bold text-ink">{course.title}</h4>
+                      <p className="text-xs leading-relaxed text-slate line-clamp-2">
+                        {course.shortDescription}
+                      </p>
+
+                      {/* Course Metric Badges */}
+                      <div className="flex flex-wrap gap-2 text-[10px] font-semibold text-slate">
+                        <span className="inline-flex items-center gap-1 rounded-md bg-cream px-2 py-1">
+                          <BookOpen size={11} className="text-accent" />
+                          {course.lessonsCount} Lessons
+                        </span>
+                        <span className="inline-flex items-center gap-1 rounded-md bg-cream px-2 py-1">
+                          <Terminal size={11} className="text-accent" />
+                          {course.practicalLabsCount} Labs
+                        </span>
+                        <span className="inline-flex items-center gap-1 rounded-md bg-cream px-2 py-1">
+                          <Award size={11} className="text-accent" />
+                          {course.mockTestsCount} Exams
+                        </span>
+                      </div>
+
+                      {/* Key Outcomes */}
+                      <div className="space-y-1.5 border-t border-ink/5 pt-2 text-[11px] text-slate">
+                        {course.learningOutcomes.slice(0, 2).map((outcome, idx) => (
+                          <div key={idx} className="flex items-start gap-1.5">
+                            <CheckCircle2 size={12} className="mt-0.5 shrink-0 text-emerald-600" />
+                            <span className="line-clamp-1">{outcome}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Syllabus Accordion Preview */}
+                      {isExpanded && (
+                        <div className="mt-3 space-y-3 rounded-xl border border-ink/8 bg-cream/35 p-3 text-xs">
+                          <span className="block font-bold text-[11px] uppercase tracking-wider text-slate">
+                            Full Syllabus Preview:
+                          </span>
+                          <div className="space-y-2">
+                            {course.modules.map((m, mIdx) => (
+                              <div key={mIdx} className="space-y-1">
+                                <strong className="block text-ink text-[11px]">{m.title}</strong>
+                                <ul className="list-disc pl-4 text-[10px] text-slate space-y-0.5">
+                                  {m.lessons.map((les, lIdx) => (
+                                    <li key={lIdx}>{les}</li>
+                                  ))}
+                                </ul>
+                                <span className="block text-[10px] text-accent font-semibold">
+                                  Checkpoint: {m.assessment}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Card Actions */}
+                    <div className="mt-5 flex items-center gap-2 border-t border-ink/8 pt-4">
+                      <button
+                        type="button"
+                        onClick={() => void startCourseGeneration(course.title, course.level)}
+                        className="btn btn-primary flex-1 py-2 text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm"
+                      >
+                        <Play size={12} />
+                        <span>Start Course</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setExpandedCourseSlug(isExpanded ? null : course.slug)}
+                        className="rounded-xl border border-ink/15 bg-white px-3 py-2 text-xs font-semibold text-slate hover:bg-cream hover:text-ink transition flex items-center gap-1"
+                        aria-label="View course syllabus"
+                      >
+                        <span>Syllabus</span>
+                        {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* 4. Custom Skill Search & AI Curriculum Generator */}
+          <section className="rounded-2xl border border-ink/10 bg-white p-5 md:p-6 shadow-sm space-y-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-ink/8 pb-3">
+              <div>
+                <h4 className="font-bold text-sm text-ink">Generate Custom AI Curriculum</h4>
+                <p className="text-xs text-slate">
+                  Enter any skill or technology to generate a structured curriculum with lessons and quizzes.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-accent">
+                <Sparkles size={12} /> Real-time Generation
+              </span>
+            </div>
+
+            <form onSubmit={prepare} className="space-y-4">
+              <div className="grid gap-4 lg:grid-cols-[1fr_180px_180px_auto] lg:items-end">
+                <label className="text-xs font-bold text-ink">
+                  Skill or learning goal
+                  <div className="relative mt-2">
+                    <Search className="absolute left-3 top-3.5 text-slate" size={16} />
+                    <input
+                      value={query}
+                      onChange={(event) => {
+                        setQuery(event.target.value);
+                        setSelected(event.target.value);
+                      }}
+                      maxLength={120}
+                      className="w-full rounded-xl border border-ink/10 bg-cream/35 py-3 pl-10 pr-3 text-sm font-normal outline-none focus:border-accent"
+                      placeholder="e.g. Python, Docker, Next.js, Cloud Security…"
+                    />
+                  </div>
+                </label>
+                <label className="text-xs font-bold text-ink">
+                  Starting level
+                  <select
+                    value={level}
+                    onChange={(event) => setLevel(event.target.value)}
+                    className="mt-2 w-full rounded-xl border border-ink/10 bg-white px-3 py-3 text-sm font-normal"
+                  >
+                    <option value="foundation">Foundation (Zero Experience)</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                  </select>
+                </label>
+                <label className="text-xs font-bold text-ink">
+                  Explanation language
+                  <input
+                    value={language}
+                    onChange={(event) => setLanguage(event.target.value)}
+                    maxLength={80}
+                    className="mt-2 w-full rounded-xl border border-ink/10 bg-white px-3 py-3 text-sm font-normal"
+                  />
+                </label>
+                <button disabled={!selected.trim() || loading} aria-label="Prepare path" className="button-primary h-11 disabled:opacity-40 cursor-pointer">
+                  <Sparkles size={15} />
+                  {loading ? "Preparing…" : "Prepare path"}
+                </button>
+              </div>
+
+              {(query.trim() || skills.length > 0) && (
+                <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                  {skills.map((skill) => (
+                    <button
+                      type="button"
+                      key={skill.id}
+                      onClick={() => {
+                        setSelected(skill.canonicalName);
+                        setQuery(skill.canonicalName);
+                      }}
+                      className={`rounded-xl border p-3 text-left transition cursor-pointer ${
+                        selected === skill.canonicalName ? "border-accent bg-violet-50" : "border-ink/8 hover:border-accent/40"
+                      }`}
+                    >
+                      <strong className="block text-sm">{skill.canonicalName}</strong>
+                      <span className="mt-1 block text-xs text-slate">
+                        {skill.domain} · {skill.reviewStatus}
+                      </span>
+                    </button>
+                  ))}
+                  {registration?.available && (
+                    <button
+                      type="button"
+                      onClick={() => setSelected(registration.canonicalName)}
+                      className={`rounded-xl border border-dashed p-3 text-left cursor-pointer ${
+                        selected === registration.canonicalName ? "border-accent bg-violet-50" : "border-ink/20"
+                      }`}
+                    >
+                      <strong className="block text-sm">Register “{registration.canonicalName}”</strong>
+                      <span className="mt-1 block text-xs leading-5 text-slate">{registration.reason}</span>
+                    </button>
+                  )}
+                </div>
+              )}
+
+              {status && (
+                <p role="status" className="mt-3 rounded-xl border border-ink/8 bg-app p-3 text-sm text-ink">
+                  {status}
+                </p>
+              )}
+            </form>
+          </section>
+        </div>
       )}
 
       {/* Real-time Course Generation Progress Banner */}
@@ -913,6 +1239,27 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
       {/* Curriculum Syllabus View */}
       {curriculum && !activeLesson && (
         <section className="rounded-[26px] border border-ink/10 bg-white p-5 md:p-7 shadow-sm">
+          {status && (
+            <p role="status" className="mb-4 rounded-xl border border-ink/8 bg-app p-3 text-sm text-ink">
+              {status}
+            </p>
+          )}
+
+          {/* Back to Library Navigation */}
+          <div className="mb-4">
+            <button
+              type="button"
+              onClick={() => {
+                setCurriculum(null);
+                setActiveLesson(null);
+              }}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-ink/10 bg-cream/50 px-3.5 py-2 text-xs font-bold text-slate hover:bg-violet-50 hover:text-accent transition shadow-xs cursor-pointer"
+            >
+              <ArrowLeft size={13} />
+              <span>Back to Course Library (14 Tracks)</span>
+            </button>
+          </div>
+
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="label">
@@ -1461,6 +1808,23 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
                             <span className="flex items-center gap-1.5">
                               <Terminal size={12} /> {ex.language || "code"}
                             </span>
+                            <button
+                              type="button"
+                              onClick={() => copyCodeToClipboard(ex.code, `code-${section.id}-${idx}`)}
+                              className="inline-flex items-center gap-1 rounded bg-white/10 px-2 py-0.5 text-[10px] text-white hover:bg-white/20 transition cursor-pointer"
+                            >
+                              {copiedSnippetId === `code-${section.id}-${idx}` ? (
+                                <>
+                                  <Check size={11} className="text-emerald-400" />
+                                  <span className="text-emerald-400 font-bold">Copied!</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy size={11} />
+                                  <span>Copy Code</span>
+                                </>
+                              )}
+                            </button>
                           </div>
                           <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-emerald-400">
                             <code>{ex.code}</code>

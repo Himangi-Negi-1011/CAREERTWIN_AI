@@ -91,3 +91,4 @@ CareerTwin currently features a functional foundation with 14 validated producti
    - Automated Vitest tests for the agent, assessment grading, and learning progress.
    - Course completeness validation (`courses:validate`).
    - Clean Next.js production build (`next build --webpack`).
+
