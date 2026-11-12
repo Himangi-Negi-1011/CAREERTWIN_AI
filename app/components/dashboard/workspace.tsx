@@ -48,7 +48,6 @@ import { careerProfileSchema } from "@/lib/profile/schema";
 import type { TwinOutput, TwinSourceState } from "@/lib/twin/schema";
 import type { TwinSyncState } from "@/lib/twin/client";
 import { Brand } from "../brand";
-import { Pip } from "../pip";
 import { CommandPalette, type CommandItem } from "./command-palette";
 import { CareerIntelligence } from "./career-intelligence";
 import { DevelopmentHub } from "./development-hub";
@@ -657,7 +656,15 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
   }
   const searchParams = useSearchParams();
   const storageOwnerKey = ownerKey ?? user?.id ?? "";
-  const [view, setView] = useState<View>("overview");
+  const [view, setView] = useState<View>(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get("view");
+      if (v === "documents") return "settings";
+      if (v && navigation.some((item) => item.id === v)) return v as View;
+    }
+    return "overview";
+  });
   const [role, setRole] = useState("");
   const [profileCompletion, setProfileCompletion] = useState<number | null>(null);
   const [displayName, setDisplayName] = useState("");

@@ -1,5 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
+import { CookieConsent } from "@/app/components/cookie-consent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         >
           {children}
+          <CookieConsent />
         </ClerkProvider>
       </body>
     </html>

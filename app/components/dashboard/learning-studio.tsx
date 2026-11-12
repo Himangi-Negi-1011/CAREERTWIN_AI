@@ -1814,21 +1814,25 @@ export function LearningStudio({
           </div>
 
           {/* Sub Navigation Tabs */}
-          <div className="flex flex-wrap gap-2 border-b border-ink/8 pb-2">
+          <div className="flex flex-wrap gap-2 border-b border-ink/8 dark:border-white/10 pb-2">
             <button
               type="button"
               onClick={() => setLessonTab("read")}
-              className={`rounded-lg px-4 py-2 text-xs font-bold transition ${
-                lessonTab === "read" ? "bg-ink text-white" : "text-slate hover:bg-cream"
+              className={`rounded-xl px-4 py-2 text-xs font-bold transition cursor-pointer ${
+                lessonTab === "read"
+                  ? "bg-purple-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate dark:text-slate-300 hover:text-ink dark:hover:text-white border border-ink/8 dark:border-white/10"
               }`}
             >
-              📖 Lesson Guide
+              📖 14-Point Lesson Guide
             </button>
             <button
               type="button"
               onClick={() => setLessonTab("video")}
-              className={`rounded-lg px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 ${
-                lessonTab === "video" ? "bg-ink text-white" : "text-slate hover:bg-cream"
+              className={`rounded-xl px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                lessonTab === "video"
+                  ? "bg-purple-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate dark:text-slate-300 hover:text-ink dark:hover:text-white border border-ink/8 dark:border-white/10"
               }`}
             >
               <Video size={13} /> Video Masterclass ({activeLesson.videoResources?.length ?? 0})
@@ -1836,8 +1840,10 @@ export function LearningStudio({
             <button
               type="button"
               onClick={() => setLessonTab("exercise")}
-              className={`rounded-lg px-4 py-2 text-xs font-bold transition ${
-                lessonTab === "exercise" ? "bg-ink text-white" : "text-slate hover:bg-cream"
+              className={`rounded-xl px-4 py-2 text-xs font-bold transition cursor-pointer ${
+                lessonTab === "exercise"
+                  ? "bg-purple-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate dark:text-slate-300 hover:text-ink dark:hover:text-white border border-ink/8 dark:border-white/10"
               }`}
             >
               🛠️ Practice Lab ({activeLesson.exercises?.length ?? 0})
@@ -1845,68 +1851,119 @@ export function LearningStudio({
             <button
               type="button"
               onClick={() => setLessonTab("quiz")}
-              className={`rounded-lg px-4 py-2 text-xs font-bold transition ${
-                lessonTab === "quiz" ? "bg-ink text-white" : "text-slate hover:bg-cream"
+              className={`rounded-xl px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                lessonTab === "quiz"
+                  ? "bg-purple-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate dark:text-slate-300 hover:text-ink dark:hover:text-white border border-ink/8 dark:border-white/10"
               }`}
             >
-              📝 Knowledge Check ({activeLesson.knowledgeChecks?.length ?? 0})
+              <Award size={13} /> 📝 Topic Practice Paper ({activeLesson.knowledgeChecks?.length ?? 0})
             </button>
           </div>
 
-          {/* Tab 1: Lesson Content */}
+          {/* Tab 1: 14-Point Lesson Guide */}
           {lessonTab === "read" && (
             <div className="space-y-6">
-              {/* Objectives */}
-              <div className="rounded-2xl border border-accent/20 bg-accent/5 p-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-accent">Key Learning Objectives</h4>
-                <ul className="mt-2 space-y-1.5">
+              {/* 1. Introduction & Context */}
+              <div className="rounded-3xl border border-ink/8 dark:border-white/10 bg-white dark:bg-slate-900 p-6 md:p-8 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md">
+                    Point 01 · Chapter Introduction
+                  </span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-extrabold text-ink dark:text-white tracking-tight">{activeLesson.title}</h3>
+                <p className="text-sm leading-relaxed text-slate dark:text-slate-300">{activeLesson.summary}</p>
+                {activeLesson.prerequisiteConcepts && activeLesson.prerequisiteConcepts.length > 0 && (
+                  <div className="pt-2 flex flex-wrap items-center gap-2 text-xs">
+                    <span className="font-semibold text-slate dark:text-slate-400">Prerequisites:</span>
+                    {activeLesson.prerequisiteConcepts.map((p, i) => (
+                      <span key={i} className="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-mono text-slate-700 dark:text-slate-300 border border-ink/5 dark:border-white/5">
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 2. Why It Matters & Core Objectives */}
+              <div className="rounded-3xl border border-purple-500/20 bg-purple-50/40 dark:bg-purple-950/20 p-6 md:p-8 space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md">
+                    Point 02 · Why It Matters & Learning Objectives
+                  </span>
+                </div>
+                <h4 className="text-base font-bold text-purple-950 dark:text-purple-200">
+                  Target Competencies for this Topic:
+                </h4>
+                <ul className="space-y-2">
                   {activeLesson.learningObjectives.map((obj, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs font-medium text-ink">
-                      <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-accent" />
+                    <li key={i} className="flex items-start gap-2.5 text-xs md:text-sm font-medium text-slate-800 dark:text-slate-200">
+                      <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-purple-600 dark:text-purple-400" />
                       <span>{obj}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Sections */}
-              {activeLesson.sections.map((section) => (
-                <article key={section.id} className="space-y-3 rounded-2xl border border-ink/8 bg-white p-5">
-                  <h3 className="text-lg font-bold text-ink">{section.heading}</h3>
-                  <div className="whitespace-pre-line text-sm leading-relaxed text-slate">{section.content}</div>
+              {/* 3-8. Concept Explanation, Analogy, Syntax, Code, Walkthrough, Output */}
+              {activeLesson.sections.map((section, sIdx) => (
+                <article key={section.id} className="space-y-5 rounded-3xl border border-ink/8 dark:border-white/10 bg-white dark:bg-slate-900 p-6 md:p-8">
+                  {/* Point 3: Concept Explanation */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md">
+                        Point 03 · Core Concept Breakdown #{sIdx + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-ink dark:text-white">{section.heading}</h3>
+                    <div className="whitespace-pre-line text-xs md:text-sm leading-relaxed text-slate dark:text-slate-300">
+                      {section.content}
+                    </div>
+                  </div>
 
+                  {/* Point 5-8: Syntax, Code Examples, Line-by-Line & Output */}
                   {section.codeExamples && section.codeExamples.length > 0 && (
-                    <div className="space-y-3 pt-2">
+                    <div className="space-y-4 pt-2">
+                      <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md inline-block">
+                        Points 05–08 · Syntax, Code Implementation & Line-by-Line Analysis
+                      </span>
                       {section.codeExamples.map((ex, idx) => (
-                        <div key={idx} className="overflow-hidden rounded-xl border border-ink/15 bg-slate-950 text-white">
-                          <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 text-[11px] font-mono text-white/60">
-                            <span className="flex items-center gap-1.5">
-                              <Terminal size={12} /> {ex.language || "code"}
+                        <div key={idx} className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-white shadow-md">
+                          <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5 text-[11px] font-mono text-white/60">
+                            <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                              <Terminal size={13} /> {ex.language || "source code"}
                             </span>
                             <button
                               type="button"
                               onClick={() => copyCodeToClipboard(ex.code, `code-${section.id}-${idx}`)}
-                              className="inline-flex items-center gap-1 rounded bg-white/10 px-2 py-0.5 text-[10px] text-white hover:bg-white/20 transition cursor-pointer"
+                              className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1 text-[11px] text-white hover:bg-white/20 transition cursor-pointer"
                             >
                               {copiedSnippetId === `code-${section.id}-${idx}` ? (
                                 <>
-                                  <Check size={11} className="text-emerald-400" />
+                                  <Check size={12} className="text-emerald-400" />
                                   <span className="text-emerald-400 font-bold">Copied!</span>
                                 </>
                               ) : (
                                 <>
-                                  <Copy size={11} />
-                                  <span>Copy Code</span>
+                                  <Copy size={12} />
+                                  <span>Copy Snippet</span>
                                 </>
                               )}
                             </button>
                           </div>
-                          <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-emerald-400">
+                          <pre className="overflow-x-auto p-4 md:p-5 font-mono text-xs leading-relaxed text-emerald-400">
                             <code>{ex.code}</code>
                           </pre>
                           {ex.explanation && (
-                            <div className="border-t border-white/10 bg-slate-900/60 p-3 text-xs text-white/70">
-                              <strong>Explanation:</strong> {ex.explanation}
+                            <div className="border-t border-white/10 bg-slate-900/80 p-4 text-xs text-slate-300 leading-relaxed">
+                              <strong className="block text-white mb-1 font-semibold">Point 07 · Line-by-Line Walkthrough:</strong>
+                              {ex.explanation}
+                            </div>
+                          )}
+                          {ex.expectedOutput && (
+                            <div className="border-t border-white/10 bg-slate-950 p-4 font-mono text-xs text-slate-300">
+                              <strong className="block text-emerald-400 mb-1 font-sans text-xs">Point 08 · Expected Terminal Output:</strong>
+                              <pre className="text-white/80">{ex.expectedOutput}</pre>
                             </div>
                           )}
                         </div>
@@ -1914,10 +1971,15 @@ export function LearningStudio({
                     </div>
                   )}
 
+                  {/* Point 11: Engineering Best Practices */}
                   {section.keyPoints && section.keyPoints.length > 0 && (
-                    <div className="mt-3 rounded-xl border border-mint/40 bg-mint/10 p-3.5">
-                      <strong className="block text-xs font-bold text-emerald-800">Takeaway Points:</strong>
-                      <ul className="mt-1.5 list-disc pl-5 text-xs text-slate-700 space-y-1">
+                    <div className="rounded-2xl border border-emerald-500/20 bg-emerald-50/50 dark:bg-emerald-950/20 p-4 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[10px] font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
+                          Point 11 · Engineering Best Practices
+                        </span>
+                      </div>
+                      <ul className="list-disc pl-5 text-xs text-slate-800 dark:text-slate-200 space-y-1">
                         {section.keyPoints.map((pt, i) => (
                           <li key={i}>{pt}</li>
                         ))}
@@ -1925,10 +1987,15 @@ export function LearningStudio({
                     </div>
                   )}
 
+                  {/* Point 10: Common Mistakes */}
                   {section.commonMistakes && section.commonMistakes.length > 0 && (
-                    <div className="rounded-xl border border-rose-200 bg-rose-50/50 p-3.5">
-                      <strong className="block text-xs font-bold text-rose-800">Common Pitfalls to Avoid:</strong>
-                      <ul className="mt-1.5 list-disc pl-5 text-xs text-rose-700 space-y-1">
+                    <div className="rounded-2xl border border-rose-200 dark:border-rose-900/40 bg-rose-50/50 dark:bg-rose-950/20 p-4 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[10px] font-bold text-rose-700 dark:text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">
+                          Point 10 · Common Mistakes to Avoid
+                        </span>
+                      </div>
+                      <ul className="list-disc pl-5 text-xs text-rose-900 dark:text-rose-300 space-y-1">
                         {section.commonMistakes.map((cm, i) => (
                           <li key={i}>{cm}</li>
                         ))}
@@ -1938,13 +2005,64 @@ export function LearningStudio({
                 </article>
               ))}
 
-              {/* Lesson Recap */}
-              {activeLesson.recap && (
-                <div className="rounded-2xl border border-ink/10 bg-cream/40 p-5">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Lesson Summary</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate">{activeLesson.recap}</p>
+              {/* Point 9: Real-World Use Cases */}
+              {activeLesson.realWorldApplications && activeLesson.realWorldApplications.length > 0 && (
+                <div className="rounded-3xl border border-indigo-500/20 bg-indigo-50/40 dark:bg-indigo-950/20 p-6 md:p-8 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md">
+                      Point 09 · Real-World Enterprise Applications
+                    </span>
+                  </div>
+                  <h4 className="text-base font-bold text-indigo-950 dark:text-indigo-200">
+                    How Tech Companies Use This in Production:
+                  </h4>
+                  <ul className="list-disc pl-5 text-xs md:text-sm text-slate-800 dark:text-slate-200 space-y-1.5">
+                    {activeLesson.realWorldApplications.map((app, i) => (
+                      <li key={i}>{app}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
+
+              {/* Point 12: Lesson Recap & Mental Models */}
+              {activeLesson.recap && (
+                <div className="rounded-3xl border border-ink/10 dark:border-white/10 bg-slate-50 dark:bg-slate-900/60 p-6 md:p-8 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md">
+                      Point 12 · Key Takeaways & Mental Model Summary
+                    </span>
+                  </div>
+                  <h4 className="text-base font-bold text-ink dark:text-white">Summary of Core Principles:</h4>
+                  <p className="text-xs md:text-sm leading-relaxed text-slate dark:text-slate-300">{activeLesson.recap}</p>
+                </div>
+              )}
+
+              {/* Action Bar for Points 13 & 14 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setLessonTab("exercise")}
+                  className="rounded-2xl border border-purple-500/30 bg-purple-50/60 dark:bg-purple-950/30 p-5 text-left space-y-2 hover:border-purple-500 transition cursor-pointer"
+                >
+                  <span className="font-mono text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase">
+                    Point 13 · Hands-On Lab
+                  </span>
+                  <h4 className="text-sm font-bold text-ink dark:text-white">Practice in Code Sandbox →</h4>
+                  <p className="text-xs text-slate dark:text-slate-400">Solve practical coding exercises with starter code and solution walk-throughs.</p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setLessonTab("quiz")}
+                  className="rounded-2xl border border-emerald-500/30 bg-emerald-50/60 dark:bg-emerald-950/30 p-5 text-left space-y-2 hover:border-emerald-500 transition cursor-pointer"
+                >
+                  <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">
+                    Point 14 · Topic Practice Paper
+                  </span>
+                  <h4 className="text-sm font-bold text-ink dark:text-white">Take Topic Practice Paper →</h4>
+                  <p className="text-xs text-slate dark:text-slate-400">Validate your mastery with multi-format questions, output predictions, and grading.</p>
+                </button>
+              </div>
             </div>
           )}
 
@@ -2140,27 +2258,60 @@ export function LearningStudio({
             </div>
           )}
 
-          {/* Tab 3: Knowledge Check / Quiz */}
+          {/* Tab 4: Topic Practice Paper & Examination */}
           {lessonTab === "quiz" && (
             <form onSubmit={submitQuiz} className="space-y-6">
+              {/* Practice Paper Briefing Card */}
+              <div className="rounded-3xl border border-ink/8 dark:border-white/10 bg-white dark:bg-slate-900 p-6 md:p-8 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md">
+                    Point 14 · Comprehensive Topic Practice Paper
+                  </span>
+                </div>
+                <h3 className="text-xl font-extrabold text-ink dark:text-white">Topic Mastery & Knowledge Validation</h3>
+                <p className="text-xs md:text-sm text-slate dark:text-slate-300 leading-relaxed">
+                  Validate your technical depth on <strong>{activeLesson.title}</strong>. This practice paper evaluates conceptual understanding, code execution flow, and debugging ability. Achieve 70% or higher to record verified skill evidence.
+                </p>
+              </div>
+
               {quizResults && (
                 <div
-                  className={`rounded-2xl border p-5 ${
-                    quizResults.score >= 70 ? "border-emerald-300 bg-emerald-50 text-emerald-950" : "border-amber-300 bg-amber-50 text-amber-950"
+                  className={`rounded-3xl border p-6 md:p-8 space-y-3 shadow-md ${
+                    quizResults.score >= 70
+                      ? "border-emerald-300 dark:border-emerald-800 bg-emerald-50/90 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-100"
+                      : "border-amber-300 dark:border-amber-800 bg-amber-50/90 dark:bg-amber-950/40 text-amber-950 dark:text-amber-100"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-bold">
-                      {quizResults.score >= 70 ? "🎉 Mastery Verified!" : "💡 Keep Reviewing"}
-                    </h3>
-                    <span className="rounded-full bg-white px-3 py-1 text-sm font-bold shadow-sm">
-                      Score: {quizResults.score}% ({quizResults.correct}/{quizResults.total})
-                    </span>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div>
+                      <span className="font-mono text-[11px] uppercase tracking-wider font-bold">
+                        {quizResults.score >= 70 ? "🎉 Topic Mastery Achieved" : "💡 Review Required"}
+                      </span>
+                      <h4 className="text-xl font-extrabold mt-0.5">
+                        Topic Performance: {quizResults.score}%
+                      </h4>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="rounded-full bg-white dark:bg-slate-900 border border-current px-4 py-1.5 text-sm font-extrabold shadow-xs">
+                        {quizResults.correct} of {quizResults.total} Correct
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setQuizAnswers({});
+                          setQuizResults(null);
+                        }}
+                        className="rounded-xl border border-current px-3.5 py-1.5 text-xs font-bold hover:bg-black/5 dark:hover:bg-white/10 transition cursor-pointer"
+                      >
+                        Retry Paper ↺
+                      </button>
+                    </div>
                   </div>
-                  <p className="mt-1 text-xs">
+
+                  <p className="text-xs md:text-sm leading-relaxed">
                     {quizResults.score >= 70
-                      ? "Great job! This lesson is now marked completed and added to your verified skill evidence."
-                      : "Review the explanations below and feel free to retry the assessment."}
+                      ? "Outstanding! You demonstrated mastery of this topic's concepts and code mechanics. Your verified skill progress has been updated."
+                      : "Keep going! Review the detailed explanations below to understand where code predictions differed, then retry the paper."}
                   </p>
                 </div>
               )}
@@ -2171,30 +2322,30 @@ export function LearningStudio({
                 const graded = quizResults?.results.find((r) => r.questionId === kc.id);
 
                 return (
-                  <article key={kc.id} className="rounded-2xl border border-ink/10 bg-white p-5 md:p-6 space-y-4">
+                  <article key={kc.id} className="rounded-3xl border border-ink/10 dark:border-white/10 bg-white dark:bg-slate-900 p-6 md:p-8 space-y-4 shadow-2xs">
                     <div className="flex items-start justify-between gap-3">
                       <div className="space-y-1">
-                        <span className="text-[11px] font-mono uppercase tracking-wider text-slate">
-                          Question {idx + 1} · {kc.type}
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-purple-600 dark:text-purple-400 font-bold">
+                          Question {idx + 1} of {activeLesson.knowledgeChecks.length} · {kc.type}
                         </span>
-                        <h4 className="text-sm font-bold text-ink">{kc.prompt}</h4>
+                        <h4 className="text-sm md:text-base font-bold text-ink dark:text-white">{kc.prompt}</h4>
                       </div>
                       {graded && (
                         <span>
                           {graded.correct ? (
-                            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800">
+                            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-700 px-3 py-1 text-xs font-bold text-emerald-800 dark:text-emerald-300">
                               <CheckCircle2 size={13} /> Correct
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 rounded-full bg-rose-100 px-2.5 py-1 text-xs font-bold text-rose-800">
-                              <XCircle size={13} /> Review
+                            <span className="inline-flex items-center gap-1 rounded-full bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-700 px-3 py-1 text-xs font-bold text-rose-800 dark:text-rose-300">
+                              <XCircle size={13} /> Review Concept
                             </span>
                           )}
                         </span>
                       )}
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2.5">
                       {kc.options.map((opt) => {
                         const isChecked = selectedList.includes(opt.id);
                         return (
@@ -2202,43 +2353,51 @@ export function LearningStudio({
                             type="button"
                             key={opt.id}
                             onClick={() => handleSelectOption(kc.id, opt.id, isMulti)}
-                            className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition ${
+                            className={`flex w-full items-start gap-3 rounded-2xl border p-3.5 text-left transition cursor-pointer ${
                               isChecked
-                                ? "border-accent bg-accent/5 font-semibold text-ink"
-                                : "border-ink/10 hover:border-accent/40 text-slate"
+                                ? "border-purple-600 bg-purple-50/50 dark:bg-purple-950/40 font-semibold text-ink dark:text-white"
+                                : "border-ink/10 dark:border-white/10 hover:border-purple-400 text-slate dark:text-slate-300 bg-slate-50/30 dark:bg-slate-800/30"
                             }`}
                           >
                             <span
                               className={`mt-0.5 grid size-4 shrink-0 place-items-center rounded ${
                                 isMulti ? "rounded-md" : "rounded-full"
-                              } border ${isChecked ? "border-accent bg-accent text-white" : "border-ink/20"}`}
+                              } border ${isChecked ? "border-purple-600 bg-purple-600 text-white" : "border-ink/20 dark:border-white/20"}`}
                             >
                               {isChecked && <Check size={10} />}
                             </span>
-                            <span className="text-xs leading-5">{opt.text}</span>
+                            <span className="text-xs md:text-sm leading-relaxed">{opt.text}</span>
                           </button>
                         );
                       })}
                     </div>
 
                     {graded && (
-                      <div className="rounded-xl border border-ink/8 bg-cream/40 p-3.5 text-xs text-slate">
-                        <strong className="block font-bold text-ink">Explanation:</strong>
-                        <p className="mt-1">{graded.explanation}</p>
+                      <div className="rounded-2xl border border-ink/8 dark:border-white/10 bg-slate-50 dark:bg-slate-800/50 p-4 text-xs text-slate dark:text-slate-300 space-y-1">
+                        <strong className="block font-bold text-ink dark:text-white">Authoritative Technical Explanation:</strong>
+                        <p className="leading-relaxed">{graded.explanation}</p>
                       </div>
                     )}
                   </article>
                 );
               })}
 
-              <div className="flex justify-end">
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setLessonTab("read")}
+                  className="rounded-xl border border-ink/10 dark:border-white/10 bg-white dark:bg-slate-900 px-4 py-2.5 text-xs font-semibold text-slate dark:text-slate-300 hover:text-ink dark:hover:text-white transition cursor-pointer"
+                >
+                  ← Back to 14-Point Lesson Guide
+                </button>
+
                 <button
                   type="submit"
                   disabled={submittingQuiz || Object.keys(quizAnswers).length === 0}
-                  className="button-primary h-11 px-6 disabled:opacity-40"
+                  className="button-primary h-11 px-6 disabled:opacity-40 cursor-pointer"
                 >
                   <Sparkles size={15} />
-                  {submittingQuiz ? "Evaluating Answers…" : "Submit & Grade Quiz"}
+                  {submittingQuiz ? "Evaluating Answers…" : "Submit & Grade Practice Paper"}
                 </button>
               </div>
             </form>

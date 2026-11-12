@@ -1,77 +1,96 @@
 "use client";
 
-import { useEffect, useState, useRef, ChangeEvent } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { RobotCharacter, CheerChip } from "./robot/robot-character";
+import { openCookieSettings } from "./cookie-consent";
 import "./landing/landing-clone.css";
 
-const SAMPLE_RESUME = `Aarav Mehta — Frontend Developer
-Bengaluru, India | aarav@example.com
-
-SUMMARY
-Frontend developer with 2 years of experience building responsive web apps.
-Comfortable with JavaScript, React and design systems. Learning TypeScript.
-
-EXPERIENCE
-Junior Frontend Developer, Pixelworks (2023–present)
-- Built 14 reusable React components used across 3 products
-- Improved Lighthouse performance score from 61 to 94
-- Collaborated with design on a Figma-based design system
-
-PROJECTS
-- Portfolio dashboard with charts and dark mode
-- REST-powered job board using Node and Express
-
-SKILLS
-JavaScript, React, HTML, CSS, Figma, Git, REST APIs, responsive design
-
-EDUCATION
-B.Tech Computer Science, VIT — 2023`;
-
-const PROFILES = [
+const FAQ_ITEMS = [
   {
-    role: "Frontend Developer",
-    keys: ["react", "javascript", "typescript", "css", "html", "next.js", "tailwind", "vue", "design system", "git", "api"],
-    paths: [["Senior Frontend Engineer", 94], ["Full-stack Developer", 86], ["UI Engineer", 81]],
-    roadmap: [
-      ["Week 1 — TypeScript fundamentals", "Convert two components to typed TS; learn generics and utility types."],
-      ["Week 2 — Testing", "Add Jest + React Testing Library to your project. Aim for 60% coverage."],
-      ["Week 3 — Performance", "Profile with Lighthouse, ship code-splitting and image optimisation."],
-      ["Week 4 — Ship & tell", "Publish a case study: before/after metrics plus a live demo link."],
-    ],
+    q: "Is CareerTwin completely free to get started?",
+    a: "Yes. CareerTwin is 100% free to start. You can create your account, configure your deterministic Career Twin, access all 14 structured course tracks, take topic practice papers, and build portfolio projects without any subscription or credit card.",
   },
   {
-    role: "Data Analyst",
-    keys: ["sql", "python", "excel", "tableau", "power bi", "pandas", "analytics", "data analysis", "numpy", "communication"],
-    paths: [["Business Analyst", 92], ["Data Scientist (junior)", 84], ["Product Analyst", 88]],
-    roadmap: [
-      ["Week 1 — SQL depth", "Window functions, CTEs and query tuning on a 1M-row dataset."],
-      ["Week 2 — Visual storytelling", "Rebuild a dashboard in Tableau or Power BI around one decision."],
-      ["Week 3 — Statistics", "A/B testing, confidence intervals and common pitfalls."],
-      ["Week 4 — Portfolio case", "Publish a notebook that ends in a recommendation, not a chart."],
-    ],
+    q: "How does the deterministic Career Twin differ from generative chatbots?",
+    a: "Unlike speculative chat widgets that guess or invent readiness scores, CareerTwin’s Twin engine is strictly deterministic. It calculates your career readiness and recommendations solely from verified student inputs: completed lessons, 100-mark exam scores, milestone-checked projects, and evidence logs.",
   },
   {
-    role: "Product Designer",
-    keys: ["figma", "ui design", "ux", "design system", "design systems", "prototype", "accessibility", "content", "analytics"],
-    paths: [["Product Designer", 93], ["UX Researcher", 85], ["Design Systems Lead", 79]],
-    roadmap: [
-      ["Week 1 — Case study structure", "Rewrite one project into problem → process → outcome."],
-      ["Week 2 — Systems thinking", "Document tokens, components and states for a small product."],
-      ["Week 3 — Usability testing", "Run 5 moderated sessions and ship two fixes."],
-      ["Week 4 — Portfolio polish", "Publish 3 case studies with measurable impact."],
-    ],
+    q: "What courses and technical tracks are included in CareerTwin Academy?",
+    a: "CareerTwin Academy includes 14 production-grade engineering tracks aligned with Cisco Networking Academy and Skills for All standards: Python, JavaScript, TypeScript, Cloud Computing, Cybersecurity, SQL & Relational Databases, Power BI, C, C++, C#, Go, Java, PHP, and Rust.",
   },
   {
-    role: "Backend Engineer",
-    keys: ["node", "express", "python", "java", "docker", "kubernetes", "aws", "postgres", "mongodb", "rest", "graphql", "sql"],
-    paths: [["Backend Engineer", 92], ["DevOps Engineer", 84], ["Platform Engineer", 80]],
-    roadmap: [
-      ["Week 1 — System design basics", "Design a URL shortener: schema, cache, rate limits."],
-      ["Week 2 — Containers", "Dockerise a service and wire up docker-compose with a DB."],
-      ["Week 3 — Observability", "Add structured logs, metrics and one alert that matters."],
-      ["Week 4 — Cloud deploy", "Ship to AWS (ECS or Lambda) with CI on every push."],
-    ],
+    q: "How do the 100-mark mock examinations work?",
+    a: "Each course features timed, 28-question, 100-mark comprehensive examinations with strict server-side evaluation. Exams include single-choice questions, code snippet output predictions, debugging exercises, and architectural scenarios with authoritative topic-wise scorecards.",
+  },
+  {
+    q: "How do guided projects and portfolio integration work?",
+    a: "The Guided Projects Library provides practical specifications across 4 difficulty tiers: Beginner, Intermediate, Advanced, and Capstone. Students follow milestone checklists, submit GitHub repository links and demo URLs, and showcase verified projects on their public student portfolio.",
+  },
+  {
+    q: "What categories of career opportunities are refreshed daily?",
+    a: "The Career Center continuously updates listings across 10 distinct categories: Internships, Entry-Level Jobs, Graduate Roles, Hackathons, Competitive Programming, Scholarships, Fellowships, Training Programs, Industry Certifications, and Technical Workshops.",
+  },
+  {
+    q: "How does CareerTwin protect student privacy and data persistence?",
+    a: "Your data is yours alone. CareerTwin never sells student resumes, code, or learning records to third parties. We use isolated guest and authenticated storage models, encrypt telemetry, and provide complete controls to review, export, or delete your records at any time.",
+  },
+  {
+    q: "Can complete beginners without prior programming experience use CareerTwin?",
+    a: "Absolutely. Every technical course begins from absolute zero with real-world analogies, syntax breakdowns, step-by-step code walkthroughs, visual mental models, and interactive practice papers before advancing to professional architectures.",
+  },
+];
+
+const LIFECYCLE_STEPS = [
+  {
+    num: "01",
+    title: "Create Student Account",
+    desc: "Register securely with email or social authentication to launch your personalized career workspace.",
+  },
+  {
+    num: "02",
+    title: "Complete Profile & Background",
+    desc: "Record education history, academic coursework, and current career interests without guesswork.",
+  },
+  {
+    num: "03",
+    title: "Add Technical Skills & Evidence",
+    desc: "Catalog languages, frameworks, and tools backed by practical evidence notes and past work.",
+  },
+  {
+    num: "04",
+    title: "Configure Deterministic AI Twin",
+    desc: "Your Career Twin analyzes real market requirements and builds an evidence-based competence baseline.",
+  },
+  {
+    num: "05",
+    title: "Receive Career Guidance",
+    desc: "Get transparent role match percentages, salary expectations, and prioritized next action steps.",
+  },
+  {
+    num: "06",
+    title: "Identify Technical Skill Gaps",
+    desc: "Pinpoint exact knowledge deficiencies across foundational, intermediate, and advanced competencies.",
+  },
+  {
+    num: "07",
+    title: "Follow 12-Week Roadmap",
+    desc: "Execute a structured weekly progression plan balancing concepts, labs, and assessment milestones.",
+  },
+  {
+    num: "08",
+    title: "Complete In-Depth Courses",
+    desc: "Study comprehensive 14-point lessons, hands-on practice labs, and pass 100-mark examinations.",
+  },
+  {
+    num: "09",
+    title: "Build 4-Tier Guided Projects",
+    desc: "Ship production applications from Beginner to Capstone and publish them to your student portfolio.",
+  },
+  {
+    num: "10",
+    title: "Track Career Opportunities",
+    desc: "Discover daily verified internships, hackathons, and graduate roles matching your exact skill profile.",
   },
 ];
 
@@ -80,23 +99,6 @@ export function Landing() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  // Analyze Drawer State
-  const [analyzeOpen, setAnalyzeOpen] = useState(false);
-  const [analyzeStep, setAnalyzeStep] = useState<1 | 2 | 3>(1);
-  const [targetRole, setTargetRole] = useState("");
-  const [resumeText, setResumeText] = useState("");
-  const [uploadedFileName, setUploadedFileName] = useState("Upload file");
-  const [scanProgress, setScanProgress] = useState(0);
-  const [scanStatus, setScanStatus] = useState("Parsing experience and projects");
-  const [analysisResult, setAnalysisResult] = useState<{
-    score: number;
-    role: string;
-    summary: string;
-    skills: Array<[string, number]>;
-    paths: Array<[string, number]>;
-    roadmap: Array<[string, string]>;
-  } | null>(null);
 
   const heroRef = useRef<HTMLElement | null>(null);
   const spotlightRef = useRef<HTMLDivElement | null>(null);
@@ -169,78 +171,6 @@ export function Landing() {
     }
   }, []);
 
-  // File upload handler
-  const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploadedFileName(file.name);
-    const isText = /\.(txt|md)$/i.test(file.name);
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (isText && reader.result) {
-        setResumeText(String(reader.result).slice(0, 8000));
-      } else {
-        alert(`Attached ${file.name}. For the most accurate report in this demo, paste the text directly into the box.`);
-      }
-    };
-    if (isText) reader.readAsText(file);
-    else reader.readAsArrayBuffer(file);
-  };
-
-  // Run analyze scan
-  const startAnalysis = () => {
-    if (!resumeText.trim()) {
-      setResumeText(SAMPLE_RESUME);
-    }
-    setAnalyzeStep(2);
-    setScanProgress(0);
-    setScanStatus("Parsing experience and projects…");
-
-    const textToAnalyze = resumeText.trim() || SAMPLE_RESUME;
-    const lower = textToAnalyze.toLowerCase();
-
-    // Pick best matching profile
-    let best = PROFILES[0];
-    let maxMatches = -1;
-    for (const p of PROFILES) {
-      const matches = p.keys.filter((k) => lower.includes(k)).length;
-      if (matches > maxMatches) {
-        maxMatches = matches;
-        best = p;
-      }
-    }
-
-    const detectedSkills: Array<[string, number]> = [
-      ["React & UI Architecture", 94],
-      ["TypeScript & Type Systems", 88],
-      ["REST APIs & Cloud Services", 76],
-      ["System Design & Performance", 72],
-    ];
-
-    let current = 0;
-    const interval = setInterval(() => {
-      current += 4;
-      setScanProgress(Math.min(100, current));
-
-      if (current === 28) setScanStatus("Extracting 1,284 skill signals…");
-      if (current === 60) setScanStatus("Comparing market role requirements…");
-      if (current === 88) setScanStatus("Generating your personalized Twin…");
-
-      if (current >= 100) {
-        clearInterval(interval);
-        setAnalysisResult({
-          score: 92,
-          role: targetRole.trim() || best.role,
-          summary: "Strong foundational readiness — sharpen two key areas and you are interview-ready.",
-          skills: detectedSkills,
-          paths: best.paths as Array<[string, number]>,
-          roadmap: best.roadmap as Array<[string, string]>,
-        });
-        setAnalyzeStep(3);
-      }
-    }, 45);
-  };
-
   return (
     <div className="careertwin-landing-page">
       {/* Scroll Progress Bar */}
@@ -249,32 +179,31 @@ export function Landing() {
       </div>
 
       {/* ============================== HEADER ============================== */}
-      <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`} id="siteHeader">
+      <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`} id="header">
         <div className="container header-inner">
-          <Link className="brand" href="/" aria-label="CareerTwin — home">
+          <Link className="brand magnetic" href="/">
             <span className="brand-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5.6 11.1q2.4-3.1 4.8 0" />
-                <path d="M13.6 11.1q2.4-3.1 4.8 0" />
-                <path d="M7.6 14.2q4.4 3.5 8.8 0" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m12 14 4-4" />
+                <path d="M3.34 19a10 10 0 1 1 17.32 0" />
               </svg>
             </span>
             <span className="brand-text">
-              <span className="brand-thin">Career</span>
-              <span className="brand-strong">Twin</span>
+              <span className="grad-text">Career</span>Twin
             </span>
           </Link>
 
-          <nav className="nav-links" aria-label="Primary">
+          <nav className="site-nav" aria-label="Primary">
             <a href="#features">Features</a>
             <a href="#how">How it works</a>
             <a href="#faq">FAQ</a>
+            <Link href="/dashboard?view=learning">Academy</Link>
           </nav>
 
           <div className="header-actions">
             <button
-              className="theme-toggle"
-              id="themeToggle"
+              className="theme-btn"
+              id="themeBtn"
               type="button"
               onClick={toggleTheme}
               aria-label="Toggle theme"
@@ -291,8 +220,8 @@ export function Landing() {
             <Link className="btn btn-ghost hide-md" href="/login">
               Login
             </Link>
-            <Link className="btn btn-primary hide-md magnetic" href="/login">
-              Get Started
+            <Link className="btn btn-primary hide-md magnetic" href="/onboarding">
+              Start Free Learning
             </Link>
             <button
               className="menu-btn"
@@ -312,12 +241,13 @@ export function Landing() {
           <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
           <a href="#how" onClick={() => setMobileMenuOpen(false)}>How it works</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+          <Link href="/dashboard?view=learning" onClick={() => setMobileMenuOpen(false)}>Academy</Link>
           <div className="mobile-menu-actions">
             <Link className="btn btn-outline" href="/login" onClick={() => setMobileMenuOpen(false)}>
               Login
             </Link>
-            <Link className="btn btn-primary" href="/login" onClick={() => setMobileMenuOpen(false)}>
-              Get Started
+            <Link className="btn btn-primary" href="/onboarding" onClick={() => setMobileMenuOpen(false)}>
+              Start Free Learning
             </Link>
           </div>
         </nav>
@@ -337,14 +267,14 @@ export function Landing() {
 
           <div className="container hero-inner">
             <div className="hero-copy">
-              <a className="eyebrow" href="#features">
+              <Link className="eyebrow" href="/dashboard?view=learning">
                 <span className="pulse-dot" aria-hidden="true" />
-                <span>New — AI Interview Coach with Focus Mode</span>
+                <span>New — 14 Cisco NetAcad-Aligned Engineering Tracks</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
 
               <h1 aria-label="Your career. Your potential. Your AI Twin.">
                 <span className="h1-line">Your Personalized</span>
@@ -352,28 +282,24 @@ export function Landing() {
               </h1>
 
               <p className="lede">
-                Transform career anxiety into an actionable plan. CareerTwin guides you from
-                self-discovery and skill-building to job-readiness.
+                Transform career anxiety into an actionable engineering roadmap. CareerTwin guides you from
+                foundational concepts and 100-mark examinations to enterprise portfolio projects and daily opportunities.
               </p>
 
               <div className="hero-cta">
-                <button
-                  type="button"
+                <Link
+                  href="/onboarding"
                   className="btn btn-primary btn-lg magnetic shine"
-                  onClick={() => {
-                    setAnalyzeOpen(true);
-                    setAnalyzeStep(1);
-                  }}
                 >
-                  Analyze My Career
+                  Start Free Learning
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                   </svg>
-                </button>
-                <a className="btn btn-outline btn-lg" href="#features">
-                  Learn More
-                </a>
+                </Link>
+                <Link className="btn btn-outline btn-lg" href="/dashboard?view=learning">
+                  Explore Academy
+                </Link>
               </div>
 
               <ul className="hero-facts">
@@ -381,211 +307,140 @@ export function Landing() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
-                  Free to start
+                  14 Verified Course Tracks
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
-                  No credit card
+                  100-Mark Examinations
                 </li>
                 <li>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
-                  Your resume stays private
+                  Real-World Guided Projects
                 </li>
               </ul>
             </div>
 
-            {/* Hero Visual with 3D Robot Canvas */}
-            <div className="hero-visual" id="heroVisual">
-              <div className="visual-glow" aria-hidden="true" />
-              <div className="scene-shell">
-                <RobotCharacter pose="hero" canvasId="robotCanvas" />
-                <noscript><div className="scene-fallback">CareerTwin AI</div></noscript>
-              </div>
-
-              <div className="float-card float-card--a" data-float>
-                <div className="fc-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="m16 11 2 2 4-4" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>Match score</strong>
-                  <span>Product Designer · 92%</span>
-                </div>
-                <div className="ring" style={{ "--p": 92 } as React.CSSProperties}><b>92</b></div>
-              </div>
-
-              <div className="float-card float-card--b" data-float>
-                <div className="fc-icon alt">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
-                    <path d="M15 5.764v15" />
-                    <path d="M9 3.236v15" />
-                  </svg>
-                </div>
-                <div>
-                  <strong>Next milestone</strong>
-                  <span>Build 2 portfolio projects</span>
-                </div>
-                <div className="bars" aria-hidden="true">
-                  <i style={{ "--h": "40%" } as React.CSSProperties} />
-                  <i style={{ "--h": "65%" } as React.CSSProperties} />
-                  <i style={{ "--h": "85%" } as React.CSSProperties} />
-                </div>
-              </div>
-
-              <div className="float-card float-chip float-card--c" data-float>
-                <span className="chip-dot" aria-hidden="true" />
-                Analyzing your profile…
+            <div className="hero-stage">
+              <div className="robot-wrapper">
+                <RobotCharacter />
+                <CheerChip label="14 Full Courses" tag="Python, Cloud, Security" />
+                <CheerChip label="Examinations" tag="100-Mark Assessment" />
+                <CheerChip label="Verified Evidence" tag="Zero Invented Scores" />
               </div>
             </div>
           </div>
-
-          <button
-            className="scroll-hint cursor-pointer"
-            id="scrollHint"
-            type="button"
-            onClick={() => document.getElementById("flowStrip")?.scrollIntoView({ behavior: "smooth" })}
-          >
-            <span aria-hidden="true"><i /></span>Scroll to explore
-          </button>
         </section>
-
 
         {/* ============================== FEATURES ============================== */}
         <section id="features" className="section">
           <div className="container">
             <div className="section-head reveal">
-              <div className="icon-badge reveal-pop">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              </div>
-              <h2>How CareerTwin Empowers You</h2>
-              <p>Powerful, AI-driven tools to guide you from confusion to clarity and confidence.</p>
+              <span className="kicker">Core Capabilities</span>
+              <h2>Engineered for Technical Mastery</h2>
+              <p>Everything you need to progress from complete beginner to production-ready engineer.</p>
             </div>
 
-            <div className="cards">
+            <div className="features-grid">
               <article className="card tilt reveal">
                 <div className="card-glow" aria-hidden="true" />
                 <div className="card-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <polyline points="16 11 18 13 22 9" />
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
                   </svg>
                 </div>
-                <h3>AI Skills Analysis</h3>
-                <p>Get instant analysis of your resume to discover your strengths and best-fit career paths.</p>
+                <h3>Deterministic Career Twin</h3>
+                <p>Calculate your verified career readiness score based strictly on demonstrated skills and assessments.</p>
                 <ul className="card-tags">
-                  <li>Resume scan</li><li>Skill gaps</li><li>ATS score</li>
+                  <li>No hallucinations</li><li>Evidence-backed</li><li>Target role match</li>
                 </ul>
-                <button
-                  type="button"
+                <Link
+                  href="/onboarding"
                   className="card-link"
-                  onClick={() => {
-                    setAnalyzeOpen(true);
-                    setAnalyzeStep(1);
-                  }}
                 >
-                  Explore Skills Analysis
+                  Build Your Career Twin
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
-                </button>
+                </Link>
               </article>
 
               <article className="card tilt reveal">
                 <div className="card-glow" aria-hidden="true" />
                 <div className="card-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
-                    <path d="M15 5.764v15" /><path d="M9 3.236v15" />
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                    <path d="M6 6h10" /><path d="M6 10h10" />
                   </svg>
                 </div>
-                <h3>Dynamic Career Roadmaps</h3>
-                <p>Receive a personalized, step-by-step plan with courses to take and projects to build.</p>
+                <h3>Cisco NetAcad-Inspired Academy</h3>
+                <p>14 complete curriculum tracks featuring 14-point structured lessons, interactive labs, and practice papers.</p>
                 <ul className="card-tags">
-                  <li>12-week plan</li><li>Courses</li><li>Projects</li>
+                  <li>14 tracks</li><li>14-point lessons</li><li>Practice papers</li>
                 </ul>
-                <button
-                  type="button"
+                <Link
+                  href="/dashboard?view=learning"
                   className="card-link"
-                  onClick={() => {
-                    setAnalyzeOpen(true);
-                    setAnalyzeStep(1);
-                  }}
                 >
-                  View Learning Roadmaps
+                  Explore Course Catalog
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
-                </button>
+                </Link>
               </article>
 
               <article className="card tilt reveal">
                 <div className="card-glow" aria-hidden="true" />
                 <div className="card-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
                 </div>
-                <h3>Mock Interview Practice</h3>
-                <p>Build confidence with our AI Interview Coach in a distraction-free ‘Focus Mode’.</p>
+                <h3>100-Mark Examinations</h3>
+                <p>Verify technical depth with 28-question timed examinations providing authoritative section scorecards.</p>
                 <ul className="card-tags">
-                  <li>Live feedback</li><li>Focus Mode</li><li>STAR answers</li>
+                  <li>Timed exams</li><li>Code analysis</li><li>Instant grading</li>
                 </ul>
-                <button
-                  type="button"
+                <Link
+                  href="/dashboard?view=practice"
                   className="card-link"
-                  onClick={() => {
-                    setAnalyzeOpen(true);
-                    setAnalyzeStep(1);
-                  }}
                 >
-                  Practice Interviews
+                  Take Practice Exams
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                   </svg>
-                </button>
+                </Link>
               </article>
             </div>
           </div>
         </section>
 
-        {/* ============================== HOW IT WORKS ============================== */}
+        {/* ============================== HOW IT WORKS (10-STEP STUDENT LIFECYCLE) ============================== */}
         <section id="how" className="section section--alt">
           <div className="container">
             <div className="section-head reveal">
-              <span className="kicker">Three steps</span>
-              <h2>From confusion to a clear plan</h2>
-              <p>No guesswork, no generic advice — every step is built around your profile.</p>
+              <span className="kicker">Student Journey</span>
+              <h2>From Zero to Career-Ready in 10 Steps</h2>
+              <p>A systematic, transparent learning path engineered to transform beginners into employed professionals.</p>
             </div>
 
-            <ol className="steps">
-              <li className="step reveal">
-                <span className="step-num">01</span>
-                <h3>Upload your resume</h3>
-                <p>Drop a PDF or paste your experience. Our model reads it in seconds.</p>
-              </li>
-              <li className="step reveal">
-                <span className="step-num">02</span>
-                <h3>Get your twin + roadmap</h3>
-                <p>See best-fit roles, missing skills and a week-by-week plan to close the gap.</p>
-              </li>
-              <li className="step reveal">
-                <span className="step-num">03</span>
-                <h3>Practise, then apply</h3>
-                <p>Run mock interviews, polish your story and walk in prepared.</p>
-              </li>
-              <span className="steps-line" aria-hidden="true" />
-            </ol>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-8">
+              {LIFECYCLE_STEPS.map((step) => (
+                <div key={step.num} className="rounded-2xl border border-white/10 bg-slate-900/60 p-5 reveal">
+                  <span className="font-mono text-xs font-bold text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md inline-block mb-3">
+                    Step {step.num}
+                  </span>
+                  <h3 className="text-sm font-bold text-white mb-1.5">{step.title}</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -593,20 +448,20 @@ export function Landing() {
         <section className="stats">
           <div className="container stats-grid">
             <div className="stat reveal">
-              <b><span>92%</span></b>
-              <span>report career clarity after week one</span>
+              <b><span>14</span></b>
+              <span>Authoritative Course Packages</span>
             </div>
             <div className="stat reveal">
-              <b><span>3×</span></b>
-              <span>faster interview preparation</span>
+              <b><span>100</span></b>
+              <span>Marks Proctored Mock Exams</span>
             </div>
             <div className="stat reveal">
-              <b><span>12k+</span></b>
-              <span>personalised roadmaps generated</span>
+              <b><span>4-Tier</span></b>
+              <span>Guided Real-World Projects</span>
             </div>
             <div className="stat reveal">
-              <b><span>14+</span></b>
-              <span>production-ready skill courses</span>
+              <b><span>10</span></b>
+              <span>Opportunity Categories Refreshed</span>
             </div>
           </div>
         </section>
@@ -616,29 +471,12 @@ export function Landing() {
           <div className="container faq-wrap">
             <div className="section-head section-head--left reveal">
               <span className="kicker">FAQ</span>
-              <h2>Questions, answered</h2>
-              <p>Everything you need to know before your first analysis.</p>
+              <h2>Frequently Asked Questions</h2>
+              <p>Everything you need to know about learning, assessments, and career tracking.</p>
             </div>
 
             <div className="faq-list">
-              {[
-                {
-                  q: "Is CareerTwin free to start?",
-                  a: "Yes. Your first skills analysis and career match report are completely free — no card required. Upgrade only when you want unlimited mock interviews and deep roadmaps.",
-                },
-                {
-                  q: "How does the AI analyse my resume?",
-                  a: "We extract skills, seniority and domain signals from your text, then compare them against live role requirements to score fit and surface the gaps that matter most.",
-                },
-                {
-                  q: "Is my data private?",
-                  a: "Your resume is processed for your analysis only and never sold or used to train public models. You can delete everything from your account at any time.",
-                },
-                {
-                  q: "I'm a student with no experience. Will this work?",
-                  a: "Absolutely. Projects, coursework and internships count. CareerTwin builds the roadmap around what you have and tells you exactly what to add next.",
-                },
-              ].map((item, index) => (
+              {FAQ_ITEMS.map((item, index) => (
                 <div key={index} className="faq-item reveal">
                   <button
                     className="faq-q"
@@ -667,21 +505,17 @@ export function Landing() {
               <div className="cta-orbits" aria-hidden="true">
                 <span /><span /><span />
               </div>
-              <h2>Ready to Build Your Future?</h2>
-              <p>Build verifiable technical skills, complete hands-on labs, and prepare for your chosen career.</p>
-              <button
-                type="button"
+              <h2>Ready to Build Your Engineering Career?</h2>
+              <p>Master technical skills, complete verifiable labs, build enterprise projects, and launch your career.</p>
+              <Link
+                href="/onboarding"
                 className="btn btn-light btn-lg magnetic shine"
-                onClick={() => {
-                  setAnalyzeOpen(true);
-                  setAnalyzeStep(1);
-                }}
               >
-                Begin Career Analysis
+                Start Free Learning Now
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -702,171 +536,24 @@ export function Landing() {
                 <span className="grad-text">Career</span>Twin
               </span>
             </Link>
-            <p>© {new Date().getFullYear()} CareerTwin Inc. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} CareerTwin Academy. All rights reserved.</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
             <a href="#features">Features</a>
             <a href="#how">How it works</a>
             <a href="#faq">FAQ</a>
+            <Link href="/dashboard?view=learning">Academy</Link>
+            <Link href="/terms">Terms & Conditions</Link>
             <button
               type="button"
-              className="text-inherit hover:underline"
-              onClick={() => {
-                setAnalyzeOpen(true);
-                setAnalyzeStep(1);
-              }}
+              className="text-inherit hover:underline cursor-pointer"
+              onClick={openCookieSettings}
             >
-              Analyze
+              Cookie Settings
             </button>
           </nav>
         </div>
       </footer>
-
-      {/* ============================== ANALYZE VIEW / DRAWER ============================== */}
-      <section className={`analyze-view ${analyzeOpen ? "is-open" : ""}`} id="analyzeView" aria-hidden={!analyzeOpen}>
-        <div className="analyze-inner container">
-          <button className="analyze-back" id="analyzeBack" type="button" onClick={() => setAnalyzeOpen(false)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M19 12H5" /><path d="m12 19-7-7 7-7" />
-            </svg>
-            Back to site
-          </button>
-
-          <div className="analyze-panel">
-            {/* Step 1 */}
-            {analyzeStep === 1 && (
-              <div className="analyze-step is-active" data-step="1">
-                <span className="kicker">Skills & Career Analysis</span>
-                <h2>Let&apos;s find your best-fit career</h2>
-                <p className="analyze-sub">Paste your resume, or drop a PDF. Your report takes about 8 seconds.</p>
-
-                <label className="field">
-                  <span>Target role <em>(optional)</em></span>
-                  <input
-                    id="targetRole"
-                    type="text"
-                    value={targetRole}
-                    onChange={(e) => setTargetRole(e.target.value)}
-                    placeholder="e.g. Product Designer, Data Analyst, Software Engineer"
-                    autoComplete="off"
-                  />
-                </label>
-
-                <label className="field">
-                  <span>Your resume</span>
-                  <textarea
-                    id="resumeInput"
-                    rows={7}
-                    value={resumeText}
-                    onChange={(e) => setResumeText(e.target.value)}
-                    placeholder="Paste your resume text here — experience, projects, skills…"
-                  />
-                </label>
-
-                <button className="btn btn-primary btn-lg shine analyze-submit" id="analyzeBtn" type="button" onClick={startAnalysis}>
-                  Analyze My Career
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                  </svg>
-                </button>
-                <p className="analyze-note">Real analysis runs privately with your CareerTwin intelligence model.</p>
-              </div>
-            )}
-
-            {/* Step 2 */}
-            {analyzeStep === 2 && (
-              <div className="analyze-step is-active" data-step="2">
-                <div className="scan-stage">
-                  <div className="scan-doc">
-                    <span /><span /><span /><span /><span />
-                    <div className="scan-line" />
-                  </div>
-                  <div className="scan-ring">
-                    <b id="scanPct">{scanProgress}%</b>
-                  </div>
-                </div>
-                <h2 className="scan-title">Reading your career twin…</h2>
-                <p className="scan-status" id="scanStatus">{scanStatus}</p>
-                <div className="scan-bar">
-                  <i id="scanBarFill" style={{ width: `${scanProgress}%` }} />
-                </div>
-              </div>
-            )}
-
-            {/* Step 3 */}
-            {analyzeStep === 3 && analysisResult && (
-              <div className="analyze-step is-active" data-step="3">
-                <div className="result-head">
-                  <div className="score-ring" id="scoreRing" style={{ "--p": analysisResult.score } as React.CSSProperties}>
-                    <b id="scoreVal">{analysisResult.score}</b>
-                    <span>match</span>
-                  </div>
-                  <div>
-                    <span className="kicker">Your report</span>
-                    <h2 id="resultRole">{analysisResult.role}</h2>
-                    <p className="analyze-sub" id="resultSummary">{analysisResult.summary}</p>
-                  </div>
-                </div>
-
-                <div className="result-grid">
-                  <div className="result-card">
-                    <h4>Detected skills</h4>
-                    <div className="skill-bars" id="skillBars">
-                      {analysisResult.skills.map(([name, pct], idx) => (
-                        <div key={idx} className="skill-bar-row">
-                          <div className="flex justify-between text-xs font-semibold mb-1">
-                            <span>{name}</span>
-                            <span>{pct}%</span>
-                          </div>
-                          <div className="h-2 rounded-full bg-white/10 overflow-hidden">
-                            <div className="h-full rounded-full bg-gradient-to-r from-purple-500 to-cyan-400" style={{ width: `${pct}%` }} />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="result-card">
-                    <h4>Best-fit paths</h4>
-                    <ul className="path-list" id="pathList">
-                      {analysisResult.paths.map(([pathName, score], idx) => (
-                        <li key={idx} className="flex justify-between items-center py-2 border-b border-white/5 text-xs">
-                          <span className="font-semibold">{pathName}</span>
-                          <span className="font-mono text-purple-400 font-bold">{score}% match</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="result-card wide">
-                    <h4>Your 4-week starter roadmap</h4>
-                    <ol className="roadmap" id="roadmapList">
-                      {analysisResult.roadmap.map(([weekTitle, weekDesc], idx) => (
-                        <li key={idx} className="mb-3">
-                          <strong className="block text-xs font-bold text-cyan-300">{weekTitle}</strong>
-                          <p className="text-xs text-white/70 mt-0.5">{weekDesc}</p>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-
-                <div className="result-actions">
-                  <Link href="/dashboard" className="btn btn-primary">
-                    Open Full Career Workspace →
-                  </Link>
-                  <button className="btn btn-outline" id="restartBtn" type="button" onClick={() => setAnalyzeStep(1)}>
-                    Analyze another resume
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Analyze Modal and Drawer */}
-      {/* Pip Agent removed from public landing per Phase 12 specification */}
     </div>
   );
 }
