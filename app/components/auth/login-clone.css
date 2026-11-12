@@ -92,16 +92,81 @@
 /* ---------- right / card ---------- */
 .auth-card-wrap { display: grid; justify-items: stretch; gap: 16px; }
 
+/* Hide Spline branding on auth */
+a[href*="spline.design"],
+a[href*="spline"],
+#spline-watermark,
+[class*="watermark"],
+[class*="spline-watermark"],
+[class*="spline_watermark"],
+[data-spline-watermark] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+/* ---------- auth-card clerk integration ---------- */
 .auth-card {
   position: relative;
-  padding: 32px;
-  border-radius: 22px;
+  padding: 32px 28px;
+  border-radius: 24px;
   border: 1px solid var(--border);
   background:
-    radial-gradient(520px 220px at 80% -12%, rgba(var(--accent-rgb), .12), transparent 70%),
+    radial-gradient(520px 220px at 80% -12%, rgba(var(--accent-rgb), .15), transparent 70%),
     var(--card);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+  box-sizing: border-box;
+  overflow: visible !important;
+}
+.clerk-auth-container {
+  width: 100%;
+  overflow: visible !important;
+}
+.clerk-auth-container .cl-rootBox,
+.clerk-auth-container [class*="rootBox"] {
+  width: 100% !important;
+}
+.clerk-auth-container .cl-card,
+.clerk-auth-container .cl-cardBox,
+.clerk-auth-container [class*="cl-card"],
+.clerk-auth-container [class*="cardBox"],
+.clerk-auth-container [class*="card"] {
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.clerk-auth-container .cl-main,
+.clerk-auth-container [class*="main"] {
+  width: 100% !important;
+  background: transparent !important;
+}
+.clerk-auth-container .cl-header,
+.clerk-auth-container [class*="headerTitle"],
+.clerk-auth-container [class*="headerSubtitle"] {
+  display: none !important;
+}
+.clerk-auth-container .cl-footer,
+.clerk-auth-container [class*="footer"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.clerk-auth-container [class*="internal"] {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 .auth-card::before {
   content: "";

@@ -44,7 +44,7 @@ const steps = [
 ] as const;
 
 const industries = ["Technology & Software", "FinTech & Banking", "Healthcare & BioTech", "E-Commerce & Retail", "Consulting & Services", "AI & Data Science", "Telecommunications", "Media & Entertainment"];
-const inputClass = "mt-2 w-full rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-800/90 px-3.5 py-3 text-sm text-slate-900 dark:text-white outline-none transition focus:border-purple-500 focus:ring-4 focus:ring-purple-500/15 placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-2xs";
+const inputClass = "mt-2 w-full rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-[#1c2336] px-3.5 py-3 text-sm text-slate-900 dark:text-white outline-none transition focus:border-purple-500 focus:ring-4 focus:ring-purple-500/15 placeholder:text-slate-400 dark:placeholder:text-slate-400 shadow-2xs";
 const makeId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
 type SubmissionStage = "idle" | "validating" | "saving_profile" | "analyzing_gaps" | "generating_twin" | "ready" | "error";
@@ -64,6 +64,10 @@ export default function OnboardingPage() {
 
   useEffect(() => {
     let cancelled = false;
+
+    // Synchronize global theme attribute
+    const savedTheme = (localStorage.getItem("ct-theme") as "dark" | "light") || "dark";
+    document.documentElement.setAttribute("data-theme", savedTheme);
 
     // Immediately hydrate local browser draft without blocking on third-party Clerk CDN initialization
     const raw = localStorage.getItem(key) ?? localStorage.getItem("careertwin-profile-wizard:guest");
@@ -326,8 +330,8 @@ export default function OnboardingPage() {
   }));
 
   return (
-    <div className="min-h-dvh bg-slate-50 dark:bg-[#08080a] text-slate-900 dark:text-slate-100">
-      <header className="border-b border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0e0e11]/95 sticky top-0 z-40 backdrop-blur-md text-slate-900 dark:text-white">
+    <div className="min-h-dvh bg-slate-50 dark:bg-[#08090d] text-slate-900 dark:text-slate-100">
+      <header className="border-b border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0f131f]/95 sticky top-0 z-40 backdrop-blur-md text-slate-900 dark:text-white">
         <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5">
           <Brand />
           <div className="flex items-center gap-3">
@@ -348,7 +352,7 @@ export default function OnboardingPage() {
 
       <main className="mx-auto grid max-w-[1440px] gap-0 lg:grid-cols-[280px_minmax(0,1fr)_320px]">
         {/* Left Step Navigation Sidebar */}
-        <aside className="border-r border-slate-200 dark:border-white/10 bg-white dark:bg-[#0e0e11] p-5 lg:min-h-[calc(100dvh-72px)]">
+        <aside className="border-r border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f131f] p-5 lg:min-h-[calc(100dvh-72px)]">
           <p className="text-[10px] font-bold uppercase tracking-[.18em] text-slate-500 dark:text-slate-400">Build Your Career Profile</p>
           <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
             <div
@@ -460,7 +464,7 @@ export default function OnboardingPage() {
             )}
 
             {/* Card Content Container */}
-            <div className="mt-6 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#111114] p-5 shadow-lg sm:p-8 text-slate-900 dark:text-slate-100">
+            <div className="mt-6 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#131826] p-5 shadow-lg sm:p-8 text-slate-900 dark:text-slate-100">
               {/* STEP 1: PERSONAL PROFILE */}
               {step === 1 && (
                 <div className="grid gap-5 sm:grid-cols-2">
@@ -1263,7 +1267,7 @@ export default function OnboardingPage() {
         </section>
 
         {/* Right Help Sidebar */}
-        <aside className="hidden border-l border-slate-200 dark:border-white/10 bg-white dark:bg-[#0e0e11] p-6 lg:block">
+        <aside className="hidden border-l border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f131f] p-6 lg:block">
           <div className="sticky top-24">
             <span className="grid size-11 place-items-center rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
               <Lightbulb size={20} />

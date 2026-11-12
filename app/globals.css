@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *, .dark, .dark *));
+
 :root {
   --cream: #f8f8fc;
   --app: #f4f5fb;
@@ -26,6 +28,29 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-geist-sans);
+}
+
+/* Hide Spline Watermark Globally Across All Containers, Shadows and Body */
+a[href*="spline.design"],
+a[href*="spline"],
+#spline-watermark,
+[class*="watermark"],
+[class*="spline-watermark"],
+[class*="spline_watermark"],
+[data-spline-watermark],
+spline-viewer::part(watermark),
+spline-viewer::part(logo) {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
 }
 
 * { box-sizing: border-box; }

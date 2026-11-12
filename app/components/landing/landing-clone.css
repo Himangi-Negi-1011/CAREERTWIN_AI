@@ -281,7 +281,7 @@ html[data-theme="dark"] .btn-primary { box-shadow: 0 12px 30px -16px rgba(0, 0, 
 .brand:hover .brand-text .brand-thin { color: var(--fg); }
 .brand-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--warm); margin-left: 2px; align-self: flex-end; margin-bottom: 5px; }
 
-.nav-links, .site-nav { display: flex; align-items: center; gap: 8px; }
+.nav-links, .site-nav { display: flex; align-items: center; gap: 20px; }
 .nav-links a, .site-nav a {
   position: relative;
   padding: 9px 16px;

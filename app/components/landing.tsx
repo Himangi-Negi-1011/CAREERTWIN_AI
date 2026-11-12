@@ -9,19 +9,74 @@ import "./landing/landing-clone.css";
 const FAQ_ITEMS = [
   {
     q: "Is CareerTwin completely free to get started?",
-    a: "Yes. CareerTwin is 100% free to start. You can create your account, configure your deterministic Career Twin, access all 14 structured course tracks, take topic practice papers, and build portfolio projects without any subscription or credit card.",
+    a: "Yes. CareerTwin is 100% free to start. You can create your student account, configure your deterministic Career Twin, access all 14 structured course tracks, take topic practice tests, and build verifiable portfolio projects without any subscription or credit card.",
   },
   {
-    q: "What courses and technical tracks can I learn from zero to advanced?",
+    q: "How does the deterministic Career Twin differ from generative chatbots?",
+    a: "Unlike speculative chat widgets that guess or hallucinate readiness scores, CareerTwin's engine is strictly deterministic. It calculates your career readiness and recommendations solely from verified student inputs: completed lessons, 100-mark exam scores, milestone-checked projects, and evidence logs.",
+  },
+  {
+    q: "What courses and technical tracks are included in CareerTwin Academy?",
     a: "CareerTwin offers 14 full-spectrum engineering tracks aligned with Cisco Networking Academy and Skills for All standards: Python, JavaScript, TypeScript, Cloud Computing, Cybersecurity, SQL & Relational Databases, Power BI, C, C++, C#, Go, Java, PHP, and Rust. Each track proceeds from basic fundamentals to deep architecture.",
   },
   {
-    q: "How do the 100-mark examinations and LeetCode-style practice labs work?",
-    a: "Every track includes chapter-by-chapter LeetCode-style coding challenges with instant automated test evaluation, hands-on scenario labs, and timed 28-question, 100-mark comprehensive examinations with authoritative topic-wise scorecards and zero leaked answer keys.",
+    q: "How do the 100-mark mock examinations work?",
+    a: "Each course features timed, 28-question, 100-mark comprehensive examinations with instant grading. The assessment evaluates syntax output predictions, multi-step debugging, and architectural scenarios server-side with zero leaked answer keys and provides a detailed section-by-section scorecard.",
   },
   {
-    q: "How does the AI Career Twin help me get hired?",
-    a: "Unlike generic chat widgets, your deterministic Career Twin analyzes your completed lessons, verified project code, and exam results to build an evidence-backed skill profile, generate tailored interview prep, and recommend matching internships, hackathons, and entry-level engineering roles.",
+    q: "How do the LeetCode-style practice labs evaluate solutions?",
+    a: "Practice labs run directly in your browser with real-time automated test assertion suites. You write code against explicit unit test specifications, run the test runner, inspect error traces, and earn verified skill proof once all edge-case tests pass.",
+  },
+  {
+    q: "How do guided projects and portfolio integration work?",
+    a: "Guided projects are structured across 4 progressive tiers (Beginner, Intermediate, Advanced, and Capstone). As you complete code tasks and record GitHub repository links, projects automatically attach to your public verifiable portfolio page with cryptographic evidence stamps.",
+  },
+  {
+    q: "What categories of career opportunities are refreshed daily?",
+    a: "CareerTwin aggregates and verifies technical opportunities across internships, hackathons, open-source fellowships, graduate trainee programs, and junior engineering roles, filtering them against your exact verified skill profile.",
+  },
+  {
+    q: "How does CareerTwin protect student privacy and data persistence?",
+    a: "Your career profile, learning progress, and exam scores are encrypted and isolated per user. Guest drafts remain private in your local browser sandbox and synchronize seamlessly to your secure backend record once you authenticate.",
+  },
+];
+
+const CORE_FEATURES = [
+  {
+    num: "01",
+    tag: "Deterministic AI",
+    title: "Deterministic AI Career Twin",
+    desc: "Calculates your career readiness score strictly from demonstrable code submissions, 100-mark examinations, and milestone reviews with zero invented numbers or chat hallucinations.",
+  },
+  {
+    num: "02",
+    tag: "Cisco NetAcad Aligned",
+    title: "14 Production-Grade Tracks",
+    desc: "Authored curriculums from beginner foundations to enterprise architecture covering Python, Cloud Computing, Cybersecurity, TypeScript, SQL, Go, Rust, and Power BI.",
+  },
+  {
+    num: "03",
+    tag: "Hands-On Runtime",
+    title: "LeetCode-Style Practice Labs",
+    desc: "Interactive coding environments with live test evaluation. Write solutions, execute test suites against real edge cases, and earn verifiable skill proof directly in your browser.",
+  },
+  {
+    num: "04",
+    tag: "Authoritative Testing",
+    title: "100-Mark Comprehensive Exams",
+    desc: "28-question timed assessments featuring syntax output predictions, multi-step debugging, and architectural scenarios. Scored securely server-side with zero leaked answers.",
+  },
+  {
+    num: "05",
+    tag: "9 Pedagogical Modes",
+    title: "AI Master Tutor & Coach",
+    desc: "Interact with your AI Tutor in Socratic, Code Review, Deep Explainer, or Exam Prep modes. Ask questions on any chapter topic and receive rigorous, curriculum-grounded guidance.",
+  },
+  {
+    num: "06",
+    tag: "Verified Credentials",
+    title: "Cryptographic Portfolio & Proof",
+    desc: "Transform completed course milestones, GitHub submissions, and exam credentials into a tamper-proof public showcase link designed for recruiters and campus placement teams.",
   },
 ];
 
@@ -178,20 +233,24 @@ export function Landing() {
         <div className="container header-inner">
           <Link className="brand magnetic" href="/">
             <span className="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5.6 11.1q2.4-3.1 4.8 0" />
+                <path d="M13.6 11.1q2.4-3.1 4.8 0" />
+                <path d="M7.6 14.2q4.4 3.5 8.8 0" />
               </svg>
             </span>
             <span className="brand-text">
-              <span className="grad-text">Career</span>Twin
+              <span className="brand-thin">Career</span>
+              <span className="brand-strong">Twin</span>
             </span>
           </Link>
 
           {/* Navigation Bar with proper spacing */}
-          <nav className="nav-links" aria-label="Primary">
-            <a href="#how">How it works</a>
-            <a href="#faq">FAQ</a>
-            <Link href="/dashboard?view=learning">Academy</Link>
+          <nav className="nav-links flex items-center gap-7 text-sm font-semibold" aria-label="Primary">
+            <a href="#features" className="hover:text-purple-400 transition-colors">Features</a>
+            <a href="#how" className="hover:text-purple-400 transition-colors">How it works</a>
+            <a href="#faq" className="hover:text-purple-400 transition-colors">FAQ</a>
+            <Link href="/dashboard?view=learning" className="hover:text-purple-400 transition-colors">Academy</Link>
           </nav>
 
           <div className="header-actions">
@@ -232,6 +291,7 @@ export function Landing() {
 
         {/* Mobile Navigation */}
         <nav className={`mobile-menu ${mobileMenuOpen ? "is-open" : ""}`} id="mobileMenu" aria-label="Mobile">
+          <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
           <a href="#how" onClick={() => setMobileMenuOpen(false)}>How it works</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
           <Link href="/dashboard?view=learning" onClick={() => setMobileMenuOpen(false)}>Academy</Link>
@@ -328,10 +388,55 @@ export function Landing() {
           </div>
         </section>
 
+        {/* ============================== FEATURES & CAPABILITIES ============================== */}
+        <section id="features" className="section">
+          <div className="container">
+            <div className="section-head text-center max-w-3xl mx-auto">
+              <span className="kicker">Core Capabilities</span>
+              <h2>Engineered for Deep Learning & Verifiable Career Readiness</h2>
+              <p>Six structured pillars bridging the gap between beginner tutorials and production enterprise engineering.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              {CORE_FEATURES.map((feat) => (
+                <div
+                  key={feat.title}
+                  className="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/90 p-7 shadow-xs hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/5 transition duration-300 flex flex-col justify-between"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[11px] font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800/50 px-2.5 py-1 rounded-full">
+                        {feat.tag}
+                      </span>
+                      <span className="font-mono text-xs font-semibold text-slate-400">
+                        {feat.num}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug">
+                      {feat.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {feat.desc}
+                    </p>
+                  </div>
+                  <div className="pt-6 mt-6 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs font-semibold text-purple-600 dark:text-purple-400">
+                    <Link href="/onboarding" className="inline-flex items-center gap-1.5 hover:underline">
+                      <span>Explore Capability</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3.5">
+                        <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ============================== HOW IT WORKS (10-STEP STUDENT LIFECYCLE) ============================== */}
         <section id="how" className="section section--alt">
           <div className="container">
-            <div className="section-head reveal">
+            <div className="section-head text-center max-w-3xl mx-auto">
               <span className="kicker">Student Journey</span>
               <h2>From Zero to Career-Ready in 10 Steps</h2>
               <p>A systematic, transparent learning path engineered to transform beginners into employed professionals.</p>
@@ -341,15 +446,15 @@ export function Landing() {
               {LIFECYCLE_STEPS.map((step) => (
                 <div
                   key={step.num}
-                  className="rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-slate-900 p-5 space-y-2.5 shadow-2xs reveal"
+                  className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 p-5 space-y-2.5 shadow-2xs"
                 >
-                  <span className="font-mono text-xs font-bold text-accent dark:text-purple-400 bg-accent/10 dark:bg-purple-950/60 px-2 py-0.5 rounded-md inline-block">
+                  <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded-md inline-block">
                     {step.num}
                   </span>
-                  <h3 className="text-base font-bold text-ink dark:text-white leading-snug">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-slate dark:text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -361,19 +466,21 @@ export function Landing() {
         {/* ============================== FAQ ============================== */}
         <section id="faq" className="section">
           <div className="container faq-wrap">
-            <div className="section-head section-head--left reveal">
+            <div className="section-head section-head--left">
               <span className="kicker">FAQ</span>
-              <h2>Frequently Asked Questions</h2>
-              <p>Everything you need to know about learning, assessments, and career tracking.</p>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Everything you need to know about learning, assessments, and career tracking.
+              </p>
             </div>
 
             <div className="faq-list">
               {FAQ_ITEMS.map((item, index) => {
                 const isOpen = openFaq === index;
                 return (
-                  <div key={index} className={`faq-item reveal ${isOpen ? "is-open" : ""}`}>
+                  <div key={index} className={`faq-item ${isOpen ? "is-open" : ""}`}>
                     <button
-                      className="faq-q"
+                      className="faq-q text-slate-900 dark:text-white font-semibold"
                       type="button"
                       onClick={() => setOpenFaq(isOpen ? null : index)}
                       aria-expanded={isOpen}
@@ -383,7 +490,7 @@ export function Landing() {
                     </button>
                     <div className="faq-a">
                       <div className="faq-a-inner">
-                        <p>{item.a}</p>
+                        <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{item.a}</p>
                       </div>
                     </div>
                   </div>
@@ -396,7 +503,7 @@ export function Landing() {
         {/* ============================== CTA ============================== */}
         <section className="section section--cta">
           <div className="container">
-            <div className="cta-band reveal-scale">
+            <div className="cta-band">
               <div className="cta-orbits" aria-hidden="true">
                 <span /><span /><span />
               </div>
@@ -427,17 +534,21 @@ export function Landing() {
           <div className="footer-brand">
             <Link className="brand" href="/">
               <span className="brand-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5.6 11.1q2.4-3.1 4.8 0" />
+                  <path d="M13.6 11.1q2.4-3.1 4.8 0" />
+                  <path d="M7.6 14.2q4.4 3.5 8.8 0" />
                 </svg>
               </span>
               <span className="brand-text">
-                <span className="grad-text">Career</span>Twin
+                <span className="brand-thin">Career</span>
+                <span className="brand-strong">Twin</span>
               </span>
             </Link>
             <p>© {new Date().getFullYear()} CareerTwin Academy. All rights reserved.</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
+            <a href="#features">Features</a>
             <a href="#how">How it works</a>
             <a href="#faq">FAQ</a>
             <Link href="/dashboard?view=learning">Academy</Link>
