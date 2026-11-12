@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-2-pe1-m2-l4-comments",
+  "skillName": "Python",
+  "moduleId": "mod-2-pe1-m2",
+  "title": "2.4. Code Comments & PEP 8 Documentation Standards",
+  "summary": "Learn why code documentation matters, how to use single-line comments (#), and adhere to PEP 8 Python style conventions.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Insert explanatory comments using the hash mark (#).",
+    "Understand why good comments explain the 'why' rather than narrating obvious syntax.",
+    "Apply core PEP 8 style recommendations for readability and professional hygiene."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-2-4-1",
+      "heading": "2.4.1 The Role of Comments in Production Software",
+      "content": "A comment is a non-executable textual remark intended exclusively for human engineers. When CPython encounters a hash mark (#), it ignores all remaining characters on that line.\n\nGood comments explain INTENT, ALGORITHMIC REASONING, and EDGE CASES, rather than trivial syntax repetitions."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-2-4-1",
+      "type": "single-choice",
+      "prompt": "Which symbol initiates a single-line comment in Python?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "#"
+        },
+        {
+          "id": "opt-2",
+          "text": "//"
+        },
+        {
+          "id": "opt-3",
+          "text": "/*"
+        },
+        {
+          "id": "opt-4",
+          "text": "--"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Python uses the hash symbol (#) to denote comments.",
+      "objectiveIds": [
+        "pe1-obj-2"
+      ]
+    }
+  ],
+  "recap": "Comments document code purpose and engineering rationale, ignored by the interpreter.",
+  "videoResources": [
+    {
+      "id": "vid-mod-2-pe1-m2-l4-comments",
+      "title": "Cisco NetAcad Python Essentials 1: 2.4. Code Comments & PEP 8 Documentation Standards",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 2.4. Code Comments & PEP 8 Documentation Standards aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 2.4. Code Comments & PEP 8 Documentation Standards with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

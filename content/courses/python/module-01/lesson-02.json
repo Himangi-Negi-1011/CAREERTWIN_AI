@@ -1,199 +1,113 @@
 {
-  "lessonId": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form",
+  "lessonId": "mod-1-pe1-m1-l1-fundamentals",
   "skillName": "Python",
-  "moduleId": "mod-1-python-beginner-module-1",
-  "title": "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-  "summary": "Master integers, IEEE 754 floating-point precision hazards, string encoding, safe type casting, and structured f-strings.",
+  "moduleId": "mod-1-pe1-m1",
+  "title": "1.1. Fundamentals of Computer Programming",
+  "summary": "Explore how computers process information, how machine code interacts with hardware, and why high-level programming languages were invented.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 50,
+  "estimatedMinutes": 25,
   "learningObjectives": [
-    "Identify and prevent floating-point representation errors in financial and scientific computations using decimal.Decimal",
-    "Perform safe user input parsing with comprehensive error handling for ValueError and TypeError"
+    "Explain the fundamental architecture of a computer (CPU, RAM, Storage, and I/O devices).",
+    "Differentiate between machine language, assembly language, and high-level programming languages.",
+    "Understand what a computer program is: an ordered sequence of unambiguous instructions."
   ],
   "objectiveIds": [
-    "python-obj-1",
-    "python-obj-2"
+    "pe1-obj-1"
   ],
   "prerequisiteConcepts": [
-    "Python execution basics and variable assignment"
+    "Basic computer literacy",
+    "Terminal usage"
   ],
   "sections": [
     {
-      "id": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form-sec-1",
-      "heading": "1. Type System Mechanics & IEEE 754 Precision Hazards",
-      "content": "Python features a strongly, dynamically typed runtime. 'Dynamic' means names do not have fixed types; 'strong' means Python will never implicitly coerce conflicting types (e.g., `'5' + 5` raises `TypeError`).\n\nKey primitives in Python:\n- `int`: Unlike C or Java where integers overflow at 32 or 64 bits, Python integers have arbitrary precision (`PyLongObject`). They grow dynamically to consume available RAM without overflow.\n- `float`: Implemented as 64-bit IEEE 754 double-precision numbers. Because computers represent numbers in base-2, fractional decimals such as `0.1` and `0.2` cannot be represented with finite binary bits. Consequently, `0.1 + 0.2 == 0.3` evaluates to `False` (it equals `0.30000000000000004`). In financial, cryptographic, and accounting applications, engineers must use `decimal.Decimal`.\n- `str`: Sequence of Unicode characters encoded in UTF-8. Strings are strictly immutable; concatenation creates a new object.\n- `bool`: Subclass of `int` where `True == 1` and `False == 0`.",
-      "codeExamples": [
-        {
-          "language": "text",
-          "code": "+-------------------------------------------------------------------+\n| PYTHON PRIMITIVE TYPE SYSTEM & NUMERIC REPRESENTATION             |\n|                                                                   |\n|  int (Arbitrary Precision)      float (IEEE 754 Double)           |\n|  +------------------------+     +-------------------------------+ |\n|  | 2**1000 calculates     |     | 0.1 in binary base-2 is an   | |\n|  | exactly without 64-bit |     | infinite recurring fraction:  | |\n|  | integer overflow error |     | 0.00011001100110011...        | |\n|  +------------------------+     +-------------------------------+ |\n|                                                 |                 |\n|  Solution for currency/precision:               v                 |\n|  decimal.Decimal(\"0.1\") + decimal.Decimal(\"0.2\") == Decimal(\"0.3\")|\n+-------------------------------------------------------------------+",
-          "explanation": "Integers scale with available memory, whereas floats are subject to binary rounding approximations requiring Decimal for financial accuracy.",
-          "expectedOutput": "System Architecture & Memory Layout Diagram"
-        }
-      ],
-      "keyPoints": [
-        "Python does not coerce types implicitly: explicit casting with int(), float(), or str() is required.",
-        "IEEE 754 float arithmetic exhibits representation errors; use math.isclose() for float comparisons and decimal.Decimal for money.",
-        "String formatting using f-strings (f'{val:.2f}') evaluates expressions at runtime and formats numbers with specifiers."
-      ],
-      "commonMistakes": [
-        "Writing financial ledger code with standard float types, accumulating rounding discrepancies over thousands of transactions.",
-        "Calling int(input()) without wrapping in a try-except block, crashing on non-numeric characters."
-      ]
-    },
-    {
-      "id": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form-sec-2",
-      "heading": "2. Production-Grade Input Parsing and Precision Formatting",
-      "content": "In production web APIs and CLI applications, all external inputs arrive as raw strings. Defensive programming requires strict validation, explicit exception handling, and format specifications that prevent invalid calculations from polluting downstream databases.",
-      "codeExamples": [
-        {
-          "language": "python",
-          "code": "from decimal import Decimal, ROUND_HALF_UP\n\ndef process_transaction(user_input: str, tax_rate: str) -> dict:\n    \"\"\"Safely parse input string and calculate total with exact currency precision.\"\"\"\n    try:\n        # Avoid float(user_input): use Decimal initialized with strings\n        amount = Decimal(user_input.strip())\n        rate = Decimal(tax_rate.strip())\n        \n        if amount <= Decimal(\"0.00\"):\n            raise ValueError(\"Transaction amount must be strictly positive.\")\n            \n        tax = (amount * rate).quantize(Decimal(\"0.01\"), rounding=ROUND_HALF_UP)\n        total = amount + tax\n        \n        return {\n            \"amount\": f\"{amount:.2f}\",\n            \"tax\": f\"{tax:.2f}\",\n            \"total\": f\"{total:.2f}\",\n            \"currency\": \"USD\"\n        }\n    except Exception as exc:\n        return {\"error\": f\"Invalid transaction input: {exc}\"}\n\n# Production verification\nprint(process_transaction(\"199.95\", \"0.0825\"))\nprint(process_transaction(\"not_a_number\", \"0.05\"))",
-          "explanation": "Demonstrates defensive decimal currency calculation with explicit quantization and robust error handling.",
-          "expectedOutput": "{'amount': '199.95', 'tax': '16.50', 'total': '216.45', 'currency': 'USD'}\n{'error': \"Invalid transaction input: [<class 'decimal.InvalidOperation'>]\"}"
-        }
-      ],
-      "keyPoints": [
-        "Always initialize Decimal with strings (Decimal('0.1')), never floats (Decimal(0.1)), to avoid capturing float inaccuracies.",
-        "Use quantize() to control rounding modes explicitly (e.g. ROUND_HALF_UP)."
-      ],
-      "commonMistakes": [
-        "Catching bare exceptions without logging or re-raising unexpected system errors like KeyboardInterrupt."
-      ]
+      "id": "sec-1-1-1",
+      "heading": "1.1.1 How Does a Computer Program Work?",
+      "content": "A computer is an astonishingly fast electronic machine, but it possesses zero independent intelligence. At its core, a central processing unit (CPU) can only perform a very limited set of fundamental operations: fetching data from memory, performing simple arithmetic (addition, subtraction), performing boolean comparisons (is X greater than Y?), and branching to another instruction based on the result.\n\nA computer program is a set of instructions that dictates how the CPU should transform inputs into desired outputs. The language directly understood by hardware is machine code — composed entirely of binary digits (0s and 1s) representing electrical voltage states.\n\nBecause writing complex software directly in binary or assembly is tedious and error-prone, computer scientists designed high-level programming languages like Python, allowing developers to write instructions in human-readable notation."
     }
   ],
-  "exercises": [
-    {
-      "id": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form-ex-1",
-      "type": "coding",
-      "title": "Build a Validated Currency Conversion CLI",
-      "objective": "Implement a currency parser that accepts foreign exchange inputs and prints formatted summaries without precision loss.",
-      "description": "Create a currency exchange service that accepts an amount, a base currency string, and an exchange rate. Validate that amount is positive, handle non-numeric inputs gracefully, calculate the converted total using Decimal with 4 decimal places of accuracy, and return an f-string formatted summary.",
-      "instructions": [
-        "Create convert_currency(amount_str: str, rate_str: str) -> str.",
-        "Use Decimal for all mathematical operations.",
-        "Format the converted output with 4 decimal places using f-strings.",
-        "Raise ValueError with descriptive message if the input cannot be converted or is negative."
-      ],
-      "starterCode": "from decimal import Decimal\n\ndef convert_currency(amount_str: str, rate_str: str) -> str:\n    # Implement safe Decimal parsing and formatting\n    pass",
-      "hints": [
-        "Wrap the parsing in a try/except block catching (InvalidOperation, ValueError).",
-        "Use `f'{result:.4f}'` to enforce four decimal places."
-      ],
-      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
-      "evaluationCriteria": [
-        "Addresses the root architectural/technical challenge accurately",
-        "Follows defensive industry standards and edge-case validation"
-      ],
-      "solutionExplanation": "Uses Decimal initialized with strings to ensure floating point inaccuracies never corrupt monetary transactions."
-    }
-  ],
+  "exercises": [],
   "knowledgeChecks": [
     {
-      "id": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form-kc-1",
+      "id": "kc-1-1-1",
       "type": "single-choice",
-      "prompt": "Why does Python evaluate '0.1 + 0.2 == 0.3' as False?",
+      "prompt": "What is the only language that a computer CPU can execute directly without translation?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Because Python floats have a maximum limit of 10 decimal digits."
+          "text": "Machine language (binary code)"
         },
         {
           "id": "opt-2",
-          "text": "Because 0.1 and 0.2 cannot be represented with exact precision in IEEE 754 binary floating-point representation."
+          "text": "Python source code"
         },
         {
           "id": "opt-3",
-          "text": "Because Python converts 0.1 to an integer before addition."
+          "text": "Assembly language mnemonics"
         },
         {
           "id": "opt-4",
-          "text": "Because the '==' operator is disabled for floating-point operands."
+          "text": "Bytecode"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Binary floating-point arithmetic represents numbers as fractions of powers of 2. In base-2, 1/10 is an infinitely repeating fraction, causing minor rounding discrepancies.",
+      "explanation": "CPUs execute machine code (binary electrical instructions) directly on silicon transistors.",
       "objectiveIds": [
-        "python-obj-1"
-      ]
-    },
-    {
-      "id": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form-kc-2",
-      "type": "single-choice",
-      "prompt": "What is the recommended method to compare two floating-point numbers for approximate equality in scientific code?",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Using 'a is b'"
-        },
-        {
-          "id": "opt-2",
-          "text": "Using 'math.isclose(a, b, rel_tol=1e-9)'"
-        },
-        {
-          "id": "opt-3",
-          "text": "Converting both numbers to strings using str(a) == str(b)"
-        },
-        {
-          "id": "opt-4",
-          "text": "Using 'a // b == 1'"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-2"
-      ],
-      "explanation": "math.isclose() evaluates whether two floats are equal within a specified relative or absolute tolerance, safely absorbing binary representation discrepancies.",
-      "objectiveIds": [
-        "python-obj-2"
+        "pe1-obj-1"
       ]
     }
   ],
-  "recap": "Python integers have arbitrary precision; floats adhere to IEEE 754 with known binary representation limits. For financial math, always use decimal.Decimal initialized with string values.",
+  "recap": "Computers execute machine code; high-level languages like Python abstract hardware details into expressive human-readable logic.",
   "videoResources": [
     {
-      "id": "res-python-primary",
-      "title": "Python Full Course for Beginners to Advanced Architecture",
+      "id": "vid-mod-1-pe1-m1-l1-fundamentals",
+      "title": "Cisco NetAcad Python Essentials 1: 1.1. Fundamentals of Computer Programming",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Core Python",
-      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-      "embedUrl": "",
-      "durationMinutes": 60,
-      "difficulty": "beginner",
-      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
-      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
-      "learningObjectivesSupported": [
-        "python-obj-1",
-        "python-obj-2",
-        "python-obj-3",
-        "python-obj-4"
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 1.1. Fundamentals of Computer Programming aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
       ],
-      "keyTopicsCovered": [
-        "Python Execution Architecture, Bytecode & Object Model",
-        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-        "The Iteration Protocol, Generators & Streaming Pipelines",
-        "Closures, First-Class Functions & Decorator Metaprogramming",
-        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
-      ],
-      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
-      "verificationStatus": "curated",
-      "lastCheckedDate": "2026-11-12"
+      "whatItTeaches": "Step-by-step guidance on 1.1. Fundamentals of Computer Programming with practical examples and code execution trace."
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation & Language Reference",
-      "url": "https://docs.python.org/3/",
-      "description": "Authoritative official technical reference for Python."
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
     }
   ],
   "realWorldApplications": [
-    "Fintech billing systems preventing micro-penny rounding drift across millions of credit card transactions.",
-    "Sensor telemetry aggregators filtering invalid ASCII readings before ingestion into real-time databases."
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
   ],
   "generationMode": "curated",
   "reviewStatus": "approved",
   "contentVersion": 2,
-  "generatedAt": "2026-11-12T03:01:18.229Z"
+  "generatedAt": "2026-11-12T16:01:55.582Z"
 }

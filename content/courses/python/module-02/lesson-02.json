@@ -1,199 +1,118 @@
 {
-  "lessonId": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream",
+  "lessonId": "mod-2-pe1-m2-l2-operators",
   "skillName": "Python",
-  "moduleId": "mod-2-python-beginner-module-2",
-  "title": "The Iteration Protocol, Generators & Streaming Pipelines",
-  "summary": "Master iterators, the __iter__ and __next__ protocol, generator functions with yield, and memory-efficient streaming pipelines.",
+  "moduleId": "mod-2-pe1-m2",
+  "title": "2.2. Operators: Data Operations Tools & Precedence",
+  "summary": "Master arithmetic operators: addition (+), subtraction (-), multiplication (*), standard division (/), integer floor division (//), modulo (%), and exponentiation (**).",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 50,
+  "estimatedMinutes": 25,
   "learningObjectives": [
-    "Construct custom iterators using the dunder __iter__ and __next__ protocol",
-    "Build generator streaming pipelines that process large datasets with O(1) constant memory consumption"
+    "Execute arithmetic operations and recognize which operations always produce float results.",
+    "Understand integer floor division (//) rounding down towards negative infinity.",
+    "Apply operator precedence hierarchy (PEMDAS) and associativity (left-to-right vs. right-to-left for **)."
   ],
   "objectiveIds": [
-    "python-obj-2",
-    "python-obj-3"
+    "pe1-obj-1"
   ],
   "prerequisiteConcepts": [
-    "Python loops, lists, and functions"
+    "Basic computer literacy",
+    "Terminal usage"
   ],
   "sections": [
     {
-      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-sec-1",
-      "heading": "1. The Iteration Protocol & Memory Mechanics of Generators",
-      "content": "In Python, iteration is driven by a standardized protocol:\n1. An iterable is any object that implements `__iter__()`, which returns an iterator.\n2. An iterator is an object that implements `__next__()`. When `next(iterator)` is called, it returns the next item or raises `StopIteration` when depleted.\n\nA standard Python `for` loop is syntactic sugar over this exact mechanism:\n```python\niterator = iter(collection)\nwhile True:\n    try:\n        item = next(iterator)\n        # body\n    except StopIteration:\n        break\n```\n\nWhen processing large datasets (e.g. 50 GB log files or millions of database rows), loading data into a list (`[x for x in data]`) forces Python to allocate massive heap memory, risking `MemoryError` or triggering the OS Out-Of-Memory (OOM) killer.\n\nGenerators solve this fundamentally. Any function containing the `yield` keyword compiles into a generator function. When called, it does NOT execute the body immediately; instead, it returns a generator object. When `next()` is called, the function executes until it reaches `yield`, returns the value, and freezes its execution frame (saving local variables and instruction pointer in memory). Calling `next()` resumes execution immediately after `yield`.\n\nThis provides Lazy Evaluation: items are produced one-by-one on demand, maintaining O(1) constant auxiliary space regardless of dataset size.",
-      "codeExamples": [
-        {
-          "language": "text",
-          "code": "+-------------------------------------------------------------------+\n| EAGER LIST ALLOCATION VS LAZY GENERATOR STREAMING                 |\n|                                                                   |\n|  EAGER (List):                                                    |\n|  [Item 1, Item 2, Item 3 ... Item 10,000,000] -> Requires 800 MB   |\n|                                                                   |\n|  LAZY (Generator Pipeline):                                       |\n|  Source File ---> (read line) ---> (filter) ---> (aggregate)      |\n|                        ^                                          |\n|  Only 1 item resides in RAM at any given millisecond (< 1 KB)!    |\n|  State is suspended at 'yield' and resumed on 'next()'.           |\n+-------------------------------------------------------------------+",
-          "explanation": "Generators pause at yield, evaluating one record at a time to achieve constant O(1) memory consumption.",
-          "expectedOutput": "System Architecture & Memory Layout Diagram"
-        }
-      ],
-      "keyPoints": [
-        "Iterators implement __iter__() returning self and __next__() raising StopIteration upon completion.",
-        "Generators yield values lazily, preserving execution state without consuming memory for unread items.",
-        "Generator pipelines chain multiple transformations (read -> filter -> transform) cleanly."
-      ],
-      "commonMistakes": [
-        "Calling list(generator) on infinite or massive streams, destroying the memory efficiency advantage.",
-        "Attempting to iterate over a exhausted generator a second time without instantiating a fresh one."
-      ]
+      "id": "sec-2-2-1",
+      "heading": "2.2.1 The Arithmetic Operators",
+      "content": "Python provides 7 primary arithmetic operators:\n• + : Addition\n• - : Subtraction\n• * : Multiplication\n• / : True Division — CRITICAL NETACAD RULE: The result of standard division (/) is ALWAYS a float, even if the division is exact (e.g. 6 / 3 produces 2.0).\n• // : Integer Floor Division — Discards the fractional part and rounds down towards negative infinity (e.g. 6 // 4 is 1, but -6 // 4 is -2).\n• % : Modulo (Remainder) — Computes the remainder after integer division (e.g. 14 % 4 is 2).\n• ** : Exponentiation — Raises the left operand to the power of the right operand (e.g. 2 ** 3 is 8)."
     },
     {
-      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-sec-2",
-      "heading": "2. Building a Production Memory-Efficient Log Pipeline",
-      "content": "In real-world data engineering and DevOps, servers generate hundreds of gigabytes of log entries daily. Using generator expressions and generator functions allows engineers to filter, parse, and aggregate security alerts in real time with near-zero memory footprint.",
-      "codeExamples": [
-        {
-          "language": "python",
-          "code": "import sys\nfrom typing import Iterator, Generator\n\n# Simulated streaming log data (can be an infinite network socket or 100GB file)\nRAW_LOGS = (\n    \"2026-11-12 08:00:01 INFO [auth] User login successful: alice\",\n    \"2026-11-12 08:00:05 WARN [rate_limit] Client IP exceeded 60 req/min: 192.168.1.50\",\n    \"2026-11-12 08:00:12 ERROR [payment] Gateway timeout on charge #9821\",\n    \"2026-11-12 08:00:18 INFO [auth] User login successful: bob\",\n    \"2026-11-12 08:00:25 ERROR [database] Connection pool exhausted\",\n)\n\ndef stream_lines(log_entries: tuple) -> Generator[str, None, None]:\n    \"\"\"Yield log lines one at a time.\"\"\"\n    for line in log_entries:\n        yield line\n\ndef filter_errors(lines: Iterator[str]) -> Generator[dict, None, None]:\n    \"\"\"Pipeline stage: filter for ERROR messages and parse metadata.\"\"\"\n    for line in lines:\n        if \"ERROR\" in line:\n            parts = line.split(\" \", 3)\n            yield {\n                \"timestamp\": f\"{parts[0]} {parts[1]}\",\n                \"component\": parts[2],\n                \"message\": parts[3]\n            }\n\n# Chaining the generator pipeline\nraw_stream = stream_lines(RAW_LOGS)\nerror_pipeline = filter_errors(raw_stream)\n\n# Inspect memory usage\nprint(f\"Memory size of pipeline generator: {sys.getsizeof(error_pipeline)} bytes\")\n\n# Consume items lazily\nfor error_record in error_pipeline:\n    print(f\"SECURITY ALERT [{error_record['timestamp']}]: {error_record['message']}\")",
-          "explanation": "Demonstrates a memory-efficient generator pipeline processing log entries one at a time with fixed minimal RAM usage.",
-          "expectedOutput": "Memory size of pipeline generator: <small_bytes_e.g._112> bytes\nSECURITY ALERT [2026-11-12 08:00:12]: [payment] Gateway timeout on charge #9821\nSECURITY ALERT [2026-11-12 08:00:25]: [database] Connection pool exhausted"
-        }
-      ],
-      "keyPoints": [
-        "Generator pipelines are composable: each function receives an iterator and yields transformed records.",
-        "sys.getsizeof() demonstrates that generator objects remain tiny (<200 bytes) regardless of how many records pass through."
-      ],
-      "commonMistakes": [
-        "Storing intermediate results in global lists inside generator functions, silently destroying lazy streaming."
-      ]
+      "id": "sec-2-2-2",
+      "heading": "2.2.2 Operator Precedence and Associativity",
+      "content": "When multiple operators appear in a single expression, Python follows strict precedence rules:\n\n1. Parentheses: () — Explicit grouping always evaluates first.\n2. Exponentiation: ** — Right-to-left associativity (e.g. 2 ** 3 ** 2 = 2 ** 9 = 512, NOT 8 ** 2 = 64).\n3. Unary operators: + (unary plus), - (unary minus).\n4. Multiplicative operators: *, /, //, % — Left-to-right associativity.\n5. Additive operators: +, - — Left-to-right associativity."
     }
   ],
-  "exercises": [
-    {
-      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-ex-1",
-      "type": "coding",
-      "title": "Construct a Streaming Sliding-Window Generator",
-      "objective": "Implement a reusable generator function that yields moving window slices over an arbitrary stream.",
-      "description": "Write a generator function sliding_window(iterable, window_size: int) that yields tuples of length window_size moving one element forward on each step. It must work with any iterable (including generators), consume O(window_size) memory, and stop gracefully when items are exhausted.",
-      "instructions": [
-        "Define sliding_window(iterable, window_size: int).",
-        "Validate window_size >= 1.",
-        "Use collections.deque with maxlen=window_size for optimal O(1) append/pop efficiency.",
-        "Yield tuples of the current window only when the window is full."
-      ],
-      "starterCode": "from collections import deque\nfrom typing import Iterable, Generator, Tuple, Any\n\ndef sliding_window(iterable: Iterable[Any], window_size: int) -> Generator[Tuple[Any, ...], None, None]:\n    # Implement sliding window generator\n    pass\n\n# Test with range(5) and window_size=3 -> (0, 1, 2), (1, 2, 3), (2, 3, 4)",
-      "hints": [
-        "Initialize `d = deque(maxlen=window_size)`.",
-        "Inside the loop, `d.append(item)`; check `if len(d) == window_size: yield tuple(d)`."
-      ],
-      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
-      "evaluationCriteria": [
-        "Addresses the root architectural/technical challenge accurately",
-        "Follows defensive industry standards and edge-case validation"
-      ],
-      "solutionExplanation": "Using collections.deque(maxlen=window_size) ensures O(1) buffer sliding without reallocating intermediate sublists."
-    }
-  ],
+  "exercises": [],
   "knowledgeChecks": [
     {
-      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-kc-1",
+      "id": "kc-2-2-1",
       "type": "single-choice",
-      "prompt": "What exception signals the termination of an iterator in Python?",
+      "prompt": "What is the value of the Python expression: 2 ** 2 ** 3 ?",
       "options": [
         {
           "id": "opt-1",
-          "text": "IndexError"
+          "text": "256"
         },
         {
           "id": "opt-2",
-          "text": "StopIteration"
+          "text": "64"
         },
         {
           "id": "opt-3",
-          "text": "GeneratorExit"
+          "text": "16"
         },
         {
           "id": "opt-4",
-          "text": "EOFError"
+          "text": "512"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "The Python iteration protocol specifies that __next__() raises StopIteration when no further items remain.",
+      "explanation": "The exponentiation operator (**) binds right-to-left: 2 ** (2 ** 3) = 2 ** 8 = 256.",
       "objectiveIds": [
-        "python-obj-2"
-      ]
-    },
-    {
-      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-kc-2",
-      "type": "single-choice",
-      "prompt": "What happens to a generator function's local execution frame when a 'yield' statement is executed?",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "The frame is destroyed and garbage collected immediately."
-        },
-        {
-          "id": "opt-2",
-          "text": "The frame is suspended and preserved in memory until next() is called or the generator is garbage collected."
-        },
-        {
-          "id": "opt-3",
-          "text": "The frame is serialized into a temporary disk file."
-        },
-        {
-          "id": "opt-4",
-          "text": "The frame is converted into a static tuple."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-2"
-      ],
-      "explanation": "Yield pauses the generator, preserving its local variable state, evaluation stack, and instruction pointer until resumption.",
-      "objectiveIds": [
-        "python-obj-3"
+        "pe1-obj-2"
       ]
     }
   ],
-  "recap": "The iteration protocol (__iter__, __next__, StopIteration) powers Python loops. Generator functions with yield enable lazy evaluation and constant O(1) memory pipelines for large datasets.",
+  "recap": "Standard division (/) always yields a float. Exponentiation (**) uniquely binds from right to left.",
   "videoResources": [
     {
-      "id": "res-python-primary",
-      "title": "Python Full Course for Beginners to Advanced Architecture",
+      "id": "vid-mod-2-pe1-m2-l2-operators",
+      "title": "Cisco NetAcad Python Essentials 1: 2.2. Operators: Data Operations Tools & Precedence",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Core Python",
-      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-      "embedUrl": "",
-      "durationMinutes": 60,
-      "difficulty": "beginner",
-      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
-      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
-      "learningObjectivesSupported": [
-        "python-obj-1",
-        "python-obj-2",
-        "python-obj-3",
-        "python-obj-4"
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 2.2. Operators: Data Operations Tools & Precedence aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
       ],
-      "keyTopicsCovered": [
-        "Python Execution Architecture, Bytecode & Object Model",
-        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-        "The Iteration Protocol, Generators & Streaming Pipelines",
-        "Closures, First-Class Functions & Decorator Metaprogramming",
-        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
-      ],
-      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
-      "verificationStatus": "curated",
-      "lastCheckedDate": "2026-11-12"
+      "whatItTeaches": "Step-by-step guidance on 2.2. Operators: Data Operations Tools & Precedence with practical examples and code execution trace."
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation & Language Reference",
-      "url": "https://docs.python.org/3/",
-      "description": "Authoritative official technical reference for Python."
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
     }
   ],
   "realWorldApplications": [
-    "Streaming database query cursors loading millions of financial rows without server memory exhaustion.",
-    "Machine learning ETL pipelines batching image files and augmentation transforms on the fly."
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
   ],
   "generationMode": "curated",
   "reviewStatus": "approved",
   "contentVersion": 2,
-  "generatedAt": "2026-11-12T03:01:18.229Z"
+  "generatedAt": "2026-11-12T16:01:55.582Z"
 }

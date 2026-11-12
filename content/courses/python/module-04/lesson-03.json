@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-4-pe1-m4-l3-scopes",
+  "skillName": "Python",
+  "moduleId": "mod-4-pe1-m4",
+  "title": "4.3. Variable Scopes & Namespace Resolution",
+  "summary": "Master variable scoping: local vs global scope, understand the LEGB namespace lookup rule, and use the global keyword judiciously.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Explain the lifetime and visibility of local variables defined inside functions.",
+    "Understand why functions can read global variables but cannot modify them without the global keyword.",
+    "Recognize the LEGB (Local, Enclosing, Global, Built-in) lookup rule."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-4-3-1",
+      "heading": "4.3.1 Local vs Global Scope",
+      "content": "A variable created inside a function has local scope: it exists only while the function is executing and cannot be accessed from outside. Variables created outside all functions have global scope.\n\nIf you assign a value to a variable inside a function, Python treats it as a local variable unless you explicitly declare it with the global keyword."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-4-3-1",
+      "type": "single-choice",
+      "prompt": "Which keyword allows modifying a global variable from inside a function?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "global"
+        },
+        {
+          "id": "opt-2",
+          "text": "nonlocal"
+        },
+        {
+          "id": "opt-3",
+          "text": "public"
+        },
+        {
+          "id": "opt-4",
+          "text": "extern"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "The global keyword informs Python that an identifier refers to the module-level global variable.",
+      "objectiveIds": [
+        "pe1-obj-4"
+      ]
+    }
+  ],
+  "recap": "Local variables are contained within function scopes; the global keyword binds to module scope.",
+  "videoResources": [
+    {
+      "id": "vid-mod-4-pe1-m4-l3-scopes",
+      "title": "Cisco NetAcad Python Essentials 1: 4.3. Variable Scopes & Namespace Resolution",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 4.3. Variable Scopes & Namespace Resolution aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 4.3. Variable Scopes & Namespace Resolution with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

@@ -197,6 +197,15 @@ export const SplineRobot = memo(function SplineRobot({
           />
         </Suspense>
       )}
+      {/* Visual cover block to guarantee watermark cannot show through at bottom right/left */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 right-0 z-30 h-16 w-56 bg-gradient-to-t from-[var(--bg,#0a0e17)] via-[var(--bg,#0a0e17)]/90 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 z-30 h-16 w-56 bg-gradient-to-t from-[var(--bg,#0a0e17)] via-[var(--bg,#0a0e17)]/90 to-transparent"
+      />
     </div>
   );
 });

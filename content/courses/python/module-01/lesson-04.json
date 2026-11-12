@@ -1,0 +1,134 @@
+{
+  "lessonId": "mod-1-pe1-m1-l3-first-program",
+  "skillName": "Python",
+  "moduleId": "mod-1-pe1-m1",
+  "title": "1.3. The First Program & The print() Function",
+  "summary": "Learn how the print() built-in function works, pass arguments, handle whitespace, and explore positional vs keyword arguments.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Invoke the print() function with single and multiple arguments.",
+    "Understand what a function, an argument, and a function call represent in Python.",
+    "Control output formatting using the sep and end keyword parameters."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-1-3-1",
+      "heading": "1.3.1 Anatomy of the print() Function Call",
+      "content": "In Python, print() is a built-in function. A function is a reusable block of code that performs a specific action.\n\nWhen you call print(\"Hello, World!\"), you provide an argument inside the parentheses. The print() function takes this argument, converts it to textual representation, writes it to standard output (the terminal), and automatically adds an invisible newline character (\\n) at the end so the next print() starts on a fresh line.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "print(\"Programming in Python Essentials 1\")\nprint(\"Notice this appears on a new line.\")",
+          "explanation": "Two sequential print calls produce two distinct lines in the output console.",
+          "expectedOutput": "Programming in Python Essentials 1\nNotice this appears on a new line."
+        }
+      ]
+    },
+    {
+      "id": "sec-1-3-2",
+      "heading": "1.3.2 Multiple Arguments and the sep & end Parameters",
+      "content": "You can pass multiple arguments separated by commas:\nprint(\"My\", \"name\", \"is\", \"Python.\")\nBy default, print() inserts a space character between each argument.\n\nYou can override this behavior using the keyword arguments sep and end:\n• sep (separator): Defines what string is inserted between arguments (default is ' ').\n• end (terminator): Defines what string is printed at the very end of the function call (default is '\\n').",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "print(\"My\", \"name\", \"is\", \"Python\", sep=\"-\")\nprint(\"Loading\", end=\"...\")\nprint(\"Done!\")",
+          "explanation": "The sep parameter specifies custom hyphen separators, while end='...' prevents a newline between Loading and Done!.",
+          "expectedOutput": "My-name-is-Python\nLoading...Done!"
+        }
+      ]
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-1-3-1",
+      "type": "single-choice",
+      "prompt": "What is the default value of the end keyword argument in Python's print() function?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "A newline character ('\\n')"
+        },
+        {
+          "id": "opt-2",
+          "text": "A single space character (' ')"
+        },
+        {
+          "id": "opt-3",
+          "text": "An empty string ('')"
+        },
+        {
+          "id": "opt-4",
+          "text": "A tab character ('\\t')"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "By default, end='\\n', causing subsequent print() outputs to appear on a new line.",
+      "objectiveIds": [
+        "pe1-obj-1"
+      ]
+    }
+  ],
+  "recap": "The print() function is the universal output mechanism, highly customizable via sep and end keyword parameters.",
+  "videoResources": [
+    {
+      "id": "vid-mod-1-pe1-m1-l3-first-program",
+      "title": "Cisco NetAcad Python Essentials 1: 1.3. The First Program & The print() Function",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 1.3. The First Program & The print() Function aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 1.3. The First Program & The print() Function with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

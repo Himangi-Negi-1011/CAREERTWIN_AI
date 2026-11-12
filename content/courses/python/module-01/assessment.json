@@ -1,165 +1,167 @@
 {
-  "id": "phase-python-mod-1-python-beginner-module-1-assessment",
+  "id": "phase-python-mod-1-pe1-m1-assessment",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
-  "moduleId": "mod-1-python-beginner-module-1",
-  "moduleTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives",
-  "title": "Python — Module 1: Python Runtime Architecture, Memory Model & Primitives Assessment",
-  "description": "Checkpoint evaluation verifying conceptual mastery across Python Execution Architecture, Bytecode & Object Model and Primitive Types, IEEE 754 Arithmetic & Formatted IO.",
-  "durationMinutes": 20,
-  "totalMarks": 8,
+  "moduleId": "mod-1-pe1-m1",
+  "moduleTitle": "Module 1: Introduction to Python and Computer Programming",
+  "title": "Module 1 Section Assessment",
+  "description": "Authoritative Cisco NetAcad examination for Module 1: Introduction to Python and Computer Programming. Validates syntax comprehension, output prediction, and debugging capabilities.",
+  "durationMinutes": 25,
+  "totalMarks": 9,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Python Execution Architecture, Bytecode & Object Model",
-    "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
+    "CPython Architecture",
+    "Machine vs Interpreted Languages",
+    "print() Function",
+    "Escape Sequences"
   ],
   "questions": [
     {
-      "id": "phase-python-mod-1-python-beginner-module-1-q1",
+      "id": "q-pe1-m1-1",
       "section": "A",
-      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
+      "sectionTitle": "Language Foundations",
       "type": "single-choice",
-      "prompt": "What does executing 'y = x' perform when x is bound to a Python list?",
+      "prompt": "What kind of language is Python fundamentally classified as?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It performs a deep copy of the list and its internal elements into newly allocated memory."
+          "text": "An interpreted, high-level, dynamically typed language"
         },
         {
           "id": "opt-2",
-          "text": "It copies the pointer reference, binding y to the exact same heap-allocated list as x."
+          "text": "A purely compiled low-level machine language"
         },
         {
           "id": "opt-3",
-          "text": "It converts x into an immutable tuple before binding y."
+          "text": "A statically typed markup specification language"
         },
         {
           "id": "opt-4",
-          "text": "It compiles x into frozen bytecode in the __pycache__ directory."
+          "text": "An assembly language mnemonic processor"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Assignment in Python never implicitly clones collections; it creates a new reference pointing to the identical heap object.",
-      "difficulty": "beginner",
-      "topic": "Python Execution Architecture, Bytecode & Object Model",
+      "explanation": "Python is a high-level, interpreted programming language with dynamic typing and automatic memory management.",
+      "difficulty": "foundation",
+      "topic": "Python Architecture",
       "marks": 2,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o",
-      "recommendedLessonTitle": "Python Execution Architecture, Bytecode & Object Model"
+      "recommendedLessonId": "mod-1-pe1-m1-l2-evolution",
+      "recommendedLessonTitle": "1.2. Introduction to Python & Evolution"
     },
     {
-      "id": "phase-python-mod-1-python-beginner-module-1-q2",
+      "id": "q-pe1-m1-2",
       "section": "A",
-      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
-      "type": "single-choice",
-      "prompt": "Why should the 'is' operator NOT be used to compare arbitrary integers for numeric equality?",
-      "codeSnippet": "",
+      "sectionTitle": "I/O Formatting",
+      "type": "code-output",
+      "prompt": "What is the exact output of running the following Python code snippet?",
+      "codeSnippet": "print(\"Python\", \"Essentials\", sep=\"***\", end=\"!\")\nprint(\"NetAcad\")",
       "options": [
         {
           "id": "opt-1",
-          "text": "Because 'is' raises a TypeError when comparing numbers of different sizes."
+          "text": "Python***Essentials!NetAcad"
         },
         {
           "id": "opt-2",
-          "text": "Because 'is' checks object memory identity, and CPython only caches small integers (-5 to 256), leading to false negatives on larger numbers."
+          "text": "Python Essentials! NetAcad"
         },
         {
           "id": "opt-3",
-          "text": "Because 'is' mutates the reference count to zero, triggering garbage collection."
+          "text": "Python***Essentials\\n!NetAcad"
         },
         {
           "id": "opt-4",
-          "text": "Because Python requires bitwise operators like '&' for numbers."
+          "text": "SyntaxError: invalid keyword argument"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "'is' checks whether two variables share the exact same memory address. CPython interns small integers (-5 through 256), but numbers outside this range are allocated independently.",
+      "explanation": "The sep parameter inserts '***' between arguments, while end='!' prevents a newline, causing 'NetAcad' to append immediately.",
       "difficulty": "beginner",
-      "topic": "Python Execution Architecture, Bytecode & Object Model",
+      "topic": "print() Function",
       "marks": 2,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o",
-      "recommendedLessonTitle": "Python Execution Architecture, Bytecode & Object Model"
+      "recommendedLessonId": "mod-1-pe1-m1-l3-first-program",
+      "recommendedLessonTitle": "1.3. The First Program & The print() Function"
     },
     {
-      "id": "phase-python-mod-1-python-beginner-module-1-q4",
-      "section": "A",
-      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
-      "type": "single-choice",
-      "prompt": "Why does Python evaluate '0.1 + 0.2 == 0.3' as False?",
-      "codeSnippet": "",
+      "id": "q-pe1-m1-3",
+      "section": "B",
+      "sectionTitle": "Escape Characters",
+      "type": "code-output",
+      "prompt": "What will be printed to standard output by the following statement?",
+      "codeSnippet": "print(\"\\\\\"\\n\\\\\")",
       "options": [
         {
           "id": "opt-1",
-          "text": "Because Python floats have a maximum limit of 10 decimal digits."
+          "text": "\\\"\n\\"
         },
         {
           "id": "opt-2",
-          "text": "Because 0.1 and 0.2 cannot be represented with exact precision in IEEE 754 binary floating-point representation."
+          "text": "\\\\\"\\n\\\\"
         },
         {
           "id": "opt-3",
-          "text": "Because Python converts 0.1 to an integer before addition."
+          "text": "\"\\\n\\"
         },
         {
           "id": "opt-4",
-          "text": "Because the '==' operator is disabled for floating-point operands."
+          "text": "SyntaxError: unterminated string literal"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Binary floating-point arithmetic represents numbers as fractions of powers of 2. In base-2, 1/10 is an infinitely repeating fraction, causing minor rounding discrepancies.",
-      "difficulty": "beginner",
-      "topic": "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form",
-      "recommendedLessonTitle": "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
+      "explanation": "\\\\ prints a literal backslash, \\\" prints a literal double quote, \\n introduces a line break, and \\\\ prints a final backslash.",
+      "difficulty": "intermediate",
+      "topic": "Escape Sequences",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-pe1-m1-l4-practice-lab",
+      "recommendedLessonTitle": "1.4. Practice Lab: print() Formatting & Escape Sequences"
     },
     {
-      "id": "phase-python-mod-1-python-beginner-module-1-q5",
-      "section": "A",
-      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
+      "id": "q-pe1-m1-4",
+      "section": "B",
+      "sectionTitle": "Interpreter Mechanics",
       "type": "single-choice",
-      "prompt": "What is the recommended method to compare two floating-point numbers for approximate equality in scientific code?",
+      "prompt": "What file extension is used for compiled Python bytecode files stored in the __pycache__ directory?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Using 'a is b'"
+          "text": ".pyc"
         },
         {
           "id": "opt-2",
-          "text": "Using 'math.isclose(a, b, rel_tol=1e-9)'"
+          "text": ".exe"
         },
         {
           "id": "opt-3",
-          "text": "Converting both numbers to strings using str(a) == str(b)"
+          "text": ".class"
         },
         {
           "id": "opt-4",
-          "text": "Using 'a // b == 1'"
+          "text": ".obj"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "math.isclose() evaluates whether two floats are equal within a specified relative or absolute tolerance, safely absorbing binary representation discrepancies.",
+      "explanation": "CPython compiles source code into .pyc (Python Compiled) bytecode files for faster subsequent imports.",
       "difficulty": "beginner",
-      "topic": "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+      "topic": "Bytecode Compilation",
       "marks": 2,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form",
-      "recommendedLessonTitle": "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
+      "recommendedLessonId": "mod-1-pe1-m1-l2-evolution",
+      "recommendedLessonTitle": "1.2. Introduction to Python & Evolution"
     }
   ],
   "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-12T03:01:18.229Z",
-  "updatedAt": "2026-11-12T03:01:18.229Z"
+  "createdAt": "2026-11-12T16:01:55.582Z",
+  "updatedAt": "2026-11-12T16:01:55.582Z"
 }

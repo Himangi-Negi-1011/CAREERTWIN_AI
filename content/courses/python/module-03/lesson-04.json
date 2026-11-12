@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-3-pe1-m3-l4-lists",
+  "skillName": "Python",
+  "moduleId": "mod-3-pe1-m3",
+  "title": "3.4. Lists: Mutable Sequences & Memory Allocation",
+  "summary": "Discover Python lists: ordered, mutable collections. Master positive and negative zero-based indexing, slicing [start:end:step], append(), insert(), and del.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Construct lists, access elements using zero-based positive and negative indices.",
+    "Modify lists in place using append(), insert(), pop(), and the del statement.",
+    "Extract sub-sequences using list slicing [start:end:step]."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-3-4-1",
+      "heading": "3.4.1 List Anatomy & Zero-Based Indexing",
+      "content": "A list is an ordered, mutable sequence of heterogeneous elements enclosed in square brackets [].\n\n• Zero-Based Indexing: The first element is at index 0, the second at 1, etc.\n• Negative Indexing: -1 references the last element, -2 the second-to-last, etc.\n• Slicing: numbers[1:4] creates a new list from index 1 through index 3 (stop index is exclusive)."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-3-4-1",
+      "type": "single-choice",
+      "prompt": "Given numbers = [10, 20, 30, 40, 50], what is numbers[-2]?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "40"
+        },
+        {
+          "id": "opt-2",
+          "text": "30"
+        },
+        {
+          "id": "opt-3",
+          "text": "50"
+        },
+        {
+          "id": "opt-4",
+          "text": "IndexError"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Negative index -1 is 50, and -2 is 40.",
+      "objectiveIds": [
+        "pe1-obj-3"
+      ]
+    }
+  ],
+  "recap": "Lists are mutable, ordered sequences with flexible slicing and zero-based/negative indexing.",
+  "videoResources": [
+    {
+      "id": "vid-mod-3-pe1-m3-l4-lists",
+      "title": "Cisco NetAcad Python Essentials 1: 3.4. Lists: Mutable Sequences & Memory Allocation",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 3.4. Lists: Mutable Sequences & Memory Allocation aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 3.4. Lists: Mutable Sequences & Memory Allocation with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

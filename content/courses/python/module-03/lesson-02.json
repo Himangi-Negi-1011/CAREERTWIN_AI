@@ -1,199 +1,118 @@
 {
-  "lessonId": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa",
+  "lessonId": "mod-3-pe1-m3-l2-loops",
   "skillName": "Python",
-  "moduleId": "mod-3-python-beginner-module-3",
-  "title": "OOP Architecture, Dunder Protocols & Automated Pytest Suites",
-  "summary": "Master object-oriented design, encapsulation, dunder protocols (__eq__, __hash__, __repr__), and test-driven verification with pytest.",
+  "moduleId": "mod-3-pe1-m3",
+  "title": "3.2. Loops in Python: while and for",
+  "summary": "Automate repetitive tasks with while and for loops, iterate with range(), and control loop execution using break, continue, and loop-else clauses.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 50,
+  "estimatedMinutes": 25,
   "learningObjectives": [
-    "Implement custom classes with clean dunder protocols (__eq__, __hash__, __repr__) and property encapsulation",
-    "Write comprehensive, deterministic automated test suites using pytest fixtures and assertion boundaries"
+    "Construct while loops with terminating conditions to prevent infinite loops.",
+    "Use for loops with range(start, stop, step) to iterate through sequences.",
+    "Apply break to exit prematurely, continue to skip the current iteration, and understand the loop-else block."
   ],
   "objectiveIds": [
-    "python-obj-3",
-    "python-obj-4"
+    "pe1-obj-1"
   ],
   "prerequisiteConcepts": [
-    "Python functions, exceptions, and collections"
+    "Basic computer literacy",
+    "Terminal usage"
   ],
   "sections": [
     {
-      "id": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa-sec-1",
-      "heading": "1. Object-Oriented Architecture & Python Dunder Protocols",
-      "content": "Python's object-oriented system is built around 'dunder' (double underscore) magic methods. Rather than requiring complex interfaces or boilerplate getters/setters, Python relies on protocol-based polymorphism ('duck typing'):\n\n1. Object Initialization & Representation:\n- `__init__(self, ...)` initializes the newly allocated instance.\n- `__repr__(self)` returns an unambiguous string representation suitable for developers and debugging (`eval(repr(obj)) == obj` where possible).\n- `__str__(self)` returns an informal, readable string for end-users.\n\n2. Encapsulation via Properties:\nPython does not use `private` keywords. By convention, a leading underscore (`_field`) signals internal implementation details. The `@property` decorator allows getters and setters to be defined with validation logic while maintaining clean dot-attribute syntax (`user.balance`).\n\n3. Value Equality & Hashing:\nTo store instances as dictionary keys or in sets, a class must implement both:\n- `__eq__(self, other)`: Compares domain identity/values.\n- `__hash__(self)`: Returns an integer hash. Crucial rule: If two objects are equal (`a == b`), they MUST return identical hash values (`hash(a) == hash(b)`).\n\n4. Automated Verification with Pytest:\nProduction code demands test coverage. `pytest` uses clean Python `assert` statements combined with dependency injection fixtures (`@pytest.fixture`) to verify state, test boundary conditions, and assert expected exceptions (`pytest.raises`).",
-      "codeExamples": [
-        {
-          "language": "text",
-          "code": "+-------------------------------------------------------------------+\n| PYTHON DUNDER PROTOCOLS & PYTEST TEST SUITE                       |\n|                                                                   |\n|  class Transaction:                                               |\n|    __init__(tx_id, amount)   -> Initializes instance state        |\n|    __repr__()                -> Transaction(id='TX1', amount=100) |\n|    __eq__(other)             -> Compares self.id == other.id      |\n|    __hash__()                -> hash(self.id) (Allows set / dict) |\n|    @property balance         -> Validated getter / setter         |\n|                                                                   |\n|  Pytest Fixtures:                                                 |\n|  @pytest.fixture                                                  |\n|  def sample_wallet():                                             |\n|      return Wallet(initial_balance=500.0)                         |\n|                                                                   |\n|  def test_overdraw_raises(sample_wallet):                         |\n|      with pytest.raises(InsufficientFundsError):                  |\n|          sample_wallet.withdraw(1000.0)                           |\n+-------------------------------------------------------------------+",
-          "explanation": "Classes implement dunder protocols for native integration, while pytest provides test fixtures and exception assertions.",
-          "expectedOutput": "System Architecture & Memory Layout Diagram"
-        }
-      ],
-      "keyPoints": [
-        "Use @property to encapsulate field validation without altering external attribute access syntax.",
-        "If overriding __eq__, you must also override __hash__ if you intend to store instances in sets or dictionaries.",
-        "Pytest fixtures provide reusable, isolated test dependencies that run automatically before test functions."
-      ],
-      "commonMistakes": [
-        "Implementing __eq__ without __hash__, which implicitly unhashes the class and crashes when added to a set.",
-        "Using broad try-except blocks in unit tests instead of 'with pytest.raises(ExpectedException):'."
-      ]
+      "id": "sec-3-2-1",
+      "heading": "3.2.1 The while Loop & Preventing Infinite Loops",
+      "content": "A while loop repeatedly executes an indented block as long as its condition remains True. The loop body must modify at least one variable involved in the condition to avoid an infinite loop."
     },
     {
-      "id": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa-sec-2",
-      "heading": "2. Production Domain Entity with Dunder Protocols and Pytest Suite",
-      "content": "In enterprise domain-driven design, entities must protect their invariants, provide clean developer debugging strings, support set deduplication, and be thoroughly tested against invalid operations.",
-      "codeExamples": [
-        {
-          "language": "python",
-          "code": "from dataclasses import dataclass\nfrom typing import Optional\n\nclass InsufficientFundsError(Exception):\n    \"\"\"Raised when withdrawal exceeds available balance.\"\"\"\n    pass\n\nclass BankAccount:\n    \"\"\"Domain model implementing encapsulation and dunder protocols.\"\"\"\n    \n    def __init__(self, account_id: str, owner: str, initial_balance: float = 0.0):\n        if initial_balance < 0:\n            raise ValueError(\"Initial balance cannot be negative.\")\n        self.account_id = account_id\n        self.owner = owner\n        self._balance = float(initial_balance)\n        \n    @property\n    def balance(self) -> float:\n        \"\"\"Read-only balance property.\"\"\"\n        return self._balance\n        \n    def deposit(self, amount: float) -> None:\n        if amount <= 0:\n            raise ValueError(\"Deposit amount must be positive.\")\n        self._balance += amount\n        \n    def withdraw(self, amount: float) -> None:\n        if amount <= 0:\n            raise ValueError(\"Withdrawal amount must be positive.\")\n        if amount > self._balance:\n            raise InsufficientFundsError(f\"Cannot withdraw {amount:.2f} with balance {self._balance:.2f}\")\n        self._balance -= amount\n        \n    def __repr__(self) -> str:\n        return f\"BankAccount(account_id='{self.account_id}', owner='{self.owner}', balance={self._balance:.2f})\"\n        \n    def __eq__(self, other: object) -> bool:\n        if not isinstance(other, BankAccount):\n            return False\n        return self.account_id == other.account_id\n        \n    def __hash__(self) -> int:\n        return hash(self.account_id)\n\n# Verification demonstration\nacc1 = BankAccount(\"ACC_001\", \"Alice\", 250.0)\nacc2 = BankAccount(\"ACC_001\", \"Alice Corp\", 500.0) # Same ID\n\nacc1.deposit(50.0)\nprint(f\"Account state: {acc1}\")\nprint(f\"Equality by ID: {acc1 == acc2}\")\nprint(f\"Set deduplication works: {len({acc1, acc2})} unique account\")",
-          "explanation": "Demonstrates complete domain encapsulation, custom exceptions, __repr__, __eq__, and __hash__ for reliable set membership.",
-          "expectedOutput": "Account state: BankAccount(account_id='ACC_001', owner='Alice', balance=300.00)\nEquality by ID: True\nSet deduplication works: 1 unique account"
-        }
-      ],
-      "keyPoints": [
-        "Encapsulation ensures that invalid states (negative balance) cannot occur by guarding modifications.",
-        "Domain entities are typically identified by a unique ID (__eq__ compares account_id)."
-      ],
-      "commonMistakes": [
-        "Directly mutating internal _balance from external modules, bypassing business validation rules."
-      ]
+      "id": "sec-3-2-2",
+      "heading": "3.2.2 The for Loop and the range() Generator",
+      "content": "The for loop is designed to iterate through sequences. Combined with the built-in range() function, it provides a clean counter mechanism:\n• range(stop): Generates values from 0 up to (but NOT including) stop.\n• range(start, stop): Generates values from start up to stop - 1.\n• range(start, stop, step): Steps by step (can be negative for reverse counting)."
     }
   ],
-  "exercises": [
-    {
-      "id": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa-ex-1",
-      "type": "coding",
-      "title": "Build and Test a TaskQueue Domain Entity",
-      "objective": "Create a Task entity with priority comparisons and write pytest assertions testing boundary constraints.",
-      "description": "Create a Task class with task_id (str), title (str), priority (int: 1-5). Implement __repr__, __eq__ (by task_id), and __lt__ (so tasks can be sorted by priority in reverse order). Write test cases checking that tasks sort correctly and that invalid priority values (< 1 or > 5) raise ValueError.",
-      "instructions": [
-        "Define Task(task_id: str, title: str, priority: int).",
-        "Validate 1 <= priority <= 5; raise ValueError otherwise.",
-        "Implement __repr__, __eq__, and __lt__.",
-        "Write assert tests demonstrating list sorting and duplicate detection in sets."
-      ],
-      "starterCode": "class Task:\n    # Implement Task class with validation and dunder methods\n    pass\n\n# Write tests verifying priority ordering and validation",
-      "hints": [
-        "Implement `__lt__(self, other): return self.priority > other.priority` for descending priority sort.",
-        "Verify with `tasks = [Task('1', 'Fix bug', 2), Task('2', 'Deploy', 5)]; tasks.sort()`."
-      ],
-      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
-      "evaluationCriteria": [
-        "Addresses the root architectural/technical challenge accurately",
-        "Follows defensive industry standards and edge-case validation"
-      ],
-      "solutionExplanation": "Implementing __lt__ enables native integration with Python's sort() and min()/max() functions."
-    }
-  ],
+  "exercises": [],
   "knowledgeChecks": [
     {
-      "id": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa-kc-1",
+      "id": "kc-3-2-1",
       "type": "single-choice",
-      "prompt": "What is the fundamental invariant required when implementing both '__eq__' and '__hash__'?",
+      "prompt": "What numbers are generated by list(range(2, 8, 2))?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Two objects that compare equal (a == b) must return identical hash values (hash(a) == hash(b))."
+          "text": "[2, 4, 6]"
         },
         {
           "id": "opt-2",
-          "text": "Hash values must always be negative integers."
+          "text": "[2, 4, 6, 8]"
         },
         {
           "id": "opt-3",
-          "text": "__hash__ must return the memory address id() of the object."
+          "text": "[2, 5, 8]"
         },
         {
           "id": "opt-4",
-          "text": "Equal objects must have different hash values to prevent dictionary collisions."
+          "text": "[4, 6, 8]"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "If two objects are equal according to __eq__, their __hash__ values MUST be identical so hash tables (dictionaries and sets) can find them in the same bucket.",
+      "explanation": "range(start, stop, step) stops strictly before the stop value (8), yielding 2, 4, and 6.",
       "objectiveIds": [
-        "python-obj-3"
-      ]
-    },
-    {
-      "id": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa-kc-2",
-      "type": "single-choice",
-      "prompt": "In pytest, how do you verify that a specific exception is raised by a function call?",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Using 'assert function() == Exception'"
-        },
-        {
-          "id": "opt-2",
-          "text": "Using 'with pytest.raises(ExpectedException): function()'"
-        },
-        {
-          "id": "opt-3",
-          "text": "By returning false from the test function"
-        },
-        {
-          "id": "opt-4",
-          "text": "By checking 'sys.last_traceback is not None'"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-2"
-      ],
-      "explanation": "'with pytest.raises(ExpectedException):' is pytest's context manager for asserting that code raises a specific exception.",
-      "objectiveIds": [
-        "python-obj-4"
+        "pe1-obj-3"
       ]
     }
   ],
-  "recap": "Python's dunder protocols (__eq__, __hash__, __repr__, __lt__) enable native language integration. Encapsulate domain rules with @property and verify behaviors using automated pytest suites.",
+  "recap": "while loops repeat while a condition holds; for loops traverse sequences; range() produces arithmetic progressions.",
   "videoResources": [
     {
-      "id": "res-python-primary",
-      "title": "Python Full Course for Beginners to Advanced Architecture",
+      "id": "vid-mod-3-pe1-m3-l2-loops",
+      "title": "Cisco NetAcad Python Essentials 1: 3.2. Loops in Python: while and for",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Core Python",
-      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-      "embedUrl": "",
-      "durationMinutes": 60,
-      "difficulty": "beginner",
-      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
-      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
-      "learningObjectivesSupported": [
-        "python-obj-1",
-        "python-obj-2",
-        "python-obj-3",
-        "python-obj-4"
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 3.2. Loops in Python: while and for aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
       ],
-      "keyTopicsCovered": [
-        "Python Execution Architecture, Bytecode & Object Model",
-        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-        "The Iteration Protocol, Generators & Streaming Pipelines",
-        "Closures, First-Class Functions & Decorator Metaprogramming",
-        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
-      ],
-      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
-      "verificationStatus": "curated",
-      "lastCheckedDate": "2026-11-12"
+      "whatItTeaches": "Step-by-step guidance on 3.2. Loops in Python: while and for with practical examples and code execution trace."
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation & Language Reference",
-      "url": "https://docs.python.org/3/",
-      "description": "Authoritative official technical reference for Python."
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
     }
   ],
   "realWorldApplications": [
-    "Microservice domain entities ensuring valid states before writing to PostgreSQL or DynamoDB.",
-    "CI/CD deployment pipelines running comprehensive pytest validation before Docker container builds."
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
   ],
   "generationMode": "curated",
   "reviewStatus": "approved",
   "contentVersion": 2,
-  "generatedAt": "2026-11-12T03:01:18.229Z"
+  "generatedAt": "2026-11-12T16:01:55.582Z"
 }

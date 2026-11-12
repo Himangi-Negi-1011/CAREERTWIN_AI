@@ -1,165 +1,167 @@
 {
-  "id": "phase-python-mod-2-python-beginner-module-2-assessment",
+  "id": "phase-python-mod-2-pe1-m2-assessment",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
   "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-python-beginner-module-2",
-  "moduleTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling",
-  "title": "Python — Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Assessment",
-  "description": "Checkpoint evaluation verifying conceptual mastery across Decision Logic, Short-Circuit Evaluation & Pattern Matching and The Iteration Protocol, Generators & Streaming Pipelines.",
-  "durationMinutes": 20,
+  "moduleId": "mod-2-pe1-m2",
+  "moduleTitle": "Module 2: Python Data Types, Variables, Operators, and Basic I/O",
+  "title": "Module 2 Section Assessment",
+  "description": "Authoritative Cisco NetAcad examination for Module 2: Python Data Types, Variables, Operators, and Basic I/O. Validates syntax comprehension, output prediction, and debugging capabilities.",
+  "durationMinutes": 25,
   "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-    "The Iteration Protocol, Generators & Streaming Pipelines"
+    "Literals & Numeric Bases",
+    "Arithmetic Operators & Precedence",
+    "Variables & PEP 8",
+    "input() & Type Conversions"
   ],
   "questions": [
     {
-      "id": "phase-python-mod-2-python-beginner-module-2-q1",
+      "id": "q-pe1-m2-1",
       "section": "A",
-      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
-      "type": "single-choice",
-      "prompt": "What will the expression 'None and print(\"Hello\")' output?",
-      "codeSnippet": "",
+      "sectionTitle": "Operators & Division",
+      "type": "code-output",
+      "prompt": "What is the exact result of evaluating 6 // 4 in Python?",
+      "codeSnippet": "result = 6 // 4\nprint(result, type(result))",
       "options": [
         {
           "id": "opt-1",
-          "text": "It prints 'Hello' and returns None."
+          "text": "1 <class 'int'>"
         },
         {
           "id": "opt-2",
-          "text": "It prints nothing and evaluates to None due to short-circuit evaluation."
+          "text": "1.5 <class 'float'>"
         },
         {
           "id": "opt-3",
-          "text": "It raises an AttributeError."
+          "text": "1.0 <class 'float'>"
         },
         {
           "id": "opt-4",
-          "text": "It raises a TypeError because None cannot be combined with a function call."
+          "text": "2 <class 'int'>"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Because None is falsy, the 'and' operator short-circuits immediately without evaluating the right operand.",
+      "explanation": "Integer floor division (//) performs division and truncates the fractional part, yielding an int of 1.",
       "difficulty": "beginner",
-      "topic": "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+      "topic": "Floor Division",
       "marks": 2,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation-",
-      "recommendedLessonTitle": "Decision Logic, Short-Circuit Evaluation & Pattern Matching"
+      "recommendedLessonId": "mod-2-pe1-m2-l2-operators",
+      "recommendedLessonTitle": "2.2. Operators: Data Operations Tools & Precedence"
     },
     {
-      "id": "phase-python-mod-2-python-beginner-module-2-q2",
+      "id": "q-pe1-m2-2",
       "section": "A",
-      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
-      "type": "single-choice",
-      "prompt": "In Python 3.10+ structural pattern matching, what is the role of the '_' pattern?",
-      "codeSnippet": "",
+      "sectionTitle": "Exponentiation Associativity",
+      "type": "code-output",
+      "prompt": "What is the value of 2 ** 3 ** 2?",
+      "codeSnippet": "print(2 ** 3 ** 2)",
       "options": [
         {
           "id": "opt-1",
-          "text": "It declares a private local variable."
+          "text": "512"
         },
         {
           "id": "opt-2",
-          "text": "It acts as a wildcard catch-all pattern matching any value."
+          "text": "64"
         },
         {
           "id": "opt-3",
-          "text": "It forces the match statement to loop back to the beginning."
+          "text": "36"
         },
         {
           "id": "opt-4",
-          "text": "It ignores whitespace in string matching."
+          "text": "128"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "The wildcard '_' matches any value and is commonly used as the default branch at the end of a match block.",
+      "explanation": "Exponentiation binds right to left: 3 ** 2 = 9, then 2 ** 9 = 512.",
       "difficulty": "beginner",
-      "topic": "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+      "topic": "Operator Precedence",
       "marks": 2,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation-",
-      "recommendedLessonTitle": "Decision Logic, Short-Circuit Evaluation & Pattern Matching"
+      "recommendedLessonId": "mod-2-pe1-m2-l2-operators",
+      "recommendedLessonTitle": "2.2. Operators: Data Operations Tools & Precedence"
     },
     {
-      "id": "phase-python-mod-2-python-beginner-module-2-q4",
-      "section": "A",
-      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
-      "type": "single-choice",
-      "prompt": "What exception signals the termination of an iterator in Python?",
-      "codeSnippet": "",
+      "id": "q-pe1-m2-3",
+      "section": "B",
+      "sectionTitle": "Type Conversions",
+      "type": "code-output",
+      "prompt": "What is the output of the following code snippet?",
+      "codeSnippet": "x = \"20\"\ny = 5\nprint(x * 2)",
       "options": [
         {
           "id": "opt-1",
-          "text": "IndexError"
+          "text": "2020"
         },
         {
           "id": "opt-2",
-          "text": "StopIteration"
+          "text": "40"
         },
         {
           "id": "opt-3",
-          "text": "GeneratorExit"
+          "text": "TypeError"
         },
         {
           "id": "opt-4",
-          "text": "EOFError"
+          "text": "40.0"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "The Python iteration protocol specifies that __next__() raises StopIteration when no further items remain.",
+      "explanation": "x is a string ('20'). Multiplying a string by an integer duplicates the string twice ('2020').",
       "difficulty": "beginner",
-      "topic": "The Iteration Protocol, Generators & Streaming Pipelines",
+      "topic": "String Replication",
       "marks": 2,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream",
-      "recommendedLessonTitle": "The Iteration Protocol, Generators & Streaming Pipelines"
+      "recommendedLessonId": "mod-2-pe1-m2-l5-input-casting",
+      "recommendedLessonTitle": "2.5. User Interaction with input() & Type Casting"
     },
     {
-      "id": "phase-python-mod-2-python-beginner-module-2-q5",
-      "section": "A",
-      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
+      "id": "q-pe1-m2-4",
+      "section": "B",
+      "sectionTitle": "Variable Identifiers",
       "type": "single-choice",
-      "prompt": "What happens to a generator function's local execution frame when a 'yield' statement is executed?",
+      "prompt": "Which identifier is illegal according to Python naming rules?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "The frame is destroyed and garbage collected immediately."
+          "text": "in"
         },
         {
           "id": "opt-2",
-          "text": "The frame is suspended and preserved in memory until next() is called or the generator is garbage collected."
+          "text": "_in"
         },
         {
           "id": "opt-3",
-          "text": "The frame is serialized into a temporary disk file."
+          "text": "In"
         },
         {
           "id": "opt-4",
-          "text": "The frame is converted into a static tuple."
+          "text": "in_val"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Yield pauses the generator, preserving its local variable state, evaluation stack, and instruction pointer until resumption.",
-      "difficulty": "beginner",
-      "topic": "The Iteration Protocol, Generators & Streaming Pipelines",
+      "explanation": "'in' is a reserved keyword in Python used for membership testing and cannot be used as a variable name.",
+      "difficulty": "foundation",
+      "topic": "Variable Naming Rules",
       "marks": 2,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream",
-      "recommendedLessonTitle": "The Iteration Protocol, Generators & Streaming Pipelines"
+      "recommendedLessonId": "mod-2-pe1-m2-l3-variables",
+      "recommendedLessonTitle": "2.3. Variables: Data Containers & Identifiers"
     }
   ],
   "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-12T03:01:18.229Z",
-  "updatedAt": "2026-11-12T03:01:18.229Z"
+  "createdAt": "2026-11-12T16:01:55.587Z",
+  "updatedAt": "2026-11-12T16:01:55.587Z"
 }

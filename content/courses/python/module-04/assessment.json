@@ -1,0 +1,169 @@
+{
+  "id": "phase-python-mod-4-pe1-m4-assessment",
+  "skillName": "Python",
+  "skillSlug": "python",
+  "level": "beginner",
+  "testNumber": 4,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-4-pe1-m4",
+  "moduleTitle": "Module 4: Functions, Tuples, Dictionaries, Exceptions, and Data Processing",
+  "title": "Module 4 Section Assessment",
+  "description": "Authoritative Cisco NetAcad examination for Module 4: Functions, Tuples, Dictionaries, Exceptions, and Data Processing. Validates syntax comprehension, output prediction, and debugging capabilities.",
+  "durationMinutes": 25,
+  "totalMarks": 8,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "Functions & Parameters",
+    "Scopes & Namespace",
+    "Tuple Immutability",
+    "Dictionary Key-Value Lookup",
+    "try-except Blocks",
+    "Capstone Architecture"
+  ],
+  "questions": [
+    {
+      "id": "q-pe1-m4-1",
+      "section": "A",
+      "sectionTitle": "Functions & Dictionaries",
+      "type": "code-output",
+      "prompt": "What is the output of the following dictionary lookup?",
+      "codeSnippet": "user = {\"name\": \"Alex\", \"role\": \"Engineer\"}\nprint(user.get(\"status\", \"Active\"))",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Active"
+        },
+        {
+          "id": "opt-2",
+          "text": "KeyError: 'status'"
+        },
+        {
+          "id": "opt-3",
+          "text": "None"
+        },
+        {
+          "id": "opt-4",
+          "text": "Engineer"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "The .get() method returns the default value ('Active') when the requested key ('status') is absent.",
+      "difficulty": "beginner",
+      "topic": "Dictionary .get()",
+      "marks": 2,
+      "recommendedLessonId": "mod-4-pe1-m4-l5-dictionaries",
+      "recommendedLessonTitle": "4.5. Dictionaries: Key-Value Mapping & Structured Data"
+    },
+    {
+      "id": "q-pe1-m4-2",
+      "section": "A",
+      "sectionTitle": "Tuple Immutability",
+      "type": "code-output",
+      "prompt": "What happens when executing: t = (1, 2, 3); t[0] = 10 ?",
+      "codeSnippet": "t = (1, 2, 3)\nt[0] = 10",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "TypeError: 'tuple' object does not support item assignment"
+        },
+        {
+          "id": "opt-2",
+          "text": "The tuple becomes (10, 2, 3)"
+        },
+        {
+          "id": "opt-3",
+          "text": "ValueError: immutable sequence"
+        },
+        {
+          "id": "opt-4",
+          "text": "SyntaxError: invalid assignment"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Tuples in Python are strictly immutable; modifying an item raises TypeError.",
+      "difficulty": "beginner",
+      "topic": "Tuple Immutability",
+      "marks": 2,
+      "recommendedLessonId": "mod-4-pe1-m4-l4-tuples",
+      "recommendedLessonTitle": "4.4. Tuples: Immutable Sequences"
+    },
+    {
+      "id": "q-pe1-m4-3",
+      "section": "B",
+      "sectionTitle": "Exception Handling",
+      "type": "code-output",
+      "prompt": "What will be printed when dividing by zero in a try-except block?",
+      "codeSnippet": "try:\n    x = 1 / 0\nexcept ZeroDivisionError:\n    print('ZeroError caught')\nfinally:\n    print('Cleanup complete')",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "ZeroError caught\nCleanup complete"
+        },
+        {
+          "id": "opt-2",
+          "text": "ZeroDivisionError: division by zero"
+        },
+        {
+          "id": "opt-3",
+          "text": "ZeroError caught"
+        },
+        {
+          "id": "opt-4",
+          "text": "Cleanup complete"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "ZeroDivisionError is handled, printing 'ZeroError caught', followed unconditionally by the finally block.",
+      "difficulty": "intermediate",
+      "topic": "try-except-finally",
+      "marks": 2,
+      "recommendedLessonId": "mod-4-pe1-m4-l6-exceptions",
+      "recommendedLessonTitle": "4.6. Exception Handling & Defensive Engineering"
+    },
+    {
+      "id": "q-pe1-m4-4",
+      "section": "B",
+      "sectionTitle": "Default Return Value",
+      "type": "code-output",
+      "prompt": "What does function f return?",
+      "codeSnippet": "def f(x):\n    y = x * 2\n\nprint(f(5))",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "None"
+        },
+        {
+          "id": "opt-2",
+          "text": "10"
+        },
+        {
+          "id": "opt-3",
+          "text": "0"
+        },
+        {
+          "id": "opt-4",
+          "text": "TypeError"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Function f lacks an explicit return statement, so it implicitly evaluates to None.",
+      "difficulty": "foundation",
+      "topic": "Function Returns",
+      "marks": 2,
+      "recommendedLessonId": "mod-4-pe1-m4-l2-return-recursion",
+      "recommendedLessonTitle": "4.2. Returning Data, Recursion & Mathematical Functions"
+    }
+  ],
+  "contentVersion": 2,
+  "reviewStatus": "approved",
+  "createdAt": "2026-11-12T16:01:55.596Z",
+  "updatedAt": "2026-11-12T16:01:55.596Z"
+}

@@ -1,200 +1,148 @@
 {
-  "lessonId": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o",
+  "lessonId": "mod-1-pe1-m1-l0-welcome",
   "skillName": "Python",
-  "moduleId": "mod-1-python-beginner-module-1",
-  "title": "Python Execution Architecture, Bytecode & Object Model",
-  "summary": "Understand the CPython interpreter pipeline, bytecode compilation, stack frames, heap-allocated PyObjects, and reference semantics.",
+  "moduleId": "mod-1-pe1-m1",
+  "title": "1.0. Welcome to Python Essentials 1",
+  "summary": "Welcome to Python Essentials 1, created in partnership with the Cisco Networking Academy and Python Institute. Discover the course roadmap, certification objectives, and how to master modern Python programming.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 50,
+  "estimatedMinutes": 25,
   "learningObjectives": [
-    "Trace Python source code from parsing and AST to bytecode (.pyc) and CPython virtual machine execution",
-    "Differentiate variable name binding (pointers) from values (heap-allocated objects) using id(), is, and =="
+    "Understand the scope, learning goals, and modular progression of Cisco NetAcad Python Essentials 1.",
+    "Identify the skills required to earn the Python Institute PCEP (Certified Entry-Level Python Programmer) credential.",
+    "Set up your learning mental model: combining conceptual clarity, hands-on labs, and automated verification."
   ],
   "objectiveIds": [
-    "python-obj-1",
-    "python-obj-2"
+    "pe1-obj-1"
   ],
   "prerequisiteConcepts": [
-    "Terminal access and basic file editing"
+    "Basic computer literacy",
+    "Terminal usage"
   ],
   "sections": [
     {
-      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-sec-1",
-      "heading": "1. CPython Execution Pipeline & Object Reference Model",
-      "content": "Python is commonly described as an interpreted language, but modern CPython actually executes as a two-phase bytecode compiler and virtual machine runtime.\n\nWhen you execute `python app.py`:\n1. Lexical Analysis & Parsing: Source code text is parsed into tokens and converted into an Abstract Syntax Tree (AST).\n2. Bytecode Compilation: The AST compiles into compact, platform-independent bytecode instructions (stored in `__pycache__/*.pyc` files).\n3. CPython Virtual Machine: The central evaluation loop (`ceval.c`) iterates through bytecode opcodes, manipulating a virtual evaluation stack.\n\nCrucially, Python variables are NOT fixed memory boxes holding raw bits. Instead, every variable is a named pointer (reference) pointing to a heap-allocated `PyObject` structure containing an object header: a reference count (`ob_refcnt`) and a type pointer (`ob_type`).\n\nWhen executing `x = 1000` followed by `y = x`, both `x` and `y` point to the EXACT same integer object in memory. Reassigning `x = 2000` does not mutate 1000; it allocates a new integer object and repoints `x`, decrementing the reference count of 1000.",
-      "codeExamples": [
-        {
-          "language": "text",
-          "code": "+-------------------------------------------------------------------+\n| CPYTHON EXECUTION PIPELINE & HEAP OBJECT BINDING                  |\n|                                                                   |\n|  Source [.py] ---> AST ---> Bytecode [.pyc] ---> VM (ceval.c)     |\n|                                                                   |\n|  Stack Frames (Names / Pointers)         Heap Memory (PyObjects)  |\n|  +----------------------------+         +-----------------------+ |\n|  | x ---------               |         | PyLongObject: 1000    | |\n|  |             ------------> | ------> |  ob_refcnt: 2         | |\n|  | y ------------------------>|         |  ob_type: int         | |\n|  +----------------------------+         +-----------------------+ |\n|                                                                   |\n|  x = 2000 creates a NEW PyObject and re-binds x's pointer.        |\n+-------------------------------------------------------------------+",
-          "explanation": "Variables are lightweight references in stack frames that point to rich PyObject structures allocated on the heap.",
-          "expectedOutput": "System Architecture & Memory Layout Diagram"
-        }
-      ],
-      "keyPoints": [
-        "CPython compiles source code to bytecode before the evaluation loop executes opcodes.",
-        "Variables are reference pointers; assignment binds a name to an object rather than copying memory contents.",
-        "The 'is' operator compares memory addresses (id()), whereas '==' evaluates equality via __eq__().",
-        "Reference counting tracks live pointers; cyclic garbage collection frees unreachable circular references."
-      ],
-      "commonMistakes": [
-        "Assuming 'x = y' creates an independent copy of a mutable object such as a list or dictionary.",
-        "Using 'is' to compare numbers or strings, which produces unpredictable bugs due to CPython integer interning."
-      ]
-    },
-    {
-      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-sec-2",
-      "heading": "2. Verifying Object Identity & Diagnosing Reference Aliasing in Production",
-      "content": "In production environments, confusing object identity with value equality causes silent data corruption—especially when dealing with mutable collections passed into functions. Understanding memory addresses through `id()` and verifying reference count states with `sys.getrefcount()` allows engineers to systematically debug unwanted mutations and memory leaks.",
+      "id": "sec-1-0-1",
+      "heading": "1.0.1 Welcome to the Cisco NetAcad Python Journey",
+      "content": "Welcome to Python Essentials 1! This course has been engineered in partnership between the Cisco Networking Academy and the OpenEDG Python Institute to take you from complete beginner to confident, certified Python programmer.\n\nPython has grown to become the world's most popular programming language across web development, data science, artificial intelligence, cloud automation, and network engineering. Its clean, readable syntax allows you to express powerful computational concepts with clarity and brevity.\n\nThroughout this course, you will not simply memorize syntax rules. You will learn HOW computer programs execute, HOW memory is allocated, and HOW to write maintainable, production-ready code that adheres to industry standards.",
       "codeExamples": [
         {
           "language": "python",
-          "code": "import sys\n\n# 1. Inspecting object identity vs value equality\nval_a = [10, 20, 30]\nval_b = val_a            # Reference alias: both point to identical heap list\nval_c = [10, 20, 30]     # Fresh allocation: equal contents, distinct memory\n\nprint(f\"val_a is val_b: {val_a is val_b}\")       # True  (same memory address)\nprint(f\"val_a is val_c: {val_a is val_c}\")       # False (different addresses)\nprint(f\"val_a == val_c: {val_a == val_c}\")       # True  (equivalent values)\n\n# 2. Mutating through an alias\nval_b.append(40)\nprint(f\"val_a after val_b mutation: {val_a}\")    # [10, 20, 30, 40]\n\n# 3. Memory inspection\nprint(f\"Address of val_a: {hex(id(val_a))}\")\nprint(f\"Reference count of val_a: {sys.getrefcount(val_a)}\")",
-          "explanation": "Demonstrates that aliased references mutate the same underlying heap object, while fresh allocations produce distinct objects.",
-          "expectedOutput": "val_a is val_b: True\nval_a is val_c: False\nval_a == val_c: True\nval_a after val_b mutation: [10, 20, 30, 40]\nAddress of val_a: <heap_hex_address>\nReference count of val_a: 3"
+          "code": "# Your journey begins here\nprint(\"Welcome to Cisco NetAcad Python Essentials 1!\")\nprint(\"Engineered for real-world mastery.\")",
+          "explanation": "Invoking the print() function sends textual data to the standard output console stream.",
+          "expectedOutput": "Welcome to Cisco NetAcad Python Essentials 1!\nEngineered for real-world mastery."
         }
-      ],
-      "keyPoints": [
-        "Always create shallow copies (list.copy() or slice [:]) or deep copies (copy.deepcopy()) when passing mutable data.",
-        "sys.getrefcount() returns 1 higher than expected because passing the argument temporarily creates an extra reference."
-      ],
-      "commonMistakes": [
-        "Mutating a collection argument inside a function without explicit documentation, altering the caller's state unexpectedly."
       ]
+    },
+    {
+      "id": "sec-1-0-2",
+      "heading": "1.0.2 Curriculum Structure & Module Roadmap",
+      "content": "Python Essentials 1 is organized into four rigorous, hands-on modules:\n\n• Module 1: Introduction to Python and Computer Programming — Understand computer architecture, machine code, compilation vs. interpretation, and the CPython execution pipeline.\n• Module 2: Data Types, Variables, Basic I/O, and Operators — Master Python literals, arithmetic operations, operator precedence, type conversions, and formatted console interaction.\n• Module 3: Boolean Values, Conditional Execution, Loops, Lists, and Bitwise Logic — Construct complex control flow using if-elif-else, while and for loops, mutable lists, and algorithmic problem solving.\n• Module 4: Functions, Tuples, Dictionaries, Exceptions, and Data Processing — Build reusable, modular abstractions with parameter scoping, immutable tuples, key-value dictionaries, and defensive try-except blocks.\n\nUpon completing all four modules and capstone projects, you will be prepared for the OpenEDG Python Institute PCEP-30-02 certification exam."
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-ex-1",
+      "id": "ex-1-0-1",
       "type": "coding",
-      "title": "Diagnose and Fix Reference Aliasing in Inventory State",
-      "objective": "Refactor an inventory tracking function to eliminate unintended reference mutation using explicit defensive copying.",
-      "description": "A store's discount engine takes an active cart of items and applies seasonal markdowns. However, customers report that their original shopping history is permanently overwritten because the discount service mutates the original dictionary references. Write a pure, defensive transform function that preserves the original cart while returning a brand-new discounted dataset with verified test assertions.",
+      "title": "Hello NetAcad World",
+      "objective": "Write and execute your inaugural Python program following clean formatting conventions.",
+      "description": "Display an introductory multi-line greeting announcing your enrollment in Python Essentials 1.",
       "instructions": [
-        "Define apply_discounts(cart: dict, discount_rate: float) -> dict.",
-        "Verify that the input cart dictionary and its nested price records are NOT mutated.",
-        "Assert that the returned dictionary has a distinct memory id() from the original.",
-        "Add assertion checks confirming correct discounted calculations."
+        "Use the print() function to output 'I am learning Python Essentials 1 with Cisco NetAcad.'",
+        "Add a second print() statement displaying 'CareerTwin verified learner.'"
       ],
-      "starterCode": "# Refactor this function to be pure and prevent alias mutations\ndef apply_discounts(cart: dict, discount_rate: float) -> dict:\n    # BUG: mutates caller's dictionary directly\n    discounted = cart\n    for item, price in discounted.items():\n        discounted[item] = round(price * (1.0 - discount_rate), 2)\n    return discounted\n\n# Test data\noriginal_cart = {\"laptop\": 1200.0, \"mouse\": 50.0}",
+      "starterCode": "# Write your solution below\n",
       "hints": [
-        "Use dictionary comprehension `{k: round(v * (1 - rate), 2) for k, v in cart.items()}` to allocate a fresh dictionary.",
-        "Verify with `assert result is not original_cart` and `assert original_cart['laptop'] == 1200.0`."
+        "Strings in Python can be enclosed in double quotes or single quotes."
       ],
-      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "submissionRequirements": "Submit code that prints both statements without syntax errors.",
       "evaluationCriteria": [
-        "Addresses the root architectural/technical challenge accurately",
-        "Follows defensive industry standards and edge-case validation"
+        "Both print statements execute successfully",
+        "Correct quotation syntax"
       ],
-      "solutionExplanation": "By replacing `discounted = cart` with a dictionary comprehension or `copy.deepcopy()`, a new heap allocation is created, ensuring the caller's state remains immutable and pure."
+      "solutionExplanation": "print('I am learning Python Essentials 1 with Cisco NetAcad.')\nprint('CareerTwin verified learner.')"
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-kc-1",
+      "id": "kc-1-0-1",
       "type": "single-choice",
-      "prompt": "What does executing 'y = x' perform when x is bound to a Python list?",
+      "prompt": "Which professional certification credential aligns with Cisco Networking Academy's Python Essentials 1 course?",
       "options": [
         {
           "id": "opt-1",
-          "text": "It performs a deep copy of the list and its internal elements into newly allocated memory."
+          "text": "PCEP — Certified Entry-Level Python Programmer"
         },
         {
           "id": "opt-2",
-          "text": "It copies the pointer reference, binding y to the exact same heap-allocated list as x."
+          "text": "PCAP — Certified Associate in Python Programming"
         },
         {
           "id": "opt-3",
-          "text": "It converts x into an immutable tuple before binding y."
+          "text": "CCNA — Cisco Certified Network Associate"
         },
         {
           "id": "opt-4",
-          "text": "It compiles x into frozen bytecode in the __pycache__ directory."
+          "text": "PCAD — Certified Professional in Python Architecture"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Assignment in Python never implicitly clones collections; it creates a new reference pointing to the identical heap object.",
+      "explanation": "Python Essentials 1 prepares students directly for the PCEP (Certified Entry-Level Python Programmer) exam administered by the Python Institute.",
       "objectiveIds": [
-        "python-obj-1"
-      ]
-    },
-    {
-      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-kc-2",
-      "type": "single-choice",
-      "prompt": "Why should the 'is' operator NOT be used to compare arbitrary integers for numeric equality?",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Because 'is' raises a TypeError when comparing numbers of different sizes."
-        },
-        {
-          "id": "opt-2",
-          "text": "Because 'is' checks object memory identity, and CPython only caches small integers (-5 to 256), leading to false negatives on larger numbers."
-        },
-        {
-          "id": "opt-3",
-          "text": "Because 'is' mutates the reference count to zero, triggering garbage collection."
-        },
-        {
-          "id": "opt-4",
-          "text": "Because Python requires bitwise operators like '&' for numbers."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-2"
-      ],
-      "explanation": "'is' checks whether two variables share the exact same memory address. CPython interns small integers (-5 through 256), but numbers outside this range are allocated independently.",
-      "objectiveIds": [
-        "python-obj-2"
+        "pe1-obj-1"
       ]
     }
   ],
-  "recap": "Python evaluates code via a bytecode compiler and CPython VM. Variables are names bound to heap-allocated PyObjects. Use '==' for equality and 'is' strictly for memory identity checks like 'x is None'.",
+  "recap": "You have reviewed the Python Essentials 1 structure and are ready to delve into computer programming fundamentals.",
   "videoResources": [
     {
-      "id": "res-python-primary",
-      "title": "Python Full Course for Beginners to Advanced Architecture",
+      "id": "vid-mod-1-pe1-m1-l0-welcome",
+      "title": "Cisco NetAcad Python Essentials 1: 1.0. Welcome to Python Essentials 1",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Core Python",
-      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-      "embedUrl": "",
-      "durationMinutes": 60,
-      "difficulty": "beginner",
-      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
-      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
-      "learningObjectivesSupported": [
-        "python-obj-1",
-        "python-obj-2",
-        "python-obj-3",
-        "python-obj-4"
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 1.0. Welcome to Python Essentials 1 aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
       ],
-      "keyTopicsCovered": [
-        "Python Execution Architecture, Bytecode & Object Model",
-        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-        "The Iteration Protocol, Generators & Streaming Pipelines",
-        "Closures, First-Class Functions & Decorator Metaprogramming",
-        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
-      ],
-      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
-      "verificationStatus": "curated",
-      "lastCheckedDate": "2026-11-12"
+      "whatItTeaches": "Step-by-step guidance on 1.0. Welcome to Python Essentials 1 with practical examples and code execution trace."
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation & Language Reference",
-      "url": "https://docs.python.org/3/",
-      "description": "Authoritative official technical reference for Python."
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
     }
   ],
   "realWorldApplications": [
-    "High-throughput microservices avoiding memory leaks caused by unwanted global object references.",
-    "Data ingestion pipelines safeguarding source datasets from accidental in-place mutations."
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
   ],
   "generationMode": "curated",
   "reviewStatus": "approved",
   "contentVersion": 2,
-  "generatedAt": "2026-11-12T03:01:18.229Z"
+  "generatedAt": "2026-11-12T16:01:55.581Z"
 }

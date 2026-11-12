@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-2-pe1-m2-l6-summary-labs",
+  "skillName": "Python",
+  "moduleId": "mod-2-pe1-m2",
+  "title": "2.6. Module 2 Summary, Math Labs & Section Examination",
+  "summary": "Complete hands-on NetAcad labs: Calculate hypotenuse using Pythagorean theorem, evaluate polynomial formulas, and complete the Module 2 assessment.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Implement multi-step mathematical calculations combining operators and type conversions.",
+    "Review string replication (*) and string concatenation (+).",
+    "Validate mastery through the Module 2 Section Examination."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-2-6-1",
+      "heading": "2.6.1 NetAcad Lab: The Pythagorean Hypotenuse",
+      "content": "In this classic Cisco NetAcad lab, you write a script to calculate the hypotenuse c of a right-angled triangle given sides a and b using the Pythagorean theorem:\nc = sqrt(a^2 + b^2) = (a**2 + b**2) ** 0.5\n\nNotice how exponentiation by 0.5 neatly computes the square root without needing external library imports."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-2-6-1",
+      "type": "single-choice",
+      "prompt": "What will be printed by: print(str(5) + str(5))?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "55"
+        },
+        {
+          "id": "opt-2",
+          "text": "10"
+        },
+        {
+          "id": "opt-3",
+          "text": "5 + 5"
+        },
+        {
+          "id": "opt-4",
+          "text": "TypeError"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "str(5) produces '5'. Concatenating '5' + '5' yields '55'.",
+      "objectiveIds": [
+        "pe1-obj-2"
+      ]
+    }
+  ],
+  "recap": "You have completed Module 2: literals, arithmetic operators, type casting, and variable management.",
+  "videoResources": [
+    {
+      "id": "vid-mod-2-pe1-m2-l6-summary-labs",
+      "title": "Cisco NetAcad Python Essentials 1: 2.6. Module 2 Summary, Math Labs & Section Examination",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 2.6. Module 2 Summary, Math Labs & Section Examination aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 2.6. Module 2 Summary, Math Labs & Section Examination with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

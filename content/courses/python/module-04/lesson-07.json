@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-4-pe1-m4-l7-capstone",
+  "skillName": "Python",
+  "moduleId": "mod-4-pe1-m4",
+  "title": "4.7. Module 4 NetAcad Capstone Project & Certification Exam",
+  "summary": "Architect the official Cisco NetAcad Tic-Tac-Toe console game, synthesize all four modules, and complete the comprehensive certification mock examination.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Construct a complete interactive console Tic-Tac-Toe game using functions, 2D lists, and error handling.",
+    "Validate end-to-end Python competency against the official Python Institute PCEP syllabus.",
+    "Earn the verified Cisco NetAcad Python Essentials 1 digital badge and completion certificate."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-4-7-1",
+      "heading": "4.7.1 The Tic-Tac-Toe Capstone Project Architecture",
+      "content": "The official Cisco NetAcad Capstone requires you to build a fully functional console Tic-Tac-Toe game where a human plays against the computer:\n\n• Board Representation: A 3x3 list of lists representing board slots 1 through 9.\n• display_board(): Pretty-prints the grid board with current moves.\n• enter_move(): Prompts the user, validates that the chosen square is free, and records the move.\n• victory_for(): Analyzes rows, columns, and diagonals to determine win conditions.\n• draw_move(): Implements computer AI strategy to make legal moves.\n\nCompleting this project demonstrates total mastery of all concepts in Python Essentials 1."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-4-7-1",
+      "type": "single-choice",
+      "prompt": "In a 3x3 board represented as board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]], how do you access the center square (5)?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "board[1][1]"
+        },
+        {
+          "id": "opt-2",
+          "text": "board[2][2]"
+        },
+        {
+          "id": "opt-3",
+          "text": "board[1, 1]"
+        },
+        {
+          "id": "opt-4",
+          "text": "board[5]"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "In zero-based 2D indexing, row 1 and column 1 access the center element: board[1][1] is 5.",
+      "objectiveIds": [
+        "pe1-obj-4"
+      ]
+    }
+  ],
+  "recap": "You have completed Python Essentials 1! Review your projects and take the Final Examination.",
+  "videoResources": [
+    {
+      "id": "vid-mod-4-pe1-m4-l7-capstone",
+      "title": "Cisco NetAcad Python Essentials 1: 4.7. Module 4 NetAcad Capstone Project & Certification Exam",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 4.7. Module 4 NetAcad Capstone Project & Certification Exam aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 4.7. Module 4 NetAcad Capstone Project & Certification Exam with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

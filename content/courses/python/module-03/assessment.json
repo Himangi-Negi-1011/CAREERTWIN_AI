@@ -1,165 +1,168 @@
 {
-  "id": "phase-python-mod-3-python-beginner-module-3-assessment",
+  "id": "phase-python-mod-3-pe1-m3-assessment",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
   "testNumber": 3,
   "isPhaseAssessment": true,
-  "moduleId": "mod-3-python-beginner-module-3",
-  "moduleTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification",
-  "title": "Python — Module 3: Metaprogramming, OOP Architecture & Automated Verification Assessment",
-  "description": "Checkpoint evaluation verifying conceptual mastery across Closures, First-Class Functions & Decorator Metaprogramming and OOP Architecture, Dunder Protocols & Automated Pytest Suites.",
-  "durationMinutes": 20,
+  "moduleId": "mod-3-pe1-m3",
+  "moduleTitle": "Module 3: Boolean Values, Conditional Execution, Loops, Lists and Logical Operations",
+  "title": "Module 3 Section Assessment",
+  "description": "Authoritative Cisco NetAcad examination for Module 3: Boolean Values, Conditional Execution, Loops, Lists and Logical Operations. Validates syntax comprehension, output prediction, and debugging capabilities.",
+  "durationMinutes": 25,
   "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Closures, First-Class Functions & Decorator Metaprogramming",
-    "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
+    "Comparison Operators",
+    "if-elif-else Conditionals",
+    "while & for Loops",
+    "Bitwise Operations",
+    "List Slicing & Mutability"
   ],
   "questions": [
     {
-      "id": "phase-python-mod-3-python-beginner-module-3-q1",
+      "id": "q-pe1-m3-1",
       "section": "A",
-      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
-      "type": "single-choice",
-      "prompt": "Why is '@functools.wraps(func)' recommended when writing decorators?",
-      "codeSnippet": "",
+      "sectionTitle": "Loops & Slicing",
+      "type": "code-output",
+      "prompt": "What will be printed by the following code snippet?",
+      "codeSnippet": "my_list = [1, 2, 3, 4, 5]\nprint(my_list[1:4])",
       "options": [
         {
           "id": "opt-1",
-          "text": "It accelerates bytecode execution by caching return values in C memory."
+          "text": "[2, 3, 4]"
         },
         {
           "id": "opt-2",
-          "text": "It copies attributes such as __name__, __doc__, and __module__ from the original function to the wrapper."
+          "text": "[1, 2, 3]"
         },
         {
           "id": "opt-3",
-          "text": "It automatically wraps all exceptions in a try/finally block."
+          "text": "[2, 3, 4, 5]"
         },
         {
           "id": "opt-4",
-          "text": "It restricts the function from being called asynchronously."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-2"
-      ],
-      "explanation": "Without @functools.wraps, decorated functions lose their original name and docstring, showing up as 'wrapper' in tracebacks and logs.",
-      "difficulty": "beginner",
-      "topic": "Closures, First-Class Functions & Decorator Metaprogramming",
-      "marks": 2,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator",
-      "recommendedLessonTitle": "Closures, First-Class Functions & Decorator Metaprogramming"
-    },
-    {
-      "id": "phase-python-mod-3-python-beginner-module-3-q2",
-      "section": "A",
-      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
-      "type": "single-choice",
-      "prompt": "According to Python's LEGB rule, where does Python search for a variable first?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Global scope"
-        },
-        {
-          "id": "opt-2",
-          "text": "Built-in scope"
-        },
-        {
-          "id": "opt-3",
-          "text": "Local scope"
-        },
-        {
-          "id": "opt-4",
-          "text": "Enclosing scope"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-3"
-      ],
-      "explanation": "LEGB resolves in order: Local, Enclosing, Global, and finally Built-in.",
-      "difficulty": "beginner",
-      "topic": "Closures, First-Class Functions & Decorator Metaprogramming",
-      "marks": 2,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator",
-      "recommendedLessonTitle": "Closures, First-Class Functions & Decorator Metaprogramming"
-    },
-    {
-      "id": "phase-python-mod-3-python-beginner-module-3-q4",
-      "section": "A",
-      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
-      "type": "single-choice",
-      "prompt": "What is the fundamental invariant required when implementing both '__eq__' and '__hash__'?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Two objects that compare equal (a == b) must return identical hash values (hash(a) == hash(b))."
-        },
-        {
-          "id": "opt-2",
-          "text": "Hash values must always be negative integers."
-        },
-        {
-          "id": "opt-3",
-          "text": "__hash__ must return the memory address id() of the object."
-        },
-        {
-          "id": "opt-4",
-          "text": "Equal objects must have different hash values to prevent dictionary collisions."
+          "text": "[1, 2, 3, 4]"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "If two objects are equal according to __eq__, their __hash__ values MUST be identical so hash tables (dictionaries and sets) can find them in the same bucket.",
+      "explanation": "Slice [1:4] starts at index 1 (value 2) and ends before index 4 (values 2, 3, 4).",
       "difficulty": "beginner",
-      "topic": "OOP Architecture, Dunder Protocols & Automated Pytest Suites",
+      "topic": "List Slicing",
       "marks": 2,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa",
-      "recommendedLessonTitle": "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
+      "recommendedLessonId": "mod-3-pe1-m3-l4-lists",
+      "recommendedLessonTitle": "3.4. Lists: Mutable Sequences & Memory Allocation"
     },
     {
-      "id": "phase-python-mod-3-python-beginner-module-3-q5",
+      "id": "q-pe1-m3-2",
       "section": "A",
-      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
+      "sectionTitle": "range() Function",
+      "type": "code-output",
+      "prompt": "How many times will 'loop' be printed?",
+      "codeSnippet": "for i in range(1, 10, 3):\n    print('loop')",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "3 times (i = 1, 4, 7)"
+        },
+        {
+          "id": "opt-2",
+          "text": "4 times (i = 1, 4, 7, 10)"
+        },
+        {
+          "id": "opt-3",
+          "text": "2 times"
+        },
+        {
+          "id": "opt-4",
+          "text": "9 times"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "range(1, 10, 3) generates 1, 4, and 7. The stop value 10 is exclusive, so the loop runs exactly 3 times.",
+      "difficulty": "beginner",
+      "topic": "range() Mechanics",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pe1-m3-l2-loops",
+      "recommendedLessonTitle": "3.2. Loops in Python: while and for"
+    },
+    {
+      "id": "q-pe1-m3-3",
+      "section": "B",
+      "sectionTitle": "Boolean Logic",
       "type": "single-choice",
-      "prompt": "In pytest, how do you verify that a specific exception is raised by a function call?",
+      "prompt": "In Python, which expression evaluates to False?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Using 'assert function() == Exception'"
+          "text": "not (True or False)"
         },
         {
           "id": "opt-2",
-          "text": "Using 'with pytest.raises(ExpectedException): function()'"
+          "text": "True and not False"
         },
         {
           "id": "opt-3",
-          "text": "By returning false from the test function"
+          "text": "False or True"
         },
         {
           "id": "opt-4",
-          "text": "By checking 'sys.last_traceback is not None'"
+          "text": "not False"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "'with pytest.raises(ExpectedException):' is pytest's context manager for asserting that code raises a specific exception.",
+      "explanation": "True or False is True. not True evaluates to False.",
       "difficulty": "beginner",
-      "topic": "OOP Architecture, Dunder Protocols & Automated Pytest Suites",
+      "topic": "Boolean Operators",
       "marks": 2,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa",
-      "recommendedLessonTitle": "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
+      "recommendedLessonId": "mod-3-pe1-m3-l3-logic-bitwise",
+      "recommendedLessonTitle": "3.3. Logic and Bitwise Operations"
+    },
+    {
+      "id": "q-pe1-m3-4",
+      "section": "B",
+      "sectionTitle": "List Mutability",
+      "type": "code-output",
+      "prompt": "What will be printed by the following code?",
+      "codeSnippet": "nums = [1, 2, 3]\nnums.insert(1, 10)\nprint(nums)",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "[1, 10, 2, 3]"
+        },
+        {
+          "id": "opt-2",
+          "text": "[10, 1, 2, 3]"
+        },
+        {
+          "id": "opt-3",
+          "text": "[1, 2, 10, 3]"
+        },
+        {
+          "id": "opt-4",
+          "text": "[1, 2, 3, 10]"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "insert(index, object) inserts 10 before index 1, shifting subsequent elements right.",
+      "difficulty": "beginner",
+      "topic": "List Methods",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pe1-m3-l4-lists",
+      "recommendedLessonTitle": "3.4. Lists: Mutable Sequences & Memory Allocation"
     }
   ],
   "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-12T03:01:18.229Z",
-  "updatedAt": "2026-11-12T03:01:18.229Z"
+  "createdAt": "2026-11-12T16:01:55.591Z",
+  "updatedAt": "2026-11-12T16:01:55.591Z"
 }

@@ -1,0 +1,144 @@
+{
+  "lessonId": "mod-1-pe1-m1-l4-practice-lab",
+  "skillName": "Python",
+  "moduleId": "mod-1-pe1-m1",
+  "title": "1.4. Practice Lab: print() Formatting & Escape Sequences",
+  "summary": "Hands-on Cisco NetAcad lab: Practice using escape sequences (\\n, \\t, \\\\, \\\") to build formatted multi-line ASCII art and formatted console banners.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Use backslash escape sequences to embed special characters in strings.",
+    "Construct multi-line formatted console outputs without invoking dozens of individual print() calls.",
+    "Troubleshoot syntax errors resulting from unescaped quotation marks."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-1-4-1",
+      "heading": "1.4.1 Escape Sequences in Python Strings",
+      "content": "An escape sequence is a special combination of characters that begins with a backslash (\\), followed by a letter or symbol:\n\n• \\n : Newline — shifts execution to the beginning of the next line.\n• \\t : Horizontal Tab — advances output to the next tab stop.\n• \\\\ : Literal Backslash — renders a single backslash character.\n• \\\" : Literal Double Quote — includes a double quotation mark inside a double-quoted string without terminating it.\n• \\' : Literal Single Quote — includes a single quotation mark inside a single-quoted string.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "print(\"First line\\nSecond line\\n\\tIndented third line\")\nprint(\"The teacher said: \\\"Escape characters are essential.\\\"\")",
+          "explanation": "Escape sequences allow precise formatting of text and quotation nesting within string literals.",
+          "expectedOutput": "First line\nSecond line\n\tIndented third line\nThe teacher said: \"Escape characters are essential.\""
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "ex-1-4-1",
+      "type": "coding",
+      "title": "NetAcad Lab: The print() Arrow Generator",
+      "objective": "Write a program using print() formatting and escape sequences to generate a clean ASCII arrow pointing upwards.",
+      "description": "Recreate the iconic Cisco NetAcad print arrow lab using optimal print statements.",
+      "instructions": [
+        "Print an ASCII arrow pointing up using asterisks (*).",
+        "Ensure lines are centered and proportional.",
+        "Use escape sequences to minimize redundant code."
+      ],
+      "starterCode": "# LAB: The Arrow\n# Output:\n#     *\n#    * *\n#   *   *\n#  *     *\n# ***   ***\n#   *   *\n#   *   *\n#   *****\n\nprint(\"    *\")\n",
+      "hints": [
+        "You can duplicate asterisks or use multiple arguments with sep=' '."
+      ],
+      "submissionRequirements": "Submit code that prints both statements without syntax errors.",
+      "evaluationCriteria": [
+        "Arrow shape is strictly formed",
+        "Valid syntax throughout"
+      ],
+      "solutionExplanation": "print('    *')\nprint('   * *')\nprint('  *   *')\nprint(' *     *')\nprint('***   ***')\nprint('  *   *')\nprint('  *   *')\nprint('  *****')"
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "kc-1-4-1",
+      "type": "single-choice",
+      "prompt": "Which escape sequence represents a horizontal tab in Python?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "\\t"
+        },
+        {
+          "id": "opt-2",
+          "text": "\\n"
+        },
+        {
+          "id": "opt-3",
+          "text": "\\r"
+        },
+        {
+          "id": "opt-4",
+          "text": "\\b"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "\\t represents a horizontal tab character.",
+      "objectiveIds": [
+        "pe1-obj-1"
+      ]
+    }
+  ],
+  "recap": "Escape sequences provide granular control over text layout, indentation, and special character representation.",
+  "videoResources": [
+    {
+      "id": "vid-mod-1-pe1-m1-l4-practice-lab",
+      "title": "Cisco NetAcad Python Essentials 1: 1.4. Practice Lab: print() Formatting & Escape Sequences",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 1.4. Practice Lab: print() Formatting & Escape Sequences aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 1.4. Practice Lab: print() Formatting & Escape Sequences with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

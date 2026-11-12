@@ -1,199 +1,118 @@
 {
-  "lessonId": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation-",
+  "lessonId": "mod-2-pe1-m2-l1-literals",
   "skillName": "Python",
-  "moduleId": "mod-2-python-beginner-module-2",
-  "title": "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-  "summary": "Learn boolean truthiness, short-circuit evaluation guarantees, guards, and Python 3.10+ structural pattern matching.",
+  "moduleId": "mod-2-pe1-m2",
+  "title": "2.1. Python Literals & Internal Representation",
+  "summary": "Examine Python literals: integers, floating-point numbers, scientific notation, binary/octal/hexadecimal representations, strings, and boolean values.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 50,
+  "estimatedMinutes": 25,
   "learningObjectives": [
-    "Leverage boolean short-circuit mechanics to guard against null/empty pointer exceptions",
-    "Write clean, readable branch controllers using structural pattern matching (match/case) with guards"
+    "Define what a literal is: fixed notation for representing constant data values directly in code.",
+    "Distinguish integers (int) from floating-point numbers (float) and use exponential scientific notation (e.g. 3e8).",
+    "Understand alternative numeral bases in Python: binary (0b), octal (0o), and hexadecimal (0x)."
   ],
   "objectiveIds": [
-    "python-obj-2",
-    "python-obj-3"
+    "pe1-obj-1"
   ],
   "prerequisiteConcepts": [
-    "Python primitives and variable binding"
+    "Basic computer literacy",
+    "Terminal usage"
   ],
   "sections": [
     {
-      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--sec-1",
-      "heading": "1. Boolean Mechanics, Short-Circuiting & Pattern Matching",
-      "content": "Every object in Python possesses an inherent boolean truth value. When passed to `bool(x)` or tested in an `if` statement, an object evaluates to `False` if it is:\n- A built-in constant: `None`, `False`\n- Zero of any numeric type: `0`, `0.0`, `Decimal(0)`\n- Any empty sequence or collection: `''`, `()`, `[]`, `{}`, `set()`\n\nAll other objects evaluate to `True`.\n\nPython guarantees left-to-right short-circuit evaluation:\n- In `expr_a and expr_b`: if `expr_a` is falsy, Python immediately returns `expr_a` WITHOUT evaluating `expr_b`.\n- In `expr_a or expr_b`: if `expr_a` is truthy, Python immediately returns `expr_a` WITHOUT evaluating `expr_b`.\n\nThis guarantee allows engineers to write safe guards: `if user and user.is_authenticated():` will never crash with an AttributeError even if `user` is None.\n\nFurthermore, Python 3.10 introduced Structural Pattern Matching (`match`/`case`). Unlike C-style switch statements, pattern matching unpacks sequences, extracts dictionary keys, and evaluates type signatures with conditional guards simultaneously.",
-      "codeExamples": [
-        {
-          "language": "text",
-          "code": "+-------------------------------------------------------------------+\n| SHORT-CIRCUIT EVALUATION & STRUCTURAL PATTERN MATCHING            |\n|                                                                   |\n|  [expr_a] --- If False ---> Stop & return False (AND circuit)     |\n|      |                                                            |\n|    If True                                                        |\n|      v                                                            |\n|  [expr_b] evaluated safely (e.g. user.get_profile())               |\n|                                                                   |\n|  Structural Pattern Matching (match / case):                      |\n|  match response:                                                  |\n|    case {\"status\": 200, \"data\": [*items]} if len(items) > 0: ... |\n|    case {\"status\": 404, \"error\": msg}: ...                        |\n|    case _: ... (Default fallback)                                 |\n+-------------------------------------------------------------------+",
-          "explanation": "Short-circuiting skips unnecessary right-hand evaluations, while pattern matching deconstructs complex nested data structures with guards.",
-          "expectedOutput": "System Architecture & Memory Layout Diagram"
-        }
-      ],
-      "keyPoints": [
-        "Empty collections and numeric zeros are falsy; all other objects are truthy by default.",
-        "Short-circuit evaluation guarantees safe attribute chaining without explicit nested if checks.",
-        "match/case inspects shapes of data, extracting variables and applying 'if' guards declaratively."
-      ],
-      "commonMistakes": [
-        "Writing 'if x == True:' instead of idiomatic 'if x:' or 'if x is True:'.",
-        "Evaluating functions with side effects on the right side of 'or'/'and', unaware they may never execute."
-      ]
+      "id": "sec-2-1-1",
+      "heading": "2.1.1 What Are Literals?",
+      "content": "A literal is data whose values are determined directly by the literal notation itself. When you write 123 in your Python source code, it literally represents the integer value 123.\n\nPython provides several fundamental categories of literals:\n• Integers (int): Whole numbers without fractional components (e.g., 42, -17, 0). Python supports arbitrarily large integers without integer overflow.\n• Floating-point numbers (float): Numbers containing decimal points or exponential fractions (e.g., 3.14159, 2.5, -0.001).\n• Scientific Notation: 3E8 or 3e8 represents 3 * 10^8 (300,000,000.0). In Python, any number using 'e' or 'E' notation is ALWAYS evaluated as a float.\n• Strings (str): Sequences of characters enclosed in matching quotes.\n• Booleans (bool): The exact truth values True and False."
     },
     {
-      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--sec-2",
-      "heading": "2. Production Request Router using Structural Pattern Matching",
-      "content": "Production microservices often ingest polymorphic JSON event payloads from message brokers (Kafka/RabbitMQ). Replacing tangled if-elif-else trees with structural pattern matching enhances maintainability and catches malformed message shapes immediately.",
-      "codeExamples": [
-        {
-          "language": "python",
-          "code": "def route_event(event: dict) -> str:\n    \"\"\"Route microservice event payloads using structural pattern matching.\"\"\"\n    match event:\n        case {\"type\": \"ORDER_CREATED\", \"payload\": {\"order_id\": int(oid), \"amount\": float(amt)}} if amt > 0:\n            return f\"Processing valid order #{oid} for {amt:.2f} USD\"\n            \n        case {\"type\": \"ORDER_CREATED\", \"payload\": {\"amount\": float(amt)}} if amt <= 0:\n            return \"Rejected: Order amount must be positive\"\n            \n        case {\"type\": \"USER_SIGNUP\", \"payload\": {\"email\": str(email)}} if \"@\" in email:\n            return f\"Provisioning account for {email}\"\n            \n        case {\"type\": str(event_type), \"error\": str(err_msg)}:\n            return f\"Alert: Failure in {event_type} - {err_msg}\"\n            \n        case _:\n            return \"Rejected: Unrecognized or malformed event schema\"\n\n# Testing event routes\nprint(route_event({\"type\": \"ORDER_CREATED\", \"payload\": {\"order_id\": 1042, \"amount\": 89.50}}))\nprint(route_event({\"type\": \"USER_SIGNUP\", \"payload\": {\"email\": \"dev@careertwin.ai\"}}))\nprint(route_event({\"type\": \"INVALID_SCHEMA\"}))",
-          "explanation": "Demonstrates pattern matching with type assertions, dictionary destructuring, and conditional guards.",
-          "expectedOutput": "Processing valid order #1042 for $89.50\nProvisioning account for dev@careertwin.ai\nRejected: Unrecognized or malformed event schema"
-        }
-      ],
-      "keyPoints": [
-        "The wildcard pattern `_` acts as a mandatory catch-all default to ensure no event is dropped silently.",
-        "Guards (`if amt > 0`) allow business rules to be validated directly in the pattern definition."
-      ],
-      "commonMistakes": [
-        "Forgetting that pattern matching evaluates cases sequentially from top to bottom; putting general cases first masks specific cases."
-      ]
+      "id": "sec-2-1-2",
+      "heading": "2.1.2 Alternative Integer Bases: Octal, Hex, and Binary",
+      "content": "While humans think in decimal (base 10), computer systems frequently work with binary, octal, and hexadecimal:\n\n• Binary (Base 2): Prefix with 0b or 0B (e.g. 0b1011 = 11 in decimal).\n• Octal (Base 8): Prefix with 0o or 0O (e.g. 0o123 = 83 in decimal).\n• Hexadecimal (Base 16): Prefix with 0x or 0X (e.g. 0x2F = 47 in decimal).\n\nUnderscores can be embedded in large numeric literals as visual separators (e.g. 1_000_000 is identical to 1000000)."
     }
   ],
-  "exercises": [
-    {
-      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--ex-1",
-      "type": "coding",
-      "title": "Implement an HTTP Status Packet Dispatcher",
-      "objective": "Write an event router using match/case that categorizes HTTP response payloads and extracts error metadata.",
-      "description": "Build handle_api_response(response: dict) -> str that matches 200 (success with items), 400 (bad request with error message), 500 (internal server error with retry flag), and returns structured log messages.",
-      "instructions": [
-        "Match on dictionary keys {'status_code': int, ...}.",
-        "Extract data or error strings safely.",
-        "Use guards to differentiate empty data arrays from populated data arrays.",
-        "Return a descriptive status string."
-      ],
-      "starterCode": "def handle_api_response(response: dict) -> str:\n    # Use match/case to dispatch responses\n    pass",
-      "hints": [
-        "Pattern: `case {'status_code': 200, 'data': [*items]} if items: ...`.",
-        "Catch-all pattern: `case _: ...`."
-      ],
-      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
-      "evaluationCriteria": [
-        "Addresses the root architectural/technical challenge accurately",
-        "Follows defensive industry standards and edge-case validation"
-      ],
-      "solutionExplanation": "Structural pattern matching cleanly decomposes complex payload structures while eliminating deeply nested if statements."
-    }
-  ],
+  "exercises": [],
   "knowledgeChecks": [
     {
-      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--kc-1",
+      "id": "kc-2-1-1",
       "type": "single-choice",
-      "prompt": "What will the expression 'None and print(\"Hello\")' output?",
+      "prompt": "What is the data type of the literal 4.0 in Python?",
       "options": [
         {
           "id": "opt-1",
-          "text": "It prints 'Hello' and returns None."
+          "text": "float"
         },
         {
           "id": "opt-2",
-          "text": "It prints nothing and evaluates to None due to short-circuit evaluation."
+          "text": "int"
         },
         {
           "id": "opt-3",
-          "text": "It raises an AttributeError."
+          "text": "decimal"
         },
         {
           "id": "opt-4",
-          "text": "It raises a TypeError because None cannot be combined with a function call."
+          "text": "number"
         }
       ],
       "correctOptionIds": [
-        "opt-2"
+        "opt-1"
       ],
-      "explanation": "Because None is falsy, the 'and' operator short-circuits immediately without evaluating the right operand.",
+      "explanation": "The presence of the decimal point classifies 4.0 as a floating-point number (float).",
       "objectiveIds": [
-        "python-obj-2"
-      ]
-    },
-    {
-      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--kc-2",
-      "type": "single-choice",
-      "prompt": "In Python 3.10+ structural pattern matching, what is the role of the '_' pattern?",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "It declares a private local variable."
-        },
-        {
-          "id": "opt-2",
-          "text": "It acts as a wildcard catch-all pattern matching any value."
-        },
-        {
-          "id": "opt-3",
-          "text": "It forces the match statement to loop back to the beginning."
-        },
-        {
-          "id": "opt-4",
-          "text": "It ignores whitespace in string matching."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-2"
-      ],
-      "explanation": "The wildcard '_' matches any value and is commonly used as the default branch at the end of a match block.",
-      "objectiveIds": [
-        "python-obj-3"
+        "pe1-obj-2"
       ]
     }
   ],
-  "recap": "Short-circuit boolean logic enables safe property evaluation. Python 3.10+ pattern matching provides structural destructuring with guards, eliminating verbose nested condition chains.",
+  "recap": "Literals are fixed constant values. Floats always feature decimal points or exponent notations.",
   "videoResources": [
     {
-      "id": "res-python-primary",
-      "title": "Python Full Course for Beginners to Advanced Architecture",
+      "id": "vid-mod-2-pe1-m2-l1-literals",
+      "title": "Cisco NetAcad Python Essentials 1: 2.1. Python Literals & Internal Representation",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Core Python",
-      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-      "embedUrl": "",
-      "durationMinutes": 60,
-      "difficulty": "beginner",
-      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
-      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
-      "learningObjectivesSupported": [
-        "python-obj-1",
-        "python-obj-2",
-        "python-obj-3",
-        "python-obj-4"
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 2.1. Python Literals & Internal Representation aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
       ],
-      "keyTopicsCovered": [
-        "Python Execution Architecture, Bytecode & Object Model",
-        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
-        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-        "The Iteration Protocol, Generators & Streaming Pipelines",
-        "Closures, First-Class Functions & Decorator Metaprogramming",
-        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
-      ],
-      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
-      "verificationStatus": "curated",
-      "lastCheckedDate": "2026-11-12"
+      "whatItTeaches": "Step-by-step guidance on 2.1. Python Literals & Internal Representation with practical examples and code execution trace."
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation & Language Reference",
-      "url": "https://docs.python.org/3/",
-      "description": "Authoritative official technical reference for Python."
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
     }
   ],
   "realWorldApplications": [
-    "API gateway microservices routing incoming webhook payloads based on header and body shapes.",
-    "Financial fraud detection filters evaluating multi-variable risk scores with early exits."
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
   ],
   "generationMode": "curated",
   "reviewStatus": "approved",
   "contentVersion": 2,
-  "generatedAt": "2026-11-12T03:01:18.229Z"
+  "generatedAt": "2026-11-12T16:01:55.582Z"
 }

@@ -232,12 +232,8 @@ export function Landing() {
       <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`} id="header">
         <div className="container header-inner">
           <Link className="brand magnetic" href="/">
-            <span className="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5.6 11.1q2.4-3.1 4.8 0" />
-                <path d="M13.6 11.1q2.4-3.1 4.8 0" />
-                <path d="M7.6 14.2q4.4 3.5 8.8 0" />
-              </svg>
+            <span className="brand-mark overflow-hidden" aria-hidden="true">
+              <img src="/careertwin-logo.png" alt="CareerTwin" className="size-full object-cover rounded-[10px]" />
             </span>
             <span className="brand-text">
               <span className="brand-thin">Career</span>
@@ -533,12 +529,8 @@ export function Landing() {
         <div className="container footer-inner">
           <div className="footer-brand">
             <Link className="brand" href="/">
-              <span className="brand-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5.6 11.1q2.4-3.1 4.8 0" />
-                  <path d="M13.6 11.1q2.4-3.1 4.8 0" />
-                  <path d="M7.6 14.2q4.4 3.5 8.8 0" />
-                </svg>
+              <span className="brand-mark overflow-hidden" aria-hidden="true">
+                <img src="/careertwin-logo.png" alt="CareerTwin" className="size-full object-cover rounded-[10px]" />
               </span>
               <span className="brand-text">
                 <span className="brand-thin">Career</span>

@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-4-pe1-m4-l4-tuples",
+  "skillName": "Python",
+  "moduleId": "mod-4-pe1-m4",
+  "title": "4.4. Tuples: Immutable Sequences",
+  "summary": "Explore tuples: immutable sequence types defined with parentheses. Master tuple packing, sequence unpacking, and when to use tuples over lists.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Create tuples using parentheses and recognize that comma notation defines tuples.",
+    "Understand immutability: tuples cannot be modified, appended, or deleted after creation.",
+    "Perform tuple packing and multiple assignment unpacking."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-4-4-1",
+      "heading": "4.4.1 Tuple Immutability & Syntax",
+      "content": "A tuple is an ordered sequence of elements, very similar to a list, with one critical distinction: tuples are IMMUTABLE. Once created, elements cannot be added, changed, or removed.\n\nTuples are defined using parentheses: coords = (10, 20). A single-element tuple must include a trailing comma: one_item = (42,)."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-4-4-1",
+      "type": "single-choice",
+      "prompt": "How do you create a tuple with exactly one element in Python?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "(42,)"
+        },
+        {
+          "id": "opt-2",
+          "text": "(42)"
+        },
+        {
+          "id": "opt-3",
+          "text": "[42]"
+        },
+        {
+          "id": "opt-4",
+          "text": "tuple(42)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "A trailing comma is mandatory for single-element tuples: (42,) is a tuple, whereas (42) evaluates as parenthesized integer 42.",
+      "objectiveIds": [
+        "pe1-obj-4"
+      ]
+    }
+  ],
+  "recap": "Tuples are immutable sequences, safeguarding constant data collections against accidental modification.",
+  "videoResources": [
+    {
+      "id": "vid-mod-4-pe1-m4-l4-tuples",
+      "title": "Cisco NetAcad Python Essentials 1: 4.4. Tuples: Immutable Sequences",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 4.4. Tuples: Immutable Sequences aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 4.4. Tuples: Immutable Sequences with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

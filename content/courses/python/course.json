@@ -5,106 +5,145 @@
   "preferredLanguage": "English",
   "objectives": [
     {
-      "id": "python-obj-1",
-      "statement": "Understand foundational mental models and architecture of Python",
+      "id": "pe1-obj-1",
+      "statement": "Understand foundational computer programming concepts, Python runtime architecture, and compilation vs. interpretation.",
       "order": 1
     },
     {
-      "id": "python-obj-2",
-      "statement": "Implement secure, reproducible solutions across real-world Python tasks",
+      "id": "pe1-obj-2",
+      "statement": "Master Python data types, literals, variables, arithmetic operators, operator precedence, and basic input/output operations.",
       "order": 2
     },
     {
-      "id": "python-obj-3",
-      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in Python",
+      "id": "pe1-obj-3",
+      "statement": "Implement decision-making control flow, conditional execution, while/for loops, bitwise operations, and list manipulation.",
       "order": 3
     },
     {
-      "id": "python-obj-4",
-      "statement": "Architect scalable enterprise workflows aligned with Python industry best practices",
+      "id": "pe1-obj-4",
+      "statement": "Construct modular code using functions, variable scoping, immutable tuples, dictionaries, and defensive exception handling.",
       "order": 4
     }
   ],
   "prerequisites": [
     "Basic computer literacy and ability to run commands in a terminal",
-    "Fundamental algebraic thinking (variables, logical conditions)"
+    "Fundamental algebraic thinking (variables, arithmetic operations, logical conditions)"
   ],
   "modules": [
     {
-      "id": "mod-1-python-beginner-module-1",
-      "title": "Module 1: Python Runtime Architecture, Memory Model & Primitives",
-      "summary": "Explore CPython virtual machine internals, stack evaluation, heap allocation, name binding, and IEEE 754 numeric types.",
+      "id": "mod-1-pe1-m1",
+      "title": "Module 1: Introduction to Python and Computer Programming",
+      "summary": "Orient yourself with Cisco NetAcad's Python Essentials 1, understand computer architecture, machine vs. programming languages, compilation vs. interpretation, and write your first Python program with print().",
       "order": 1,
       "estimatedMinutes": 120,
       "objectiveIds": [
-        "python-obj-1",
-        "python-obj-2"
+        "pe1-obj-1"
       ],
       "lessonTitles": [
-        "Python Execution Architecture, Bytecode & Object Model",
-        "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
+        "1.0. Welcome to Python Essentials 1",
+        "1.1. Fundamentals of Computer Programming",
+        "1.2. Introduction to Python & Evolution",
+        "1.3. The First Program & The print() Function",
+        "1.4. Practice Lab: print() Formatting & Escape Sequences",
+        "1.5. Module 1 Summary & Section Examination"
       ],
-      "checkpoint": "Analyze object memory addresses, reference counting, and type conversion boundaries."
+      "checkpoint": "Pass Module 1 Quiz (70%+), explain CPython execution steps, and correctly format formatted output."
     },
     {
-      "id": "mod-2-python-beginner-module-2",
-      "title": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling",
-      "summary": "Understand short-circuit boolean logic, structural pattern matching, memory-efficient generators, and custom iteration protocols.",
+      "id": "mod-2-pe1-m2",
+      "title": "Module 2: Python Data Types, Variables, Operators, and Basic I/O Operations",
+      "summary": "Dive deep into Python literals (integers, floats, scientific notation, strings, booleans), arithmetic operators, operator precedence, variables, naming standards, comments, and the input() function.",
       "order": 2,
-      "estimatedMinutes": 120,
+      "estimatedMinutes": 150,
       "objectiveIds": [
-        "python-obj-2",
-        "python-obj-3"
+        "pe1-obj-2"
       ],
       "lessonTitles": [
-        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
-        "The Iteration Protocol, Generators & Streaming Pipelines"
+        "2.1. Python Literals & Internal Representation",
+        "2.2. Operators: Data Operations Tools & Precedence",
+        "2.3. Variables: Data Containers & Identifiers",
+        "2.4. Code Comments & PEP 8 Documentation Standards",
+        "2.5. User Interaction with input() & Type Casting",
+        "2.6. Module 2 Summary, Math Labs & Section Examination"
       ],
-      "checkpoint": "Build generator pipelines with O(1) space complexity and implement pattern matching routers."
+      "checkpoint": "Complete the Pythagorean hypotenuse lab and score 70%+ on Module 2 operators and data types assessment."
     },
     {
-      "id": "mod-3-python-beginner-module-3",
-      "title": "Module 3: Metaprogramming, OOP Architecture & Automated Verification",
-      "summary": "Master closures, decorators with functools.wraps, dunder protocol design, and production-grade pytest test suites.",
+      "id": "mod-3-pe1-m3",
+      "title": "Module 3: Boolean Values, Conditional Execution, Loops, Lists and Logical Operations",
+      "summary": "Master conditional decision-making (if-elif-else), while and for loop control flow, boolean logic, bitwise operators, and mutable list operations including slicing and the Bubble Sort algorithm.",
       "order": 3,
-      "estimatedMinutes": 120,
+      "estimatedMinutes": 180,
       "objectiveIds": [
-        "python-obj-3",
-        "python-obj-4"
+        "pe1-obj-3"
       ],
       "lessonTitles": [
-        "Closures, First-Class Functions & Decorator Metaprogramming",
-        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
+        "3.1. Comparison Operators & Conditional Execution",
+        "3.2. Loops in Python: while and for",
+        "3.3. Logic and Bitwise Operations",
+        "3.4. Lists: Mutable Sequences & Memory Allocation",
+        "3.5. Sorting Algorithms & Multidimensional Lists",
+        "3.6. Module 3 Summary, Classic Games Labs & Section Examination"
       ],
-      "checkpoint": "Design encapsulated domain models with dunder methods and verify behavior using automated pytest suites."
+      "checkpoint": "Implement Collatz hypothesis validator and pass the 20-question Module 3 logic assessment."
+    },
+    {
+      "id": "mod-4-pe1-m4",
+      "title": "Module 4: Functions, Tuples, Dictionaries, Exceptions, and Data Processing",
+      "summary": "Learn how to decompose complex problems into modular functions, handle variable scope, work with immutable tuples and key-value dictionaries, and safeguard code with defensive try-except blocks.",
+      "order": 4,
+      "estimatedMinutes": 200,
+      "objectiveIds": [
+        "pe1-obj-4"
+      ],
+      "lessonTitles": [
+        "4.1. Writing & Invoking Functions",
+        "4.2. Returning Data, Recursion & Mathematical Functions",
+        "4.3. Variable Scopes & Namespace Resolution",
+        "4.4. Tuples: Immutable Sequences",
+        "4.5. Dictionaries: Key-Value Mapping & Structured Data",
+        "4.6. Exception Handling & Defensive Engineering",
+        "4.7. Module 4 NetAcad Capstone Project & Certification Exam"
+      ],
+      "checkpoint": "Complete the Tic-Tac-Toe console game against AI and pass the 100-mark Cisco NetAcad Python Essentials 1 certification mock exam."
     }
   ],
   "practiceActivities": [
-    "Trace and diagram CPython reference counts, memory addresses, and object bindings using id() and sys.getrefcount()",
-    "Implement an unbuffered, memory-efficient streaming generator pipeline for gigabyte-scale access logs",
-    "Build a production-grade decorator suite for latency telemetry, caching, and rate limiting with functools.wraps",
-    "Develop a domain entity with dunder protocols (__eq__, __hash__, __repr__) and full pytest test coverage"
+    "Interactive terminal code evaluation for every chapter topic",
+    "Automated unit testing on hands-on NetAcad practice labs",
+    "Pythagorean distance, Collatz conjecture, and Bubble sort implementations",
+    "Defensive exception handling for input validation in production services"
   ],
   "assessmentCheckpoints": [
-    "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint (70% pass threshold)",
-    "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint (70% pass threshold)",
-    "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint (70% pass threshold)"
+    "Module 1 Section Assessment: Fundamentals and print() mechanics",
+    "Module 2 Section Assessment: Operators, type casting, and variable scoping",
+    "Module 3 Section Assessment: Branching decisions, loops, and list algorithms",
+    "Module 4 Section Assessment: Modular functions, dictionaries, and error handling",
+    "Comprehensive 100-Mark Timed Final Examination (28 authoritative questions)"
   ],
   "projects": [
-    "Enterprise Telemetry & Resilient Order Processing Engine with Pytest Validation Suite"
+    "Cisco NetAcad Python Essentials 1 Capstone: Interactive AI Tic-Tac-Toe Console Game with modular functions, board representation, win-condition matrix validation, and defensive move checking."
   ],
   "proficiencyCriteria": [
-    "Explain CPython execution mechanics: compilation, bytecode disassembling, object heap allocation, and garbage collection",
-    "Prevent mutable default argument traps, unhandled conversion exceptions, and memory reference cycles",
-    "Design composable generator pipelines that maintain O(1) space complexity across large datasets",
-    "Write maintainable, strictly typed, PEP 8 compliant software validated by automated test suites"
+    "Explain the role of interpreter, bytecode compilation, and CPython virtual machine execution pipeline.",
+    "Formulate and evaluate complex mathematical expressions adhering to Python operator precedence and associativity.",
+    "Construct efficient algorithms utilizing while and for loops with appropriate break, continue, and loop-else clauses.",
+    "Manipulate single and multidimensional lists with slicing, in-place sorting, and list comprehensions.",
+    "Design decoupled functions with explicit parameter contracts, handle local vs global scopes, and manage exceptions with try-except."
   ],
   "resources": [
     {
-      "title": "Python 3 Official Documentation & Language Reference",
+      "title": "Cisco Networking Academy - Python Essentials 1",
+      "organization": "Cisco Networking Academy & Python Institute",
+      "url": "https://www.netacad.com/courses/programming/pcep-programming-essentials-in-python",
+      "retrievedAt": "2026-11-12T16:01:49.131Z",
+      "reviewStatus": "curated"
+    },
+    {
+      "title": "Official Python 3 Documentation - Language Reference",
       "organization": "Python Software Foundation",
-      "url": "https://docs.python.org/3/",
-      "retrievedAt": "2026-11-12T03:01:18.229Z",
+      "url": "https://docs.python.org/3/reference/",
+      "retrievedAt": "2026-11-12T16:01:49.132Z",
       "reviewStatus": "curated"
     }
   ],

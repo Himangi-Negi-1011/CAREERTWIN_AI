@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-4-pe1-m4-l6-exceptions",
+  "skillName": "Python",
+  "moduleId": "mod-4-pe1-m4",
+  "title": "4.6. Exception Handling & Defensive Engineering",
+  "summary": "Safeguard programs from runtime crashes using try-except blocks, handle specific exceptions (ValueError, ZeroDivisionError, IndexError), and use else and finally clauses.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Understand the difference between compile-time SyntaxError and runtime Exceptions.",
+    "Intercept errors using try and except blocks to ensure robust, defensive code.",
+    "Handle multiple specific exceptions and utilize finally for guaranteed cleanup."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-4-6-1",
+      "heading": "4.6.1 The try-except Defensive Architecture",
+      "content": "When a runtime error occurs, Python raises an Exception. If unhandled, the program crashes and outputs a traceback.\n\nWith try-except blocks, you intercept exceptions gracefully:\ntry:\n    val = int(input('Enter number: '))\n    res = 10 / val\nexcept ValueError:\n    print('Invalid integer input!')\nexcept ZeroDivisionError:\n    print('Cannot divide by zero!')"
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-4-6-1",
+      "type": "single-choice",
+      "prompt": "Which block in a try-except structure executes regardless of whether an exception occurred or not?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "finally"
+        },
+        {
+          "id": "opt-2",
+          "text": "else"
+        },
+        {
+          "id": "opt-3",
+          "text": "except"
+        },
+        {
+          "id": "opt-4",
+          "text": "catch"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "The finally block is guaranteed to execute whether an exception was raised, handled, or absent.",
+      "objectiveIds": [
+        "pe1-obj-4"
+      ]
+    }
+  ],
+  "recap": "try-except traps runtime errors, preventing crashes and supporting defensive system engineering.",
+  "videoResources": [
+    {
+      "id": "vid-mod-4-pe1-m4-l6-exceptions",
+      "title": "Cisco NetAcad Python Essentials 1: 4.6. Exception Handling & Defensive Engineering",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 4.6. Exception Handling & Defensive Engineering aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 4.6. Exception Handling & Defensive Engineering with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

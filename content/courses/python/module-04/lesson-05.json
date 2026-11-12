@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-4-pe1-m4-l5-dictionaries",
+  "skillName": "Python",
+  "moduleId": "mod-4-pe1-m4",
+  "title": "4.5. Dictionaries: Key-Value Mapping & Structured Data",
+  "summary": "Work with Python dictionaries (dict): unordered/insertion-ordered key-value mappings. Master keys(), values(), items(), get(), and in membership testing.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Construct dictionaries using curly braces {key: value}.",
+    "Recognize key requirements: dictionary keys must be immutable types (strings, numbers, tuples).",
+    "Traverse dictionaries using .keys(), .values(), and .items()."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-4-5-1",
+      "heading": "4.5.1 Dictionaries as Key-Value Stores",
+      "content": "A dictionary is an associative data structure where each value is accessed via a unique key rather than an integer index.\n\n• Keys: Must be immutable (strings, integers, floats, booleans, tuples). Keys must be unique.\n• Values: Can be of any arbitrary data type (lists, numbers, other dictionaries).\n• Safe Lookup: user_dict.get('email', 'default@example.com') retrieves values without raising KeyError."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-4-5-1",
+      "type": "single-choice",
+      "prompt": "Which of the following CANNOT be used as a dictionary key in Python?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "A list ([1, 2, 3])"
+        },
+        {
+          "id": "opt-2",
+          "text": "A string ('username')"
+        },
+        {
+          "id": "opt-3",
+          "text": "An integer (42)"
+        },
+        {
+          "id": "opt-4",
+          "text": "A tuple ((1, 2))"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Dictionary keys must be immutable and hashable. Lists are mutable, so they cannot serve as dictionary keys.",
+      "objectiveIds": [
+        "pe1-obj-4"
+      ]
+    }
+  ],
+  "recap": "Dictionaries provide O(1) key-value access; keys must be immutable, values can be any type.",
+  "videoResources": [
+    {
+      "id": "vid-mod-4-pe1-m4-l5-dictionaries",
+      "title": "Cisco NetAcad Python Essentials 1: 4.5. Dictionaries: Key-Value Mapping & Structured Data",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 4.5. Dictionaries: Key-Value Mapping & Structured Data aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 4.5. Dictionaries: Key-Value Mapping & Structured Data with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

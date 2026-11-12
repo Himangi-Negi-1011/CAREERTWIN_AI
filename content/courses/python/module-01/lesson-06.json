@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-1-pe1-m1-l5-summary-quiz",
+  "skillName": "Python",
+  "moduleId": "mod-1-pe1-m1",
+  "title": "1.5. Module 1 Summary & Section Examination",
+  "summary": "Consolidate all fundamental knowledge acquired in Module 1. Review computer architecture, Python design principles, and prepare for the Module 1 assessment.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Synthesize Module 1 core takeaways: compilation, interpretation, and basic I/O.",
+    "Review common pitfalls: SyntaxError, NameError, and quoting blunders.",
+    "Successfully pass the Module 1 Practice Assessment to unlock Module 2."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-1-5-1",
+      "heading": "1.5.1 Module 1 Comprehensive Knowledge Synthesis",
+      "content": "Congratulations on finishing Module 1 of Python Essentials 1! Let us review the foundational concepts mastered:\n\n1. Computer Architecture: Hardware only executes machine instructions composed of binary voltages.\n2. High-Level Languages: Python bridges human problem solving and machine instructions through clear syntax.\n3. The CPython Pipeline: Python code is compiled into bytecode (.pyc) and executed by the Python Virtual Machine (PVM).\n4. The print() Function: Outputs string representations of data with customizable separators (sep) and line terminators (end).\n5. Escape Sequences: Backslash notation (\\n, \\t, \\\", \\\\) provides powerful control over text rendering.\n\nYou are now fully prepared to tackle the Module 1 Section Assessment."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-1-5-1",
+      "type": "single-choice",
+      "prompt": "What is the primary role of the Python Virtual Machine (PVM)?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "To execute bytecode instructions on the host machine"
+        },
+        {
+          "id": "opt-2",
+          "text": "To edit and format Python source files"
+        },
+        {
+          "id": "opt-3",
+          "text": "To upload scripts to cloud repositories"
+        },
+        {
+          "id": "opt-4",
+          "text": "To compile Python directly into C++ code"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "The PVM is the runtime engine in CPython that interprets and executes bytecode instructions.",
+      "objectiveIds": [
+        "pe1-obj-1"
+      ]
+    }
+  ],
+  "recap": "Module 1 is complete! Proceed to the Module 1 Assessment to earn your verified checkpoint.",
+  "videoResources": [
+    {
+      "id": "vid-mod-1-pe1-m1-l5-summary-quiz",
+      "title": "Cisco NetAcad Python Essentials 1: 1.5. Module 1 Summary & Section Examination",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 1.5. Module 1 Summary & Section Examination aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 1.5. Module 1 Summary & Section Examination with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

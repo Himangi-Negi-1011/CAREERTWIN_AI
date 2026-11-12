@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *, .dark, .dark *));
+@custom-variant dark (&:is([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
 
 :root {
   --cream: #f8f8fc;
@@ -13,11 +13,18 @@
   --gold: #f2c35c;
 }
 
+[data-theme="dark"], .dark {
+  --cream: #08090d;
+  --app: #0f131f;
+  --ink: #f1f3f9;
+  --slate: #94a3b8;
+}
+
 @theme inline {
   --color-cream: var(--cream);
   --color-app: var(--app);
   --color-ink: var(--ink);
-  --color-slate: var(--slate);
+  --color-brand-slate: var(--slate);
   --color-coral: var(--accent);
   --color-accent: var(--accent);
   --color-mint: var(--mint);
@@ -29,6 +36,10 @@
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-geist-sans);
 }
+
+.text-slate { color: var(--slate); }
+.border-slate { border-color: var(--slate); }
+.bg-slate { background-color: var(--slate); }
 
 /* Hide Spline Watermark Globally Across All Containers, Shadows and Body */
 .spline-wrapper canvas {

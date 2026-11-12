@@ -56,12 +56,8 @@ export function AuthShell({
       <header className="site-header auth-header">
         <div className="container header-inner flex items-center justify-between">
           <Link href="/" className="brand" aria-label="CareerTwin — home">
-            <span className="brand-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5.6 11.1q2.4-3.1 4.8 0" />
-                <path d="M13.6 11.1q2.4-3.1 4.8 0" />
-                <path d="M7.6 14.2q4.4 3.5 8.8 0" />
-              </svg>
+            <span className="brand-mark overflow-hidden" aria-hidden="true">
+              <img src="/careertwin-logo.png" alt="CareerTwin" className="size-full object-cover rounded-[10px]" />
             </span>
             <span className="brand-text">
               <span className="brand-thin">Career</span>

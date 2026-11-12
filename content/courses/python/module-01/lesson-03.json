@@ -1,0 +1,118 @@
+{
+  "lessonId": "mod-1-pe1-m1-l2-evolution",
+  "skillName": "Python",
+  "moduleId": "mod-1-pe1-m1",
+  "title": "1.2. Introduction to Python & Evolution",
+  "summary": "Discover the origins of Python by Guido van Rossum, the philosophy behind The Zen of Python, and the crucial distinction between compilation and interpretation.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Trace the historical development of Python and Guido van Rossum's guiding design principles.",
+    "Compare compiled languages (C, C++, Rust) with interpreted languages (Python, JavaScript).",
+    "Understand the CPython runtime pipeline: source code (.py) -> bytecode (.pyc) -> Python Virtual Machine (PVM)."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-1-2-1",
+      "heading": "1.2.1 The Birth and Philosophy of Python",
+      "content": "Python was conceived in the late 1980s by Dutch programmer Guido van Rossum at CWI (Centrum Wiskunde & Informatica) in Amsterdam. It was officially released to the public in 1991.\n\nVan Rossum named the language after the British comedy series 'Monty Python's Flying Circus', reflecting a desire to make programming enjoyable and accessible rather than dry and intimidating.\n\nThe core design tenets of Python are formalized in PEP 20 — 'The Zen of Python' (written by Tim Peters):\n• Beautiful is better than ugly.\n• Explicit is better than implicit.\n• Simple is better than complex.\n• Readability counts."
+    },
+    {
+      "id": "sec-1-2-2",
+      "heading": "1.2.2 Compilation vs. Interpretation: The CPython Pipeline",
+      "content": "How does Python execute your source code?\n\n1. Source Code (.py): You author clean textual instructions.\n2. CPython Compiler: When you run python script.py, the interpreter first compiles your high-level code into platform-independent intermediate instructions called bytecode (.pyc).\n3. Python Virtual Machine (PVM): The PVM reads each bytecode instruction, translates it on the fly into host CPU machine instructions, and coordinates memory management.\n\nThis hybrid model provides rapid development cycles, cross-platform portability, and powerful dynamic features."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-1-2-1",
+      "type": "single-choice",
+      "prompt": "Who created the Python programming language?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Guido van Rossum"
+        },
+        {
+          "id": "opt-2",
+          "text": "James Gosling"
+        },
+        {
+          "id": "opt-3",
+          "text": "Bjarne Stroustrup"
+        },
+        {
+          "id": "opt-4",
+          "text": "Dennis Ritchie"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Guido van Rossum invented Python and served as its Benevolent Dictator for Life (BDFL) until 2018.",
+      "objectiveIds": [
+        "pe1-obj-1"
+      ]
+    }
+  ],
+  "recap": "Python is an interpreted, bytecode-executed language designed for human readability and productivity.",
+  "videoResources": [
+    {
+      "id": "vid-mod-1-pe1-m1-l2-evolution",
+      "title": "Cisco NetAcad Python Essentials 1: 1.2. Introduction to Python & Evolution",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 1.2. Introduction to Python & Evolution aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 1.2. Introduction to Python & Evolution with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

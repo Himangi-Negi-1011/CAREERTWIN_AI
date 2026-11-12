@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-2-pe1-m2-l3-variables",
+  "skillName": "Python",
+  "moduleId": "mod-2-pe1-m2",
+  "title": "2.3. Variables: Data Containers & Identifiers",
+  "summary": "Learn how variables act as named labels pointing to memory objects, variable naming rules (PEP 8), assignment (=), and shortcut compound assignment operators.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Understand variable instantiation through assignment (=) without explicit type declarations.",
+    "Adhere to Python variable naming rules: letters, digits, underscores, case-sensitivity, and reserved keyword prohibitions.",
+    "Utilize shortcut operators: +=, -=, *=, /=, //=, %=, **=."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-2-3-1",
+      "heading": "2.3.1 Naming Rules for Python Identifiers",
+      "content": "A variable name (identifier) in Python must follow strict syntactic rules:\n• Must begin with an uppercase/lowercase letter or an underscore (_). It CANNOT begin with a digit.\n• Can only contain alphanumeric characters and underscores (a-z, A-Z, 0-9, _).\n• Python is strictly case-sensitive: count, Count, and COUNT are three distinct variables.\n• Cannot match any Python reserved keywords (e.g., if, for, while, class, def, return, import)."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-2-3-1",
+      "type": "single-choice",
+      "prompt": "Which of the following is an invalid variable identifier in Python?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "2nd_student"
+        },
+        {
+          "id": "opt-2",
+          "text": "_internal_value"
+        },
+        {
+          "id": "opt-3",
+          "text": "student_count"
+        },
+        {
+          "id": "opt-4",
+          "text": "Student2"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Variable names in Python cannot begin with a numeric digit.",
+      "objectiveIds": [
+        "pe1-obj-2"
+      ]
+    }
+  ],
+  "recap": "Variables are dynamic memory labels. Identifiers cannot start with digits or use reserved keywords.",
+  "videoResources": [
+    {
+      "id": "vid-mod-2-pe1-m2-l3-variables",
+      "title": "Cisco NetAcad Python Essentials 1: 2.3. Variables: Data Containers & Identifiers",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 2.3. Variables: Data Containers & Identifiers aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 2.3. Variables: Data Containers & Identifiers with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

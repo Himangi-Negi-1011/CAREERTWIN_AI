@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-2-pe1-m2-l5-input-casting",
+  "skillName": "Python",
+  "moduleId": "mod-2-pe1-m2",
+  "title": "2.5. User Interaction with input() & Type Casting",
+  "summary": "Capture interactive user input via the input() function, understand string return types, and convert types using int(), float(), and str().",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Use the input() function to pause execution and read user text from console.",
+    "Recognize that input() ALWAYS returns a string (str), even if the user enters digits.",
+    "Safely cast strings to numeric types using int() and float() to prevent runtime TypeError bugs."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-2-5-1",
+      "heading": "2.5.1 The input() Function Mechanics",
+      "content": "The input() function prompts the user to enter text and captures whatever they type until they press Enter.\n\nCRITICAL NETACAD TRAP: The input() function ALWAYS returns a string (str). If a user types 25, Python receives the string '25', not the integer 25. Attempting to perform arithmetic directly on an input() result causes a TypeError. You must explicitly convert (typecast) the input using int() or float()."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-2-5-1",
+      "type": "single-choice",
+      "prompt": "If a user inputs 10 when prompted by val = input(), what is the result of val * 2?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "'1010' (string replication)"
+        },
+        {
+          "id": "opt-2",
+          "text": "20 (numeric multiplication)"
+        },
+        {
+          "id": "opt-3",
+          "text": "TypeError: unsupported operand"
+        },
+        {
+          "id": "opt-4",
+          "text": "None"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "input() returns a string ('10'). In Python, multiplying a string by an integer replicates the string, producing '1010'.",
+      "objectiveIds": [
+        "pe1-obj-2"
+      ]
+    }
+  ],
+  "recap": "input() always yields strings. Explicit conversion with int() or float() is required before mathematical operations.",
+  "videoResources": [
+    {
+      "id": "vid-mod-2-pe1-m2-l5-input-casting",
+      "title": "Cisco NetAcad Python Essentials 1: 2.5. User Interaction with input() & Type Casting",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 2.5. User Interaction with input() & Type Casting aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 2.5. User Interaction with input() & Type Casting with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}

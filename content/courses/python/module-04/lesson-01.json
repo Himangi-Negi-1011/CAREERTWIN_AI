@@ -1,0 +1,113 @@
+{
+  "lessonId": "mod-4-pe1-m4-l1-functions",
+  "skillName": "Python",
+  "moduleId": "mod-4-pe1-m4",
+  "title": "4.1. Writing & Invoking Functions",
+  "summary": "Decompose complex software into reusable modular functions using the def keyword, define parameters, pass arguments, and establish clean contracts.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 25,
+  "learningObjectives": [
+    "Define custom functions using def name(parameters): and understand indentation scope.",
+    "Differentiate parameters (variables in function header) from arguments (actual values passed at invocation).",
+    "Avoid common pitfalls: invoking a function before its def declaration."
+  ],
+  "objectiveIds": [
+    "pe1-obj-1"
+  ],
+  "prerequisiteConcepts": [
+    "Basic computer literacy",
+    "Terminal usage"
+  ],
+  "sections": [
+    {
+      "id": "sec-4-1-1",
+      "heading": "4.1.1 Why Write Functions?",
+      "content": "A function is a named block of code that performs a specific task and can be executed whenever needed by calling its name. Functions prevent code duplication (DRY principle — Don't Repeat Yourself), make programs modular, and simplify debugging.\n\nIn Python, a function must be defined BEFORE it can be invoked."
+    }
+  ],
+  "exercises": [],
+  "knowledgeChecks": [
+    {
+      "id": "kc-4-1-1",
+      "type": "single-choice",
+      "prompt": "Which keyword is used to define a new function in Python?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "def"
+        },
+        {
+          "id": "opt-2",
+          "text": "function"
+        },
+        {
+          "id": "opt-3",
+          "text": "func"
+        },
+        {
+          "id": "opt-4",
+          "text": "define"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "The def keyword (short for define) defines a function in Python.",
+      "objectiveIds": [
+        "pe1-obj-4"
+      ]
+    }
+  ],
+  "recap": "Functions modularize logic, defined using def and executed by invoking their name with parentheses.",
+  "videoResources": [
+    {
+      "id": "vid-mod-4-pe1-m4-l1-functions",
+      "title": "Cisco NetAcad Python Essentials 1: 4.1. Writing & Invoking Functions",
+      "provider": "youtube",
+      "channelOrAuthor": "Cisco Networking Academy",
+      "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+      "durationMinutes": 18,
+      "description": "Official instructional walkthrough for 4.1. Writing & Invoking Functions aligned with Cisco NetAcad curriculum.",
+      "keyTimestamps": [
+        {
+          "time": "0:00",
+          "topic": "Module Introduction & Core Concepts"
+        },
+        {
+          "time": "4:30",
+          "topic": "Syntax Mechanics & Code Demonstration"
+        },
+        {
+          "time": "11:15",
+          "topic": "Common Student Mistakes & Traps"
+        },
+        {
+          "time": "16:00",
+          "topic": "Hands-on Lab Walkthrough"
+        }
+      ],
+      "whatItTeaches": "Step-by-step guidance on 4.1. Writing & Invoking Functions with practical examples and code execution trace."
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Python Institute - Certified Associate in Python Programming (PCEP/PCAP)",
+      "url": "https://pythoninstitute.org/pcep",
+      "description": "Official certification exam syllabus and candidate guidelines."
+    },
+    {
+      "title": "Python Official Documentation - Tutorial",
+      "url": "https://docs.python.org/3/tutorial/",
+      "description": "Authoritative language reference from the Python Software Foundation."
+    }
+  ],
+  "realWorldApplications": [
+    "Enterprise systems automation and server health monitoring.",
+    "Data ingestion, ETL pipelines, and API integration services.",
+    "Production test automation and continuous integration scripts."
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T16:01:55.582Z"
+}
