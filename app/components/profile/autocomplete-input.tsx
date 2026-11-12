@@ -110,12 +110,12 @@ export function AutocompleteInput({
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
-      <label htmlFor={inputId} className="block text-xs font-bold text-ink mb-1.5">
+      <label htmlFor={inputId} className="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1.5">
         {label} {required && <span className="text-rose-500">*</span>}
       </label>
 
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate/50">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400 dark:text-slate-500">
           <Search size={15} />
         </div>
         <input
@@ -137,14 +137,14 @@ export function AutocompleteInput({
           aria-expanded={open}
           aria-controls={listboxId}
           aria-label={label}
-          className="w-full rounded-xl border border-ink/10 bg-white py-3 pl-10 pr-9 text-sm text-ink outline-none transition focus:border-accent focus:ring-4 focus:ring-violet-100 placeholder:text-slate/40"
+          className="w-full rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-800 py-3 pl-10 pr-9 text-sm text-slate-900 dark:text-white outline-none transition focus:border-purple-500 focus:ring-4 focus:ring-purple-500/15 placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-2xs"
         />
         <button
           type="button"
           tabIndex={-1}
           aria-label="Toggle options list"
           onClick={() => setOpen((prev) => !prev)}
-          className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate/40 hover:text-slate"
+          className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
         >
           <ChevronDown size={15} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
         </button>
@@ -154,7 +154,7 @@ export function AutocompleteInput({
         <div
           id={listboxId}
           role="listbox"
-          className="absolute z-50 mt-1.5 max-h-64 w-full overflow-y-auto rounded-2xl border border-ink/10 bg-white p-1.5 shadow-[0_16px_40px_rgba(32,36,64,.12)]"
+          className="absolute z-50 mt-1.5 max-h-64 w-full overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-800 p-1.5 shadow-xl text-slate-900 dark:text-white"
         >
           {filtered.length > 0 ? (
             filtered.map((item, index) => {
@@ -168,25 +168,25 @@ export function AutocompleteInput({
                   onClick={() => handleSelect(item.title)}
                   onMouseEnter={() => setHighlightedIndex(index)}
                   className={`flex cursor-pointer items-start justify-between gap-3 rounded-xl px-3 py-2.5 transition ${
-                    isHighlighted ? "bg-violet-50 text-accent" : isSelected ? "bg-cream/70 font-semibold" : "text-ink hover:bg-app"
+                    isHighlighted ? "bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300" : isSelected ? "bg-slate-100 dark:bg-slate-700/60 font-semibold" : "text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/40"
                   }`}
                 >
                   <div className="min-w-0">
                     <p className="text-sm font-medium leading-tight truncate">{item.title}</p>
                     {item.subtitle && (
-                      <p className="mt-0.5 flex items-center gap-1 text-xs text-slate truncate">
-                        <MapPin size={11} className="shrink-0 text-slate/60" />
+                      <p className="mt-0.5 flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 truncate">
+                        <MapPin size={11} className="shrink-0 text-slate-400" />
                         {item.subtitle}
                       </p>
                     )}
                   </div>
                   <div className="flex shrink-0 items-center gap-1.5">
                     {item.badge && (
-                      <span className="rounded-md bg-app px-2 py-0.5 text-[10px] font-semibold text-slate">
+                      <span className="rounded-md bg-slate-100 dark:bg-slate-700/80 px-2 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-slate-300">
                         {item.badge}
                       </span>
                     )}
-                    {isSelected && <Check size={14} className="text-accent" />}
+                    {isSelected && <Check size={14} className="text-purple-600 dark:text-purple-400" />}
                   </div>
                 </div>
               );
@@ -198,14 +198,14 @@ export function AutocompleteInput({
               role="option"
               aria-selected={false}
               onClick={handleCustomConfirm}
-              className="mt-1 cursor-pointer rounded-xl border border-dashed border-violet-300 bg-violet-50/60 p-2.5 text-center text-xs font-bold text-accent hover:bg-violet-100/60 transition"
+              className="mt-1 cursor-pointer rounded-xl border border-dashed border-purple-300 dark:border-purple-500/40 bg-purple-50/60 dark:bg-purple-950/40 p-2.5 text-center text-xs font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100/60 transition"
             >
               + Use custom: “<span className="underline">{query.trim()}</span>”
             </div>
           )}
 
           {filtered.length === 0 && !query.trim() && (
-            <div className="p-4 text-center text-xs text-slate">
+            <div className="p-4 text-center text-xs text-slate-500 dark:text-slate-400">
               Type to search recognized institutions or add a custom name.
             </div>
           )}

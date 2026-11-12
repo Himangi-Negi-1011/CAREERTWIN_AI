@@ -927,12 +927,16 @@ export function LearningStudio({
             </div>
           </section>
 
-          {/* 2. Quick Enrolled Tracks Summary */}
+          {/* 2. Quick Enrolled Tracks Summary — Tailored to Student Profile & Target Role */}
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-bold uppercase tracking-wider text-slate">Recommended Learning Tracks</h4>
-                <p className="text-xs text-slate">Resume active curricula or jump straight into a 6-lesson flagship module.</p>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-slate">
+                  Recommended Learning Tracks {role ? `· ${role}` : ""}
+                </h4>
+                <p className="text-xs text-slate">
+                  Tailored based on your target role ({role || "Software Engineer"}). Master basic to advanced skills with verifiable checkpoints.
+                </p>
               </div>
               <span className="text-xs font-semibold text-accent">
                 {Object.values(completedLessons).filter(Boolean).length} Lessons Completed
@@ -940,39 +944,74 @@ export function LearningStudio({
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                { name: "Python Programming", searchName: "Python", tag: "Programming", prefix: "py-", slug: "python" },
-                { name: "Modern JavaScript (ES6+)", searchName: "JavaScript", tag: "Web & Frontend", prefix: "js-", slug: "javascript" },
-                { name: "Cloud Computing & AWS", searchName: "Cloud Computing", tag: "Cloud Infrastructure", prefix: "cloud-", slug: "cloud-computing" },
-              ].map((trk) => {
-                const doneCount = Object.keys(completedLessons).filter(
-                  (k) => completedLessons[k] && (k.includes(trk.slug) || k.includes(trk.prefix))
-                ).length;
-                const bounded = Math.min(6, doneCount);
-                const pct = Math.round((bounded / 6) * 100);
-                return (
-                <div key={trk.slug} className="rounded-2xl border border-ink/8 bg-white p-4 shadow-xs flex flex-col justify-between hover:border-accent/40 transition">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="font-semibold text-accent">{trk.tag}</span>
-                      <span className="text-slate font-medium">{bounded} / 6 Lessons</span>
+              {(() => {
+                const r = (role || "").toLowerCase();
+                let tracks = [
+                  { name: "Python Programming", searchName: "Python", tag: "Programming", prefix: "py-", slug: "python" },
+                  { name: "Modern JavaScript (ES6+)", searchName: "JavaScript", tag: "Web & Frontend", prefix: "js-", slug: "javascript" },
+                  { name: "Cloud Computing & AWS", searchName: "Cloud Computing", tag: "Cloud Infrastructure", prefix: "cloud-", slug: "cloud-computing" },
+                ];
+                if (r.includes("data") || r.includes("analyst") || r.includes("bi")) {
+                  tracks = [
+                    { name: "SQL & Relational Databases", searchName: "SQL", tag: "Data Persistence", prefix: "sql-", slug: "sql" },
+                    { name: "Power BI & Business Analytics", searchName: "Power BI", tag: "Business Intelligence", prefix: "pbi-", slug: "power-bi" },
+                    { name: "Python for Data Analysis", searchName: "Python", tag: "Data Processing", prefix: "py-", slug: "python" },
+                  ];
+                } else if (r.includes("cyber") || r.includes("security") || r.includes("soc")) {
+                  tracks = [
+                    { name: "Cybersecurity Defense & Ops", searchName: "Cybersecurity", tag: "Security Architecture", prefix: "sec-", slug: "cybersecurity" },
+                    { name: "Python for Security & Automation", searchName: "Python", tag: "Security Scripting", prefix: "py-", slug: "python" },
+                    { name: "Cloud Computing Architecture", searchName: "Cloud Computing", tag: "Cloud Security", prefix: "cloud-", slug: "cloud-computing" },
+                  ];
+                } else if (r.includes("cloud") || r.includes("devops") || r.includes("sre") || r.includes("aws")) {
+                  tracks = [
+                    { name: "Cloud Computing & AWS", searchName: "Cloud Computing", tag: "Cloud Infrastructure", prefix: "cloud-", slug: "cloud-computing" },
+                    { name: "Go Systems Programming", searchName: "Go", tag: "Cloud Native Services", prefix: "go-", slug: "go" },
+                    { name: "Python Programming", searchName: "Python", tag: "DevOps & Automation", prefix: "py-", slug: "python" },
+                  ];
+                } else if (r.includes("front") || r.includes("react") || r.includes("ui") || r.includes("web") || r.includes("full")) {
+                  tracks = [
+                    { name: "TypeScript Enterprise", searchName: "TypeScript", tag: "Type-Safe Architecture", prefix: "ts-", slug: "typescript" },
+                    { name: "Modern JavaScript (ES6+)", searchName: "JavaScript", tag: "Web & Frontend", prefix: "js-", slug: "javascript" },
+                    { name: "SQL & Relational Databases", searchName: "SQL", tag: "Backend Persistence", prefix: "sql-", slug: "sql" },
+                  ];
+                } else if (r.includes("ai") || r.includes("machine") || r.includes("ml")) {
+                  tracks = [
+                    { name: "Python Programming", searchName: "Python", tag: "AI Foundations", prefix: "py-", slug: "python" },
+                    { name: "SQL & Relational Databases", searchName: "SQL", tag: "Feature Datasets", prefix: "sql-", slug: "sql" },
+                    { name: "Cloud Computing & AWS", searchName: "Cloud Computing", tag: "Model Deployment", prefix: "cloud-", slug: "cloud-computing" },
+                  ];
+                }
+                return tracks.map((trk) => {
+                  const doneCount = Object.keys(completedLessons).filter(
+                    (k) => completedLessons[k] && (k.includes(trk.slug) || k.includes(trk.prefix))
+                  ).length;
+                  const bounded = Math.min(6, doneCount);
+                  const pct = Math.round((bounded / 6) * 100);
+                  return (
+                    <div key={trk.slug} className="rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-slate-900 p-4 shadow-xs flex flex-col justify-between hover:border-accent/40 transition">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-[11px]">
+                          <span className="font-semibold text-accent dark:text-purple-400">{trk.tag}</span>
+                          <span className="text-slate dark:text-slate-400 font-medium">{bounded} / 6 Lessons</span>
+                        </div>
+                        <h5 className="font-bold text-sm text-ink dark:text-white">{trk.name}</h5>
+                        <div className="h-1.5 w-full rounded-full bg-ink/5 dark:bg-white/10 overflow-hidden">
+                          <div className="h-full rounded-full bg-accent" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => void startCourseGeneration(trk.searchName, level)}
+                        className="mt-4 inline-flex items-center justify-between rounded-xl bg-cream/70 dark:bg-slate-800 hover:bg-violet-50 dark:hover:bg-purple-950/50 hover:text-accent px-3 py-2 text-xs font-bold text-ink dark:text-white transition cursor-pointer"
+                      >
+                        <span>{bounded > 0 ? "Resume Track" : "Start Track"}</span>
+                        <ArrowRight size={13} />
+                      </button>
                     </div>
-                    <h5 className="font-bold text-sm text-ink">{trk.name}</h5>
-                    <div className="h-1.5 w-full rounded-full bg-ink/5 overflow-hidden">
-                      <div className="h-full rounded-full bg-accent" style={{ width: `${pct}%` }} />
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => void startCourseGeneration(trk.searchName, level)}
-                    className="mt-4 inline-flex items-center justify-between rounded-xl bg-cream/70 hover:bg-violet-50 hover:text-accent px-3 py-2 text-xs font-bold text-ink transition cursor-pointer"
-                  >
-                    <span>{bounded > 0 ? "Resume Track" : "Start Track"}</span>
-                    <ArrowRight size={13} />
-                  </button>
-                </div>
-                );
-              })}
+                  );
+                });
+              })()}
             </div>
           </section>
 

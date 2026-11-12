@@ -44,7 +44,7 @@ const steps = [
 ] as const;
 
 const industries = ["Technology & Software", "FinTech & Banking", "Healthcare & BioTech", "E-Commerce & Retail", "Consulting & Services", "AI & Data Science", "Telecommunications", "Media & Entertainment"];
-const inputClass = "mt-2 w-full rounded-xl border border-ink/10 bg-white px-3.5 py-3 text-sm text-ink outline-none transition focus:border-accent focus:ring-4 focus:ring-violet-100 placeholder:text-slate/40";
+const inputClass = "mt-2 w-full rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-800/90 px-3.5 py-3 text-sm text-slate-900 dark:text-white outline-none transition focus:border-purple-500 focus:ring-4 focus:ring-purple-500/15 placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-2xs";
 const makeId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
 type SubmissionStage = "idle" | "validating" | "saving_profile" | "analyzing_gaps" | "generating_twin" | "ready" | "error";
@@ -308,10 +308,10 @@ export default function OnboardingPage() {
 
   if (!loaded) {
     return (
-      <main className="grid min-h-dvh place-items-center bg-app">
+      <main className="grid min-h-dvh place-items-center bg-slate-50 dark:bg-[#08080a]">
         <div className="flex flex-col items-center gap-3">
-          <div className="size-10 animate-spin rounded-full border-3 border-accent border-t-transparent" />
-          <span className="text-sm font-semibold text-slate">Loading your profile draft…</span>
+          <div className="size-10 animate-spin rounded-full border-3 border-purple-600 border-t-transparent" />
+          <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">Loading your profile draft…</span>
         </div>
       </main>
     );
@@ -326,12 +326,12 @@ export default function OnboardingPage() {
   }));
 
   return (
-    <div className="min-h-dvh bg-app text-ink">
-      <header className="border-b border-ink/8 bg-white sticky top-0 z-40 backdrop-blur-md bg-white/90">
+    <div className="min-h-dvh bg-slate-50 dark:bg-[#08080a] text-slate-900 dark:text-slate-100">
+      <header className="border-b border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0e0e11]/95 sticky top-0 z-40 backdrop-blur-md text-slate-900 dark:text-white">
         <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5">
           <Brand />
           <div className="flex items-center gap-3">
-            <span className="hidden text-xs font-bold text-slate sm:inline-block">
+            <span className="hidden text-xs font-bold text-slate-500 dark:text-slate-400 sm:inline-block">
               {completion}% profile complete
             </span>
             <button
@@ -348,9 +348,9 @@ export default function OnboardingPage() {
 
       <main className="mx-auto grid max-w-[1440px] gap-0 lg:grid-cols-[280px_minmax(0,1fr)_320px]">
         {/* Left Step Navigation Sidebar */}
-        <aside className="border-r border-ink/8 bg-white p-5 lg:min-h-[calc(100dvh-72px)]">
-          <p className="text-[10px] font-bold uppercase tracking-[.18em] text-slate">Build Your Career Profile</p>
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-app">
+        <aside className="border-r border-slate-200 dark:border-white/10 bg-white dark:bg-[#0e0e11] p-5 lg:min-h-[calc(100dvh-72px)]">
+          <p className="text-[10px] font-bold uppercase tracking-[.18em] text-slate-500 dark:text-slate-400">Build Your Career Profile</p>
+          <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
             <div
               className="h-full bg-[linear-gradient(90deg,#6547f1,#a127ec)] transition-all duration-300"
               style={{ width: `${Math.max(10, completion)}%` }}
@@ -369,19 +369,19 @@ export default function OnboardingPage() {
                   disabled={saving || submissionStage !== "idle"}
                   className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold transition ${
                     active
-                      ? "bg-violet-50 text-accent shadow-sm"
+                      ? "bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 shadow-xs"
                       : done
-                      ? "text-ink hover:bg-app"
-                      : "text-slate hover:bg-app/60"
+                      ? "text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                      : "text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/40"
                   }`}
                 >
                   <span
                     className={`grid size-7 place-items-center rounded-lg text-xs transition ${
                       active
-                        ? "bg-accent text-white"
+                        ? "bg-purple-600 text-white font-bold"
                         : done
-                        ? "bg-emerald-50 text-emerald-600 font-bold"
-                        : "bg-app text-slate"
+                        ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 font-bold"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
                     }`}
                   >
                     {done ? <Check size={14} /> : n}
@@ -394,8 +394,8 @@ export default function OnboardingPage() {
             })}
           </nav>
 
-          <div className="mt-8 rounded-2xl border border-ink/8 bg-cream/40 p-4 text-xs leading-5 text-slate">
-            <strong className="block text-ink font-bold mb-1">Smart Profile Guide</strong>
+          <div className="mt-8 rounded-2xl border border-slate-200 dark:border-white/10 bg-purple-50/50 dark:bg-purple-950/20 p-4 text-xs leading-5 text-slate-600 dark:text-slate-400">
+            <strong className="block text-slate-900 dark:text-white font-bold mb-1">Smart Profile Guide</strong>
             Complete each step with genuine information. CareerTwin uses this to customize your lessons, gaps, and roadmap.
           </div>
         </aside>
@@ -404,28 +404,28 @@ export default function OnboardingPage() {
         <section className="min-w-0 p-5 sm:p-8 lg:p-10">
           <div className="mx-auto max-w-3xl">
             <div className="flex items-center justify-between gap-4">
-              <span className="rounded-full bg-violet-100 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-accent">
+              <span className="rounded-full bg-violet-100 dark:bg-purple-950/60 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-purple-700 dark:text-purple-300">
                 STEP {step} OF 7
               </span>
-              <span className="text-xs text-slate font-medium">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                 Step {step} of 7: {steps[step - 1][1]}
               </span>
             </div>
 
-            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
               {steps[step - 1][1]}
             </h1>
-            <p className="mt-2 text-sm text-slate leading-6">{steps[step - 1][2]}</p>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-6">{steps[step - 1][2]}</p>
 
             {/* Submission Progress Overlay Banner */}
             {submissionStage !== "idle" && (
               <div
                 className={`mt-6 rounded-2xl border p-5 transition ${
                   submissionStage === "error"
-                    ? "border-rose-200 bg-rose-50 text-rose-900"
+                    ? "border-rose-200 bg-rose-50 dark:border-rose-900/50 dark:bg-rose-950/40 text-rose-900 dark:text-rose-200"
                     : submissionStage === "ready"
-                    ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-                    : "border-violet-200 bg-violet-50 text-ink"
+                    ? "border-emerald-200 bg-emerald-50 dark:border-emerald-900/50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200"
+                    : "border-purple-200 bg-purple-50 dark:border-purple-900/50 dark:bg-purple-950/40 text-slate-900 dark:text-slate-100"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -434,7 +434,7 @@ export default function OnboardingPage() {
                   ) : submissionStage === "ready" ? (
                     <span className="grid size-9 place-items-center rounded-xl bg-emerald-600 text-white"><Check size={18} /></span>
                   ) : (
-                    <RefreshCw size={20} className="animate-spin text-accent" />
+                    <RefreshCw size={20} className="animate-spin text-purple-600 dark:text-purple-400" />
                   )}
                   <div className="flex-1">
                     <strong className="block text-sm font-bold">
@@ -445,7 +445,7 @@ export default function OnboardingPage() {
                       {submissionStage === "ready" && "Ready!"}
                       {submissionStage === "error" && "Generation Issue"}
                     </strong>
-                    <p className="text-xs leading-5 text-slate mt-0.5">{submissionMessage}</p>
+                    <p className="text-xs leading-5 text-slate-600 dark:text-slate-400 mt-0.5">{submissionMessage}</p>
                   </div>
                   {submissionStage === "error" && (
                     <button
@@ -460,11 +460,11 @@ export default function OnboardingPage() {
             )}
 
             {/* Card Content Container */}
-            <div className="mt-6 rounded-3xl border border-ink/8 bg-white p-5 shadow-[0_16px_45px_rgba(32,36,64,.05)] sm:p-8">
+            <div className="mt-6 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#111114] p-5 shadow-lg sm:p-8 text-slate-900 dark:text-slate-100">
               {/* STEP 1: PERSONAL PROFILE */}
               {step === 1 && (
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Full name <span className="text-rose-500">*</span>
                     <input
                       value={profile.personal.fullName}
@@ -475,7 +475,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Current status <span className="text-rose-500">*</span>
                     <select
                       value={profile.personal.status}
@@ -492,7 +492,7 @@ export default function OnboardingPage() {
                     </select>
                   </label>
 
-                  <label className="text-xs font-bold text-ink sm:col-span-2">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                     Professional headline
                     <input
                       value={profile.personal.headline}
@@ -502,7 +502,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Current location (City, Country)
                     <input
                       value={profile.personal.location}
@@ -512,7 +512,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Preferred learning language
                     <input
                       value={profile.personal.preferredLanguage || "English"}
@@ -522,7 +522,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     LinkedIn profile URL, optional
                     <input
                       value={profile.personal.linkedInUrl || ""}
@@ -532,7 +532,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     GitHub profile URL, optional
                     <input
                       value={profile.personal.githubUrl || ""}
@@ -542,7 +542,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink sm:col-span-2">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                     Short bio or introduction
                     <textarea
                       value={profile.personal.bio}
@@ -559,13 +559,13 @@ export default function OnboardingPage() {
               {step === 2 && (
                 <div className="space-y-6">
                   {profile.education.map((ed, i) => (
-                    <div key={ed.id} className="relative rounded-2xl border border-ink/8 bg-cream/20 p-5 sm:p-6">
-                      <div className="flex items-center justify-between pb-3 border-b border-ink/8 mb-5">
+                    <div key={ed.id} className="relative rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-white/5 p-5 sm:p-6">
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10 mb-5">
                         <div className="flex items-center gap-2">
-                          <span className="grid size-6 place-items-center rounded-lg bg-violet-100 text-accent text-xs font-bold">
+                          <span className="grid size-6 place-items-center rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 text-xs font-bold">
                             {i + 1}
                           </span>
-                          <strong className="text-sm font-bold text-ink">
+                          <strong className="text-sm font-bold text-slate-900 dark:text-white">
                             {ed.degree ? `${ed.degree} ${ed.institution ? `· ${ed.institution}` : ""}` : `Education ${i + 1}`}
                           </strong>
                         </div>
@@ -594,7 +594,7 @@ export default function OnboardingPage() {
                         </div>
 
                         {/* Degree Dropdown with common options */}
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Degree or qualification <span className="text-rose-500">*</span>
                           <input
                             list={`degree-options-${ed.id}`}
@@ -616,7 +616,7 @@ export default function OnboardingPage() {
                         </label>
 
                         {/* Branch / Specialization */}
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Branch or specialization
                           <input
                             list={`spec-options-${ed.id}`}
@@ -635,7 +635,7 @@ export default function OnboardingPage() {
                         </label>
 
                         {/* Current Year / Standing */}
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Current academic year / status
                           <select
                             value={ed.currentYear || ""}
@@ -654,7 +654,7 @@ export default function OnboardingPage() {
                         </label>
 
                         {/* Education Status */}
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Education status
                           <select
                             value={ed.status || "pursuing"}
@@ -670,7 +670,7 @@ export default function OnboardingPage() {
                         </label>
 
                         {/* Start Year */}
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Start year
                           <select
                             value={ed.startYear}
@@ -689,7 +689,7 @@ export default function OnboardingPage() {
                         </label>
 
                         {/* Expected Graduation Year */}
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Expected graduation year
                           <select
                             value={ed.graduationYear}
@@ -708,7 +708,7 @@ export default function OnboardingPage() {
                         </label>
 
                         {/* CGPA / Grade */}
-                        <label className="text-xs font-bold text-ink sm:col-span-2">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                           GPA, CGPA or percentage (optional)
                           <input
                             value={ed.grade}
@@ -753,7 +753,7 @@ export default function OnboardingPage() {
               {/* STEP 3: SKILLS SECTION */}
               {step === 3 && (
                 <div>
-                  <label className="block text-xs font-bold text-ink">
+                  <label className="block text-xs font-bold text-slate-800 dark:text-slate-200">
                     Search or add a skill <span className="text-rose-500">*</span>
                     <input
                       value={skillQuery}
@@ -764,7 +764,7 @@ export default function OnboardingPage() {
                   </label>
 
                   <div className="mt-4 flex flex-wrap items-center gap-2">
-                    <span className="text-[11px] font-bold text-slate uppercase tracking-wider mr-1">Suggestions:</span>
+                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1">Suggestions:</span>
                     {popularSkillPills
                       .filter((s) => s.toLowerCase().includes(skillQuery.toLowerCase()))
                       .slice(0, 10)
@@ -793,8 +793,8 @@ export default function OnboardingPage() {
                             disabled={exists}
                             className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                               exists
-                                ? "bg-violet-100 text-accent font-bold cursor-default"
-                                : "border border-ink/10 bg-white hover:border-accent hover:text-accent"
+                                ? "bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 font-bold cursor-default"
+                                : "border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:border-purple-500 hover:text-purple-600 dark:hover:text-purple-300"
                             }`}
                           >
                             {exists ? `✓ ${s}` : `+ ${s}`}
@@ -821,7 +821,7 @@ export default function OnboardingPage() {
                             ]);
                             setSkillQuery("");
                           }}
-                          className="rounded-full bg-violet-100 px-3.5 py-1.5 text-xs font-bold text-accent hover:bg-violet-200 transition"
+                          className="rounded-full bg-purple-100 dark:bg-purple-950/60 px-3.5 py-1.5 text-xs font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-200 transition"
                         >
                           Add “{skillQuery.trim()}”
                         </button>
@@ -829,23 +829,23 @@ export default function OnboardingPage() {
                   </div>
 
                   <div className="mt-8 space-y-3">
-                    <p className="text-xs font-bold text-slate uppercase tracking-wider">
+                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       Selected Skills ({profile.skills.length})
                     </p>
 
                     {profile.skills.length === 0 ? (
-                      <div className="rounded-2xl border border-dashed border-ink/10 p-8 text-center text-xs text-slate">
+                      <div className="rounded-2xl border border-dashed border-slate-300 dark:border-white/15 p-8 text-center text-xs text-slate-500 dark:text-slate-400">
                         No skills added yet. Click suggestions above or type custom skills to build your Career Twin.
                       </div>
                     ) : (
                       profile.skills.map((skill) => (
                         <div
                           key={skill.id}
-                          className="grid items-center gap-3 rounded-2xl border border-ink/8 bg-cream/15 p-3.5 sm:grid-cols-[1fr_150px_auto_auto]"
+                          className="grid items-center gap-3 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-white/5 p-3.5 sm:grid-cols-[1fr_150px_auto_auto]"
                         >
                           <div>
-                            <strong className="text-sm font-bold text-ink">{skill.name}</strong>
-                            <span className="block text-[11px] text-slate">{skill.category || "Skill"}</span>
+                            <strong className="text-sm font-bold text-slate-900 dark:text-white">{skill.name}</strong>
+                            <span className="block text-[11px] text-slate-500 dark:text-slate-400">{skill.category || "Skill"}</span>
                           </div>
 
                           <select
@@ -858,7 +858,7 @@ export default function OnboardingPage() {
                                 )
                               )
                             }
-                            className="rounded-xl border border-ink/10 bg-white px-3 py-2 text-xs font-semibold outline-none"
+                            className="rounded-xl border border-slate-300 dark:border-white/15 bg-white dark:bg-slate-800 px-3 py-2 text-xs font-semibold text-slate-900 dark:text-white outline-none"
                           >
                             <option value="learning">Learning / Exploring</option>
                             <option value="beginner">Beginner</option>
@@ -866,7 +866,7 @@ export default function OnboardingPage() {
                             <option value="advanced">Advanced</option>
                           </select>
 
-                          <label className="flex items-center gap-2 text-xs font-semibold text-slate cursor-pointer">
+                          <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={skill.learning}
@@ -876,7 +876,7 @@ export default function OnboardingPage() {
                                   profile.skills.map((x) => (x.id === skill.id ? { ...x, learning: e.target.checked } : x))
                                 )
                               }
-                              className="size-4 rounded text-accent"
+                              className="size-4 rounded text-purple-600"
                             />
                             Priority Learning
                           </label>
@@ -884,7 +884,7 @@ export default function OnboardingPage() {
                           <button
                             onClick={() => update("skills", profile.skills.filter((x) => x.id !== skill.id))}
                             aria-label={`Remove ${skill.name}`}
-                            className="text-slate hover:text-rose-600 transition p-1"
+                            className="text-slate-400 hover:text-rose-600 transition p-1"
                           >
                             <Trash2 size={16} />
                           </button>
@@ -899,9 +899,9 @@ export default function OnboardingPage() {
               {step === 4 && (
                 <div className="space-y-6">
                   {profile.projects.map((p, i) => (
-                    <div key={p.id} className="rounded-2xl border border-ink/8 bg-cream/20 p-5 sm:p-6 space-y-4">
-                      <div className="flex items-center justify-between border-b border-ink/8 pb-3">
-                        <strong className="text-sm font-bold text-ink">
+                    <div key={p.id} className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-white/5 p-5 sm:p-6 space-y-4">
+                      <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
+                        <strong className="text-sm font-bold text-slate-900 dark:text-white">
                           Entry {i + 1}: {p.title || "Untitled Project"}
                         </strong>
                         <button
@@ -913,7 +913,7 @@ export default function OnboardingPage() {
                       </div>
 
                       <div className="grid gap-4 sm:grid-cols-2">
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Experience kind
                           <select
                             value={p.kind}
@@ -933,7 +933,7 @@ export default function OnboardingPage() {
                           </select>
                         </label>
 
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Title
                           <input
                             value={p.title}
@@ -948,7 +948,7 @@ export default function OnboardingPage() {
                           />
                         </label>
 
-                        <label className="text-xs font-bold text-ink sm:col-span-2">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                           Description
                           <textarea
                             value={p.description}
@@ -964,7 +964,7 @@ export default function OnboardingPage() {
                           />
                         </label>
 
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           Technologies or skills used
                           <input
                             value={p.technologies}
@@ -979,7 +979,7 @@ export default function OnboardingPage() {
                           />
                         </label>
 
-                        <label className="text-xs font-bold text-ink">
+                        <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                           GitHub or Live URL
                           <input
                             value={p.url}
@@ -1023,13 +1023,13 @@ export default function OnboardingPage() {
               {/* STEP 5: RESUME UPLOAD */}
               {step === 5 && (
                 <div>
-                  <label className="grid min-h-64 cursor-pointer place-items-center rounded-3xl border-2 border-dashed border-violet-200 bg-violet-50/40 p-8 text-center hover:bg-violet-50/70 transition">
+                  <label className="grid min-h-64 cursor-pointer place-items-center rounded-3xl border-2 border-dashed border-purple-200 dark:border-purple-800/50 bg-purple-50/40 dark:bg-purple-950/20 p-8 text-center hover:bg-purple-50/70 transition">
                     <span>
-                      <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-white text-accent shadow-md">
+                      <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 shadow-md">
                         <Upload size={24} />
                       </span>
-                      <strong className="mt-4 block text-base font-bold text-ink">Drop your resume here or browse files</strong>
-                      <span className="mt-1.5 block text-xs text-slate">PDF or DOCX · maximum 5 MB</span>
+                      <strong className="mt-4 block text-base font-bold text-slate-900 dark:text-white">Drop your resume here or browse files</strong>
+                      <span className="mt-1.5 block text-xs text-slate-500 dark:text-slate-400">PDF or DOCX · maximum 5 MB</span>
                     </span>
                     <input
                       type="file"
@@ -1043,19 +1043,19 @@ export default function OnboardingPage() {
                   </label>
 
                   {profile.resume.fileName && (
-                    <div className="mt-4 flex items-center justify-between rounded-2xl border border-ink/8 bg-white p-4 shadow-sm">
+                    <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800/90 p-4 shadow-sm">
                       <div className="flex items-center gap-3">
-                        <span className="grid size-10 place-items-center rounded-xl bg-violet-100 text-accent">
+                        <span className="grid size-10 place-items-center rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
                           <FileText size={18} />
                         </span>
                         <div>
-                          <strong className="text-sm font-bold text-ink">{profile.resume.fileName}</strong>
-                          <p className="text-xs text-slate">{Math.round(profile.resume.size / 1024)} KB · Uploaded</p>
+                          <strong className="text-sm font-bold text-slate-900 dark:text-white">{profile.resume.fileName}</strong>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">{Math.round(profile.resume.size / 1024)} KB · Uploaded</p>
                         </div>
                       </div>
                       <button
                         onClick={() => void removeResume()}
-                        className="text-slate hover:text-rose-600 transition p-2"
+                        className="text-slate-400 hover:text-rose-600 transition p-2"
                         aria-label="Remove resume"
                       >
                         <Trash2 size={16} />
@@ -1063,7 +1063,7 @@ export default function OnboardingPage() {
                     </div>
                   )}
 
-                  <p className="mt-4 text-xs leading-5 text-slate">
+                  <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
                     CareerTwin uses your resume to recommend relevant milestones and prefill review details without overwriting your manual edits.
                   </p>
                 </div>
@@ -1072,7 +1072,7 @@ export default function OnboardingPage() {
               {/* STEP 6: CAREER INTERESTS & GOALS */}
               {step === 6 && (
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="text-xs font-bold text-ink sm:col-span-2">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                     Target job role <span className="text-rose-500">*</span>
                     <input
                       list="role-options"
@@ -1089,7 +1089,7 @@ export default function OnboardingPage() {
                     </datalist>
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Preferred industry
                     <select
                       value={profile.interests.industry}
@@ -1105,7 +1105,7 @@ export default function OnboardingPage() {
                     </select>
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Work arrangement preference
                     <select
                       value={profile.interests.workArrangement}
@@ -1119,7 +1119,7 @@ export default function OnboardingPage() {
                     </select>
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Weekly hours available for learning
                     <select
                       value={profile.interests.weeklyHours || "10"}
@@ -1133,7 +1133,7 @@ export default function OnboardingPage() {
                     </select>
                   </label>
 
-                  <label className="text-xs font-bold text-ink">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200">
                     Preferred job location
                     <input
                       value={profile.interests.preferredLocation}
@@ -1143,7 +1143,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink sm:col-span-2">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                     Short-term career goals
                     <input
                       value={profile.interests.shortTermGoals || ""}
@@ -1153,7 +1153,7 @@ export default function OnboardingPage() {
                     />
                   </label>
 
-                  <label className="text-xs font-bold text-ink sm:col-span-2">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 sm:col-span-2">
                     Long-term career aspirations
                     <textarea
                       value={profile.interests.goals}
@@ -1179,24 +1179,24 @@ export default function OnboardingPage() {
                   ].map(([label, val, stepIdx]) => (
                     <div
                       key={label as string}
-                      className="flex items-center justify-between gap-4 rounded-2xl border border-ink/8 p-4 bg-cream/15 hover:border-accent/40 transition"
+                      className="flex items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-white/10 p-4 bg-slate-50/50 dark:bg-white/5 hover:border-purple-500/40 transition"
                     >
                       <div className="min-w-0">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate">{label}</span>
-                        <p className="mt-0.5 text-sm font-semibold text-ink truncate">{val}</p>
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">{label}</span>
+                        <p className="mt-0.5 text-sm font-semibold text-slate-900 dark:text-white truncate">{val}</p>
                       </div>
                       <button
                         onClick={() => setProfile((p) => ({ ...p, currentStep: Number(stepIdx) }))}
-                        className="text-xs font-bold text-accent hover:underline shrink-0"
+                        className="text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline shrink-0"
                       >
                         Edit
                       </button>
                     </div>
                   ))}
 
-                  <div className="mt-6 rounded-2xl bg-violet-50 p-5 text-xs leading-5 text-slate border border-violet-100">
-                    <strong className="block text-ink font-bold mb-1 flex items-center gap-1.5">
-                      <Sparkles size={14} className="text-accent" /> What happens next?
+                  <div className="mt-6 rounded-2xl bg-purple-50 dark:bg-purple-950/30 p-5 text-xs leading-5 text-slate-600 dark:text-slate-400 border border-purple-200 dark:border-purple-900/50">
+                    <strong className="block text-slate-900 dark:text-white font-bold mb-1 flex items-center gap-1.5">
+                      <Sparkles size={14} className="text-purple-600 dark:text-purple-400" /> What happens next?
                     </strong>
                     When you click <strong>Create My Career Twin</strong>, CareerTwin analyzes your declared profile, compares it against verified role requirements, invokes the AI Career Engine to prepare an adaptive roadmap, and persists your personal Twin state.
                   </div>
@@ -1206,7 +1206,7 @@ export default function OnboardingPage() {
 
             {/* General Feedback Message */}
             {message && submissionStage === "idle" && (
-              <p role="status" className="mt-4 rounded-2xl border border-violet-200 bg-violet-50 p-3.5 text-sm text-ink">
+              <p role="status" className="mt-4 rounded-2xl border border-purple-200 dark:border-purple-900/50 bg-purple-50 dark:bg-purple-950/30 p-3.5 text-sm text-slate-900 dark:text-slate-100">
                 {message}
               </p>
             )}
@@ -1226,7 +1226,7 @@ export default function OnboardingPage() {
                   <button
                     onClick={next}
                     disabled={saving || submissionStage !== "idle"}
-                    className="px-4 py-3 text-sm font-bold text-slate hover:text-ink transition"
+                    className="px-4 py-3 text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition"
                   >
                     Skip optional section
                   </button>
@@ -1263,20 +1263,20 @@ export default function OnboardingPage() {
         </section>
 
         {/* Right Help Sidebar */}
-        <aside className="hidden border-l border-ink/8 bg-white p-6 lg:block">
+        <aside className="hidden border-l border-slate-200 dark:border-white/10 bg-white dark:bg-[#0e0e11] p-6 lg:block">
           <div className="sticky top-24">
-            <span className="grid size-11 place-items-center rounded-2xl bg-violet-50 text-accent">
+            <span className="grid size-11 place-items-center rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
               <Lightbulb size={20} />
             </span>
-            <h2 className="mt-4 font-bold text-ink">Why this matters</h2>
-            <p className="mt-2 text-sm leading-6 text-slate">{steps[step - 1][2]}</p>
+            <h2 className="mt-4 font-bold text-slate-900 dark:text-white">Why this matters</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{steps[step - 1][2]}</p>
 
-            <div className="mt-6 rounded-2xl border border-ink/8 bg-app p-4 text-xs leading-5 text-slate">
-              <strong className="block text-ink font-semibold mb-1">Persistent Drafts</strong>
+            <div className="mt-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-white/5 p-4 text-xs leading-5 text-slate-600 dark:text-slate-400">
+              <strong className="block text-slate-900 dark:text-white font-semibold mb-1">Persistent Drafts</strong>
               Your changes autosave immediately to browser storage and sync with your private backend record when signed in.
             </div>
 
-            <Link href="/" className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-accent hover:underline">
+            <Link href="/" className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline">
               <ArrowLeft size={14} /> Back to website
             </Link>
           </div>

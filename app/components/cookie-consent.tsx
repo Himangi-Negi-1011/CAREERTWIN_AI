@@ -93,9 +93,13 @@ export function CookieConsent() {
     <div
       role="region"
       aria-label="Cookie consent banner"
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-50 max-w-xl animate-in fade-in slide-in-from-bottom-5 duration-300"
+      className={
+        customizing
+          ? "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in"
+          : "fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-50 max-w-xl animate-in fade-in slide-in-from-bottom-5 duration-300"
+      }
     >
-      <div className="overflow-hidden rounded-2xl border border-purple-500/30 bg-slate-900/95 p-5 text-slate-100 shadow-2xl backdrop-blur-md">
+      <div className="overflow-hidden rounded-2xl border border-purple-500/30 bg-slate-900/95 p-5 text-slate-100 shadow-2xl backdrop-blur-md w-full max-w-xl">
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">

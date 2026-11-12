@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { CheerChip } from "./robot/robot-character";
 import { SplineRobot } from "./spline-robot";
 import { openCookieSettings } from "./cookie-consent";
 import "./landing/landing-clone.css";
@@ -13,32 +12,16 @@ const FAQ_ITEMS = [
     a: "Yes. CareerTwin is 100% free to start. You can create your account, configure your deterministic Career Twin, access all 14 structured course tracks, take topic practice papers, and build portfolio projects without any subscription or credit card.",
   },
   {
-    q: "How does the deterministic Career Twin differ from generative chatbots?",
-    a: "Unlike speculative chat widgets that guess or invent readiness scores, CareerTwin’s Twin engine is strictly deterministic. It calculates your career readiness and recommendations solely from verified student inputs: completed lessons, 100-mark exam scores, milestone-checked projects, and evidence logs.",
+    q: "What courses and technical tracks can I learn from zero to advanced?",
+    a: "CareerTwin offers 14 full-spectrum engineering tracks aligned with Cisco Networking Academy and Skills for All standards: Python, JavaScript, TypeScript, Cloud Computing, Cybersecurity, SQL & Relational Databases, Power BI, C, C++, C#, Go, Java, PHP, and Rust. Each track proceeds from basic fundamentals to deep architecture.",
   },
   {
-    q: "What courses and technical tracks are included in CareerTwin Academy?",
-    a: "CareerTwin Academy includes 14 production-grade engineering tracks aligned with Cisco Networking Academy and Skills for All standards: Python, JavaScript, TypeScript, Cloud Computing, Cybersecurity, SQL & Relational Databases, Power BI, C, C++, C#, Go, Java, PHP, and Rust.",
+    q: "How do the 100-mark examinations and LeetCode-style practice labs work?",
+    a: "Every track includes chapter-by-chapter LeetCode-style coding challenges with instant automated test evaluation, hands-on scenario labs, and timed 28-question, 100-mark comprehensive examinations with authoritative topic-wise scorecards and zero leaked answer keys.",
   },
   {
-    q: "How do the 100-mark mock examinations work?",
-    a: "Each course features timed, 28-question, 100-mark comprehensive examinations with strict server-side evaluation. Exams include single-choice questions, code snippet output predictions, debugging exercises, and architectural scenarios with authoritative topic-wise scorecards.",
-  },
-  {
-    q: "How do guided projects and portfolio integration work?",
-    a: "The Guided Projects Library provides practical specifications across 4 difficulty tiers: Beginner, Intermediate, Advanced, and Capstone. Students follow milestone checklists, submit GitHub repository links and demo URLs, and showcase verified projects on their public student portfolio.",
-  },
-  {
-    q: "What categories of career opportunities are refreshed daily?",
-    a: "The Career Center continuously updates listings across 10 distinct categories: Internships, Entry-Level Jobs, Graduate Roles, Hackathons, Competitive Programming, Scholarships, Fellowships, Training Programs, Industry Certifications, and Technical Workshops.",
-  },
-  {
-    q: "How does CareerTwin protect student privacy and data persistence?",
-    a: "Your data is yours alone. CareerTwin never sells student resumes, code, or learning records to third parties. We use isolated guest and authenticated storage models, encrypt telemetry, and provide complete controls to review, export, or delete your records at any time.",
-  },
-  {
-    q: "Can complete beginners without prior programming experience use CareerTwin?",
-    a: "Absolutely. Every technical course begins from absolute zero with real-world analogies, syntax breakdowns, step-by-step code walkthroughs, visual mental models, and interactive practice papers before advancing to professional architectures.",
+    q: "How does the AI Career Twin help me get hired?",
+    a: "Unlike generic chat widgets, your deterministic Career Twin analyzes your completed lessons, verified project code, and exam results to build an evidence-backed skill profile, generate tailored interview prep, and recommend matching internships, hackathons, and entry-level engineering roles.",
   },
 ];
 
@@ -97,12 +80,12 @@ const LIFECYCLE_STEPS = [
 
 export function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const heroRef = useRef<HTMLElement | null>(null);
   const spotlightRef = useRef<HTMLDivElement | null>(null);
+  const scrollProgressRef = useRef<HTMLDivElement | null>(null);
 
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
@@ -121,13 +104,24 @@ export function Landing() {
     window.dispatchEvent(new Event("careertwin:theme"));
   };
 
-  // Scroll handler
+  // Scroll handler — optimized to avoid re-rendering whole component
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const y = window.scrollY;
-      setIsScrolled(y > 12);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(max > 0 ? (y / max) * 100 : 0);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+          const nextScrolled = y > 12;
+          setIsScrolled((prev) => (prev !== nextScrolled ? nextScrolled : prev));
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = max > 0 ? (y / max) * 100 : 0;
+          if (scrollProgressRef.current) {
+            scrollProgressRef.current.style.width = `${pct}%`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -176,17 +170,16 @@ export function Landing() {
     <div className="careertwin-landing-page">
       {/* Scroll Progress Bar */}
       <div className="scroll-progress" aria-hidden="true">
-        <i style={{ width: `${scrollProgress}%` }} />
+        <i ref={scrollProgressRef} style={{ width: "0%" }} />
       </div>
 
       {/* ============================== HEADER ============================== */}
       <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`} id="header">
         <div className="container header-inner">
           <Link className="brand magnetic" href="/">
-            <span className="brand-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m12 14 4-4" />
-                <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+            <span className="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
               </svg>
             </span>
             <span className="brand-text">
@@ -194,8 +187,8 @@ export function Landing() {
             </span>
           </Link>
 
-          <nav className="site-nav" aria-label="Primary">
-            <a href="#features">Features</a>
+          {/* Navigation Bar with proper spacing */}
+          <nav className="nav-links" aria-label="Primary">
             <a href="#how">How it works</a>
             <a href="#faq">FAQ</a>
             <Link href="/dashboard?view=learning">Academy</Link>
@@ -239,7 +232,6 @@ export function Landing() {
 
         {/* Mobile Navigation */}
         <nav className={`mobile-menu ${mobileMenuOpen ? "is-open" : ""}`} id="mobileMenu" aria-label="Mobile">
-          <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
           <a href="#how" onClick={() => setMobileMenuOpen(false)}>How it works</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
           <Link href="/dashboard?view=learning" onClick={() => setMobileMenuOpen(false)}>Academy</Link>
@@ -254,7 +246,8 @@ export function Landing() {
         </nav>
       </header>
 
-      <main id="home">
+      {/* ============================== MAIN CONTENT ============================== */}
+      <main id="main">
         {/* ============================== HERO ============================== */}
         <section ref={heroRef} className="hero" id="hero">
           <div className="hero-bg" aria-hidden="true">
@@ -325,100 +318,12 @@ export function Landing() {
               </ul>
             </div>
 
+            {/* Clean Hero Visual without any cluttered chips underneath */}
             <div className="hero-visual" aria-label="Interactive 3D CareerTwin Robot">
               <div className="visual-glow" aria-hidden="true" />
               <div className="scene-shell">
                 <SplineRobot className="w-full h-full min-h-[480px]" />
               </div>
-              <CheerChip label="14 Full Courses" tag="Python, Cloud, Security" />
-              <CheerChip label="Examinations" tag="100-Mark Assessment" />
-              <CheerChip label="Verified Evidence" tag="Zero Invented Scores" />
-            </div>
-          </div>
-        </section>
-
-        {/* ============================== FEATURES ============================== */}
-        <section id="features" className="section">
-          <div className="container">
-            <div className="section-head reveal">
-              <span className="kicker">Core Capabilities</span>
-              <h2>Engineered for Technical Mastery</h2>
-              <p>Everything you need to progress from complete beginner to production-ready engineer.</p>
-            </div>
-
-            <div className="features-grid">
-              <article className="card tilt reveal">
-                <div className="card-glow" aria-hidden="true" />
-                <div className="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                </div>
-                <h3>Deterministic Career Twin</h3>
-                <p>Calculate your verified career readiness score based strictly on demonstrated skills and assessments.</p>
-                <ul className="card-tags">
-                  <li>No hallucinations</li><li>Evidence-backed</li><li>Target role match</li>
-                </ul>
-                <Link
-                  href="/onboarding"
-                  className="card-link"
-                >
-                  Build Your Career Twin
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                  </svg>
-                </Link>
-              </article>
-
-              <article className="card tilt reveal">
-                <div className="card-glow" aria-hidden="true" />
-                <div className="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
-                    <path d="M6 6h10" /><path d="M6 10h10" />
-                  </svg>
-                </div>
-                <h3>Cisco NetAcad-Inspired Academy</h3>
-                <p>14 complete curriculum tracks featuring 14-point structured lessons, interactive labs, and practice papers.</p>
-                <ul className="card-tags">
-                  <li>14 tracks</li><li>14-point lessons</li><li>Practice papers</li>
-                </ul>
-                <Link
-                  href="/dashboard?view=learning"
-                  className="card-link"
-                >
-                  Explore Course Catalog
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                  </svg>
-                </Link>
-              </article>
-
-              <article className="card tilt reveal">
-                <div className="card-glow" aria-hidden="true" />
-                <div className="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                    <polyline points="22 4 12 14.01 9 11.01" />
-                  </svg>
-                </div>
-                <h3>100-Mark Examinations</h3>
-                <p>Verify technical depth with 28-question timed examinations providing authoritative section scorecards.</p>
-                <ul className="card-tags">
-                  <li>Timed exams</li><li>Code analysis</li><li>Instant grading</li>
-                </ul>
-                <Link
-                  href="/dashboard?view=practice"
-                  className="card-link"
-                >
-                  Take Practice Exams
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                  </svg>
-                </Link>
-              </article>
             </div>
           </div>
         </section>
@@ -434,36 +339,21 @@ export function Landing() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-8">
               {LIFECYCLE_STEPS.map((step) => (
-                <div key={step.num} className="rounded-2xl border border-white/10 bg-slate-900/60 p-5 reveal">
-                  <span className="font-mono text-xs font-bold text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-md inline-block mb-3">
-                    Step {step.num}
+                <div
+                  key={step.num}
+                  className="rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-slate-900 p-5 space-y-2.5 shadow-2xs reveal"
+                >
+                  <span className="font-mono text-xs font-bold text-accent dark:text-purple-400 bg-accent/10 dark:bg-purple-950/60 px-2 py-0.5 rounded-md inline-block">
+                    {step.num}
                   </span>
-                  <h3 className="text-sm font-bold text-white mb-1.5">{step.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
+                  <h3 className="text-base font-bold text-ink dark:text-white leading-snug">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-slate dark:text-slate-400 leading-relaxed">
+                    {step.desc}
+                  </p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ============================== STATS ============================== */}
-        <section className="stats">
-          <div className="container stats-grid">
-            <div className="stat reveal">
-              <b><span>14</span></b>
-              <span>Authoritative Course Packages</span>
-            </div>
-            <div className="stat reveal">
-              <b><span>100</span></b>
-              <span>Marks Proctored Mock Exams</span>
-            </div>
-            <div className="stat reveal">
-              <b><span>4-Tier</span></b>
-              <span>Guided Real-World Projects</span>
-            </div>
-            <div className="stat reveal">
-              <b><span>10</span></b>
-              <span>Opportunity Categories Refreshed</span>
             </div>
           </div>
         </section>
@@ -478,24 +368,27 @@ export function Landing() {
             </div>
 
             <div className="faq-list">
-              {FAQ_ITEMS.map((item, index) => (
-                <div key={index} className="faq-item reveal">
-                  <button
-                    className="faq-q"
-                    type="button"
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    aria-expanded={openFaq === index}
-                  >
-                    <span>{item.q}</span>
-                    <i aria-hidden="true" />
-                  </button>
-                  {openFaq === index && (
+              {FAQ_ITEMS.map((item, index) => {
+                const isOpen = openFaq === index;
+                return (
+                  <div key={index} className={`faq-item reveal ${isOpen ? "is-open" : ""}`}>
+                    <button
+                      className="faq-q"
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                    >
+                      <span>{item.q}</span>
+                      <i aria-hidden="true" />
+                    </button>
                     <div className="faq-a">
-                      <p>{item.a}</p>
+                      <div className="faq-a-inner">
+                        <p>{item.a}</p>
+                      </div>
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -508,16 +401,21 @@ export function Landing() {
                 <span /><span /><span />
               </div>
               <h2>Ready to Build Your Engineering Career?</h2>
-              <p>Master technical skills, complete verifiable labs, build enterprise projects, and launch your career.</p>
-              <Link
-                href="/onboarding"
-                className="btn btn-light btn-lg magnetic shine"
-              >
-                Start Free Learning Now
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                </svg>
-              </Link>
+              <p>
+                Master technical skills, complete verifiable labs, build enterprise projects, and launch your career.
+              </p>
+              <div className="cta-actions">
+                <Link
+                  className="btn btn-primary btn-lg magnetic shine"
+                  href="/onboarding"
+                >
+                  Start Free Learning Now
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -528,10 +426,9 @@ export function Landing() {
         <div className="container footer-inner">
           <div className="footer-brand">
             <Link className="brand" href="/">
-              <span className="brand-mark small">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="m12 14 4-4" />
-                  <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+              <span className="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                 </svg>
               </span>
               <span className="brand-text">
@@ -541,7 +438,6 @@ export function Landing() {
             <p>© {new Date().getFullYear()} CareerTwin Academy. All rights reserved.</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#features">Features</a>
             <a href="#how">How it works</a>
             <a href="#faq">FAQ</a>
             <Link href="/dashboard?view=learning">Academy</Link>
