@@ -243,7 +243,9 @@ export function MockExamsHubView({
   }, [activeExam, submitting, timeLeftSeconds, userAnswers, ownerKey]);
 
   const submitRef = useRef(submitExamToServer);
-  submitRef.current = submitExamToServer;
+  useEffect(() => {
+    submitRef.current = submitExamToServer;
+  });
 
   // Exam Countdown Timer
   useEffect(() => {

@@ -9,6 +9,7 @@ uploads
 test-results
 playwright-report
 tests
+scripts
 docs
 *.zip
 

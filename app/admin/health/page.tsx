@@ -23,8 +23,8 @@ export default function AdminHealthPage() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  const fetchHealth = async () => {
-    setRefreshing(true);
+  const fetchHealth = async (isManual = false) => {
+    if (isManual) setRefreshing(true);
     try {
       const res = await fetch("/api/admin/health");
       if (res.ok) {
@@ -35,12 +35,24 @@ export default function AdminHealthPage() {
       // offline fallback
     } finally {
       setLoading(false);
-      setRefreshing(false);
+      if (isManual) setRefreshing(false);
     }
   };
 
   useEffect(() => {
-    fetchHealth();
+    let mounted = true;
+    fetch("/api/admin/health")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (mounted && json?.data) setHealth(json.data);
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
@@ -68,7 +80,7 @@ export default function AdminHealthPage() {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={fetchHealth}
+              onClick={() => fetchHealth(true)}
               disabled={refreshing}
               className="inline-flex items-center gap-1.5 rounded-xl border border-ink/15 bg-white px-3.5 py-2 text-xs font-semibold text-ink shadow-xs hover:bg-surface disabled:opacity-50"
             >

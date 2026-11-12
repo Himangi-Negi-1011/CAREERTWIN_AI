@@ -95,7 +95,7 @@ export async function saveUserApplication(
   const all = await readAllApplications();
   const now = new Date().toISOString();
 
-  let targetId = data.id;
+  const targetId = data.id;
   let existingIndex = -1;
 
   if (targetId) {
