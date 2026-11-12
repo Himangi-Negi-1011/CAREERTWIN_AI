@@ -1,226 +1,199 @@
 {
-  "lessonId": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values",
+  "lessonId": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator",
   "skillName": "Python",
   "moduleId": "mod-3-python-beginner-module-3",
-  "title": "Functions, Parameters, and Return Values",
-  "summary": "Functions package behavior behind a clear contract. This lesson covers definition, calls, parameters, return values, local scope, default arguments, documentation, and simple tests.",
+  "title": "Closures, First-Class Functions & Decorator Metaprogramming",
+  "summary": "Learn first-class functions, lexical scopes (LEGB), closures, and production decorators with argument wrapping and telemetry.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the Python behavior taught in Functions, Parameters, and Return Values",
-    "Test the behavior with a small observable program"
+    "Explain lexical scoping (LEGB rule) and how closures retain references to outer scope variables",
+    "Author production-ready decorators with @functools.wraps for logging, latency tracing, and retry logic"
   ],
   "objectiveIds": [
-    "python-obj-5",
-    "python-obj-6"
+    "python-obj-3",
+    "python-obj-4"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Python functions, arguments, and return values"
   ],
   "sections": [
     {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-sec-1",
-      "heading": "Core model",
-      "content": "A function should perform one coherent task and communicate through parameters and a return value. `return` ends the current call and provides a value to the caller; `print` only displays text and therefore is not a substitute for a return value. Parameters are local names bound when the function is called. Avoid depending on mutable global state because it hides inputs and complicates testing. Default values belong after required parameters and should be immutable in beginner code; use `None` when a fresh list or dictionary is needed for each call. A concise docstring states purpose, accepted inputs, returned output, and important failure behavior.",
-      "codeExamples": [],
-      "keyPoints": [
-        "A function should perform one coherent task and communicate through parameters and a return value."
-      ],
-      "commonMistakes": [
-        "resetting the accumulator inside the loop loses earlier work",
-        "a function with no return statement returns None"
-      ]
-    },
-    {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-sec-2",
-      "heading": "Worked Python example",
-      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+      "id": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator-sec-1",
+      "heading": "1. Lexical Scoping (LEGB) & Closure Architecture",
+      "content": "In Python, functions are first-class citizens: they can be bound to names, passed as arguments to other functions, nested inside definitions, and returned as values.\n\nPython resolves variable names using the strict LEGB rule:\n1. Local (L): Names defined inside the current function.\n2. Enclosing (E): Names in enclosing function definitions (from inner to outer).\n3. Global (G): Names defined at the top-level module file or declared `global`.\n4. Built-in (B): Names in Python's `builtins` module (`len`, `range`, `ValueError`).\n\nA closure occurs when a nested function references a variable from its enclosing scope, and that nested function is returned to an outer caller. Even after the outer function has finished executing and returned, the inner function retains access to the enclosing variables via cell objects stored in `__closure__`.\n\nA decorator is a callable that accepts a function as an argument and returns an enhanced replacement function. Decorators provide Aspect-Oriented Programming (AOP), cleanly separating cross-cutting concerns (authentication, performance profiling, caching, rate limiting) from business logic.",
       "codeExamples": [
         {
-          "language": "python",
-          "code": "def calculate_total(price, quantity=1):\n    \"\"\"Return price multiplied by a non-negative quantity.\"\"\"\n    if quantity < 0:\n        raise ValueError(\"quantity must be non-negative\")\n    return price * quantity\n\nprint(calculate_total(125, 2))",
-          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
-          "expectedOutput": "250"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| PYTHON LEGB SCOPE & DECORATOR CALL INTERCEPTION                   |\n|                                                                   |\n|  [Module Scope (G)]                                               |\n|    |                                                              |\n|    +---> def timer(func):  <-- Enclosing Scope (E)                |\n|            |                                                      |\n|            +---> def wrapper(*args, **kwargs): <-- Local Scope (L)|\n|                    start_time = time.time()                       |\n|                    result = func(*args, **kwargs)                 |\n|                    print(f\"Elapsed: {time.time() - start_time}\")  |\n|                    return result                                  |\n|                                                                   |\n|  @timer syntax: business_logic = timer(business_logic)            |\n|  *functools.wraps preserves docstrings and function __name__*     |\n+-------------------------------------------------------------------+",
+          "explanation": "Decorators intercept function execution by wrapping the original callable inside an enclosing closure.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "A function should perform one coherent task and communicate through parameters and a return value."
+        "Functions are first-class objects that can be passed, returned, and stored like any other value.",
+        "Closures capture variables from enclosing scopes via cell references stored on the function object.",
+        "Always decorate wrapper functions with @functools.wraps(func) to preserve metadata (__name__, __doc__)."
       ],
       "commonMistakes": [
-        "resetting the accumulator inside the loop loses earlier work",
-        "a function with no return statement returns None"
+        "Forgetting @functools.wraps, which overwrites the decorated function's __name__ to 'wrapper' and breaks debugging/logging.",
+        "Using mutable default arguments in wrapper functions, causing shared cross-call state bugs."
       ]
     },
     {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator-sec-2",
+      "heading": "2. Production Audit and Retry Decorator with Exponential Backoff",
+      "content": "Distributed cloud services constantly face transient network hiccups. Writing an exponential backoff retry decorator with `@functools.wraps` isolates resilience logic so database and HTTP client code remains clean and declarative.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "import time\nimport functools\nfrom typing import Callable, Any\n\ndef retry_with_backoff(max_retries: int = 3, base_delay: float = 0.1):\n    \"\"\"Parameterized decorator: retry operation upon failure with exponential backoff.\"\"\"\n    def decorator(func: Callable) -> Callable:\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs) -> Any:\n            delay = base_delay\n            last_exception = None\n            \n            for attempt in range(1, max_retries + 1):\n                try:\n                    return func(*args, **kwargs)\n                except Exception as exc:\n                    last_exception = exc\n                    print(f\"WARN: {func.__name__} attempt {attempt} failed: {exc}. Retrying in {delay:.2f}s...\")\n                    time.sleep(delay)\n                    delay *= 2  # Exponential backoff\n                    \n            print(f\"ERROR: {func.__name__} exhausted all {max_retries} attempts.\")\n            raise last_exception\n            \n        return wrapper\n    return decorator\n\n# Simulating an intermittent external service\nattempts = 0\n\n@retry_with_backoff(max_retries=3, base_delay=0.05)\ndef call_payment_gateway(account_id: str) -> dict:\n    \"\"\"Simulate charging customer card.\"\"\"\n    global attempts\n    attempts += 1\n    if attempts < 3:\n        raise ConnectionError(\"503 Service Temporarily Unavailable\")\n    return {\"status\": \"success\", \"charge_id\": \"ch_98210\", \"account\": account_id}\n\n# Execution verification\nresult = call_payment_gateway(\"acc_441\")\nprint(f\"Final Outcome: {result}\")\nprint(f\"Preserved Metadata Name: {call_payment_gateway.__name__}\")",
+          "explanation": "Demonstrates a production retry decorator with exponential delay, clean exception escalation, and preserved function metadata.",
+          "expectedOutput": "WARN: call_payment_gateway attempt 1 failed: 503 Service Temporarily Unavailable. Retrying in 0.05s...\nWARN: call_payment_gateway attempt 2 failed: 503 Service Temporarily Unavailable. Retrying in 0.10s...\nFinal Outcome: {'status': 'success', 'charge_id': 'ch_98210', 'account': 'acc_441'}\nPreserved Metadata Name: call_payment_gateway"
+        }
+      ],
       "keyPoints": [
-        "A function should perform one coherent task and communicate through parameters and a return value."
+        "Parameterized decorators require three levels of nesting: config -> decorator -> wrapper.",
+        "Preserving __name__ and __doc__ with @functools.wraps is essential for documentation generators and APM tracing."
       ],
       "commonMistakes": [
-        "resetting the accumulator inside the loop loses earlier work",
-        "a function with no return statement returns None"
+        "Catching BaseException instead of Exception, which inadvertently intercepts KeyboardInterrupt and SystemExit."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-ex-1",
+      "id": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator-ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in Python.",
-      "description": "Create and test `study_progress(completed, planned)` that returns a percentage, rejects negative values, and handles a zero plan explicitly without division by zero. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+      "title": "Build a Rate-Limiter Execution Decorator",
+      "objective": "Write a decorator that limits how frequently a target function can be invoked per second.",
+      "description": "Create rate_limit(calls_per_second: int) decorator. It must track call timestamps using a closure. If the user invokes the function faster than the allowed rate, it should raise a custom RateLimitExceeded exception or pause execution until the next time window.",
       "instructions": [
-        "Create and test `study_progress(completed, planned)` that returns a percentage, rejects negative values, and handles a zero plan explicitly without division by zero. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
+        "Define a custom exception `class RateLimitExceeded(Exception): pass`.",
+        "Use a closure over a timestamp record to track the last call time.",
+        "Preserve function metadata using `@functools.wraps`.",
+        "Raise RateLimitExceeded if invoked too quickly."
       ],
-      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
+      "starterCode": "import time\nimport functools\n\nclass RateLimitExceeded(Exception):\n    pass\n\ndef rate_limit(min_interval_seconds: float):\n    # Implement rate limiter decorator\n    pass",
       "hints": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Store `last_called = [0.0]` in the decorator closure.",
+        "Inside wrapper, check `elapsed = time.time() - last_called[0]`; if elapsed < min_interval, raise RateLimitExceeded."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
+      "solutionExplanation": "Closures allow decorators to maintain stateful history between invocations without polluting global namespace."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-kc-1",
+      "id": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator-kc-1",
       "type": "single-choice",
-      "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+      "prompt": "Why is '@functools.wraps(func)' recommended when writing decorators?",
       "options": [
         {
-          "id": "A",
-          "text": "use `total = price * quantity` when the computed value is needed later"
+          "id": "opt-1",
+          "text": "It accelerates bytecode execution by caching return values in C memory."
         },
         {
-          "id": "B",
-          "text": "using a name before assignment raises NameError"
+          "id": "opt-2",
+          "text": "It copies attributes such as __name__, __doc__, and __module__ from the original function to the wrapper."
         },
         {
-          "id": "C",
-          "text": "Suppress every error and continue"
+          "id": "opt-3",
+          "text": "It automatically wraps all exceptions in a try/finally block."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
+          "id": "opt-4",
+          "text": "It restricts the function from being called asynchronously."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Without @functools.wraps, decorated functions lose their original name and docstring, showing up as 'wrapper' in tracebacks and logs.",
       "objectiveIds": [
-        "python-obj-5"
+        "python-obj-3"
       ]
     },
     {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-kc-2",
+      "id": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator-kc-2",
       "type": "single-choice",
-      "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+      "prompt": "According to Python's LEGB rule, where does Python search for a variable first?",
       "options": [
         {
-          "id": "A",
-          "text": "convert validated numeric input with int or float before arithmetic"
+          "id": "opt-1",
+          "text": "Global scope"
         },
         {
-          "id": "B",
-          "text": "adding an input string to an integer raises TypeError"
+          "id": "opt-2",
+          "text": "Built-in scope"
         },
         {
-          "id": "C",
-          "text": "Suppress every error and continue"
+          "id": "opt-3",
+          "text": "Local scope"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
+          "id": "opt-4",
+          "text": "Enclosing scope"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "LEGB resolves in order: Local, Enclosing, Global, and finally Built-in.",
       "objectiveIds": [
-        "python-obj-6"
-      ]
-    },
-    {
-      "id": "mod-3-python-beginner-module-3-l1-functions-parameters-and-return-values-kc-3",
-      "type": "single-choice",
-      "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
-      "options": [
-        {
-          "id": "A",
-          "text": "use `minutes // 60` for complete hours"
-        },
-        {
-          "id": "B",
-          "text": "floor division rounds toward negative infinity, not toward zero"
-        },
-        {
-          "id": "C",
-          "text": "Suppress every error and continue"
-        },
-        {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "objectiveIds": [
-        "python-obj-5"
+        "python-obj-4"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Functions, Parameters, and Return Values in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Python functions are first-class objects capable of forming closures. Decorators intercept and augment behavior cleanly when preserved with @functools.wraps.",
   "videoResources": [
     {
-      "id": "vid-python-main",
-      "title": "Python for Beginners - Full Course",
+      "id": "res-python-primary",
+      "title": "Python Full Course for Beginners to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "Programming with Mosh",
-      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "channelOrAuthor": "freeCodeCamp / Core Python",
+      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for Python.",
-      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
       "learningObjectivesSupported": [
-        "python-obj-5"
+        "python-obj-1",
+        "python-obj-2",
+        "python-obj-3",
+        "python-obj-4"
       ],
       "keyTopicsCovered": [
-        "Functions, Parameters, and Return Values",
-        "Collections and a Small Progress Tracker"
+        "Python Execution Architecture, Bytecode & Object Model",
+        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+        "The Iteration Protocol, Generators & Streaming Pipelines",
+        "Closures, First-Class Functions & Decorator Metaprogramming",
+        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation",
+      "title": "Python 3 Official Documentation & Language Reference",
       "url": "https://docs.python.org/3/",
-      "description": "Official reference documentation for Python."
+      "description": "Authoritative official technical reference for Python."
     }
   ],
   "realWorldApplications": [
-    "Production application development using Python",
-    "Automated software quality verification and debugging"
+    "FastAPI and Flask route registration decorators routing HTTP paths to controller functions.",
+    "Datadog and OpenTelemetry APM tracing decorators timing database queries and HTTP client calls."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.179Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.229Z"
 }

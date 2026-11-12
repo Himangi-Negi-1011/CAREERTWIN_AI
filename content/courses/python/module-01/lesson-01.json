@@ -1,226 +1,200 @@
 {
-  "lessonId": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values",
+  "lessonId": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o",
   "skillName": "Python",
   "moduleId": "mod-1-python-beginner-module-1",
-  "title": "Running Python and Working with Values",
-  "summary": "Python executes source from top to bottom while names refer to objects. This lesson establishes the edit-run-observe cycle, assignment, naming rules, and how to inspect values without treating a variable as a fixed box.",
+  "title": "Python Execution Architecture, Bytecode & Object Model",
+  "summary": "Understand the CPython interpreter pipeline, bytecode compilation, stack frames, heap-allocated PyObjects, and reference semantics.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the Python behavior taught in Running Python and Working with Values",
-    "Test the behavior with a small observable program"
+    "Trace Python source code from parsing and AST to bytecode (.pyc) and CPython virtual machine execution",
+    "Differentiate variable name binding (pointers) from values (heap-allocated objects) using id(), is, and =="
   ],
   "objectiveIds": [
     "python-obj-1",
     "python-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Terminal access and basic file editing"
   ],
   "sections": [
     {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-sec-1",
-      "heading": "Core model",
-      "content": "Python programs are sequences of statements evaluated by the interpreter. An assignment such as `price = 120` evaluates the expression on the right and binds the resulting integer object to the name on the left. Reassignment changes the binding; it does not alter the earlier object. Use descriptive snake_case names, keep one purpose per name, and inspect uncertain values with `print()` and `type()`. A `NameError` means a name was used before a successful binding. Reading the traceback from its final line upward usually identifies both the exception and the line that caused it.",
-      "codeExamples": [],
-      "keyPoints": [
-        "Python programs are sequences of statements evaluated by the interpreter."
-      ],
-      "commonMistakes": [
-        "using a name before assignment raises NameError",
-        "adding an input string to an integer raises TypeError"
-      ]
-    },
-    {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-sec-2",
-      "heading": "Worked Python example",
-      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-sec-1",
+      "heading": "1. CPython Execution Pipeline & Object Reference Model",
+      "content": "Python is commonly described as an interpreted language, but modern CPython actually executes as a two-phase bytecode compiler and virtual machine runtime.\n\nWhen you execute `python app.py`:\n1. Lexical Analysis & Parsing: Source code text is parsed into tokens and converted into an Abstract Syntax Tree (AST).\n2. Bytecode Compilation: The AST compiles into compact, platform-independent bytecode instructions (stored in `__pycache__/*.pyc` files).\n3. CPython Virtual Machine: The central evaluation loop (`ceval.c`) iterates through bytecode opcodes, manipulating a virtual evaluation stack.\n\nCrucially, Python variables are NOT fixed memory boxes holding raw bits. Instead, every variable is a named pointer (reference) pointing to a heap-allocated `PyObject` structure containing an object header: a reference count (`ob_refcnt`) and a type pointer (`ob_type`).\n\nWhen executing `x = 1000` followed by `y = x`, both `x` and `y` point to the EXACT same integer object in memory. Reassigning `x = 2000` does not mutate 1000; it allocates a new integer object and repoints `x`, decrementing the reference count of 1000.",
       "codeExamples": [
         {
-          "language": "python",
-          "code": "price = 120\nquantity = 3\ntotal = price * quantity\nprint(total)\nprint(type(total).__name__)",
-          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
-          "expectedOutput": "360\nint"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| CPYTHON EXECUTION PIPELINE & HEAP OBJECT BINDING                  |\n|                                                                   |\n|  Source [.py] ---> AST ---> Bytecode [.pyc] ---> VM (ceval.c)     |\n|                                                                   |\n|  Stack Frames (Names / Pointers)         Heap Memory (PyObjects)  |\n|  +----------------------------+         +-----------------------+ |\n|  | x ---------               |         | PyLongObject: 1000    | |\n|  |             ------------> | ------> |  ob_refcnt: 2         | |\n|  | y ------------------------>|         |  ob_type: int         | |\n|  +----------------------------+         +-----------------------+ |\n|                                                                   |\n|  x = 2000 creates a NEW PyObject and re-binds x's pointer.        |\n+-------------------------------------------------------------------+",
+          "explanation": "Variables are lightweight references in stack frames that point to rich PyObject structures allocated on the heap.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "Python programs are sequences of statements evaluated by the interpreter."
+        "CPython compiles source code to bytecode before the evaluation loop executes opcodes.",
+        "Variables are reference pointers; assignment binds a name to an object rather than copying memory contents.",
+        "The 'is' operator compares memory addresses (id()), whereas '==' evaluates equality via __eq__().",
+        "Reference counting tracks live pointers; cyclic garbage collection frees unreachable circular references."
       ],
       "commonMistakes": [
-        "using a name before assignment raises NameError",
-        "adding an input string to an integer raises TypeError"
+        "Assuming 'x = y' creates an independent copy of a mutable object such as a list or dictionary.",
+        "Using 'is' to compare numbers or strings, which produces unpredictable bugs due to CPython integer interning."
       ]
     },
     {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-sec-2",
+      "heading": "2. Verifying Object Identity & Diagnosing Reference Aliasing in Production",
+      "content": "In production environments, confusing object identity with value equality causes silent data corruption—especially when dealing with mutable collections passed into functions. Understanding memory addresses through `id()` and verifying reference count states with `sys.getrefcount()` allows engineers to systematically debug unwanted mutations and memory leaks.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "import sys\n\n# 1. Inspecting object identity vs value equality\nval_a = [10, 20, 30]\nval_b = val_a            # Reference alias: both point to identical heap list\nval_c = [10, 20, 30]     # Fresh allocation: equal contents, distinct memory\n\nprint(f\"val_a is val_b: {val_a is val_b}\")       # True  (same memory address)\nprint(f\"val_a is val_c: {val_a is val_c}\")       # False (different addresses)\nprint(f\"val_a == val_c: {val_a == val_c}\")       # True  (equivalent values)\n\n# 2. Mutating through an alias\nval_b.append(40)\nprint(f\"val_a after val_b mutation: {val_a}\")    # [10, 20, 30, 40]\n\n# 3. Memory inspection\nprint(f\"Address of val_a: {hex(id(val_a))}\")\nprint(f\"Reference count of val_a: {sys.getrefcount(val_a)}\")",
+          "explanation": "Demonstrates that aliased references mutate the same underlying heap object, while fresh allocations produce distinct objects.",
+          "expectedOutput": "val_a is val_b: True\nval_a is val_c: False\nval_a == val_c: True\nval_a after val_b mutation: [10, 20, 30, 40]\nAddress of val_a: <heap_hex_address>\nReference count of val_a: 3"
+        }
+      ],
       "keyPoints": [
-        "Python programs are sequences of statements evaluated by the interpreter."
+        "Always create shallow copies (list.copy() or slice [:]) or deep copies (copy.deepcopy()) when passing mutable data.",
+        "sys.getrefcount() returns 1 higher than expected because passing the argument temporarily creates an extra reference."
       ],
       "commonMistakes": [
-        "using a name before assignment raises NameError",
-        "adding an input string to an integer raises TypeError"
+        "Mutating a collection argument inside a function without explicit documentation, altering the caller's state unexpectedly."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-ex-1",
+      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in Python.",
-      "description": "Create a price calculator that binds unit price and quantity, calculates a total, prints the result and its type, then deliberately misspells one name and explains the resulting traceback. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+      "title": "Diagnose and Fix Reference Aliasing in Inventory State",
+      "objective": "Refactor an inventory tracking function to eliminate unintended reference mutation using explicit defensive copying.",
+      "description": "A store's discount engine takes an active cart of items and applies seasonal markdowns. However, customers report that their original shopping history is permanently overwritten because the discount service mutates the original dictionary references. Write a pure, defensive transform function that preserves the original cart while returning a brand-new discounted dataset with verified test assertions.",
       "instructions": [
-        "Create a price calculator that binds unit price and quantity, calculates a total, prints the result and its type, then deliberately misspells one name and explains the resulting traceback. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
+        "Define apply_discounts(cart: dict, discount_rate: float) -> dict.",
+        "Verify that the input cart dictionary and its nested price records are NOT mutated.",
+        "Assert that the returned dictionary has a distinct memory id() from the original.",
+        "Add assertion checks confirming correct discounted calculations."
       ],
-      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
+      "starterCode": "# Refactor this function to be pure and prevent alias mutations\ndef apply_discounts(cart: dict, discount_rate: float) -> dict:\n    # BUG: mutates caller's dictionary directly\n    discounted = cart\n    for item, price in discounted.items():\n        discounted[item] = round(price * (1.0 - discount_rate), 2)\n    return discounted\n\n# Test data\noriginal_cart = {\"laptop\": 1200.0, \"mouse\": 50.0}",
       "hints": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Use dictionary comprehension `{k: round(v * (1 - rate), 2) for k, v in cart.items()}` to allocate a fresh dictionary.",
+        "Verify with `assert result is not original_cart` and `assert original_cart['laptop'] == 1200.0`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
+      "solutionExplanation": "By replacing `discounted = cart` with a dictionary comprehension or `copy.deepcopy()`, a new heap allocation is created, ensuring the caller's state remains immutable and pure."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-kc-1",
+      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-kc-1",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes assignment in Python?",
+      "prompt": "What does executing 'y = x' perform when x is bound to a Python list?",
       "options": [
         {
-          "id": "A",
-          "text": "assignment binds a name to the evaluated object"
+          "id": "opt-1",
+          "text": "It performs a deep copy of the list and its internal elements into newly allocated memory."
         },
         {
-          "id": "B",
-          "text": "using a name before assignment raises NameError"
+          "id": "opt-2",
+          "text": "It copies the pointer reference, binding y to the exact same heap-allocated list as x."
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "It converts x into an immutable tuple before binding y."
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "It compiles x into frozen bytecode in the __pycache__ directory."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Assignment in Python never implicitly clones collections; it creates a new reference pointing to the identical heap object.",
       "objectiveIds": [
         "python-obj-1"
       ]
     },
     {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-kc-2",
+      "id": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o-kc-2",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes input in Python?",
+      "prompt": "Why should the 'is' operator NOT be used to compare arbitrary integers for numeric equality?",
       "options": [
         {
-          "id": "A",
-          "text": "input returns a string"
+          "id": "opt-1",
+          "text": "Because 'is' raises a TypeError when comparing numbers of different sizes."
         },
         {
-          "id": "B",
-          "text": "adding an input string to an integer raises TypeError"
+          "id": "opt-2",
+          "text": "Because 'is' checks object memory identity, and CPython only caches small integers (-5 to 256), leading to false negatives on larger numbers."
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Because 'is' mutates the reference count to zero, triggering garbage collection."
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Because Python requires bitwise operators like '&' for numbers."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "'is' checks whether two variables share the exact same memory address. CPython interns small integers (-5 through 256), but numbers outside this range are allocated independently.",
       "objectiveIds": [
         "python-obj-2"
       ]
-    },
-    {
-      "id": "mod-1-python-beginner-module-1-l1-running-python-and-working-with-values-kc-3",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes integer division in Python?",
-      "options": [
-        {
-          "id": "A",
-          "text": "`//` performs floor division"
-        },
-        {
-          "id": "B",
-          "text": "floor division rounds toward negative infinity, not toward zero"
-        },
-        {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
-        },
-        {
-          "id": "D",
-          "text": "It is available only through third-party packages"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "objectiveIds": [
-        "python-obj-1"
-      ]
     }
   ],
-  "recap": "In this lesson, you covered Running Python and Working with Values in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Python evaluates code via a bytecode compiler and CPython VM. Variables are names bound to heap-allocated PyObjects. Use '==' for equality and 'is' strictly for memory identity checks like 'x is None'.",
   "videoResources": [
     {
-      "id": "vid-python-main",
-      "title": "Python for Beginners - Full Course",
+      "id": "res-python-primary",
+      "title": "Python Full Course for Beginners to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "Programming with Mosh",
-      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "channelOrAuthor": "freeCodeCamp / Core Python",
+      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for Python.",
-      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
       "learningObjectivesSupported": [
-        "python-obj-1"
+        "python-obj-1",
+        "python-obj-2",
+        "python-obj-3",
+        "python-obj-4"
       ],
       "keyTopicsCovered": [
-        "Running Python and Working with Values",
-        "Types, Conversion, and Input/Output"
+        "Python Execution Architecture, Bytecode & Object Model",
+        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+        "The Iteration Protocol, Generators & Streaming Pipelines",
+        "Closures, First-Class Functions & Decorator Metaprogramming",
+        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation",
+      "title": "Python 3 Official Documentation & Language Reference",
       "url": "https://docs.python.org/3/",
-      "description": "Official reference documentation for Python."
+      "description": "Authoritative official technical reference for Python."
     }
   ],
   "realWorldApplications": [
-    "Production application development using Python",
-    "Automated software quality verification and debugging"
+    "High-throughput microservices avoiding memory leaks caused by unwanted global object references.",
+    "Data ingestion pipelines safeguarding source datasets from accidental in-place mutations."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.178Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.229Z"
 }

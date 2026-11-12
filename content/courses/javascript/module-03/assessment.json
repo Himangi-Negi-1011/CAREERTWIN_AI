@@ -1,203 +1,165 @@
 {
-  "id": "phase-javascript-beginner-mod-3",
+  "id": "phase-javascript-mod-3-javascript-beginner-module-3-assessment",
   "skillName": "JavaScript",
   "skillSlug": "javascript",
   "level": "beginner",
   "testNumber": 3,
   "isPhaseAssessment": true,
   "moduleId": "mod-3-javascript-beginner-module-3",
-  "moduleTitle": "Functions, Collections, and a Project",
-  "title": "Functions, Collections, and a Project Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Functions, Collections, and a Project.",
+  "moduleTitle": "Module 3: Prototypal Systems, Modern Modules & Web Architecture",
+  "title": "JavaScript — Module 3: Prototypal Systems, Modern Modules & Web Architecture Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Prototypes, Object Delegation & ES6 Class Systems and ES Modules, Tree Shaking & High-Performance Architecture.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "array filter",
-    "reduce",
-    "while loops",
-    "return",
-    "lexical scope"
+    "Prototypes, Object Delegation & ES6 Class Systems",
+    "ES Modules, Tree Shaking & High-Performance Architecture"
   ],
   "questions": [
     {
-      "id": "phase-javascript-beginner-mod-3-q1",
+      "id": "phase-javascript-mod-3-javascript-beginner-module-3-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Prototypal Systems, Modern Modules & Web Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes array filter in JavaScript?",
+      "prompt": "What is the primary memory advantage of defining methods on a class prototype rather than inside the constructor?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "filter returns items whose callback is truthy"
+          "id": "opt-1",
+          "text": "Prototype methods run in Web Workers automatically."
         },
         {
-          "id": "B",
-          "text": "filter does not modify each selected item"
+          "id": "opt-2",
+          "text": "Prototype methods exist as a single shared function in memory across all instances, rather than being re-created for each instance."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Prototype methods bypass garbage collection entirely."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "Prototype methods can only be invoked asynchronously."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "filter returns items whose callback is truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Methods on the prototype are allocated once in memory. All instances delegate to this shared object, saving massive RAM.",
       "difficulty": "beginner",
-      "topic": "array filter",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+      "topic": "Prototypes, Object Delegation & ES6 Class Systems",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1-prototypes-object-delegation-es6-class-s",
+      "recommendedLessonTitle": "Prototypes, Object Delegation & ES6 Class Systems"
     },
     {
-      "id": "phase-javascript-beginner-mod-3-q2",
+      "id": "phase-javascript-mod-3-javascript-beginner-module-3-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Prototypal Systems, Modern Modules & Web Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes reduce in JavaScript?",
+      "prompt": "How are private class fields (e.g. #apiKey) enforced in modern JavaScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "reduce combines values through an accumulator"
+          "id": "opt-1",
+          "text": "Through a naming convention that developers agree to respect."
         },
         {
-          "id": "B",
-          "text": "omitting the initial value changes behavior and fails on an empty array"
+          "id": "opt-2",
+          "text": "By the V8 JavaScript engine itself at compile and runtime; attempting to access outside the class throws a SyntaxError."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "By automatically converting the property into a symbol."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "By freezing the object using Object.freeze()."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "reduce combines values through an accumulator. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Native private fields (#) are hard private variables enforced directly by the JavaScript runtime engine.",
       "difficulty": "beginner",
-      "topic": "reduce",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+      "topic": "Prototypes, Object Delegation & ES6 Class Systems",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1-prototypes-object-delegation-es6-class-s",
+      "recommendedLessonTitle": "Prototypes, Object Delegation & ES6 Class Systems"
     },
     {
-      "id": "phase-javascript-beginner-mod-3-q3",
+      "id": "phase-javascript-mod-3-javascript-beginner-module-3-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Prototypal Systems, Modern Modules & Web Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes while loops in JavaScript?",
+      "prompt": "Why can bundlers tree-shake ES Modules (ESM) but cannot reliably tree-shake CommonJS (require)?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "while repeats while its condition remains truthy"
+          "id": "opt-1",
+          "text": "Because CommonJS files are encrypted."
         },
         {
-          "id": "B",
-          "text": "no progress toward termination can create an infinite loop"
+          "id": "opt-2",
+          "text": "Because ESM imports and exports are static and can be analyzed at compile time, whereas CommonJS calls can be dynamic at runtime."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Because ESM requires TypeScript."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "Because CommonJS is only supported in Linux environments."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "while repeats while its condition remains truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "ESM structure is completely static (top-level only, fixed string specifiers). This allows static AST analysis to identify unused code before runtime.",
       "difficulty": "beginner",
-      "topic": "while loops",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+      "topic": "ES Modules, Tree Shaking & High-Performance Architecture",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance",
+      "recommendedLessonTitle": "ES Modules, Tree Shaking & High-Performance Architecture"
     },
     {
-      "id": "phase-javascript-beginner-mod-3-q4",
+      "id": "phase-javascript-mod-3-javascript-beginner-module-3-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Prototypal Systems, Modern Modules & Web Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes return in JavaScript?",
+      "prompt": "What is a detached DOM node in JavaScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "return ends a function call and supplies its result"
+          "id": "opt-1",
+          "text": "A DOM element that has been removed from the visible HTML document but is still referenced by a JavaScript variable in memory."
         },
         {
-          "id": "B",
-          "text": "console.log does not return the displayed value"
+          "id": "opt-2",
+          "text": "A node created inside an iframe."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "A custom HTML tag with a shadow root."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "An element with 'display: none' styling."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "return ends a function call and supplies its result. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Detached DOM nodes occur when elements are removed from the DOM tree, but JavaScript variables keep referencing them, preventing garbage collection.",
       "difficulty": "beginner",
-      "topic": "return",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Scope"
-    },
-    {
-      "id": "phase-javascript-beginner-mod-3-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes lexical scope in JavaScript?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "name lookup follows the scopes where functions are defined"
-        },
-        {
-          "id": "B",
-          "text": "local bindings cannot be read outside their scope"
-        },
-        {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
-        },
-        {
-          "id": "D",
-          "text": "It requires an external library"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "name lookup follows the scopes where functions are defined. Verify this behavior with a minimal runnable example and observable output.",
-      "difficulty": "beginner",
-      "topic": "lexical scope",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Scope"
+      "topic": "ES Modules, Tree Shaking & High-Performance Architecture",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance",
+      "recommendedLessonTitle": "ES Modules, Tree Shaking & High-Performance Architecture"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.086Z",
-  "updatedAt": "2026-11-01T15:37:41.086Z"
+  "createdAt": "2026-11-12T03:01:18.435Z",
+  "updatedAt": "2026-11-12T03:01:18.435Z"
 }

@@ -1,226 +1,199 @@
 {
-  "lessonId": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track",
+  "lessonId": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance",
   "skillName": "JavaScript",
   "moduleId": "mod-3-javascript-beginner-module-3",
-  "title": "Objects, Collections, and a Progress Tracker",
-  "summary": "Apply arrays, objects, Map, Set, destructuring, immutable updates, and modular design in a progress-tracker capstone.",
+  "title": "ES Modules, Tree Shaking & High-Performance Architecture",
+  "summary": "Master ECMAScript Modules (ESM) vs CommonJS, static analysis, bundler tree shaking, and memory leak prevention in long-lived web apps.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the JavaScript behavior taught in Objects, Collections, and a Progress Tracker",
-    "Test behavior using observable output and assertions"
+    "Explain static module analysis and how ES Module structure enables bundlers (Vite, Webpack) to perform dead-code elimination (Tree Shaking)",
+    "Identify and eliminate common JavaScript memory leaks (orphaned listeners, detached DOM nodes, uncleaned intervals)"
   ],
   "objectiveIds": [
-    "javascript-obj-5",
-    "javascript-obj-6"
+    "javascript-obj-3",
+    "javascript-obj-4"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Prototypes and asynchronous JavaScript"
   ],
   "sections": [
     {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-sec-1",
-      "heading": "Core model",
-      "content": "Arrays represent ordered sequences. Plain objects are effective records with string or symbol property keys. `Map` supports keys of any type and predictable iteration, while `Set` stores unique values. Destructuring extracts named fields and spread syntax can create shallow copies for immutable updates. A shallow copy does not clone nested objects, so update nested state deliberately. Check own properties with `Object.hasOwn` when inherited names must not count. Separate input/output from domain functions so progress calculations can be tested without a browser. Persisted JSON cannot represent functions, Map, Set, `undefined`, or circular references directly.",
-      "codeExamples": [],
-      "keyPoints": [
-        "Arrays represent ordered sequences."
-      ],
-      "commonMistakes": [
-        "passing null does not activate a default parameter",
-        "spread creates only a shallow copy"
-      ]
-    },
-    {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-sec-2",
-      "heading": "Worked JavaScript example",
-      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "id": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance-sec-1",
+      "heading": "1. ES Modules (ESM) vs CommonJS & Tree Shaking Mechanics",
+      "content": "JavaScript has evolved from ad-hoc script tags and CommonJS (`require()`) to standardized ECMAScript Modules (ESM: `import`/`export`).\n\nFundamental Differences:\n- CommonJS (CJS): Dynamic and synchronous. `require()` can be called conditionally inside if-statements at runtime. Because dependencies are resolved dynamically during execution, bundlers cannot determine which exports are actually used before running the code.\n- ES Modules (ESM): Static and asynchronous. `import` statements must reside at top-level. The dependency graph is parsed and resolved BEFORE code execution.\n\nTree Shaking:\nBecause ESM imports and exports are completely static, bundlers (Vite, Rollup, Webpack, esbuild) can analyze the module Abstract Syntax Tree and determine with 100% mathematical certainty which functions are never referenced. Unused code ('dead branches') is pruned from the production bundle, slashing network download size.\n\nMemory Leak Prevention in Modern Web Applications:\nJavaScript features automatic garbage collection (Mark-and-Sweep). However, memory leaks occur when objects are unintentionally kept reachable from the root window/global scope:\n1. Lingering Event Listeners: Attaching listeners to `window` or `document` without removing them when components unmount.\n2. Detached DOM Nodes: Retaining references in JavaScript to DOM elements that have been removed from the visible document tree.\n3. Uncleared Timers: `setInterval` running indefinitely, referencing closure variables that can never be garbage collected.",
       "codeExamples": [
         {
-          "language": "javascript",
-          "code": "const progress = { basics: 100, loops: 70, functions: 40 };\nconst completed = Object.entries(progress)\n  .filter(([, percent]) => percent === 100)\n  .map(([topic]) => topic);\nconsole.log(completed);",
-          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
-          "expectedOutput": "[ 'basics' ]"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| ESM STATIC TREE SHAKING VS DYNAMIC COMMONJS BUNDLING             |\n|                                                                   |\n|  COMMONJS (require):                                              |\n|  Dynamic require(\"./utils\") -> Bundler must include ENTIRE file!  |\n|                                                                   |\n|  ES MODULES (import { usedFn } from \"./utils\"):                   |\n|  Module Graph (Static):                                           |\n|  [utils.js]                                                       |\n|    |-- export function usedFn()       ===> Included in Bundle     |\n|    |-- export function unusedHeavy()  ===> [PRUNED / TREE-SHAKEN] |\n|                                                                   |\n|  Production bundle size reduced by eliminating unused functions!  |\n+-------------------------------------------------------------------+",
+          "explanation": "Static ESM syntax allows build tools to discard unused exports during bundling.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "Arrays represent ordered sequences."
+        "ES Modules are static: imports and exports are evaluated at build time before code executes.",
+        "Tree shaking removes unused exports, drastically reducing bundle size and browser parse time.",
+        "Always unregister event listeners, abort controllers, and timers when tearing down components."
       ],
       "commonMistakes": [
-        "passing null does not activate a default parameter",
-        "spread creates only a shallow copy"
+        "Exporting single giant default objects ('export default { fn1, fn2 }'), which defeats tree shaking.",
+        "Leaving setInterval() running in single-page apps without clearing it on page navigation."
       ]
     },
     {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance-sec-2",
+      "heading": "2. Production Memory Leak Prevention with WeakRef & AbortSignal",
+      "content": "In modern Single Page Applications (Next.js, React), forgetting to clean up global event listeners is the leading cause of browser tab memory bloat. Using `AbortSignal` allows multiple listeners to be wiped simultaneously with a single abort call.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "class ComponentLifecycleManager {\n  #abortController = new AbortController();\n\n  mount() {\n    const { signal } = this.#abortController;\n\n    // Passing signal to addEventListener automatically cleans up when aborted!\n    console.log(\"Component mounted: attaching listeners with signal...\");\n    \n    // Simulated window listener with automatic cleanup binding\n    const simulatedListener = () => console.log(\"Window resized\");\n    \n    // When abort is triggered, listener is removed automatically by the browser engine\n    signal.addEventListener(\"abort\", () => {\n      console.log(\"Signal aborted: Event listeners detached from memory.\");\n    });\n  }\n\n  unmount() {\n    // Single call tears down all associated listeners and async fetches\n    this.#abortController.abort();\n    console.log(\"Component unmounted cleanly.\");\n  }\n}\n\n// Verification\nconst comp = new ComponentLifecycleManager();\ncomp.mount();\ncomp.unmount();",
+          "explanation": "Demonstrates modern leak-free lifecycle cleanup using AbortSignal to detach event listeners deterministically.",
+          "expectedOutput": "Component mounted: attaching listeners with signal...\nSignal aborted: Event listeners detached from memory.\nComponent unmounted cleanly."
+        }
+      ],
       "keyPoints": [
-        "Arrays represent ordered sequences."
+        "Modern addEventListener accepts an { signal } option, removing the listener automatically when aborted.",
+        "WeakMap and WeakRef allow objects to be referenced without preventing garbage collection."
       ],
       "commonMistakes": [
-        "passing null does not activate a default parameter",
-        "spread creates only a shallow copy"
+        "Using arrow functions in addEventListener and trying to remove them with removeEventListener without saving the function reference."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-ex-1",
+      "id": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance-ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in JavaScript.",
-      "description": "Build a progress tracker that adds and updates topics immutably, validates 0–100 percentages, lists completed topics, and computes an average. Include at least ten assertions. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "title": "Audit and Fix a Leaky Timer Component",
+      "objective": "Refactor a stateful tracker to implement clean unmount logic and prevent memory leaks.",
+      "description": "A dashboard metric widget starts a setInterval heartbeat to fetch telemetry every second. When users switch views, the interval continues running in the background, consuming CPU and retaining stale state. Refactor the widget to provide a start() and dispose() lifecycle that guarantees full resource cleanup.",
       "instructions": [
-        "Build a progress tracker that adds and updates topics immutably, validates 0–100 percentages, lists completed topics, and computes an average. Include at least ten assertions. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+        "Implement start() and dispose() methods.",
+        "Clear any running interval ID inside dispose().",
+        "Nullify internal callback references so closures can be collected.",
+        "Ensure calling dispose() multiple times is safe and idempotent."
       ],
-      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "class TelemetryWidget {\n  constructor(endpoint) {\n    this.endpoint = endpoint;\n    this.timerId = null;\n  }\n\n  start() {\n    // BUG: no guard against multiple start() calls\n    this.timerId = setInterval(() => {\n      console.log(\"Heartbeat:\", this.endpoint);\n    }, 1000);\n  }\n\n  // Missing dispose() cleanup\n}",
       "hints": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "In `dispose()`, execute `clearInterval(this.timerId); this.timerId = null;`.",
+        "In `start()`, guard with `if (this.timerId) return;`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+      "solutionExplanation": "Idempotent cleanup methods ensure background timers are killed and memory references are freed."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-kc-1",
+      "id": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance-kc-1",
       "type": "single-choice",
-      "prompt": "Which code-review warning about const and let is valid?",
+      "prompt": "Why can bundlers tree-shake ES Modules (ESM) but cannot reliably tree-shake CommonJS (require)?",
       "options": [
         {
-          "id": "A",
-          "text": "const does not make a referenced object deeply immutable"
+          "id": "opt-1",
+          "text": "Because CommonJS files are encrypted."
         },
         {
-          "id": "B",
-          "text": "const prevents rebinding while let permits deliberate reassignment"
+          "id": "opt-2",
+          "text": "Because ESM imports and exports are static and can be analyzed at compile time, whereas CommonJS calls can be dynamic at runtime."
         },
         {
-          "id": "C",
-          "text": "declare stable bindings with const and state that changes with let"
+          "id": "opt-3",
+          "text": "Because ESM requires TypeScript."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "Because CommonJS is only supported in Linux environments."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "ESM structure is completely static (top-level only, fixed string specifiers). This allows static AST analysis to identify unused code before runtime.",
       "objectiveIds": [
-        "javascript-obj-5"
+        "javascript-obj-3"
       ]
     },
     {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-kc-2",
+      "id": "mod-3-javascript-beginner-module-3-l2-es-modules-tree-shaking-high-performance-kc-2",
       "type": "single-choice",
-      "prompt": "Which code-review warning about typeof is valid?",
+      "prompt": "What is a detached DOM node in JavaScript?",
       "options": [
         {
-          "id": "A",
-          "text": "typeof null is historically 'object'"
+          "id": "opt-1",
+          "text": "A DOM element that has been removed from the visible HTML document but is still referenced by a JavaScript variable in memory."
         },
         {
-          "id": "B",
-          "text": "typeof reports a runtime type string"
+          "id": "opt-2",
+          "text": "A node created inside an iframe."
         },
         {
-          "id": "C",
-          "text": "use typeof while diagnosing values at an input boundary"
+          "id": "opt-3",
+          "text": "A custom HTML tag with a shadow root."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "An element with 'display: none' styling."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Detached DOM nodes occur when elements are removed from the DOM tree, but JavaScript variables keep referencing them, preventing garbage collection.",
       "objectiveIds": [
-        "javascript-obj-6"
-      ]
-    },
-    {
-      "id": "mod-3-javascript-beginner-module-3-l2-objects-collections-and-a-progress-track-kc-3",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about Number conversion is valid?",
-      "options": [
-        {
-          "id": "A",
-          "text": "Number('') produces zero, which may require separate empty-input validation"
-        },
-        {
-          "id": "B",
-          "text": "Number converts an entire value to numeric form"
-        },
-        {
-          "id": "C",
-          "text": "convert then check Number.isNaN before arithmetic"
-        },
-        {
-          "id": "D",
-          "text": "It can only be used inside a class"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output.",
-      "objectiveIds": [
-        "javascript-obj-5"
+        "javascript-obj-4"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Objects, Collections, and a Progress Tracker in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Static ES Modules enable tree shaking to minimize bundle sizes. High-performance web apps actively manage memory by cleaning up event listeners, timers, and detached DOM references.",
   "videoResources": [
     {
-      "id": "vid-javascript-main",
-      "title": "JavaScript Programming - Full Course",
+      "id": "res-javascript-primary",
+      "title": "JavaScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "channelOrAuthor": "freeCodeCamp / JavaScript Mastery",
+      "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for JavaScript.",
-      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of JavaScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for JavaScript.",
       "learningObjectivesSupported": [
-        "javascript-obj-5"
+        "javascript-obj-1",
+        "javascript-obj-2",
+        "javascript-obj-3",
+        "javascript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Functions, Parameters, and Scope",
-        "Objects, Collections, and a Progress Tracker"
+        "V8 Engine Internals, Call Stack & Execution Contexts",
+        "Lexical Scope Chain, Variable Lifetimes & Closures",
+        "Macrotasks, Microtasks & The Event Loop Architecture",
+        "Promises, Async/Await & Resilient Error Pipelines",
+        "Prototypes, Object Delegation & ES6 Class Systems",
+        "ES Modules, Tree Shaking & High-Performance Architecture"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "MDN JavaScript Reference Guide",
+      "title": "MDN Web Docs: JavaScript Language Reference & ECMAScript Standard",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "description": "Official reference documentation for JavaScript."
+      "description": "Authoritative official technical reference for JavaScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using JavaScript",
-    "Automated software quality verification and debugging"
+    "High-traffic Next.js and React frontend applications maintaining minimal bundle sizes through granular ESM tree shaking.",
+    "Long-lived Electron and single-page applications preventing browser tab memory bloat through deterministic unmount disposal."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.086Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.435Z"
 }

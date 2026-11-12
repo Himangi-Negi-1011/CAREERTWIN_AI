@@ -1,200 +1,165 @@
 {
-  "id": "phase-python-beginner-mod-1",
+  "id": "phase-python-mod-1-python-beginner-module-1-assessment",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
   "moduleId": "mod-1-python-beginner-module-1",
-  "moduleTitle": "Python Execution and Data",
-  "title": "Python Execution and Data Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Python Execution and Data.",
+  "moduleTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives",
+  "title": "Python — Module 1: Python Runtime Architecture, Memory Model & Primitives Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Python Execution Architecture, Bytecode & Object Model and Primitive Types, IEEE 754 Arithmetic & Formatted IO.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Running Python and Working with Values",
-    "Types, Conversion, and Input/Output"
+    "Python Execution Architecture, Bytecode & Object Model",
+    "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
   ],
   "questions": [
     {
-      "id": "phase-python-beginner-mod-1-q1",
+      "id": "phase-python-mod-1-python-beginner-module-1-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
       "type": "single-choice",
-      "prompt": "A learner needs to apply assignment. Which choice is the most reliable approach?",
+      "prompt": "What does executing 'y = x' perform when x is bound to a Python list?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use `total = price * quantity` when the computed value is needed later"
+          "id": "opt-1",
+          "text": "It performs a deep copy of the list and its internal elements into newly allocated memory."
         },
         {
-          "id": "B",
-          "text": "using a name before assignment raises NameError"
+          "id": "opt-2",
+          "text": "It copies the pointer reference, binding y to the exact same heap-allocated list as x."
         },
         {
-          "id": "C",
-          "text": "Suppress every error and continue"
+          "id": "opt-3",
+          "text": "It converts x into an immutable tuple before binding y."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
+          "id": "opt-4",
+          "text": "It compiles x into frozen bytecode in the __pycache__ directory."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use `total = price * quantity` when the computed value is needed later. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Assignment in Python never implicitly clones collections; it creates a new reference pointing to the identical heap object.",
       "difficulty": "beginner",
-      "topic": "01",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Python Execution Architecture, Bytecode & Object Model",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o",
+      "recommendedLessonTitle": "Python Execution Architecture, Bytecode & Object Model"
     },
     {
-      "id": "phase-python-beginner-mod-1-q2",
+      "id": "phase-python-mod-1-python-beginner-module-1-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
       "type": "single-choice",
-      "prompt": "A learner needs to apply input. Which choice is the most reliable approach?",
+      "prompt": "Why should the 'is' operator NOT be used to compare arbitrary integers for numeric equality?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "convert validated numeric input with int or float before arithmetic"
+          "id": "opt-1",
+          "text": "Because 'is' raises a TypeError when comparing numbers of different sizes."
         },
         {
-          "id": "B",
-          "text": "adding an input string to an integer raises TypeError"
+          "id": "opt-2",
+          "text": "Because 'is' checks object memory identity, and CPython only caches small integers (-5 to 256), leading to false negatives on larger numbers."
         },
         {
-          "id": "C",
-          "text": "Suppress every error and continue"
+          "id": "opt-3",
+          "text": "Because 'is' mutates the reference count to zero, triggering garbage collection."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
+          "id": "opt-4",
+          "text": "Because Python requires bitwise operators like '&' for numbers."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "convert validated numeric input with int or float before arithmetic. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "'is' checks whether two variables share the exact same memory address. CPython interns small integers (-5 through 256), but numbers outside this range are allocated independently.",
       "difficulty": "beginner",
-      "topic": "02",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Python Execution Architecture, Bytecode & Object Model",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l1-python-execution-architecture-bytecode-o",
+      "recommendedLessonTitle": "Python Execution Architecture, Bytecode & Object Model"
     },
     {
-      "id": "phase-python-beginner-mod-1-q3",
+      "id": "phase-python-mod-1-python-beginner-module-1-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
       "type": "single-choice",
-      "prompt": "A learner needs to apply integer division. Which choice is the most reliable approach?",
+      "prompt": "Why does Python evaluate '0.1 + 0.2 == 0.3' as False?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use `minutes // 60` for complete hours"
+          "id": "opt-1",
+          "text": "Because Python floats have a maximum limit of 10 decimal digits."
         },
         {
-          "id": "B",
-          "text": "floor division rounds toward negative infinity, not toward zero"
+          "id": "opt-2",
+          "text": "Because 0.1 and 0.2 cannot be represented with exact precision in IEEE 754 binary floating-point representation."
         },
         {
-          "id": "C",
-          "text": "Suppress every error and continue"
+          "id": "opt-3",
+          "text": "Because Python converts 0.1 to an integer before addition."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
+          "id": "opt-4",
+          "text": "Because the '==' operator is disabled for floating-point operands."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use `minutes // 60` for complete hours. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Binary floating-point arithmetic represents numbers as fractions of powers of 2. In base-2, 1/10 is an infinitely repeating fraction, causing minor rounding discrepancies.",
       "difficulty": "beginner",
-      "topic": "integer",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form",
+      "recommendedLessonTitle": "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
     },
     {
-      "id": "phase-python-beginner-mod-1-q4",
+      "id": "phase-python-mod-1-python-beginner-module-1-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint",
       "type": "single-choice",
-      "prompt": "A learner needs to apply f-strings. Which choice is the most reliable approach?",
+      "prompt": "What is the recommended method to compare two floating-point numbers for approximate equality in scientific code?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use an f-string to combine labels and calculated values readably"
+          "id": "opt-1",
+          "text": "Using 'a is b'"
         },
         {
-          "id": "B",
-          "text": "forgetting the leading f leaves braces as ordinary text"
+          "id": "opt-2",
+          "text": "Using 'math.isclose(a, b, rel_tol=1e-9)'"
         },
         {
-          "id": "C",
-          "text": "Suppress every error and continue"
+          "id": "opt-3",
+          "text": "Converting both numbers to strings using str(a) == str(b)"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
+          "id": "opt-4",
+          "text": "Using 'a // b == 1'"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use an f-string to combine labels and calculated values readably. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "math.isclose() evaluates whether two floats are equal within a specified relative or absolute tolerance, safely absorbing binary representation discrepancies.",
       "difficulty": "beginner",
-      "topic": "f",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
-    },
-    {
-      "id": "phase-python-beginner-mod-1-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "A learner needs to apply booleans. Which choice is the most reliable approach?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "name a complex eligibility condition before using it in an if"
-        },
-        {
-          "id": "B",
-          "text": "the strings 'False' and '0' are non-empty and therefore truthy"
-        },
-        {
-          "id": "C",
-          "text": "Suppress every error and continue"
-        },
-        {
-          "id": "D",
-          "text": "Replace the operation with an unrelated print statement"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "name a complex eligibility condition before using it in an if. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "difficulty": "beginner",
-      "topic": "05",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-python-beginner-module-1-l2-primitive-types-ieee-754-arithmetic-form",
+      "recommendedLessonTitle": "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.180Z",
-  "updatedAt": "2026-11-01T15:37:41.180Z"
+  "createdAt": "2026-11-12T03:01:18.229Z",
+  "updatedAt": "2026-11-12T03:01:18.229Z"
 }

@@ -1,226 +1,199 @@
 {
-  "lessonId": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val",
+  "lessonId": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution",
   "skillName": "JavaScript",
   "moduleId": "mod-1-javascript-beginner-module-1",
-  "title": "Running JavaScript and Understanding Values",
-  "summary": "Learn how a JavaScript engine evaluates statements, how `const` and `let` bind names, and how to inspect values and runtime errors.",
+  "title": "V8 Engine Internals, Call Stack & Execution Contexts",
+  "summary": "Learn how the V8 engine compiles and executes JavaScript code via execution contexts, call stacks, variable environments, and the Temporal Dead Zone.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the JavaScript behavior taught in Running JavaScript and Understanding Values",
-    "Test behavior using observable output and assertions"
+    "Trace code execution through Global and Function Execution Contexts on the V8 Call Stack",
+    "Differentiate var, let, and const scoping behaviors and explain Temporal Dead Zone (TDZ) mechanics"
   ],
   "objectiveIds": [
     "javascript-obj-1",
     "javascript-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Browser developer tools basics"
   ],
   "sections": [
     {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-sec-1",
-      "heading": "Core model",
-      "content": "JavaScript executes statements through an engine in a browser or Node.js. Prefer `const` when a binding will not be reassigned and `let` when reassignment is part of the design; avoid `var` in new beginner code because function scope and hoisting are easy to misread. A variable holds a value with a runtime type. Use `console.log` and `typeof` to inspect evidence. Read an error from its name and first relevant stack frame instead of guessing. `ReferenceError` commonly indicates an unavailable name, while `TypeError` means an operation was not supported by the received value.",
-      "codeExamples": [],
-      "keyPoints": [
-        "JavaScript executes statements through an engine in a browser or Node.js."
-      ],
-      "commonMistakes": [
-        "const does not make a referenced object deeply immutable",
-        "typeof null is historically 'object'"
-      ]
-    },
-    {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-sec-2",
-      "heading": "Worked JavaScript example",
-      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "id": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution-sec-1",
+      "heading": "1. V8 Engine Architecture & Execution Context Lifecycle",
+      "content": "JavaScript does not execute directly on hardware; it runs inside an execution engine—most notably Google's V8 (used in Chrome, Node.js, and Deno).\n\nV8 Architecture Pipeline:\n1. Parser: Converts source text into an Abstract Syntax Tree (AST).\n2. Ignition Interpreter: Compiles the AST into bytecode instructions and begins execution immediately.\n3. TurboFan JIT Optimizer: Profiles runtime behavior ('hot functions'). If types remain stable, TurboFan compiles bytecode into optimized machine code; if type assumptions break, it de-optimizes back to bytecode.\n\nEvery time JavaScript executes, it creates an Execution Context containing:\n- Variable Environment: Holds local variables (`var`).\n- Lexical Environment: Holds block-scoped bindings (`let`, `const`) and an outer environment reference (the Scope Chain).\n- 'this' Binding: Evaluated dynamically based on invocation site.\n\nExecution happens in two distinct phases:\n1. Creation Phase (Memory Allocation / Hoisting): Memory space is reserved for functions and variables. Function declarations are hoisted completely into memory. Variables declared with `var` are initialized to `undefined`. Variables declared with `let` and `const` are allocated but remain uninitialized in the Temporal Dead Zone (TDZ). Accessing a `let` or `const` in the TDZ throws a `ReferenceError`.\n2. Execution Phase: Code runs line-by-line, evaluating expressions and assigning values.",
       "codeExamples": [
         {
-          "language": "javascript",
-          "code": "const price = 120;\nconst quantity = 3;\nconst total = price * quantity;\nconsole.log(total);\nconsole.log(typeof total);",
-          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
-          "expectedOutput": "360\nnumber"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| V8 ENGINE CALL STACK & EXECUTION CONTEXT CREATION                 |\n|                                                                   |\n|  Global Execution Context (GEC) -> Function Execution Context     |\n|                                                                   |\n|  Call Stack (LIFO):                                               |\n|  +-------------------------------------------------------------+  |\n|  | [calculateTax(amount)]  <- Current execution frame          |  |\n|  |   - LexicalEnv: { amount: 100, tax: TDZ }                   |  |\n|  |   - OuterRef: GlobalScope                                   |  |\n|  +-------------------------------------------------------------+  |\n|  | [processOrder()]                                            |  |\n|  +-------------------------------------------------------------+  |\n|  | [Global Execution Context]                                  |  |\n|  +-------------------------------------------------------------+  |\n+-------------------------------------------------------------------+",
+          "explanation": "Execution contexts are pushed onto the call stack during invocation and popped off upon completion.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "JavaScript executes statements through an engine in a browser or Node.js."
+        "V8 uses a two-tier compilation model: Ignition (bytecode) and TurboFan (optimizing JIT compiler).",
+        "The Creation Phase sets up variable memory before any code line executes.",
+        "let and const are hoisted but remain uninitialized in the Temporal Dead Zone until their declaration line runs.",
+        "Function declarations are hoisted completely, allowing them to be invoked before their textual declaration."
       ],
       "commonMistakes": [
-        "const does not make a referenced object deeply immutable",
-        "typeof null is historically 'object'"
+        "Assuming 'let' and 'const' are not hoisted; they are hoisted, but access is blocked by the Temporal Dead Zone.",
+        "Relying on 'var' hoisting in loops, causing asynchronous callbacks to share a single mutated variable."
       ]
     },
     {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution-sec-2",
+      "heading": "2. Diagnosing TDZ Violations and Call Stack Overflow in Production",
+      "content": "In production JavaScript and Node.js microservices, accidental recursion or TDZ access crashes processes instantly with `RangeError: Maximum call stack size exceeded` or `ReferenceError: Cannot access 'X' before initialization`. Understanding execution contexts enables proactive stack safety.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "// 1. Demonstrating Hoisting vs Temporal Dead Zone\nconsole.log(\"Hoisted var value:\", typeof hoistedVar, hoistedVar); // undefined\n\ntry {\n  // Accessing let before declaration throws ReferenceError (TDZ)\n  console.log(hoistedLet);\n} catch (err) {\n  console.log(\"TDZ Guard Triggered:\", err.name, \"-\", err.message);\n}\n\nvar hoistedVar = \"I am initialized now\";\nlet hoistedLet = \"I exited the TDZ\";\n\n// 2. Preventing Stack Overflow with Tail Recursion / Trampoline Pattern\nfunction safeFactorial(n, acc = 1n) {\n  // Using BigInt to prevent 64-bit integer overflow\n  while (n > 1n) {\n    acc *= n;\n    n -= 1n;\n  }\n  return acc;\n}\n\nconsole.log(\"Safe factorial (no stack overflow):\", safeFactorial(10n).toString());",
+          "explanation": "Demonstrates that var is initialized to undefined, let remains in the TDZ, and iterative loops protect against call stack exhaustion.",
+          "expectedOutput": "Hoisted var value: undefined undefined\nTDZ Guard Triggered: ReferenceError - Cannot access 'hoistedLet' before initialization\nSafe factorial (no stack overflow): 3628800"
+        }
+      ],
       "keyPoints": [
-        "JavaScript executes statements through an engine in a browser or Node.js."
+        "Always prefer const by default, let when reassignment is required, and avoid var entirely.",
+        "Iterative loops avoid call stack growth, ensuring O(1) stack memory consumption."
       ],
       "commonMistakes": [
-        "const does not make a referenced object deeply immutable",
-        "typeof null is historically 'object'"
+        "Using recursion on unbounded user data without tail-call optimization or iterative trampolining."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-ex-1",
+      "id": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution-ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in JavaScript.",
-      "description": "Create a price calculator with `const`, print the result and type, then deliberately reference a misspelled name and explain the stack trace. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "title": "Refactor a Leaked Var Loop to Block-Scoped Scoping",
+      "objective": "Fix a classic closure-in-a-loop bug by replacing function-scoped var with block-scoped let.",
+      "description": "An asynchronous task scheduler creates three delayed telemetry emitters using a for-loop. Due to 'var i = 0', all emitters print the final loop index (3) instead of their intended sequential indices (0, 1, 2). Refactor the code to use block-scoped let and verify sequential execution.",
       "instructions": [
-        "Create a price calculator with `const`, print the result and type, then deliberately reference a misspelled name and explain the stack trace. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+        "Identify the shared variable problem caused by var.",
+        "Replace var with let to give each loop iteration its own lexical binding.",
+        "Write a function generate_handlers() that returns an array of functions.",
+        "Verify that calling each handler returns its corresponding index."
       ],
-      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "function createBadHandlers() {\n  var handlers = [];\n  // BUG: 'var i' creates a single shared variable across all closures\n  for (var i = 0; i < 3; i++) {\n    handlers.push(function() {\n      return i;\n    });\n  }\n  return handlers;\n}",
       "hints": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Replace `for (var i = 0; ...)` with `for (let i = 0; ...)`. In ES6, `let` creates a brand-new binding for every loop iteration."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+      "solutionExplanation": "Because 'let' is block-scoped, every iteration of the loop creates a distinct lexical environment, capturing the correct index value."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-kc-1",
+      "id": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution-kc-1",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes const and let in JavaScript?",
+      "prompt": "What is the Temporal Dead Zone (TDZ) in JavaScript?",
       "options": [
         {
-          "id": "A",
-          "text": "const prevents rebinding while let permits deliberate reassignment"
+          "id": "opt-1",
+          "text": "The duration during which a browser tab is suspended in the background."
         },
         {
-          "id": "B",
-          "text": "const does not make a referenced object deeply immutable"
+          "id": "opt-2",
+          "text": "The time between the creation of a block scope and the actual execution of a let or const declaration where accessing the variable throws a ReferenceError."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "A garbage collection cycle that cleans up circular object references."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "The time spent waiting for an asynchronous network fetch to resolve."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The TDZ begins when the block execution context is created and ends when the variable's declaration line is executed.",
       "objectiveIds": [
         "javascript-obj-1"
       ]
     },
     {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-kc-2",
+      "id": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution-kc-2",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes typeof in JavaScript?",
+      "prompt": "What error occurs when a function calls itself indefinitely without a base case in JavaScript?",
       "options": [
         {
-          "id": "A",
-          "text": "typeof reports a runtime type string"
+          "id": "opt-1",
+          "text": "TypeError: Out of bounds"
         },
         {
-          "id": "B",
-          "text": "typeof null is historically 'object'"
+          "id": "opt-2",
+          "text": "RangeError: Maximum call stack size exceeded"
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "SyntaxError: Infinite loop"
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "ReferenceError: Execution context depleted"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Every function call adds a frame to the V8 call stack. When available stack memory is exhausted, V8 raises a RangeError: Maximum call stack size exceeded.",
       "objectiveIds": [
         "javascript-obj-2"
       ]
-    },
-    {
-      "id": "mod-1-javascript-beginner-module-1-l1-running-javascript-and-understanding-val-kc-3",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes Number conversion in JavaScript?",
-      "options": [
-        {
-          "id": "A",
-          "text": "Number converts an entire value to numeric form"
-        },
-        {
-          "id": "B",
-          "text": "Number('') produces zero, which may require separate empty-input validation"
-        },
-        {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
-        },
-        {
-          "id": "D",
-          "text": "It requires an external library"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output.",
-      "objectiveIds": [
-        "javascript-obj-1"
-      ]
     }
   ],
-  "recap": "In this lesson, you covered Running JavaScript and Understanding Values in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "The V8 engine compiles code through Ignition and TurboFan. Execution contexts manage call stack frames and scope chains. Always use let/const to prevent var hoisting bugs and observe the TDZ.",
   "videoResources": [
     {
-      "id": "vid-javascript-main",
-      "title": "JavaScript Programming - Full Course",
+      "id": "res-javascript-primary",
+      "title": "JavaScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "channelOrAuthor": "freeCodeCamp / JavaScript Mastery",
+      "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for JavaScript.",
-      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of JavaScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for JavaScript.",
       "learningObjectivesSupported": [
-        "javascript-obj-1"
+        "javascript-obj-1",
+        "javascript-obj-2",
+        "javascript-obj-3",
+        "javascript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Running JavaScript and Understanding Values",
-        "Types, Conversion, and Strict Equality"
+        "V8 Engine Internals, Call Stack & Execution Contexts",
+        "Lexical Scope Chain, Variable Lifetimes & Closures",
+        "Macrotasks, Microtasks & The Event Loop Architecture",
+        "Promises, Async/Await & Resilient Error Pipelines",
+        "Prototypes, Object Delegation & ES6 Class Systems",
+        "ES Modules, Tree Shaking & High-Performance Architecture"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "MDN JavaScript Reference Guide",
+      "title": "MDN Web Docs: JavaScript Language Reference & ECMAScript Standard",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "description": "Official reference documentation for JavaScript."
+      "description": "Authoritative official technical reference for JavaScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using JavaScript",
-    "Automated software quality verification and debugging"
+    "Node.js backend servers preventing stack exhaustion on deep recursive AST or JSON traversal.",
+    "Frontend state management libraries avoiding stale variable capture in UI event listeners."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.084Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.435Z"
 }

@@ -6,117 +6,109 @@
   "objectives": [
     {
       "id": "javascript-obj-1",
-      "statement": "Write and explain small Python programs",
+      "statement": "Understand foundational mental models and architecture of JavaScript",
       "order": 1
     },
     {
       "id": "javascript-obj-2",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Implement secure, reproducible solutions across real-world JavaScript tasks",
       "order": 2
     },
     {
       "id": "javascript-obj-3",
-      "statement": "Write and explain small Python programs",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in JavaScript",
       "order": 3
     },
     {
       "id": "javascript-obj-4",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Architect scalable enterprise workflows aligned with JavaScript industry best practices",
       "order": 4
-    },
-    {
-      "id": "javascript-obj-5",
-      "statement": "Write and explain small Python programs",
-      "order": 5
-    },
-    {
-      "id": "javascript-obj-6",
-      "statement": "Use evidence from output and tests to diagnose behavior",
-      "order": 6
     }
   ],
   "prerequisites": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Basic HTML and CSS understanding",
+    "Familiarity with web browser developer tools (Console, Network, Sources tab)"
   ],
   "modules": [
     {
       "id": "mod-1-javascript-beginner-module-1",
-      "title": "JavaScript Runtime and Data",
-      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "title": "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts",
+      "summary": "Understand the V8 JavaScript engine, memory heap, call stack, execution context phases, hoisting, TDZ, and lexical closures.",
       "order": 1,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 120,
       "objectiveIds": [
         "javascript-obj-1",
         "javascript-obj-2"
       ],
       "lessonTitles": [
-        "Running JavaScript and Understanding Values",
-        "Types, Conversion, and Strict Equality"
+        "V8 Engine Internals, Call Stack & Execution Contexts",
+        "Lexical Scope Chain, Variable Lifetimes & Closures"
       ],
-      "checkpoint": "Pass the JavaScript Runtime and Data assessment with 70%+ score."
+      "checkpoint": "Analyze call stack execution frames, Temporal Dead Zone boundaries, and closure memory retention."
     },
     {
       "id": "mod-2-javascript-beginner-module-2",
-      "title": "Control Flow and Array Processing",
-      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "title": "Module 2: Asynchronous Event Loop & Concurrency Architecture",
+      "summary": "Explore the single-threaded event loop, call stack, macrotask vs microtask queues, Promise internals, and async/await error pipelines.",
       "order": 2,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 120,
+      "objectiveIds": [
+        "javascript-obj-2",
+        "javascript-obj-3"
+      ],
+      "lessonTitles": [
+        "Macrotasks, Microtasks & The Event Loop Architecture",
+        "Promises, Async/Await & Resilient Error Pipelines"
+      ],
+      "checkpoint": "Trace execution ordering between microtasks and macrotasks and build cancelable async pipelines."
+    },
+    {
+      "id": "mod-3-javascript-beginner-module-3",
+      "title": "Module 3: Prototypal Systems, Modern Modules & Web Architecture",
+      "summary": "Understand prototype delegation, ES6 classes, static resolution of ES Modules, tree shaking, and memory leak prevention.",
+      "order": 3,
+      "estimatedMinutes": 120,
       "objectiveIds": [
         "javascript-obj-3",
         "javascript-obj-4"
       ],
       "lessonTitles": [
-        "Conditions and Boolean Logic",
-        "Loops and Array Iteration"
+        "Prototypes, Object Delegation & ES6 Class Systems",
+        "ES Modules, Tree Shaking & High-Performance Architecture"
       ],
-      "checkpoint": "Pass the Control Flow and Array Processing assessment with 70%+ score."
-    },
-    {
-      "id": "mod-3-javascript-beginner-module-3",
-      "title": "Functions, Collections, and a Project",
-      "summary": "Decompose programs into testable functions and select collections that match the problem.",
-      "order": 3,
-      "estimatedMinutes": 220,
-      "objectiveIds": [
-        "javascript-obj-5",
-        "javascript-obj-6"
-      ],
-      "lessonTitles": [
-        "Functions, Parameters, and Scope",
-        "Objects, Collections, and a Progress Tracker"
-      ],
-      "checkpoint": "Pass the Functions, Collections, and a Project assessment with 70%+ score."
+      "checkpoint": "Implement prototype-delegated event emitters and build tree-shakeable modular components."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic in JavaScript",
-    "Interactive code modification and debugging exercises",
-    "Module-end practical synthesis challenge"
+    "Profile execution contexts, call stacks, and closure memory retention in Chrome DevTools Memory profiler",
+    "Implement an unhandled rejection watchdog and async concurrency pool with Promise.allSettled and AbortController",
+    "Architect a high-performance EventEmitter implementing prototypal delegation and WeakMap private encapsulation",
+    "Build a production-grade Tree-Shakeable ES Module with automated unit tests using Vitest"
   ],
   "assessmentCheckpoints": [
-    "JavaScript Runtime and Data Knowledge Check (70% pass threshold)",
-    "Control Flow and Array Processing Knowledge Check (70% pass threshold)",
-    "Functions, Collections, and a Project Knowledge Check (70% pass threshold)"
+    "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts Checkpoint (70% pass threshold)",
+    "Module 2: Asynchronous Event Loop & Concurrency Architecture Checkpoint (70% pass threshold)",
+    "Module 3: Prototypal Systems, Modern Modules & Web Architecture Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "JavaScript Learning Progress Tracker Capstone"
+    "Enterprise Real-Time Event Dispatcher & Asynchronous Data Pipeline Engine"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Pass all 3 comprehensive mock tests and practical debugging tasks",
-    "Complete hands-on verified capstone review"
+    "Explain V8 engine execution phases: Ignition bytecode interpreter, TurboFan JIT compiler, and Hidden Classes",
+    "Predict microtask vs macrotask execution order across Promise resolutions, queueMicrotask, and setTimeout",
+    "Prevent memory leaks caused by closures, detached DOM trees, and orphaned event listeners",
+    "Design asynchronous workflows with cancelable AbortSignal tokens and deterministic error boundaries"
   ],
   "resources": [
     {
-      "title": "MDN JavaScript Reference Guide",
-      "organization": "Mozilla Web Docs",
+      "title": "MDN Web Docs: JavaScript Language Reference & ECMAScript Standard",
+      "organization": "Mozilla Developer Network / ECMA TC39",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "retrievedAt": "2026-11-01T15:37:41.084Z",
+      "retrievedAt": "2026-11-12T03:01:18.435Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

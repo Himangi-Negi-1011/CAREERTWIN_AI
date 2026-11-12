@@ -877,11 +877,11 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
 
   if (!ownerKey && !isLoaded) return <main className="grid min-h-dvh place-items-center bg-app text-ink"><div className="text-center"><div className="mx-auto size-10 animate-pulse rounded-2xl bg-mint"/><p className="mt-4 text-sm font-semibold text-slate">Loading your private workspace…</p></div></main>;
 
-  return <div className="career-dashboard min-h-screen bg-[#f5f6fb] text-ink">
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col overflow-y-auto overflow-x-hidden border-r border-ink/10 bg-[#f8f7f2] text-ink shadow-[18px_0_60px_rgba(31,46,41,.05)] lg:flex">
+  return <div className="career-dashboard min-h-screen bg-[#f5f6fb] dark:bg-[#0b1116] text-ink">
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col overflow-y-auto overflow-x-hidden border-r border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] text-ink shadow-[18px_0_60px_rgba(31,46,41,.05)] lg:flex">
       <div className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full border-[44px] border-ink/[.025]" />
       {/* Brand */}
-      <div className="sticky top-0 z-10 border-b border-ink/10 bg-[#f8f7f2] px-5 pb-4 pt-5"><Brand /></div>
+      <div className="sticky top-0 z-10 border-b border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] px-5 pb-4 pt-5"><Brand /></div>
       {/* Primary 7-Section Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-1.5" aria-label="Career workspace">
         <p className="px-2 pb-1 font-mono text-[9px] font-bold uppercase tracking-[.18em] text-slate/70">
@@ -898,7 +898,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
               className={`relative flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-[13px] font-semibold transition-all cursor-pointer ${
                 isSelected
                   ? "border-violet-200 bg-violet-50 text-accent shadow-[0_4px_14px_rgba(109,61,245,.10)] before:absolute before:inset-y-2.5 before:left-0 before:w-[3px] before:rounded-r before:bg-accent"
-                  : "border-transparent text-slate hover:border-ink/8 hover:bg-white hover:text-ink"
+                  : "border-transparent text-slate hover:border-ink/8 hover:bg-white dark:hover:bg-white/5 hover:text-ink"
               }`}
               aria-current={isSelected ? "page" : undefined}
             >
@@ -911,20 +911,20 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         })}
       </nav>
       {/* Footer */}
-      <div className="sticky bottom-0 border-t border-ink/10 bg-[#f8f7f2] px-3 pb-4 pt-3 space-y-1">
-        <Link href="/onboarding" className="flex items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 text-[13px] font-semibold text-slate transition hover:border-ink/8 hover:bg-white hover:text-ink">
+      <div className="sticky bottom-0 border-t border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] px-3 pb-4 pt-3 space-y-1">
+        <Link href="/onboarding" className="flex items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 text-[13px] font-semibold text-slate transition hover:border-ink/8 hover:bg-white dark:hover:bg-white/5 hover:text-ink">
           <CircleUserRound size={15} className="shrink-0"/>
           <span className="truncate">Career Profile</span>
         </Link>
         <button
           type="button"
           onClick={() => void handleLogout()}
-          className="flex w-full items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 text-[13px] font-semibold text-rose-600 transition hover:bg-rose-50 hover:text-rose-700 cursor-pointer"
+          className="flex w-full items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 text-[13px] font-semibold text-rose-600 transition hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 cursor-pointer"
         >
           <LogOut size={15} className="shrink-0"/>
           <span className="truncate">Sign Out</span>
         </button>
-        <div className="mt-1 rounded-xl border border-ink/10 bg-white/70 px-3 py-2.5">
+        <div className="mt-1 rounded-xl border border-ink/10 bg-white/70 dark:bg-white/5 px-3 py-2.5">
           <div className="flex items-center gap-1.5">
             <span className={`size-1.5 rounded-full ${syncState?.status === "saved" ? "bg-emerald-500" : "bg-amber-400"}`}/>
             <p className="text-[11px] font-bold text-ink">Private workspace</p>
@@ -935,7 +935,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     </aside>
 
     <div className="lg:pl-[260px]">
-      <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-ink/[.07] bg-[#f2f4f1]/82 px-4 backdrop-blur-2xl md:px-7 lg:px-10">
+      <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-ink/[.07] bg-[#f2f4f1]/82 dark:bg-[#0d141a]/90 px-4 backdrop-blur-2xl md:px-7 lg:px-10">
         <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="grid size-10 place-items-center rounded-xl border border-ink/10 bg-white shadow-sm lg:hidden" aria-label="Open workspace navigation"><Menu size={18}/></button><div><div className="flex items-center gap-2"><span className="hidden size-1.5 rounded-full bg-accent sm:block"/><p className="text-sm font-bold tracking-[-.015em]">{active.label}</p></div><p className="hidden text-[11px] text-slate sm:block">Private career workspace</p></div></div>
         <div className="flex items-center gap-2">
           <button
@@ -1051,7 +1051,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
 
       <main className="mx-auto max-w-[1320px] px-4 py-7 md:px-7 lg:px-10 lg:py-10">
         <div className="mb-8 flex items-end justify-between gap-5"><div><p className="label">{view === "overview" ? "Career command centre" : "Plan · practise · prove"}</p><h1 className="mt-3 text-[clamp(1.75rem,3vw,2.6rem)] font-[720] leading-[1.05] tracking-[-.055em]">{view === "overview" ? "Make your next move visible." : active.label}</h1><p className="mt-3 max-w-2xl text-sm leading-6 text-slate">{view === "overview" ? "A private place to turn real evidence into focused, reviewable action." : "Review and update only the information you record—without invented scores or claims."}</p></div>{view !== "overview" && <button onClick={() => changeView("overview")} className="hidden rounded-full border border-ink/9 bg-white/80 px-4 py-2 text-sm font-bold text-accent shadow-[0_8px_22px_rgba(24,48,52,.05)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white sm:block">Back to overview</button>}</div>
-        {syncState && <div role="status" className={`mb-5 rounded-xl border px-4 py-3 text-sm ${syncState.status === "error" ? "border-red-200 bg-red-50 text-red-800" : syncState.status === "saving" ? "border-amber-200 bg-amber-50 text-amber-900" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>{syncState.message}</div>}
+        {syncState && syncState.status === "error" && <div role="status" className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{syncState.message}</div>}
 
         {/* Secondary Navigation Tabs for Consolidated Sections */}
         {activeSection.id === "twin" && (
@@ -1338,11 +1338,11 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
             animate={{x:0}}
             exit={{x:"-100%"}}
             transition={{duration:.22,ease:[.22,1,.36,1]}}
-            className="fixed inset-y-0 left-0 z-50 flex w-[min(300px,88vw)] flex-col overflow-y-auto bg-[#f8f7f2] text-ink shadow-2xl lg:hidden"
+            className="fixed inset-y-0 left-0 z-50 flex w-[min(300px,88vw)] flex-col overflow-y-auto bg-[#f8f7f2] dark:bg-[#0d141a] text-ink shadow-2xl lg:hidden"
           >
-            <div className="flex items-center justify-between border-b border-ink/10 px-5 pb-4 pt-5">
+            <div className="flex items-center justify-between border-b border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] px-5 pb-4 pt-5">
               <Brand/>
-              <button onClick={() => setMobileOpen(false)} className="grid size-9 place-items-center rounded-lg text-slate hover:bg-white hover:text-ink" aria-label="Close workspace navigation">
+              <button onClick={() => setMobileOpen(false)} className="grid size-9 place-items-center rounded-lg text-slate hover:bg-white dark:hover:bg-white/10 hover:text-ink" aria-label="Close workspace navigation">
                 <X size={18}/>
               </button>
             </div>
@@ -1356,8 +1356,8 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                     onFocus={() => preloadView(item.defaultView)}
                     onClick={() => changeView(item.defaultView)}
                     className={isSelected
-                      ? "flex w-full items-center gap-2.5 rounded-xl border border-violet-200 bg-violet-50 px-3 py-2.5 text-[13px] font-semibold text-accent transition-all"
-                      : "flex w-full items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-semibold text-slate transition-all"
+                      ? "flex w-full items-center gap-2.5 rounded-xl border border-violet-200 bg-violet-50 text-accent transition-all"
+                      : "flex w-full items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-semibold text-slate hover:bg-white dark:hover:bg-white/5 hover:text-ink transition-all"
                     }
                   >
                     <span className={isSelected ? "grid size-6 shrink-0 place-items-center rounded-md bg-white text-accent" : "grid size-6 shrink-0 place-items-center rounded-md text-slate/70"}>
@@ -1368,8 +1368,8 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 );
               })}
             </nav>
-            <div className="border-t border-ink/10 px-3 pb-4 pt-3 space-y-1">
-              <Link href="/onboarding" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-slate">
+            <div className="border-t border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] px-3 pb-4 pt-3 space-y-1">
+              <Link href="/onboarding" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-slate hover:bg-white dark:hover:bg-white/5">
                 <CircleUserRound size={15} className="shrink-0"/>Career Profile
               </Link>
               <button
@@ -1378,7 +1378,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                   setMobileOpen(false);
                   void handleLogout();
                 }}
-                className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-rose-600 hover:bg-rose-50 cursor-pointer"
+                className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 cursor-pointer"
               >
                 <LogOut size={15} className="shrink-0"/>Sign Out
               </button>
@@ -1388,7 +1388,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
       )}
     </AnimatePresence>
     <CommandPalette open={commandOpen} items={commands} onClose={()=>setCommandOpen(false)} onSelect={(id)=>changeView(id as View)} />
-    <Pip storageNamespace={storageOwnerKey} twin={twin} twinSource={twinSource} />
+    {/* Pip Agent widget removed per Phase 12 & student UI specification */}
     {certModalOpen && (
       <CertificateModal
         studentName={displayName || role || "CareerTwin Scholar"}

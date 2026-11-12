@@ -797,31 +797,46 @@ export function LearningStudio({
 
   return (
     <div className="space-y-6">
-      {/* Hero Banner */}
-      <section className="rounded-[28px] bg-ink p-7 text-white md:p-9 shadow-lg">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="font-mono text-[10px] uppercase tracking-[.18em] text-mint">Universal AI Learning Engine</p>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/admin/library"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-semibold text-white hover:bg-white/20 transition"
-            >
-              <GraduationCap size={13} className="text-mint" /> Library Admin
-            </Link>
-            {masteryScore > 0 && (
-              <span className="rounded-full bg-emerald-500/20 px-3 py-1 font-mono text-xs font-semibold text-emerald-300">
-                Skill Mastery: {masteryScore}% ({masteryLevel})
-              </span>
-            )}
+      {/* Academy Hero Banner */}
+      <section className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-ink via-[#172033] to-[#0e1626] p-7 text-white md:p-9 shadow-xl border border-white/10">
+        <div className="absolute right-0 top-0 -mr-20 -mt-20 size-80 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/20 border border-mint/30 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[.18em] text-mint">
+              <Sparkles size={11} className="text-mint" />
+              CareerTwin Academy · Cisco NetAcad Aligned
+            </span>
+            <span className="hidden sm:inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-mono text-white/70">
+              Basic → Advanced Deep Study
+            </span>
           </div>
+          {masteryScore > 0 && (
+            <span className="rounded-full bg-emerald-500/20 px-3 py-1 font-mono text-xs font-semibold text-emerald-300 border border-emerald-500/30">
+              Verified Mastery: {masteryScore}% ({masteryLevel})
+            </span>
+          )}
         </div>
-        <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-.04em]">
-          Learn any skill from zero with structured courses, verifiable practice labs, and interactive assessments.
+        <h2 className="relative z-10 mt-4 max-w-3xl text-3xl font-extrabold tracking-[-.04em] text-white md:text-4xl">
+          Deep Technical Mastery: From Core Fundamentals to Production Architecture
         </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">
-          Request any technical, cloud, data, business, or engineering skill. The AI Twin analyzes your career goals,
-          builds a complete structured curriculum, generates substantive lessons, evaluates your knowledge, and tracks mastery.
+        <p className="relative z-10 mt-3 max-w-3xl text-sm leading-relaxed text-white/75">
+          Explore structured, progressive engineering curricula with comprehensive conceptual deep dives,
+          real-world code implementations, verifiable hands-on sandboxes, and full 100-mark mock examinations.
         </p>
+        <div className="relative z-10 mt-5 flex flex-wrap items-center gap-4 text-xs font-medium text-white/70">
+          <span className="flex items-center gap-1.5">
+            <CheckCircle2 size={13} className="text-emerald-400" /> 14 Production Curricula
+          </span>
+          <span className="flex items-center gap-1.5">
+            <CheckCircle2 size={13} className="text-emerald-400" /> 84 In-Depth Interactive Lessons
+          </span>
+          <span className="flex items-center gap-1.5">
+            <CheckCircle2 size={13} className="text-emerald-400" /> 42 Verified Phase & Mock Exams
+          </span>
+          <span className="flex items-center gap-1.5">
+            <CheckCircle2 size={13} className="text-emerald-400" /> AI Pedagogical Tutor (9 Modes)
+          </span>
+        </div>
       </section>
 
       {/* Cisco NetAcad-Inspired Learning Studio Homepage */}

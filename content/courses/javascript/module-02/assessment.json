@@ -1,203 +1,165 @@
 {
-  "id": "phase-javascript-beginner-mod-2",
+  "id": "phase-javascript-mod-2-javascript-beginner-module-2-assessment",
   "skillName": "JavaScript",
   "skillSlug": "javascript",
   "level": "beginner",
   "testNumber": 2,
   "isPhaseAssessment": true,
   "moduleId": "mod-2-javascript-beginner-module-2",
-  "moduleTitle": "Control Flow and Array Processing",
-  "title": "Control Flow and Array Processing Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow and Array Processing.",
+  "moduleTitle": "Module 2: Asynchronous Event Loop & Concurrency Architecture",
+  "title": "JavaScript — Module 2: Asynchronous Event Loop & Concurrency Architecture Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Macrotasks, Microtasks & The Event Loop Architecture and Promises, Async/Await & Resilient Error Pipelines.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "truthiness",
-    "nullish coalescing",
-    "optional chaining",
-    "for of",
-    "array map"
+    "Macrotasks, Microtasks & The Event Loop Architecture",
+    "Promises, Async/Await & Resilient Error Pipelines"
   ],
   "questions": [
     {
-      "id": "phase-javascript-beginner-mod-2-q1",
+      "id": "phase-javascript-mod-2-javascript-beginner-module-2-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Asynchronous Event Loop & Concurrency Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about truthiness is valid?",
+      "prompt": "In what order are the queues processed once the call stack is empty?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "non-empty strings including '0' and 'false' are truthy"
+          "id": "opt-1",
+          "text": "Macrotasks first, followed by microtasks."
         },
         {
-          "id": "B",
-          "text": "conditions convert non-boolean values using defined truthiness rules"
+          "id": "opt-2",
+          "text": "All microtasks in the queue are drained completely before the next macrotask is executed."
         },
         {
-          "id": "C",
-          "text": "convert user intent explicitly when strings such as 'false' are possible"
+          "id": "opt-3",
+          "text": "Microtasks and macrotasks alternate execution 1-by-1."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "Only macrotasks execute; microtasks are dropped unless explicitly awaited."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "non-empty strings including '0' and 'false' are truthy. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The event loop specification mandates draining the entire microtask queue before moving to rendering or the next macrotask.",
       "difficulty": "beginner",
-      "topic": "truthiness",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions and Boolean Logic"
+      "topic": "Macrotasks, Microtasks & The Event Loop Architecture",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc",
+      "recommendedLessonTitle": "Macrotasks, Microtasks & The Event Loop Architecture"
     },
     {
-      "id": "phase-javascript-beginner-mod-2-q2",
+      "id": "phase-javascript-mod-2-javascript-beginner-module-2-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Asynchronous Event Loop & Concurrency Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about nullish coalescing is valid?",
+      "prompt": "Why does the callback inside 'new Promise((resolve) => console.log('X'))' execute immediately?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "using || can replace valid zero or empty-string input"
+          "id": "opt-1",
+          "text": "Because Promise executor functions are called synchronously during object construction."
         },
         {
-          "id": "B",
-          "text": "?? defaults only null or undefined"
+          "id": "opt-2",
+          "text": "Because V8 compiles promises to WebAssembly."
         },
         {
-          "id": "C",
-          "text": "use ?? when zero and empty string are valid values"
+          "id": "opt-3",
+          "text": "Because it is hoisted to the top of the file."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "Because console.log bypasses the event loop."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "using || can replace valid zero or empty-string input. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The function passed to the Promise constructor is executed synchronously during initialization; only .then() and .catch() callbacks are deferred to microtasks.",
       "difficulty": "beginner",
-      "topic": "nullish coalescing",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions and Boolean Logic"
+      "topic": "Macrotasks, Microtasks & The Event Loop Architecture",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc",
+      "recommendedLessonTitle": "Macrotasks, Microtasks & The Event Loop Architecture"
     },
     {
-      "id": "phase-javascript-beginner-mod-2-q3",
+      "id": "phase-javascript-mod-2-javascript-beginner-module-2-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Asynchronous Event Loop & Concurrency Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about optional chaining is valid?",
+      "prompt": "How does Promise.allSettled differ from Promise.all?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "optional chaining does not validate a present value's type"
+          "id": "opt-1",
+          "text": "Promise.allSettled rejects if any promise fails; Promise.all waits for all."
         },
         {
-          "id": "B",
-          "text": "?. stops a property chain on null or undefined"
+          "id": "opt-2",
+          "text": "Promise.allSettled always waits for every promise to finish regardless of success or failure; Promise.all rejects immediately upon the first failure."
         },
         {
-          "id": "C",
-          "text": "use optional chaining for genuinely optional nested data"
+          "id": "opt-3",
+          "text": "Promise.allSettled runs tasks in sequential order; Promise.all runs in parallel."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "Promise.allSettled can only be used in Node.js."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "optional chaining does not validate a present value's type. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Promise.all fails fast on the first rejection, whereas Promise.allSettled waits for all promises to settle, capturing all results and errors.",
       "difficulty": "beginner",
-      "topic": "optional chaining",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions and Boolean Logic"
+      "topic": "Promises, Async/Await & Resilient Error Pipelines",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip",
+      "recommendedLessonTitle": "Promises, Async/Await & Resilient Error Pipelines"
     },
     {
-      "id": "phase-javascript-beginner-mod-2-q4",
+      "id": "phase-javascript-mod-2-javascript-beginner-module-2-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Asynchronous Event Loop & Concurrency Architecture Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about for of is valid?",
+      "prompt": "What happens if an error is thrown inside an async function without a try/catch block?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "for...in yields property keys rather than array values"
+          "id": "opt-1",
+          "text": "The JavaScript runtime crashes immediately."
         },
         {
-          "id": "B",
-          "text": "for...of iterates values from an iterable"
+          "id": "opt-2",
+          "text": "The function returns a Promise in the rejected state containing the thrown error."
         },
         {
-          "id": "C",
-          "text": "use for...of for array values when no index is needed"
+          "id": "opt-3",
+          "text": "The function converts the error to null."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "The function retries automatically."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "for...in yields property keys rather than array values. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Any uncaught exception inside an async function automatically rejects the returned promise with the thrown exception.",
       "difficulty": "beginner",
-      "topic": "for of",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions and Boolean Logic"
-    },
-    {
-      "id": "phase-javascript-beginner-mod-2-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about array map is valid?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "ignoring map's returned array loses the transformed result"
-        },
-        {
-          "id": "B",
-          "text": "map creates a new array from one result per input"
-        },
-        {
-          "id": "C",
-          "text": "use map for a pure one-to-one transformation"
-        },
-        {
-          "id": "D",
-          "text": "It can only be used inside a class"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "ignoring map's returned array loses the transformed result. Verify this behavior with a minimal runnable example and observable output.",
-      "difficulty": "beginner",
-      "topic": "array map",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions and Boolean Logic"
+      "topic": "Promises, Async/Await & Resilient Error Pipelines",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip",
+      "recommendedLessonTitle": "Promises, Async/Await & Resilient Error Pipelines"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.086Z",
-  "updatedAt": "2026-11-01T15:37:41.086Z"
+  "createdAt": "2026-11-12T03:01:18.435Z",
+  "updatedAt": "2026-11-12T03:01:18.435Z"
 }

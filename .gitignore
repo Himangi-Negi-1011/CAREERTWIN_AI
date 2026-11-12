@@ -62,4 +62,8 @@ scripts/*
 !scripts/seed-courses.ts
 !scripts/audit-courses.ts
 !scripts/import-authored-courses.ts
+!scripts/deep-programming-blueprints.ts
+!scripts/deep-programming-blueprints-js.ts
+!scripts/deep-programming-blueprints-ts.ts
+!scripts/rebuild-deep-courses.ts
 *.zip

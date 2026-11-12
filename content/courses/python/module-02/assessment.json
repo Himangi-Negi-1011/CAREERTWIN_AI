@@ -1,200 +1,165 @@
 {
-  "id": "phase-python-beginner-mod-2",
+  "id": "phase-python-mod-2-python-beginner-module-2-assessment",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
   "testNumber": 2,
   "isPhaseAssessment": true,
   "moduleId": "mod-2-python-beginner-module-2",
-  "moduleTitle": "Control Flow and Repetition",
-  "title": "Control Flow and Repetition Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow and Repetition.",
+  "moduleTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling",
+  "title": "Python — Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Decision Logic, Short-Circuit Evaluation & Pattern Matching and The Iteration Protocol, Generators & Streaming Pipelines.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Decisions with Conditions and Boolean Logic",
-    "Iteration with for, while, and range"
+    "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+    "The Iteration Protocol, Generators & Streaming Pipelines"
   ],
   "questions": [
     {
-      "id": "phase-python-beginner-mod-2-q1",
+      "id": "phase-python-mod-2-python-beginner-module-2-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
       "type": "single-choice",
-      "prompt": "Which warning should a code review raise about comparison boundaries?",
+      "prompt": "What will the expression 'None and print(\"Hello\")' output?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "using `>` accidentally excludes the exact boundary"
+          "id": "opt-1",
+          "text": "It prints 'Hello' and returns None."
         },
         {
-          "id": "B",
-          "text": "`>=` includes the boundary value"
+          "id": "opt-2",
+          "text": "It prints nothing and evaluates to None due to short-circuit evaluation."
         },
         {
-          "id": "C",
-          "text": "test values immediately below, at, and above a threshold"
+          "id": "opt-3",
+          "text": "It raises an AttributeError."
         },
         {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
+          "id": "opt-4",
+          "text": "It raises a TypeError because None cannot be combined with a function call."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "using `>` accidentally excludes the exact boundary. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Because None is falsy, the 'and' operator short-circuits immediately without evaluating the right operand.",
       "difficulty": "beginner",
-      "topic": "comparison",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
-      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+      "topic": "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation-",
+      "recommendedLessonTitle": "Decision Logic, Short-Circuit Evaluation & Pattern Matching"
     },
     {
-      "id": "phase-python-beginner-mod-2-q2",
+      "id": "phase-python-mod-2-python-beginner-module-2-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
       "type": "single-choice",
-      "prompt": "Which warning should a code review raise about elif?",
+      "prompt": "In Python 3.10+ structural pattern matching, what is the role of the '_' pattern?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "independent if statements can execute more than one overlapping branch"
+          "id": "opt-1",
+          "text": "It declares a private local variable."
         },
         {
-          "id": "B",
-          "text": "only the first true branch in an if/elif chain executes"
+          "id": "opt-2",
+          "text": "It acts as a wildcard catch-all pattern matching any value."
         },
         {
-          "id": "C",
-          "text": "order score bands from the most restrictive boundary downward"
+          "id": "opt-3",
+          "text": "It forces the match statement to loop back to the beginning."
         },
         {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
+          "id": "opt-4",
+          "text": "It ignores whitespace in string matching."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "independent if statements can execute more than one overlapping branch. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "The wildcard '_' matches any value and is commonly used as the default branch at the end of a match block.",
       "difficulty": "beginner",
-      "topic": "07",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
-      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+      "topic": "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation-",
+      "recommendedLessonTitle": "Decision Logic, Short-Circuit Evaluation & Pattern Matching"
     },
     {
-      "id": "phase-python-beginner-mod-2-q3",
+      "id": "phase-python-mod-2-python-beginner-module-2-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
       "type": "single-choice",
-      "prompt": "Which warning should a code review raise about range?",
+      "prompt": "What exception signals the termination of an iterator in Python?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "assuming the stop is included creates off-by-one errors"
+          "id": "opt-1",
+          "text": "IndexError"
         },
         {
-          "id": "B",
-          "text": "range excludes its stop value"
+          "id": "opt-2",
+          "text": "StopIteration"
         },
         {
-          "id": "C",
-          "text": "use `range(1, 6)` to produce one through five"
+          "id": "opt-3",
+          "text": "GeneratorExit"
         },
         {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
+          "id": "opt-4",
+          "text": "EOFError"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "assuming the stop is included creates off-by-one errors. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "The Python iteration protocol specifies that __next__() raises StopIteration when no further items remain.",
       "difficulty": "beginner",
-      "topic": "08",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
-      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+      "topic": "The Iteration Protocol, Generators & Streaming Pipelines",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream",
+      "recommendedLessonTitle": "The Iteration Protocol, Generators & Streaming Pipelines"
     },
     {
-      "id": "phase-python-beginner-mod-2-q4",
+      "id": "phase-python-mod-2-python-beginner-module-2-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint",
       "type": "single-choice",
-      "prompt": "Which warning should a code review raise about for loops?",
+      "prompt": "What happens to a generator function's local execution frame when a 'yield' statement is executed?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "changing the loop variable does not replace the original list element"
+          "id": "opt-1",
+          "text": "The frame is destroyed and garbage collected immediately."
         },
         {
-          "id": "B",
-          "text": "a for loop consumes values from an iterable"
+          "id": "opt-2",
+          "text": "The frame is suspended and preserved in memory until next() is called or the generator is garbage collected."
         },
         {
-          "id": "C",
-          "text": "iterate directly over items when an index is unnecessary"
+          "id": "opt-3",
+          "text": "The frame is serialized into a temporary disk file."
         },
         {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
+          "id": "opt-4",
+          "text": "The frame is converted into a static tuple."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "changing the loop variable does not replace the original list element. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Yield pauses the generator, preserving its local variable state, evaluation stack, and instruction pointer until resumption.",
       "difficulty": "beginner",
-      "topic": "for",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
-      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
-    },
-    {
-      "id": "phase-python-beginner-mod-2-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which warning should a code review raise about while loops?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "failing to make progress can create an infinite loop"
-        },
-        {
-          "id": "B",
-          "text": "a while loop repeats while its condition remains truthy"
-        },
-        {
-          "id": "C",
-          "text": "update the state used by the condition on every normal path"
-        },
-        {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "failing to make progress can create an infinite loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "difficulty": "beginner",
-      "topic": "while",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-python-beginner-module-2-l1",
-      "recommendedLessonTitle": "Decisions with Conditions and Boolean Logic"
+      "topic": "The Iteration Protocol, Generators & Streaming Pipelines",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream",
+      "recommendedLessonTitle": "The Iteration Protocol, Generators & Streaming Pipelines"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.180Z",
-  "updatedAt": "2026-11-01T15:37:41.180Z"
+  "createdAt": "2026-11-12T03:01:18.229Z",
+  "updatedAt": "2026-11-12T03:01:18.229Z"
 }

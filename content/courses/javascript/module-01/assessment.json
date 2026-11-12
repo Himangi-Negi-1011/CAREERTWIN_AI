@@ -1,203 +1,165 @@
 {
-  "id": "phase-javascript-beginner-mod-1",
+  "id": "phase-javascript-mod-1-javascript-beginner-module-1-assessment",
   "skillName": "JavaScript",
   "skillSlug": "javascript",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
   "moduleId": "mod-1-javascript-beginner-module-1",
-  "moduleTitle": "JavaScript Runtime and Data",
-  "title": "JavaScript Runtime and Data Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in JavaScript Runtime and Data.",
+  "moduleTitle": "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts",
+  "title": "JavaScript — Module 1: V8 Engine Internals, Scope Chain & Execution Contexts Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across V8 Engine Internals, Call Stack & Execution Contexts and Lexical Scope Chain, Variable Lifetimes & Closures.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "const and let",
-    "typeof",
-    "Number conversion",
-    "strict equality",
-    "template literals"
+    "V8 Engine Internals, Call Stack & Execution Contexts",
+    "Lexical Scope Chain, Variable Lifetimes & Closures"
   ],
   "questions": [
     {
-      "id": "phase-javascript-beginner-mod-1-q1",
+      "id": "phase-javascript-mod-1-javascript-beginner-module-1-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts Checkpoint",
       "type": "single-choice",
-      "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+      "prompt": "What is the Temporal Dead Zone (TDZ) in JavaScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "declare stable bindings with const and state that changes with let"
+          "id": "opt-1",
+          "text": "The duration during which a browser tab is suspended in the background."
         },
         {
-          "id": "B",
-          "text": "const does not make a referenced object deeply immutable"
+          "id": "opt-2",
+          "text": "The time between the creation of a block scope and the actual execution of a let or const declaration where accessing the variable throws a ReferenceError."
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "A garbage collection cycle that cleans up circular object references."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "The time spent waiting for an asynchronous network fetch to resolve."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The TDZ begins when the block execution context is created and ends when the variable's declaration line is executed.",
       "difficulty": "beginner",
-      "topic": "const and let",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "V8 Engine Internals, Call Stack & Execution Contexts",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution",
+      "recommendedLessonTitle": "V8 Engine Internals, Call Stack & Execution Contexts"
     },
     {
-      "id": "phase-javascript-beginner-mod-1-q2",
+      "id": "phase-javascript-mod-1-javascript-beginner-module-1-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts Checkpoint",
       "type": "single-choice",
-      "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+      "prompt": "What error occurs when a function calls itself indefinitely without a base case in JavaScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use typeof while diagnosing values at an input boundary"
+          "id": "opt-1",
+          "text": "TypeError: Out of bounds"
         },
         {
-          "id": "B",
-          "text": "typeof null is historically 'object'"
+          "id": "opt-2",
+          "text": "RangeError: Maximum call stack size exceeded"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "SyntaxError: Infinite loop"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "ReferenceError: Execution context depleted"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Every function call adds a frame to the V8 call stack. When available stack memory is exhausted, V8 raises a RangeError: Maximum call stack size exceeded.",
       "difficulty": "beginner",
-      "topic": "typeof",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "V8 Engine Internals, Call Stack & Execution Contexts",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1-v8-engine-internals-call-stack-execution",
+      "recommendedLessonTitle": "V8 Engine Internals, Call Stack & Execution Contexts"
     },
     {
-      "id": "phase-javascript-beginner-mod-1-q3",
+      "id": "phase-javascript-mod-1-javascript-beginner-module-1-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts Checkpoint",
       "type": "single-choice",
-      "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+      "prompt": "What enables a JavaScript closure to access variables of a parent function after the parent has returned?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "convert then check Number.isNaN before arithmetic"
+          "id": "opt-1",
+          "text": "Variables are copied into the browser's localStorage."
         },
         {
-          "id": "B",
-          "text": "Number('') produces zero, which may require separate empty-input validation"
+          "id": "opt-2",
+          "text": "The garbage collector retains the parent function's lexical environment on the heap because the inner function holds an active reference to it."
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "JavaScript converts the outer function into an asynchronous Promise."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Variables are permanently registered in the global Window object."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Mark-and-sweep garbage collection traces active references. Since the inner function references the parent's lexical scope, the parent environment cannot be collected.",
       "difficulty": "beginner",
-      "topic": "Number conversion",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Lexical Scope Chain, Variable Lifetimes & Closures",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l2-lexical-scope-chain-variable-lifetimes-c",
+      "recommendedLessonTitle": "Lexical Scope Chain, Variable Lifetimes & Closures"
     },
     {
-      "id": "phase-javascript-beginner-mod-1-q4",
+      "id": "phase-javascript-mod-1-javascript-beginner-module-1-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: V8 Engine Internals, Scope Chain & Execution Contexts Checkpoint",
       "type": "single-choice",
-      "prompt": "A program needs to apply strict equality. Which approach is most reliable?",
+      "prompt": "What is a common performance hazard when creating closures inside event listeners without cleanup?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use strict equality for predictable branch conditions"
+          "id": "opt-1",
+          "text": "CPU thermal throttling."
         },
         {
-          "id": "B",
-          "text": "0 == false is true but 0 === false is false"
+          "id": "opt-2",
+          "text": "Memory leaks caused by retaining references to parent objects or DOM nodes long after they are needed."
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Automatic conversion to strict mode."
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Deadlocks in the V8 compiler."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use strict equality for predictable branch conditions. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "If a closure retains a reference to an outer object (e.g. large arrays or DOM elements) and the listener is never removed, garbage collection cannot reclaim that memory.",
       "difficulty": "beginner",
-      "topic": "strict equality",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
-    },
-    {
-      "id": "phase-javascript-beginner-mod-1-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "A program needs to apply template literals. Which approach is most reliable?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "use template literals for readable calculated output"
-        },
-        {
-          "id": "B",
-          "text": "ordinary quoted strings do not interpolate ${expressions}"
-        },
-        {
-          "id": "C",
-          "text": "Suppress every error"
-        },
-        {
-          "id": "D",
-          "text": "Replace the operation with console.log"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "use template literals for readable calculated output. Verify this behavior with a minimal runnable example and observable output.",
-      "difficulty": "beginner",
-      "topic": "template literals",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Lexical Scope Chain, Variable Lifetimes & Closures",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l2-lexical-scope-chain-variable-lifetimes-c",
+      "recommendedLessonTitle": "Lexical Scope Chain, Variable Lifetimes & Closures"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.086Z",
-  "updatedAt": "2026-11-01T15:37:41.086Z"
+  "createdAt": "2026-11-12T03:01:18.435Z",
+  "updatedAt": "2026-11-12T03:01:18.435Z"
 }

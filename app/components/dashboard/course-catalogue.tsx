@@ -63,19 +63,28 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Python Execution and Data",
-        lessons: ["Running Python and Working with Values", "Types, Conversion, and Input/Output"],
-        assessment: "Python Execution and Data Phase Assessment",
+        title: "Python Runtime Architecture, Memory Model & Primitives",
+        lessons: [
+          "Python Execution Architecture, Bytecode & Object Model",
+          "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+        ],
+        assessment: "Python Runtime Architecture Phase Assessment",
       },
       {
-        title: "Python Control Flow",
-        lessons: ["Decisions with Conditions and Boolean Logic", "Iteration with for, while, and range"],
-        assessment: "Python Control Flow Phase Assessment",
+        title: "Control Flow, Iteration Protocols & Defensive Error Handling",
+        lessons: [
+          "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+          "The Iteration Protocol, Generators & Streaming Pipelines",
+        ],
+        assessment: "Control Flow and Iteration Phase Assessment",
       },
       {
-        title: "Python Functions and Collections",
-        lessons: ["Functions, Parameters, and Return Values", "Collections and a Small Progress Tracker"],
-        assessment: "Python 100-Mark Certification Exam",
+        title: "Metaprogramming, OOP Architecture & Automated Verification",
+        lessons: [
+          "Closures, First-Class Functions & Decorator Metaprogramming",
+          "OOP Architecture, Dunder Protocols & Automated Pytest Suites",
+        ],
+        assessment: "Python 100-Mark Professional Certification Exam",
       },
     ],
   },
@@ -100,19 +109,28 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "JavaScript Execution and Types",
-        lessons: ["Running JavaScript and Understanding Values", "Types, Conversion, and Strict Equality"],
-        assessment: "JavaScript Execution and Types Phase Assessment",
+        title: "V8 Engine Internals, Scope Chain & Execution Contexts",
+        lessons: [
+          "V8 Engine Internals, Call Stack & Execution Contexts",
+          "Lexical Scope Chain, Variable Lifetimes & Closures",
+        ],
+        assessment: "V8 Internals & Scopes Phase Assessment",
       },
       {
-        title: "JavaScript Control Flow",
-        lessons: ["Conditions and Boolean Logic", "Loops and Array Iteration"],
-        assessment: "JavaScript Control Flow Phase Assessment",
+        title: "Asynchronous Event Loop & Concurrency Architecture",
+        lessons: [
+          "Macrotasks, Microtasks & The Event Loop Architecture",
+          "Promises, Async/Await & Resilient Error Pipelines",
+        ],
+        assessment: "Event Loop & Concurrency Phase Assessment",
       },
       {
-        title: "JavaScript Functions and Objects",
-        lessons: ["Functions, Parameters, and Scope", "Objects, Collections, and a Progress Tracker"],
-        assessment: "Modern JavaScript 100-Mark Certification Exam",
+        title: "Prototypal Systems, Modern Modules & Web Architecture",
+        lessons: [
+          "Prototypes, Object Delegation & ES6 Class Systems",
+          "ES Modules, Tree Shaking & High-Performance Architecture",
+        ],
+        assessment: "Modern JavaScript 100-Mark Professional Certification Exam",
       },
     ],
   },
@@ -132,24 +150,33 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     learningOutcomes: [
       "Configure strict tsconfig compiler options for team workflows",
       "Author reusable generic algorithms with type constraints",
-      "Implement disciminated unions for exhaustive state machines",
+      "Implement discriminated unions for exhaustive state machines",
       "Safely integrate third-party untyped JavaScript libraries",
     ],
     modules: [
       {
-        title: "TypeScript Setup and Narrowing",
-        lessons: ["TypeScript Setup and Type Inference", "Primitive Types, Unions, and Narrowing"],
-        assessment: "TypeScript Setup Phase Assessment",
+        title: "Structural Typing, Inference & Discriminated Unions",
+        lessons: [
+          "TypeScript Architecture, Type Erasure & Structural Typing",
+          "Type Inference, Narrowing & Discriminated Unions",
+        ],
+        assessment: "Structural Typing & Inference Phase Assessment",
       },
       {
-        title: "TypeScript Shapes and Collections",
-        lessons: ["Object Types, Interfaces, and Optional Properties", "Typed Arrays and Function Contracts"],
-        assessment: "TypeScript Shapes Phase Assessment",
+        title: "Generic Engineering & Type Transformation",
+        lessons: [
+          "Generics, Constraints & Polymorphic Function Signatures",
+          "Mapped Types, Keyof & Essential Utility Types",
+        ],
+        assessment: "Generic Engineering Phase Assessment",
       },
       {
-        title: "TypeScript Generics and Validation",
-        lessons: ["Generics and Standard Utility Types", "Runtime Validation and a Typed Progress Tracker"],
-        assessment: "Enterprise TypeScript 100-Mark Exam",
+        title: "Advanced Type Programming & Strict Production Systems",
+        lessons: [
+          "Conditional Types, Infer Keyword & Template Literal Types",
+          "Strict Compiler Flags, Branded Types & Runtime Boundary Validation",
+        ],
+        assessment: "Enterprise TypeScript 100-Mark Professional Certification Exam",
       },
     ],
   },

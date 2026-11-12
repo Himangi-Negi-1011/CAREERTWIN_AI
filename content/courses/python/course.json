@@ -6,117 +6,109 @@
   "objectives": [
     {
       "id": "python-obj-1",
-      "statement": "Write and explain small Python programs",
+      "statement": "Understand foundational mental models and architecture of Python",
       "order": 1
     },
     {
       "id": "python-obj-2",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Implement secure, reproducible solutions across real-world Python tasks",
       "order": 2
     },
     {
       "id": "python-obj-3",
-      "statement": "Write and explain small Python programs",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in Python",
       "order": 3
     },
     {
       "id": "python-obj-4",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Architect scalable enterprise workflows aligned with Python industry best practices",
       "order": 4
-    },
-    {
-      "id": "python-obj-5",
-      "statement": "Write and explain small Python programs",
-      "order": 5
-    },
-    {
-      "id": "python-obj-6",
-      "statement": "Use evidence from output and tests to diagnose behavior",
-      "order": 6
     }
   ],
   "prerequisites": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Basic computer literacy and ability to run commands in a terminal",
+    "Fundamental algebraic thinking (variables, logical conditions)"
   ],
   "modules": [
     {
       "id": "mod-1-python-beginner-module-1",
-      "title": "Python Execution and Data",
-      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "title": "Module 1: Python Runtime Architecture, Memory Model & Primitives",
+      "summary": "Explore CPython virtual machine internals, stack evaluation, heap allocation, name binding, and IEEE 754 numeric types.",
       "order": 1,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 120,
       "objectiveIds": [
         "python-obj-1",
         "python-obj-2"
       ],
       "lessonTitles": [
-        "Running Python and Working with Values",
-        "Types, Conversion, and Input/Output"
+        "Python Execution Architecture, Bytecode & Object Model",
+        "Primitive Types, IEEE 754 Arithmetic & Formatted IO"
       ],
-      "checkpoint": "Pass the Python Execution and Data assessment with 70%+ score."
+      "checkpoint": "Analyze object memory addresses, reference counting, and type conversion boundaries."
     },
     {
       "id": "mod-2-python-beginner-module-2",
-      "title": "Control Flow and Repetition",
-      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "title": "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling",
+      "summary": "Understand short-circuit boolean logic, structural pattern matching, memory-efficient generators, and custom iteration protocols.",
       "order": 2,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 120,
+      "objectiveIds": [
+        "python-obj-2",
+        "python-obj-3"
+      ],
+      "lessonTitles": [
+        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+        "The Iteration Protocol, Generators & Streaming Pipelines"
+      ],
+      "checkpoint": "Build generator pipelines with O(1) space complexity and implement pattern matching routers."
+    },
+    {
+      "id": "mod-3-python-beginner-module-3",
+      "title": "Module 3: Metaprogramming, OOP Architecture & Automated Verification",
+      "summary": "Master closures, decorators with functools.wraps, dunder protocol design, and production-grade pytest test suites.",
+      "order": 3,
+      "estimatedMinutes": 120,
       "objectiveIds": [
         "python-obj-3",
         "python-obj-4"
       ],
       "lessonTitles": [
-        "Decisions with Conditions and Boolean Logic",
-        "Iteration with for, while, and range"
+        "Closures, First-Class Functions & Decorator Metaprogramming",
+        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
       ],
-      "checkpoint": "Pass the Control Flow and Repetition assessment with 70%+ score."
-    },
-    {
-      "id": "mod-3-python-beginner-module-3",
-      "title": "Functions, Collections, and a Project",
-      "summary": "Decompose programs into testable functions and select collections that match the problem.",
-      "order": 3,
-      "estimatedMinutes": 220,
-      "objectiveIds": [
-        "python-obj-5",
-        "python-obj-6"
-      ],
-      "lessonTitles": [
-        "Functions, Parameters, and Return Values",
-        "Collections and a Small Progress Tracker"
-      ],
-      "checkpoint": "Pass the Functions, Collections, and a Project assessment with 70%+ score."
+      "checkpoint": "Design encapsulated domain models with dunder methods and verify behavior using automated pytest suites."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic in Python",
-    "Interactive code modification and debugging exercises",
-    "Module-end practical synthesis challenge"
+    "Trace and diagram CPython reference counts, memory addresses, and object bindings using id() and sys.getrefcount()",
+    "Implement an unbuffered, memory-efficient streaming generator pipeline for gigabyte-scale access logs",
+    "Build a production-grade decorator suite for latency telemetry, caching, and rate limiting with functools.wraps",
+    "Develop a domain entity with dunder protocols (__eq__, __hash__, __repr__) and full pytest test coverage"
   ],
   "assessmentCheckpoints": [
-    "Python Execution and Data Knowledge Check (70% pass threshold)",
-    "Control Flow and Repetition Knowledge Check (70% pass threshold)",
-    "Functions, Collections, and a Project Knowledge Check (70% pass threshold)"
+    "Module 1: Python Runtime Architecture, Memory Model & Primitives Checkpoint (70% pass threshold)",
+    "Module 2: Control Flow, Iteration Protocols & Defensive Error Handling Checkpoint (70% pass threshold)",
+    "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "Learning Progress Tracker Capstone"
+    "Enterprise Telemetry & Resilient Order Processing Engine with Pytest Validation Suite"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Pass all 3 comprehensive mock tests and practical debugging tasks",
-    "Complete hands-on verified capstone review"
+    "Explain CPython execution mechanics: compilation, bytecode disassembling, object heap allocation, and garbage collection",
+    "Prevent mutable default argument traps, unhandled conversion exceptions, and memory reference cycles",
+    "Design composable generator pipelines that maintain O(1) space complexity across large datasets",
+    "Write maintainable, strictly typed, PEP 8 compliant software validated by automated test suites"
   ],
   "resources": [
     {
-      "title": "Python 3 Official Documentation",
+      "title": "Python 3 Official Documentation & Language Reference",
       "organization": "Python Software Foundation",
       "url": "https://docs.python.org/3/",
-      "retrievedAt": "2026-11-01T15:37:41.177Z",
+      "retrievedAt": "2026-11-12T03:01:18.229Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

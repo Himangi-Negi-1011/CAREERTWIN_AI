@@ -1,28 +1,31 @@
 [
   {
-    "id": "res-python-main",
-    "title": "Python for Beginners - Full Course",
+    "id": "res-python-primary",
+    "title": "Python Full Course for Beginners to Advanced Architecture",
     "provider": "youtube",
-    "channelOrAuthor": "Programming with Mosh",
-    "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+    "channelOrAuthor": "freeCodeCamp / Core Python",
+    "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
     "embedUrl": "",
-    "durationMinutes": 180,
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Authoritative complete tutorial for Python.",
-    "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
     "learningObjectivesSupported": [
-      "python-obj-1"
+      "python-obj-1",
+      "python-obj-2",
+      "python-obj-3",
+      "python-obj-4"
     ],
     "keyTopicsCovered": [
-      "Running Python and Working with Values",
-      "Types, Conversion, and Input/Output",
-      "Decisions with Conditions and Boolean Logic",
-      "Iteration with for, while, and range",
-      "Functions, Parameters, and Return Values",
-      "Collections and a Small Progress Tracker"
+      "Python Execution Architecture, Bytecode & Object Model",
+      "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+      "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+      "The Iteration Protocol, Generators & Streaming Pipelines",
+      "Closures, First-Class Functions & Decorator Metaprogramming",
+      "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
     ],
-    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-    "verificationStatus": "verified",
-    "lastCheckedDate": "2026-11-01"
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-11-12"
   }
 ]

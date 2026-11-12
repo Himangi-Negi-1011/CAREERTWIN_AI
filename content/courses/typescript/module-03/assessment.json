@@ -1,203 +1,165 @@
 {
-  "id": "phase-typescript-beginner-mod-3",
+  "id": "phase-typescript-mod-3-typescript-beginner-module-3-assessment",
   "skillName": "TypeScript",
   "skillSlug": "typescript",
   "level": "beginner",
   "testNumber": 3,
   "isPhaseAssessment": true,
   "moduleId": "mod-3-typescript-beginner-module-3",
-  "moduleTitle": "Generics, Validation, and a Project",
-  "title": "Generics, Validation, and a Project Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Generics, Validation, and a Project.",
+  "moduleTitle": "Module 3: Advanced Type Programming & Strict Production Systems",
+  "title": "TypeScript — Module 3: Advanced Type Programming & Strict Production Systems Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Conditional Types, Infer Keyword & Template Literal Types and Strict Compiler Flags, Branded Types & Runtime Boundary Validation.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "readonly",
-    "excess property checks",
-    "typed arrays",
-    "function return types",
-    "generics"
+    "Conditional Types, Infer Keyword & Template Literal Types",
+    "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
   ],
   "questions": [
     {
-      "id": "phase-typescript-beginner-mod-3-q1",
+      "id": "phase-typescript-mod-3-typescript-beginner-module-3-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Advanced Type Programming & Strict Production Systems Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes readonly in TypeScript?",
+      "prompt": "What does the 'infer' keyword do in a TypeScript conditional type?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "readonly prevents assignment through that typed reference"
+          "id": "opt-1",
+          "text": "It casts any variable to the 'any' type."
         },
         {
-          "id": "B",
-          "text": "readonly is compile-time protection, not deep runtime freezing"
+          "id": "opt-2",
+          "text": "It introduces a type variable within the extends clause to be deduced from the matched type."
         },
         {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
+          "id": "opt-3",
+          "text": "It imports an external module asynchronously."
         },
         {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
+          "id": "opt-4",
+          "text": "It bypasses strict null checking."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "readonly prevents assignment through that typed reference. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "'infer' allows you to declare a type variable inside the condition to capture and extract an internal type dynamically.",
       "difficulty": "beginner",
-      "topic": "readonly",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Generics and Standard Utility Types"
+      "topic": "Conditional Types, Infer Keyword & Template Literal Types",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template",
+      "recommendedLessonTitle": "Conditional Types, Infer Keyword & Template Literal Types"
     },
     {
-      "id": "phase-typescript-beginner-mod-3-q2",
+      "id": "phase-typescript-mod-3-typescript-beginner-module-3-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Advanced Type Programming & Strict Production Systems Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes excess property checks in TypeScript?",
+      "prompt": "What type does 'type Route = `/${'users' | 'posts'}/${number}`;' allow?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "fresh object literals are checked for unexpected keys"
+          "id": "opt-1",
+          "text": "Any arbitrary URL string."
         },
         {
-          "id": "B",
-          "text": "assigning through a broad variable can bypass the fresh-literal check"
+          "id": "opt-2",
+          "text": "Only strings starting with '/users/' or '/posts/' followed by a numeric string (e.g. '/users/42')."
         },
         {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
+          "id": "opt-3",
+          "text": "Only array objects."
         },
         {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
+          "id": "opt-4",
+          "text": "Only boolean values."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "fresh object literals are checked for unexpected keys. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Template literal types combine string unions to form exact pattern-matched string literal types.",
       "difficulty": "beginner",
-      "topic": "excess property checks",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Generics and Standard Utility Types"
+      "topic": "Conditional Types, Infer Keyword & Template Literal Types",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template",
+      "recommendedLessonTitle": "Conditional Types, Infer Keyword & Template Literal Types"
     },
     {
-      "id": "phase-typescript-beginner-mod-3-q3",
+      "id": "phase-typescript-mod-3-typescript-beginner-module-3-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Advanced Type Programming & Strict Production Systems Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes typed arrays in TypeScript?",
+      "prompt": "Why is a Branded Type useful in TypeScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "T[] constrains each array element to T"
+          "id": "opt-1",
+          "text": "It compresses the output bundle size."
         },
         {
-          "id": "B",
-          "text": "a tuple and an array express different positional guarantees"
+          "id": "opt-2",
+          "text": "It attaches a phantom compile-time tag to a primitive type (like string), preventing accidental assignment between different semantic identifiers like UserId and OrderId."
         },
         {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
+          "id": "opt-3",
+          "text": "It makes the property accessible only in React components."
         },
         {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
+          "id": "opt-4",
+          "text": "It disables TypeScript compiler warnings."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "T[] constrains each array element to T. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Branded types enforce nominal typing, stopping bugs where strings of different semantic meanings are accidentally passed in the wrong parameter order.",
       "difficulty": "beginner",
-      "topic": "typed arrays",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Generics and Standard Utility Types"
+      "topic": "Strict Compiler Flags, Branded Types & Runtime Boundary Validation",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l2-strict-compiler-flags-branded-types-runt",
+      "recommendedLessonTitle": "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
     },
     {
-      "id": "phase-typescript-beginner-mod-3-q4",
+      "id": "phase-typescript-mod-3-typescript-beginner-module-3-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Advanced Type Programming & Strict Production Systems Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes function return types in TypeScript?",
+      "prompt": "What does the tsconfig.json compiler option 'noUncheckedIndexedAccess' accomplish?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a return annotation protects the promised output contract"
+          "id": "opt-1",
+          "text": "It disables array indexing completely."
         },
         {
-          "id": "B",
-          "text": "console output is not a returned value"
+          "id": "opt-2",
+          "text": "It adds 'undefined' to the return type of array and object index lookups, forcing developers to check if an element exists before using it."
         },
         {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
+          "id": "opt-3",
+          "text": "It converts all arrays into tuples."
         },
         {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
+          "id": "opt-4",
+          "text": "It compiles arrays to WebAssembly memory buffers."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a return annotation protects the promised output contract. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "By default, arr[0] assumes the element is defined. 'noUncheckedIndexedAccess' types it as T | undefined, preventing out-of-bounds runtime crashes.",
       "difficulty": "beginner",
-      "topic": "function return types",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Generics and Standard Utility Types"
-    },
-    {
-      "id": "phase-typescript-beginner-mod-3-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes generics in TypeScript?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "generics preserve type relationships across positions"
-        },
-        {
-          "id": "B",
-          "text": "a generic appearing once adds complexity without a relationship"
-        },
-        {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
-        },
-        {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "generics preserve type relationships across positions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "difficulty": "beginner",
-      "topic": "generics",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l1",
-      "recommendedLessonTitle": "Generics and Standard Utility Types"
+      "topic": "Strict Compiler Flags, Branded Types & Runtime Boundary Validation",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-typescript-beginner-module-3-l2-strict-compiler-flags-branded-types-runt",
+      "recommendedLessonTitle": "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.279Z",
-  "updatedAt": "2026-11-01T15:37:41.279Z"
+  "createdAt": "2026-11-12T03:01:18.725Z",
+  "updatedAt": "2026-11-12T03:01:18.725Z"
 }

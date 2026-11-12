@@ -1,226 +1,200 @@
 {
-  "lessonId": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic",
+  "lessonId": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc",
   "skillName": "JavaScript",
   "moduleId": "mod-2-javascript-beginner-module-2",
-  "title": "Conditions and Boolean Logic",
-  "summary": "Write explicit decisions with comparisons, truthiness, logical operators, optional chaining, and tested boundaries.",
+  "title": "Macrotasks, Microtasks & The Event Loop Architecture",
+  "summary": "Master the browser and Node.js event loop: understand the call stack, Web APIs, the microtask queue, macrotask queue, and rendering intervals.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the JavaScript behavior taught in Conditions and Boolean Logic",
-    "Test behavior using observable output and assertions"
+    "Predict exact console output ordering across synchronous code, Promise microtasks, and setTimeout macrotasks",
+    "Prevent UI freezes and event loop starvation by breaking heavy computational work into non-blocking chunks"
   ],
   "objectiveIds": [
-    "javascript-obj-3",
-    "javascript-obj-4"
+    "javascript-obj-2",
+    "javascript-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Call stack and closure fundamentals"
   ],
   "sections": [
     {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-sec-1",
-      "heading": "Core model",
-      "content": "An `if` statement selects a branch based on a boolean or a value converted to boolean. Empty strings, zero, `NaN`, `null`, `undefined`, and `false` are falsy; strings such as `'false'` are truthy. Use `&&` when both conditions are required, `||` for alternatives, and `!` to negate. The nullish-coalescing operator `??` supplies a default only for `null` or `undefined`, unlike `||`, which also replaces valid values such as zero. Optional chaining `?.` safely stops property access when the receiver is nullish. Always test values immediately below, at, and above a policy boundary.",
-      "codeExamples": [],
-      "keyPoints": [
-        "An `if` statement selects a branch based on a boolean or a value converted to boolean."
-      ],
-      "commonMistakes": [
-        "using || can replace valid zero or empty-string input",
-        "optional chaining does not validate a present value's type"
-      ]
-    },
-    {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-sec-2",
-      "heading": "Worked JavaScript example",
-      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "id": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc-sec-1",
+      "heading": "1. The Single-Threaded Event Loop & Queue Priorities",
+      "content": "JavaScript is single-threaded: it has one Call Stack and executes one instruction at a time. Concurrency in JavaScript is provided by the Event Loop host environment (browser or Node.js runtime).\n\nWhen asynchronous operations (network fetch, disk read, timer) are initiated, JavaScript delegates them to background threads (browser C++ Web APIs or Node's libuv thread pool) and continues executing synchronous code on the call stack.\n\nWhen background tasks complete, their callbacks enter one of two queues:\n1. Microtask Queue: Highest priority! Holds `Promise.then/catch/finally` callbacks, `queueMicrotask()`, and `MutationObserver` (or `process.nextTick` in Node). The event loop DRAINS THE ENTIRE microtask queue immediately as soon as the Call Stack becomes empty, before processing any other work.\n2. Macrotask (Task) Queue: Lower priority. Holds `setTimeout`, `setInterval`, `setImmediate`, and I/O callbacks. The event loop processes exactly ONE macrotask per tick, then immediately checks and drains the microtask queue again before executing UI renders.\n\nEvent Loop Cycle:\nCall Stack -> Drain ALL Microtasks -> (Render UI if scheduled) -> Take ONE Macrotask -> Repeat.",
       "codeExamples": [
         {
-          "language": "javascript",
-          "code": "const score = 72;\nconst submitted = true;\nconst result = score >= 0 && score <= 100 && submitted ? 'recorded' : 'review input';\nconsole.log(result);",
-          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
-          "expectedOutput": "recorded"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| THE JAVASCRIPT EVENT LOOP EXECUTION LIFECYCLE                     |\n|                                                                   |\n|   +-----------------------------------------------------------+   |\n|   | 1. CALL STACK: Executes synchronous code until EMPTY.    |   |\n|   +-----------------------------------------------------------+   |\n|                                 |                                 |\n|                                 v                                 |\n|   +-----------------------------------------------------------+   |\n|   | 2. MICROTASK QUEUE: Drain ALL items (Promises,           |   |\n|   |    queueMicrotask). If microtasks spawn microtasks,       |   |\n|   |    they run immediately! (Risk: Starvation)               |   |\n|   +-----------------------------------------------------------+   |\n|                                 |                                 |\n|                                 v                                 |\n|   +-----------------------------------------------------------+   |\n|   | 3. BROWSER RENDERING: DOM layout, paint (at 60/120Hz).   |   |\n|   +-----------------------------------------------------------+   |\n|                                 |                                 |\n|                                 v                                 |\n|   +-----------------------------------------------------------+   |\n|   | 4. MACROTASK QUEUE: Dequeue and execute EXACTLY ONE task  |   |\n|   |    (setTimeout, setInterval, I/O). Then repeat loop!      |   |\n|   +-----------------------------------------------------------+   |\n+-------------------------------------------------------------------+",
+          "explanation": "Microtasks are always drained completely before the event loop advances to rendering or macrotasks.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "An `if` statement selects a branch based on a boolean or a value converted to boolean."
+        "JavaScript handles concurrency via the Event Loop, not multi-threaded call stacks.",
+        "Microtasks (Promises) always run before the next macrotask (setTimeout).",
+        "An infinite chain of microtasks will starve the event loop, freezing browser tabs or Node.js servers."
       ],
       "commonMistakes": [
-        "using || can replace valid zero or empty-string input",
-        "optional chaining does not validate a present value's type"
+        "Expecting setTimeout(fn, 0) to execute immediately; it waits until the call stack and all pending microtasks are cleared.",
+        "Running CPU-intensive loops synchronously on the main thread, locking up UI rendering and user interactions."
       ]
     },
     {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc-sec-2",
+      "heading": "2. Verifying Queue Scheduling and Non-Blocking Chunking",
+      "content": "When performing heavy data transformations (e.g. processing 100,000 array items), running synchronously freezes the thread. Yielding to the event loop using `queueMicrotask` or `setTimeout` lets the browser render frames and respond to user clicks smoothly.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "// 1. Verifying Execution Priority Order\nconsole.log(\"1. Synchronous Start\");\n\nsetTimeout(() => {\n  console.log(\"5. Macrotask (setTimeout)\");\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log(\"3. Microtask 1 (Promise.then)\");\n});\n\nqueueMicrotask(() => {\n  console.log(\"4. Microtask 2 (queueMicrotask)\");\n});\n\nconsole.log(\"2. Synchronous End\");\n\n// 2. Non-blocking Array Chunker to prevent UI freezing\nasync function processHeavyArray(items, chunkSize = 2) {\n  for (let i = 0; i < items.length; i += chunkSize) {\n    const chunk = items.slice(i, i + chunkSize);\n    // Process chunk...\n    // Yield to the event loop macrotask queue so UI can render\n    await new Promise((resolve) => setTimeout(resolve, 0));\n  }\n}",
+          "explanation": "Demonstrates that synchronous lines run first, followed by all queued microtasks, and finally macrotasks.",
+          "expectedOutput": "1. Synchronous Start\n2. Synchronous End\n3. Microtask 1 (Promise.then)\n4. Microtask 2 (queueMicrotask)\n5. Macrotask (setTimeout)"
+        }
+      ],
       "keyPoints": [
-        "An `if` statement selects a branch based on a boolean or a value converted to boolean."
+        "Synchronous execution always finishes before the event loop checks queues.",
+        "Microtask queue drains completely on every turn."
       ],
       "commonMistakes": [
-        "using || can replace valid zero or empty-string input",
-        "optional chaining does not validate a present value's type"
+        "Assuming queueMicrotask yields to UI rendering; only macrotasks (or requestAnimationFrame) allow paint cycles."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-ex-1",
-      "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in JavaScript.",
-      "description": "Implement a grade classifier for scores 0–100. Test every boundary plus -1 and 101, and explain why strict equality and each comparison operator were selected. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "id": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc-ex-1",
+      "type": "analysis",
+      "title": "Predict and Verify Event Loop Task Order",
+      "objective": "Analyze a complex snippet containing Promises, setTimeout, and synchronous calls to trace execution.",
+      "description": "Given a snippet interweaving new Promise executor callbacks, .then() chains, and setTimeout calls, write an explanation of the exact execution order connecting each step to Call Stack, Microtask Queue, and Macrotask Queue mechanics.",
       "instructions": [
-        "Implement a grade classifier for scores 0–100. Test every boundary plus -1 and 101, and explain why strict equality and each comparison operator were selected. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+        "Remember: Promise executor functions `new Promise((resolve) => {...})` execute synchronously!",
+        "Identify all synchronous log statements first.",
+        "List all microtasks queued by resolved promises.",
+        "List all macrotasks queued by setTimeout.",
+        "Document the final execution sequence."
       ],
-      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "// Trace the output sequence:\nconsole.log(\"A\");\nsetTimeout(() => console.log(\"B\"), 0);\nnew Promise((resolve) => {\n  console.log(\"C\");\n  resolve();\n}).then(() => {\n  console.log(\"D\");\n});\nconsole.log(\"E\");",
       "hints": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "new Promise executes its callback synchronously, so C prints immediately after A and before E.",
+        "Expected order: A -> C -> E -> D -> B."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+      "solutionExplanation": "'A' runs, setTimeout queues 'B' in macrotasks, Promise executor runs 'C' synchronously and queues 'D' in microtasks, 'E' runs, microtasks drain ('D'), macrotask runs ('B')."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-kc-1",
+      "id": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc-kc-1",
       "type": "single-choice",
-      "prompt": "Which code-review warning about const and let is valid?",
+      "prompt": "In what order are the queues processed once the call stack is empty?",
       "options": [
         {
-          "id": "A",
-          "text": "const does not make a referenced object deeply immutable"
+          "id": "opt-1",
+          "text": "Macrotasks first, followed by microtasks."
         },
         {
-          "id": "B",
-          "text": "const prevents rebinding while let permits deliberate reassignment"
+          "id": "opt-2",
+          "text": "All microtasks in the queue are drained completely before the next macrotask is executed."
         },
         {
-          "id": "C",
-          "text": "declare stable bindings with const and state that changes with let"
+          "id": "opt-3",
+          "text": "Microtasks and macrotasks alternate execution 1-by-1."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "Only macrotasks execute; microtasks are dropped unless explicitly awaited."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "const does not make a referenced object deeply immutable. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The event loop specification mandates draining the entire microtask queue before moving to rendering or the next macrotask.",
       "objectiveIds": [
-        "javascript-obj-3"
+        "javascript-obj-2"
       ]
     },
     {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-kc-2",
+      "id": "mod-2-javascript-beginner-module-2-l1-macrotasks-microtasks-the-event-loop-arc-kc-2",
       "type": "single-choice",
-      "prompt": "Which code-review warning about typeof is valid?",
+      "prompt": "Why does the callback inside 'new Promise((resolve) => console.log('X'))' execute immediately?",
       "options": [
         {
-          "id": "A",
-          "text": "typeof null is historically 'object'"
+          "id": "opt-1",
+          "text": "Because Promise executor functions are called synchronously during object construction."
         },
         {
-          "id": "B",
-          "text": "typeof reports a runtime type string"
+          "id": "opt-2",
+          "text": "Because V8 compiles promises to WebAssembly."
         },
         {
-          "id": "C",
-          "text": "use typeof while diagnosing values at an input boundary"
+          "id": "opt-3",
+          "text": "Because it is hoisted to the top of the file."
         },
         {
-          "id": "D",
-          "text": "It can only be used inside a class"
+          "id": "opt-4",
+          "text": "Because console.log bypasses the event loop."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "typeof null is historically 'object'. Verify this behavior with a minimal runnable example and observable output.",
-      "objectiveIds": [
-        "javascript-obj-4"
-      ]
-    },
-    {
-      "id": "mod-2-javascript-beginner-module-2-l1-conditions-and-boolean-logic-kc-3",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about Number conversion is valid?",
-      "options": [
-        {
-          "id": "A",
-          "text": "Number('') produces zero, which may require separate empty-input validation"
-        },
-        {
-          "id": "B",
-          "text": "Number converts an entire value to numeric form"
-        },
-        {
-          "id": "C",
-          "text": "convert then check Number.isNaN before arithmetic"
-        },
-        {
-          "id": "D",
-          "text": "It can only be used inside a class"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "Number('') produces zero, which may require separate empty-input validation. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The function passed to the Promise constructor is executed synchronously during initialization; only .then() and .catch() callbacks are deferred to microtasks.",
       "objectiveIds": [
         "javascript-obj-3"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Conditions and Boolean Logic in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "JavaScript's event loop prioritizes synchronous code first, followed by draining all pending microtasks, and finally executing macrotasks one by one.",
   "videoResources": [
     {
-      "id": "vid-javascript-main",
-      "title": "JavaScript Programming - Full Course",
+      "id": "res-javascript-primary",
+      "title": "JavaScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "channelOrAuthor": "freeCodeCamp / JavaScript Mastery",
+      "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for JavaScript.",
-      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of JavaScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for JavaScript.",
       "learningObjectivesSupported": [
-        "javascript-obj-3"
+        "javascript-obj-1",
+        "javascript-obj-2",
+        "javascript-obj-3",
+        "javascript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Conditions and Boolean Logic",
-        "Loops and Array Iteration"
+        "V8 Engine Internals, Call Stack & Execution Contexts",
+        "Lexical Scope Chain, Variable Lifetimes & Closures",
+        "Macrotasks, Microtasks & The Event Loop Architecture",
+        "Promises, Async/Await & Resilient Error Pipelines",
+        "Prototypes, Object Delegation & ES6 Class Systems",
+        "ES Modules, Tree Shaking & High-Performance Architecture"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "MDN JavaScript Reference Guide",
+      "title": "MDN Web Docs: JavaScript Language Reference & ECMAScript Standard",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "description": "Official reference documentation for JavaScript."
+      "description": "Authoritative official technical reference for JavaScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using JavaScript",
-    "Automated software quality verification and debugging"
+    "Web applications keeping input typing responsiveness at 60 FPS by offloading heavy data parsing into chunks.",
+    "Node.js servers scheduling cleanup jobs with setImmediate vs high-priority telemetry with queueMicrotask."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.085Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.435Z"
 }

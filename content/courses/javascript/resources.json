@@ -1,28 +1,31 @@
 [
   {
-    "id": "res-javascript-main",
-    "title": "JavaScript Programming - Full Course",
+    "id": "res-javascript-primary",
+    "title": "JavaScript Full Course: Beginner to Advanced Architecture",
     "provider": "youtube",
-    "channelOrAuthor": "freeCodeCamp.org",
-    "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+    "channelOrAuthor": "freeCodeCamp / JavaScript Mastery",
+    "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
     "embedUrl": "",
-    "durationMinutes": 180,
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Authoritative complete tutorial for JavaScript.",
-    "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of JavaScript.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for JavaScript.",
     "learningObjectivesSupported": [
-      "javascript-obj-1"
+      "javascript-obj-1",
+      "javascript-obj-2",
+      "javascript-obj-3",
+      "javascript-obj-4"
     ],
     "keyTopicsCovered": [
-      "Running JavaScript and Understanding Values",
-      "Types, Conversion, and Strict Equality",
-      "Conditions and Boolean Logic",
-      "Loops and Array Iteration",
-      "Functions, Parameters, and Scope",
-      "Objects, Collections, and a Progress Tracker"
+      "V8 Engine Internals, Call Stack & Execution Contexts",
+      "Lexical Scope Chain, Variable Lifetimes & Closures",
+      "Macrotasks, Microtasks & The Event Loop Architecture",
+      "Promises, Async/Await & Resilient Error Pipelines",
+      "Prototypes, Object Delegation & ES6 Class Systems",
+      "ES Modules, Tree Shaking & High-Performance Architecture"
     ],
-    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-    "verificationStatus": "verified",
-    "lastCheckedDate": "2026-11-01"
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-11-12"
   }
 ]

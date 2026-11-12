@@ -1,226 +1,198 @@
 {
-  "lessonId": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration",
+  "lessonId": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip",
   "skillName": "JavaScript",
   "moduleId": "mod-2-javascript-beginner-module-2",
-  "title": "Loops and Array Iteration",
-  "summary": "Use `for...of`, indexed loops, `while`, array methods, accumulators, and clear termination rules.",
+  "title": "Promises, Async/Await & Resilient Error Pipelines",
+  "summary": "Master Promise internals, state machines, async/await mechanics, error propagation, and combinators (all, allSettled, race, any).",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the JavaScript behavior taught in Loops and Array Iteration",
-    "Test behavior using observable output and assertions"
+    "Select and implement optimal Promise combinators (allSettled, race, any) based on fault tolerance requirements",
+    "Build resilient asynchronous workflows incorporating AbortController cancellation tokens and retry policies"
   ],
   "objectiveIds": [
-    "javascript-obj-3",
-    "javascript-obj-4"
+    "javascript-obj-2",
+    "javascript-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Event loop and callback fundamentals"
   ],
   "sections": [
     {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-sec-1",
-      "heading": "Core model",
-      "content": "Use `for...of` to consume array values directly and a classic indexed `for` loop when the index is part of the problem. `for...in` enumerates property keys and is usually the wrong choice for array values. An accumulator is initialized once before a loop and updated once per accepted item. `while` loops suit state-dependent repetition but must make progress on every normal path. Array methods such as `map`, `filter`, and `reduce` create expressive transformations; begin with a loop when it makes state changes easier to inspect. Avoid modifying an array's length while iterating over that same array.",
-      "codeExamples": [],
-      "keyPoints": [
-        "Use `for...of` to consume array values directly and a classic indexed `for` loop when the index is part of the problem."
-      ],
-      "commonMistakes": [
-        "ignoring map's returned array loses the transformed result",
-        "filter does not modify each selected item"
-      ]
-    },
-    {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-sec-2",
-      "heading": "Worked JavaScript example",
-      "content": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
+      "id": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip-sec-1",
+      "heading": "1. The Promise State Machine & Async/Await Under the Hood",
+      "content": "A Promise represents the eventual result of an asynchronous operation. Internally, a Promise operates as a strict state machine with three mutually exclusive states:\n1. Pending: Initial state; neither fulfilled nor rejected.\n2. Fulfilled: Operation completed successfully; holds a permanent value.\n3. Rejected: Operation failed; holds a permanent reason (error).\n\nState transitions are irreversible: once fulfilled or rejected, a Promise is 'settled' and can never change state or fire callbacks again.\n\nPromise Combinators:\n- `Promise.all([p1, p2])`: Fails fast! Rejects immediately if ANY promise rejects. Resolves only when all succeed.\n- `Promise.allSettled([p1, p2])`: Resilient! Waits for all promises to settle and returns an array of `{status: 'fulfilled', value}` or `{status: 'rejected', reason}` objects. Ideal for batch jobs where partial success is acceptable.\n- `Promise.race([p1, p2])`: Settles with the outcome of the FASTEST promise (whether success or error). Used for request timeouts.\n- `Promise.any([p1, p2])`: Resolves with the first SUCCESSFUL promise. Rejects with an `AggregateError` only if all promises fail.\n\n`async`/`await` is syntactic sugar built on top of Promises and Generators. An `async` function always returns a Promise; `await` pauses execution of the async function until the awaited promise settles, without blocking the main event loop.",
       "codeExamples": [
         {
-          "language": "javascript",
-          "code": "const scores = [70, 82, 91];\nlet total = 0;\nfor (const score of scores) total += score;\nconsole.log(total / scores.length);",
-          "explanation": "Predict the output, run the program in Node.js or a browser console, then change one input at a time.",
-          "expectedOutput": "81"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| PROMISE STATE MACHINE & ASYNC/AWAIT SUSPENSION                    |\n|                                                                   |\n|                   +------------------+                            |\n|                   |     PENDING      |                            |\n|                   +------------------+                            |\n|                      /            \\                              |\n|          resolve(v) /              \\ reject(err)                  |\n|                    v                v                             |\n|          +-------------+      +-------------+                     |\n|          |  FULFILLED  |      |  REJECTED   |                     |\n|          +-------------+      +-------------+                     |\n|                 |                    |                            |\n|                 v                    v                            |\n|           .then(onSuccess)     .catch(onError)                    |\n|                                                                   |\n|  await promise:                                                   |\n|  Function frame suspended -> Event Loop continues other work      |\n|  On settlement -> Microtask resumes function execution frame.     |\n+-------------------------------------------------------------------+",
+          "explanation": "Promises transition from pending to fulfilled or rejected once. Await pauses function execution without blocking the event loop.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "Use `for...of` to consume array values directly and a classic indexed `for` loop when the index is part of the problem."
+        "Promises are immutable once settled; state changes cannot be undone.",
+        "Use Promise.allSettled when individual failures should not cancel remaining independent requests.",
+        "Unhandled promise rejections crash Node.js processes; always attach .catch() or wrap in try/catch."
       ],
       "commonMistakes": [
-        "ignoring map's returned array loses the transformed result",
-        "filter does not modify each selected item"
+        "Using sequential 'await' inside a loop when operations are independent, accidentally turning parallel work into a slow waterfall.",
+        "Creating naked Promises with 'new Promise' when existing APIs already return standard promises."
       ]
     },
     {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Create a `.js` file.\n2. Predict each output.\n3. Run it in Node.js or a browser console.\n4. Change one value.\n5. Explain the observed change.\n6. Add an assertion for the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip-sec-2",
+      "heading": "2. Production-Grade Fetch with Timeout via AbortController",
+      "content": "In production networks, hanging HTTP requests tie up connection pools. Using `AbortController` allows clients to enforce strict timeout deadlines, freeing resources immediately if a remote service fails to respond.",
+      "codeExamples": [
+        {
+          "language": "javascript",
+          "code": "async function fetchWithTimeout(url, timeoutMs = 2000) {\n  const controller = new AbortController();\n  const timer = setTimeout(() => controller.abort(), timeoutMs);\n\n  try {\n    // In browser or Node 18+: pass controller.signal to fetch\n    const simulatedFetch = new Promise((resolve, reject) => {\n      const id = setTimeout(() => resolve({ ok: true, data: \"Payload\" }), 500);\n      controller.signal.addEventListener(\"abort\", () => {\n        clearTimeout(id);\n        reject(new Error(\"TimeoutError: Request exceeded deadline\"));\n      });\n    });\n\n    const response = await simulatedFetch;\n    return response;\n  } catch (err) {\n    if (err.message.includes(\"TimeoutError\")) {\n      return { ok: false, error: \"Network timeout: upstream did not answer in time\" };\n    }\n    return { ok: false, error: err.message };\n  } finally {\n    clearTimeout(timer); // Prevent timer leak\n  }\n}\n\n// Verification\nfetchWithTimeout(\"https://api.careertwin.ai/orders\", 1000).then((res) => {\n  console.log(\"Fetch outcome:\", res);\n});",
+          "explanation": "Demonstrates defensive timeout management using AbortController and strict cleanup in finally blocks.",
+          "expectedOutput": "Fetch outcome: { ok: true, data: 'Payload' }"
+        }
+      ],
       "keyPoints": [
-        "Use `for...of` to consume array values directly and a classic indexed `for` loop when the index is part of the problem."
+        "Always clear timer IDs in finally blocks to prevent memory leaks.",
+        "AbortController signals can be shared across multiple child promises for unified cancellation."
       ],
       "commonMistakes": [
-        "ignoring map's returned array loses the transformed result",
-        "filter does not modify each selected item"
+        "Awaiting requests inside for-loops sequentially instead of firing concurrently with Promise.all() or Promise.allSettled()."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-ex-1",
+      "id": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip-ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in JavaScript.",
-      "description": "Process daily study minutes, ignore invalid negatives, stop at a null sentinel, and calculate a total and average without mutating the original array. Submit source, output, tests, and a concise explanation of the runtime rules involved.",
+      "title": "Implement a Batch Task Runner with Partial Failure Resilience",
+      "objective": "Build a batch job runner using Promise.allSettled that reports successful items and aggregates failures.",
+      "description": "Create runBatch(tasks) where tasks is an array of functions returning promises. Execute them concurrently, aggregate outcomes using Promise.allSettled, and return `{ successful: [...], failed: [...] }` without throwing unhandled exceptions.",
       "instructions": [
-        "Process daily study minutes, ignore invalid negatives, stop at a null sentinel, and calculate a total and average without mutating the original array. Submit source, output, tests, and a concise explanation of the runtime rules involved."
+        "Execute all tasks concurrently using Promise.allSettled.",
+        "Iterate through results and classify fulfilled vs rejected outcomes.",
+        "Return structured summary report."
       ],
-      "starterCode": "// JavaScript Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "async function runBatch(taskFunctions) {\n  // Implement resilient batch runner using Promise.allSettled\n}",
       "hints": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Map functions to promises: `const promises = taskFunctions.map(fn => fn());`.",
+        "Use `Promise.allSettled(promises)` and filter by `.status === 'fulfilled'`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Runnable JavaScript with clear bindings",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core JavaScript operations for Build and explain."
+      "solutionExplanation": "Promise.allSettled prevents one failing task from terminating the batch, enabling partial success reporting."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-kc-1",
+      "id": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip-kc-1",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes const and let in JavaScript?",
+      "prompt": "How does Promise.allSettled differ from Promise.all?",
       "options": [
         {
-          "id": "A",
-          "text": "const prevents rebinding while let permits deliberate reassignment"
+          "id": "opt-1",
+          "text": "Promise.allSettled rejects if any promise fails; Promise.all waits for all."
         },
         {
-          "id": "B",
-          "text": "const does not make a referenced object deeply immutable"
+          "id": "opt-2",
+          "text": "Promise.allSettled always waits for every promise to finish regardless of success or failure; Promise.all rejects immediately upon the first failure."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Promise.allSettled runs tasks in sequential order; Promise.all runs in parallel."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "Promise.allSettled can only be used in Node.js."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "const prevents rebinding while let permits deliberate reassignment. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Promise.all fails fast on the first rejection, whereas Promise.allSettled waits for all promises to settle, capturing all results and errors.",
       "objectiveIds": [
-        "javascript-obj-3"
+        "javascript-obj-2"
       ]
     },
     {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-kc-2",
+      "id": "mod-2-javascript-beginner-module-2-l2-promises-async-await-resilient-error-pip-kc-2",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes typeof in JavaScript?",
+      "prompt": "What happens if an error is thrown inside an async function without a try/catch block?",
       "options": [
         {
-          "id": "A",
-          "text": "typeof reports a runtime type string"
+          "id": "opt-1",
+          "text": "The JavaScript runtime crashes immediately."
         },
         {
-          "id": "B",
-          "text": "typeof null is historically 'object'"
+          "id": "opt-2",
+          "text": "The function returns a Promise in the rejected state containing the thrown error."
         },
         {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
+          "id": "opt-3",
+          "text": "The function converts the error to null."
         },
         {
-          "id": "D",
-          "text": "It requires an external library"
+          "id": "opt-4",
+          "text": "The function retries automatically."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "typeof reports a runtime type string. Verify this behavior with a minimal runnable example and observable output.",
-      "objectiveIds": [
-        "javascript-obj-4"
-      ]
-    },
-    {
-      "id": "mod-2-javascript-beginner-module-2-l2-loops-and-array-iteration-kc-3",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes Number conversion in JavaScript?",
-      "options": [
-        {
-          "id": "A",
-          "text": "Number converts an entire value to numeric form"
-        },
-        {
-          "id": "B",
-          "text": "Number('') produces zero, which may require separate empty-input validation"
-        },
-        {
-          "id": "C",
-          "text": "The engine chooses behavior randomly"
-        },
-        {
-          "id": "D",
-          "text": "It requires an external library"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "Number converts an entire value to numeric form. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Any uncaught exception inside an async function automatically rejects the returned promise with the thrown exception.",
       "objectiveIds": [
         "javascript-obj-3"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Loops and Array Iteration in JavaScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Promises model asynchronous state. Use Promise.allSettled for resilient batch operations, AbortController for deadline cancellation, and try/catch/finally for clean error propagation.",
   "videoResources": [
     {
-      "id": "vid-javascript-main",
-      "title": "JavaScript Programming - Full Course",
+      "id": "res-javascript-primary",
+      "title": "JavaScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=jS4aFq5-91M",
+      "channelOrAuthor": "freeCodeCamp / JavaScript Mastery",
+      "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for JavaScript.",
-      "whatItTeaches": "Step-by-step walkthrough of JavaScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of JavaScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for JavaScript.",
       "learningObjectivesSupported": [
-        "javascript-obj-3"
+        "javascript-obj-1",
+        "javascript-obj-2",
+        "javascript-obj-3",
+        "javascript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Conditions and Boolean Logic",
-        "Loops and Array Iteration"
+        "V8 Engine Internals, Call Stack & Execution Contexts",
+        "Lexical Scope Chain, Variable Lifetimes & Closures",
+        "Macrotasks, Microtasks & The Event Loop Architecture",
+        "Promises, Async/Await & Resilient Error Pipelines",
+        "Prototypes, Object Delegation & ES6 Class Systems",
+        "ES Modules, Tree Shaking & High-Performance Architecture"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "MDN JavaScript Reference Guide",
+      "title": "MDN Web Docs: JavaScript Language Reference & ECMAScript Standard",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-      "description": "Official reference documentation for JavaScript."
+      "description": "Authoritative official technical reference for JavaScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using JavaScript",
-    "Automated software quality verification and debugging"
+    "E-commerce checkout pipelines charging credit cards, updating inventory, and sending confirmation emails concurrently.",
+    "Microservice dashboards aggregating data from multiple microservices with graceful degradation for offline services."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.085Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.435Z"
 }

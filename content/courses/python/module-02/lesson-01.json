@@ -1,226 +1,199 @@
 {
-  "lessonId": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo",
+  "lessonId": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation-",
   "skillName": "Python",
   "moduleId": "mod-2-python-beginner-module-2",
-  "title": "Decisions with Conditions and Boolean Logic",
-  "summary": "Conditional statements select behavior from explicit evidence. This lesson covers comparisons, truth values, if/elif/else, compound conditions, membership checks, and boundary testing.",
+  "title": "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+  "summary": "Learn boolean truthiness, short-circuit evaluation guarantees, guards, and Python 3.10+ structural pattern matching.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the Python behavior taught in Decisions with Conditions and Boolean Logic",
-    "Test the behavior with a small observable program"
+    "Leverage boolean short-circuit mechanics to guard against null/empty pointer exceptions",
+    "Write clean, readable branch controllers using structural pattern matching (match/case) with guards"
   ],
   "objectiveIds": [
-    "python-obj-3",
-    "python-obj-4"
+    "python-obj-2",
+    "python-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Python primitives and variable binding"
   ],
   "sections": [
     {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-sec-1",
-      "heading": "Core model",
-      "content": "An `if` statement executes its indented suite only when its condition is truthy. Use `elif` for mutually exclusive alternatives and `else` for the remaining case. Comparison chains such as `0 <= score <= 100` are clearer than repeating the variable. `and` requires both operands to be truthy, `or` requires at least one, and `not` reverses truth. Boundary values deserve explicit tests: a rule written as `score > 60` excludes 60, while `score >= 60` includes it. Avoid deeply nested conditions by naming meaningful booleans or returning early from functions.",
-      "codeExamples": [],
-      "keyPoints": [
-        "An `if` statement executes its indented suite only when its condition is truthy."
-      ],
-      "commonMistakes": [
-        "independent if statements can execute more than one overlapping branch",
-        "assuming the stop is included creates off-by-one errors"
-      ]
-    },
-    {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-sec-2",
-      "heading": "Worked Python example",
-      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--sec-1",
+      "heading": "1. Boolean Mechanics, Short-Circuiting & Pattern Matching",
+      "content": "Every object in Python possesses an inherent boolean truth value. When passed to `bool(x)` or tested in an `if` statement, an object evaluates to `False` if it is:\n- A built-in constant: `None`, `False`\n- Zero of any numeric type: `0`, `0.0`, `Decimal(0)`\n- Any empty sequence or collection: `''`, `()`, `[]`, `{}`, `set()`\n\nAll other objects evaluate to `True`.\n\nPython guarantees left-to-right short-circuit evaluation:\n- In `expr_a and expr_b`: if `expr_a` is falsy, Python immediately returns `expr_a` WITHOUT evaluating `expr_b`.\n- In `expr_a or expr_b`: if `expr_a` is truthy, Python immediately returns `expr_a` WITHOUT evaluating `expr_b`.\n\nThis guarantee allows engineers to write safe guards: `if user and user.is_authenticated():` will never crash with an AttributeError even if `user` is None.\n\nFurthermore, Python 3.10 introduced Structural Pattern Matching (`match`/`case`). Unlike C-style switch statements, pattern matching unpacks sequences, extracts dictionary keys, and evaluates type signatures with conditional guards simultaneously.",
       "codeExamples": [
         {
-          "language": "python",
-          "code": "score = 72\nsubmitted = True\nif 0 <= score <= 100 and submitted:\n    result = \"recorded\"\nelse:\n    result = \"review input\"\nprint(result)",
-          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
-          "expectedOutput": "recorded"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| SHORT-CIRCUIT EVALUATION & STRUCTURAL PATTERN MATCHING            |\n|                                                                   |\n|  [expr_a] --- If False ---> Stop & return False (AND circuit)     |\n|      |                                                            |\n|    If True                                                        |\n|      v                                                            |\n|  [expr_b] evaluated safely (e.g. user.get_profile())               |\n|                                                                   |\n|  Structural Pattern Matching (match / case):                      |\n|  match response:                                                  |\n|    case {\"status\": 200, \"data\": [*items]} if len(items) > 0: ... |\n|    case {\"status\": 404, \"error\": msg}: ...                        |\n|    case _: ... (Default fallback)                                 |\n+-------------------------------------------------------------------+",
+          "explanation": "Short-circuiting skips unnecessary right-hand evaluations, while pattern matching deconstructs complex nested data structures with guards.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "An `if` statement executes its indented suite only when its condition is truthy."
+        "Empty collections and numeric zeros are falsy; all other objects are truthy by default.",
+        "Short-circuit evaluation guarantees safe attribute chaining without explicit nested if checks.",
+        "match/case inspects shapes of data, extracting variables and applying 'if' guards declaratively."
       ],
       "commonMistakes": [
-        "independent if statements can execute more than one overlapping branch",
-        "assuming the stop is included creates off-by-one errors"
+        "Writing 'if x == True:' instead of idiomatic 'if x:' or 'if x is True:'.",
+        "Evaluating functions with side effects on the right side of 'or'/'and', unaware they may never execute."
       ]
     },
     {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--sec-2",
+      "heading": "2. Production Request Router using Structural Pattern Matching",
+      "content": "Production microservices often ingest polymorphic JSON event payloads from message brokers (Kafka/RabbitMQ). Replacing tangled if-elif-else trees with structural pattern matching enhances maintainability and catches malformed message shapes immediately.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "def route_event(event: dict) -> str:\n    \"\"\"Route microservice event payloads using structural pattern matching.\"\"\"\n    match event:\n        case {\"type\": \"ORDER_CREATED\", \"payload\": {\"order_id\": int(oid), \"amount\": float(amt)}} if amt > 0:\n            return f\"Processing valid order #{oid} for {amt:.2f} USD\"\n            \n        case {\"type\": \"ORDER_CREATED\", \"payload\": {\"amount\": float(amt)}} if amt <= 0:\n            return \"Rejected: Order amount must be positive\"\n            \n        case {\"type\": \"USER_SIGNUP\", \"payload\": {\"email\": str(email)}} if \"@\" in email:\n            return f\"Provisioning account for {email}\"\n            \n        case {\"type\": str(event_type), \"error\": str(err_msg)}:\n            return f\"Alert: Failure in {event_type} - {err_msg}\"\n            \n        case _:\n            return \"Rejected: Unrecognized or malformed event schema\"\n\n# Testing event routes\nprint(route_event({\"type\": \"ORDER_CREATED\", \"payload\": {\"order_id\": 1042, \"amount\": 89.50}}))\nprint(route_event({\"type\": \"USER_SIGNUP\", \"payload\": {\"email\": \"dev@careertwin.ai\"}}))\nprint(route_event({\"type\": \"INVALID_SCHEMA\"}))",
+          "explanation": "Demonstrates pattern matching with type assertions, dictionary destructuring, and conditional guards.",
+          "expectedOutput": "Processing valid order #1042 for $89.50\nProvisioning account for dev@careertwin.ai\nRejected: Unrecognized or malformed event schema"
+        }
+      ],
       "keyPoints": [
-        "An `if` statement executes its indented suite only when its condition is truthy."
+        "The wildcard pattern `_` acts as a mandatory catch-all default to ensure no event is dropped silently.",
+        "Guards (`if amt > 0`) allow business rules to be validated directly in the pattern definition."
       ],
       "commonMistakes": [
-        "independent if statements can execute more than one overlapping branch",
-        "assuming the stop is included creates off-by-one errors"
+        "Forgetting that pattern matching evaluates cases sequentially from top to bottom; putting general cases first masks specific cases."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-ex-1",
+      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in Python.",
-      "description": "Implement a grade classifier for valid scores from 0 through 100. Test -1, 0, every grade boundary, 100, and 101; explain why each boundary uses `<` or `<=`. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+      "title": "Implement an HTTP Status Packet Dispatcher",
+      "objective": "Write an event router using match/case that categorizes HTTP response payloads and extracts error metadata.",
+      "description": "Build handle_api_response(response: dict) -> str that matches 200 (success with items), 400 (bad request with error message), 500 (internal server error with retry flag), and returns structured log messages.",
       "instructions": [
-        "Implement a grade classifier for valid scores from 0 through 100. Test -1, 0, every grade boundary, 100, and 101; explain why each boundary uses `<` or `<=`. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
+        "Match on dictionary keys {'status_code': int, ...}.",
+        "Extract data or error strings safely.",
+        "Use guards to differentiate empty data arrays from populated data arrays.",
+        "Return a descriptive status string."
       ],
-      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
+      "starterCode": "def handle_api_response(response: dict) -> str:\n    # Use match/case to dispatch responses\n    pass",
       "hints": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Pattern: `case {'status_code': 200, 'data': [*items]} if items: ...`.",
+        "Catch-all pattern: `case _: ...`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
+      "solutionExplanation": "Structural pattern matching cleanly decomposes complex payload structures while eliminating deeply nested if statements."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-kc-1",
+      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--kc-1",
       "type": "single-choice",
-      "prompt": "Which warning should a code review raise about assignment?",
+      "prompt": "What will the expression 'None and print(\"Hello\")' output?",
       "options": [
         {
-          "id": "A",
-          "text": "using a name before assignment raises NameError"
+          "id": "opt-1",
+          "text": "It prints 'Hello' and returns None."
         },
         {
-          "id": "B",
-          "text": "assignment binds a name to the evaluated object"
+          "id": "opt-2",
+          "text": "It prints nothing and evaluates to None due to short-circuit evaluation."
         },
         {
-          "id": "C",
-          "text": "use `total = price * quantity` when the computed value is needed later"
+          "id": "opt-3",
+          "text": "It raises an AttributeError."
         },
         {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
+          "id": "opt-4",
+          "text": "It raises a TypeError because None cannot be combined with a function call."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "using a name before assignment raises NameError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Because None is falsy, the 'and' operator short-circuits immediately without evaluating the right operand.",
       "objectiveIds": [
-        "python-obj-3"
+        "python-obj-2"
       ]
     },
     {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-kc-2",
+      "id": "mod-2-python-beginner-module-2-l1-decision-logic-short-circuit-evaluation--kc-2",
       "type": "single-choice",
-      "prompt": "Which warning should a code review raise about input?",
+      "prompt": "In Python 3.10+ structural pattern matching, what is the role of the '_' pattern?",
       "options": [
         {
-          "id": "A",
-          "text": "adding an input string to an integer raises TypeError"
+          "id": "opt-1",
+          "text": "It declares a private local variable."
         },
         {
-          "id": "B",
-          "text": "input returns a string"
+          "id": "opt-2",
+          "text": "It acts as a wildcard catch-all pattern matching any value."
         },
         {
-          "id": "C",
-          "text": "convert validated numeric input with int or float before arithmetic"
+          "id": "opt-3",
+          "text": "It forces the match statement to loop back to the beginning."
         },
         {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
+          "id": "opt-4",
+          "text": "It ignores whitespace in string matching."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "adding an input string to an integer raises TypeError. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "objectiveIds": [
-        "python-obj-4"
-      ]
-    },
-    {
-      "id": "mod-2-python-beginner-module-2-l1-decisions-with-conditions-and-boolean-lo-kc-3",
-      "type": "single-choice",
-      "prompt": "Which warning should a code review raise about integer division?",
-      "options": [
-        {
-          "id": "A",
-          "text": "floor division rounds toward negative infinity, not toward zero"
-        },
-        {
-          "id": "B",
-          "text": "`//` performs floor division"
-        },
-        {
-          "id": "C",
-          "text": "use `minutes // 60` for complete hours"
-        },
-        {
-          "id": "D",
-          "text": "Python requires this feature to be declared in a class"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "floor division rounds toward negative infinity, not toward zero. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "The wildcard '_' matches any value and is commonly used as the default branch at the end of a match block.",
       "objectiveIds": [
         "python-obj-3"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Decisions with Conditions and Boolean Logic in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Short-circuit boolean logic enables safe property evaluation. Python 3.10+ pattern matching provides structural destructuring with guards, eliminating verbose nested condition chains.",
   "videoResources": [
     {
-      "id": "vid-python-main",
-      "title": "Python for Beginners - Full Course",
+      "id": "res-python-primary",
+      "title": "Python Full Course for Beginners to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "Programming with Mosh",
-      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "channelOrAuthor": "freeCodeCamp / Core Python",
+      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for Python.",
-      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
       "learningObjectivesSupported": [
-        "python-obj-3"
+        "python-obj-1",
+        "python-obj-2",
+        "python-obj-3",
+        "python-obj-4"
       ],
       "keyTopicsCovered": [
-        "Decisions with Conditions and Boolean Logic",
-        "Iteration with for, while, and range"
+        "Python Execution Architecture, Bytecode & Object Model",
+        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+        "The Iteration Protocol, Generators & Streaming Pipelines",
+        "Closures, First-Class Functions & Decorator Metaprogramming",
+        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation",
+      "title": "Python 3 Official Documentation & Language Reference",
       "url": "https://docs.python.org/3/",
-      "description": "Official reference documentation for Python."
+      "description": "Authoritative official technical reference for Python."
     }
   ],
   "realWorldApplications": [
-    "Production application development using Python",
-    "Automated software quality verification and debugging"
+    "API gateway microservices routing incoming webhook payloads based on header and body shapes.",
+    "Financial fraud detection filters evaluating multi-variable risk scores with early exits."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.179Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.229Z"
 }

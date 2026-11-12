@@ -1,226 +1,197 @@
 {
-  "lessonId": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro",
+  "lessonId": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio",
   "skillName": "TypeScript",
   "moduleId": "mod-2-typescript-beginner-module-2",
-  "title": "Object Types, Interfaces, and Optional Properties",
-  "summary": "Describe object shapes with interfaces and type aliases, distinguish optional properties from undefined values, and preserve excess-property checks.",
+  "title": "Generics, Constraints & Polymorphic Function Signatures",
+  "summary": "Learn generic functions, classes, and interfaces; enforce type constraints with extends; and implement polymorphic type parameters.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the TypeScript behavior taught in Object Types, Interfaces, and Optional Properties",
-    "Use strict compiler evidence and runtime tests to verify the contract"
+    "Author reusable generic data structures (caches, queues, repositories) that preserve element types",
+    "Constrain generic parameters using the extends keyword to ensure required properties exist"
   ],
   "objectiveIds": [
-    "typescript-obj-3",
-    "typescript-obj-4"
+    "typescript-obj-2",
+    "typescript-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "TypeScript interfaces and union types"
   ],
   "sections": [
     {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-sec-1",
-      "heading": "Core model",
-      "content": "Object types document required fields and their value types. Interfaces are well suited to extendable object contracts; type aliases can represent objects, unions, primitives, and tuples. `name?: string` means a property may be absent, while `name: string | undefined` requires the property key even when its value is undefined. Mark data immutable with `readonly` when mutation is not part of the contract. Fresh object literals receive excess-property checks that catch misspelled fields. Avoid broad index signatures unless every unknown key genuinely follows the same value rule.",
-      "codeExamples": [],
-      "keyPoints": [
-        "Object types document required fields and their value types."
-      ],
-      "commonMistakes": [
-        "a general string loses exhaustiveness checking",
-        "a type assertion is not runtime evidence"
-      ]
-    },
-    {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-sec-2",
-      "heading": "Worked TypeScript example",
-      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "id": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio-sec-1",
+      "heading": "1. Generic Type Parameters & Generic Constraints",
+      "content": "Generics allow functions, interfaces, and classes to be parameterized by types, enabling maximum code reuse while maintaining 100% type safety without resorting to `any`.\n\nWithout Generics:\n`function identity(arg: any): any` loses all type information (passing a string returns `any`, losing string autocomplete and safety).\n\nWith Generics:\n`function identity<T>(arg: T): T` captures the exact type passed by the caller and returns it identically.\n\nGeneric Constraints (`extends`):\nOften, generic code requires the type parameter to satisfy certain minimum criteria (e.g. having an `.id` property). Using `T extends Constraint` restricts accepted types:\n\n```typescript\ninterface Identifiable {\n  id: string;\n}\n\nfunction findById<T extends Identifiable>(items: T[], targetId: string): T | undefined {\n  return items.find(item => item.id === targetId);\n}\n```\nHere, `T` can be any object (User, Order, Product), but the compiler guarantees that `item.id` is safe to read.\n\nThe `keyof` Operator:\n`keyof T` produces a union of all property names of type `T`:\n`type UserKeys = keyof { id: string; name: string }` -> `'id' | 'name'`.\n\nCombining `keyof` with generics enables type-safe property lookups:\n`function getProperty<T, K extends keyof T>(obj: T, key: K): T[K]`\nThis guarantees that typos in property names trigger instant compiler errors!",
       "codeExamples": [
         {
-          "language": "typescript",
-          "code": "interface Skill {\n  readonly id: string;\n  name: string;\n  level?: 'beginner' | 'intermediate';\n}\nconst skill: Skill = { id: 's1', name: 'TypeScript' };\nconsole.log(skill.name);",
-          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
-          "expectedOutput": "TypeScript"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| GENERIC CONSTRAINTS & TYPE-SAFE PROPERTY LOOKUP                   |\n|                                                                   |\n|  function getProp<T, K extends keyof T>(obj: T, key: K): T[K]     |\n|                                                                   |\n|  const user = { id: \"U1\", age: 30 };                              |\n|                                                                   |\n|  getProp(user, \"age\")  ===> Returns number (Safe & autocompleted!)|\n|  getProp(user, \"typo\") ===> COMPILER ERROR: \"typo\" is not in      |\n|                             keyof { id: string; age: number }     |\n+-------------------------------------------------------------------+",
+          "explanation": "Generic constraints restrict type parameters, while keyof ensures keys exist on the target object.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "Object types document required fields and their value types."
+        "Generics capture and propagate types dynamically without losing type information.",
+        "Use 'T extends Shape' to constrain generics to types containing required properties.",
+        "Combine 'K extends keyof T' and indexed access 'T[K]' for 100% type-safe property getters."
       ],
       "commonMistakes": [
-        "a general string loses exhaustiveness checking",
-        "a type assertion is not runtime evidence"
+        "Over-complicating signatures with unnecessary generics when a plain interface parameter suffices.",
+        "Using 'any' inside generic implementations, breaking type propagation to callers."
       ]
     },
     {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
-      "codeExamples": [],
+      "id": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio-sec-2",
+      "heading": "2. Production-Grade In-Memory Generic Repository",
+      "content": "Enterprise data access layers frequently implement the Repository Pattern. Authoring a generic repository class allows teams to share CRUD logic across dozens of database entities while guaranteeing type-safe returns.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "interface BaseEntity {\n  id: string;\n  createdAt: Date;\n}\n\nclass InMemoryRepository<T extends BaseEntity> {\n  private items = new Map<string, T>();\n\n  save(entity: T): T {\n    this.items.set(entity.id, entity);\n    return entity;\n  }\n\n  findById(id: string): T | undefined {\n    return this.items.get(id);\n  }\n\n  findByProperty<K extends keyof T>(key: K, value: T[K]): T[] {\n    const results: T[] = [];\n    for (const item of this.items.values()) {\n      if (item[key] === value) {\n        results.push(item);\n      }\n    }\n    return results;\n  }\n}\n\n// Verification with Domain Entity\ninterface Customer extends BaseEntity {\n  email: string;\n  tier: \"gold\" | \"standard\";\n}\n\nconst customerRepo = new InMemoryRepository<Customer>();\ncustomerRepo.save({\n  id: \"cust_101\",\n  email: \"sarah@careertwin.ai\",\n  tier: \"gold\",\n  createdAt: new Date()\n});\n\n// Type-safe lookup: key 'tier' accepts only 'gold' | 'standard'!\nconst goldUsers = customerRepo.findByProperty(\"tier\", \"gold\");\nconsole.log(\"Found customer:\", goldUsers[0]?.email);",
+          "explanation": "Demonstrates a generic entity repository with constraints on BaseEntity and type-safe property filtering via keyof T and T[K].",
+          "expectedOutput": "Found customer: sarah@careertwin.ai"
+        }
+      ],
       "keyPoints": [
-        "Object types document required fields and their value types."
+        "T extends BaseEntity guarantees that any stored object contains .id and .createdAt.",
+        "findByProperty prevents querying on invalid property names or mismatched value types at compile time."
       ],
       "commonMistakes": [
-        "a general string loses exhaustiveness checking",
-        "a type assertion is not runtime evidence"
+        "Allowing generic types to fall back to 'any' by omitting explicit constraints."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-ex-1",
+      "id": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio-ex-1",
       "type": "coding",
-      "title": "Build, check, and explain",
-      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
-      "description": "Define typed Learner and Course records, include one optional field and one readonly field, and demonstrate a compiler error for a misspelled property. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "title": "Build a Generic Result<T, E> Monad Container",
+      "objective": "Implement a generic Result container to represent successes and errors without throwing exceptions.",
+      "description": "Create a Result<T, E> discriminated union: `{ ok: true; value: T }` and `{ ok: false; error: E }`. Implement helper factory functions ok(val: T) and err(error: E), plus a map<T, U, E>(result: Result<T, E>, fn: (val: T) => U): Result<U, E> utility.",
       "instructions": [
-        "Define typed Learner and Course records, include one optional field and one readonly field, and demonstrate a compiler error for a misspelled property. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+        "Define Result<T, E> type.",
+        "Write ok<T>(value: T) and err<E>(error: E) constructor helpers.",
+        "Implement map generic transform function."
       ],
-      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "starterCode": "// Define generic Result type and helpers\ntype Result<T, E> =\n  | { ok: true; value: T }\n  | { ok: false; error: E };\n\nfunction ok<T>(value: T): Result<T, never> {\n  return { ok: true, value };\n}\n\nfunction err<E>(error: E): Result<never, E> {\n  return { ok: false, error };\n}\n\n// Implement map",
       "hints": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "`function map<T, U, E>(res: Result<T, E>, fn: (val: T) => U): Result<U, E> { if (res.ok) return ok(fn(res.value)); return res; }`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+      "solutionExplanation": "Generic Result monads replace dangerous try/catch exceptions with explicit, compiler-enforced error handling."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-kc-1",
+      "id": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio-kc-1",
       "type": "single-choice",
-      "prompt": "Which code-review warning about type inference is valid?",
+      "prompt": "What does the expression 'K extends keyof T' signify in a TypeScript generic function signature?",
       "options": [
         {
-          "id": "A",
-          "text": "reassigning an inferred string variable to a number is rejected"
+          "id": "opt-1",
+          "text": "That K is a numeric index array."
         },
         {
-          "id": "B",
-          "text": "the compiler derives a type from available expressions"
+          "id": "opt-2",
+          "text": "That K must be a valid property name (key) belonging to type T."
         },
         {
-          "id": "C",
-          "text": "rely on inference for obvious local values and annotate public boundaries"
+          "id": "opt-3",
+          "text": "That K inherits all methods from class T."
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "That K converts type T into a string."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "'keyof T' generates the union of keys of T; 'K extends keyof T' constrains K to strictly those valid key names.",
       "objectiveIds": [
-        "typescript-obj-3"
+        "typescript-obj-2"
       ]
     },
     {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-kc-2",
+      "id": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio-kc-2",
       "type": "single-choice",
-      "prompt": "Which code-review warning about strict mode is valid?",
+      "prompt": "Why is 'function wrap<T>(item: T): T' superior to 'function wrap(item: any): any'?",
       "options": [
         {
-          "id": "A",
-          "text": "disabling strict can hide null and implicit-any defects"
+          "id": "opt-1",
+          "text": "Generics compile directly into C++ structs."
         },
         {
-          "id": "B",
-          "text": "strict enables a coordinated set of stronger checks"
+          "id": "opt-2",
+          "text": "Generics preserve the specific input type, retaining autocomplete and type validation for the caller."
         },
         {
-          "id": "C",
-          "text": "enable strict in tsconfig for new application code"
+          "id": "opt-3",
+          "text": "Generics make the function run asynchronously."
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Generics encrypt the input parameter in memory."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "objectiveIds": [
-        "typescript-obj-4"
-      ]
-    },
-    {
-      "id": "mod-2-typescript-beginner-module-2-l1-object-types-interfaces-and-optional-pro-kc-3",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about annotations is valid?",
-      "options": [
-        {
-          "id": "A",
-          "text": "annotations do not convert values at runtime"
-        },
-        {
-          "id": "B",
-          "text": "annotations state an expected compile-time type"
-        },
-        {
-          "id": "C",
-          "text": "annotate function boundaries when the contract should remain stable"
-        },
-        {
-          "id": "D",
-          "text": "It is valid only in class declarations"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "'any' silences the compiler and discards type tracking, whereas generics capture and propagate the exact type forward.",
       "objectiveIds": [
         "typescript-obj-3"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Object Types, Interfaces, and Optional Properties in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Generics provide reusable, type-safe abstractions. Constrain generics with 'extends' and combine with 'keyof' for complete property safety.",
   "videoResources": [
     {
-      "id": "vid-typescript-main",
-      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "id": "res-typescript-primary",
+      "title": "TypeScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "channelOrAuthor": "freeCodeCamp / Total TypeScript",
+      "url": "https://www.youtube.com/watch?v=gieEQFIfgYc",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for TypeScript.",
-      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of TypeScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for TypeScript.",
       "learningObjectivesSupported": [
-        "typescript-obj-3"
+        "typescript-obj-1",
+        "typescript-obj-2",
+        "typescript-obj-3",
+        "typescript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Object Types, Interfaces, and Optional Properties",
-        "Typed Arrays and Function Contracts"
+        "TypeScript Architecture, Type Erasure & Structural Typing",
+        "Type Inference, Narrowing & Discriminated Unions",
+        "Generics, Constraints & Polymorphic Function Signatures",
+        "Mapped Types, Keyof & Essential Utility Types",
+        "Conditional Types, Infer Keyword & Template Literal Types",
+        "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "TypeScript Handbook & Official Docs",
+      "title": "Official TypeScript Handbook & Language Specification",
       "url": "https://www.typescriptlang.org/docs/",
-      "description": "Official reference documentation for TypeScript."
+      "description": "Authoritative official technical reference for TypeScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using TypeScript",
-    "Automated software quality verification and debugging"
+    "Prisma ORM generating strictly typed client query methods based on database schema models.",
+    "TanStack Query (React Query) capturing API response types dynamically in query hooks."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.278Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.725Z"
 }

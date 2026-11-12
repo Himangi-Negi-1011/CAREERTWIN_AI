@@ -1,226 +1,197 @@
 {
-  "lessonId": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts",
+  "lessonId": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ",
   "skillName": "TypeScript",
   "moduleId": "mod-2-typescript-beginner-module-2",
-  "title": "Typed Arrays and Function Contracts",
-  "summary": "Use typed arrays, tuples, parameter and return types, optional/default parameters, callbacks, and overload-free union contracts.",
+  "title": "Mapped Types, Keyof & Essential Utility Types",
+  "summary": "Master mapped types ([K in keyof T]), index access types, and built-in utility types: Partial, Required, Readonly, Pick, Omit, Record.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the TypeScript behavior taught in Typed Arrays and Function Contracts",
-    "Use strict compiler evidence and runtime tests to verify the contract"
+    "Deconstruct and implement built-in utility types (Partial, Pick, Omit, Record) using mapped type syntax",
+    "Construct custom mapped types that enforce immutability or transform property types systematically"
   ],
   "objectiveIds": [
-    "typescript-obj-3",
-    "typescript-obj-4"
+    "typescript-obj-2",
+    "typescript-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Generics and keyof fundamentals"
   ],
   "sections": [
     {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-sec-1",
-      "heading": "Core model",
-      "content": "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types. Function parameter types protect callers and explicit return types protect the implementation's contract. Optional parameters come after required ones; default parameters already behave as optional to callers. Callback types describe both inputs and outputs, enabling methods such as `map` to infer results. Prefer a union parameter when behavior and return type are the same for every member; overloads are useful only when input forms imply meaningfully different output types.",
-      "codeExamples": [],
-      "keyPoints": [
-        "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
-      ],
-      "commonMistakes": [
-        "optional does not mean every value type is accepted",
-        "readonly is compile-time protection, not deep runtime freezing"
-      ]
-    },
-    {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-sec-2",
-      "heading": "Worked TypeScript example",
-      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "id": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ-sec-1",
+      "heading": "1. Mapped Types Syntax & Built-in Utility Architecture",
+      "content": "Mapped types allow you to create new types based on existing types by iterating over their properties—similar to `Array.prototype.map()`, but for type definitions.\n\nMapped Type Syntax:\n`type Mapped<T> = { [K in keyof T]: TransformedType };`\n\nHow Built-in Utility Types are Implemented Under the Hood:\n1. `Partial<T>`: Makes all properties optional (`?` modifier):\n`type Partial<T> = { [K in keyof T]?: T[K] };`\n2. `Required<T>`: Removes optionality (`-?` modifier):\n`type Required<T> = { [K in keyof T]-?: T[K] };`\n3. `Readonly<T>`: Freezes all properties (`readonly` modifier):\n`type Readonly<T> = { readonly [K in keyof T]: T[K] };`\n4. `Record<K, T>`: Creates a dictionary mapping keys `K` to value type `T`:\n`type Record<K extends keyof any, T> = { [P in K]: T };`\n5. `Pick<T, K>`: Extracts a subset of properties from `T`:\n`type Pick<T, K extends keyof T> = { [P in K]: T[P] };`\n6. `Omit<T, K>`: Constructs a type with all properties except `K`:\n`type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;`\n\nModifiers:\n- `+readonly` or `-readonly` adds or strips immutability.\n- `+?` or `-?` adds or strips optionality.",
       "codeExamples": [
         {
-          "language": "typescript",
-          "code": "function average(values: readonly number[]): number {\n  if (values.length === 0) throw new Error('values required');\n  return values.reduce((sum, value) => sum + value, 0) / values.length;\n}\nconsole.log(average([70, 82, 91]));",
-          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
-          "expectedOutput": "81"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| MAPPED TYPES & UTILITY TRANSFORMATIONS                            |\n|                                                                   |\n|  Original Type:                                                   |\n|  interface User { id: string; email: string; age: number; }       |\n|                                                                   |\n|  [Partial<User>]    -> { id?: string; email?: string; age?: ... } |\n|  [Readonly<User>]   -> { readonly id: str; readonly email: ... }  |\n|  [Pick<User, \"id\">] -> { id: string }                             |\n|  [Omit<User, \"age\">]-> { id: string; email: string }              |\n|                                                                   |\n|  Iterates through keys [K in keyof T] and transforms values!      |\n+-------------------------------------------------------------------+",
+          "explanation": "Mapped types iterate through the keys of an existing type, applying modifiers or transforming value types.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
+        "Mapped types iterate over keys using the syntax [K in keyof T].",
+        "Modifiers (+/- readonly, +/- ?) add or remove property flags.",
+        "Utility types (Pick, Omit, Partial, Record) are standard mapped types built into TypeScript."
       ],
       "commonMistakes": [
-        "optional does not mean every value type is accepted",
-        "readonly is compile-time protection, not deep runtime freezing"
+        "Attempting to use 'Omit' with keys that do not exist, which compiles silently unless constrained.",
+        "Over-using Partial<T> for update payloads, allowing accidental clearing of mandatory identifiers."
       ]
     },
     {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
-      "codeExamples": [],
+      "id": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ-sec-2",
+      "heading": "2. Production Entity Patch and Dictionary Utilities",
+      "content": "In RESTful APIs, `PATCH /users/:id` accepts partial updates, but must NEVER allow the user to modify immutable fields like `id` or `createdAt`. Combining `Omit` and `Partial` enforces this invariant at compile time.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "interface UserEntity {\n  id: string;\n  createdAt: Date;\n  displayName: string;\n  avatarUrl: string;\n  bio: string;\n}\n\n// Update payload: only mutable fields can be passed, and all are optional\ntype UserUpdatePayload = Partial<Omit<UserEntity, \"id\" | \"createdAt\">>;\n\nfunction updateUser(userId: string, updates: UserUpdatePayload): string {\n  // Safe update logic\n  const keys = Object.keys(updates);\n  return `Updated user ${userId} fields: ${keys.join(\", \")}`;\n}\n\n// VALID: updating bio and avatar\nconsole.log(updateUser(\"usr_44\", { bio: \"Senior Systems Engineer\", avatarUrl: \"https://avatar.png\" }));\n\n// COMPILER ERROR (Prevented!):\n// updateUser(\"usr_44\", { id: \"hacked_id\" }); // TS Error: 'id' does not exist in type UserUpdatePayload",
+          "explanation": "Demonstrates combining Omit and Partial to enforce strict API security invariants at compile time.",
+          "expectedOutput": "Updated user usr_44 fields: bio, avatarUrl"
+        }
+      ],
       "keyPoints": [
-        "An array type such as `number[]` constrains every element, while a tuple records a fixed sequence of positions with distinct types."
+        "Omit<T, 'id'> strips immutable properties before Partial makes remaining fields optional.",
+        "Record<string, T> is preferred over index signatures ({ [key: string]: T }) for dictionary maps."
       ],
       "commonMistakes": [
-        "optional does not mean every value type is accepted",
-        "readonly is compile-time protection, not deep runtime freezing"
+        "Using Partial<UserEntity> directly for updates, which accidentally permits updating immutable primary keys."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-ex-1",
+      "id": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ-ex-1",
       "type": "coding",
-      "title": "Build, check, and explain",
-      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
-      "description": "Implement typed functions that filter completed lessons and calculate an average. Accept readonly arrays, reject empty input explicitly, and add compile-time misuse examples as comments. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "title": "Construct a DeepReadonly Mapped Type",
+      "objective": "Write a recursive mapped type DeepReadonly<T> that freezes nested object structures.",
+      "description": "Standard Readonly<T> is shallow: nested objects remain mutable. Implement a recursive mapped type DeepReadonly<T> that applies readonly recursively to all nested properties and arrays.",
       "instructions": [
-        "Implement typed functions that filter completed lessons and calculate an average. Accept readonly arrays, reject empty input explicitly, and add compile-time misuse examples as comments. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+        "Define type DeepReadonly<T>.",
+        "Use conditional check `T extends Function | boolean | number | string | symbol ? T : ...`.",
+        "Recursively map `{ readonly [K in keyof T]: DeepReadonly<T[K]> }`."
       ],
-      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "starterCode": "// Implement recursive DeepReadonly mapped type\ntype DeepReadonly<T> = {\n  // Recursive implementation\n};",
       "hints": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "Check if `T extends object`; if so, recursively map `DeepReadonly<T[K]>`, else return `T`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+      "solutionExplanation": "Recursive mapped types traverse nested object trees at compile time, guaranteeing deep immutability."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-kc-1",
+      "id": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ-kc-1",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes type inference in TypeScript?",
+      "prompt": "What does the '-?' modifier do in a TypeScript mapped type?",
       "options": [
         {
-          "id": "A",
-          "text": "the compiler derives a type from available expressions"
+          "id": "opt-1",
+          "text": "It makes all properties optional."
         },
         {
-          "id": "B",
-          "text": "reassigning an inferred string variable to a number is rejected"
+          "id": "opt-2",
+          "text": "It removes optionality, making all properties strictly required."
         },
         {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
+          "id": "opt-3",
+          "text": "It removes null values from union types."
         },
         {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
+          "id": "opt-4",
+          "text": "It reverses the order of properties."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "the compiler derives a type from available expressions. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "The '-?' modifier removes optionality from each property, converting optional fields (x?) into mandatory fields.",
       "objectiveIds": [
-        "typescript-obj-3"
+        "typescript-obj-2"
       ]
     },
     {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-kc-2",
+      "id": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ-kc-2",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes strict mode in TypeScript?",
+      "prompt": "Which utility type should you choose to create an object type mapping a fixed set of HTTP status codes to string descriptions?",
       "options": [
         {
-          "id": "A",
-          "text": "strict enables a coordinated set of stronger checks"
+          "id": "opt-1",
+          "text": "Pick<HttpStatus, string>"
         },
         {
-          "id": "B",
-          "text": "disabling strict can hide null and implicit-any defects"
+          "id": "opt-2",
+          "text": "Record<HttpStatus, string>"
         },
         {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
+          "id": "opt-3",
+          "text": "Partial<HttpStatus>"
         },
         {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
+          "id": "opt-4",
+          "text": "Exclude<HttpStatus, string>"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "strict enables a coordinated set of stronger checks. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "objectiveIds": [
-        "typescript-obj-4"
-      ]
-    },
-    {
-      "id": "mod-2-typescript-beginner-module-2-l2-typed-arrays-and-function-contracts-kc-3",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes annotations in TypeScript?",
-      "options": [
-        {
-          "id": "A",
-          "text": "annotations state an expected compile-time type"
-        },
-        {
-          "id": "B",
-          "text": "annotations do not convert values at runtime"
-        },
-        {
-          "id": "C",
-          "text": "It changes the JavaScript runtime automatically"
-        },
-        {
-          "id": "D",
-          "text": "It requires a paid compiler plugin"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "annotations state an expected compile-time type. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Record<K, T> creates an object type whose property keys are K and property values are T.",
       "objectiveIds": [
         "typescript-obj-3"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Typed Arrays and Function Contracts in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Mapped types iterate over keys to transform structures. Built-in utility types (Partial, Required, Readonly, Pick, Omit, Record) form the backbone of modern TypeScript API modeling.",
   "videoResources": [
     {
-      "id": "vid-typescript-main",
-      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "id": "res-typescript-primary",
+      "title": "TypeScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "channelOrAuthor": "freeCodeCamp / Total TypeScript",
+      "url": "https://www.youtube.com/watch?v=gieEQFIfgYc",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for TypeScript.",
-      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of TypeScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for TypeScript.",
       "learningObjectivesSupported": [
-        "typescript-obj-3"
+        "typescript-obj-1",
+        "typescript-obj-2",
+        "typescript-obj-3",
+        "typescript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Object Types, Interfaces, and Optional Properties",
-        "Typed Arrays and Function Contracts"
+        "TypeScript Architecture, Type Erasure & Structural Typing",
+        "Type Inference, Narrowing & Discriminated Unions",
+        "Generics, Constraints & Polymorphic Function Signatures",
+        "Mapped Types, Keyof & Essential Utility Types",
+        "Conditional Types, Infer Keyword & Template Literal Types",
+        "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "TypeScript Handbook & Official Docs",
+      "title": "Official TypeScript Handbook & Language Specification",
       "url": "https://www.typescriptlang.org/docs/",
-      "description": "Official reference documentation for TypeScript."
+      "description": "Authoritative official technical reference for TypeScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using TypeScript",
-    "Automated software quality verification and debugging"
+    "ORM database clients generating insert, update, and query argument types from base table schemas.",
+    "State management libraries creating strictly typed selectors and action dispatchers."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.278Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.725Z"
 }

@@ -1,203 +1,165 @@
 {
-  "id": "phase-typescript-beginner-mod-2",
+  "id": "phase-typescript-mod-2-typescript-beginner-module-2-assessment",
   "skillName": "TypeScript",
   "skillSlug": "typescript",
   "level": "beginner",
   "testNumber": 2,
   "isPhaseAssessment": true,
   "moduleId": "mod-2-typescript-beginner-module-2",
-  "moduleTitle": "Typed Objects, Arrays, and Functions",
-  "title": "Typed Objects, Arrays, and Functions Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Typed Objects, Arrays, and Functions.",
+  "moduleTitle": "Module 2: Generic Engineering & Type Transformation",
+  "title": "TypeScript — Module 2: Generic Engineering & Type Transformation Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Generics, Constraints & Polymorphic Function Signatures and Mapped Types, Keyof & Essential Utility Types.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "any",
-    "literal unions",
-    "narrowing",
-    "interfaces",
-    "optional properties"
+    "Generics, Constraints & Polymorphic Function Signatures",
+    "Mapped Types, Keyof & Essential Utility Types"
   ],
   "questions": [
     {
-      "id": "phase-typescript-beginner-mod-2-q1",
+      "id": "phase-typescript-mod-2-typescript-beginner-module-2-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Generic Engineering & Type Transformation Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about any is valid?",
+      "prompt": "What does the expression 'K extends keyof T' signify in a TypeScript generic function signature?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "any can propagate unsound operations through otherwise typed code"
+          "id": "opt-1",
+          "text": "That K is a numeric index array."
         },
         {
-          "id": "B",
-          "text": "any disables most useful type checking for that value"
+          "id": "opt-2",
+          "text": "That K must be a valid property name (key) belonging to type T."
         },
         {
-          "id": "C",
-          "text": "isolate unavoidable any at a boundary and replace it quickly"
+          "id": "opt-3",
+          "text": "That K inherits all methods from class T."
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "That K converts type T into a string."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "any can propagate unsound operations through otherwise typed code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "'keyof T' generates the union of keys of T; 'K extends keyof T' constrains K to strictly those valid key names.",
       "difficulty": "beginner",
-      "topic": "any",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+      "topic": "Generics, Constraints & Polymorphic Function Signatures",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio",
+      "recommendedLessonTitle": "Generics, Constraints & Polymorphic Function Signatures"
     },
     {
-      "id": "phase-typescript-beginner-mod-2-q2",
+      "id": "phase-typescript-mod-2-typescript-beginner-module-2-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Generic Engineering & Type Transformation Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about literal unions is valid?",
+      "prompt": "Why is 'function wrap<T>(item: T): T' superior to 'function wrap(item: any): any'?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a general string loses exhaustiveness checking"
+          "id": "opt-1",
+          "text": "Generics compile directly into C++ structs."
         },
         {
-          "id": "B",
-          "text": "literal unions restrict values to named constants"
+          "id": "opt-2",
+          "text": "Generics preserve the specific input type, retaining autocomplete and type validation for the caller."
         },
         {
-          "id": "C",
-          "text": "model finite statuses with a literal union"
+          "id": "opt-3",
+          "text": "Generics make the function run asynchronously."
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Generics encrypt the input parameter in memory."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a general string loses exhaustiveness checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "'any' silences the compiler and discards type tracking, whereas generics capture and propagate the exact type forward.",
       "difficulty": "beginner",
-      "topic": "literal unions",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+      "topic": "Generics, Constraints & Polymorphic Function Signatures",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1-generics-constraints-polymorphic-functio",
+      "recommendedLessonTitle": "Generics, Constraints & Polymorphic Function Signatures"
     },
     {
-      "id": "phase-typescript-beginner-mod-2-q3",
+      "id": "phase-typescript-mod-2-typescript-beginner-module-2-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Generic Engineering & Type Transformation Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about narrowing is valid?",
+      "prompt": "What does the '-?' modifier do in a TypeScript mapped type?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a type assertion is not runtime evidence"
+          "id": "opt-1",
+          "text": "It makes all properties optional."
         },
         {
-          "id": "B",
-          "text": "narrowing refines possibilities using runtime evidence"
+          "id": "opt-2",
+          "text": "It removes optionality, making all properties strictly required."
         },
         {
-          "id": "C",
-          "text": "use typeof or discriminants before member-specific access"
+          "id": "opt-3",
+          "text": "It removes null values from union types."
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "It reverses the order of properties."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a type assertion is not runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "The '-?' modifier removes optionality from each property, converting optional fields (x?) into mandatory fields.",
       "difficulty": "beginner",
-      "topic": "narrowing",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+      "topic": "Mapped Types, Keyof & Essential Utility Types",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ",
+      "recommendedLessonTitle": "Mapped Types, Keyof & Essential Utility Types"
     },
     {
-      "id": "phase-typescript-beginner-mod-2-q4",
+      "id": "phase-typescript-mod-2-typescript-beginner-module-2-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 2: Generic Engineering & Type Transformation Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about interfaces is valid?",
+      "prompt": "Which utility type should you choose to create an object type mapping a fixed set of HTTP status codes to string descriptions?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "an interface disappears from emitted JavaScript"
+          "id": "opt-1",
+          "text": "Pick<HttpStatus, string>"
         },
         {
-          "id": "B",
-          "text": "interfaces describe object contracts and support extension"
+          "id": "opt-2",
+          "text": "Record<HttpStatus, string>"
         },
         {
-          "id": "C",
-          "text": "use an interface for a named extendable object shape"
+          "id": "opt-3",
+          "text": "Partial<HttpStatus>"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Exclude<HttpStatus, string>"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "an interface disappears from emitted JavaScript. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Record<K, T> creates an object type whose property keys are K and property values are T.",
       "difficulty": "beginner",
-      "topic": "interfaces",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
-    },
-    {
-      "id": "phase-typescript-beginner-mod-2-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about optional properties is valid?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "optional does not mean every value type is accepted"
-        },
-        {
-          "id": "B",
-          "text": "an optional property may be absent"
-        },
-        {
-          "id": "C",
-          "text": "check or default an optional value before use"
-        },
-        {
-          "id": "D",
-          "text": "It is valid only in class declarations"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "optional does not mean every value type is accepted. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "difficulty": "beginner",
-      "topic": "optional properties",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l1",
-      "recommendedLessonTitle": "Object Types, Interfaces, and Optional Properties"
+      "topic": "Mapped Types, Keyof & Essential Utility Types",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-typescript-beginner-module-2-l2-mapped-types-keyof-essential-utility-typ",
+      "recommendedLessonTitle": "Mapped Types, Keyof & Essential Utility Types"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.279Z",
-  "updatedAt": "2026-11-01T15:37:41.279Z"
+  "createdAt": "2026-11-12T03:01:18.725Z",
+  "updatedAt": "2026-11-12T03:01:18.725Z"
 }

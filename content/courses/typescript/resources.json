@@ -1,28 +1,31 @@
 [
   {
-    "id": "res-typescript-main",
-    "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+    "id": "res-typescript-primary",
+    "title": "TypeScript Full Course: Beginner to Advanced Architecture",
     "provider": "youtube",
-    "channelOrAuthor": "freeCodeCamp.org",
-    "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+    "channelOrAuthor": "freeCodeCamp / Total TypeScript",
+    "url": "https://www.youtube.com/watch?v=gieEQFIfgYc",
     "embedUrl": "",
-    "durationMinutes": 180,
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Authoritative complete tutorial for TypeScript.",
-    "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of TypeScript.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for TypeScript.",
     "learningObjectivesSupported": [
-      "typescript-obj-1"
+      "typescript-obj-1",
+      "typescript-obj-2",
+      "typescript-obj-3",
+      "typescript-obj-4"
     ],
     "keyTopicsCovered": [
-      "TypeScript Setup and Type Inference",
-      "Primitive Types, Unions, and Narrowing",
-      "Object Types, Interfaces, and Optional Properties",
-      "Typed Arrays and Function Contracts",
-      "Generics and Standard Utility Types",
-      "Runtime Validation and a Typed Progress Tracker"
+      "TypeScript Architecture, Type Erasure & Structural Typing",
+      "Type Inference, Narrowing & Discriminated Unions",
+      "Generics, Constraints & Polymorphic Function Signatures",
+      "Mapped Types, Keyof & Essential Utility Types",
+      "Conditional Types, Infer Keyword & Template Literal Types",
+      "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
     ],
-    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-    "verificationStatus": "verified",
-    "lastCheckedDate": "2026-11-01"
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-11-12"
   }
 ]

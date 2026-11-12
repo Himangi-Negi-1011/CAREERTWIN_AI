@@ -1,203 +1,165 @@
 {
-  "id": "phase-typescript-beginner-mod-1",
+  "id": "phase-typescript-mod-1-typescript-beginner-module-1-assessment",
   "skillName": "TypeScript",
   "skillSlug": "typescript",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
   "moduleId": "mod-1-typescript-beginner-module-1",
-  "moduleTitle": "Compiler, Values, and Narrowing",
-  "title": "Compiler, Values, and Narrowing Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Compiler, Values, and Narrowing.",
+  "moduleTitle": "Module 1: Structural Typing, Inference & Discriminated Unions",
+  "title": "TypeScript — Module 1: Structural Typing, Inference & Discriminated Unions Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across TypeScript Architecture, Type Erasure & Structural Typing and Type Inference, Narrowing & Discriminated Unions.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "type inference",
-    "strict mode",
-    "annotations",
-    "union types",
-    "unknown"
+    "TypeScript Architecture, Type Erasure & Structural Typing",
+    "Type Inference, Narrowing & Discriminated Unions"
   ],
   "questions": [
     {
-      "id": "phase-typescript-beginner-mod-1-q1",
+      "id": "phase-typescript-mod-1-typescript-beginner-module-1-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Structural Typing, Inference & Discriminated Unions Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of type inference?",
+      "prompt": "What happens to TypeScript type annotations (interfaces, types, generics) after compilation?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "rely on inference for obvious local values and annotate public boundaries"
+          "id": "opt-1",
+          "text": "They are converted into hidden V8 metadata classes."
         },
         {
-          "id": "B",
-          "text": "reassigning an inferred string variable to a number is rejected"
+          "id": "opt-2",
+          "text": "They are completely removed (erased), leaving clean standard JavaScript."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "They are serialized into JSON schema files."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "They are compiled into WebAssembly validation hooks."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Type erasure ensures that TypeScript adds zero runtime overhead; all type constructs are stripped out by the compiler.",
       "difficulty": "beginner",
-      "topic": "type inference",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "TypeScript Architecture, Type Erasure & Structural Typing",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1-typescript-architecture-type-erasure-str",
+      "recommendedLessonTitle": "TypeScript Architecture, Type Erasure & Structural Typing"
     },
     {
-      "id": "phase-typescript-beginner-mod-1-q2",
+      "id": "phase-typescript-mod-1-typescript-beginner-module-1-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Structural Typing, Inference & Discriminated Unions Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of strict mode?",
+      "prompt": "Why does 'const p: { x: number } = { x: 10, y: 20 };' trigger a TypeScript compiler error?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "enable strict in tsconfig for new application code"
+          "id": "opt-1",
+          "text": "Because TypeScript does not allow numbers higher than 15."
         },
         {
-          "id": "B",
-          "text": "disabling strict can hide null and implicit-any defects"
+          "id": "opt-2",
+          "text": "Because direct object literals undergo excess property checking to detect accidental typos and invalid keys."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "Because variables must be declared with 'let'."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "Because TypeScript requires semicolons."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Excess property checks flag unknown keys on object literals to prevent developer typos and unintended parameter pollution.",
       "difficulty": "beginner",
-      "topic": "strict mode",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "TypeScript Architecture, Type Erasure & Structural Typing",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1-typescript-architecture-type-erasure-str",
+      "recommendedLessonTitle": "TypeScript Architecture, Type Erasure & Structural Typing"
     },
     {
-      "id": "phase-typescript-beginner-mod-1-q3",
+      "id": "phase-typescript-mod-1-typescript-beginner-module-1-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Structural Typing, Inference & Discriminated Unions Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of annotations?",
+      "prompt": "What is the purpose of assigning an unhandled branch to a variable of type 'never' in a switch statement?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "annotate function boundaries when the contract should remain stable"
+          "id": "opt-1",
+          "text": "It pauses execution until an asynchronous Promise resolves."
         },
         {
-          "id": "B",
-          "text": "annotations do not convert values at runtime"
+          "id": "opt-2",
+          "text": "It provides a compile-time check ensuring that all possible variants of a union type have been handled exhaustively."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "It instructs the V8 garbage collector to free the variable immediately."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "It allows TypeScript to compile to WebAssembly."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "If any union variant is omitted from the switch statement, it falls through to the default branch where assigning it to 'never' causes a compiler error.",
       "difficulty": "beginner",
-      "topic": "annotations",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Type Inference, Narrowing & Discriminated Unions",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u",
+      "recommendedLessonTitle": "Type Inference, Narrowing & Discriminated Unions"
     },
     {
-      "id": "phase-typescript-beginner-mod-1-q4",
+      "id": "phase-typescript-mod-1-typescript-beginner-module-1-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 1: Structural Typing, Inference & Discriminated Unions Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of union types?",
+      "prompt": "What is a User-Defined Type Predicate in TypeScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "narrow a union before using member-specific operations"
+          "id": "opt-1",
+          "text": "A function that returns a boolean and has a return type signature in the form 'param is Type'."
         },
         {
-          "id": "B",
-          "text": "calling a string-only method on string | number is unsafe"
+          "id": "opt-2",
+          "text": "A regex pattern that validates email strings."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "A decorator that checks database permissions."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "A tsconfig setting that enables strict null checks."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "narrow a union before using member-specific operations. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Type predicates (e.g., 'pet is Dog') inform the compiler's control flow analysis that if the function returns true, the parameter can be safely narrowed to the specified type.",
       "difficulty": "beginner",
-      "topic": "union types",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
-    },
-    {
-      "id": "phase-typescript-beginner-mod-1-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which is the safest beginner application of unknown?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "represent untrusted external data as unknown"
-        },
-        {
-          "id": "B",
-          "text": "casting unknown directly avoids checking but does not make data safe"
-        },
-        {
-          "id": "C",
-          "text": "Replace the type with any"
-        },
-        {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "represent untrusted external data as unknown. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "difficulty": "beginner",
-      "topic": "unknown",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Type Inference, Narrowing & Discriminated Unions",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u",
+      "recommendedLessonTitle": "Type Inference, Narrowing & Discriminated Unions"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.279Z",
-  "updatedAt": "2026-11-01T15:37:41.279Z"
+  "createdAt": "2026-11-12T03:01:18.725Z",
+  "updatedAt": "2026-11-12T03:01:18.725Z"
 }

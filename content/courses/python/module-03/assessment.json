@@ -1,200 +1,165 @@
 {
-  "id": "phase-python-beginner-mod-3",
+  "id": "phase-python-mod-3-python-beginner-module-3-assessment",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
   "testNumber": 3,
   "isPhaseAssessment": true,
   "moduleId": "mod-3-python-beginner-module-3",
-  "moduleTitle": "Functions, Collections, and a Project",
-  "title": "Functions, Collections, and a Project Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Functions, Collections, and a Project.",
+  "moduleTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification",
+  "title": "Python — Module 3: Metaprogramming, OOP Architecture & Automated Verification Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Closures, First-Class Functions & Decorator Metaprogramming and OOP Architecture, Dunder Protocols & Automated Pytest Suites.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 8,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Functions, Parameters, and Return Values",
-    "Collections and a Small Progress Tracker"
+    "Closures, First-Class Functions & Decorator Metaprogramming",
+    "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
   ],
   "questions": [
     {
-      "id": "phase-python-beginner-mod-3-q1",
+      "id": "phase-python-mod-3-python-beginner-module-3-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes break in Python?",
+      "prompt": "Why is '@functools.wraps(func)' recommended when writing decorators?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "break exits the nearest enclosing loop"
+          "id": "opt-1",
+          "text": "It accelerates bytecode execution by caching return values in C memory."
         },
         {
-          "id": "B",
-          "text": "break does not exit an enclosing function unless followed by return"
+          "id": "opt-2",
+          "text": "It copies attributes such as __name__, __doc__, and __module__ from the original function to the wrapper."
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "It automatically wraps all exceptions in a try/finally block."
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "It restricts the function from being called asynchronously."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "break exits the nearest enclosing loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Without @functools.wraps, decorated functions lose their original name and docstring, showing up as 'wrapper' in tracebacks and logs.",
       "difficulty": "beginner",
-      "topic": "11",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+      "topic": "Closures, First-Class Functions & Decorator Metaprogramming",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator",
+      "recommendedLessonTitle": "Closures, First-Class Functions & Decorator Metaprogramming"
     },
     {
-      "id": "phase-python-beginner-mod-3-q2",
+      "id": "phase-python-mod-3-python-beginner-module-3-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes continue in Python?",
+      "prompt": "According to Python's LEGB rule, where does Python search for a variable first?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "continue skips to the next iteration"
+          "id": "opt-1",
+          "text": "Global scope"
         },
         {
-          "id": "B",
-          "text": "placing required state updates after continue can prevent progress"
+          "id": "opt-2",
+          "text": "Built-in scope"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Local scope"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Enclosing scope"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "continue skips to the next iteration. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "LEGB resolves in order: Local, Enclosing, Global, and finally Built-in.",
       "difficulty": "beginner",
-      "topic": "12",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+      "topic": "Closures, First-Class Functions & Decorator Metaprogramming",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l1-closures-first-class-functions-decorator",
+      "recommendedLessonTitle": "Closures, First-Class Functions & Decorator Metaprogramming"
     },
     {
-      "id": "phase-python-beginner-mod-3-q3",
+      "id": "phase-python-mod-3-python-beginner-module-3-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes accumulators in Python?",
+      "prompt": "What is the fundamental invariant required when implementing both '__eq__' and '__hash__'?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "an accumulator is initialized before and updated inside a loop"
+          "id": "opt-1",
+          "text": "Two objects that compare equal (a == b) must return identical hash values (hash(a) == hash(b))."
         },
         {
-          "id": "B",
-          "text": "resetting the accumulator inside the loop loses earlier work"
+          "id": "opt-2",
+          "text": "Hash values must always be negative integers."
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "__hash__ must return the memory address id() of the object."
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Equal objects must have different hash values to prevent dictionary collisions."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "an accumulator is initialized before and updated inside a loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "If two objects are equal according to __eq__, their __hash__ values MUST be identical so hash tables (dictionaries and sets) can find them in the same bucket.",
       "difficulty": "beginner",
-      "topic": "13",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+      "topic": "OOP Architecture, Dunder Protocols & Automated Pytest Suites",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa",
+      "recommendedLessonTitle": "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
     },
     {
-      "id": "phase-python-beginner-mod-3-q4",
+      "id": "phase-python-mod-3-python-beginner-module-3-q5",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Module 3: Metaprogramming, OOP Architecture & Automated Verification Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes functions in Python?",
+      "prompt": "In pytest, how do you verify that a specific exception is raised by a function call?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a function call evaluates to its returned value"
+          "id": "opt-1",
+          "text": "Using 'assert function() == Exception'"
         },
         {
-          "id": "B",
-          "text": "a function with no return statement returns None"
+          "id": "opt-2",
+          "text": "Using 'with pytest.raises(ExpectedException): function()'"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "By returning false from the test function"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "By checking 'sys.last_traceback is not None'"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a function call evaluates to its returned value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "'with pytest.raises(ExpectedException):' is pytest's context manager for asserting that code raises a specific exception.",
       "difficulty": "beginner",
-      "topic": "14",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
-    },
-    {
-      "id": "phase-python-beginner-mod-3-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes return in Python?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "return ends the current function call"
-        },
-        {
-          "id": "B",
-          "text": "printing a value does not make it available to the caller"
-        },
-        {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
-        },
-        {
-          "id": "D",
-          "text": "It is available only through third-party packages"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "return ends the current function call. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "difficulty": "beginner",
-      "topic": "15",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-python-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Parameters, and Return Values"
+      "topic": "OOP Architecture, Dunder Protocols & Automated Pytest Suites",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-python-beginner-module-3-l2-oop-architecture-dunder-protocols-automa",
+      "recommendedLessonTitle": "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.180Z",
-  "updatedAt": "2026-11-01T15:37:41.180Z"
+  "createdAt": "2026-11-12T03:01:18.229Z",
+  "updatedAt": "2026-11-12T03:01:18.229Z"
 }

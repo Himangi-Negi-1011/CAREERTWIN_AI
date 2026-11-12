@@ -1,226 +1,197 @@
 {
-  "lessonId": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing",
+  "lessonId": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u",
   "skillName": "TypeScript",
   "moduleId": "mod-1-typescript-beginner-module-1",
-  "title": "Primitive Types, Unions, and Narrowing",
-  "summary": "Model values with primitive types and unions, then narrow uncertain inputs through runtime checks before using type-specific operations.",
+  "title": "Type Inference, Narrowing & Discriminated Unions",
+  "summary": "Master type inference, control-flow analysis, type guards (typeof, instanceof, in), custom type predicates, and discriminated unions.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the TypeScript behavior taught in Primitive Types, Unions, and Narrowing",
-    "Use strict compiler evidence and runtime tests to verify the contract"
+    "Perform safe type narrowing using built-in guards and user-defined type predicates (param is Type)",
+    "Model complex domain state machines using discriminated unions with exhaustive compile-time checking using never"
   ],
   "objectiveIds": [
     "typescript-obj-1",
     "typescript-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "TypeScript structural typing basics"
   ],
   "sections": [
     {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-sec-1",
-      "heading": "Core model",
-      "content": "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`. A union such as `string | number` says either representation is valid. Code must narrow the union before calling operations available to only one member. `typeof`, equality checks, `in`, and discriminant properties provide evidence the compiler can follow. Prefer `unknown` for untrusted input because it requires narrowing; `any` disables checking and lets defects spread. Literal unions such as `'planned' | 'complete'` restrict values more precisely than a general string.",
-      "codeExamples": [],
-      "keyPoints": [
-        "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
-      ],
-      "commonMistakes": [
-        "calling a string-only method on string | number is unsafe",
-        "casting unknown directly avoids checking but does not make data safe"
-      ]
-    },
-    {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-sec-2",
-      "heading": "Worked TypeScript example",
-      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "id": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u-sec-1",
+      "heading": "1. Control Flow Analysis & Discriminated Union Architecture",
+      "content": "TypeScript features a sophisticated Control Flow Analysis engine that tracks types dynamically as execution progresses through conditional branches.\n\nType Narrowing Mechanisms:\n1. `typeof` guards: Narrows primitives (`typeof x === 'string'`).\n2. `instanceof` guards: Narrows class instances (`err instanceof DatabaseError`).\n3. `in` operator: Narrows objects by property existence (`'token' in payload`).\n4. User-Defined Type Predicates: Functions returning `value is SpecificType` to perform custom validation.\n\nDiscriminated Unions (Tagged Unions):\nThe cornerstone of robust domain modeling. A discriminated union consists of multiple interface types that share a single common literal property (the 'discriminant' tag, such as `status` or `kind`).\n\n```typescript\ntype AsyncState<T> =\n  | { status: 'idle' }\n  | { status: 'loading' }\n  | { status: 'success'; data: T }\n  | { status: 'error'; error: Error };\n```\n\nWhen checking `if (state.status === 'success')`, TypeScript automatically narrows `state` to the exact variant containing `.data`. If you test every case in a switch statement, the default branch can assign the remaining state to `never`:\n`const _exhaustiveCheck: never = state;`\nIf you ever add a new variant (e.g. `{ status: 'cancelled' }`) to the union in the future, the compiler will refuse to build until you handle it in the switch statement!",
       "codeExamples": [
         {
-          "language": "typescript",
-          "code": "function formatId(id: string | number): string {\n  return typeof id === 'number' ? id.toFixed(0) : id.trim();\n}\nconsole.log(formatId(42));\nconsole.log(formatId(' CT-7 '));",
-          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
-          "expectedOutput": "42\nCT-7"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| DISCRIMINATED UNION EXHAUSTIVE CONTROL FLOW                       |\n|                                                                   |\n|  type ApiResponse =                                               |\n|    | { status: \"success\"; data: User }   (Tag: \"success\")         |\n|    | { status: \"error\"; message: string } (Tag: \"error\")          |\n|                                                                   |\n|  switch (response.status) {                                       |\n|    case \"success\":                                                |\n|      // TypeScript knows response has .data (Safe!)               |\n|      return response.data;                                        |\n|    case \"error\":                                                  |\n|      // TypeScript knows response has .message (Safe!)            |\n|      return response.message;                                     |\n|    default:                                                       |\n|      // Compile-time assertion: catches unhandled union cases!     |\n|      const _exhaustive: never = response;                         |\n|  }                                                                |\n+-------------------------------------------------------------------+",
+          "explanation": "Checking the shared tag narrows the type. The 'never' check guarantees 100% exhaustive case handling.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
+        "Control flow analysis narrows union types automatically within if/switch branches.",
+        "Discriminated unions use a common literal tag to distinguish between variants safely.",
+        "Assigning unhandled cases to 'never' in default branches creates a compile-time exhaustiveness check."
       ],
       "commonMistakes": [
-        "calling a string-only method on string | number is unsafe",
-        "casting unknown directly avoids checking but does not make data safe"
+        "Using optional properties on a single bloated object ({ data?, error? }) instead of clean discriminated unions.",
+        "Using 'as' type assertions to silence the compiler instead of allowing proper type narrowing to prove safety."
       ]
     },
     {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
-      "codeExamples": [],
+      "id": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u-sec-2",
+      "heading": "2. Production Payment State Machine with Exhaustive Check",
+      "content": "Payment processors (Stripe/PayPal) send polymorphic webhook states. Modeling webhooks as a discriminated union guarantees that developers never read missing transaction IDs on failed charges.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "// Discriminated union modeling payment lifecycle\ntype PaymentEvent =\n  | { type: \"PAYMENT_INITIATED\"; transactionId: string; amount: number }\n  | { type: \"PAYMENT_SUCCESS\"; transactionId: string; amount: number; receiptUrl: string }\n  | { type: \"PAYMENT_FAILED\"; transactionId: string; failureReason: string; retryable: boolean };\n\nfunction handlePaymentWebhook(event: PaymentEvent): string {\n  switch (event.type) {\n    case \"PAYMENT_INITIATED\":\n      return `Hold created for tx: ${event.transactionId} ($${event.amount})`;\n      \n    case \"PAYMENT_SUCCESS\":\n      // Safe: TypeScript guarantees receiptUrl exists here!\n      return `Receipt ready: ${event.receiptUrl}`;\n      \n    case \"PAYMENT_FAILED\":\n      // Safe: TypeScript guarantees failureReason exists here!\n      return `Declined: ${event.failureReason} (Retryable: ${event.retryable})`;\n      \n    default: {\n      // Exhaustiveness check: if PaymentEvent adds a new variant, this line triggers a compiler error!\n      const _exhaustiveCheck: never = event;\n      throw new Error(`Unhandled event variant: ${JSON.stringify(_exhaustiveCheck)}`);\n    }\n  }\n}\n\n// Verification\nconsole.log(handlePaymentWebhook({\n  type: \"PAYMENT_SUCCESS\",\n  transactionId: \"tx_1042\",\n  amount: 250,\n  receiptUrl: \"https://pay.careertwin.ai/rcpt/991\"\n}));",
+          "explanation": "Demonstrates complete type narrowing by tag, accessing variant-specific properties safely with an exhaustive never check.",
+          "expectedOutput": "Receipt ready: https://pay.careertwin.ai/rcpt/991"
+        }
+      ],
       "keyPoints": [
-        "TypeScript primitive types include `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, and `undefined`."
+        "Discriminated unions make illegal states unrepresentable (e.g. success cannot exist without receiptUrl).",
+        "The exhaustive 'never' check provides instant notification during refactoring when a new variant is introduced."
       ],
       "commonMistakes": [
-        "calling a string-only method on string | number is unsafe",
-        "casting unknown directly avoids checking but does not make data safe"
+        "Omitting the default never check, allowing unhandled union cases to pass silently until runtime crashes."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-ex-1",
+      "id": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u-ex-1",
       "type": "coding",
-      "title": "Build, check, and explain",
-      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
-      "description": "Write a formatter accepting string, number, or null. Narrow every case explicitly, return a string, and prove with calls that no unsafe assertion is required. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "title": "Build an Exhaustive Order Workflow Engine",
+      "objective": "Model order states using a discriminated union and implement an exhaustive transition handler.",
+      "description": "Define an OrderStatus discriminated union: PENDING (orderId), SHIPPED (orderId, trackingNumber), DELIVERED (orderId, deliveredAt), and CANCELLED (orderId, reason). Implement formatOrderStatus(status: OrderStatus): string with an exhaustive never check.",
       "instructions": [
-        "Write a formatter accepting string, number, or null. Narrow every case explicitly, return a string, and prove with calls that no unsafe assertion is required. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+        "Define OrderStatus union with literal 'status' discriminator.",
+        "Write formatOrderStatus using a switch statement.",
+        "Implement exhaustive default check assigning to never."
       ],
-      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "starterCode": "// Define OrderStatus discriminated union\ntype OrderStatus =\n  | { status: \"PENDING\"; orderId: string }\n  // Add SHIPPED, DELIVERED, and CANCELLED variants\n\nfunction formatOrderStatus(order: OrderStatus): string {\n  // Implement exhaustive switch\n}",
       "hints": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "In default case: `const _check: never = order; return _check;`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+      "solutionExplanation": "Discriminated unions ensure that each order phase only exposes fields valid for that exact status."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-kc-1",
+      "id": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u-kc-1",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of type inference?",
+      "prompt": "What is the purpose of assigning an unhandled branch to a variable of type 'never' in a switch statement?",
       "options": [
         {
-          "id": "A",
-          "text": "rely on inference for obvious local values and annotate public boundaries"
+          "id": "opt-1",
+          "text": "It pauses execution until an asynchronous Promise resolves."
         },
         {
-          "id": "B",
-          "text": "reassigning an inferred string variable to a number is rejected"
+          "id": "opt-2",
+          "text": "It provides a compile-time check ensuring that all possible variants of a union type have been handled exhaustively."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "It instructs the V8 garbage collector to free the variable immediately."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "It allows TypeScript to compile to WebAssembly."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "If any union variant is omitted from the switch statement, it falls through to the default branch where assigning it to 'never' causes a compiler error.",
       "objectiveIds": [
         "typescript-obj-1"
       ]
     },
     {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-kc-2",
+      "id": "mod-1-typescript-beginner-module-1-l2-type-inference-narrowing-discriminated-u-kc-2",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of strict mode?",
+      "prompt": "What is a User-Defined Type Predicate in TypeScript?",
       "options": [
         {
-          "id": "A",
-          "text": "enable strict in tsconfig for new application code"
+          "id": "opt-1",
+          "text": "A function that returns a boolean and has a return type signature in the form 'param is Type'."
         },
         {
-          "id": "B",
-          "text": "disabling strict can hide null and implicit-any defects"
+          "id": "opt-2",
+          "text": "A regex pattern that validates email strings."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "A decorator that checks database permissions."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "A tsconfig setting that enables strict null checks."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Type predicates (e.g., 'pet is Dog') inform the compiler's control flow analysis that if the function returns true, the parameter can be safely narrowed to the specified type.",
       "objectiveIds": [
         "typescript-obj-2"
       ]
-    },
-    {
-      "id": "mod-1-typescript-beginner-module-1-l2-primitive-types-unions-and-narrowing-kc-3",
-      "type": "single-choice",
-      "prompt": "Which is the safest beginner application of annotations?",
-      "options": [
-        {
-          "id": "A",
-          "text": "annotate function boundaries when the contract should remain stable"
-        },
-        {
-          "id": "B",
-          "text": "annotations do not convert values at runtime"
-        },
-        {
-          "id": "C",
-          "text": "Replace the type with any"
-        },
-        {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "objectiveIds": [
-        "typescript-obj-1"
-      ]
     }
   ],
-  "recap": "In this lesson, you covered Primitive Types, Unions, and Narrowing in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Type narrowing evaluates conditional branches. Discriminated unions with shared literal tags make invalid states impossible and guarantee exhaustive case handling via 'never'.",
   "videoResources": [
     {
-      "id": "vid-typescript-main",
-      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "id": "res-typescript-primary",
+      "title": "TypeScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "channelOrAuthor": "freeCodeCamp / Total TypeScript",
+      "url": "https://www.youtube.com/watch?v=gieEQFIfgYc",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for TypeScript.",
-      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of TypeScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for TypeScript.",
       "learningObjectivesSupported": [
-        "typescript-obj-1"
+        "typescript-obj-1",
+        "typescript-obj-2",
+        "typescript-obj-3",
+        "typescript-obj-4"
       ],
       "keyTopicsCovered": [
-        "TypeScript Setup and Type Inference",
-        "Primitive Types, Unions, and Narrowing"
+        "TypeScript Architecture, Type Erasure & Structural Typing",
+        "Type Inference, Narrowing & Discriminated Unions",
+        "Generics, Constraints & Polymorphic Function Signatures",
+        "Mapped Types, Keyof & Essential Utility Types",
+        "Conditional Types, Infer Keyword & Template Literal Types",
+        "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "TypeScript Handbook & Official Docs",
+      "title": "Official TypeScript Handbook & Language Specification",
       "url": "https://www.typescriptlang.org/docs/",
-      "description": "Official reference documentation for TypeScript."
+      "description": "Authoritative official technical reference for TypeScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using TypeScript",
-    "Automated software quality verification and debugging"
+    "Redux and NgRx state management reducers handling action payloads with 100% type safety.",
+    "Cloud messaging brokers parsing polymorphic JSON payloads from AWS SQS and Kafka."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.278Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.725Z"
 }

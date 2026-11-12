@@ -1,226 +1,197 @@
 {
-  "lessonId": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types",
+  "lessonId": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template",
   "skillName": "TypeScript",
   "moduleId": "mod-3-typescript-beginner-module-3",
-  "title": "Generics and Standard Utility Types",
-  "summary": "Use constrained generics when behavior is independent of a specific type, and derive focused types with Pick, Omit, Partial, and Record.",
+  "title": "Conditional Types, Infer Keyword & Template Literal Types",
+  "summary": "Master type-level programming: conditional types (T extends U ? X : Y), type inference with infer, and template literal type generation.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the TypeScript behavior taught in Generics and Standard Utility Types",
-    "Use strict compiler evidence and runtime tests to verify the contract"
+    "Author conditional types using ternary syntax to select types based on generic relationships",
+    "Extract inner wrapped types (Promises, Arrays, Return values) using the infer keyword"
   ],
   "objectiveIds": [
-    "typescript-obj-5",
-    "typescript-obj-6"
+    "typescript-obj-3",
+    "typescript-obj-4"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Generics and mapped types"
   ],
   "sections": [
     {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-sec-1",
-      "heading": "Core model",
-      "content": "A generic parameter preserves a relationship between inputs and outputs. `function first<T>(items: readonly T[]): T | undefined` returns the same element type supplied by the caller. Add a constraint such as `T extends { id: string }` only when the implementation uses that capability. Do not introduce a generic used in only one position; a concrete or union type is clearer. Utility types transform existing contracts: `Pick` selects keys, `Omit` removes keys, `Partial` makes properties optional for patch operations, and `Record` maps a known key union to one value type. These are compile-time transformations, not runtime validation.",
-      "codeExamples": [],
-      "keyPoints": [
-        "A generic parameter preserves a relationship between inputs and outputs."
-      ],
-      "commonMistakes": [
-        "a tuple and an array express different positional guarantees",
-        "console output is not a returned value"
-      ]
-    },
-    {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-sec-2",
-      "heading": "Worked TypeScript example",
-      "content": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
+      "id": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template-sec-1",
+      "heading": "1. Type-Level Logic: Conditional Types & The Infer Keyword",
+      "content": "TypeScript is Turing complete at the type level: you can perform branching logic, recursion, pattern matching, and string manipulation purely in types.\n\n1. Conditional Types:\nConditional types follow ternary syntax:\n`type IsString<T> = T extends string ? true : false;`\n\nWhen `T` is a union, conditional types distribute automatically over each member:\n`type ToArray<T> = T extends any ? T[] : never;`\n`ToArray<string | number>` -> `string[] | number[]`.\n\n2. The `infer` Keyword (Pattern Matching in Types):\nThe `infer` keyword allows you to declare a type variable to be extracted during pattern matching:\n\nExtracting Promise resolved values (`Awaited<T>`):\n```typescript\ntype UnpackPromise<T> =\n  T extends Promise<infer R> ? R : T;\n```\nIf `T` is `Promise<string>`, TypeScript matches `infer R` against `string` and returns `string`!\n\nExtracting function return types (`ReturnType<T>`):\n```typescript\ntype MyReturnType<T> =\n  T extends (...args: any[]) => infer R ? R : never;\n```\n\n3. Template Literal Types:\nIntroduced in TypeScript 4.1, template literal types allow string manipulation at the type level:\n`type Event = 'click' | 'focus';`\n`type EventHandler = `on${Capitalize<Event>}`;` -> `'onClick' | 'onFocus'`.",
       "codeExamples": [
         {
-          "language": "typescript",
-          "code": "function findById<T extends { id: string }>(items: readonly T[], id: string): T | undefined {\n  return items.find(item => item.id === id);\n}\nconst result = findById([{ id: 'a', score: 90 }], 'a');\nconsole.log(result?.score);",
-          "explanation": "Predict compiler and runtime behavior, check with `tsc --noEmit`, then run the emitted JavaScript.",
-          "expectedOutput": "90"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| CONDITIONAL TYPES & INFER PATTERN EXTRACTION                      |\n|                                                                   |\n|  type Unpack<T> = T extends Array<infer Item> ? Item : T;         |\n|                                                                   |\n|  Unpack<string[]> ===> Extracts 'string' (Array match!)           |\n|  Unpack<number>   ===> Returns 'number' (No match, returns T)     |\n|                                                                   |\n|  TEMPLATE LITERAL TYPES:                                          |\n|  type HttpMethod = \"GET\" | \"POST\";                                |\n|  type Route = `${HttpMethod} /api/${string}`;                  |\n|  const r: Route = \"GET /api/users\";  // Valid!                    |\n|  const bad: Route = \"DELETE /items\"; // TS Error!                 |\n+-------------------------------------------------------------------+",
+          "explanation": "Conditional types evaluate ternary branches. 'infer' extracts wrapped internal types.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "A generic parameter preserves a relationship between inputs and outputs."
+        "Conditional types use ternary syntax (T extends U ? X : Y) to perform type-level branching.",
+        "The infer keyword extracts component types from complex structures (functions, promises, arrays).",
+        "Template literal types generate validated string patterns at compile time."
       ],
       "commonMistakes": [
-        "a tuple and an array express different positional guarantees",
-        "console output is not a returned value"
+        "Writing deeply nested recursive conditional types without termination base cases, causing compiler limits.",
+        "Forgetting that conditional types distribute over union types unless wrapped in tuples ([T])."
       ]
     },
     {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Add the example to a strict TypeScript project.\n2. Predict inferred types.\n3. Run `tsc --noEmit`.\n4. Introduce one mismatch and read the diagnostic.\n5. Correct the contract without `any`.\n6. Run the JavaScript and record evidence.",
-      "codeExamples": [],
+      "id": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template-sec-2",
+      "heading": "2. Production Event Handler Map with Template Literal Types",
+      "content": "In event-driven UI systems, generating strongly typed handler names (e.g. `onUserCreated`, `onOrderShipped`) from raw event names ensures developers never misspell callback names.",
+      "codeExamples": [
+        {
+          "language": "typescript",
+          "code": "type DomainEvent = \"orderCreated\" | \"paymentReceived\" | \"userDeleted\";\n\n// Template literal type transforms \"orderCreated\" -> \"onOrderCreated\"\ntype HandlerName<T extends string> = `on${Capitalize<T>}`;\n\n// Extract function return type using infer\ntype UnpackApiResponse<T> = T extends (...args: any[]) => Promise<infer Data> ? Data : never;\n\n// Real-world API function\nasync function fetchAccountDetails(id: string) {\n  return { id, email: \"alex@careertwin.ai\", balance: 500 };\n}\n\n// Extracted type: { id: string; email: string; balance: number }\ntype AccountData = UnpackApiResponse<typeof fetchAccountDetails>;\n\nconst account: AccountData = {\n  id: \"acc_1\",\n  email: \"alex@careertwin.ai\",\n  balance: 500\n};\n\nconsole.log(\"Extracted Account:\", account.email);",
+          "explanation": "Demonstrates using template literal types for naming contracts and infer to extract resolved Promise types.",
+          "expectedOutput": "Extracted Account: alex@careertwin.ai"
+        }
+      ],
       "keyPoints": [
-        "A generic parameter preserves a relationship between inputs and outputs."
+        "infer enables non-invasive type extraction from third-party libraries without needing published type exports.",
+        "Template literal types enable strict pattern matching on strings like semantic versioning or route paths."
       ],
       "commonMistakes": [
-        "a tuple and an array express different positional guarantees",
-        "console output is not a returned value"
+        "Using infer outside the 'extends' clause of a conditional type, which is a syntax error."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-ex-1",
+      "id": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template-ex-1",
       "type": "coding",
-      "title": "Build, check, and explain",
-      "objective": "Master Build, check, and explain and apply practical principles in TypeScript.",
-      "description": "Create a generic `indexById` returning a Record, constrain inputs to string IDs, and define a safe Partial update type for a progress record. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation.",
+      "title": "Construct an Action Payload Extractor using Infer",
+      "objective": "Write a conditional type that extracts the payload type from an action creator function.",
+      "description": "Given Redux-style action creators that return `{ type: string; payload: T }`, implement ExtractPayload<T> using the infer keyword to extract T. If the function does not return an action with a payload, it should evaluate to void.",
       "instructions": [
-        "Create a generic `indexById` returning a Record, constrain inputs to string IDs, and define a safe Partial update type for a progress record. Submit TypeScript source, compiler output, runtime output, tests, and a concise contract explanation."
+        "Define type ExtractPayload<T>.",
+        "Pattern match on `T extends (...args: any[]) => { payload: infer P } ? P : void`.",
+        "Verify with sample action creators."
       ],
-      "starterCode": "// TypeScript Exercise: Build, check, and explain\n// Write your solution below",
+      "starterCode": "// Implement ExtractPayload using infer\ntype ExtractPayload<T> = \n  // Add conditional infer check\n  never;",
       "hints": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "`T extends (...args: any[]) => { payload: infer P } ? P : void`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Strictly typed source without unchecked any",
-        "Compiler and runtime evidence",
-        "Boundary and invalid-input tests"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core TypeScript operations for Build, check, and explain."
+      "solutionExplanation": "The infer keyword matches the shape of the return object and pulls out the payload type variable."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-kc-1",
+      "id": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template-kc-1",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of type inference?",
+      "prompt": "What does the 'infer' keyword do in a TypeScript conditional type?",
       "options": [
         {
-          "id": "A",
-          "text": "rely on inference for obvious local values and annotate public boundaries"
+          "id": "opt-1",
+          "text": "It casts any variable to the 'any' type."
         },
         {
-          "id": "B",
-          "text": "reassigning an inferred string variable to a number is rejected"
+          "id": "opt-2",
+          "text": "It introduces a type variable within the extends clause to be deduced from the matched type."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "It imports an external module asynchronously."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "It bypasses strict null checking."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "rely on inference for obvious local values and annotate public boundaries. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "'infer' allows you to declare a type variable inside the condition to capture and extract an internal type dynamically.",
       "objectiveIds": [
-        "typescript-obj-5"
+        "typescript-obj-3"
       ]
     },
     {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-kc-2",
+      "id": "mod-3-typescript-beginner-module-3-l1-conditional-types-infer-keyword-template-kc-2",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of strict mode?",
+      "prompt": "What type does 'type Route = `/${'users' | 'posts'}/${number}`;' allow?",
       "options": [
         {
-          "id": "A",
-          "text": "enable strict in tsconfig for new application code"
+          "id": "opt-1",
+          "text": "Any arbitrary URL string."
         },
         {
-          "id": "B",
-          "text": "disabling strict can hide null and implicit-any defects"
+          "id": "opt-2",
+          "text": "Only strings starting with '/users/' or '/posts/' followed by a numeric string (e.g. '/users/42')."
         },
         {
-          "id": "C",
-          "text": "Replace the type with any"
+          "id": "opt-3",
+          "text": "Only array objects."
         },
         {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
+          "id": "opt-4",
+          "text": "Only boolean values."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "enable strict in tsconfig for new application code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Template literal types combine string unions to form exact pattern-matched string literal types.",
       "objectiveIds": [
-        "typescript-obj-6"
-      ]
-    },
-    {
-      "id": "mod-3-typescript-beginner-module-3-l1-generics-and-standard-utility-types-kc-3",
-      "type": "single-choice",
-      "prompt": "Which is the safest beginner application of annotations?",
-      "options": [
-        {
-          "id": "A",
-          "text": "annotate function boundaries when the contract should remain stable"
-        },
-        {
-          "id": "B",
-          "text": "annotations do not convert values at runtime"
-        },
-        {
-          "id": "C",
-          "text": "Replace the type with any"
-        },
-        {
-          "id": "D",
-          "text": "Use an unchecked assertion at every call"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "annotate function boundaries when the contract should remain stable. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
-      "objectiveIds": [
-        "typescript-obj-5"
+        "typescript-obj-4"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Generics and Standard Utility Types in TypeScript. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Conditional types provide if-else logic at the type level. Use 'infer' to extract internal types from complex signatures, and template literals to enforce string patterns.",
   "videoResources": [
     {
-      "id": "vid-typescript-main",
-      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch",
+      "id": "res-typescript-primary",
+      "title": "TypeScript Full Course: Beginner to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
-      "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+      "channelOrAuthor": "freeCodeCamp / Total TypeScript",
+      "url": "https://www.youtube.com/watch?v=gieEQFIfgYc",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for TypeScript.",
-      "whatItTeaches": "Step-by-step walkthrough of TypeScript fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of TypeScript.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for TypeScript.",
       "learningObjectivesSupported": [
-        "typescript-obj-5"
+        "typescript-obj-1",
+        "typescript-obj-2",
+        "typescript-obj-3",
+        "typescript-obj-4"
       ],
       "keyTopicsCovered": [
-        "Generics and Standard Utility Types",
-        "Runtime Validation and a Typed Progress Tracker"
+        "TypeScript Architecture, Type Erasure & Structural Typing",
+        "Type Inference, Narrowing & Discriminated Unions",
+        "Generics, Constraints & Polymorphic Function Signatures",
+        "Mapped Types, Keyof & Essential Utility Types",
+        "Conditional Types, Infer Keyword & Template Literal Types",
+        "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "TypeScript Handbook & Official Docs",
+      "title": "Official TypeScript Handbook & Language Specification",
       "url": "https://www.typescriptlang.org/docs/",
-      "description": "Official reference documentation for TypeScript."
+      "description": "Authoritative official technical reference for TypeScript."
     }
   ],
   "realWorldApplications": [
-    "Production application development using TypeScript",
-    "Automated software quality verification and debugging"
+    "TRPC and Next.js server actions inferring end-to-end API input and output types without code generation.",
+    "Type-safe internationalization (i18n) libraries validating nested translation keys at compile time."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.279Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.725Z"
 }

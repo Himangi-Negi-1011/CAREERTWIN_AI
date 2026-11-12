@@ -1,122 +1,114 @@
 {
-  "skillId": "00000000-0000-4000-8000-000000000003",
+  "skillId": "00000000-0000-4000-8000-000000000004",
   "skillName": "TypeScript",
   "learnerLevel": "beginner",
   "preferredLanguage": "English",
   "objectives": [
     {
       "id": "typescript-obj-1",
-      "statement": "Write and explain small Python programs",
+      "statement": "Understand foundational mental models and architecture of TypeScript",
       "order": 1
     },
     {
       "id": "typescript-obj-2",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Implement secure, reproducible solutions across real-world TypeScript tasks",
       "order": 2
     },
     {
       "id": "typescript-obj-3",
-      "statement": "Write and explain small Python programs",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in TypeScript",
       "order": 3
     },
     {
       "id": "typescript-obj-4",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Architect scalable enterprise workflows aligned with TypeScript industry best practices",
       "order": 4
-    },
-    {
-      "id": "typescript-obj-5",
-      "statement": "Write and explain small Python programs",
-      "order": 5
-    },
-    {
-      "id": "typescript-obj-6",
-      "statement": "Use evidence from output and tests to diagnose behavior",
-      "order": 6
     }
   ],
   "prerequisites": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Proficiency in modern JavaScript (ES6+ syntax, functions, objects, promises)",
+    "Familiarity with Node.js and package managers (npm or pnpm)"
   ],
   "modules": [
     {
       "id": "mod-1-typescript-beginner-module-1",
-      "title": "Compiler, Values, and Narrowing",
-      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "title": "Module 1: Structural Typing, Inference & Discriminated Unions",
+      "summary": "Understand the TypeScript compiler pipeline, type erasure, structural duck typing, type inference, narrowing, and discriminated unions.",
       "order": 1,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 120,
       "objectiveIds": [
         "typescript-obj-1",
         "typescript-obj-2"
       ],
       "lessonTitles": [
-        "TypeScript Setup and Type Inference",
-        "Primitive Types, Unions, and Narrowing"
+        "TypeScript Architecture, Type Erasure & Structural Typing",
+        "Type Inference, Narrowing & Discriminated Unions"
       ],
-      "checkpoint": "Pass the Compiler, Values, and Narrowing assessment with 70%+ score."
+      "checkpoint": "Design discriminated union state machines with exhaustive compile-time never checking."
     },
     {
       "id": "mod-2-typescript-beginner-module-2",
-      "title": "Typed Objects, Arrays, and Functions",
-      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "title": "Module 2: Generic Engineering & Type Transformation",
+      "summary": "Understand type parameters, generic constraints (extends), mapped types, the keyof operator, and core utility types (Partial, Pick, Omit, Record).",
       "order": 2,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 120,
+      "objectiveIds": [
+        "typescript-obj-2",
+        "typescript-obj-3"
+      ],
+      "lessonTitles": [
+        "Generics, Constraints & Polymorphic Function Signatures",
+        "Mapped Types, Keyof & Essential Utility Types"
+      ],
+      "checkpoint": "Build reusable type-safe repositories using generics and mapped utility transformations."
+    },
+    {
+      "id": "mod-3-typescript-beginner-module-3",
+      "title": "Module 3: Advanced Type Programming & Strict Production Systems",
+      "summary": "Understand conditional types, the infer keyword, template literal types, branded nominal types, strict tsconfig flags, and Zod runtime boundaries.",
+      "order": 3,
+      "estimatedMinutes": 120,
       "objectiveIds": [
         "typescript-obj-3",
         "typescript-obj-4"
       ],
       "lessonTitles": [
-        "Object Types, Interfaces, and Optional Properties",
-        "Typed Arrays and Function Contracts"
+        "Conditional Types, Infer Keyword & Template Literal Types",
+        "Strict Compiler Flags, Branded Types & Runtime Boundary Validation"
       ],
-      "checkpoint": "Pass the Typed Objects, Arrays, and Functions assessment with 70%+ score."
-    },
-    {
-      "id": "mod-3-typescript-beginner-module-3",
-      "title": "Generics, Validation, and a Project",
-      "summary": "Decompose programs into testable functions and select collections that match the problem.",
-      "order": 3,
-      "estimatedMinutes": 220,
-      "objectiveIds": [
-        "typescript-obj-5",
-        "typescript-obj-6"
-      ],
-      "lessonTitles": [
-        "Generics and Standard Utility Types",
-        "Runtime Validation and a Typed Progress Tracker"
-      ],
-      "checkpoint": "Pass the Generics, Validation, and a Project assessment with 70%+ score."
+      "checkpoint": "Implement conditional type extractors, branded nominal IDs, and runtime Zod validation boundaries."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic in TypeScript",
-    "Interactive code modification and debugging exercises",
-    "Module-end practical synthesis challenge"
+    "Configure a strict production tsconfig.json enforcing noUncheckedIndexedAccess and exactOptionalPropertyTypes",
+    "Model complex domain state machines using discriminated unions and exhaustive never checking",
+    "Author reusable generic higher-order functions with keyof and Record mapped types",
+    "Implement nominal branded types and runtime boundary schema validation with Zod"
   ],
   "assessmentCheckpoints": [
-    "Compiler, Values, and Narrowing Knowledge Check (70% pass threshold)",
-    "Typed Objects, Arrays, and Functions Knowledge Check (70% pass threshold)",
-    "Generics, Validation, and a Project Knowledge Check (70% pass threshold)"
+    "Module 1: Structural Typing, Inference & Discriminated Unions Checkpoint (70% pass threshold)",
+    "Module 2: Generic Engineering & Type Transformation Checkpoint (70% pass threshold)",
+    "Module 3: Advanced Type Programming & Strict Production Systems Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "Validated TypeScript Progress Tracker"
+    "Enterprise Type-Safe REST & GraphQL Gateway with Automated Type-Level Testing"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Pass all 3 comprehensive mock tests and practical debugging tasks",
-    "Complete hands-on verified capstone review"
+    "Explain type erasure and differentiate structural typing (duck typing) from nominal type systems (Java/C#)",
+    "Execute type narrowing using type predicates (is), discriminated unions, and exhaustive switch checks",
+    "Design generic abstractions constrained by extends and infer keywords without using 'any'",
+    "Bridge runtime validation and compile-time typing using branded types and Zod schemas"
   ],
   "resources": [
     {
-      "title": "TypeScript Handbook & Official Docs",
-      "organization": "Microsoft TypeScript",
+      "title": "Official TypeScript Handbook & Language Specification",
+      "organization": "Microsoft TypeScript Team",
       "url": "https://www.typescriptlang.org/docs/",
-      "retrievedAt": "2026-11-01T15:37:41.277Z",
+      "retrievedAt": "2026-11-12T03:01:18.725Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

@@ -1,226 +1,199 @@
 {
-  "lessonId": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range",
+  "lessonId": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream",
   "skillName": "Python",
   "moduleId": "mod-2-python-beginner-module-2",
-  "title": "Iteration with for, while, and range",
-  "summary": "Loops repeat a well-defined operation. This lesson teaches iteration over collections, numeric ranges, accumulator patterns, controlled while loops, break, continue, and prevention of infinite loops.",
+  "title": "The Iteration Protocol, Generators & Streaming Pipelines",
+  "summary": "Master iterators, the __iter__ and __next__ protocol, generator functions with yield, and memory-efficient streaming pipelines.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 50,
   "learningObjectives": [
-    "Explain and apply the Python behavior taught in Iteration with for, while, and range",
-    "Test the behavior with a small observable program"
+    "Construct custom iterators using the dunder __iter__ and __next__ protocol",
+    "Build generator streaming pipelines that process large datasets with O(1) constant memory consumption"
   ],
   "objectiveIds": [
-    "python-obj-3",
-    "python-obj-4"
+    "python-obj-2",
+    "python-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Python loops, lists, and functions"
   ],
   "sections": [
     {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-sec-1",
-      "heading": "Core model",
-      "content": "A `for` loop asks an iterable for values one at a time; it is preferred when traversing a known collection. `range(start, stop, step)` excludes `stop`, a common source of off-by-one defects. An accumulator starts with an identity value—zero for addition, one for multiplication, or an empty collection for gathering—and updates once per iteration. A `while` loop is appropriate when repetition depends on changing state; its body must make progress toward termination. Use `break` for a deliberate early exit and `continue` to skip only the current iteration, but avoid them when a clearer loop condition expresses the rule.",
-      "codeExamples": [],
-      "keyPoints": [
-        "A `for` loop asks an iterable for values one at a time; it is preferred when traversing a known collection."
-      ],
-      "commonMistakes": [
-        "failing to make progress can create an infinite loop",
-        "break does not exit an enclosing function unless followed by return"
-      ]
-    },
-    {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-sec-2",
-      "heading": "Worked Python example",
-      "content": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
+      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-sec-1",
+      "heading": "1. The Iteration Protocol & Memory Mechanics of Generators",
+      "content": "In Python, iteration is driven by a standardized protocol:\n1. An iterable is any object that implements `__iter__()`, which returns an iterator.\n2. An iterator is an object that implements `__next__()`. When `next(iterator)` is called, it returns the next item or raises `StopIteration` when depleted.\n\nA standard Python `for` loop is syntactic sugar over this exact mechanism:\n```python\niterator = iter(collection)\nwhile True:\n    try:\n        item = next(iterator)\n        # body\n    except StopIteration:\n        break\n```\n\nWhen processing large datasets (e.g. 50 GB log files or millions of database rows), loading data into a list (`[x for x in data]`) forces Python to allocate massive heap memory, risking `MemoryError` or triggering the OS Out-Of-Memory (OOM) killer.\n\nGenerators solve this fundamentally. Any function containing the `yield` keyword compiles into a generator function. When called, it does NOT execute the body immediately; instead, it returns a generator object. When `next()` is called, the function executes until it reaches `yield`, returns the value, and freezes its execution frame (saving local variables and instruction pointer in memory). Calling `next()` resumes execution immediately after `yield`.\n\nThis provides Lazy Evaluation: items are produced one-by-one on demand, maintaining O(1) constant auxiliary space regardless of dataset size.",
       "codeExamples": [
         {
-          "language": "python",
-          "code": "scores = [70, 82, 91]\ntotal = 0\nfor score in scores:\n    total += score\naverage = total / len(scores)\nprint(average)",
-          "explanation": "Run this example, predict the output first, and then change one value at a time to observe cause and effect.",
-          "expectedOutput": "81.0"
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| EAGER LIST ALLOCATION VS LAZY GENERATOR STREAMING                 |\n|                                                                   |\n|  EAGER (List):                                                    |\n|  [Item 1, Item 2, Item 3 ... Item 10,000,000] -> Requires 800 MB   |\n|                                                                   |\n|  LAZY (Generator Pipeline):                                       |\n|  Source File ---> (read line) ---> (filter) ---> (aggregate)      |\n|                        ^                                          |\n|  Only 1 item resides in RAM at any given millisecond (< 1 KB)!    |\n|  State is suspended at 'yield' and resumed on 'next()'.           |\n+-------------------------------------------------------------------+",
+          "explanation": "Generators pause at yield, evaluating one record at a time to achieve constant O(1) memory consumption.",
+          "expectedOutput": "System Architecture & Memory Layout Diagram"
         }
       ],
       "keyPoints": [
-        "A `for` loop asks an iterable for values one at a time; it is preferred when traversing a known collection."
+        "Iterators implement __iter__() returning self and __next__() raising StopIteration upon completion.",
+        "Generators yield values lazily, preserving execution state without consuming memory for unread items.",
+        "Generator pipelines chain multiple transformations (read -> filter -> transform) cleanly."
       ],
       "commonMistakes": [
-        "failing to make progress can create an infinite loop",
-        "break does not exit an enclosing function unless followed by return"
+        "Calling list(generator) on infinite or massive streams, destroying the memory efficiency advantage.",
+        "Attempting to iterate over a exhausted generator a second time without instantiating a fresh one."
       ]
     },
     {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Copy the example into a new `.py` file.\n2. Predict every printed value and type.\n3. Run it and compare evidence with the prediction.\n4. Change one input or condition.\n5. Record why the output changed.\n6. Add an assertion that protects the intended behavior.",
-      "codeExamples": [],
+      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-sec-2",
+      "heading": "2. Building a Production Memory-Efficient Log Pipeline",
+      "content": "In real-world data engineering and DevOps, servers generate hundreds of gigabytes of log entries daily. Using generator expressions and generator functions allows engineers to filter, parse, and aggregate security alerts in real time with near-zero memory footprint.",
+      "codeExamples": [
+        {
+          "language": "python",
+          "code": "import sys\nfrom typing import Iterator, Generator\n\n# Simulated streaming log data (can be an infinite network socket or 100GB file)\nRAW_LOGS = (\n    \"2026-11-12 08:00:01 INFO [auth] User login successful: alice\",\n    \"2026-11-12 08:00:05 WARN [rate_limit] Client IP exceeded 60 req/min: 192.168.1.50\",\n    \"2026-11-12 08:00:12 ERROR [payment] Gateway timeout on charge #9821\",\n    \"2026-11-12 08:00:18 INFO [auth] User login successful: bob\",\n    \"2026-11-12 08:00:25 ERROR [database] Connection pool exhausted\",\n)\n\ndef stream_lines(log_entries: tuple) -> Generator[str, None, None]:\n    \"\"\"Yield log lines one at a time.\"\"\"\n    for line in log_entries:\n        yield line\n\ndef filter_errors(lines: Iterator[str]) -> Generator[dict, None, None]:\n    \"\"\"Pipeline stage: filter for ERROR messages and parse metadata.\"\"\"\n    for line in lines:\n        if \"ERROR\" in line:\n            parts = line.split(\" \", 3)\n            yield {\n                \"timestamp\": f\"{parts[0]} {parts[1]}\",\n                \"component\": parts[2],\n                \"message\": parts[3]\n            }\n\n# Chaining the generator pipeline\nraw_stream = stream_lines(RAW_LOGS)\nerror_pipeline = filter_errors(raw_stream)\n\n# Inspect memory usage\nprint(f\"Memory size of pipeline generator: {sys.getsizeof(error_pipeline)} bytes\")\n\n# Consume items lazily\nfor error_record in error_pipeline:\n    print(f\"SECURITY ALERT [{error_record['timestamp']}]: {error_record['message']}\")",
+          "explanation": "Demonstrates a memory-efficient generator pipeline processing log entries one at a time with fixed minimal RAM usage.",
+          "expectedOutput": "Memory size of pipeline generator: <small_bytes_e.g._112> bytes\nSECURITY ALERT [2026-11-12 08:00:12]: [payment] Gateway timeout on charge #9821\nSECURITY ALERT [2026-11-12 08:00:25]: [database] Connection pool exhausted"
+        }
+      ],
       "keyPoints": [
-        "A `for` loop asks an iterable for values one at a time; it is preferred when traversing a known collection."
+        "Generator pipelines are composable: each function receives an iterator and yields transformed records.",
+        "sys.getsizeof() demonstrates that generator objects remain tiny (<200 bytes) regardless of how many records pass through."
       ],
       "commonMistakes": [
-        "failing to make progress can create an infinite loop",
-        "break does not exit an enclosing function unless followed by return"
+        "Storing intermediate results in global lists inside generator functions, silently destroying lazy streaming."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-ex-1",
+      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-ex-1",
       "type": "coding",
-      "title": "Build and explain",
-      "objective": "Master Build and explain and apply practical principles in Python.",
-      "description": "Process a list of daily study minutes: ignore negative entries, stop at the sentinel `None`, calculate the valid total and average, and explain how the loop terminates. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule.",
+      "title": "Construct a Streaming Sliding-Window Generator",
+      "objective": "Implement a reusable generator function that yields moving window slices over an arbitrary stream.",
+      "description": "Write a generator function sliding_window(iterable, window_size: int) that yields tuples of length window_size moving one element forward on each step. It must work with any iterable (including generators), consume O(window_size) memory, and stop gracefully when items are exhausted.",
       "instructions": [
-        "Process a list of daily study minutes: ignore negative entries, stop at the sentinel `None`, calculate the valid total and average, and explain how the loop terminates. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
+        "Define sliding_window(iterable, window_size: int).",
+        "Validate window_size >= 1.",
+        "Use collections.deque with maxlen=window_size for optimal O(1) append/pop efficiency.",
+        "Yield tuples of the current window only when the window is full."
       ],
-      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
+      "starterCode": "from collections import deque\nfrom typing import Iterable, Generator, Tuple, Any\n\ndef sliding_window(iterable: Iterable[Any], window_size: int) -> Generator[Tuple[Any, ...], None, None]:\n    # Implement sliding window generator\n    pass\n\n# Test with range(5) and window_size=3 -> (0, 1, 2), (1, 2, 3), (2, 3, 4)",
       "hints": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Initialize `d = deque(maxlen=window_size)`.",
+        "Inside the loop, `d.append(item)`; check `if len(d) == window_size: yield tuple(d)`."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "A runnable Python program with descriptive names",
-        "Observed output and at least one boundary or failure test",
-        "An explanation based on program evidence"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core Python operations for Build and explain."
+      "solutionExplanation": "Using collections.deque(maxlen=window_size) ensures O(1) buffer sliding without reallocating intermediate sublists."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-kc-1",
+      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-kc-1",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes assignment in Python?",
+      "prompt": "What exception signals the termination of an iterator in Python?",
       "options": [
         {
-          "id": "A",
-          "text": "assignment binds a name to the evaluated object"
+          "id": "opt-1",
+          "text": "IndexError"
         },
         {
-          "id": "B",
-          "text": "using a name before assignment raises NameError"
+          "id": "opt-2",
+          "text": "StopIteration"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "GeneratorExit"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "EOFError"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "The Python iteration protocol specifies that __next__() raises StopIteration when no further items remain.",
       "objectiveIds": [
-        "python-obj-3"
+        "python-obj-2"
       ]
     },
     {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-kc-2",
+      "id": "mod-2-python-beginner-module-2-l2-the-iteration-protocol-generators-stream-kc-2",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes input in Python?",
+      "prompt": "What happens to a generator function's local execution frame when a 'yield' statement is executed?",
       "options": [
         {
-          "id": "A",
-          "text": "input returns a string"
+          "id": "opt-1",
+          "text": "The frame is destroyed and garbage collected immediately."
         },
         {
-          "id": "B",
-          "text": "adding an input string to an integer raises TypeError"
+          "id": "opt-2",
+          "text": "The frame is suspended and preserved in memory until next() is called or the generator is garbage collected."
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "The frame is serialized into a temporary disk file."
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "The frame is converted into a static tuple."
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
-      "objectiveIds": [
-        "python-obj-4"
-      ]
-    },
-    {
-      "id": "mod-2-python-beginner-module-2-l2-iteration-with-for-while-and-range-kc-3",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes integer division in Python?",
-      "options": [
-        {
-          "id": "A",
-          "text": "`//` performs floor division"
-        },
-        {
-          "id": "B",
-          "text": "floor division rounds toward negative infinity, not toward zero"
-        },
-        {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
-        },
-        {
-          "id": "D",
-          "text": "It is available only through third-party packages"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Yield pauses the generator, preserving its local variable state, evaluation stack, and instruction pointer until resumption.",
       "objectiveIds": [
         "python-obj-3"
       ]
     }
   ],
-  "recap": "In this lesson, you covered Iteration with for, while, and range in Python. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "The iteration protocol (__iter__, __next__, StopIteration) powers Python loops. Generator functions with yield enable lazy evaluation and constant O(1) memory pipelines for large datasets.",
   "videoResources": [
     {
-      "id": "vid-python-main",
-      "title": "Python for Beginners - Full Course",
+      "id": "res-python-primary",
+      "title": "Python Full Course for Beginners to Advanced Architecture",
       "provider": "youtube",
-      "channelOrAuthor": "Programming with Mosh",
-      "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+      "channelOrAuthor": "freeCodeCamp / Core Python",
+      "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for Python.",
-      "whatItTeaches": "Step-by-step walkthrough of Python fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Python.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Python.",
       "learningObjectivesSupported": [
-        "python-obj-3"
+        "python-obj-1",
+        "python-obj-2",
+        "python-obj-3",
+        "python-obj-4"
       ],
       "keyTopicsCovered": [
-        "Decisions with Conditions and Boolean Logic",
-        "Iteration with for, while, and range"
+        "Python Execution Architecture, Bytecode & Object Model",
+        "Primitive Types, IEEE 754 Arithmetic & Formatted IO",
+        "Decision Logic, Short-Circuit Evaluation & Pattern Matching",
+        "The Iteration Protocol, Generators & Streaming Pipelines",
+        "Closures, First-Class Functions & Decorator Metaprogramming",
+        "OOP Architecture, Dunder Protocols & Automated Pytest Suites"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "Python 3 Official Documentation",
+      "title": "Python 3 Official Documentation & Language Reference",
       "url": "https://docs.python.org/3/",
-      "description": "Official reference documentation for Python."
+      "description": "Authoritative official technical reference for Python."
     }
   ],
   "realWorldApplications": [
-    "Production application development using Python",
-    "Automated software quality verification and debugging"
+    "Streaming database query cursors loading millions of financial rows without server memory exhaustion.",
+    "Machine learning ETL pipelines batching image files and augmentation transforms on the fly."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:41.179Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T03:01:18.229Z"
 }
