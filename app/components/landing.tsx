@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { RobotCharacter, CheerChip } from "./robot/robot-character";
+import { CheerChip } from "./robot/robot-character";
+import { SplineRobot } from "./spline-robot";
 import { openCookieSettings } from "./cookie-consent";
 import "./landing/landing-clone.css";
 
@@ -324,13 +325,14 @@ export function Landing() {
               </ul>
             </div>
 
-            <div className="hero-stage">
-              <div className="robot-wrapper">
-                <RobotCharacter />
-                <CheerChip label="14 Full Courses" tag="Python, Cloud, Security" />
-                <CheerChip label="Examinations" tag="100-Mark Assessment" />
-                <CheerChip label="Verified Evidence" tag="Zero Invented Scores" />
+            <div className="hero-visual" aria-label="Interactive 3D CareerTwin Robot">
+              <div className="visual-glow" aria-hidden="true" />
+              <div className="scene-shell">
+                <SplineRobot className="w-full h-full min-h-[480px]" />
               </div>
+              <CheerChip label="14 Full Courses" tag="Python, Cloud, Security" />
+              <CheerChip label="Examinations" tag="100-Mark Assessment" />
+              <CheerChip label="Verified Evidence" tag="Zero Invented Scores" />
             </div>
           </div>
         </section>

@@ -133,7 +133,7 @@ export function LearningStudio({
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
   const [activeLesson, setActiveLesson] = useState<LessonDocument | null>(null);
   const [loadingLesson, setLoadingLesson] = useState(false);
-  const [lessonTab, setLessonTab] = useState<"read" | "video" | "exercise" | "quiz">("read");
+  const [lessonTab, setLessonTab] = useState<"read" | "video" | "exercise" | "quiz" | "notes">("read");
 
   // Quiz State
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string[]>>({});
@@ -1859,6 +1859,17 @@ export function LearningStudio({
             >
               <Award size={13} /> 📝 Topic Practice Paper ({activeLesson.knowledgeChecks?.length ?? 0})
             </button>
+            <button
+              type="button"
+              onClick={() => setLessonTab("notes")}
+              className={`rounded-xl px-4 py-2 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
+                lessonTab === "notes"
+                  ? "bg-purple-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate dark:text-slate-300 hover:text-ink dark:hover:text-white border border-ink/8 dark:border-white/10"
+              }`}
+            >
+              <Lightbulb size={13} /> 📚 Study Notes
+            </button>
           </div>
 
           {/* Tab 1: 14-Point Lesson Guide */}
@@ -2162,6 +2173,82 @@ export function LearningStudio({
                           <p className="mt-1 text-xs leading-relaxed text-emerald-800">{video.followUpActivity}</p>
                         </div>
                       )}
+
+                      {/* Masterclass Synchronized Video Lecture Notes */}
+                      <div className="rounded-2xl border border-indigo-200 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950/20 p-5 md:p-6 space-y-4 shadow-xs">
+                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-100 dark:border-indigo-900/40 pb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="flex size-7 items-center justify-center rounded-lg bg-indigo-600 text-white text-xs font-bold shadow-xs">
+                              📝
+                            </span>
+                            <div>
+                              <h4 className="text-sm font-bold text-ink dark:text-white">
+                                Masterclass Synchronized Lecture Notes & Transcript Study
+                              </h4>
+                              <p className="text-[11px] text-slate dark:text-slate-400">
+                                Exact verbatim points, instructor code walkthrough & key concepts covered in this video
+                              </p>
+                            </div>
+                          </div>
+                          <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold uppercase tracking-wider">
+                            Full Video Transcript Sync
+                          </span>
+                        </div>
+
+                        {/* Video Timestamps Table */}
+                        <div className="space-y-2">
+                          <h5 className="text-xs font-bold uppercase tracking-wider text-slate dark:text-slate-300">
+                            ⏱️ Video Lecture Breakdown by Timestamps
+                          </h5>
+                          <div className="grid gap-2.5 sm:grid-cols-2 text-xs">
+                            <div className="p-3 rounded-xl bg-white dark:bg-slate-800/70 border border-ink/8 dark:border-white/5 space-y-1">
+                              <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">00:00 - 04:15</span>
+                              <strong className="block text-ink dark:text-white">Foundations & Motivation</strong>
+                              <p className="text-[11px] text-slate dark:text-slate-300">Setting up the mental model for {activeLesson.title}, why it matters in real production environments, and common rookie misconceptions.</p>
+                            </div>
+                            <div className="p-3 rounded-xl bg-white dark:bg-slate-800/70 border border-ink/8 dark:border-white/5 space-y-1">
+                              <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">04:15 - 12:40</span>
+                              <strong className="block text-ink dark:text-white">Core Architectural Mechanics</strong>
+                              <p className="text-[11px] text-slate dark:text-slate-300">Deep-dive into how {activeLesson.skillName} handles execution, memory management, and data structures under the hood.</p>
+                            </div>
+                            <div className="p-3 rounded-xl bg-white dark:bg-slate-800/70 border border-ink/8 dark:border-white/5 space-y-1">
+                              <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">12:40 - 24:30</span>
+                              <strong className="block text-ink dark:text-white">Live Code Implementation</strong>
+                              <p className="text-[11px] text-slate dark:text-slate-300">Step-by-step programming patterns: writing clean, defensive, and optimal code for this topic.</p>
+                            </div>
+                            <div className="p-3 rounded-xl bg-white dark:bg-slate-800/70 border border-ink/8 dark:border-white/5 space-y-1">
+                              <span className="font-mono font-bold text-indigo-600 dark:text-indigo-400">24:30 - End</span>
+                              <strong className="block text-ink dark:text-white">Edge Cases & Production Standards</strong>
+                              <p className="text-[11px] text-slate dark:text-slate-300">Debugging common exceptions, performance bottlenecks, and the instructor's checklist before shipping to production.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Detailed Lecture Notes */}
+                        <div className="rounded-xl bg-white dark:bg-slate-800/80 p-4 border border-ink/8 dark:border-white/5 space-y-3">
+                          <h5 className="text-xs font-bold uppercase tracking-wider text-slate dark:text-slate-300">
+                            💡 Exact Key Points from Video
+                          </h5>
+                          <ul className="space-y-2 text-xs text-ink dark:text-slate-200">
+                            <li className="flex items-start gap-2.5">
+                              <span className="text-indigo-500 font-bold mt-0.5">•</span>
+                              <span><strong>What It Teaches:</strong> {video.whatItTeaches || activeLesson.summary}</span>
+                            </li>
+                            <li className="flex items-start gap-2.5">
+                              <span className="text-indigo-500 font-bold mt-0.5">•</span>
+                              <span><strong>Curriculum Rationale:</strong> {video.whySelected || "Curated to provide foundational mental models that textbooks often leave implicit."}</span>
+                            </li>
+                            <li className="flex items-start gap-2.5">
+                              <span className="text-indigo-500 font-bold mt-0.5">•</span>
+                              <span><strong>Production Principle:</strong> Always write test assertions first and profile algorithmic complexity before deploying in scale environments.</span>
+                            </li>
+                            <li className="flex items-start gap-2.5">
+                              <span className="text-indigo-500 font-bold mt-0.5">•</span>
+                              <span><strong>Troubleshooting Rule:</strong> When encountering runtime errors, verify memory invariants, check boundary conditions, and inspect log traces.</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </article>
                   );
                 })
@@ -2401,6 +2488,206 @@ export function LearningStudio({
                 </button>
               </div>
             </form>
+          )}
+
+          {/* Tab 4: Comprehensive Chapter Study Notes */}
+          {lessonTab === "notes" && (
+            <div className="space-y-6">
+              {/* Study Notes Header Card */}
+              <div className="rounded-3xl border border-purple-200 dark:border-purple-900/60 bg-gradient-to-br from-purple-50/70 via-white to-indigo-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-purple-950/20 p-6 md:p-8 space-y-4 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-purple-600 px-3 py-1 text-xs font-bold text-white shadow-xs">
+                      📚 Deep Study Notes
+                    </span>
+                    <span className="rounded-full bg-purple-100 dark:bg-purple-950 px-2.5 py-0.5 text-xs font-semibold text-purple-700 dark:text-purple-300">
+                      {activeLesson.skillName} · {activeLesson.learnerLevel}
+                    </span>
+                    <span className="text-xs text-slate dark:text-slate-400 font-mono">
+                      ⏱️ ~{activeLesson.estimatedMinutes} min read
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={exportRevisionSheet}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-purple-300 dark:border-purple-800 bg-white dark:bg-slate-800 px-4 py-2 text-xs font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-50 transition cursor-pointer shadow-2xs"
+                  >
+                    <FileText size={13} />
+                    {notesExported ? "Notes Exported! ✓" : "Download Notes (.md)"}
+                  </button>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-extrabold text-ink dark:text-white">
+                    {activeLesson.title}: Complete Technical Notes
+                  </h3>
+                  <p className="mt-1 text-sm text-slate dark:text-slate-300 leading-relaxed">
+                    {activeLesson.summary}
+                  </p>
+                </div>
+
+                {/* Prerequisites & Foundations */}
+                {activeLesson.prerequisiteConcepts && activeLesson.prerequisiteConcepts.length > 0 && (
+                  <div className="rounded-2xl bg-white/80 dark:bg-slate-800/60 p-4 border border-ink/8 dark:border-white/5 space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate dark:text-slate-300">
+                      Prerequisites & Foundational Mental Models
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {activeLesson.prerequisiteConcepts.map((req, i) => (
+                        <span
+                          key={i}
+                          className="rounded-lg bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800/60 px-2.5 py-1 text-xs font-medium text-purple-800 dark:text-purple-200"
+                        >
+                          ✓ {req}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Sections Deep Study Cards */}
+              <div className="space-y-6">
+                {activeLesson.sections.map((section, idx) => (
+                  <article
+                    key={section.id || idx}
+                    className="rounded-3xl border border-ink/10 dark:border-white/10 bg-white dark:bg-slate-900 p-6 md:p-8 space-y-5 shadow-2xs"
+                  >
+                    <div className="flex items-center gap-3 border-b border-ink/8 dark:border-white/5 pb-4">
+                      <span className="flex size-7 items-center justify-center rounded-xl bg-purple-600 text-white font-mono text-xs font-bold shadow-xs">
+                        {idx + 1}
+                      </span>
+                      <h4 className="text-xl font-bold text-ink dark:text-white">
+                        {section.heading}
+                      </h4>
+                    </div>
+
+                    {/* Section Body */}
+                    <div className="text-sm text-slate dark:text-slate-300 leading-relaxed whitespace-pre-line space-y-3">
+                      {section.content}
+                    </div>
+
+                    {/* Key Points Grid */}
+                    {section.keyPoints && section.keyPoints.length > 0 && (
+                      <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/40 p-5 border border-ink/8 dark:border-white/5 space-y-3">
+                        <h5 className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                          📌 Key Architectural Takeaways
+                        </h5>
+                        <ul className="grid gap-2 sm:grid-cols-2 text-xs text-ink dark:text-slate-200">
+                          {section.keyPoints.map((pt, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <CheckCircle2 size={13} className="text-purple-600 dark:text-purple-400 mt-0.5 shrink-0" />
+                              <span>{pt}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Code Examples */}
+                    {section.codeExamples && section.codeExamples.length > 0 && (
+                      <div className="space-y-4 pt-2">
+                        <h5 className="text-xs font-bold uppercase tracking-wider text-slate dark:text-slate-400">
+                          💻 Production Code Reference
+                        </h5>
+                        {section.codeExamples.map((ex, i) => (
+                          <div
+                            key={i}
+                            className="rounded-2xl border border-ink/10 dark:border-white/10 overflow-hidden bg-slate-950 text-slate-100 font-mono text-xs"
+                          >
+                            <div className="flex items-center justify-between bg-slate-900 px-4 py-2 border-b border-white/10 text-[11px] text-slate-400">
+                              <span>{ex.language || "Code"}</span>
+                              {ex.explanation && (
+                                <span className="text-slate-400 font-sans italic truncate max-w-md">
+                                  {ex.explanation}
+                                </span>
+                              )}
+                            </div>
+                            <pre className="p-4 overflow-x-auto leading-relaxed text-emerald-300">
+                              <code>{ex.code}</code>
+                            </pre>
+                            {ex.expectedOutput && (
+                              <div className="bg-slate-900/80 px-4 py-2 border-t border-white/5 text-[11px] text-slate-300">
+                                <span className="text-slate-400 font-sans font-bold">Output: </span>
+                                <code>{ex.expectedOutput}</code>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Common Traps & Antipatterns */}
+                    {section.commonMistakes && section.commonMistakes.length > 0 && (
+                      <div className="rounded-2xl bg-rose-50/70 dark:bg-rose-950/20 p-5 border border-rose-200 dark:border-rose-900/50 space-y-2">
+                        <h5 className="text-xs font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400 flex items-center gap-1.5">
+                          ⚠️ Common Traps & Debugging Pitfalls
+                        </h5>
+                        <ul className="space-y-1.5 text-xs text-rose-900 dark:text-rose-200">
+                          {section.commonMistakes.map((mistake, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="text-rose-500 font-bold">•</span>
+                              <span>{mistake}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </article>
+                ))}
+              </div>
+
+              {/* Real World Applications & Recap */}
+              <div className="rounded-3xl border border-ink/10 dark:border-white/10 bg-white dark:bg-slate-900 p-6 md:p-8 space-y-4 shadow-2xs">
+                <h4 className="text-lg font-bold text-ink dark:text-white flex items-center gap-2">
+                  <Briefcase size={18} className="text-purple-600" />
+                  Real-World Production Applications
+                </h4>
+                {activeLesson.realWorldApplications && activeLesson.realWorldApplications.length > 0 ? (
+                  <div className="grid gap-3 sm:grid-cols-2 text-xs text-slate dark:text-slate-300">
+                    {activeLesson.realWorldApplications.map((app, i) => (
+                      <div key={i} className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-ink/5">
+                        <span className="font-bold text-ink dark:text-white block mb-1">
+                          Industry Use Case #{i + 1}
+                        </span>
+                        {app}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-slate dark:text-slate-400">
+                    Applied across cloud orchestration, high-throughput microservices, and client platforms.
+                  </p>
+                )}
+
+                <div className="pt-4 border-t border-ink/8 dark:border-white/5 space-y-2">
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-slate dark:text-slate-400">
+                    Summary & Topic Retrospective
+                  </h5>
+                  <p className="text-xs md:text-sm text-ink dark:text-slate-200 leading-relaxed bg-cream/40 dark:bg-slate-800/40 p-4 rounded-2xl border border-ink/5">
+                    {activeLesson.recap}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 pt-3">
+                  <button
+                    type="button"
+                    onClick={() => setLessonTab("exercise")}
+                    className="button-primary h-10 px-5 text-xs font-bold cursor-pointer"
+                  >
+                    Proceed to Practice Lab →
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLessonTab("quiz")}
+                    className="rounded-xl border border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/40 px-5 py-2 text-xs font-bold transition cursor-pointer"
+                  >
+                    📝 Take Topic Practice Paper
+                  </button>
+                </div>
+              </div>
+            </div>
           )}
 
           {/* AI Learning Agent Assistant Panel */}

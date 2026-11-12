@@ -5,7 +5,7 @@ import Link from "next/link";
 import { type ReactNode, useEffect, useState } from "react";
 import "../landing/landing-clone.css";
 import "./login-clone.css";
-import { RobotCharacter } from "../robot/robot-character";
+import { SplineRobot } from "../spline-robot";
 
 export function AuthShell({
   children,
@@ -103,7 +103,7 @@ export function AuthShell({
           <section className="auth-visual" aria-label="CareerTwin assistant">
             <div className="auth-robot-wrap">
               <div className="visual-glow" aria-hidden="true" />
-              <RobotCharacter pose="login" canvasId="loginRobot" />
+              <SplineRobot className="w-full h-full" />
 
               <div className="float-card auth-float auth-float--a" data-float>
                 <div className="fc-icon">

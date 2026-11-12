@@ -16,7 +16,12 @@ import {
   Check,
   HelpCircle,
   Sparkles,
+  Trophy,
+  BookOpen,
+  Filter,
 } from "lucide-react";
+import { CHALLENGES, type Challenge } from "@/lib/learning/challenges-catalog";
+import { TopicChallenge } from "./topic-challenge";
 
 interface HandsOnLabsProps {
   ownerKey?: string;
@@ -172,6 +177,9 @@ ORDER BY average_score DESC;`,
 };
 
 export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsOnLabsProps) {
+  const [labMode, setLabMode] = useState<"scenario" | "leetcode">("scenario");
+  const [selectedChallengeId, setSelectedChallengeId] = useState<string>("lc-001");
+  const [challengeFilter, setChallengeFilter] = useState<string>("all");
   const [activeTrack, setActiveTrack] = useState<LabTrack>("python");
   const [codeInputs, setCodeInputs] = useState<Record<LabTrack, string>>({
     python: LABS.python.initialCode,
@@ -439,8 +447,125 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
         </div>
       </div>
 
-      {/* Lab Track Navigation Tabs */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
+      {/* Lab Mode Toggle: Scenario Labs vs LeetCode Topic Tests */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-surface p-2 rounded-2xl border border-ink/8">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setLabMode("scenario")}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer ${
+              labMode === "scenario"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-slate hover:text-ink"
+            }`}
+          >
+            <Terminal className="h-4 w-4" />
+            <span>🛠️ Scenario Practice Labs (5 Tracks)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setLabMode("leetcode")}
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer ${
+              labMode === "leetcode"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-slate hover:text-ink"
+            }`}
+          >
+            <Trophy className="h-4 w-4 text-amber-300" />
+            <span>⚡ LeetCode Topic Coding Arena ({CHALLENGES.length} Challenges)</span>
+          </button>
+        </div>
+
+        {labMode === "leetcode" && (
+          <div className="flex items-center gap-1.5 px-2">
+            {(["all", "Easy", "Medium", "Hard"] as const).map((diff) => (
+              <button
+                key={diff}
+                type="button"
+                onClick={() => setChallengeFilter(diff)}
+                className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold transition cursor-pointer capitalize ${
+                  challengeFilter === diff
+                    ? "bg-ink text-white"
+                    : "bg-white text-slate hover:text-ink border border-ink/10"
+                }`}
+              >
+                {diff}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {labMode === "leetcode" ? (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Challenge Selector List */}
+          <div className="lg:col-span-4 space-y-3">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate">
+                Select Chapter Problem
+              </span>
+              <span className="text-xs text-slate font-medium">
+                {CHALLENGES.filter((c) => challengeFilter === "all" || c.difficulty === challengeFilter).length} available
+              </span>
+            </div>
+
+            <div className="space-y-2 max-h-[75vh] overflow-y-auto pr-1">
+              {CHALLENGES.filter(
+                (c) => challengeFilter === "all" || c.difficulty === challengeFilter
+              ).map((ch) => {
+                const isSelected = selectedChallengeId === ch.id;
+                const diffBadge =
+                  ch.difficulty === "Easy"
+                    ? "text-emerald-600 bg-emerald-50 border-emerald-200"
+                    : ch.difficulty === "Medium"
+                    ? "text-amber-600 bg-amber-50 border-amber-200"
+                    : "text-rose-600 bg-rose-50 border-rose-200";
+
+                return (
+                  <button
+                    key={ch.id}
+                    type="button"
+                    onClick={() => setSelectedChallengeId(ch.id)}
+                    className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-purple-50/70 dark:bg-purple-950/30 border-purple-400 shadow-xs"
+                        : "bg-white border-ink/8 hover:border-ink/20"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <span className="text-[11px] font-mono text-slate">
+                        {ch.topic}
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${diffBadge}`}
+                      >
+                        {ch.difficulty}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-ink">{ch.title}</h4>
+                    <p className="text-[11px] text-slate line-clamp-1 mt-0.5">
+                      {ch.description}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Active Challenge Workspace */}
+          <div className="lg:col-span-8">
+            {(() => {
+              const activeCh =
+                CHALLENGES.find((c) => c.id === selectedChallengeId) ||
+                CHALLENGES[0];
+              return <TopicChallenge challenge={activeCh} />;
+            })()}
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* Lab Track Navigation Tabs */}
+          <div className="flex flex-wrap items-center gap-2 border-b border-ink/10 pb-4">
         {[
           { id: "python", label: "Python Programming", icon: Code2 },
           { id: "networking", label: "IPv4 Subnetting", icon: Network },
@@ -655,6 +780,8 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
           </div>
         </div>
       </div>
+        </>
+      )}
     </div>
   );
 }
