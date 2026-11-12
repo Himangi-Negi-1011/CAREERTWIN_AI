@@ -118,6 +118,16 @@ export const SplineRobot = memo(function SplineRobot({
   const handleSplineLoad = (splineApp: any) => {
     try {
       const hide3DWatermark = () => {
+        // 0. Directly clear and neutralize WebGL pipeline watermark texture
+        if (splineApp._renderer?.pipeline) {
+          try {
+            splineApp._renderer.pipeline.setWatermark?.(null);
+            splineApp._renderer.pipeline.setWatermark = () => {};
+          } catch {
+            // safe
+          }
+        }
+
         // 1. Hide SplineWatermark and logo 3D objects inside WebGL scene
         const watermark = splineApp.findObjectByName?.("SplineWatermark");
         if (watermark) {
