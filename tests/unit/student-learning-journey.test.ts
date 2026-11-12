@@ -1,5 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it, beforeEach, vi } from "vitest";
+import fs from "fs/promises";
+import path from "path";
 vi.mock("server-only", () => ({}));
 
 import {
@@ -21,6 +23,12 @@ describe("CareerTwin Student Learning Journey & Progress Engine", () => {
   const TEST_USER = "user_journey_test_101";
 
   beforeEach(async () => {
+    // Reset test user progress and mock attempts to ensure test isolation
+    const userProgressDir = path.join(process.cwd(), ".data", "learning", "progress", TEST_USER);
+    await fs.rm(userProgressDir, { recursive: true, force: true });
+    const userAttemptsDir = path.join(process.cwd(), ".data", "learning", "mock_attempts", TEST_USER);
+    await fs.rm(userAttemptsDir, { recursive: true, force: true });
+
     // Setup initial profile with Cloud Security target role
     await saveCareerProfile(TEST_USER, {
       ...emptyCareerProfile,
