@@ -885,7 +885,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
   if (!ownerKey && !isLoaded) return <main className="grid min-h-dvh place-items-center bg-app text-ink"><div className="text-center"><div className="mx-auto size-10 animate-pulse rounded-2xl bg-mint"/><p className="mt-4 text-sm font-semibold text-slate">Loading your private workspace…</p></div></main>;
 
   return <div className="career-dashboard min-h-screen bg-[#f5f6fb] dark:bg-[#0b1116] text-ink">
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col overflow-y-auto overflow-x-hidden border-r border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] text-ink shadow-[18px_0_60px_rgba(31,46,41,.05)] lg:flex">
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-[280px] flex-col overflow-y-auto overflow-x-hidden border-r border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] text-ink shadow-[18px_0_60px_rgba(31,46,41,.05)] lg:flex">
       <div className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full border-[44px] border-ink/[.025]" />
       {/* Brand */}
       <div className="sticky top-0 z-10 border-b border-ink/10 bg-[#f8f7f2] dark:bg-[#0d141a] px-5 pb-4 pt-5"><Brand /></div>
@@ -941,27 +941,27 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
       </div>
     </aside>
 
-    <div className="lg:pl-[260px]">
+    <div className="lg:pl-[280px]">
       <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-ink/[.07] bg-[#f2f4f1]/82 dark:bg-[#0d141a]/90 px-4 backdrop-blur-2xl md:px-7 lg:px-10">
-        <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="grid size-10 place-items-center rounded-xl border border-ink/10 bg-white shadow-sm lg:hidden" aria-label="Open workspace navigation"><Menu size={18}/></button><div><div className="flex items-center gap-2"><span className="hidden size-1.5 rounded-full bg-accent sm:block"/><p className="text-sm font-bold tracking-[-.015em]">{active.label}</p></div><p className="hidden text-[11px] text-slate sm:block">Private career workspace</p></div></div>
+        <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="grid size-10 place-items-center rounded-xl border border-ink/10 bg-white dark:bg-[#121a22] shadow-sm lg:hidden" aria-label="Open workspace navigation"><Menu size={18}/></button><div><div className="flex items-center gap-2"><span className="hidden size-1.5 rounded-full bg-accent sm:block"/><p className="text-sm font-bold tracking-[-.015em]">{active.label}</p></div><p className="hidden text-[11px] text-slate sm:block">Private career workspace</p></div></div>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setFeedbackOpen(true)}
-            className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-xs transition hover:border-accent/20 hover:bg-white hover:text-ink cursor-pointer"
+            className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-ink/10 dark:border-white/15 bg-white/75 dark:bg-white/10 px-3 text-xs font-bold text-slate dark:text-slate-200 shadow-xs transition hover:border-accent/20 hover:bg-white dark:hover:bg-white/15 hover:text-ink dark:hover:text-white cursor-pointer"
             aria-label="Give student feedback"
           >
             <MessageSquareText size={14} className="text-accent" />
             <span className="hidden sm:inline">Feedback</span>
           </button>
-          <button type="button" onClick={()=>setCommandOpen(true)} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-[0_8px_24px_rgba(24,48,52,.045)] transition hover:-translate-y-0.5 hover:border-accent/20 hover:bg-white hover:text-ink cursor-pointer" aria-label="Open quick navigation"><Search size={14}/><span className="hidden md:inline">Quick find</span><kbd className="hidden rounded-md border border-ink/10 bg-cream/60 px-1.5 py-0.5 font-mono text-[9px] text-slate lg:inline">⌘K</kbd></button>
+          <button type="button" onClick={()=>setCommandOpen(true)} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-white/75 dark:bg-white/10 px-3 text-xs font-bold text-slate dark:text-slate-200 shadow-[0_8px_24px_rgba(24,48,52,.045)] transition hover:-translate-y-0.5 hover:border-accent/20 hover:bg-white dark:hover:bg-white/15 hover:text-ink dark:hover:text-white cursor-pointer" aria-label="Open quick navigation"><Search size={14}/><span className="hidden md:inline">Quick find</span><kbd className="hidden rounded-md border border-ink/10 dark:border-white/10 bg-cream/60 dark:bg-white/5 px-1.5 py-0.5 font-mono text-[9px] text-slate lg:inline">⌘K</kbd></button>
           
           {/* Authenticated Account Menu Dropdown */}
           <div className="relative">
             <button
               type="button"
               onClick={() => setAccountMenuOpen(!accountMenuOpen)}
-              className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/80 px-3.5 py-2 text-xs font-bold shadow-[0_8px_24px_rgba(24,48,52,.06)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white cursor-pointer"
+              className="group inline-flex items-center gap-2 rounded-full border border-ink/10 dark:border-white/15 bg-white/80 dark:bg-white/10 px-3.5 py-2 text-xs font-bold text-slate dark:text-slate-200 shadow-[0_8px_24px_rgba(24,48,52,.06)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white dark:hover:bg-white/15 cursor-pointer"
               aria-expanded={accountMenuOpen}
               aria-label="User account menu"
             >
@@ -974,12 +974,12 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
 
             {accountMenuOpen && (
               <div
-                className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-ink/10 bg-white p-2 shadow-xl z-50 animate-in fade-in slide-in-from-top-2"
+                className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#121a22] p-2 shadow-xl z-50 animate-in fade-in slide-in-from-top-2"
                 role="menu"
               >
-                <div className="border-b border-ink/8 px-3 py-2.5">
-                  <p className="text-xs font-bold text-ink truncate">{displayName || "CareerTwin Student"}</p>
-                  <p className="text-[10px] text-slate truncate">{user?.primaryEmailAddress?.emailAddress || "Signed-in session"}</p>
+                <div className="border-b border-ink/8 dark:border-white/10 px-3 py-2.5">
+                  <p className="text-xs font-bold text-ink dark:text-white truncate">{displayName || "CareerTwin Student"}</p>
+                  <p className="text-[10px] text-slate dark:text-slate-400 truncate">{user?.primaryEmailAddress?.emailAddress || "Signed-in session"}</p>
                 </div>
 
                 <div className="py-1">
@@ -989,7 +989,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                       setAccountMenuOpen(false);
                       router.push("/onboarding");
                     }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
                     role="menuitem"
                   >
                     <User size={14} />
@@ -1002,7 +1002,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                       setAccountMenuOpen(false);
                       changeView("settings");
                     }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
                     role="menuitem"
                   >
                     <Settings size={14} />
@@ -1015,7 +1015,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                       setAccountMenuOpen(false);
                       changeView("settings");
                     }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
                     role="menuitem"
                   >
                     <BookOpen size={14} />
@@ -1028,7 +1028,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                       setAccountMenuOpen(false);
                       changeView("settings");
                     }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
                     role="menuitem"
                   >
                     <ShieldCheck size={14} />
@@ -1036,14 +1036,14 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                   </button>
                 </div>
 
-                <div className="border-t border-ink/8 pt-1">
+                <div className="border-t border-ink/8 dark:border-white/10 pt-1">
                   <button
                     type="button"
                     onClick={() => {
                       setAccountMenuOpen(false);
                       void handleLogout();
                     }}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 hover:text-rose-700 cursor-pointer"
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 hover:text-rose-700 dark:hover:text-rose-400 cursor-pointer"
                     role="menuitem"
                   >
                     <LogOut size={14} />
@@ -1062,7 +1062,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
 
         {/* Secondary Navigation Tabs for Consolidated Sections */}
         {activeSection.id === "twin" && (
-          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Career Twin tabs">
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-[#121a22] p-2 shadow-xs" aria-label="Career Twin tabs">
             {[
               { id: "twin" as View, label: "Twin Overview", icon: Sparkles },
               { id: "skills" as View, label: "Skill Gap Analysis", icon: GraduationCap },
@@ -1076,7 +1076,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   view === tab.id
                     ? "bg-accent text-white shadow-sm"
-                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                    : "bg-surface dark:bg-white/5 text-slate dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-ink dark:hover:text-white"
                 }`}
               >
                 <tab.icon size={13} />
@@ -1087,7 +1087,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         )}
 
         {activeSection.id === "learning" && (
-          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Learning tabs">
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-[#121a22] p-2 shadow-xs" aria-label="Learning tabs">
             {[
               { id: "learning" as View, label: "Learning Studio", icon: BookOpen },
               { id: "paths" as View, label: "Learning Paths", icon: Compass },
@@ -1100,7 +1100,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   view === tab.id
                     ? "bg-accent text-white shadow-sm"
-                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                    : "bg-surface dark:bg-white/5 text-slate dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-ink dark:hover:text-white"
                 }`}
               >
                 <tab.icon size={13} />
@@ -1111,7 +1111,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         )}
 
         {activeSection.id === "practice" && (
-          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Practice tabs">
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-[#121a22] p-2 shadow-xs" aria-label="Practice tabs">
             {[
               { id: "mock-exams" as View, label: "Mock Exams Hub", icon: Award },
               { id: "progress" as View, label: "Weekly Tests & Progress", icon: CalendarDays },
@@ -1124,7 +1124,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   view === tab.id
                     ? "bg-accent text-white shadow-sm"
-                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                    : "bg-surface dark:bg-white/5 text-slate dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-ink dark:hover:text-white"
                 }`}
               >
                 <tab.icon size={13} />
@@ -1135,7 +1135,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         )}
 
         {activeSection.id === "projects" && (
-          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Projects tabs">
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-[#121a22] p-2 shadow-xs" aria-label="Projects tabs">
             {[
               { id: "projects" as View, label: "Applied Projects", icon: FolderKanban },
               { id: "portfolio" as View, label: "Student Portfolio", icon: Globe },
@@ -1147,7 +1147,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   view === tab.id
                     ? "bg-accent text-white shadow-sm"
-                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                    : "bg-surface dark:bg-white/5 text-slate dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-ink dark:hover:text-white"
                 }`}
               >
                 <tab.icon size={13} />
@@ -1158,7 +1158,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
         )}
 
         {activeSection.id === "career" && (
-          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white p-2 shadow-xs" aria-label="Career Center tabs">
+          <nav className="mb-6 flex flex-wrap gap-2 rounded-2xl border border-ink/8 dark:border-white/10 bg-white dark:bg-[#121a22] p-2 shadow-xs" aria-label="Career Center tabs">
             {[
               { id: "opportunities" as View, label: "Opportunities", icon: Briefcase },
               { id: "applications" as View, label: "Applications Tracker", icon: Bookmark },
@@ -1174,7 +1174,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   view === tab.id
                     ? "bg-accent text-white shadow-sm"
-                    : "bg-surface text-slate hover:bg-white hover:text-ink"
+                    : "bg-surface dark:bg-white/5 text-slate dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-ink dark:hover:text-white"
                 }`}
               >
                 <tab.icon size={13} />

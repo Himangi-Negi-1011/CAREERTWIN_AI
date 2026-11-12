@@ -1,203 +1,165 @@
 {
-  "id": "phase-c-programming-beginner-mod-3",
+  "id": "phase-c-programming-mod-3-c-advanced-module-3-assessment",
   "skillName": "C Programming",
   "skillSlug": "c-programming",
   "level": "beginner",
   "testNumber": 3,
   "isPhaseAssessment": true,
-  "moduleId": "mod-3-c-beginner-module-3",
-  "moduleTitle": "Pointers, Structs, Files, and a Project",
-  "title": "Pointers, Structs, Files, and a Project Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Pointers, Structs, Files, and a Project.",
+  "moduleId": "mod-3-c-advanced-module-3",
+  "moduleTitle": "POSIX Systems Programming, File IO & Production Quality",
+  "title": "C Programming — POSIX Systems Programming, File IO & Production Quality Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across File Descriptors, Binary IO & Defensive Error Handling and Multi-Threading with POSIX pthreads & Thread Safety.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 20,
   "passingPercentage": 70,
   "topicsCovered": [
-    "array bounds",
-    "sizeof array",
-    "size_t",
-    "undefined behavior",
-    "pass by value"
+    "File Descriptors, Binary IO & Defensive Error Handling",
+    "Multi-Threading with POSIX pthreads & Thread Safety"
   ],
   "questions": [
     {
-      "id": "phase-c-programming-beginner-mod-3-q1",
+      "id": "phase-c-programming-mod-3-c-advanced-module-3-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "POSIX Systems Programming, File IO & Production Quality Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes array bounds in C?",
+      "prompt": "Which C standard library function converts an errno integer into a human-readable string?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "valid indexes are below the element count"
+          "id": "opt-1",
+          "text": "strerror"
         },
         {
-          "id": "B",
-          "text": "use i < count as the common traversal guard"
+          "id": "opt-2",
+          "text": "printf"
         },
         {
-          "id": "C",
-          "text": "index equal to count is out of bounds"
+          "id": "opt-3",
+          "text": "perror"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "errno_str"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "valid indexes are below the element count. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "strerror(errno) returns a pointer to the textual description of the corresponding error code.",
       "difficulty": "beginner",
-      "topic": "array bounds",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+      "topic": "File Descriptors, Binary IO & Defensive Error Handling",
+      "marks": 5,
+      "recommendedLessonId": "mod-3-c-advanced-module-3-l1-file-descriptors-binary-io-defensive-err",
+      "recommendedLessonTitle": "File Descriptors, Binary IO & Defensive Error Handling"
     },
     {
-      "id": "phase-c-programming-beginner-mod-3-q2",
+      "id": "phase-c-programming-mod-3-c-advanced-module-3-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "POSIX Systems Programming, File IO & Production Quality Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes sizeof array in C?",
+      "prompt": "Why must binary files be opened with 'rb' or 'wb' modes rather than plain 'r' or 'w'?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "local array size can derive an element count"
+          "id": "opt-1",
+          "text": "To prevent the C runtime from performing automatic newline translations (CRLF vs LF) on Windows platforms"
         },
         {
-          "id": "B",
-          "text": "divide total array bytes by one element size"
+          "id": "opt-2",
+          "text": "Binary mode compresses the data automatically"
         },
         {
-          "id": "C",
-          "text": "a function parameter declared as array is adjusted to a pointer"
+          "id": "opt-3",
+          "text": "Standard C does not support plain 'r' mode"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Binary mode enables multi-threading support"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "local array size can derive an element count. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Text mode on Windows translates \\n into \\r\\n on write and vice-versa on read, corrupting raw binary structs.",
       "difficulty": "beginner",
-      "topic": "sizeof array",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+      "topic": "File Descriptors, Binary IO & Defensive Error Handling",
+      "marks": 5,
+      "recommendedLessonId": "mod-3-c-advanced-module-3-l1-file-descriptors-binary-io-defensive-err",
+      "recommendedLessonTitle": "File Descriptors, Binary IO & Defensive Error Handling"
     },
     {
-      "id": "phase-c-programming-beginner-mod-3-q3",
+      "id": "phase-c-programming-mod-3-c-advanced-module-3-q3",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "POSIX Systems Programming, File IO & Production Quality Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes size_t in C?",
+      "prompt": "What is the primary role of a pthread_mutex_t in multi-threaded C?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "size_t represents object sizes and indexes"
+          "id": "opt-1",
+          "text": "To guarantee mutual exclusion and prevent race conditions on shared memory"
         },
         {
-          "id": "B",
-          "text": "use size_t with sizeof-derived counts"
+          "id": "opt-2",
+          "text": "To allocate heap memory for new threads"
         },
         {
-          "id": "C",
-          "text": "mixing signed and unsigned values can distort comparisons"
+          "id": "opt-3",
+          "text": "To speed up compiler optimization"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "To terminate hung threads"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "size_t represents object sizes and indexes. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "A mutex ensures only one thread executes a critical section at any time, eliminating data races.",
       "difficulty": "beginner",
-      "topic": "size_t",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+      "topic": "Multi-Threading with POSIX pthreads & Thread Safety",
+      "marks": 5,
+      "recommendedLessonId": "mod-3-c-advanced-module-3-l2-multi-threading-with-posix-pthreads-thre",
+      "recommendedLessonTitle": "Multi-Threading with POSIX pthreads & Thread Safety"
     },
     {
-      "id": "phase-c-programming-beginner-mod-3-q4",
+      "id": "phase-c-programming-mod-3-c-advanced-module-3-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "POSIX Systems Programming, File IO & Production Quality Checkpoint",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes undefined behavior in C?",
+      "prompt": "Which GCC compiler flag must be provided when compiling POSIX thread applications?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "undefined behavior imposes no required result"
+          "id": "opt-1",
+          "text": "-pthread"
         },
         {
-          "id": "B",
-          "text": "prevent invalid accesses rather than expecting an exception"
+          "id": "opt-2",
+          "text": "-threading"
         },
         {
-          "id": "C",
-          "text": "a successful run does not prove undefined behavior is safe"
+          "id": "opt-3",
+          "text": "-posix"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "-pthreads-on"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "undefined behavior imposes no required result. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "The -pthread flag configures compiler preprocessor definitions and links libpthread required for POSIX threads.",
       "difficulty": "beginner",
-      "topic": "undefined behavior",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
-    },
-    {
-      "id": "phase-c-programming-beginner-mod-3-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes pass by value in C?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "every C function parameter receives a value copy"
-        },
-        {
-          "id": "B",
-          "text": "pass an address when deliberate caller mutation is needed"
-        },
-        {
-          "id": "C",
-          "text": "reassigning a pointer parameter does not reassign caller pointer"
-        },
-        {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "every C function parameter receives a value copy. Verify with strict warnings, a minimal program, and observable output.",
-      "difficulty": "beginner",
-      "topic": "pass by value",
-      "marks": 1,
-      "recommendedLessonId": "mod-3-c-beginner-module-3-l1",
-      "recommendedLessonTitle": "Functions, Pointers, and Ownership"
+      "topic": "Multi-Threading with POSIX pthreads & Thread Safety",
+      "marks": 5,
+      "recommendedLessonId": "mod-3-c-advanced-module-3-l2-multi-threading-with-posix-pthreads-thre",
+      "recommendedLessonTitle": "Multi-Threading with POSIX pthreads & Thread Safety"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:40.807Z",
-  "updatedAt": "2026-11-01T15:37:40.807Z"
+  "createdAt": "2026-11-12T04:53:53.420Z",
+  "updatedAt": "2026-11-12T04:53:53.420Z"
 }

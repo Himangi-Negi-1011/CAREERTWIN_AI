@@ -6,117 +6,108 @@
   "objectives": [
     {
       "id": "c-programming-obj-1",
-      "statement": "Write and explain small Python programs",
+      "statement": "Understand foundational mental models and architecture of C Programming",
       "order": 1
     },
     {
       "id": "c-programming-obj-2",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Implement secure, reproducible solutions across real-world C Programming tasks",
       "order": 2
     },
     {
       "id": "c-programming-obj-3",
-      "statement": "Write and explain small Python programs",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in C Programming",
       "order": 3
     },
     {
       "id": "c-programming-obj-4",
-      "statement": "Use evidence from output and tests to diagnose behavior",
+      "statement": "Architect scalable enterprise workflows aligned with C Programming industry best practices",
       "order": 4
-    },
-    {
-      "id": "c-programming-obj-5",
-      "statement": "Write and explain small Python programs",
-      "order": 5
-    },
-    {
-      "id": "c-programming-obj-6",
-      "statement": "Use evidence from output and tests to diagnose behavior",
-      "order": 6
     }
   ],
   "prerequisites": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Basic computer literacy and comfort navigating the terminal or command prompt",
+    "Understanding of file paths and simple text editing"
   ],
   "modules": [
     {
       "id": "mod-1-c-beginner-module-1",
-      "title": "Build Process, Types, and Input",
-      "summary": "Build a correct mental model of Python execution, values, types, conversion, and observable output.",
+      "title": "C Translation Architecture, Memory Model & Basic Types",
+      "summary": "Master the 4 stages of C compilation, memory segment layout (Text, Data, BSS, Heap, Stack), primitive types, and formatted IO.",
       "order": 1,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 90,
       "objectiveIds": [
         "c-programming-obj-1",
         "c-programming-obj-2"
       ],
       "lessonTitles": [
-        "Compiling C and Reading Diagnostics",
-        "Types, Expressions, and Safe Input"
+        "The C Compilation Pipeline & Process Memory Layout",
+        "Fixed-Width Types, Operators & Formatted Standard IO"
       ],
-      "checkpoint": "Pass the Build Process, Types, and Input assessment with 70%+ score."
+      "checkpoint": "Compile C17 programs with zero warnings and diagram stack frame allocations."
     },
     {
-      "id": "mod-2-c-beginner-module-2",
-      "title": "Control Flow, Arrays, and Functions",
-      "summary": "Express decisions and repetition clearly while testing boundaries and termination behavior.",
+      "id": "mod-2-c-intermediate-module-2",
+      "title": "Pointers, Memory Allocation & Data Structures",
+      "summary": "Understand pointer indirection, pointer arithmetic, dynamic memory allocation (malloc, calloc, realloc, free), structs, and defensive buffer management.",
       "order": 2,
-      "estimatedMinutes": 220,
+      "estimatedMinutes": 90,
+      "objectiveIds": [
+        "c-programming-obj-2",
+        "c-programming-obj-3"
+      ],
+      "lessonTitles": [
+        "Pointer Indirection, Addresses & Pointer Arithmetic",
+        "Dynamic Memory Management & Struct Packaging"
+      ],
+      "checkpoint": "Build a leak-free dynamic resizing array with Valgrind passing with 0 errors."
+    },
+    {
+      "id": "mod-3-c-advanced-module-3",
+      "title": "POSIX Systems Programming, File IO & Production Quality",
+      "summary": "Master low-level file descriptors, binary serialization, error handling with errno, multi-threaded POSIX pthreads, and automated test suites.",
+      "order": 3,
+      "estimatedMinutes": 90,
       "objectiveIds": [
         "c-programming-obj-3",
         "c-programming-obj-4"
       ],
       "lessonTitles": [
-        "Conditions, Operators, and Boundaries",
-        "Loops, Arrays, and Bounds"
+        "File Descriptors, Binary IO & Defensive Error Handling",
+        "Multi-Threading with POSIX pthreads & Thread Safety"
       ],
-      "checkpoint": "Pass the Control Flow, Arrays, and Functions assessment with 70%+ score."
-    },
-    {
-      "id": "mod-3-c-beginner-module-3",
-      "title": "Pointers, Structs, Files, and a Project",
-      "summary": "Decompose programs into testable functions and select collections that match the problem.",
-      "order": 3,
-      "estimatedMinutes": 220,
-      "objectiveIds": [
-        "c-programming-obj-5",
-        "c-programming-obj-6"
-      ],
-      "lessonTitles": [
-        "Functions, Pointers, and Ownership",
-        "Structs, Text Files, and a Progress Tracker"
-      ],
-      "checkpoint": "Pass the Pointers, Structs, Files, and a Project assessment with 70%+ score."
+      "checkpoint": "Build a thread-safe multi-worker job queue with POSIX mutexes and condition variables."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic in C Programming",
-    "Interactive code modification and debugging exercises",
-    "Module-end practical synthesis challenge"
+    "Compile programs with strict GCC flags: -std=c17 -Wall -Wextra -Wpedantic",
+    "Inspect memory allocations, pointer arithmetic, and stack vs heap lifespans",
+    "Debug segfaults and buffer overflows using GDB and Valgrind memory analyzers"
   ],
   "assessmentCheckpoints": [
-    "Build Process, Types, and Input Knowledge Check (70% pass threshold)",
-    "Control Flow, Arrays, and Functions Knowledge Check (70% pass threshold)",
-    "Pointers, Structs, Files, and a Project Knowledge Check (70% pass threshold)"
+    "C Translation Architecture, Memory Model & Basic Types Checkpoint (70% pass threshold)",
+    "Pointers, Memory Allocation & Data Structures Checkpoint (70% pass threshold)",
+    "POSIX Systems Programming, File IO & Production Quality Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "Safe File-Backed Progress Tracker"
+    "CLI Memory-Safe String Tokenizer & Dynamic Vector",
+    "POSIX Multi-Threaded HTTP File Server with Epoll / Select"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Pass all 3 comprehensive mock tests and practical debugging tasks",
-    "Complete hands-on verified capstone review"
+    "Accurately predict variable lifetimes, alignment, and struct padding in C17",
+    "Manage dynamic memory safely without leaks or double-free vulnerabilities",
+    "Implement defensive bounds checking across all buffer operations"
   ],
   "resources": [
     {
-      "title": "C Language Standard Reference (cppreference)",
-      "organization": "ISO/IEC 9899 Reference",
+      "title": "ISO/IEC 9899 C Standard & cppreference C Guide",
+      "organization": "ISO C Standards Committee",
       "url": "https://en.cppreference.com/w/c",
-      "retrievedAt": "2026-11-01T15:37:40.756Z",
+      "retrievedAt": "2026-11-12T04:53:53.420Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

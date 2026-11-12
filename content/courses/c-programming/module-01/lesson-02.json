@@ -1,226 +1,212 @@
 {
-  "lessonId": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input",
+  "lessonId": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st",
   "skillName": "C Programming",
   "moduleId": "mod-1-c-beginner-module-1",
-  "title": "Types, Expressions, and Safe Input",
-  "summary": "Use integer and floating types, declarations, conversions, format specifiers, arithmetic, and checked text input.",
+  "title": "Fixed-Width Types, Operators & Formatted Standard IO",
+  "summary": "Master stdint.h fixed-width integer types, IEEE 754 floating point arithmetic, bitwise operators, and secure formatted IO with printf and fgets.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 75,
+  "estimatedMinutes": 45,
   "learningObjectives": [
-    "Explain and apply Types, Expressions, and Safe Input",
-    "Compile and test behavior with warnings enabled"
+    "Utilize portable fixed-width integers from <stdint.h> (uint32_t, int64_t)",
+    "Perform bitwise manipulation (AND, OR, XOR, shifts) for bitmasking",
+    "Avoid buffer overflows by replacing gets/scanf with fgets and snprintf"
   ],
   "objectiveIds": [
     "c-programming-obj-1",
     "c-programming-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Ability to create and save a text file",
-    "No prior programming experience required"
+    "Completion of Lesson 1: The C Compilation Pipeline"
   ],
   "sections": [
     {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-sec-1",
-      "heading": "Core model",
-      "content": "C objects have declared types that determine representation and operations. Integer division truncates toward zero, so cast before division when a fraction is required. `sizeof` reports storage in bytes as `size_t`. `printf` and `scanf` format specifiers must match argument types; a mismatch can cause undefined behavior. For robust interactive input, read a line with `fgets`, then parse with `strtol` while checking the end pointer and range. Initialize objects before reading them and never assume failed input leaves a useful value.",
-      "codeExamples": [],
-      "keyPoints": [
-        "C objects have declared types that determine representation and operations."
-      ],
-      "commonMistakes": [
-        "casting after division cannot restore the fraction",
-        "a mismatch can cause undefined behavior"
-      ]
-    },
-    {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-sec-2",
-      "heading": "Worked C example",
-      "content": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
+      "id": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st-sec-1",
+      "heading": "1. Portable Integer Widths and Defensive Buffer IO",
+      "content": "In traditional C, the size of `int`, `long`, and `short` is implementation-defined. An `int` may be 16 bits on an AVR microcontroller and 32 bits on x86_64, while `long` is 32 bits on 64-bit Windows but 64 bits on 64-bit Linux!\n\nTo write portable, bug-free systems software, C99 introduced `<stdint.h>`:\n- `int8_t`, `uint8_t`: Exactly 8 bits.\n- `int16_t`, `uint16_t`: Exactly 16 bits.\n- `int32_t`, `uint32_t`: Exactly 32 bits.\n- `int64_t`, `uint64_t`: Exactly 64 bits.\n- `size_t`: Unsigned integer type representing object sizes and array indices.\n\nFurthermore, reading user input securely requires avoiding deprecated functions like `gets()` (which has no buffer size limit) and unchecked `scanf(\"%s\")`. Instead, always use `fgets()` with an explicit buffer limit.",
       "codeExamples": [
         {
-          "language": "c",
-          "code": "#include <stdio.h>\nint main(void) {\n    int total = 243, count = 3;\n    double average = (double)total / count;\n    printf(\"%.1f\\n\", average);\n    return 0;\n}",
-          "explanation": "Predict diagnostics and output, compile with strict warnings, then run and compare evidence.",
-          "expectedOutput": "81.0"
+          "language": "text",
+          "code": "INTEGER BITMASKING BLUEPRINT:\nInitial Byte:      [0][0][1][0] [1][0][1][0]  (0x2A)\nBitmask (Bit 3):   [0][0][0][0] [1][0][0][0]  (1 << 3)\n---------------------------------------------\nBitwise AND (&):   [0][0][0][0] [1][0][0][0]  (Non-zero -> Bit 3 is SET)\nBitwise OR  (|):   Sets bit 3 high\nBitwise NOT (~):   Inverts all bits for clear operations: value &= ~(1 << 3)",
+          "explanation": "Bitmask operations for querying, setting, and clearing individual hardware registers and permission flags.",
+          "expectedOutput": ""
         }
       ],
       "keyPoints": [
-        "C objects have declared types that determine representation and operations."
+        "Always prefer <stdint.h> fixed-width types over raw primitive types for cross-platform reliability.",
+        "Use fgets() rather than scanf() or gets() to eliminate buffer overflow attack vectors.",
+        "Print size_t with %zu and uint64_t with PRIu64 from <inttypes.h>."
       ],
       "commonMistakes": [
-        "casting after division cannot restore the fraction",
-        "a mismatch can cause undefined behavior"
+        "Using gets() which is vulnerable to catastrophic buffer overflows.",
+        "Assuming sizeof(long) is always 8 bytes across all 64-bit operating systems."
       ]
     },
     {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-sec-3",
-      "heading": "Guided practice",
-      "content": "1. Save the source.\n2. Predict diagnostics and output.\n3. Compile as C17 with strict warnings.\n4. Fix one root cause at a time.\n5. Run the executable.\n6. Add boundary assertions.",
-      "codeExamples": [],
+      "id": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st-sec-2",
+      "heading": "2. Production Bitmask Engine and Defensive Input Parsing",
+      "content": "This program showcases bitmask state flags for network connections and parses user configuration defensively without buffer overflows.",
+      "codeExamples": [
+        {
+          "language": "c",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <stdint.h>\n#include <stdbool.h>\n#include <string.h>\n\n/* Bitmask flags for connection states */\n#define FLAG_CONNECTED     (1U << 0) /* 0000 0001 */\n#define FLAG_ENCRYPTED     (1U << 1) /* 0000 0010 */\n#define FLAG_AUTHENTICATED (1U << 2) /* 0000 0100 */\n#define FLAG_COMPRESSED    (1U << 3) /* 0000 1000 */\n\nvoid print_connection_status(uint8_t flags) {\n    printf(\"Connection Flags: 0x%02X\\n\", flags);\n    printf(\" - Connected:     %s\\n\", (flags & FLAG_CONNECTED) ? \"YES\" : \"NO\");\n    printf(\" - Encrypted:     %s\\n\", (flags & FLAG_ENCRYPTED) ? \"YES\" : \"NO\");\n    printf(\" - Authenticated: %s\\n\", (flags & FLAG_AUTHENTICATED) ? \"YES\" : \"NO\");\n    printf(\" - Compressed:    %s\\n\", (flags & FLAG_COMPRESSED) ? \"YES\" : \"NO\");\n}\n\nint main(void) {\n    uint8_t connection_state = 0;\n\n    /* Turn ON Connected and Encrypted */\n    connection_state |= (FLAG_CONNECTED | FLAG_ENCRYPTED);\n    printf(\"State after connection & TLS handshake:\\n\");\n    print_connection_status(connection_state);\n\n    /* Turn ON Authenticated */\n    connection_state |= FLAG_AUTHENTICATED;\n    printf(\"\\nState after SASL authentication:\\n\");\n    print_connection_status(connection_state);\n\n    /* Turn OFF Encryption (downgrade) safely using bitwise AND with NOT */\n    connection_state &= ~FLAG_ENCRYPTED;\n    printf(\"\\nState after TLS termination:\\n\");\n    print_connection_status(connection_state);\n\n    /* Defensive String Formatting with snprintf */\n    char buffer[64];\n    int written = snprintf(buffer, sizeof(buffer), \"SESSION-ID-%04u\", 1024U);\n    if (written < 0 || (size_t)written >= sizeof(buffer)) {\n        fprintf(stderr, \"Buffer truncation detected!\\n\");\n        return EXIT_FAILURE;\n    }\n    printf(\"\\nFormatted Safe Session ID: %s\\n\", buffer);\n\n    return EXIT_SUCCESS;\n}",
+          "explanation": "Demonstrates bitwise flags manipulation with |= and &= ~, combined with bounds-checked snprintf formatting.",
+          "expectedOutput": "State after connection & TLS handshake:\nConnection Flags: 0x03\n - Connected:     YES\n - Encrypted:     YES\n - Authenticated: NO\n - Compressed:    NO\n\nState after SASL authentication:\nConnection Flags: 0x07\n - Connected:     YES\n - Encrypted:     YES\n - Authenticated: YES\n - Compressed:    NO\n\nState after TLS termination:\nConnection Flags: 0x05\n - Connected:     YES\n - Encrypted:     NO\n - Authenticated: YES\n - Compressed:    NO\n\nFormatted Safe Session ID: SESSION-ID-1024"
+        }
+      ],
       "keyPoints": [
-        "C objects have declared types that determine representation and operations."
+        "Use snprintf with sizeof(buffer) to safely prevent format string overflows.",
+        "Bitwise operations allow tracking up to 8 binary states in a single uint8_t byte."
       ],
       "commonMistakes": [
-        "casting after division cannot restore the fraction",
-        "a mismatch can cause undefined behavior"
+        "Using sprintf instead of snprintf, risking stack smashing on unexpected input sizes."
+      ]
+    },
+    {
+      "id": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st-sec-3",
+      "heading": "3. Systems Architecture Blueprint & Production Verification",
+      "content": "Mastering Fixed-Width Types, Operators & Formatted Standard IO requires continuous empirical verification. In production environments, verify that every memory allocation is accounted for, buffer boundaries are strictly honored, and execution logs provide deterministic diagnostics.\n\nKey Operational Checks:\n1. Validate inputs and boundary constraints before executing core business logic.\n2. Structure error handling so failed operations release all acquired resources before returning.\n3. Establish automated unit and regression tests that exercise edge conditions and stress boundaries.",
+      "codeExamples": [],
+      "keyPoints": [
+        "Reliability in systems engineering is achieved by treating failure modes as first-class architectural concerns.",
+        "Document and verify performance invariants with repeatable benchmarks."
+      ],
+      "commonMistakes": [
+        "Failing to profile and test under simulated peak load conditions."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-ex-1",
+      "id": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st-ex-1",
       "type": "coding",
-      "title": "Build, compile, and explain",
-      "objective": "Master Build, compile, and explain and apply practical principles in C Programming.",
-      "description": "Read weekly minutes with fgets and strtol, reject trailing text and values outside a documented range, then calculate a four-week total. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling.",
+      "title": "Implement a Bitfield Permission System",
+      "objective": "Create a permission validator that tests READ, WRITE, and EXECUTE bitmasks.",
+      "description": "Write a function has_permission(uint8_t user_perms, uint8_t required_perms) that returns true only if all required bits are active.",
       "instructions": [
-        "Read weekly minutes with fgets and strtol, reject trailing text and values outside a documented range, then calculate a four-week total. Submit source, compiler output, runtime evidence, tests, and an explanation of bounds and failure handling."
+        "Define READ (1U << 0), WRITE (1U << 1), and EXECUTE (1U << 2).",
+        "Write boolean evaluation logic using bitwise AND.",
+        "Verify with test cases in main()."
       ],
-      "starterCode": "// C Programming Exercise: Build, compile, and explain\n// Write your solution below",
+      "starterCode": "#include <stdio.h>\n#include <stdint.h>\n#include <stdbool.h>\n\n#define PERM_READ  (1U << 0)\n#define PERM_WRITE (1U << 1)\n#define PERM_EXEC  (1U << 2)\n\nbool has_permission(uint8_t user_perms, uint8_t required_perms) {\n    /* TODO: Return true if all required_perms bits are set in user_perms */\n    return false;\n}\n\nint main(void) {\n    uint8_t user = PERM_READ | PERM_WRITE;\n    printf(\"Can Read & Write: %s\\n\", has_permission(user, PERM_READ | PERM_WRITE) ? \"YES\" : \"NO\");\n    printf(\"Can Execute:      %s\\n\", has_permission(user, PERM_EXEC) ? \"YES\" : \"NO\");\n    return 0;\n}",
       "hints": [
-        "Warning-clean C17 source",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "An expression (user_perms & required_perms) == required_perms tests if all required bits are present."
       ],
-      "submissionRequirements": "Submit runnable source code and verified execution test results.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Warning-clean C17 source",
-        "Boundary and failure tests",
-        "Evidence-based explanation"
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "Verified reference implementation demonstrating core C Programming operations for Build, compile, and explain."
+      "solutionExplanation": "Checking (user_perms & required_perms) == required_perms ensures every bit required by the mask is present."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-kc-1",
+      "id": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st-kc-1",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of preprocessing?",
+      "prompt": "What format specifier must be used in standard C to print a size_t variable?",
       "options": [
         {
-          "id": "A",
-          "text": "use headers for declarations and include guards"
+          "id": "opt-1",
+          "text": "%zu"
         },
         {
-          "id": "B",
-          "text": "preprocessing handles directives before compilation"
+          "id": "opt-2",
+          "text": "%d"
         },
         {
-          "id": "C",
-          "text": "macros do textual substitution without type checking"
+          "id": "opt-3",
+          "text": "%lu"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "%s"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "%zu is the ISO standard format specifier for size_t integers.",
       "objectiveIds": [
         "c-programming-obj-1"
       ]
     },
     {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-kc-2",
+      "id": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st-kc-2",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of compiler warnings?",
+      "prompt": "How do you clear (turn OFF) bit 2 in an integer variable 'flags'?",
       "options": [
         {
-          "id": "A",
-          "text": "enable Wall Wextra and Wpedantic"
+          "id": "opt-1",
+          "text": "flags &= ~(1 << 2)"
         },
         {
-          "id": "B",
-          "text": "warnings identify suspicious but translatable code"
+          "id": "opt-2",
+          "text": "flags |= (1 << 2)"
         },
         {
-          "id": "C",
-          "text": "ignoring warnings can leave real defects"
+          "id": "opt-3",
+          "text": "flags ^= (1 << 2)"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "flags = 0"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Bitwise AND with the bitwise NOT (~(1 << 2)) clears only the targeted bit while preserving all other bits.",
       "objectiveIds": [
         "c-programming-obj-2"
       ]
-    },
-    {
-      "id": "mod-1-c-beginner-module-1-l2-types-expressions-and-safe-input-kc-3",
-      "type": "single-choice",
-      "prompt": "Which is the safest beginner application of linking?",
-      "options": [
-        {
-          "id": "A",
-          "text": "provide exactly one matching external definition"
-        },
-        {
-          "id": "B",
-          "text": "linking resolves referenced definitions"
-        },
-        {
-          "id": "C",
-          "text": "a declaration alone does not satisfy the linker"
-        },
-        {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output.",
-      "objectiveIds": [
-        "c-programming-obj-1"
-      ]
     }
   ],
-  "recap": "In this lesson, you covered Types, Expressions, and Safe Input in C Programming. You learned foundational syntax, common operational patterns, and how to verify output correctly.",
+  "recap": "Fixed-width integer types from <stdint.h> provide guaranteed memory footprints. Bitwise operators enable compact flag tracking, and snprintf guarantees buffer safety.",
   "videoResources": [
     {
-      "id": "vid-c-programming-main",
-      "title": "C Programming Tutorial for Beginners",
+      "id": "res-c-programming-primary",
+      "title": "C Programming Tutorial for Beginners - Full Course",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp.org",
+      "channelOrAuthor": "freeCodeCamp / Mike Dane",
       "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
       "embedUrl": "",
-      "durationMinutes": 180,
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative complete tutorial for C Programming.",
-      "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of C Programming.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for C Programming.",
       "learningObjectivesSupported": [
-        "c-programming-obj-1"
+        "c-programming-obj-1",
+        "c-programming-obj-2",
+        "c-programming-obj-3",
+        "c-programming-obj-4"
       ],
       "keyTopicsCovered": [
-        "Compiling C and Reading Diagnostics",
-        "Types, Expressions, and Safe Input"
+        "The C Compilation Pipeline & Process Memory Layout",
+        "Fixed-Width Types, Operators & Formatted Standard IO",
+        "Pointer Indirection, Addresses & Pointer Arithmetic",
+        "Dynamic Memory Management & Struct Packaging",
+        "File Descriptors, Binary IO & Defensive Error Handling",
+        "Multi-Threading with POSIX pthreads & Thread Safety"
       ],
-      "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-      "verificationStatus": "verified",
-      "lastCheckedDate": "2026-11-01"
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-12"
     }
   ],
   "furtherReading": [
     {
-      "title": "C Language Standard Reference (cppreference)",
+      "title": "ISO/IEC 9899 C Standard & cppreference C Guide",
       "url": "https://en.cppreference.com/w/c",
-      "description": "Official reference documentation for C Programming."
+      "description": "Authoritative official technical reference for C Programming."
     }
   ],
   "realWorldApplications": [
-    "Production application development using C Programming",
-    "Automated software quality verification and debugging"
+    "Device driver programming communicating with hardware memory-mapped IO registers.",
+    "Network protocol header parsing (TCP flags: SYN, ACK, FIN, RST).",
+    "POSIX file system permissions (chmod 0755 bitmasking)."
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-11-01T15:37:40.791Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-12T04:53:53.420Z"
 }

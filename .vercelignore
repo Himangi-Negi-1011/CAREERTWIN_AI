@@ -3,3 +3,12 @@ node_modules
 .git
 .deploy
 *.log
+.temp_zip
+.audit-reports
+uploads
+test-results
+playwright-report
+tests
+docs
+*.zip
+

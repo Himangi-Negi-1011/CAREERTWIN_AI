@@ -1,203 +1,165 @@
 {
-  "id": "phase-c-programming-beginner-mod-2",
+  "id": "phase-c-programming-mod-2-c-intermediate-module-2-assessment",
   "skillName": "C Programming",
   "skillSlug": "c-programming",
   "level": "beginner",
   "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-c-beginner-module-2",
-  "moduleTitle": "Control Flow, Arrays, and Functions",
-  "title": "Control Flow, Arrays, and Functions Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Control Flow, Arrays, and Functions.",
+  "moduleId": "mod-2-c-intermediate-module-2",
+  "moduleTitle": "Pointers, Memory Allocation & Data Structures",
+  "title": "C Programming — Pointers, Memory Allocation & Data Structures Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Pointer Indirection, Addresses & Pointer Arithmetic and Dynamic Memory Management & Struct Packaging.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 20,
   "passingPercentage": 70,
   "topicsCovered": [
-    "fgets",
-    "strtol",
-    "short circuit",
-    "assignment equality",
-    "switch"
+    "Pointer Indirection, Addresses & Pointer Arithmetic",
+    "Dynamic Memory Management & Struct Packaging"
   ],
   "questions": [
     {
-      "id": "phase-c-programming-beginner-mod-2-q1",
+      "id": "phase-c-programming-mod-2-c-intermediate-module-2-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Pointers, Memory Allocation & Data Structures Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about fgets is valid?",
+      "prompt": "If 'int32_t *p = 0x2000;', what is the value of 'p + 2' on a 32-bit integer system?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "assuming every line fits can leave unread fragments"
+          "id": "opt-1",
+          "text": "0x2008"
         },
         {
-          "id": "B",
-          "text": "fgets reads a bounded line and retains a newline when present"
+          "id": "opt-2",
+          "text": "0x2002"
         },
         {
-          "id": "C",
-          "text": "read text then parse and validate it"
+          "id": "opt-3",
+          "text": "0x2004"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "0x2010"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "assuming every line fits can leave unread fragments. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Adding 2 to an int32_t pointer advances by 2 * sizeof(int32_t) = 2 * 4 = 8 bytes (0x2000 + 8 = 0x2008).",
       "difficulty": "beginner",
-      "topic": "fgets",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+      "topic": "Pointer Indirection, Addresses & Pointer Arithmetic",
+      "marks": 5,
+      "recommendedLessonId": "mod-2-c-intermediate-module-2-l1-pointer-indirection-addresses-pointer-ar",
+      "recommendedLessonTitle": "Pointer Indirection, Addresses & Pointer Arithmetic"
     },
     {
-      "id": "phase-c-programming-beginner-mod-2-q2",
+      "id": "phase-c-programming-mod-2-c-intermediate-module-2-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Pointers, Memory Allocation & Data Structures Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about strtol is valid?",
+      "prompt": "What is the result of dereferencing a NULL or uninitialized pointer in C?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "atoi cannot report detailed conversion failure"
+          "id": "opt-1",
+          "text": "Undefined behavior, commonly resulting in a segmentation fault process crash"
         },
         {
-          "id": "B",
-          "text": "strtol reports where numeric parsing stopped"
+          "id": "opt-2",
+          "text": "The value 0 is returned automatically"
         },
         {
-          "id": "C",
-          "text": "check end pointer errno and target range"
+          "id": "opt-3",
+          "text": "A NullPointerException is thrown and caught by runtime"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "The variable is dynamically instantiated on the heap"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "atoi cannot report detailed conversion failure. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "In C, dereferencing NULL or an invalid address triggers undefined behavior and an OS memory access violation (SIGSEGV).",
       "difficulty": "beginner",
-      "topic": "strtol",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+      "topic": "Pointer Indirection, Addresses & Pointer Arithmetic",
+      "marks": 5,
+      "recommendedLessonId": "mod-2-c-intermediate-module-2-l1-pointer-indirection-addresses-pointer-ar",
+      "recommendedLessonTitle": "Pointer Indirection, Addresses & Pointer Arithmetic"
     },
     {
-      "id": "phase-c-programming-beginner-mod-2-q3",
+      "id": "phase-c-programming-mod-2-c-intermediate-module-2-q3",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Pointers, Memory Allocation & Data Structures Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about short circuit is valid?",
+      "prompt": "Why should you never assign the return value of realloc() directly to the original pointer?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "bitwise operators do not short-circuit"
+          "id": "opt-1",
+          "text": "If realloc fails, it returns NULL and the original buffer is leaked with no reference remaining"
         },
         {
-          "id": "B",
-          "text": "logical operators may skip the right operand"
+          "id": "opt-2",
+          "text": "realloc always frees the original pointer immediately"
         },
         {
-          "id": "C",
-          "text": "put validity checks before dependent expressions"
+          "id": "opt-3",
+          "text": "It violates C syntax rules"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "realloc only works on stack variables"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "bitwise operators do not short-circuit. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "If realloc fails, it returns NULL while leaving the original block intact; direct assignment destroys your only pointer to that block.",
       "difficulty": "beginner",
-      "topic": "short circuit",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+      "topic": "Dynamic Memory Management & Struct Packaging",
+      "marks": 5,
+      "recommendedLessonId": "mod-2-c-intermediate-module-2-l2-dynamic-memory-management-struct-packagi",
+      "recommendedLessonTitle": "Dynamic Memory Management & Struct Packaging"
     },
     {
-      "id": "phase-c-programming-beginner-mod-2-q4",
+      "id": "phase-c-programming-mod-2-c-intermediate-module-2-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "Pointers, Memory Allocation & Data Structures Checkpoint",
       "type": "single-choice",
-      "prompt": "Which code-review warning about assignment equality is valid?",
+      "prompt": "How does sorting struct members from largest alignment to smallest affect the struct in memory?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "using assignment in a condition can silently alter state"
+          "id": "opt-1",
+          "text": "It minimizes internal padding bytes inserted by the compiler, reducing total struct size"
         },
         {
-          "id": "B",
-          "text": "single equals assigns while double equals compares"
+          "id": "opt-2",
+          "text": "It reverses member access order"
         },
         {
-          "id": "C",
-          "text": "keep assignment out of conditions unless intentional and clear"
+          "id": "opt-3",
+          "text": "It makes the struct impossible to align"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "It converts the struct to a union"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "using assignment in a condition can silently alter state. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Arranging struct fields by descending alignment requirements eliminates unnecessary padding holes between fields.",
       "difficulty": "beginner",
-      "topic": "assignment equality",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
-    },
-    {
-      "id": "phase-c-programming-beginner-mod-2-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about switch is valid?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "missing break can execute later cases"
-        },
-        {
-          "id": "B",
-          "text": "switch selects integral cases"
-        },
-        {
-          "id": "C",
-          "text": "use breaks or explicit fallthrough comments"
-        },
-        {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "missing break can execute later cases. Verify with strict warnings, a minimal program, and observable output.",
-      "difficulty": "beginner",
-      "topic": "switch",
-      "marks": 1,
-      "recommendedLessonId": "mod-2-c-beginner-module-2-l1",
-      "recommendedLessonTitle": "Conditions, Operators, and Boundaries"
+      "topic": "Dynamic Memory Management & Struct Packaging",
+      "marks": 5,
+      "recommendedLessonId": "mod-2-c-intermediate-module-2-l2-dynamic-memory-management-struct-packagi",
+      "recommendedLessonTitle": "Dynamic Memory Management & Struct Packaging"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:40.806Z",
-  "updatedAt": "2026-11-01T15:37:40.806Z"
+  "createdAt": "2026-11-12T04:53:53.420Z",
+  "updatedAt": "2026-11-12T04:53:53.420Z"
 }

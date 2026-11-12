@@ -46,6 +46,11 @@ next-env.d.ts
 # ide & tooling scratch
 .temp_workspace_clone/
 .temp_zip/
+.audit-reports/
+uploads/
+public/dashboard.html
+public/landing.html
+public/login.html
 .agent/
 .agents/
 .gemini/
@@ -66,4 +71,5 @@ scripts/*
 !scripts/deep-programming-blueprints-js.ts
 !scripts/deep-programming-blueprints-ts.ts
 !scripts/rebuild-deep-courses.ts
+!scripts/author-flagship-programming-courses.ts
 *.zip

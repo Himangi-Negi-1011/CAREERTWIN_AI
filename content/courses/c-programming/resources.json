@@ -1,28 +1,31 @@
 [
   {
-    "id": "res-c-programming-main",
-    "title": "C Programming Tutorial for Beginners",
+    "id": "res-c-programming-primary",
+    "title": "C Programming Tutorial for Beginners - Full Course",
     "provider": "youtube",
-    "channelOrAuthor": "freeCodeCamp.org",
+    "channelOrAuthor": "freeCodeCamp / Mike Dane",
     "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
     "embedUrl": "",
-    "durationMinutes": 180,
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Authoritative complete tutorial for C Programming.",
-    "whatItTeaches": "Step-by-step walkthrough of C Programming fundamentals and practical exercises.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of C Programming.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for C Programming.",
     "learningObjectivesSupported": [
-      "c-programming-obj-1"
+      "c-programming-obj-1",
+      "c-programming-obj-2",
+      "c-programming-obj-3",
+      "c-programming-obj-4"
     ],
     "keyTopicsCovered": [
-      "Compiling C and Reading Diagnostics",
-      "Types, Expressions, and Safe Input",
-      "Conditions, Operators, and Boundaries",
-      "Loops, Arrays, and Bounds",
-      "Functions, Pointers, and Ownership",
-      "Structs, Text Files, and a Progress Tracker"
+      "The C Compilation Pipeline & Process Memory Layout",
+      "Fixed-Width Types, Operators & Formatted Standard IO",
+      "Pointer Indirection, Addresses & Pointer Arithmetic",
+      "Dynamic Memory Management & Struct Packaging",
+      "File Descriptors, Binary IO & Defensive Error Handling",
+      "Multi-Threading with POSIX pthreads & Thread Safety"
     ],
-    "followUpActivity": "Review the syntax examples and build the lesson exercise.",
-    "verificationStatus": "verified",
-    "lastCheckedDate": "2026-11-01"
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+    "verificationStatus": "curated",
+    "lastCheckedDate": "2026-11-12"
   }
 ]

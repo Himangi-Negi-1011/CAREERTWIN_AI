@@ -1,203 +1,165 @@
 {
-  "id": "phase-c-programming-beginner-mod-1",
+  "id": "phase-c-programming-mod-1-c-beginner-module-1-assessment",
   "skillName": "C Programming",
   "skillSlug": "c-programming",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
   "moduleId": "mod-1-c-beginner-module-1",
-  "moduleTitle": "Build Process, Types, and Input",
-  "title": "Build Process, Types, and Input Phase Assessment",
-  "description": "Comprehensive phase-end assessment covering all lessons in Build Process, Types, and Input.",
+  "moduleTitle": "C Translation Architecture, Memory Model & Basic Types",
+  "title": "C Programming — C Translation Architecture, Memory Model & Basic Types Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across The C Compilation Pipeline & Process Memory Layout and Fixed-Width Types, Operators & Formatted Standard IO.",
   "durationMinutes": 20,
-  "totalMarks": 5,
+  "totalMarks": 20,
   "passingPercentage": 70,
   "topicsCovered": [
-    "preprocessing",
-    "compiler warnings",
-    "linking",
-    "integer division",
-    "format specifiers"
+    "The C Compilation Pipeline & Process Memory Layout",
+    "Fixed-Width Types, Operators & Formatted Standard IO"
   ],
   "questions": [
     {
-      "id": "phase-c-programming-beginner-mod-1-q1",
+      "id": "phase-c-programming-mod-1-c-beginner-module-1-q1",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "C Translation Architecture, Memory Model & Basic Types Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of preprocessing?",
+      "prompt": "Which stage of C compilation handles #include and #define directives?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use headers for declarations and include guards"
+          "id": "opt-1",
+          "text": "Preprocessor"
         },
         {
-          "id": "B",
-          "text": "preprocessing handles directives before compilation"
+          "id": "opt-2",
+          "text": "Assembler"
         },
         {
-          "id": "C",
-          "text": "macros do textual substitution without type checking"
+          "id": "opt-3",
+          "text": "Linker"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Loader"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "use headers for declarations and include guards. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "The C preprocessor runs prior to parsing and expands all directives and macros textually.",
       "difficulty": "beginner",
-      "topic": "preprocessing",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "The C Compilation Pipeline & Process Memory Layout",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1-the-c-compilation-pipeline-process-memor",
+      "recommendedLessonTitle": "The C Compilation Pipeline & Process Memory Layout"
     },
     {
-      "id": "phase-c-programming-beginner-mod-1-q2",
+      "id": "phase-c-programming-mod-1-c-beginner-module-1-q2",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "C Translation Architecture, Memory Model & Basic Types Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of compiler warnings?",
+      "prompt": "In a standard OS process, which memory segment grows downward toward lower memory addresses?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "enable Wall Wextra and Wpedantic"
+          "id": "opt-1",
+          "text": "The Stack"
         },
         {
-          "id": "B",
-          "text": "warnings identify suspicious but translatable code"
+          "id": "opt-2",
+          "text": "The Heap"
         },
         {
-          "id": "C",
-          "text": "ignoring warnings can leave real defects"
+          "id": "opt-3",
+          "text": "The BSS Segment"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "The Text Segment"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "enable Wall Wextra and Wpedantic. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "The call stack grows downwards as functions push stack frames containing parameters and automatic local variables.",
       "difficulty": "beginner",
-      "topic": "compiler warnings",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "The C Compilation Pipeline & Process Memory Layout",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l1-the-c-compilation-pipeline-process-memor",
+      "recommendedLessonTitle": "The C Compilation Pipeline & Process Memory Layout"
     },
     {
-      "id": "phase-c-programming-beginner-mod-1-q3",
+      "id": "phase-c-programming-mod-1-c-beginner-module-1-q3",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "C Translation Architecture, Memory Model & Basic Types Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of linking?",
+      "prompt": "What format specifier must be used in standard C to print a size_t variable?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "provide exactly one matching external definition"
+          "id": "opt-1",
+          "text": "%zu"
         },
         {
-          "id": "B",
-          "text": "linking resolves referenced definitions"
+          "id": "opt-2",
+          "text": "%d"
         },
         {
-          "id": "C",
-          "text": "a declaration alone does not satisfy the linker"
+          "id": "opt-3",
+          "text": "%lu"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "%s"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "provide exactly one matching external definition. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "%zu is the ISO standard format specifier for size_t integers.",
       "difficulty": "beginner",
-      "topic": "linking",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Fixed-Width Types, Operators & Formatted Standard IO",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st",
+      "recommendedLessonTitle": "Fixed-Width Types, Operators & Formatted Standard IO"
     },
     {
-      "id": "phase-c-programming-beginner-mod-1-q4",
+      "id": "phase-c-programming-mod-1-c-beginner-module-1-q4",
       "section": "A",
-      "sectionTitle": "",
+      "sectionTitle": "C Translation Architecture, Memory Model & Basic Types Checkpoint",
       "type": "single-choice",
-      "prompt": "Which is the safest beginner application of integer division?",
+      "prompt": "How do you clear (turn OFF) bit 2 in an integer variable 'flags'?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "cast before division for a fractional result"
+          "id": "opt-1",
+          "text": "flags &= ~(1 << 2)"
         },
         {
-          "id": "B",
-          "text": "integer operands produce an integer quotient"
+          "id": "opt-2",
+          "text": "flags |= (1 << 2)"
         },
         {
-          "id": "C",
-          "text": "casting after division cannot restore the fraction"
+          "id": "opt-3",
+          "text": "flags ^= (1 << 2)"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "flags = 0"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "cast before division for a fractional result. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Bitwise AND with the bitwise NOT (~(1 << 2)) clears only the targeted bit while preserving all other bits.",
       "difficulty": "beginner",
-      "topic": "integer division",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
-    },
-    {
-      "id": "phase-c-programming-beginner-mod-1-q5",
-      "section": "A",
-      "sectionTitle": "",
-      "type": "single-choice",
-      "prompt": "Which is the safest beginner application of format specifiers?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "A",
-          "text": "match every conversion with the documented type"
-        },
-        {
-          "id": "B",
-          "text": "formatted I/O relies on matching argument types"
-        },
-        {
-          "id": "C",
-          "text": "a mismatch can cause undefined behavior"
-        },
-        {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
-        }
-      ],
-      "correctOptionIds": [
-        "A"
-      ],
-      "explanation": "match every conversion with the documented type. Verify with strict warnings, a minimal program, and observable output.",
-      "difficulty": "beginner",
-      "topic": "format specifiers",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Fixed-Width Types, Operators & Formatted Standard IO",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-c-beginner-module-1-l2-fixed-width-types-operators-formatted-st",
+      "recommendedLessonTitle": "Fixed-Width Types, Operators & Formatted Standard IO"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:40.797Z",
-  "updatedAt": "2026-11-01T15:37:40.797Z"
+  "createdAt": "2026-11-12T04:53:53.420Z",
+  "updatedAt": "2026-11-12T04:53:53.420Z"
 }
