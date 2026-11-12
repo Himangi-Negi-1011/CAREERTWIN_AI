@@ -334,51 +334,66 @@ function Overview({
   const focusAction = !role ? "Choose a career" : snapshot.reviewedSkills === 0 ? "Review my skills" : snapshot.tasksTotal === 0 ? "Build my roadmap" : snapshot.nextTask ? "Continue this task" : snapshot.practiceCount === 0 ? "Start interview practice" : "Review evidence";
   return (
     <div className="space-y-5">
-      {/* Command Header */}
-      <div className="command flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 rounded-3xl border border-ink/8 bg-white p-6 md:p-8 shadow-sm">
-        <div className="command-copy max-w-xl">
-          <p className="dash-eyebrow text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-2">
-            <span className="live-dot size-2 rounded-full bg-accent animate-pulse" aria-hidden="true" />
-            Career command centre · v2
-          </p>
-          <h1 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight text-ink">Make your next move visible.</h1>
-          <p className="mt-2 text-sm text-slate">A private place to turn real evidence into focused, reviewable action.</p>
-          <div className="mt-4 flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/15 px-3 py-1 text-xs font-semibold text-mint-900 border border-mint/25">
-              <ShieldCheck size={13} className="text-accent" /> Private & Verified
+      {/* Command Actions & Real-Time Status Card */}
+      <div className="command flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#131826] p-6 md:p-7 shadow-xs">
+        <div className="command-copy max-w-xl space-y-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 text-xs font-semibold text-emerald-400">
+              <ShieldCheck size={13} className="text-emerald-400" /> Private & Verified Database
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-accent border border-violet-100">
-              <Sparkles size={13} /> {snapshot.reviewedSkills > 0 ? `${snapshot.reviewedSkills} Skills Confirmed` : "Ready for Skills Review"}
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/10 border border-purple-500/25 px-3 py-1 text-xs font-semibold text-purple-300">
+              <Sparkles size={13} className="text-purple-400" /> {snapshot.reviewedSkills > 0 ? `${snapshot.reviewedSkills} Skills Confirmed` : "Ready for Skills Review"}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 border border-blue-500/25 px-3 py-1 text-xs font-semibold text-blue-300">
+              <BookOpen size={13} className="text-blue-400" /> 14 Certified Tracks Available
             </span>
           </div>
+          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Your career trajectory is calculated deterministically from verified assessments, completed NetAcad-aligned lessons, and hands-on laboratory assertions.
+          </p>
         </div>
         <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 justify-center">
           <button
             type="button"
             onClick={() => onOpen("readiness")}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-ink/90 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-500 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-purple-500/20 transition cursor-pointer"
           >
             <TrendingUp size={14} /> Career Readiness Audit
           </button>
           <button
             type="button"
             onClick={() => onOpen("opportunities")}
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-ink/10 bg-app px-4 py-2.5 text-xs font-bold text-ink transition hover:bg-white cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700/80 px-4 py-2.5 text-xs font-bold text-slate-800 dark:text-slate-200 transition cursor-pointer"
           >
             <Briefcase size={14} /> View Opportunities
           </button>
         </div>
       </div>
 
-      <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-ink/8 bg-white px-5 py-4">
-        <div><p className="text-xs text-slate">Welcome back{displayName ? `, ${displayName}` : ""}</p><h2 className="mt-1 text-lg font-bold">{role || "Build your Career Twin"}{snapshot.weeklyHours ? ` · ${snapshot.weeklyHours} learning hours/week` : ""}</h2></div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Link href="/onboarding" className="button-secondary px-3 py-2">Edit profile</Link>
-          <button type="button" onClick={()=>onOpen("roadmap")} className="button-secondary px-3 py-2">View roadmap</button>
-          <button type="button" onClick={()=>onOpen("learning")} className="button-secondary px-3 py-2">Learning Studio</button>
-          <button type="button" onClick={()=>onOpen("progress")} className="button-primary px-3 py-2">Start weekly test</button>
+      <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#131826] px-5 py-4 text-slate-900 dark:text-slate-100 shadow-xs">
+        <div>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Welcome back{displayName ? `, ${displayName}` : ""}</p>
+          <h2 className="mt-1 text-lg font-bold text-slate-900 dark:text-white">
+            {role || "Build your Career Twin"}{snapshot.weeklyHours ? ` · ${snapshot.weeklyHours} learning hours/week` : ""}
+          </h2>
         </div>
-        {profileCompletion !== null && <div className="w-full"><div className="flex justify-between text-xs"><span className="text-slate">Profile completion</span><strong>{profileCompletion}%</strong></div><div className="mt-2 h-2 overflow-hidden rounded-full bg-app"><div className="h-full rounded-full bg-[linear-gradient(90deg,#6547f1,#a127ec)]" style={{width:`${profileCompletion}%`}}/></div></div>}
+        <div className="flex flex-wrap items-center gap-2">
+          <Link href="/onboarding" className="button-secondary px-3 py-2 text-xs">Edit profile</Link>
+          <button type="button" onClick={()=>onOpen("roadmap")} className="button-secondary px-3 py-2 text-xs">View roadmap</button>
+          <button type="button" onClick={()=>onOpen("learning")} className="button-secondary px-3 py-2 text-xs">Learning Studio</button>
+          <button type="button" onClick={()=>onOpen("progress")} className="button-primary px-3 py-2 text-xs">Start weekly test</button>
+        </div>
+        {profileCompletion !== null && (
+          <div className="w-full">
+            <div className="flex justify-between text-xs font-medium text-slate-600 dark:text-slate-400">
+              <span>Profile completion</span>
+              <strong className="text-slate-900 dark:text-white">{profileCompletion}%</strong>
+            </div>
+            <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+              <div className="h-full rounded-full bg-[linear-gradient(90deg,#6547f1,#a127ec)] transition-all duration-300" style={{width:`${profileCompletion}%`}}/>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Student Beginner Orientation Guide: Answers the 7 Core Student Questions */}
@@ -902,14 +917,14 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
               onMouseEnter={() => preloadView(item.defaultView)}
               onFocus={() => preloadView(item.defaultView)}
               onClick={() => changeView(item.defaultView)}
-              className={`relative flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-[13px] font-semibold transition-all cursor-pointer ${
+              className={`relative flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-[13px] font-bold transition-all cursor-pointer ${
                 isSelected
-                  ? "border-violet-200 bg-violet-50 text-accent shadow-[0_4px_14px_rgba(109,61,245,.10)] before:absolute before:inset-y-2.5 before:left-0 before:w-[3px] before:rounded-r before:bg-accent"
-                  : "border-transparent text-slate hover:border-ink/8 hover:bg-white dark:hover:bg-white/5 hover:text-ink"
+                  ? "border-violet-300 dark:border-purple-500/50 bg-violet-100/90 dark:bg-purple-950/70 text-violet-900 dark:text-purple-200 shadow-xs before:absolute before:inset-y-2.5 before:left-0 before:w-[3px] before:rounded-r before:bg-purple-600 dark:before:bg-purple-400"
+                  : "border-transparent text-slate-600 dark:text-slate-400 hover:border-slate-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
               }`}
               aria-current={isSelected ? "page" : undefined}
             >
-              <span className={`grid size-7 shrink-0 place-items-center rounded-lg ${isSelected ? "bg-white text-accent" : "text-slate/75"}`}>
+              <span className={`grid size-7 shrink-0 place-items-center rounded-lg ${isSelected ? "bg-purple-600 text-white shadow-xs" : "text-slate-500 dark:text-slate-400"}`}>
                 <item.icon size={15}/>
               </span>
               <span className="truncate">{item.label}</span>
@@ -1363,11 +1378,11 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                     onFocus={() => preloadView(item.defaultView)}
                     onClick={() => changeView(item.defaultView)}
                     className={isSelected
-                      ? "flex w-full items-center gap-2.5 rounded-xl border border-violet-200 bg-violet-50 text-accent transition-all"
-                      : "flex w-full items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-semibold text-slate hover:bg-white dark:hover:bg-white/5 hover:text-ink transition-all"
+                      ? "flex w-full items-center gap-2.5 rounded-xl border border-violet-300 dark:border-purple-500/50 bg-violet-100/90 dark:bg-purple-950/70 px-3 py-2.5 text-[13px] font-bold text-violet-900 dark:text-purple-200 transition-all"
+                      : "flex w-full items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-semibold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white transition-all"
                     }
                   >
-                    <span className={isSelected ? "grid size-6 shrink-0 place-items-center rounded-md bg-white text-accent" : "grid size-6 shrink-0 place-items-center rounded-md text-slate/70"}>
+                    <span className={isSelected ? "grid size-6 shrink-0 place-items-center rounded-md bg-purple-600 text-white shadow-xs" : "grid size-6 shrink-0 place-items-center rounded-md text-slate-500 dark:text-slate-400"}>
                       <item.icon size={14}/>
                     </span>
                     <span className="truncate">{item.label}</span>

@@ -1430,53 +1430,71 @@ export function LearningStudio({
 
           {curriculumTab === "syllabus" ? (
           <div className="mt-6 grid gap-6 lg:grid-cols-[.7fr_1.3fr]">
-            <div>
-              <h4 className="font-bold text-sm text-ink">Core Learning Objectives</h4>
-              <ul className="mt-3 space-y-2">
-                {curriculum.objectives.map((objective) => (
-                  <li key={objective.id} className="flex gap-2 text-xs leading-5 text-slate">
-                    <CheckCircle2 className="mt-0.5 shrink-0 text-accent" size={14} />
-                    {objective.statement}
-                  </li>
-                ))}
-              </ul>
+            <div className="space-y-5">
+              <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#131826] p-6 shadow-xs">
+                <h4 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-purple-500" /> Core Learning Objectives
+                </h4>
+                <ul className="mt-3.5 space-y-2.5">
+                  {curriculum.objectives.map((objective) => (
+                    <li key={objective.id} className="flex gap-2.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                      <span className="size-1.5 rounded-full bg-purple-500 shrink-0 mt-1.5" />
+                      <span>{objective.statement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <h4 className="mt-6 font-bold text-sm text-ink">Proficiency Evidence Criteria</h4>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-xs leading-5 text-slate">
-                {curriculum.proficiencyCriteria.map((criterion) => (
-                  <li key={criterion}>{criterion}</li>
-                ))}
-              </ul>
+              <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#131826] p-6 shadow-xs">
+                <h4 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                  <Award size={16} className="text-indigo-400" /> Proficiency Evidence Criteria
+                </h4>
+                <ul className="mt-3.5 space-y-2.5">
+                  {curriculum.proficiencyCriteria.map((criterion) => (
+                    <li key={criterion} className="flex gap-2.5 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                      <span className="size-1.5 rounded-full bg-indigo-400 shrink-0 mt-1.5" />
+                      <span>{criterion}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {curriculum.projects && curriculum.projects.length > 0 && (
-                <div className="mt-6 rounded-xl border border-ink/8 bg-cream/40 p-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate">Applied Capstone Project:</h4>
-                  <p className="mt-2 text-xs leading-relaxed text-ink">{curriculum.projects[0]}</p>
+                <div className="rounded-2xl border border-purple-500/20 bg-purple-500/5 dark:bg-purple-950/20 p-5">
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 flex items-center gap-2">
+                    <Sparkles size={14} /> Applied Capstone Project
+                  </h4>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300 font-medium">{curriculum.projects[0]}</p>
                 </div>
               )}
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               {curriculum.modules.map((module, index) => (
-                <article key={module.id} className="rounded-2xl border border-ink/8 p-5">
-                  <div className="flex items-start gap-3">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-mint/35 text-xs font-bold text-accent">
-                      {index + 1}
+                <article
+                  key={module.id}
+                  className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#131826] p-6 shadow-xs hover:border-purple-500/40 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-purple-600 text-white font-extrabold text-xs shadow-md shadow-purple-500/20">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="w-full">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <h4 className="font-bold text-sm text-ink">{module.title}</h4>
-                        <span className="inline-flex items-center gap-1 text-xs text-slate">
-                          <Clock3 size={12} />
+                        <h4 className="font-bold text-base text-slate-900 dark:text-white">{module.title}</h4>
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-800/80 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:text-slate-400">
+                          <Clock3 size={13} className="text-purple-500" />
                           {module.estimatedMinutes} min
                         </span>
                       </div>
-                      <p className="mt-2 text-xs leading-5 text-slate">{module.summary}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{module.summary}</p>
 
                       {/* Interactive Lesson Cards */}
-                      <div className="mt-4 space-y-2">
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate">Interactive Lessons:</p>
-                        <div className="flex flex-wrap gap-2">
+                      <div className="mt-5 space-y-2.5">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                          Interactive Curriculum Lessons:
+                        </p>
+                        <div className="grid gap-2 sm:grid-cols-1">
                           {module.lessonTitles.map((title) => {
                             const key = `${curriculum.skillName}-${module.id}-${title.replace(/\s+/g, "-").toLowerCase()}`;
                             const isDone = completedLessons[key];
@@ -1485,20 +1503,24 @@ export function LearningStudio({
                                 key={title}
                                 type="button"
                                 onClick={() => openLesson(index, module.id, title)}
-                                className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold transition ${
+                                className={`flex items-center justify-between gap-3 rounded-xl border p-3.5 text-xs font-semibold transition cursor-pointer text-left ${
                                   isDone
-                                    ? "border-emerald-300 bg-emerald-50 text-emerald-800"
-                                    : "border-accent/25 bg-accent/5 text-ink hover:border-accent hover:bg-accent/10"
+                                    ? "border-emerald-300 dark:border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200"
+                                    : "border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-[#1a2133] hover:border-purple-500/50 hover:bg-purple-50/30 dark:hover:bg-purple-950/20 text-slate-900 dark:text-slate-100"
                                 }`}
                               >
-                                {isDone ? (
-                                  <Check size={13} className="text-emerald-600" />
-                                ) : (
-                                  <BookOpen size={13} className="text-accent" />
-                                )}
-                                {title}
-                                <span className="ml-1 text-[10px] text-slate">
-                                  {isDone ? "Review" : "Study →"}
+                                <div className="flex items-center gap-2.5 min-w-0">
+                                  <span className={`grid size-7 shrink-0 place-items-center rounded-lg ${
+                                    isDone ? "bg-emerald-600 text-white" : "bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400"
+                                  }`}>
+                                    {isDone ? <Check size={14} /> : <BookOpen size={14} />}
+                                  </span>
+                                  <span className="font-semibold truncate">{title}</span>
+                                </div>
+                                <span className={`shrink-0 inline-flex items-center gap-1 font-bold text-[11px] ${
+                                  isDone ? "text-emerald-600 dark:text-emerald-400" : "text-purple-600 dark:text-purple-400"
+                                }`}>
+                                  {isDone ? "Review Lesson ✓" : "Study Lesson →"}
                                 </span>
                               </button>
                             );
@@ -1506,10 +1528,16 @@ export function LearningStudio({
                         </div>
                       </div>
 
-                      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-ink/8 pt-3">
-                        <p className="text-[11px] text-slate">
-                          <strong>Checkpoint:</strong> {module.checkpoint}
-                        </p>
+                      {/* Phase Checkpoint & Assessment Banner */}
+                      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-purple-500/20 bg-purple-500/5 dark:bg-purple-950/30 p-3.5">
+                        <div className="flex items-center gap-2.5">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-purple-600 text-white">
+                            <Award size={14} />
+                          </span>
+                          <p className="text-xs text-slate-700 dark:text-slate-300">
+                            <strong className="text-slate-900 dark:text-white font-semibold">Checkpoint:</strong> {module.checkpoint}
+                          </p>
+                        </div>
                         <button
                           type="button"
                           onClick={() => {
@@ -1518,9 +1546,9 @@ export function LearningStudio({
                               void loadMockTests(curriculum.skillName, curriculum.learnerLevel);
                             }
                           }}
-                          className="inline-flex items-center gap-1 rounded-md bg-accent/10 px-2.5 py-1 text-[11px] font-bold text-accent transition hover:bg-accent/20"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition cursor-pointer"
                         >
-                          <Award size={12} /> Phase Assessment
+                          <Award size={13} /> Launch Phase Assessment
                         </button>
                       </div>
                     </div>

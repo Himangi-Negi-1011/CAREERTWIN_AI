@@ -100,6 +100,65 @@ export const SplineRobot = memo(function SplineRobot({
     };
   }, []);
 
+  // Stop wheel events so page scrolling never translates/rotates the 3D robot downwards
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const stopWheel = (e: WheelEvent) => {
+      e.stopPropagation();
+    };
+
+    container.addEventListener("wheel", stopWheel, { passive: true, capture: true });
+    return () => {
+      container.removeEventListener("wheel", stopWheel, { capture: true });
+    };
+  }, []);
+
+  const handleSplineLoad = (splineApp: any) => {
+    try {
+      const hide3DWatermark = () => {
+        // 1. Hide SplineWatermark and logo 3D objects inside WebGL scene
+        const watermark = splineApp.findObjectByName?.("SplineWatermark");
+        if (watermark) {
+          watermark.visible = false;
+          if (watermark.scale) watermark.scale.set(0, 0, 0);
+          if (watermark.position) watermark.position.set(0, -99999, 0);
+        }
+        const logo = splineApp.findObjectByName?.("logo");
+        if (logo) {
+          logo.visible = false;
+          if (logo.scale) logo.scale.set(0, 0, 0);
+          if (logo.position) logo.position.set(0, -99999, 0);
+        }
+
+        // 2. Traverse full Three.js scene graph to suppress any watermark meshes
+        const scene = splineApp._scene || splineApp.scene;
+        if (scene && typeof scene.traverse === "function") {
+          scene.traverse((obj: any) => {
+            if (/watermark|logo|splinewatermark/i.test(obj.name || "")) {
+              obj.visible = false;
+              if (obj.scale) obj.scale.set(0, 0, 0);
+              if (obj.position) obj.position.set(0, -99999, 0);
+            }
+          });
+        }
+
+        // 3. Disable wheel zoom on orbit controls so scrolling page doesn't move 3D robot
+        if (splineApp._controls) {
+          splineApp._controls.enableZoom = false;
+          splineApp._controls.enablePan = false;
+        }
+      };
+
+      hide3DWatermark();
+      const interval = setInterval(hide3DWatermark, 300);
+      setTimeout(() => clearInterval(interval), 6000);
+    } catch {
+      // safe fallback
+    }
+  };
+
   return (
     <div ref={containerRef} className={`relative overflow-hidden spline-wrapper ${className}`}>
       {loadFailed ? (
@@ -122,6 +181,7 @@ export const SplineRobot = memo(function SplineRobot({
         >
           <Spline
             scene={scene}
+            onLoad={handleSplineLoad}
             onError={() => setLoadFailed(true)}
             className="w-full h-full"
           />

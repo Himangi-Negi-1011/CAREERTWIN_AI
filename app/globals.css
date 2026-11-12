@@ -31,6 +31,10 @@
 }
 
 /* Hide Spline Watermark Globally Across All Containers, Shadows and Body */
+.spline-wrapper canvas {
+  touch-action: pan-y !important;
+}
+
 a[href*="spline.design"],
 a[href*="spline"],
 #spline-watermark,
