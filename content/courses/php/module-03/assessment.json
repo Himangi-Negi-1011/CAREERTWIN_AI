@@ -22,6 +22,8 @@
   "questions": [
     {
       "id": "phase-php-beginner-mod-3-q1",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes typed functions in PHP?",
       "codeSnippet": "",
@@ -55,6 +57,8 @@
     },
     {
       "id": "phase-php-beginner-mod-3-q2",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes exceptions in PHP?",
       "codeSnippet": "",
@@ -88,6 +92,8 @@
     },
     {
       "id": "phase-php-beginner-mod-3-q3",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes finally in PHP?",
       "codeSnippet": "",
@@ -121,6 +127,8 @@
     },
     {
       "id": "phase-php-beginner-mod-3-q4",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes private properties in PHP?",
       "codeSnippet": "",
@@ -154,6 +162,8 @@
     },
     {
       "id": "phase-php-beginner-mod-3-q5",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes readonly in PHP?",
       "codeSnippet": "",

@@ -110,8 +110,8 @@ export const lessonDocumentSchema = z.object({
     description: optText(300),
   })).max(8).default([]),
   realWorldApplications: z.array(text(400)).max(6).default([]),
-  generationMode: z.enum(["ai-draft"]),
-  reviewStatus: z.enum(["draft"]),
+  generationMode: z.enum(["ai-draft", "curated"]),
+  reviewStatus: z.enum(["draft", "approved"]),
   contentVersion: z.number().int().positive(),
   generatedAt: z.string().datetime(),
 });

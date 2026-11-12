@@ -1,0 +1,235 @@
+{
+  "id": "phase-cloud-computing-mod-3-cloud-iam-finops-assessment",
+  "skillName": "Cloud Computing",
+  "skillSlug": "cloud-computing",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-cloud-iam-finops",
+  "moduleTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps",
+  "title": "Cloud Computing — Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across IAM Least-Privilege Policies & Keyless OIDC Identity and Auto-Scaling, Load Balancing & FinOps Cost Governance.",
+  "durationMinutes": 20,
+  "totalMarks": 12,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "IAM Least-Privilege Policies & Keyless OIDC Identity",
+    "Auto-Scaling, Load Balancing & FinOps Cost Governance"
+  ],
+  "questions": [
+    {
+      "id": "phase-cloud-computing-mod-3-cloud-iam-finops-q1",
+      "section": "A",
+      "sectionTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint",
+      "type": "single-choice",
+      "prompt": "If a developer belongs to Group A allowing `s3:DeleteBucket` and also has an explicit policy statement denying `s3:DeleteBucket`, what happens when they call DeleteBucket?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "AccessDenied: Explicit Deny always overrides any Allow statement"
+        },
+        {
+          "id": "opt-2",
+          "text": "Allowed because Group permissions beat user permissions"
+        },
+        {
+          "id": "opt-3",
+          "text": "The call succeeds only from CLI"
+        },
+        {
+          "id": "opt-4",
+          "text": "IAM averages the permissions"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Explicit Deny takes absolute precedence across all policy evaluation stages.",
+      "difficulty": "beginner",
+      "topic": "IAM Least-Privilege Policies & Keyless OIDC Identity",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid",
+      "recommendedLessonTitle": "IAM Least-Privilege Policies & Keyless OIDC Identity"
+    },
+    {
+      "id": "phase-cloud-computing-mod-3-cloud-iam-finops-q2",
+      "section": "A",
+      "sectionTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why is OIDC federation preferable to saving long-lived static cloud access keys in GitHub Actions secrets?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Temporary STS tokens auto-expire quickly and are cryptographically bound to specific repositories/branches with zero static keys to leak"
+        },
+        {
+          "id": "opt-2",
+          "text": "OIDC doubles container network throughput"
+        },
+        {
+          "id": "opt-3",
+          "text": "Static keys cannot upload files larger than 1MB"
+        },
+        {
+          "id": "opt-4",
+          "text": "GitHub deletes static secrets after 1 hour"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Keyless federation eliminates credential rotation headaches and long-term secret leakage risks.",
+      "difficulty": "beginner",
+      "topic": "IAM Least-Privilege Policies & Keyless OIDC Identity",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid",
+      "recommendedLessonTitle": "IAM Least-Privilege Policies & Keyless OIDC Identity"
+    },
+    {
+      "id": "phase-cloud-computing-mod-3-cloud-iam-finops-q3",
+      "section": "A",
+      "sectionTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint",
+      "type": "single-choice",
+      "prompt": "In an IAM policy condition blocking unencrypted S3 traffic, which condition checks HTTPS?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`Bool: { \"aws:SecureTransport\": \"false\" }` paired with `Effect: Deny`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`StringEquals: { \"aws:Port\": \"80\" }` paired with Allow"
+        },
+        {
+          "id": "opt-3",
+          "text": "`Resource: \"http://*\"`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`Principal: \"HTTP_USER\"`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Denying requests whenever `aws:SecureTransport` evaluates to false ensures encrypted TLS calls only.",
+      "difficulty": "beginner",
+      "topic": "IAM Least-Privilege Policies & Keyless OIDC Identity",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid",
+      "recommendedLessonTitle": "IAM Least-Privilege Policies & Keyless OIDC Identity"
+    },
+    {
+      "id": "phase-cloud-computing-mod-3-cloud-iam-finops-q4",
+      "section": "A",
+      "sectionTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do auto-scaling policies typically use shorter scale-out cooldowns (e.g., 60s) and longer scale-in cooldowns (e.g., 300s)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "To respond quickly to rising load while preventing premature capacity teardown during bumpy traffic lulls"
+        },
+        {
+          "id": "opt-2",
+          "text": "Because scaling in triggers expensive license checks"
+        },
+        {
+          "id": "opt-3",
+          "text": "Load balancers forbid adding nodes faster than removing them"
+        },
+        {
+          "id": "opt-4",
+          "text": "To force CPU to remain permanently at 100%"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Fast scale-out preserves latency; conservative scale-in prevents oscillation thrashing.",
+      "difficulty": "beginner",
+      "topic": "Auto-Scaling, Load Balancing & FinOps Cost Governance",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost-",
+      "recommendedLessonTitle": "Auto-Scaling, Load Balancing & FinOps Cost Governance"
+    },
+    {
+      "id": "phase-cloud-computing-mod-3-cloud-iam-finops-q5",
+      "section": "A",
+      "sectionTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which cloud purchasing strategy reduces compute cost dramatically for fault-tolerant stateless batch rendering?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Spot / Preemptible Instances"
+        },
+        {
+          "id": "opt-2",
+          "text": "Dedicated Bare Metal Hosts"
+        },
+        {
+          "id": "opt-3",
+          "text": "Multiple On-Demand NAT Gateways"
+        },
+        {
+          "id": "opt-4",
+          "text": "Unencrypted EBS snapshots"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Spot capacity offers ~70-90% discounts on reclaimable compute capacity.",
+      "difficulty": "beginner",
+      "topic": "Auto-Scaling, Load Balancing & FinOps Cost Governance",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost-",
+      "recommendedLessonTitle": "Auto-Scaling, Load Balancing & FinOps Cost Governance"
+    },
+    {
+      "id": "phase-cloud-computing-mod-3-cloud-iam-finops-q6",
+      "section": "A",
+      "sectionTitle": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint",
+      "type": "single-choice",
+      "prompt": "What protects in-flight user requests from abrupt connection reset errors when an Auto Scaling group removes an instance?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Load balancer connection draining / deregistration delay paired with graceful SIGTERM handling"
+        },
+        {
+          "id": "opt-2",
+          "text": "Increasing DNS TTL to 7 days"
+        },
+        {
+          "id": "opt-3",
+          "text": "Hardkilling containers with SIGKILL"
+        },
+        {
+          "id": "opt-4",
+          "text": "Turning off target health checks"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Connection draining halts new traffic while allowing existing open responses to complete cleanly.",
+      "difficulty": "beginner",
+      "topic": "Auto-Scaling, Load Balancing & FinOps Cost Governance",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost-",
+      "recommendedLessonTitle": "Auto-Scaling, Load Balancing & FinOps Cost Governance"
+    }
+  ],
+  "contentVersion": 2,
+  "reviewStatus": "approved",
+  "createdAt": "2026-11-11T05:58:16.023Z",
+  "updatedAt": "2026-11-11T05:58:16.023Z"
+}

@@ -1,98 +1,31 @@
 [
   {
-    "id": "res-pbi-powerbi",
-    "title": "Power BI Full Course: DAX & Data Modeling",
+    "id": "res-power-bi-primary",
+    "title": "Power BI & DAX Mastery for Data Analysts",
     "provider": "youtube",
-    "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
-    "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
-    "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
-    "durationMinutes": 55,
+    "channelOrAuthor": "Guy in a Cube / Microsoft Learn",
+    "url": "https://www.youtube.com/watch?v=AGpoc5HlR1c",
+    "embedUrl": "",
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
-    "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Power BI.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Power BI.",
     "learningObjectivesSupported": [
-      "Build relational tabular data models and DAX measures for Introduction to Power BI"
+      "power-bi-obj-1",
+      "power-bi-obj-2",
+      "power-bi-obj-3",
+      "power-bi-obj-4"
     ],
     "keyTopicsCovered": [
-      "Star Schema Modeling",
-      "DAX Measures vs Columns",
-      "CALCULATE Context Transition",
-      "Time Intelligence"
+      "Power BI Workflow & Power Query Unpivoting (M Language)",
+      "Data Profiling, Quality Gates & Query Folding",
+      "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+      "Dedicated Date Dimensions & Role-Playing Relationships",
+      "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+      "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
     ],
-    "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
     "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-pbi-powerbi",
-    "title": "Power BI Full Course: DAX & Data Modeling",
-    "provider": "youtube",
-    "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
-    "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
-    "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
-    "durationMinutes": 55,
-    "difficulty": "beginner",
-    "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
-    "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
-    "learningObjectivesSupported": [
-      "Build relational tabular data models and DAX measures for Core Syntax and Primitives in Power BI"
-    ],
-    "keyTopicsCovered": [
-      "Star Schema Modeling",
-      "DAX Measures vs Columns",
-      "CALCULATE Context Transition",
-      "Time Intelligence"
-    ],
-    "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-pbi-powerbi",
-    "title": "Power BI Full Course: DAX & Data Modeling",
-    "provider": "youtube",
-    "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
-    "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
-    "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
-    "durationMinutes": 55,
-    "difficulty": "beginner",
-    "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
-    "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
-    "learningObjectivesSupported": [
-      "Build relational tabular data models and DAX measures for Production Patterns and Resilience in Power BI"
-    ],
-    "keyTopicsCovered": [
-      "Star Schema Modeling",
-      "DAX Measures vs Columns",
-      "CALCULATE Context Transition",
-      "Time Intelligence"
-    ],
-    "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-pbi-powerbi",
-    "title": "Power BI Full Course: DAX & Data Modeling",
-    "provider": "youtube",
-    "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
-    "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
-    "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
-    "durationMinutes": 55,
-    "difficulty": "beginner",
-    "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
-    "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
-    "learningObjectivesSupported": [
-      "Build relational tabular data models and DAX measures for Capstone Lab: Verifiable Power BI Implementation"
-    ],
-    "keyTopicsCovered": [
-      "Star Schema Modeling",
-      "DAX Measures vs Columns",
-      "CALCULATE Context Transition",
-      "Time Intelligence"
-    ],
-    "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
+    "lastCheckedDate": "2026-11-11"
   }
 ]

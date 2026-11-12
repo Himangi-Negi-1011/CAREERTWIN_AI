@@ -1,197 +1,224 @@
 {
-  "lessonId": "mod-2-application-l1-production-patterns-and-resilience-in-cy",
+  "lessonId": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b",
   "skillName": "Cybersecurity",
-  "moduleId": "mod-2-application",
-  "title": "Production Patterns and Resilience in Cybersecurity",
-  "summary": "Comprehensive masterclass on Production Patterns and Resilience in Cybersecurity for Cybersecurity. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-2-sec-auth-owasp",
+  "title": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+  "summary": "Distinguish Authentication vs Authorization, protect credentials cleanly with salted memory-hard hashing, and shut down IDOR vulnerabilities.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 40,
   "learningObjectives": [
-    "Apply Cybersecurity in production-ready real-world scenarios",
-    "Evaluate security, performance, and best practices for Cybersecurity"
+    "Contrast fast digests (SHA-256) with salted memory-hard key derivation (Argon2id/bcrypt)",
+    "Eliminate Broken Object Level Authorization (IDOR) by scoping backend mutations strictly to session ownership"
   ],
   "objectiveIds": [
-    "cybersecurity-obj-3",
-    "cybersecurity-obj-4"
+    "cybersecurity-obj-2",
+    "cybersecurity-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Cybersecurity environment setup"
+    "HTTP sessions and backend API routes"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Production Patterns and Resilience in Cybersecurity",
-      "content": "Cybersecurity operates under the principle of defense-in-depth and the CIA Triad (Confidentiality, Integrity, Availability). In Production Patterns and Resilience in Cybersecurity, defensive controls, least privilege, threat modeling, and telemetry monitoring prevent adversaries from gaining unauthorized footholds or escalating privileges.",
+      "id": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b-sec-1",
+      "heading": "1. Credential Storage & AuthN vs AuthZ Boundaries",
+      "content": "Authentication (`AuthN`) answers 'Who are you?'; Authorization (`AuthZ`) checks 'Are you allowed to access/modify THIS specific record?'. Broken Access Control / IDOR (OWASP #1!) happens when routes verify login state (`if (!userId) return 401`) yet forget verifying ownership (`AND owner_id = userId`)—letting any signed-in student read peers' grades simply by changing `?id=102`!\n\nMeanwhile, raw passwords MUST NEVER be encrypted reversibly or hashed with fast general algorithms (MD5/SHA-256). Always use salted, memory-hard password hashes (`Argon2id` or `bcrypt`) designed specifically to throttle offline GPU cracking rigs.",
       "codeExamples": [
         {
-          "language": "bash",
-          "code": "# Defensive Security & Telemetry Inspection for Production Patterns and Resilience in Cybersecurity\n# 1. Audit listening network sockets\nsudo ss -tulpn\n\n# 2. Inspect authentication failure anomalies in system logs\nsudo grep -i \"failed password\" /var/log/auth.log | awk '{print $1, $2, $3, $11}' | sort | uniq -c | sort -nr | head -n 10\n\n# 3. Verify file permissions on critical system assets\nsudo find /etc/shadow -perm /o+rwx",
-          "explanation": "Auditing active listening ports and parsing authentication logs identifies unauthorized reconnaissance or intrusion attempts before exploitation occurs.",
-          "expectedOutput": "Summary list of top attacker source IP addresses attempting brute-force authentication."
+          "language": "text",
+          "code": "Client Request -> [1. AuthN Check: Valid Signed Session -> userId]\n                      | (Fail -> HTTP 401 Unauthorized)\n                      v\n                  [2. AuthZ Check: record.ownerId === userId?]\n                      | (Fail -> HTTP 403 / 404 Denied -> Stop IDOR!)\n                      v\n                  [3. Verified Domain Execution]",
+          "explanation": "Enforcing both identity verification and resource ownership stops cross-account horizontal privilege escalation.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Enforce the Principle of Least Privilege: users and processes receive only minimum necessary access.",
-        "Validate and sanitize all ingress data at service boundaries using parameterized constructs.",
-        "Log security events (authentication, privilege escalation, policy violations) centrally to an immutable SIEM."
+        "Every backend resource query must bind explicitly `.eq('owner_id', authenticatedUserId)`.",
+        "Compare secret HMACs/tokens in constant time (`timingSafeEqual`) preventing timing side-channels."
       ],
       "commonMistakes": [
-        "Relying on security through obscurity (such as changing a default port without hardening authentication).",
-        "Storing plain-text credentials or API tokens in source code or configuration files."
+        "Reading `userId` blindly from user-editable JSON `req.body.userId` instead of verified server auth context!"
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "Modern security architectures adopt Zero Trust: verify explicitly, enforce least-privilege access, and assume breach across all network segments.",
+      "id": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b-sec-2",
+      "heading": "2. Hardened Server AuthZ Route Pattern",
+      "content": "Look how concise, rock-solid authorization stays cleanly on the server: never trust submitted identity parameters (`body.ownerId`), derive `userId` strictly from the verified session token, and scope DB queries directly.",
       "codeExamples": [
         {
-          "language": "bash",
-          "code": "# Zero-Trust Network Policy Example (iptables / UFW)\nsudo ufw default deny incoming\nsudo ufw default allow outgoing\nsudo ufw allow from 10.0.10.0/24 to any port 22 proto tcp\nsudo ufw enable",
-          "explanation": "Default-deny network ingress policies isolate workloads so only authorized subnets and ports can establish connections.",
-          "expectedOutput": "Firewall active and enabled on system startup with default-deny inbound posture."
+          "language": "typescript",
+          "code": "// Authoritative Server Route enforcing AuthN + AuthZ cleanly\nexport async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {\n  const { userId } = await auth();\n  if (!userId) return Response.json({ error: \"Unauthorized\" }, { status: 401 });\n\n  const { id } = await params;\n  // Ownership check enforced directly inside the DELETE predicate\n  const deleted = await db.from(\"projects\").delete().eq(\"id\", id).eq(\"owner_clerk_user_id\", userId);\n  if (!deleted.count) return Response.json({ error: \"Forbidden or not found\" }, { status: 404 });\n\n  return Response.json({ success: true });\n}",
+          "explanation": "Pairing `.eq('id', id).eq('owner_clerk_user_id', userId)` makes horizontal IDOR impossible atomically at the DB layer.",
+          "expectedOutput": "Cross-user deletions blocked deterministically without leaking peer record presence"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Enforce Postgres Row-Level Security (RLS) policies mirroring API ownership checks as defense in depth."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Returning different error timings or explicit `'Record belongs to admin@corp.com'` hints revealing private ownership."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-cy-ex-1",
-      "type": "scenario",
-      "title": "Security Case Study Lab: Production Patterns and Resilience in Cybersecurity",
-      "objective": "Diagnose a security vulnerability scenario and propose defense-in-depth mitigations.",
-      "description": "Analyze the security incident scenario outlined in Production Patterns and Resilience in Cybersecurity. Identify the threat vector, determine impacted CIA triad components, and define mitigation steps.",
+      "id": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b-ex-1",
+      "type": "coding",
+      "title": "Audit & Patch an IDOR Vulnerability",
+      "objective": "Eliminate client-trusted `ownerId` and missing ownership predicates from a notes API.",
+      "description": "Inspect `GET /api/notes?id=55&userId=usr_2` which returns `SELECT * FROM notes WHERE id = $1` without verifying `userId` against session context.",
       "instructions": [
-        "Classify the threat vector using STRIDE or MITRE ATT&CK categories.",
-        "Identify the root-cause vulnerability in configuration, code, or architecture.",
-        "Provide immediate containment steps and long-term preventive controls."
+        "Remove trusted query param `req.query.userId`.",
+        "Retrieve authenticated `session.userId` cleanly and reject missing sessions with 401.",
+        "Scope SQL query via `WHERE id = $1 AND owner_id = $2`."
       ],
-      "starterCode": "// Security Incident Analysis: Production Patterns and Resilience in Cybersecurity\nIncident Type: Unauthorized Access Attempt\nAffected Asset: Production Database Ingress\nIdentified Vulnerability: Missing network ACL & weak credential policy\nProposed Containment:\n1. Revoke compromised credentials immediately\n2. Restrict IP ingress via security group\n3. Rotate all dependent service secrets",
+      "starterCode": "// Fix the vulnerable handler:\nasync function getNote(req, session) {\n  if (!session?.userId) /* return 401 */\n  // Scope query cleanly...\n}",
       "hints": [
-        "Consider both network layer and application layer controls.",
-        "Think about how authentication and authorization differ in this scenario."
+        "Ignore any `userId` supplied in request body or query params."
       ],
-      "submissionRequirements": "Submit an actionable incident response summary with technical mitigation steps.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Threat Understanding: Accurately identifies root cause and attack surface.",
-        "Mitigation Feasibility: Recommendations follow defense-in-depth principles without breaking legitimate services."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal security response contains active exposure through immediate credential revocation and firewall isolation, followed by root-cause remediation (e.g. MFA enforcement and principle of least privilege)."
+      "solutionExplanation": "Extracting identity solely from verified sessions and binding `AND owner_id = $2` shuts down IDOR cleanly."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-cy-kc-1",
+      "id": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b-kc-1",
       "type": "single-choice",
-      "prompt": "What is the foundational principle of a 'Zero Trust' security architecture?",
+      "prompt": "Why does trusting `req.body.userId` instead of verified session `auth().userId` create an immediate vulnerability?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Never trust, always verify: every access request must be authenticated, authorized, and encrypted regardless of network location."
+          "text": "Any attacker can forge any victim's `userId` inside JSON bodies and impersonate accounts freely"
         },
         {
           "id": "opt-2",
-          "text": "Internal network requests behind a corporate VPN are automatically trusted."
+          "text": "JSON bodies cannot parse UUID strings"
         },
         {
           "id": "opt-3",
-          "text": "Zero Trust means eliminating all user passwords in favor of IP address whitelisting alone."
+          "text": "It triggers syntax errors in TypeScript"
         },
         {
           "id": "opt-4",
-          "text": "Zero Trust applies exclusively to physical data center badge access."
+          "text": "Browsers block `userId` properties automatically"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Zero Trust assumes that threats exist both inside and outside the traditional network perimeter. Every request is explicitly verified, given least-privilege access, and assumed to operate in an untrusted environment.",
+      "explanation": "Authenticated subject identity must come strictly from verified server session tokens/cookies.",
+      "objectiveIds": [
+        "cybersecurity-obj-2"
+      ]
+    },
+    {
+      "id": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b-kc-2",
+      "type": "single-choice",
+      "prompt": "Why is Argon2id strictly recommended over raw SHA-256 for storing user password digests?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Argon2id consumes configurable memory and CPU work factor with unique salts, making GPU brute-force cracking orders of magnitude slower"
+        },
+        {
+          "id": "opt-2",
+          "text": "SHA-256 outputs can be decoded straight back to strings via algebra"
+        },
+        {
+          "id": "opt-3",
+          "text": "Argon2id removes the need for HTTPS"
+        },
+        {
+          "id": "opt-4",
+          "text": "SHA-256 only hashes passwords shorter than 8 characters"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Fast hashes fail against GPU cracking farms; slow memory-hard functions defend user credentials cleanly.",
       "objectiveIds": [
         "cybersecurity-obj-3"
       ]
     },
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-cy-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent effective defense-in-depth controls against unauthorized access and data breaches?",
+      "id": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b-kc-3",
+      "type": "single-choice",
+      "prompt": "What vulnerability allows Student A to view Student B's exam submission simply by requesting `/api/attempts/1002` instead of `1001`?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Multi-Factor Authentication (MFA) on all administrative and corporate accounts"
+          "id": "opt-1",
+          "text": "Broken Object Level Authorization (IDOR)"
         },
         {
-          "id": "opt-2b",
-          "text": "Centralized, tamper-evident audit logging sent to a SIEM"
+          "id": "opt-2",
+          "text": "Clickjacking"
         },
         {
-          "id": "opt-2c",
-          "text": "Disabling firewall rules to reduce network latency during high-load periods"
+          "id": "opt-3",
+          "text": "DNS Amplification"
         },
         {
-          "id": "opt-2d",
-          "text": "Encrypting sensitive data both at rest (AES-256) and in transit (TLS 1.3)"
+          "id": "opt-4",
+          "text": "Buffer Overflow"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "opt-1"
       ],
-      "explanation": "MFA, centralized logging, and end-to-end encryption are critical layers of defense in depth. Disabling firewall rules removes perimeter protection and exposes internal services to attack.",
+      "explanation": "Failing to enforce ownership per requested resource ID causes IDOR / BOLA.",
       "objectiveIds": [
-        "cybersecurity-obj-4"
+        "cybersecurity-obj-2"
       ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Production Patterns and Resilience in Cybersecurity. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You reinforced AuthN vs AuthZ separation, password KDF selection, and atomic IDOR prevention.",
   "videoResources": [
     {
-      "id": "res-sec-cybersecurity",
-      "title": "Defensive Security & Threat Analysis Fundamentals",
+      "id": "res-cybersecurity-primary",
+      "title": "Cybersecurity & Network Defense Foundations (Ethical Security)",
       "provider": "youtube",
-      "channelOrAuthor": "NetworkChuck / Professor Messer",
-      "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-      "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
-      "durationMinutes": 55,
+      "channelOrAuthor": "freeCodeCamp / Professor Messer",
+      "url": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
-      "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cybersecurity.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cybersecurity.",
       "learningObjectivesSupported": [
-        "Defend systems and diagnose vulnerabilities in Production Patterns and Resilience in Cybersecurity"
+        "cybersecurity-obj-1",
+        "cybersecurity-obj-2",
+        "cybersecurity-obj-3",
+        "cybersecurity-obj-4"
       ],
       "keyTopicsCovered": [
-        "Defense in Depth",
-        "Principle of Least Privilege",
-        "Audit Logging",
-        "Patch Management"
+        "CIA Triad, Threat Modeling & Attack Surface",
+        "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+        "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+        "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+        "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+        "NIST Incident Response Lifecycle & Hardening Capstone"
       ],
-      "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "NIST Cybersecurity Framework (CSF)",
-      "url": "https://www.nist.gov/cyberframework",
-      "description": "Official documentation and authoritative guides for Cybersecurity."
+      "title": "OWASP Top 10 & NIST Framework",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "description": "Official reference documentation for Cybersecurity."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Multi-tenant SaaS API access guardrails",
+    "Banking account isolation"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:09.842Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:17.502Z"
 }

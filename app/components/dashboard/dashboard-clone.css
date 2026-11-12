@@ -916,3 +916,73 @@ input:checked ~ .road-text { color: var(--muted); text-decoration: line-through;
   .dash-side, .lesson, .career-guide, .bar i { transition: none !important; }
   .live-dot, .visual-glow { animation: none !important; }
 }
+
+/* ----------------------------- appearance & accessibility overrides ----------------------------- */
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-contrast="high"] .career-dashboard {
+  --border: rgba(15, 23, 42, 0.34);
+  --border-strong: rgba(15, 23, 42, 0.55);
+}
+html[data-contrast="high"] .career-dashboard main section,
+html[data-contrast="high"] .career-dashboard main article,
+html[data-contrast="high"] .career-dashboard input,
+html[data-contrast="high"] .career-dashboard select,
+html[data-contrast="high"] .career-dashboard textarea {
+  border-color: rgba(15, 23, 42, 0.45) !important;
+}
+html[data-contrast="high"] :focus-visible {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] .career-dashboard {
+  background-color: #0b1116;
+  color: #e2e8f0;
+  --fg: #e2e8f0;
+  --bg: #0b1116;
+  --card: #121b22;
+  --muted: #94a3b8;
+  --border: rgba(148, 163, 184, 0.18);
+  --border-strong: rgba(148, 163, 184, 0.32);
+}
+html[data-theme="dark"] .career-dashboard aside,
+html[data-theme="dark"] .career-dashboard header {
+  background-color: rgba(13, 20, 26, 0.92) !important;
+  border-color: rgba(148, 163, 184, 0.18) !important;
+  color: #e2e8f0 !important;
+}
+html[data-theme="dark"] .career-dashboard [class*="bg-white"],
+html[data-theme="dark"] .career-dashboard .bg-surface {
+  background-color: #131d25 !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+}
+html[data-theme="dark"] .career-dashboard .bg-app,
+html[data-theme="dark"] .career-dashboard [class*="bg-cream"] {
+  background-color: #0e161d !important;
+}
+html[data-theme="dark"] .career-dashboard .text-ink {
+  color: #f1f5f9 !important;
+}
+html[data-theme="dark"] .career-dashboard .text-slate {
+  color: #94a3b8 !important;
+}
+html[data-theme="dark"] .career-dashboard input,
+html[data-theme="dark"] .career-dashboard select,
+html[data-theme="dark"] .career-dashboard textarea {
+  background-color: #0b1116 !important;
+  color: #f1f5f9 !important;
+  border-color: rgba(148, 163, 184, 0.28) !important;
+}
+html[data-theme="dark"] .career-dashboard .text-ink\/60,
+html[data-theme="dark"] .career-dashboard .text-ink\/70,
+html[data-theme="dark"] .career-dashboard .text-ink\/80 {
+  color: #cbd5e1 !important;
+}

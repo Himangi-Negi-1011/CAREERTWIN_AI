@@ -7,7 +7,12 @@ import type { CareerProfileData } from "@/lib/profile/schema";
 export async function GET(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to access your career readiness report." } },
+        { status: 401 }
+      );
+    }
 
     const { searchParams } = new URL(req.url);
     const targetRole = searchParams.get("role") || "";
@@ -33,6 +38,12 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to calculate your career readiness report." } },
+        { status: 401 }
+      );
+    }
     const body = await req.json().catch(() => ({}));
 
     const twin = body.twin as TwinOutput | null;

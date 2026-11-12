@@ -184,12 +184,19 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
   const [labStatus, setLabStatus] = useState<"idle" | "running" | "passed" | "failed">("idle");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([]);
   const [showHint, setShowHint] = useState<boolean>(false);
+  const [attemptHistory, setAttemptHistory] = useState<
+    Array<{ id: string; track: LabTrack; status: "passed" | "failed"; timestamp: string; summary: string }>
+  >([]);
 
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(`careertwin-completed-labs:${ownerKey}`);
       if (saved) {
         setCompletedLabs(JSON.parse(saved));
+      }
+      const attemptsRaw = window.localStorage.getItem(`careertwin-lab-attempts:${ownerKey}`);
+      if (attemptsRaw) {
+        setAttemptHistory(JSON.parse(attemptsRaw));
       }
     } catch {
       // storage fallback
@@ -274,24 +281,39 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
         passed = hasIP && hasDrop && hasVector;
       } else if (activeTrack === "cloud") {
         try {
-          const parsed = JSON.parse(currentCode);
-          const hasStatement = Array.isArray(parsed.Statement);
-          const allowRule = parsed.Statement?.find((s: any) => s.Effect === "Allow");
-          const hasSpecificAction = Array.isArray(allowRule?.Action) && allowRule.Action.includes("s3:GetObject");
-          const hasDenyDelete = parsed.Statement?.some((s: any) => s.Effect === "Deny" && (s.Action === "s3:DeleteObject" || s.Action?.includes("s3:DeleteObject")));
+          const parsed = JSON.parse(currentCode) as {
+            Statement?: Array<{ Effect?: string; Action?: string | string[]; Resource?: string | string[] }>;
+          };
+          const statements = Array.isArray(parsed?.Statement) ? parsed.Statement : [];
+          const hasStatement = statements.length > 0;
+          const allowRules = statements.filter((s) => s.Effect === "Allow");
+          const denyRules = statements.filter((s) => s.Effect === "Deny");
+
+          const toList = (val: string | string[] | undefined): string[] =>
+            Array.isArray(val) ? val.map(String) : typeof val === "string" ? [val] : [];
+
+          const allAllowActions = allowRules.flatMap((s) => toList(s.Action));
+          const hasWildcardAction = allAllowActions.some((a) => a === "*" || a === "s3:*" || a.endsWith(":*"));
+          const hasWildcardResource = allowRules.some((s) => toList(s.Resource).includes("*"));
+          const hasReadAction = allAllowActions.includes("s3:GetObject");
+          const hasDenyDelete = denyRules.some((s) => toList(s.Action).includes("s3:DeleteObject"));
 
           logs.push("Test 1: JSON IAM Policy Schema Validity...");
-          logs.push("  ✓ Passed: JSON parsed with valid structure.");
+          if (hasStatement) logs.push("  ✓ Passed: JSON parsed with valid Statement array.");
+          else logs.push("  ✗ Failed: Missing non-empty Statement array.");
 
-          logs.push("Test 2: Least-Privilege Scope (No wildcard '*')...");
-          if (hasSpecificAction) logs.push("  ✓ Passed: Read actions scoped to s3:GetObject and s3:ListBucket.");
-          else logs.push("  ✗ Failed: Allowed actions are overly broad or missing s3:GetObject.");
+          logs.push("Test 2: Least-Privilege Scope (Zero wildcard '*' or 's3:*' actions)...");
+          if (hasReadAction && !hasWildcardAction && !hasWildcardResource) {
+            logs.push("  ✓ Passed: Read permissions scoped explicitly without wildcard actions or '*' resources.");
+          } else {
+            logs.push("  ✗ Failed: Ensure s3:GetObject is allowed without wildcard '*' in Action or Resource.");
+          }
 
           logs.push("Test 3: Explicit Deny for Destructive Actions...");
           if (hasDenyDelete) logs.push("  ✓ Passed: Explicit Deny for s3:DeleteObject enforced.");
           else logs.push("  ✗ Failed: Deny statement for s3:DeleteObject missing.");
 
-          passed = hasStatement && hasSpecificAction && hasDenyDelete;
+          passed = hasStatement && hasReadAction && !hasWildcardAction && !hasWildcardResource && hasDenyDelete;
         } catch (e: any) {
           logs.push("Test 1: JSON IAM Policy Schema Validity...");
           logs.push(`  ✗ Syntax Error: ${e.message}`);
@@ -348,6 +370,23 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
       }
 
       setTerminalOutput(logs);
+
+      const attemptEntry = {
+        id: `${Date.now()}`,
+        track: activeTrack,
+        status: passed ? ("passed" as const) : ("failed" as const),
+        timestamp: new Date().toLocaleTimeString(),
+        summary: passed ? "All verification checks passed" : "Verification failed — inspect assertions",
+      };
+      setAttemptHistory((prev) => {
+        const next = [attemptEntry, ...prev].slice(0, 12);
+        try {
+          window.localStorage.setItem(`careertwin-lab-attempts:${ownerKey}`, JSON.stringify(next));
+        } catch {
+          // storage fallback
+        }
+        return next;
+      });
     }, 600);
   };
 
@@ -365,9 +404,9 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
               Hands-On Engineering & Security Labs
             </h1>
             <p className="text-sm md:text-base text-ink/70">
-              Practical, sandbox-style exercises inspired by Cisco Networking Academy and enterprise
-              engineering standards. Write code, calculate subnets, triage security logs, audit cloud
-              IAM, and execute SQL queries with real-time test validation.
+              Practical exercises inspired by Cisco Networking Academy and enterprise engineering
+              standards. Practice Python, IPv4 subnetting, SOC log triage, JSON IAM policy auditing,
+              and SQL queries with deterministic browser-side syntax and assertion checks.
             </p>
           </div>
 
@@ -549,7 +588,7 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
             <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 font-mono text-xs space-y-2">
               <div className="flex items-center justify-between border-b border-neutral-800 pb-2 text-[11px] text-neutral-400">
                 <span className="flex items-center gap-1.5">
-                  <Terminal className="h-3 w-3 text-emerald-400" /> Test Execution Console
+                  <Terminal className="h-3 w-3 text-emerald-400" /> Client-Side Verification Console
                 </span>
                 <span>
                   {labStatus === "passed" && (
@@ -592,6 +631,27 @@ export function HandsOnLabsView({ ownerKey = "default", onNavigateTwin }: HandsO
                 )}
               </div>
             </div>
+
+            {attemptHistory.filter((a) => a.track === activeTrack).length > 0 && (
+              <div className="rounded-xl border border-ink/10 bg-app p-4 space-y-2">
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate">
+                  Recent Lab Attempt History
+                </h4>
+                <ul className="space-y-1.5 text-xs">
+                  {attemptHistory
+                    .filter((a) => a.track === activeTrack)
+                    .slice(0, 4)
+                    .map((a) => (
+                      <li key={a.id} className="flex items-center justify-between gap-2 rounded-lg bg-white px-3 py-1.5 border border-ink/8">
+                        <span className={a.status === "passed" ? "font-semibold text-emerald-700" : "font-semibold text-rose-700"}>
+                          {a.status === "passed" ? "PASSED" : "FAILED"} · {a.summary}
+                        </span>
+                        <span className="text-[10px] text-slate">{a.timestamp}</span>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

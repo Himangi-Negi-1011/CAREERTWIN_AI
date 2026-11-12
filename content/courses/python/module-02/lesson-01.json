@@ -76,7 +76,7 @@
       "instructions": [
         "Implement a grade classifier for valid scores from 0 through 100. Test -1, 0, every grade boundary, 100, and 101; explain why each boundary uses `<` or `<=`. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
       ],
-      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
       "hints": [
         "A runnable Python program with descriptive names",
         "Observed output and at least one boundary or failure test",
@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Decisions with Conditions and Boolean Logic",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Decisions with Conditions and Boolean Logic."
+      "title": "Python 3 Official Documentation",
+      "url": "https://docs.python.org/3/",
+      "description": "Official reference documentation for Python."
     }
   ],
   "realWorldApplications": [

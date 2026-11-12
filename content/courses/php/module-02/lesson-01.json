@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Control Flow, Arrays, and Iteration",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Control Flow, Arrays, and Iteration."
+      "title": "PHP 8 Official Manual",
+      "url": "https://www.php.net/docs.php",
+      "description": "Official reference documentation for PHP."
     }
   ],
   "realWorldApplications": [

@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Types, Expressions, and Safe Input",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Types, Expressions, and Safe Input."
+      "title": "C Language Standard Reference (cppreference)",
+      "url": "https://en.cppreference.com/w/c",
+      "description": "Official reference documentation for C Programming."
     }
   ],
   "realWorldApplications": [

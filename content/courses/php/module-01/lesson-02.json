@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Types, Strings, Input, and Validation",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Types, Strings, Input, and Validation."
+      "title": "PHP 8 Official Manual",
+      "url": "https://www.php.net/docs.php",
+      "description": "Official reference documentation for PHP."
     }
   ],
   "realWorldApplications": [

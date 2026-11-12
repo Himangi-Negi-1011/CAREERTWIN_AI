@@ -1,0 +1,235 @@
+{
+  "id": "phase-sql-mod-3-sql-perf-acid-assessment",
+  "skillName": "SQL",
+  "skillSlug": "sql",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-sql-perf-acid",
+  "moduleTitle": "Module 3: Indexing, Transactions & Performance Tuning",
+  "title": "SQL — Module 3: Indexing, Transactions & Performance Tuning Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans and ACID Transactions, Isolation Levels & Safe Migrations.",
+  "durationMinutes": 20,
+  "totalMarks": 12,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+    "ACID Transactions, Isolation Levels & Safe Migrations"
+  ],
+  "questions": [
+    {
+      "id": "phase-sql-mod-3-sql-perf-acid-q1",
+      "section": "A",
+      "sectionTitle": "Module 3: Indexing, Transactions & Performance Tuning Checkpoint",
+      "type": "single-choice",
+      "prompt": "On a composite index `ON events (org_id, created_at)`, which query cleanly utilizes the leftmost index order?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`WHERE org_id = 'org_1' AND created_at > '2026-01-01'`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`WHERE created_at > '2026-01-01'` (without `org_id`)"
+        },
+        {
+          "id": "opt-3",
+          "text": "`WHERE UPPER(org_id) = 'ORG_1'`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`ORDER BY payload_text`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "B-Tree composite indexes sort primarily by the leftmost key (`org_id`), requiring it to match efficiently.",
+      "difficulty": "beginner",
+      "topic": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid",
+      "recommendedLessonTitle": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans"
+    },
+    {
+      "id": "phase-sql-mod-3-sql-perf-acid-q2",
+      "section": "A",
+      "sectionTitle": "Module 3: Indexing, Transactions & Performance Tuning Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why does `WHERE LOWER(email) = 'alice@x.com'` skip a normal `INDEX(email)` unless configured specially?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Wrapping an indexed column in a function breaks sargability because the B-Tree stores raw original values, not lowercased hashes"
+        },
+        {
+          "id": "opt-2",
+          "text": "Emails cannot be indexed in B-Trees"
+        },
+        {
+          "id": "opt-3",
+          "text": "`LOWER()` returns booleans instead of strings"
+        },
+        {
+          "id": "opt-4",
+          "text": "Indexes forbid equality `=` checks"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Maintain canonical lowercase emails on write or create a matching expression index `ON users(LOWER(email))`.",
+      "difficulty": "beginner",
+      "topic": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid",
+      "recommendedLessonTitle": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans"
+    },
+    {
+      "id": "phase-sql-mod-3-sql-perf-acid-q3",
+      "section": "A",
+      "sectionTitle": "Module 3: Indexing, Transactions & Performance Tuning Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why use `CREATE INDEX CONCURRENTLY` on active production PostgreSQL tables?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Builds the index cleanly without acquiring write-blocking locks over live INSERT/UPDATE transactions"
+        },
+        {
+          "id": "opt-2",
+          "text": "Deletes old duplicate rows automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Skips B-Tree balancing to build instantaneously"
+        },
+        {
+          "id": "opt-4",
+          "text": "Compresses disk space by 95%"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Standard index builds lock writes on busy tables for minutes/hours; concurrent creation avoids downtime.",
+      "difficulty": "beginner",
+      "topic": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid",
+      "recommendedLessonTitle": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans"
+    },
+    {
+      "id": "phase-sql-mod-3-sql-perf-acid-q4",
+      "section": "A",
+      "sectionTitle": "Module 3: Indexing, Transactions & Performance Tuning Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why does checking `if (wallet.balance >= amount)` in Node.js memory followed by a separate `UPDATE wallets SET balance = balance - amount` risk negative balances?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Concurrent requests can both read the old positive balance before either commits (TOCTOU race condition)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Node numbers turn negative on JSON parse"
+        },
+        {
+          "id": "opt-3",
+          "text": "PostgreSQL ignores `UPDATE` inside transactions"
+        },
+        {
+          "id": "opt-4",
+          "text": "JavaScript floats round numbers down automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Atomic database-level `WHERE balance >= amount` or `SELECT FOR UPDATE` closes race windows cleanly.",
+      "difficulty": "beginner",
+      "topic": "ACID Transactions, Isolation Levels & Safe Migrations",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe-",
+      "recommendedLessonTitle": "ACID Transactions, Isolation Levels & Safe Migrations"
+    },
+    {
+      "id": "phase-sql-mod-3-sql-perf-acid-q5",
+      "section": "A",
+      "sectionTitle": "Module 3: Indexing, Transactions & Performance Tuning Checkpoint",
+      "type": "single-choice",
+      "prompt": "What ACID guarantee ensures that if step 2 (audit log insert) fails mid-transaction, step 1 (balance deduction) is completely undone?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Atomicity"
+        },
+        {
+          "id": "opt-2",
+          "text": "Isolation"
+        },
+        {
+          "id": "opt-3",
+          "text": "Normal Form"
+        },
+        {
+          "id": "opt-4",
+          "text": "Replication"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Atomicity makes every multi-statement transaction strictly all-or-nothing.",
+      "difficulty": "beginner",
+      "topic": "ACID Transactions, Isolation Levels & Safe Migrations",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe-",
+      "recommendedLessonTitle": "ACID Transactions, Isolation Levels & Safe Migrations"
+    },
+    {
+      "id": "phase-sql-mod-3-sql-perf-acid-q6",
+      "section": "A",
+      "sectionTitle": "Module 3: Indexing, Transactions & Performance Tuning Checkpoint",
+      "type": "single-choice",
+      "prompt": "How does the Expand-Contract migration pattern rename a live column with zero deployment downtime?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Add new column + dual-write/backfill -> update deployed code reads -> drop old column once old pods terminate"
+        },
+        {
+          "id": "opt-2",
+          "text": "Run RENAME COLUMN immediately during peak hours"
+        },
+        {
+          "id": "opt-3",
+          "text": "Truncate the table before running ALTER TABLE"
+        },
+        {
+          "id": "opt-4",
+          "text": "Restart Postgres ignoring running web queries"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Overlap-tolerant transitions prevent rolling pods from crashing on missing column errors.",
+      "difficulty": "beginner",
+      "topic": "ACID Transactions, Isolation Levels & Safe Migrations",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe-",
+      "recommendedLessonTitle": "ACID Transactions, Isolation Levels & Safe Migrations"
+    }
+  ],
+  "contentVersion": 2,
+  "reviewStatus": "approved",
+  "createdAt": "2026-11-11T05:58:18.464Z",
+  "updatedAt": "2026-11-11T05:58:18.464Z"
+}

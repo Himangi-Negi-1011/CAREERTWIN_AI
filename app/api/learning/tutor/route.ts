@@ -5,6 +5,7 @@ import {
   agentRequestSchema,
   generateDeterministicAgentResponse,
 } from "@/lib/learning/agent";
+import { checkRateLimit, getClientIdentifier } from "@/lib/security/rate-limit";
 
 export async function POST(request: Request) {
   const { userId } = await auth();
@@ -12,6 +13,33 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { error: { code: "UNAUTHORIZED", message: "Sign in to chat with the AI Learning Agent." } },
       { status: 401 }
+    );
+  }
+
+  // Rate Limiting: 25 requests per minute per user
+  const clientId = getClientIdentifier(request, userId);
+  const rateLimitResult = checkRateLimit(clientId, {
+    limit: 25,
+    windowMs: 60_000,
+    prefix: "ai-tutor",
+  });
+
+  if (!rateLimitResult.allowed) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "RATE_LIMITED",
+          message: "Too many AI Tutor queries. Please wait a moment before sending another message.",
+        },
+      },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rateLimitResult.retryAfterSeconds),
+          "X-RateLimit-Limit": String(rateLimitResult.limit),
+          "X-RateLimit-Remaining": "0",
+        },
+      }
     );
   }
 

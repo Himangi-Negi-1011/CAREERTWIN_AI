@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official Go Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "Go Official Language Documentation",
+      "organization": "The Go Authors",
+      "url": "https://go.dev/doc/",
       "retrievedAt": "2026-11-01T15:37:40.985Z",
       "reviewStatus": "curated"
     }

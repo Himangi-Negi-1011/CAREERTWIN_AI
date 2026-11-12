@@ -5,6 +5,7 @@ import { emptyCareerProfile } from "@/lib/profile/schema";
 
 vi.mock("@clerk/nextjs", () => ({
   useUser: () => ({ user: { id: "test-user" }, isLoaded: true }),
+  useClerk: () => ({ signOut: vi.fn().mockResolvedValue(undefined) }),
   UserButton: () => <button type="button">Account menu</button>,
 }));
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }), useSearchParams: () => new URLSearchParams(window.location.search) }));

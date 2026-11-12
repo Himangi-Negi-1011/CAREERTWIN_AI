@@ -1,163 +1,235 @@
 {
-  "id": "phase-cloud-computing-mod-2-application-assessment",
+  "id": "phase-cloud-computing-mod-2-cloud-network-storage-assessment",
   "skillName": "Cloud Computing",
   "skillSlug": "cloud-computing",
   "level": "beginner",
-  "testNumber": 1,
+  "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-application",
-  "moduleTitle": "Module 2: Practical Implementation & Production Patterns",
-  "title": "Cloud Computing — Module 2: Practical Implementation & Production Patterns Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Production Patterns and Resilience in Cloud Computing, Capstone Lab: Verifiable Cloud Computing Implementation.",
+  "moduleId": "mod-2-cloud-network-storage",
+  "moduleTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures",
+  "title": "Cloud Computing — Module 2: Cloud Networking (VPC) & Storage Architectures Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Virtual Private Clouds (VPC), Subnets & Routing and Object Storage, Block Volumes & Managed Databases.",
   "durationMinutes": 20,
-  "totalMarks": 9,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Strategic Execution",
-    "Mastery & Continuous Improvement",
-    "Root-Cause Analysis",
-    "Quality Standards & Deliverables"
+    "Virtual Private Clouds (VPC), Subnets & Routing",
+    "Object Storage, Block Volumes & Managed Databases"
   ],
   "questions": [
     {
-      "id": "phase-cloud-computing-mod-2-application-assessment-q1",
-      "type": "scenario",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] When applying Cloud Computing in a high-stakes cross-functional project, what is the best strategy to align stakeholders and minimize risk?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Establish explicit written objectives, measurable milestones, and scheduled stakeholder review checkpoints."
-        },
-        {
-          "id": "opt-2",
-          "text": "Work in isolation until the final deadline without communicating status."
-        },
-        {
-          "id": "opt-3",
-          "text": "Change project requirements verbally without documenting rationale."
-        },
-        {
-          "id": "opt-4",
-          "text": "Bypass review stages to deliver ahead of schedule regardless of quality."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Transparent communication, structured milestones, and regular stakeholder feedback ensure alignment and prevent costly late-stage surprises.",
-      "difficulty": "beginner",
-      "topic": "Strategic Execution",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cloud Computing"
-    },
-    {
-      "id": "phase-cloud-computing-mod-2-application-assessment-q2",
-      "type": "multiple-select",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which principles are essential for achieving long-term proficiency in Cloud Computing?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Consistent deliberate practice with feedback loops"
-        },
-        {
-          "id": "opt-2",
-          "text": "Understanding underlying mental models rather than merely memorizing facts"
-        },
-        {
-          "id": "opt-3",
-          "text": "Reviewing mistakes and performing root-cause analysis on failures"
-        },
-        {
-          "id": "opt-4",
-          "text": "Avoiding practical exercises in favor of passive video consumption"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "Deliberate practice, foundational mental models, and reflective error analysis are the empirical pillars of skill acquisition.",
-      "difficulty": "beginner",
-      "topic": "Mastery & Continuous Improvement",
-      "marks": 3,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Cloud Computing Implementation"
-    },
-    {
-      "id": "phase-cloud-computing-mod-2-application-assessment-q3",
+      "id": "phase-cloud-computing-mod-2-cloud-network-storage-q1",
+      "section": "A",
+      "sectionTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What is the most effective approach when confronting unexpected edge-case failures while executing Cloud Computing?",
+      "prompt": "Why does placing application containers inside a Private Subnet with a NAT Gateway enhance security over Public Subnets?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Isolate the boundary inputs, form a verifiable hypothesis, and test each component independently."
+          "text": "Instances have no public IPv4 address reachable for unsolicited inbound scans while still able to initiate outbound API/package calls cleanly"
         },
         {
           "id": "opt-2",
-          "text": "Restart the entire process repeatedly hoping for different results."
+          "text": "NAT Gateways automatically encrypt SQL queries inside JSON"
         },
         {
           "id": "opt-3",
-          "text": "Ignore the edge case if the general scenario succeeds."
+          "text": "Private subnets turn off CPU hyperthreading"
         },
         {
           "id": "opt-4",
-          "text": "Remove telemetry to hide the failure."
+          "text": "Public subnets forbid HTTPS certificates"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Hypothesis-driven diagnosis and boundary isolation locate root causes systematically without introducing regressions.",
+      "explanation": "NAT Gateways allow initiated outbound sessions while blocking unsolicited inbound internet connections.",
       "difficulty": "beginner",
-      "topic": "Root-Cause Analysis",
+      "topic": "Virtual Private Clouds (VPC), Subnets & Routing",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cloud Computing"
+      "recommendedLessonId": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi",
+      "recommendedLessonTitle": "Virtual Private Clouds (VPC), Subnets & Routing"
     },
     {
-      "id": "phase-cloud-computing-mod-2-application-assessment-q4",
-      "type": "multiple-select",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which attributes characterize high-quality artifacts produced in Cloud Computing?",
+      "id": "phase-cloud-computing-mod-2-cloud-network-storage-q2",
+      "section": "A",
+      "sectionTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint",
+      "type": "single-choice",
+      "prompt": "How many total IPv4 addresses exist inside a `/26` CIDR subnet block?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Adherence to established domain standards and conventions"
+          "text": "64 (minus 2 standard network/broadcast or ~5 provider-reserved IPs)"
         },
         {
           "id": "opt-2",
-          "text": "Thorough documentation of assumptions, constraints, and dependencies"
+          "text": "256"
         },
         {
           "id": "opt-3",
-          "text": "Verifiability against measurable acceptance criteria"
+          "text": "32"
         },
         {
           "id": "opt-4",
-          "text": "High complexity without explanation to demonstrate expertise"
+          "text": "128"
         }
       ],
       "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
+        "opt-1"
       ],
-      "explanation": "Clarity, standard compliance, and verifiability make artifacts maintainable and scalable.",
+      "explanation": "32 - 26 = 6 host bits -> 2^6 = 64 total addresses.",
       "difficulty": "beginner",
-      "topic": "Quality Standards & Deliverables",
+      "topic": "Virtual Private Clouds (VPC), Subnets & Routing",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Cloud Computing Implementation"
+      "recommendedLessonId": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi",
+      "recommendedLessonTitle": "Virtual Private Clouds (VPC), Subnets & Routing"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-cloud-network-storage-q3",
+      "section": "A",
+      "sectionTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which firewall construct operates statelessly at the subnet boundary evaluating inbound and outbound ACL numbers separately?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Network ACL (NACL)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Security Group"
+        },
+        {
+          "id": "opt-3",
+          "text": "CORS HTTP Middleware"
+        },
+        {
+          "id": "opt-4",
+          "text": "IAM Trust Policy"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "NACLs are stateless packet filters evaluated at subnet edges; Security Groups are stateful.",
+      "difficulty": "beginner",
+      "topic": "Virtual Private Clouds (VPC), Subnets & Routing",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi",
+      "recommendedLessonTitle": "Virtual Private Clouds (VPC), Subnets & Routing"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-cloud-network-storage-q4",
+      "section": "A",
+      "sectionTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do organizations enforce 'Block Public Access' on S3 and generate short-lived Pre-Signed URLs for private downloads?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "To keep buckets strictly private and ensure users only fetch authorized files for brief expiration windows"
+        },
+        {
+          "id": "opt-2",
+          "text": "Pre-Signed URLs compress PDF files by 80%"
+        },
+        {
+          "id": "opt-3",
+          "text": "S3 prohibits HTTPS unless URLs expire"
+        },
+        {
+          "id": "opt-4",
+          "text": "To speed up local hard disk formatting"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Pre-signed URLs delegate temporary credentialed GET/PUT authority cleanly after app authorization.",
+      "difficulty": "beginner",
+      "topic": "Object Storage, Block Volumes & Managed Databases",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat",
+      "recommendedLessonTitle": "Object Storage, Block Volumes & Managed Databases"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-cloud-network-storage-q5",
+      "section": "A",
+      "sectionTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which cloud networking feature allows private EC2/Lambda workloads to read S3 buckets internally without incurring per-GB NAT Gateway charges?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "S3 Gateway VPC Endpoint"
+        },
+        {
+          "id": "opt-2",
+          "text": "Public Elastic IPv4 Address"
+        },
+        {
+          "id": "opt-3",
+          "text": "DNS MX Record"
+        },
+        {
+          "id": "opt-4",
+          "text": "Cross-Region Peering Mesh"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "VPC Gateway Endpoints route internal S3/DynamoDB traffic directly across the cloud backbone cleanly.",
+      "difficulty": "beginner",
+      "topic": "Object Storage, Block Volumes & Managed Databases",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat",
+      "recommendedLessonTitle": "Object Storage, Block Volumes & Managed Databases"
+    },
+    {
+      "id": "phase-cloud-computing-mod-2-cloud-network-storage-q6",
+      "section": "A",
+      "sectionTitle": "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which storage type mounts directly onto a single VM as a low-latency formatted OS filesystem for PostgreSQL data blocks?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Block Storage (EBS / Persistent Disk)"
+        },
+        {
+          "id": "opt-2",
+          "text": "CDN Edge Cache"
+        },
+        {
+          "id": "opt-3",
+          "text": "Object Storage Bucket"
+        },
+        {
+          "id": "opt-4",
+          "text": "DNS Zone File"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Block devices attach like high-IOPS local SSDs supporting POSIX random byte-range database writes.",
+      "difficulty": "beginner",
+      "topic": "Object Storage, Block Volumes & Managed Databases",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat",
+      "recommendedLessonTitle": "Object Storage, Block Volumes & Managed Databases"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:12.709Z",
-  "updatedAt": "2026-10-30T06:22:12.709Z"
+  "createdAt": "2026-11-11T05:58:16.023Z",
+  "updatedAt": "2026-11-11T05:58:16.023Z"
 }

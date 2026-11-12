@@ -9,9 +9,14 @@ import {
 export async function GET() {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to access your portfolio." } },
+        { status: 401 }
+      );
+    }
 
-    const portfolio = await getUserPortfolio(userId);
+    const portfolio = await getUserPortfolio(user.id);
     return NextResponse.json({ success: true, data: portfolio });
   } catch (err: any) {
     return NextResponse.json(
@@ -24,10 +29,15 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to save your portfolio." } },
+        { status: 401 }
+      );
+    }
 
     const body = await req.json();
-    const saved = await saveUserPortfolio(userId, body);
+    const saved = await saveUserPortfolio(user.id, body);
 
     return NextResponse.json({ success: true, data: saved }, { status: 200 });
   } catch (err: any) {

@@ -6,88 +6,106 @@
   "objectives": [
     {
       "id": "power-bi-obj-1",
-      "statement": "Understand foundational mental models and syntax of Power BI",
+      "statement": "Understand foundational mental models and architecture of Power BI",
       "order": 1
     },
     {
       "id": "power-bi-obj-2",
-      "statement": "Implement reliable patterns and error handling in Power BI",
+      "statement": "Implement secure, reproducible solutions across real-world Power BI tasks",
       "order": 2
     },
     {
       "id": "power-bi-obj-3",
-      "statement": "Apply Power BI in production-ready real-world scenarios",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in Power BI",
       "order": 3
     },
     {
       "id": "power-bi-obj-4",
-      "statement": "Evaluate security, performance, and best practices for Power BI",
+      "statement": "Architect scalable enterprise workflows aligned with Power BI industry best practices",
       "order": 4
     }
   ],
   "prerequisites": [
-    "Basic digital literacy and analytical reasoning"
+    "Spreadsheet familiarity (Excel tables, basic SUM/AVERAGE)"
   ],
   "modules": [
     {
-      "id": "mod-1-foundations",
-      "title": "Module 1: Foundations & Core Concepts of Power BI",
-      "summary": "Explore the fundamental concepts, terminology, and development workflow.",
+      "id": "mod-1-pbi-etl",
+      "title": "Module 1: Data Ingestion & Power Query ETL (M Language)",
+      "summary": "Connect disparate raw sources, unpivot crosstab spreadsheets cleanly, enforce column schemas, and preserve database Query Folding.",
       "order": 1,
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 80,
       "objectiveIds": [
         "power-bi-obj-1",
         "power-bi-obj-2"
       ],
       "lessonTitles": [
-        "Introduction to Power BI",
-        "Core Syntax and Primitives in Power BI"
+        "Power BI Workflow & Power Query Unpivoting (M Language)",
+        "Data Profiling, Quality Gates & Query Folding"
       ],
-      "checkpoint": "Build a functional baseline demonstration verifying syntax and flow."
+      "checkpoint": "Transform dirty multi-column Excel reports into clean typed narrow tables."
     },
     {
-      "id": "mod-2-application",
-      "title": "Module 2: Practical Implementation & Production Patterns",
-      "summary": "Deep dive into resilient design, test automation, and real-world deployment.",
+      "id": "mod-2-pbi-modeling",
+      "title": "Module 2: Star Schema Modeling & Date Dimensions",
+      "summary": "Design clean Star Schemas linking Fact transactions to Dimension lookups cleanly via single-direction 1-to-many relationships and contiguous Date tables.",
       "order": 2,
+      "estimatedMinutes": 80,
+      "objectiveIds": [
+        "power-bi-obj-2",
+        "power-bi-obj-3"
+      ],
+      "lessonTitles": [
+        "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+        "Dedicated Date Dimensions & Role-Playing Relationships"
+      ],
+      "checkpoint": "Resolve many-to-many / bi-directional ambiguity into a fast conformed Star Schema."
+    },
+    {
+      "id": "mod-3-pbi-dax-reports",
+      "title": "Module 3: DAX Analytics & Executive Reporting",
+      "summary": "Master Row Context vs Filter Context, `CALCULATE`, `VAR`, `SUMX` iterators, YoY Time Intelligence, and clean accessible dashboard UX.",
+      "order": 3,
       "estimatedMinutes": 90,
       "objectiveIds": [
         "power-bi-obj-3",
         "power-bi-obj-4"
       ],
       "lessonTitles": [
-        "Production Patterns and Resilience in Power BI",
-        "Capstone Lab: Verifiable Power BI Implementation"
+        "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+        "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
       ],
-      "checkpoint": "Complete a verifiable project applying defense-in-depth principles."
+      "checkpoint": "Author resilient dynamic DAX metrics and build intuitive visual hierarchies."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic",
-    "Interactive boundary condition exercises",
-    "Production code review simulations"
+    "Unpivot messy wide monthly Excel budgets via Power Query M into clean Star Schema rows",
+    "Construct contiguous Date dimensions and 1-to-many Fact/Dimension relationships",
+    "Author Time Intelligence YoY/MTD metrics via CALCULATE, VAR, and DIVIDE"
   ],
   "assessmentCheckpoints": [
-    "Module 1 Knowledge Check (70% pass threshold)",
-    "Module 2 Production Readiness Evaluation"
+    "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint (70% pass threshold)",
+    "Module 2: Star Schema Modeling & Date Dimensions Checkpoint (70% pass threshold)",
+    "Module 3: DAX Analytics & Executive Reporting Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "Production-ready Power BI portfolio module with automated test suite and documentation"
+    "Executive Revenue & Retention Interactive Star-Schema Power BI Model + DAX Measure Catalog"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Submit verifiable implementation satisfying acceptance criteria"
+    "Clean raw data upstream via foldable Power Query transformations",
+    "Design high-speed single-directional Star Schemas avoiding ambiguous bi-directional loops",
+    "Write bug-free DAX measures utilizing CALCULATE, context transition, and VAR cleanly"
   ],
   "resources": [
     {
-      "title": "Official Power BI Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
-      "retrievedAt": "2026-10-30T06:22:13.030Z",
+      "title": "Microsoft Power BI & DAX Docs",
+      "organization": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/power-bi/",
+      "retrievedAt": "2026-11-11T05:58:18.715Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

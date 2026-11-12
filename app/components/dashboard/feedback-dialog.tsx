@@ -24,6 +24,10 @@ interface FeedbackDialogProps {
 export function FeedbackDialog({ currentContext, onClose }: FeedbackDialogProps) {
   const [category, setCategory] = useState<string>("confusing_lesson");
   const [message, setMessage] = useState<string>("");
+  const [whatWereYouTryingToDo, setWhatWereYouTryingToDo] = useState<string>("");
+  const [whatActuallyHappened, setWhatActuallyHappened] = useState<string>("");
+  const [severity, setSeverity] = useState<"p0_blocker" | "p1_high" | "p2_medium" | "p3_low">("p3_low");
+  const [showDetailedFields, setShowDetailedFields] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(5);
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -46,6 +50,9 @@ export function FeedbackDialog({ currentContext, onClose }: FeedbackDialogProps)
         body: JSON.stringify({
           category,
           message: message.trim(),
+          whatWereYouTryingToDo: whatWereYouTryingToDo.trim() || undefined,
+          whatActuallyHappened: whatActuallyHappened.trim() || undefined,
+          severity,
           rating,
           context: {
             page: currentContext?.page || window.location.pathname + window.location.search,
@@ -133,36 +140,68 @@ export function FeedbackDialog({ currentContext, onClose }: FeedbackDialogProps)
                 onChange={(e) => setCategory(e.target.value)}
                 className="w-full rounded-xl border border-ink/15 bg-white p-2.5 text-xs text-ink focus:border-brand-forest focus:outline-hidden"
               >
-                <option value="confusing_lesson">Confusing Lesson Content / Theory</option>
-                <option value="incorrect_explanation">Incorrect Explanation / Answer</option>
-                <option value="broken_video">Broken or Irrelevant Video Resource</option>
-                <option value="difficult_exercise">Difficult or Ambiguous Code Exercise</option>
-                <option value="incorrect_question">Incorrect Mock Exam Question</option>
-                <option value="broken_navigation">Broken Navigation or Button</option>
-                <option value="ai_tutor">AI Career Tutor Guidance Issue</option>
-                <option value="general">General Suggestion or Feedback</option>
+                <optgroup label="Course Content & Quality">
+                  <option value="confusing_lesson">Confusing Lesson Content / Theory</option>
+                  <option value="lesson_explanations">Unclear Lesson Explanations</option>
+                  <option value="course_quality">Course Structure or Depth Suggestion</option>
+                  <option value="incorrect_explanation">Incorrect Explanation or Code Example</option>
+                  <option value="difficult_exercise">Difficult or Ambiguous Code Exercise</option>
+                </optgroup>
+                <optgroup label="Assessments & Exams">
+                  <option value="mock_exams_grading">Mock Exam Scoring / Grading Issue</option>
+                  <option value="incorrect_question">Incorrect Question or Distractor</option>
+                </optgroup>
+                <optgroup label="Platform & Tools">
+                  <option value="ai_tutor">AI Career Tutor Guidance Issue</option>
+                  <option value="learning_studio_usability">Learning Studio Navigation Issue</option>
+                  <option value="login_onboarding">Registration or Onboarding Issue</option>
+                  <option value="mobile_experience">Mobile / Tablet Layout Issue</option>
+                  <option value="technical_errors">Technical Error or Crash</option>
+                  <option value="feature_suggestions">Feature Suggestion</option>
+                  <option value="general">General Feedback</option>
+                </optgroup>
               </select>
             </div>
 
-            {/* Experience Rating */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-ink">Rating of this module:</label>
-              <div className="flex items-center gap-1.5">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    type="button"
-                    onClick={() => setRating(star)}
-                    className="p-1 text-amber-400 hover:scale-110 transition-transform"
-                    aria-label={`${star} star`}
-                  >
-                    <Star
-                      className={`h-5 w-5 ${
-                        star <= rating ? "fill-amber-400 text-amber-400" : "text-neutral-300"
-                      }`}
-                    />
-                  </button>
-                ))}
+            {/* Severity Select */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <label htmlFor="fb-severity" className="text-xs font-semibold text-ink">
+                  Impact / Severity:
+                </label>
+                <select
+                  id="fb-severity"
+                  value={severity}
+                  onChange={(e) => setSeverity(e.target.value as any)}
+                  className="w-full rounded-xl border border-ink/15 bg-white p-2.5 text-xs text-ink focus:border-brand-forest focus:outline-hidden"
+                >
+                  <option value="p3_low">P3 — Low (Suggestion / Minor Polish)</option>
+                  <option value="p2_medium">P2 — Medium (Confusing / Usability Issue)</option>
+                  <option value="p1_high">P1 — High (Progress Not Saving / Wrong Score)</option>
+                  <option value="p0_blocker">P0 — Blocker (Cannot Continue / Page Blank)</option>
+                </select>
+              </div>
+
+              {/* Experience Rating */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-ink">Rating of this module:</label>
+                <div className="flex items-center gap-1.5 pt-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setRating(star)}
+                      className="p-1 text-amber-400 hover:scale-110 transition-transform"
+                      aria-label={`${star} star`}
+                    >
+                      <Star
+                        className={`h-5 w-5 ${
+                          star <= rating ? "fill-amber-400 text-amber-400" : "text-neutral-300"
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 

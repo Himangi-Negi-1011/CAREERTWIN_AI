@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: PHP Runtime, Files, and Composer",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for PHP Runtime, Files, and Composer."
+      "title": "PHP 8 Official Manual",
+      "url": "https://www.php.net/docs.php",
+      "description": "Official reference documentation for PHP."
     }
   ],
   "realWorldApplications": [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -12,6 +12,7 @@ import {
   BriefcaseBusiness,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
   ChevronRight,
   CircleUserRound,
   Compass,
@@ -23,6 +24,7 @@ import {
   Globe,
   GraduationCap,
   Layers,
+  LogOut,
   Menu,
   MessageSquareText,
   Network,
@@ -30,11 +32,13 @@ import {
   Route,
   Save,
   Search,
+  Settings,
   Shield,
   ShieldCheck,
   Sparkles,
   Terminal,
   TrendingUp,
+  User,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -66,6 +70,7 @@ import { ResumeReviewView } from "./resume-review-view";
 import { PortfolioView } from "./portfolio-view";
 import { GuidedProjectsView } from "./guided-projects-view";
 import { AchievementsView } from "./achievements-view";
+import { SettingsHub } from "./settings-hub";
 import "./dashboard-clone.css";
 
 function ModuleLoading() {
@@ -638,198 +643,18 @@ function Overview({
   );
 }
 
-type PrivacyPreferences = { allowProfileContext: boolean; allowHistoryPersonalization: boolean; retainTranscripts: boolean };
-const DEFAULT_PRIVACY: PrivacyPreferences = { allowProfileContext: false, allowHistoryPersonalization: false, retainTranscripts: true };
 
-function SettingsModule({ ownerKey }: { ownerKey?: string }) {
-  const [preferences, setPreferences] = useState(DEFAULT_PRIVACY);
-  const [loaded, setLoaded] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState("");
-  const [resumeName, setResumeName] = useState("");
-
-  useEffect(() => {
-    try {
-      const wizardKey = ownerKey ? `careertwin-profile-wizard:${ownerKey}` : "careertwin-profile-wizard";
-      const raw = window.localStorage.getItem(wizardKey) || window.localStorage.getItem("careertwin-profile-wizard");
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed.resume?.fileName) setResumeName(parsed.resume.fileName);
-      }
-    } catch {
-      // safe fallback
-    }
-  }, [ownerKey]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    void fetch("/api/settings", { signal: controller.signal })
-      .then(async (response) => {
-        const payload = (await response.json()) as { data?: PrivacyPreferences; error?: { message?: string } };
-        if (!response.ok || !payload.data) {
-          setMessage(payload.error?.message ?? "Privacy settings could not be loaded.");
-          return;
-        }
-        setPreferences(payload.data);
-      })
-      .catch((error) => {
-        if (error instanceof Error && error.name !== "AbortError") setMessage("Privacy settings could not be loaded.");
-      })
-      .finally(() => setLoaded(true));
-    return () => controller.abort();
-  }, []);
-
-  async function save() {
-    setSaving(true);
-    setMessage("");
-    try {
-      const response = await fetch("/api/settings", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(preferences),
-      });
-      const payload = (await response.json()) as { error?: { message?: string } };
-      if (!response.ok) {
-        setMessage(payload.error?.message ?? "Privacy settings were not saved.");
-        return;
-      }
-      setMessage("Privacy settings saved securely.");
-    } catch {
-      setMessage("Privacy settings were not saved. Try again.");
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  async function exportData() {
-    setMessage("");
-    try {
-      const response = await fetch("/api/account/export");
-      if (!response.ok) {
-        const payload = (await response.json()) as { error?: { message?: string } };
-        setMessage(payload.error?.message ?? "Your data export could not be prepared.");
-        return;
-      }
-      const url = URL.createObjectURL(await response.blob());
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.download = `careertwin-export-${new Date().toISOString().slice(0, 10)}.json`;
-      anchor.click();
-      URL.revokeObjectURL(url);
-      setMessage("Your data export was prepared.");
-    } catch {
-      setMessage("Your data export could not be prepared.");
-    }
-  }
-
-  if (!loaded) return <section className="rounded-2xl border border-ink/8 bg-white p-7" aria-busy="true">Loading privacy & document settings…</section>;
-
-  const options: Array<[keyof PrivacyPreferences, string, string]> = [
-    ["retainTranscripts", "Retain submitted interview transcripts", "When off, new answer text is evaluated but not retained, so reassessment of that answer is unavailable. Audio is never retained by default."],
-  ];
-
-  return (
-    <div className="space-y-6">
-      <div className="grid gap-5 lg:grid-cols-[1.2fr_.8fr]">
-        <section className="rounded-2xl border border-ink/8 bg-white p-7">
-          <p className="label">Privacy & data controls</p>
-          <h2 className="mt-3 text-2xl font-bold">Control how your private career data is used.</h2>
-          <div className="mt-6 space-y-3">
-            {options.map(([key, label, description]) => (
-              <label key={key} className="flex cursor-pointer items-start justify-between gap-5 rounded-2xl border border-ink/8 p-4">
-                <span>
-                  <strong className="block text-sm">{label}</strong>
-                  <span className="mt-1 block text-xs leading-5 text-slate">{description}</span>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={preferences[key]}
-                  onChange={(event) => setPreferences((current) => ({ ...current, [key]: event.target.checked }))}
-                  className="mt-1 size-4"
-                />
-              </label>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button type="button" onClick={() => void save()} disabled={saving} className="button-primary disabled:opacity-40">
-              <Save size={15} />
-              {saving ? "Saving…" : "Save preferences"}
-            </button>
-            <button type="button" onClick={() => void exportData()} className="button-secondary">
-              <Download size={15} />
-              Export my data
-            </button>
-          </div>
-          {message && <p role="status" className="mt-4 rounded-xl bg-app p-3 text-sm">{message}</p>}
-        </section>
-
-        <aside className="rounded-2xl border border-violet-100 bg-violet-50/60 p-6">
-          <ShieldCheck className="text-accent" size={22} />
-          <h3 className="mt-6 font-bold">Privacy behavior</h3>
-          <p className="mt-2 text-sm leading-6 text-slate">
-            Settings are saved against your authenticated account. AI profile/history personalization is not exposed until its authorization flow is fully implemented, and unavailable providers never receive your data.
-          </p>
-        </aside>
-      </div>
-
-      {/* Document & Resume Settings */}
-      <section className="rounded-2xl border border-ink/8 bg-white p-7">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="label">Documents & resume</p>
-            <h2 className="mt-2 text-2xl font-bold">Resume evidence & file management</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate">
-              Manage your uploaded resume, view parsing status, and control document privacy for your Career Twin.
-            </p>
-          </div>
-          <Link href="/onboarding" className="button-secondary">
-            {resumeName ? "Update or replace resume" : "Add resume file"}
-            <ArrowRight size={14} />
-          </Link>
-        </div>
-
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-ink/8 bg-app/60 p-5">
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-violet-100 text-accent">
-                <FileText size={18} />
-              </span>
-              <div className="min-w-0 flex-1">
-                <span className="text-xs text-slate">Attached Resume</span>
-                <p className="truncate text-sm font-bold text-ink">
-                  {resumeName ? resumeName : "No document currently connected"}
-                </p>
-              </div>
-            </div>
-            <p className="mt-3 text-xs leading-5 text-slate">
-              {resumeName
-                ? "This file was analyzed locally to assist with initial skill identification and roadmap planning."
-                : "You can add a resume in the onboarding wizard to populate initial skills without manual typing."}
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-ink/8 bg-app/60 p-5">
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-mint/35 text-ink">
-                <ShieldCheck size={18} />
-              </span>
-              <div className="min-w-0 flex-1">
-                <span className="text-xs text-slate">Extraction & Storage</span>
-                <p className="text-sm font-bold text-ink">Private & Non-Public</p>
-              </div>
-            </div>
-            <p className="mt-3 text-xs leading-5 text-slate">
-              CareerTwin does not display invented document status, fake ATS parsing scores, or send raw files to public datasets.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
 
 export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
+  const router = useRouter();
   const { user, isLoaded } = useUser();
+  let clerk: { signOut?: () => Promise<void> } | null = null;
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    clerk = useClerk?.() ?? null;
+  } catch {
+    clerk = null;
+  }
   const searchParams = useSearchParams();
   const storageOwnerKey = ownerKey ?? user?.id ?? "";
   const [view, setView] = useState<View>("overview");
@@ -842,7 +667,54 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
   const [syncState, setSyncState] = useState<TwinSyncState | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/account/logout", { method: "POST" });
+    } catch {
+      // safe
+    }
+
+    try {
+      if (clerk && clerk.signOut) {
+        await clerk.signOut();
+      }
+    } catch {
+      // ignore
+    }
+
+    try {
+      localStorage.removeItem("ct-demo-session");
+      localStorage.removeItem("ct-user-email");
+      localStorage.removeItem("ct-user-name");
+      sessionStorage.clear();
+    } catch {
+      // safe
+    }
+
+    router.push("/login?logged_out=true");
+  };
+
+  useEffect(() => {
+    try {
+      const savedTheme = localStorage.getItem("ct-theme");
+      const savedContrast = localStorage.getItem("ct-contrast");
+      const savedMotion = localStorage.getItem("ct-reduced-motion");
+      if (savedTheme === "dark" || savedTheme === "light") {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      }
+      if (savedContrast === "high" || savedContrast === "normal") {
+        document.documentElement.setAttribute("data-contrast", savedContrast);
+      }
+      if (savedMotion === "true" || savedMotion === "false") {
+        document.documentElement.setAttribute("data-reduced-motion", savedMotion);
+      }
+    } catch {
+      // safe
+    }
+  }, []);
 
   useEffect(() => {
     if (!storageOwnerKey) return;
@@ -859,30 +731,40 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
   }, [storageOwnerKey]);
 
   useEffect(() => {
-    const requestedView = searchParams.get("view");
-    if (requestedView === "documents") {
-      const task = window.setTimeout(() => setView("settings"), 0);
-      return () => window.clearTimeout(task);
-    }
-    if (!navigation.some((item) => item.id === requestedView)) return;
-    const task = window.setTimeout(() => setView(requestedView as View), 0);
+    const syncFromUrl = () => {
+      const requestedView = searchParams.get("view");
+      if (requestedView === "documents") {
+        setView("settings");
+        return;
+      }
+      if (!navigation.some((item) => item.id === requestedView)) return;
+      setView(requestedView as View);
+    };
+    const task = window.setTimeout(syncFromUrl, 0);
     return () => window.clearTimeout(task);
   }, [searchParams]);
 
   useEffect(() => {
     if (!storageOwnerKey) return;
     const controller = new AbortController();
-    void fetch("/api/profile", { signal: controller.signal }).then(async response => {
-      if (!response.ok) return;
-      const payload = await response.json() as { data?: { profile_completion?: number; profile_data?: { personal?: { fullName?: string }; interests?: { targetRole?: string } } } | null };
-      const saved = payload.data;
-      if (!saved) return;
-      setProfileCompletion(saved.profile_completion ?? 0);
-      setDisplayName(saved.profile_data?.personal?.fullName ?? "");
-      const remoteRole = saved.profile_data?.interests?.targetRole?.trim();
-      if (remoteRole) { setRole(remoteRole); window.localStorage.setItem(`careertwin-role-draft:${storageOwnerKey}`, remoteRole); }
-    }).catch(() => undefined);
-    return () => controller.abort();
+    const fetchProfile = () => {
+      void fetch("/api/profile", { signal: controller.signal }).then(async response => {
+        if (!response.ok) return;
+        const payload = await response.json() as { data?: { profile_completion?: number; profile_data?: { personal?: { fullName?: string }; interests?: { targetRole?: string } } } | null };
+        const saved = payload.data;
+        if (!saved) return;
+        setProfileCompletion(saved.profile_completion ?? 0);
+        setDisplayName(saved.profile_data?.personal?.fullName ?? "");
+        const remoteRole = saved.profile_data?.interests?.targetRole?.trim();
+        if (remoteRole) { setRole(remoteRole); window.localStorage.setItem(`careertwin-role-draft:${storageOwnerKey}`, remoteRole); }
+      }).catch(() => undefined);
+    };
+    fetchProfile();
+    window.addEventListener("careertwin:profile-saved", fetchProfile);
+    return () => {
+      controller.abort();
+      window.removeEventListener("careertwin:profile-saved", fetchProfile);
+    };
   }, [storageOwnerKey]);
 
   useEffect(() => {
@@ -941,10 +823,33 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     }
   }
 
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const requestedView = params.get("view");
+      if (requestedView === "documents") {
+        setView("settings");
+        return;
+      }
+      if (requestedView && navigation.some((item) => item.id === requestedView)) {
+        setView(requestedView as View);
+      } else {
+        setView("overview");
+      }
+    };
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
+  }, []);
+
   function changeView(next: View) {
     setView(next);
     setMobileOpen(false);
     setCommandOpen(false);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("view", next);
+      window.history.pushState({ view: next }, "", url.pathname + url.search);
+    }
   }
 
   const [certModalOpen, setCertModalOpen] = useState(false);
@@ -1011,6 +916,14 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
           <CircleUserRound size={15} className="shrink-0"/>
           <span className="truncate">Career Profile</span>
         </Link>
+        <button
+          type="button"
+          onClick={() => void handleLogout()}
+          className="flex w-full items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 text-[13px] font-semibold text-rose-600 transition hover:bg-rose-50 hover:text-rose-700 cursor-pointer"
+        >
+          <LogOut size={15} className="shrink-0"/>
+          <span className="truncate">Sign Out</span>
+        </button>
         <div className="mt-1 rounded-xl border border-ink/10 bg-white/70 px-3 py-2.5">
           <div className="flex items-center gap-1.5">
             <span className={`size-1.5 rounded-full ${syncState?.status === "saved" ? "bg-emerald-500" : "bg-amber-400"}`}/>
@@ -1034,7 +947,106 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
             <MessageSquareText size={14} className="text-accent" />
             <span className="hidden sm:inline">Feedback</span>
           </button>
-          <button type="button" onClick={()=>setCommandOpen(true)} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-[0_8px_24px_rgba(24,48,52,.045)] transition hover:-translate-y-0.5 hover:border-accent/20 hover:bg-white hover:text-ink" aria-label="Open quick navigation"><Search size={14}/><span className="hidden md:inline">Quick find</span><kbd className="hidden rounded-md border border-ink/10 bg-cream/60 px-1.5 py-0.5 font-mono text-[9px] text-slate lg:inline">⌘K</kbd></button><Link href="/onboarding" className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/80 px-3.5 py-2 text-xs font-bold shadow-[0_8px_24px_rgba(24,48,52,.06)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white"><span className="grid size-6 place-items-center rounded-full bg-mint/35 text-accent"><CircleUserRound size={13}/></span><span className="hidden max-w-36 truncate sm:inline">{role || "Complete profile"}</span></Link></div>
+          <button type="button" onClick={()=>setCommandOpen(true)} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-ink/10 bg-white/75 px-3 text-xs font-bold text-slate shadow-[0_8px_24px_rgba(24,48,52,.045)] transition hover:-translate-y-0.5 hover:border-accent/20 hover:bg-white hover:text-ink cursor-pointer" aria-label="Open quick navigation"><Search size={14}/><span className="hidden md:inline">Quick find</span><kbd className="hidden rounded-md border border-ink/10 bg-cream/60 px-1.5 py-0.5 font-mono text-[9px] text-slate lg:inline">⌘K</kbd></button>
+          
+          {/* Authenticated Account Menu Dropdown */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+              className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/80 px-3.5 py-2 text-xs font-bold shadow-[0_8px_24px_rgba(24,48,52,.06)] transition hover:-translate-y-0.5 hover:border-accent/25 hover:bg-white cursor-pointer"
+              aria-expanded={accountMenuOpen}
+              aria-label="User account menu"
+            >
+              <span className="grid size-6 place-items-center rounded-full bg-mint/35 text-accent font-bold text-[11px]">
+                {displayName ? displayName.charAt(0).toUpperCase() : "A"}
+              </span>
+              <span className="hidden max-w-36 truncate sm:inline">{displayName || role || "Student"}</span>
+              <ChevronDown size={13} className={`text-slate transition-transform ${accountMenuOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {accountMenuOpen && (
+              <div
+                className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-ink/10 bg-white p-2 shadow-xl z-50 animate-in fade-in slide-in-from-top-2"
+                role="menu"
+              >
+                <div className="border-b border-ink/8 px-3 py-2.5">
+                  <p className="text-xs font-bold text-ink truncate">{displayName || "CareerTwin Student"}</p>
+                  <p className="text-[10px] text-slate truncate">{user?.primaryEmailAddress?.emailAddress || "Signed-in session"}</p>
+                </div>
+
+                <div className="py-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      router.push("/onboarding");
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    role="menuitem"
+                  >
+                    <User size={14} />
+                    <span>Profile Details</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      changeView("settings");
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    role="menuitem"
+                  >
+                    <Settings size={14} />
+                    <span>Account Settings</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      changeView("settings");
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    role="menuitem"
+                  >
+                    <BookOpen size={14} />
+                    <span>Learning Preferences</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      changeView("settings");
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate hover:bg-surface hover:text-ink cursor-pointer"
+                    role="menuitem"
+                  >
+                    <ShieldCheck size={14} />
+                    <span>Privacy & Security</span>
+                  </button>
+                </div>
+
+                <div className="border-t border-ink/8 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      void handleLogout();
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 hover:text-rose-700 cursor-pointer"
+                    role="menuitem"
+                  >
+                    <LogOut size={14} />
+                    <span>Sign Out (Logout)</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </header>
 
       <main className="mx-auto max-w-[1320px] px-4 py-7 md:px-7 lg:px-10 lg:py-10">
@@ -1207,6 +1219,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
               <CourseCatalogueView
                 onSelectCourse={openLearningWithSkill}
                 onNavigatePaths={() => changeView("paths")}
+                userRole={role}
               />
             ) : view === "labs" ? (
               <HandsOnLabsView
@@ -1216,6 +1229,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
             ) : view === "mock-exams" ? (
               <MockExamsHubView
                 ownerKey={storageOwnerKey}
+                preferredRole={role}
                 onNavigateTwin={() => changeView("twin")}
                 onSelectCourse={openLearningWithSkill}
               />
@@ -1274,7 +1288,9 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
             ) : view === "projects" ? (
               <GuidedProjectsView
                 role={role}
+                ownerKey={storageOwnerKey}
                 onNavigateAchievements={() => changeView("certificates")}
+                onNavigatePortfolio={() => changeView("portfolio")}
               />
             ) : view === "intelligence" ? (
               <CareerIntelligence
@@ -1286,6 +1302,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
             ) : view === "learning" ? (
               <LearningStudio
                 role={role}
+                ownerKey={storageOwnerKey}
                 initialSkill={learningSkillParam || searchParams.get("skill") || undefined}
               />
             ) : view === "progress" ? (
@@ -1295,7 +1312,12 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 onOpenRoadmap={() => changeView("roadmap")}
               />
             ) : (
-              <SettingsModule ownerKey={storageOwnerKey} />
+              <SettingsHub
+                ownerKey={storageOwnerKey}
+                onLogout={handleLogout}
+                initialEmail={user?.primaryEmailAddress?.emailAddress ?? undefined}
+                initialName={displayName || undefined}
+              />
             )} 
           </motion.div>
         </AnimatePresence>
@@ -1346,10 +1368,20 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                 );
               })}
             </nav>
-            <div className="border-t border-ink/10 px-3 pb-4 pt-3">
+            <div className="border-t border-ink/10 px-3 pb-4 pt-3 space-y-1">
               <Link href="/onboarding" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-slate">
                 <CircleUserRound size={15} className="shrink-0"/>Career Profile
               </Link>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  void handleLogout();
+                }}
+                className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2.5 text-[13px] font-semibold text-rose-600 hover:bg-rose-50 cursor-pointer"
+              >
+                <LogOut size={15} className="shrink-0"/>Sign Out
+              </button>
             </div>
           </motion.aside>
         </>

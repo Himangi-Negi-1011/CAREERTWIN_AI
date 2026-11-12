@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: STL Algorithms, Maps, and a Progress Tracker",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for STL Algorithms, Maps, and a Progress Tracker."
+      "title": "Modern C++ Standard Reference",
+      "url": "https://en.cppreference.com/w/cpp",
+      "description": "Official reference documentation for C++."
     }
   ],
   "realWorldApplications": [

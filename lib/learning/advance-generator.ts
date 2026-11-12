@@ -117,8 +117,12 @@ export function validateCourseCompleteness(
     errors.push(`Only ${mockTests.length} mock tests found for ${curriculum.skillName} (minimum 3 required).`);
   } else {
     for (const test of mockTests) {
-      if (test.questions.length < 4) {
-        errors.push(`Mock test ${test.id} has only ${test.questions.length} questions (expected >= 4).`);
+      if (test.questions.length !== 28) {
+        errors.push(`Mock test ${test.id} has ${test.questions.length} questions (expected 28 for full 100-mark format).`);
+      }
+      const markSum = test.questions.reduce((s, q) => s + q.marks, 0);
+      if (test.totalMarks !== 100 || markSum !== 100) {
+        errors.push(`Mock test ${test.id} marks mismatch (totalMarks=${test.totalMarks}, questionSum=${markSum}; expected 100).`);
       }
       // Check for duplicate question prompts
       const promptSet = new Set<string>();

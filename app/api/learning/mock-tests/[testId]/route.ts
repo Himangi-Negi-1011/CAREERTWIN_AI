@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 import { getMockTest } from "@/lib/learning/repository";
 import { sanitizeMockTestForStudent } from "@/lib/learning/mock-test-schema";
 
@@ -7,6 +8,14 @@ export async function GET(
   { params }: { params: Promise<{ testId: string }> }
 ) {
   try {
+    const session = await auth();
+    if (!session?.userId) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to view mock tests." } },
+        { status: 401 }
+      );
+    }
+
     const { testId } = await params;
     const test = await getMockTest(testId);
     if (!test) {
@@ -24,4 +33,3 @@ export async function GET(
     );
   }
 }
-

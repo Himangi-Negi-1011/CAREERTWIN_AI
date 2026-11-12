@@ -89,22 +89,30 @@ type TutorMessage = {
 
 const POPULAR_TRACKS = [
   { name: "Python", level: "beginner", tag: "6 Lessons · 3 Tests" },
-  { name: "SQL", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "SQL", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "TypeScript", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "JavaScript", level: "beginner", tag: "6 Lessons · 3 Tests" },
-  { name: "Cloud Computing", level: "beginner", tag: "4 Lessons · 3 Tests" },
-  { name: "Cybersecurity", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "Cloud Computing", level: "beginner", tag: "6 Lessons · 3 Tests" },
+  { name: "Cybersecurity", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "Java", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "Go", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "Rust", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "C++", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "C#", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "C Programming", level: "beginner", tag: "6 Lessons · 3 Tests" },
-  { name: "Power BI", level: "beginner", tag: "4 Lessons · 3 Tests" },
+  { name: "Power BI", level: "beginner", tag: "6 Lessons · 3 Tests" },
   { name: "PHP", level: "beginner", tag: "6 Lessons · 3 Tests" },
 ];
 
-export function LearningStudio({ role, initialSkill }: { role: string; initialSkill?: string }) {
+export function LearningStudio({
+  role,
+  initialSkill,
+  ownerKey,
+}: {
+  role: string;
+  initialSkill?: string;
+  ownerKey?: string;
+}) {
   const [query, setQuery] = useState("");
   const [skills, setSkills] = useState<SkillResult[]>([]);
   const [registration, setRegistration] = useState<Registration | null>(null);
@@ -231,7 +239,7 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
   const [catalogSearch, setCatalogSearch] = useState("");
   const [expandedCourseSlug, setExpandedCourseSlug] = useState<string | null>(null);
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
-  const [lastCourseName, setLastCourseName] = useState<string>("Python Programming");
+  const [lastCourseName, setLastCourseName] = useState<string>("Python");
   const [lastLessonName, setLastLessonName] = useState<string>("Python Syntax and Data Types");
   const [showCustomGenerator, setShowCustomGenerator] = useState(false);
 
@@ -245,6 +253,41 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
       // safe
     }
   }, []);
+
+  // Sync AI & Learning preferences from SettingsHub / /api/settings
+  useEffect(() => {
+    const applySettings = (s?: { aiTutorDifficulty?: StudentLevel; learningDifficulty?: string }) => {
+      if (s?.aiTutorDifficulty && ["beginner", "intermediate", "advanced"].includes(s.aiTutorDifficulty)) {
+        setAgentLevel(s.aiTutorDifficulty);
+      }
+      if (s?.learningDifficulty && ["foundation", "beginner", "intermediate", "advanced"].includes(s.learningDifficulty)) {
+        setLevel(s.learningDifficulty);
+      }
+    };
+
+    try {
+      const localRaw = localStorage.getItem(`careertwin-app-settings:${ownerKey || "demo"}`);
+      if (localRaw) {
+        applySettings(JSON.parse(localRaw) as { aiTutorDifficulty?: StudentLevel; learningDifficulty?: string });
+      }
+    } catch {
+      // ignore
+    }
+
+    void fetch("/api/settings")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((payload: { data?: { aiTutorDifficulty?: StudentLevel; learningDifficulty?: string } } | null) => {
+        if (payload?.data) applySettings(payload.data);
+      })
+      .catch(() => undefined);
+
+    const onUpdated = (e: Event) => {
+      const detail = (e as CustomEvent<{ aiTutorDifficulty?: StudentLevel; learningDifficulty?: string }>).detail;
+      if (detail) applySettings(detail);
+    };
+    window.addEventListener("careertwin:settings-updated", onUpdated);
+    return () => window.removeEventListener("careertwin:settings-updated", onUpdated);
+  }, [ownerKey]);
 
   const copyCodeToClipboard = (code: string, id: string) => {
     try {
@@ -805,21 +848,29 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
                   Current Lesson: <strong className="text-white">{lastLessonName}</strong>
                 </p>
 
-                {/* Progress Bar */}
-                <div className="space-y-1.5 pt-1">
-                  <div className="flex justify-between text-[11px] font-semibold text-slate-300">
-                    <span>Progress: 33% Completed</span>
-                    <span>2 of 6 Lessons Mastered</span>
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
-                    <div className="h-full rounded-full bg-gradient-to-r from-accent to-mint" style={{ width: "33%" }} />
-                  </div>
-                </div>
+                {/* Progress Bar — computed dynamically from completed lessons */}
+                {(() => {
+                  const completedCount = Object.values(completedLessons).filter(Boolean).length;
+                  const trackTotal = 6;
+                  const boundedDone = Math.min(trackTotal, completedCount);
+                  const pct = Math.round((boundedDone / trackTotal) * 100);
+                  return (
+                    <div className="space-y-1.5 pt-1">
+                      <div className="flex justify-between text-[11px] font-semibold text-slate-300">
+                        <span>Progress: {pct}% Completed</span>
+                        <span>{boundedDone} of {trackTotal} Lessons Mastered</span>
+                      </div>
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                        <div className="h-full rounded-full bg-gradient-to-r from-accent to-mint" style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
                   <button
                     type="button"
-                    onClick={() => void startCourseGeneration(lastCourseName, "beginner")}
+                    onClick={() => void startCourseGeneration(lastCourseName, level)}
                     className="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold shadow-lg shadow-accent/25"
                   >
                     <span>Resume Learning</span>
@@ -865,39 +916,48 @@ export function LearningStudio({ role, initialSkill }: { role: string; initialSk
           <section className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-bold uppercase tracking-wider text-slate">My Enrolled Learning Tracks</h4>
-                <p className="text-xs text-slate">Resume your active curricula or jump into a new module.</p>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-slate">Recommended Learning Tracks</h4>
+                <p className="text-xs text-slate">Resume active curricula or jump straight into a 6-lesson flagship module.</p>
               </div>
-              <span className="text-xs font-semibold text-accent">3 In Progress</span>
+              <span className="text-xs font-semibold text-accent">
+                {Object.values(completedLessons).filter(Boolean).length} Lessons Completed
+              </span>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
               {[
-                { name: "Python Programming", tag: "Programming", progress: 33, lessons: "2 / 6 Lessons", slug: "python" },
-                { name: "Modern JavaScript (ES6+)", tag: "Web & Frontend", progress: 17, lessons: "1 / 6 Lessons", slug: "javascript" },
-                { name: "Cloud Computing & AWS", tag: "Cloud Infrastructure", progress: 0, lessons: "0 / 4 Lessons", slug: "cloud-computing" },
-              ].map((trk) => (
+                { name: "Python Programming", searchName: "Python", tag: "Programming", prefix: "py-", slug: "python" },
+                { name: "Modern JavaScript (ES6+)", searchName: "JavaScript", tag: "Web & Frontend", prefix: "js-", slug: "javascript" },
+                { name: "Cloud Computing & AWS", searchName: "Cloud Computing", tag: "Cloud Infrastructure", prefix: "cloud-", slug: "cloud-computing" },
+              ].map((trk) => {
+                const doneCount = Object.keys(completedLessons).filter(
+                  (k) => completedLessons[k] && (k.includes(trk.slug) || k.includes(trk.prefix))
+                ).length;
+                const bounded = Math.min(6, doneCount);
+                const pct = Math.round((bounded / 6) * 100);
+                return (
                 <div key={trk.slug} className="rounded-2xl border border-ink/8 bg-white p-4 shadow-xs flex flex-col justify-between hover:border-accent/40 transition">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[11px]">
                       <span className="font-semibold text-accent">{trk.tag}</span>
-                      <span className="text-slate font-medium">{trk.lessons}</span>
+                      <span className="text-slate font-medium">{bounded} / 6 Lessons</span>
                     </div>
                     <h5 className="font-bold text-sm text-ink">{trk.name}</h5>
                     <div className="h-1.5 w-full rounded-full bg-ink/5 overflow-hidden">
-                      <div className="h-full rounded-full bg-accent" style={{ width: `${trk.progress}%` }} />
+                      <div className="h-full rounded-full bg-accent" style={{ width: `${pct}%` }} />
                     </div>
                   </div>
                   <button
                     type="button"
-                    onClick={() => void startCourseGeneration(trk.name, "beginner")}
-                    className="mt-4 inline-flex items-center justify-between rounded-xl bg-cream/70 hover:bg-violet-50 hover:text-accent px-3 py-2 text-xs font-bold text-ink transition"
+                    onClick={() => void startCourseGeneration(trk.searchName, level)}
+                    className="mt-4 inline-flex items-center justify-between rounded-xl bg-cream/70 hover:bg-violet-50 hover:text-accent px-3 py-2 text-xs font-bold text-ink transition cursor-pointer"
                   >
-                    <span>{trk.progress > 0 ? "Resume Track" : "Start Track"}</span>
+                    <span>{bounded > 0 ? "Resume Track" : "Start Track"}</span>
                     <ArrowRight size={13} />
                   </button>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 

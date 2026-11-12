@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: The .NET Build and Execution Model",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for The .NET Build and Execution Model."
+      "title": "Microsoft C# & .NET Official Docs",
+      "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+      "description": "Official reference documentation for C#."
     }
   ],
   "realWorldApplications": [

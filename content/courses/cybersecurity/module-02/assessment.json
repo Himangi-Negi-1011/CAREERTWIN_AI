@@ -1,161 +1,235 @@
 {
-  "id": "phase-cybersecurity-mod-2-application-assessment",
+  "id": "phase-cybersecurity-mod-2-sec-auth-owasp-assessment",
   "skillName": "Cybersecurity",
   "skillSlug": "cybersecurity",
   "level": "beginner",
-  "testNumber": 1,
+  "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-application",
-  "moduleTitle": "Module 2: Practical Implementation & Production Patterns",
-  "title": "Cybersecurity — Module 2: Practical Implementation & Production Patterns Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Production Patterns and Resilience in Cybersecurity, Capstone Lab: Verifiable Cybersecurity Implementation.",
+  "moduleId": "mod-2-sec-auth-owasp",
+  "moduleTitle": "Module 2: Authentication, Cryptography & OWASP AppSec",
+  "title": "Cybersecurity — Module 2: Authentication, Cryptography & OWASP AppSec Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Authentication, Password Hashing (Argon2/bcrypt) & Access Control and OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening.",
   "durationMinutes": 20,
-  "totalMarks": 9,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Vulnerability Assessment",
-    "Defensive Engineering",
-    "Access Control & Identity",
-    "Cryptography Foundations"
+    "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+    "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening"
   ],
   "questions": [
     {
-      "id": "phase-cybersecurity-mod-2-application-assessment-q1",
-      "type": "scenario",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] During a vulnerability scan, a web server responds to requests containing '../../etc/passwd'. What vulnerability does this indicate?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Path Traversal (Directory Traversal)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Cross-Site Request Forgery (CSRF)"
-        },
-        {
-          "id": "opt-3",
-          "text": "Server-Side Request Forgery (SSRF)"
-        },
-        {
-          "id": "opt-4",
-          "text": "Insecure Direct Object Reference (IDOR)"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Path traversal allows attackers to read arbitrary files on the server by stepping up directories using dot-dot-slash patterns.",
-      "difficulty": "beginner",
-      "topic": "Vulnerability Assessment",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cybersecurity"
-    },
-    {
-      "id": "phase-cybersecurity-mod-2-application-assessment-q2",
-      "type": "multiple-select",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which defensive measures protect against SQL Injection vulnerabilities?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Parameterized queries (prepared statements)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Object-Relational Mapping (ORM) with parameterized bindings"
-        },
-        {
-          "id": "opt-3",
-          "text": "Strict input validation against allowlists"
-        },
-        {
-          "id": "opt-4",
-          "text": "Client-side alert boxes warning users not to type quotes"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "Parameterized queries separate SQL structure from data, completely neutralizing malicious query injection.",
-      "difficulty": "beginner",
-      "topic": "Defensive Engineering",
-      "marks": 3,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Cybersecurity Implementation"
-    },
-    {
-      "id": "phase-cybersecurity-mod-2-application-assessment-q3",
+      "id": "phase-cybersecurity-mod-2-sec-auth-owasp-q1",
+      "section": "A",
+      "sectionTitle": "Module 2: Authentication, Cryptography & OWASP AppSec Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What is the primary objective of the Principle of Least Privilege (PoLP)?",
+      "prompt": "Why does trusting `req.body.userId` instead of verified session `auth().userId` create an immediate vulnerability?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Every user and service is granted only the minimum permissions necessary to perform their legitimate tasks."
+          "text": "Any attacker can forge any victim's `userId` inside JSON bodies and impersonate accounts freely"
         },
         {
           "id": "opt-2",
-          "text": "All users are assigned administrative privileges to prevent operational bottlenecks."
+          "text": "JSON bodies cannot parse UUID strings"
         },
         {
           "id": "opt-3",
-          "text": "Password complexity requirements are reduced for internal network users."
+          "text": "It triggers syntax errors in TypeScript"
         },
         {
           "id": "opt-4",
-          "text": "Firewalls are configured to allow all outbound traffic unconditionally."
+          "text": "Browsers block `userId` properties automatically"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Least privilege limits blast radius: if an identity is compromised, an attacker cannot pivot beyond that identity's minimal permissions.",
+      "explanation": "Authenticated subject identity must come strictly from verified server session tokens/cookies.",
       "difficulty": "beginner",
-      "topic": "Access Control & Identity",
+      "topic": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cybersecurity"
+      "recommendedLessonId": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b",
+      "recommendedLessonTitle": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control"
     },
     {
-      "id": "phase-cybersecurity-mod-2-application-assessment-q4",
-      "type": "debugging",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Why is base64 encoding NOT considered an encryption mechanism?",
+      "id": "phase-cybersecurity-mod-2-sec-auth-owasp-q2",
+      "section": "A",
+      "sectionTitle": "Module 2: Authentication, Cryptography & OWASP AppSec Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why is Argon2id strictly recommended over raw SHA-256 for storing user password digests?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Base64 is an encoding scheme with no secret cryptographic key; anyone can decode it instantly without credentials."
+          "text": "Argon2id consumes configurable memory and CPU work factor with unique salts, making GPU brute-force cracking orders of magnitude slower"
         },
         {
           "id": "opt-2",
-          "text": "Base64 uses 128-bit keys which are easily brute-forced."
+          "text": "SHA-256 outputs can be decoded straight back to strings via algebra"
         },
         {
           "id": "opt-3",
-          "text": "Base64 only works on ASCII text."
+          "text": "Argon2id removes the need for HTTPS"
         },
         {
           "id": "opt-4",
-          "text": "Base64 is a proprietary hashing algorithm."
+          "text": "SHA-256 only hashes passwords shorter than 8 characters"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Encoding transforms data representation for transport. Encryption requires secret keys and mathematical algorithms (AES, RSA) to ensure confidentiality.",
+      "explanation": "Fast hashes fail against GPU cracking farms; slow memory-hard functions defend user credentials cleanly.",
       "difficulty": "beginner",
-      "topic": "Cryptography Foundations",
+      "topic": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Cybersecurity Implementation"
+      "recommendedLessonId": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b",
+      "recommendedLessonTitle": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control"
+    },
+    {
+      "id": "phase-cybersecurity-mod-2-sec-auth-owasp-q3",
+      "section": "A",
+      "sectionTitle": "Module 2: Authentication, Cryptography & OWASP AppSec Checkpoint",
+      "type": "single-choice",
+      "prompt": "What vulnerability allows Student A to view Student B's exam submission simply by requesting `/api/attempts/1002` instead of `1001`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Broken Object Level Authorization (IDOR)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Clickjacking"
+        },
+        {
+          "id": "opt-3",
+          "text": "DNS Amplification"
+        },
+        {
+          "id": "opt-4",
+          "text": "Buffer Overflow"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Failing to enforce ownership per requested resource ID causes IDOR / BOLA.",
+      "difficulty": "beginner",
+      "topic": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sec-auth-owasp-l1-authentication-password-hashing-argon2-b",
+      "recommendedLessonTitle": "Authentication, Password Hashing (Argon2/bcrypt) & Access Control"
+    },
+    {
+      "id": "phase-cybersecurity-mod-2-sec-auth-owasp-q4",
+      "section": "A",
+      "sectionTitle": "Module 2: Authentication, Cryptography & OWASP AppSec Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do `HttpOnly` session cookies outperform `localStorage` tokens against Cross-Site Scripting (XSS)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`HttpOnly` cookies cannot be read via browser `document.cookie` JavaScript, stopping XSS payloads from exfiltrating the raw token"
+        },
+        {
+          "id": "opt-2",
+          "text": "`localStorage` cannot store ASCII strings"
+        },
+        {
+          "id": "opt-3",
+          "text": "`HttpOnly` disables all JavaScript timers"
+        },
+        {
+          "id": "opt-4",
+          "text": "`localStorage` resets on page clicks"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Isolating credentials away from JS DOM scope blunts token theft.",
+      "difficulty": "beginner",
+      "topic": "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sec-auth-owasp-l2-owasp-top-10-injection-sqli-xss-cookie-h",
+      "recommendedLessonTitle": "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening"
+    },
+    {
+      "id": "phase-cybersecurity-mod-2-sec-auth-owasp-q5",
+      "section": "A",
+      "sectionTitle": "Module 2: Authentication, Cryptography & OWASP AppSec Checkpoint",
+      "type": "single-choice",
+      "prompt": "What happens if an attacker enters `' OR '1'='1` into an application using parameterized queries (`WHERE email = $1`)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The database safely looks for an exact literal email matching `' OR '1'='1` and returns zero rows without running boolean OR logic"
+        },
+        {
+          "id": "opt-2",
+          "text": "The attacker logs in automatically as Admin"
+        },
+        {
+          "id": "opt-3",
+          "text": "The database drops all tables"
+        },
+        {
+          "id": "opt-4",
+          "text": "Node throws an unhandled promise panic"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Parameterized variables are never parsed as SQL keywords or operators.",
+      "difficulty": "beginner",
+      "topic": "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sec-auth-owasp-l2-owasp-top-10-injection-sqli-xss-cookie-h",
+      "recommendedLessonTitle": "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening"
+    },
+    {
+      "id": "phase-cybersecurity-mod-2-sec-auth-owasp-q6",
+      "section": "A",
+      "sectionTitle": "Module 2: Authentication, Cryptography & OWASP AppSec Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which CSP directive blocks attackers from embedding your application inside hidden malicious iframes (Clickjacking defense)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`frame-ancestors 'none'`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`img-src *`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`font-src 'self'`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`base-uri 'unsafe-inline'`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`frame-ancestors 'none'` supersedes `X-Frame-Options` cleanly in modern browsers.",
+      "difficulty": "beginner",
+      "topic": "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sec-auth-owasp-l2-owasp-top-10-injection-sqli-xss-cookie-h",
+      "recommendedLessonTitle": "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:10.072Z",
-  "updatedAt": "2026-10-30T06:22:10.072Z"
+  "createdAt": "2026-11-11T05:58:17.502Z",
+  "updatedAt": "2026-11-11T05:58:17.502Z"
 }

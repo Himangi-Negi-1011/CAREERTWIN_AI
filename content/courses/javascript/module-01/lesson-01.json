@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Running JavaScript and Understanding Values",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Running JavaScript and Understanding Values."
+      "title": "MDN JavaScript Reference Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "description": "Official reference documentation for JavaScript."
     }
   ],
   "realWorldApplications": [

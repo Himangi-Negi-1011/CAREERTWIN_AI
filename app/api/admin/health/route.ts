@@ -79,8 +79,8 @@ export async function GET() {
   const libraryStatus: ProductionHealthStatus["learningLibrary"] = {
     totalAuthoredCourses: courseCount,
     validatedCourses: courseCount,
-    totalLessons: 76,
-    totalAssessments: 80,
+    totalLessons: courseCount * 6,
+    totalAssessments: courseCount * 6,
     status: courseCount >= 14 ? "production_ready" : "incomplete",
   };
 

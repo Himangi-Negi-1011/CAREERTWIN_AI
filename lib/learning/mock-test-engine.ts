@@ -6,6 +6,11 @@ import {
 import { saveMockTest, listMockTestsForSkill } from "./repository";
 import { skillSlug } from "./catalog";
 import { resolveDomainCategory } from "./domain-knowledge";
+import {
+  MOCK_EXAM_SECTIONS,
+  getSectionQuestions,
+  type MockExamSectionDef,
+} from "./mock-test-bank";
 
 interface QuestionSeed {
   type: MockTestQuestion["type"];
@@ -651,6 +656,13 @@ function getDomainQuestions(skillName: string): QuestionSeed[] {
 
 /**
  * Builds standard mock tests for a skill at a given level.
+ * Guarantees EXACTLY 100 MARKS across 5 balanced sections (28 questions).
+ * - Section A: Multiple Choice Questions & Fundamentals (10 questions × 2 marks = 20 marks)
+ * - Section B: Conceptual Analysis & Debugging (5 questions × 3 marks = 15 marks)
+ * - Section C: Technical Problem Solving (5 questions × 5 marks = 25 marks)
+ * - Section D: Practical / Coding Tasks (5 questions × 5 marks = 25 marks)
+ * - Section E: Architecture & Scenario Evaluation (3 questions × 5 marks = 15 marks)
+ * Total: 20 + 15 + 25 + 25 + 15 = 100 marks exactly!
  */
 export function buildDeterministicMockTest(
   skillName: string,
@@ -661,36 +673,39 @@ export function buildDeterministicMockTest(
   const testId = `mock-${slug}-${level}-t${testNumber}`;
   const now = new Date().toISOString();
 
-  const domainSeeds = getDomainQuestions(skillName);
-
-  // Generate 20 distinct questions for comprehensive mock test coverage
   const questions: MockTestQuestion[] = [];
   const topicsSet = new Set<string>();
+  let questionGlobalIdx = 1;
 
-  for (let i = 0; i < 20; i++) {
-    const seedIndex = (i + (testNumber - 1) * 2) % domainSeeds.length;
-    const base = domainSeeds[seedIndex];
-    const questionId = `${testId}-q${i + 1}`;
-    const partNum = Math.floor(i / domainSeeds.length) + 1;
-    const topic = partNum > 1 ? `${base.topic} · Part ${partNum}` : base.topic;
-    topicsSet.add(topic);
+  for (const secDef of MOCK_EXAM_SECTIONS) {
+    const secSeeds = getSectionQuestions(skillName, secDef.section, testNumber, level);
+    for (let i = 0; i < secDef.questionCount; i++) {
+      const seed = secSeeds[i % secSeeds.length];
+      const qId = `${testId}-q${questionGlobalIdx}`;
+      const prompt = secSeeds.length < secDef.questionCount && i >= secSeeds.length
+        ? `[Part ${Math.floor(i / secSeeds.length) + 1}] ${seed.prompt}`
+        : seed.prompt;
 
-    const prompt = partNum > 1 ? `[Q${i + 1}] ${base.prompt}` : base.prompt;
+      topicsSet.add(seed.topic);
 
-    questions.push({
-      id: questionId,
-      type: base.type,
-      prompt,
-      codeSnippet: base.codeSnippet || "",
-      options: base.options,
-      correctOptionIds: base.correctOptionIds,
-      explanation: base.explanation,
-      difficulty: level,
-      topic,
-      marks: base.marks || 1,
-      recommendedLessonId: `mod-1-l1`,
-      recommendedLessonTitle: base.recommendedLessonTitle || `Foundations of ${skillName}`,
-    });
+      questions.push({
+        id: qId,
+        section: secDef.section,
+        sectionTitle: secDef.title,
+        type: seed.type,
+        prompt,
+        codeSnippet: seed.codeSnippet || "",
+        options: seed.options,
+        correctOptionIds: seed.correctOptionIds,
+        explanation: seed.explanation,
+        difficulty: level,
+        topic: seed.topic,
+        marks: secDef.marksPerQuestion,
+        recommendedLessonId: `mod-1-l1`,
+        recommendedLessonTitle: seed.recommendedLessonTitle || `Core Primitives and Syntax in ${skillName}`,
+      });
+      questionGlobalIdx++;
+    }
   }
 
   const totalMarks = questions.reduce((sum, q) => sum + q.marks, 0);
@@ -704,9 +719,9 @@ export function buildDeterministicMockTest(
     isPhaseAssessment: false,
     moduleId: "",
     moduleTitle: "",
-    title: `${skillName} ${level.toUpperCase()} Comprehensive Mock Test ${testNumber}`,
-    description: `Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for ${skillName}.`,
-    durationMinutes: 30,
+    title: `${skillName} 100-Mark Professional Mock Examination (Test ${testNumber})`,
+    description: `Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.`,
+    durationMinutes: 60,
     totalMarks,
     passingPercentage: 70,
     topicsCovered: Array.from(topicsSet),
@@ -747,6 +762,8 @@ export function buildDeterministicPhaseAssessment(
 
     questions.push({
       id: questionId,
+      section: "A",
+      sectionTitle: `${moduleTitle} Checkpoint`,
       type: base.type,
       prompt: `[${moduleTitle}] ${base.prompt}`,
       codeSnippet: base.codeSnippet || "",
@@ -803,16 +820,19 @@ export async function generateAndSaveMockTestsForSkill(
 
   for (let t = 1; t <= count; t++) {
     const existingTest = existing.find((item) => item.testNumber === t && !item.isPhaseAssessment);
-    const hasDupes = existingTest && (existingTest.questions.length < 20 || (() => {
-      const p = new Set<string>();
-      for (const q of existingTest.questions) {
-        if (p.has(q.prompt)) return true;
-        p.add(q.prompt);
-      }
-      return false;
-    })());
+    const isOutdatedOrInvalid = !existingTest ||
+      existingTest.questions.length !== 28 ||
+      existingTest.totalMarks !== 100 ||
+      (() => {
+        const p = new Set<string>();
+        for (const q of existingTest.questions) {
+          if (p.has(q.prompt)) return true;
+          p.add(q.prompt);
+        }
+        return false;
+      })();
 
-    if (!existingTest || options?.force || hasDupes) {
+    if (isOutdatedOrInvalid || options?.force) {
       const generated = buildDeterministicMockTest(skillName, level, t);
       await saveMockTest(generated);
       results.push(generated);

@@ -1,161 +1,235 @@
 {
-  "id": "phase-cybersecurity-mod-1-foundations-assessment",
+  "id": "phase-cybersecurity-mod-1-sec-principles-assessment",
   "skillName": "Cybersecurity",
   "skillSlug": "cybersecurity",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
-  "moduleId": "mod-1-foundations",
-  "moduleTitle": "Module 1: Foundations & Core Concepts of Cybersecurity",
-  "title": "Cybersecurity — Module 1: Foundations & Core Concepts of Cybersecurity Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to Cybersecurity, Core Syntax and Primitives in Cybersecurity.",
+  "moduleId": "mod-1-sec-principles",
+  "moduleTitle": "Module 1: Security Principles & Network Defense",
+  "title": "Cybersecurity — Module 1: Security Principles & Network Defense Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across CIA Triad, Threat Modeling & Attack Surface and Network Defense: Firewalls, Stateful Inspection & TLS 1.3.",
   "durationMinutes": 20,
-  "totalMarks": 9,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Vulnerability Assessment",
-    "Defensive Engineering",
-    "Access Control & Identity",
-    "Cryptography Foundations"
+    "CIA Triad, Threat Modeling & Attack Surface",
+    "Network Defense: Firewalls, Stateful Inspection & TLS 1.3"
   ],
   "questions": [
     {
-      "id": "phase-cybersecurity-mod-1-foundations-assessment-q1",
-      "type": "scenario",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cybersecurity] During a vulnerability scan, a web server responds to requests containing '../../etc/passwd'. What vulnerability does this indicate?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Path Traversal (Directory Traversal)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Cross-Site Request Forgery (CSRF)"
-        },
-        {
-          "id": "opt-3",
-          "text": "Server-Side Request Forgery (SSRF)"
-        },
-        {
-          "id": "opt-4",
-          "text": "Insecure Direct Object Reference (IDOR)"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Path traversal allows attackers to read arbitrary files on the server by stepping up directories using dot-dot-slash patterns.",
-      "difficulty": "beginner",
-      "topic": "Vulnerability Assessment",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to Cybersecurity"
-    },
-    {
-      "id": "phase-cybersecurity-mod-1-foundations-assessment-q2",
-      "type": "multiple-select",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cybersecurity] Which defensive measures protect against SQL Injection vulnerabilities?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Parameterized queries (prepared statements)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Object-Relational Mapping (ORM) with parameterized bindings"
-        },
-        {
-          "id": "opt-3",
-          "text": "Strict input validation against allowlists"
-        },
-        {
-          "id": "opt-4",
-          "text": "Client-side alert boxes warning users not to type quotes"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "Parameterized queries separate SQL structure from data, completely neutralizing malicious query injection.",
-      "difficulty": "beginner",
-      "topic": "Defensive Engineering",
-      "marks": 3,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cybersecurity"
-    },
-    {
-      "id": "phase-cybersecurity-mod-1-foundations-assessment-q3",
+      "id": "phase-cybersecurity-mod-1-sec-principles-q1",
+      "section": "A",
+      "sectionTitle": "Module 1: Security Principles & Network Defense Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cybersecurity] What is the primary objective of the Principle of Least Privilege (PoLP)?",
+      "prompt": "Which security pillar protects bank ledger amounts from being altered during transit or storage?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Every user and service is granted only the minimum permissions necessary to perform their legitimate tasks."
+          "text": "Integrity"
         },
         {
           "id": "opt-2",
-          "text": "All users are assigned administrative privileges to prevent operational bottlenecks."
+          "text": "Confidentiality"
         },
         {
           "id": "opt-3",
-          "text": "Password complexity requirements are reduced for internal network users."
+          "text": "Availability"
         },
         {
           "id": "opt-4",
-          "text": "Firewalls are configured to allow all outbound traffic unconditionally."
+          "text": "Latency"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Least privilege limits blast radius: if an identity is compromised, an attacker cannot pivot beyond that identity's minimal permissions.",
+      "explanation": "Integrity ensures trustworthiness and protects data against unauthorized tampering.",
       "difficulty": "beginner",
-      "topic": "Access Control & Identity",
+      "topic": "CIA Triad, Threat Modeling & Attack Surface",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to Cybersecurity"
+      "recommendedLessonId": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface",
+      "recommendedLessonTitle": "CIA Triad, Threat Modeling & Attack Surface"
     },
     {
-      "id": "phase-cybersecurity-mod-1-foundations-assessment-q4",
-      "type": "debugging",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cybersecurity] Why is base64 encoding NOT considered an encryption mechanism?",
+      "id": "phase-cybersecurity-mod-1-sec-principles-q2",
+      "section": "A",
+      "sectionTitle": "Module 1: Security Principles & Network Defense Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why does returning 'No account found for alice@corp.com' enable attackers during password resets?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Base64 is an encoding scheme with no secret cryptographic key; anyone can decode it instantly without credentials."
+          "text": "It enables silent User Enumeration allowing attackers to harvest registered user emails"
         },
         {
           "id": "opt-2",
-          "text": "Base64 uses 128-bit keys which are easily brute-forced."
+          "text": "It triggers SQL injection automatically"
         },
         {
           "id": "opt-3",
-          "text": "Base64 only works on ASCII text."
+          "text": "It clears browser cookies"
         },
         {
           "id": "opt-4",
-          "text": "Base64 is a proprietary hashing algorithm."
+          "text": "It degrades TLS cipher strength"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Encoding transforms data representation for transport. Encryption requires secret keys and mathematical algorithms (AES, RSA) to ensure confidentiality.",
+      "explanation": "Consistent generic reset messages prevent leaking account existence.",
       "difficulty": "beginner",
-      "topic": "Cryptography Foundations",
+      "topic": "CIA Triad, Threat Modeling & Attack Surface",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cybersecurity"
+      "recommendedLessonId": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface",
+      "recommendedLessonTitle": "CIA Triad, Threat Modeling & Attack Surface"
+    },
+    {
+      "id": "phase-cybersecurity-mod-1-sec-principles-q3",
+      "section": "A",
+      "sectionTitle": "Module 1: Security Principles & Network Defense Checkpoint",
+      "type": "single-choice",
+      "prompt": "In STRIDE threat modeling, 'E' stands for which risk (such as tampering a JWT claim to gain admin role)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Elevation of Privilege"
+        },
+        {
+          "id": "opt-2",
+          "text": "Encryption Padding"
+        },
+        {
+          "id": "opt-3",
+          "text": "Endpoint Scanning"
+        },
+        {
+          "id": "opt-4",
+          "text": "Error Logging"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Elevation of Privilege covers unauthorized capability escalation.",
+      "difficulty": "beginner",
+      "topic": "CIA Triad, Threat Modeling & Attack Surface",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface",
+      "recommendedLessonTitle": "CIA Triad, Threat Modeling & Attack Surface"
+    },
+    {
+      "id": "phase-cybersecurity-mod-1-sec-principles-q4",
+      "section": "A",
+      "sectionTitle": "Module 1: Security Principles & Network Defense Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why does setting `rejectUnauthorized: false` during HTTPS requests create a severe vulnerability?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "It skips certificate validation so an active MITM attacker presenting any bogus certificate can intercept and modify encrypted traffic unnoticed"
+        },
+        {
+          "id": "opt-2",
+          "text": "It prevents HTTP POST bodies from being parsed"
+        },
+        {
+          "id": "opt-3",
+          "text": "It slows network round trips by 10x"
+        },
+        {
+          "id": "opt-4",
+          "text": "It deletes client session cookies automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Encryption without server identity verification fails to stop active MITM proxies.",
+      "difficulty": "beginner",
+      "topic": "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sec-principles-l2-network-defense-firewalls-stateful-inspe",
+      "recommendedLessonTitle": "Network Defense: Firewalls, Stateful Inspection & TLS 1.3"
+    },
+    {
+      "id": "phase-cybersecurity-mod-1-sec-principles-q5",
+      "section": "A",
+      "sectionTitle": "Module 1: Security Principles & Network Defense Checkpoint",
+      "type": "single-choice",
+      "prompt": "What happens under a Stateful Inspection Firewall when a client initiates an outbound HTTPS session on port 443?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The firewall logs connection state in a state table and permits established return packets back cleanly without opening port 443 inbound globally"
+        },
+        {
+          "id": "opt-2",
+          "text": "It leaves port 443 permanently open to unsolicited internet traffic"
+        },
+        {
+          "id": "opt-3",
+          "text": "It drops all return traffic automatically"
+        },
+        {
+          "id": "opt-4",
+          "text": "It scans user passwords in plaintext"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Stateful firewalls track active flows and distinguish return responses from unsolicited inbound scans.",
+      "difficulty": "beginner",
+      "topic": "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sec-principles-l2-network-defense-firewalls-stateful-inspe",
+      "recommendedLessonTitle": "Network Defense: Firewalls, Stateful Inspection & TLS 1.3"
+    },
+    {
+      "id": "phase-cybersecurity-mod-1-sec-principles-q6",
+      "section": "A",
+      "sectionTitle": "Module 1: Security Principles & Network Defense Checkpoint",
+      "type": "single-choice",
+      "prompt": "What security benefit does HSTS (`Strict-Transport-Security`) provide?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Instructs compliant browsers never to downgrade subsequent visits to insecure plaintext HTTP"
+        },
+        {
+          "id": "opt-2",
+          "text": "Replaces database password hashing"
+        },
+        {
+          "id": "opt-3",
+          "text": "Blocks all JavaScript fetch calls"
+        },
+        {
+          "id": "opt-4",
+          "text": "Generates SSH private keys automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "HSTS protects users against SSL-stripping downgrade attacks.",
+      "difficulty": "beginner",
+      "topic": "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sec-principles-l2-network-defense-firewalls-stateful-inspe",
+      "recommendedLessonTitle": "Network Defense: Firewalls, Stateful Inspection & TLS 1.3"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:09.983Z",
-  "updatedAt": "2026-10-30T06:22:09.983Z"
+  "createdAt": "2026-11-11T05:58:17.502Z",
+  "updatedAt": "2026-11-11T05:58:17.502Z"
 }

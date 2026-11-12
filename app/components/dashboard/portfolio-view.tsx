@@ -24,11 +24,22 @@ interface PortfolioViewProps {
   ownerKey?: string;
 }
 
-export function PortfolioView({ role, twin }: PortfolioViewProps) {
+export function PortfolioView({ role, twin, ownerKey }: PortfolioViewProps) {
   const [portfolio, setPortfolio] = useState<StudentPortfolio | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [publishedProjects, setPublishedProjects] = useState<
+    Array<{
+      id: string;
+      title: string;
+      outcome: string;
+      deliverableUrl?: string;
+      skills: string[];
+      completedAt?: string;
+      status?: string;
+    }>
+  >([]);
 
   // Form fields
   const [name, setName] = useState("");
@@ -38,6 +49,47 @@ export function PortfolioView({ role, twin }: PortfolioViewProps) {
   const [website, setWebsite] = useState("");
   const [isPublic, setIsPublic] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
+
+  useEffect(() => {
+    // Load local verified/guided projects synced via Development / Twin state
+    try {
+      const storageKey = ownerKey ? `careertwin-development-v1:${ownerKey}` : "careertwin-development-v1";
+      const raw = window.localStorage.getItem(storageKey);
+      if (raw) {
+        const parsed = JSON.parse(raw) as {
+          projects?: Array<{
+            id?: string;
+            title?: string;
+            description?: string;
+            contribution?: string;
+            technologies?: string;
+            repoUrl?: string;
+            status?: string;
+            verifiedAt?: string;
+          }>;
+        };
+        if (Array.isArray(parsed?.projects)) {
+          const mapped = parsed.projects
+            .filter((p) => Boolean(p?.title))
+            .map((p, idx) => ({
+              id: p.id || `proj-${idx + 1}`,
+              title: p.title || "Engineering Project",
+              outcome: p.contribution || p.description || "Completed guided engineering deliverable.",
+              deliverableUrl: p.repoUrl || undefined,
+              skills: (p.technologies || "")
+                .split(",")
+                .map((s) => s.trim())
+                .filter(Boolean),
+              completedAt: p.verifiedAt,
+              status: p.status || "in-progress",
+            }));
+          setPublishedProjects(mapped);
+        }
+      }
+    } catch {
+      // safe localStorage fallback
+    }
+  }, [ownerKey]);
 
   useEffect(() => {
     async function loadPortfolio() {
@@ -56,6 +108,9 @@ export function PortfolioView({ role, twin }: PortfolioViewProps) {
             setWebsite(p.links?.website || "");
             setIsPublic(p.privacySettings?.isPublic ?? false);
             setShowEmail(p.privacySettings?.showEmail ?? false);
+            if (Array.isArray(p.projects) && p.projects.length > 0) {
+              setPublishedProjects((prev) => (prev.length > 0 ? prev : p.projects));
+            }
           } else {
             // Seed defaults
             setName("CareerTwin Scholar");
@@ -99,6 +154,14 @@ export function PortfolioView({ role, twin }: PortfolioViewProps) {
             score: s.assessmentScore,
             verifiedAt: new Date().toISOString(),
           })) || [],
+          projects: publishedProjects.map((proj) => ({
+            id: proj.id,
+            title: proj.title,
+            outcome: proj.outcome,
+            deliverableUrl: proj.deliverableUrl,
+            skills: proj.skills,
+            completedAt: proj.completedAt,
+          })),
         }),
       });
 
@@ -113,7 +176,8 @@ export function PortfolioView({ role, twin }: PortfolioViewProps) {
     }
   };
 
-  const shareableUrl = portfolio ? `${window.location.origin}/portfolio/${portfolio.slug || portfolio.id}` : "";
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const shareableUrl = portfolio && origin ? `${origin}/portfolio/${portfolio.slug || portfolio.id}` : "";
 
   const handleCopy = () => {
     if (!shareableUrl) return;
@@ -270,6 +334,64 @@ export function PortfolioView({ role, twin }: PortfolioViewProps) {
             </button>
           </div>
         </form>
+      </section>
+
+      {/* Published Engineering Projects */}
+      <section className="rounded-3xl border border-ink/10 bg-white p-6 md:p-8 shadow-xs space-y-4">
+        <div className="flex items-center justify-between border-b border-ink/8 pb-4">
+          <div className="flex items-center gap-2">
+            <FolderGit2 size={18} className="text-accent" />
+            <h2 className="text-base font-bold text-ink">Published Engineering Projects</h2>
+          </div>
+          <span className="text-xs font-semibold text-slate">{publishedProjects.length} recorded</span>
+        </div>
+
+        {loading ? (
+          <p className="text-xs text-slate py-4">Loading portfolio projects...</p>
+        ) : publishedProjects.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-ink/15 p-6 text-center text-xs text-slate">
+            No guided projects recorded yet. Complete or publish deliverables inside Guided Projects to showcase them here.
+          </div>
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2">
+            {publishedProjects.map((proj) => (
+              <article key={proj.id} className="rounded-2xl border border-ink/10 bg-[#faf9f5] p-5 space-y-3">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-sm font-bold text-ink">{proj.title}</h3>
+                  <span
+                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                      proj.status === "verified" || proj.status === "completed"
+                        ? "bg-emerald-100 text-emerald-800"
+                        : "bg-amber-100 text-amber-800"
+                    }`}
+                  >
+                    {proj.status || "Recorded"}
+                  </span>
+                </div>
+                <p className="text-xs text-slate leading-relaxed">{proj.outcome}</p>
+                {proj.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {proj.skills.map((tech) => (
+                      <span key={tech} className="rounded-md border border-ink/10 bg-white px-2 py-0.5 text-[10px] font-semibold text-ink">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {proj.deliverableUrl && (
+                  <a
+                    href={proj.deliverableUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
+                  >
+                    <ExternalLink size={12} /> View Deliverable
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

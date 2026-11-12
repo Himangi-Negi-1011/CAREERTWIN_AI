@@ -76,7 +76,7 @@
       "instructions": [
         "Process a list of daily study minutes: ignore negative entries, stop at the sentinel `None`, calculate the valid total and average, and explain how the loop terminates. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
       ],
-      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
       "hints": [
         "A runnable Python program with descriptive names",
         "Observed output and at least one boundary or failure test",
@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Iteration with for, while, and range",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Iteration with for, while, and range."
+      "title": "Python 3 Official Documentation",
+      "url": "https://docs.python.org/3/",
+      "description": "Official reference documentation for Python."
     }
   ],
   "realWorldApplications": [

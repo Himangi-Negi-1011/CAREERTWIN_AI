@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Functions, Structs, Enums, and Traits",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Functions, Structs, Enums, and Traits."
+      "title": "The Rust Programming Language Book",
+      "url": "https://doc.rust-lang.org/book/",
+      "description": "Official reference documentation for Rust."
     }
   ],
   "realWorldApplications": [

@@ -1,0 +1,223 @@
+{
+  "lessonId": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s",
+  "skillName": "Power BI",
+  "moduleId": "mod-3-pbi-dax-reports",
+  "title": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+  "summary": "Understand the twin hearts of DAX evaluation: Row Context (iterating row by row) vs Filter Context (visual slicing via `CALCULATE`).",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 40,
+  "learningObjectives": [
+    "Choose correctly between column aggregators (`SUM`) vs row iterators (`SUMX`) inside measures",
+    "Use `CALCULATE`, `ALL`, `ALLSELECTED`, and `VAR` cleanly to modify filter contexts deterministically"
+  ],
+  "objectiveIds": [
+    "power-bi-obj-3",
+    "power-bi-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Star Schema and Date modeling fundamentals"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s-sec-1",
+      "heading": "1. Mastering Filter Context vs Row Context",
+      "content": "Every DAX headache comes from confusing two contexts: **Filter Context** comes from report slicers, matrix rows/columns, and active relationships narrowing down rows *before* aggregation (`SUM` has no row context!). **Row Context** steps row-by-row when evaluating Computed Columns OR X-suffix iterators (`SUMX`, `AVERAGEX`).\n\nMeanwhile, **`CALCULATE(expr, filter1, ...)`** is DAX's superpower—it can overwrite, add, or strip active visual slicers cleanly (e.g., stripping `Region` filter via `ALL(DimRegion)` to calculate reliable `% Share of Global Revenue`).",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "Visual Slicer (Year = 2026) + Matrix Row (Region = North)\n   |--> Filter Context narrows FactSales strictly to (2026 AND North)!\n   |--> [Measure: Revenue] computes SUM inside narrowed subset!\n   |--> [Measure: % Total] uses CALCULATE([Revenue], ALL(Region)) stripping Region ONLY!",
+          "explanation": "CALCULATE + ALL lets percentage denominators look outside the current matrix row while honoring outer page slicers.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "Store reusable sub-calculations inside `VAR ... RETURN` blocks—easier to debug and skips redundant storage engine scans!",
+        "Always wrap `/` divisions inside `DIVIDE(num, den, alternate)` preventing ugly `#DIV/0!` or `Infinity` cards."
+      ],
+      "commonMistakes": [
+        "Writing `SUM(Sales[Qty] * Sales[Price])` inside a Measure (invalid syntax!) instead of `SUMX(Sales, Sales[Qty] * Sales[Price])`."
+      ]
+    },
+    {
+      "id": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s-sec-2",
+      "heading": "2. % Share of Total & Conditional Variable Measure",
+      "content": "Inspect how clean `% of Selected Total` mixes `VAR`, `CALCULATE`, `ALLSELECTED`, and `DIVIDE` cleanly.",
+      "codeExamples": [
+        {
+          "language": "dax",
+          "code": "Line Revenue = SUMX(FactSales, FactSales[Quantity] * FactSales[UnitPrice])\n\n% Share of Selected Regions = \nVAR CurrentRegionRev = [Line Revenue]\nVAR SelectedTotalRev = CALCULATE([Line Revenue], ALLSELECTED(DimRegion))\nRETURN\n  DIVIDE(CurrentRegionRev, SelectedTotalRev, 0)",
+          "explanation": "`ALLSELECTED` clears the immediate table row context while respecting the user's report slicer checkboxes.",
+          "expectedOutput": "Accurate % contribution summing cleanly to 100.0% dynamically as external region slicers change"
+        }
+      ],
+      "keyPoints": [
+        "Write base measures (`[Line Revenue]`) once and reuse them inside compound metrics rather than repeating raw `SUM(...)` expressions everywhere."
+      ],
+      "commonMistakes": [
+        "Using `ALL(DimRegion)` when you intended dynamic slicer subsets (`ALLSELECTED(DimRegion)`)."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s-ex-1",
+      "type": "coding",
+      "title": "Compute Safe Discounted Revenue & % Contribution",
+      "objective": "Fix invalid `SUM()` syntax using `SUMX` and build safe `% of Total` ratios.",
+      "description": "Refactor broken measure `NetRev = SUM(Orders[Price] * (1 - Orders[DiscountPct]))` and write `% Net Rev of All Categories` ignoring current category row filter.",
+      "instructions": [
+        "Convert `SUM` expression into row-wise `SUMX` over `Orders`.",
+        "Write `% of Categories` dividing `[NetRev]` by `CALCULATE([NetRev], ALL(DimCategory))` cleanly using `DIVIDE`."
+      ],
+      "starterCode": "NetRev = ...\n\nCategory Share % = \nVAR Cur = [NetRev]\nVAR AllCats = ...\nRETURN ...",
+      "hints": [
+        "`SUMX` accepts `(Table, RowExpression)`."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "`SUMX(Orders, ...)` computes net price per row before summing, and `DIVIDE(Cur, CALCULATE([NetRev], ALL(DimCategory)), 0)` guards safely against empty slices."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s-kc-1",
+      "type": "single-choice",
+      "prompt": "Why must `Net Sales` across `Quantity * UnitPrice` columns inside a Measure use `SUMX` rather than `SUM`?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`SUM` accepts only a single column reference without row context; `SUMX` iterates row-by-row over the table evaluating the multiplication"
+        },
+        {
+          "id": "opt-2",
+          "text": "`SUM` fails on decimal prices"
+        },
+        {
+          "id": "opt-3",
+          "text": "`SUMX` triggers asynchronous GPU caching"
+        },
+        {
+          "id": "opt-4",
+          "text": "`SUM` is deprecated in Power BI"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Row iterators (`SUMX`, `MINX`, `AVERAGEX`) step across row context prior to aggregating.",
+      "objectiveIds": [
+        "power-bi-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s-kc-2",
+      "type": "single-choice",
+      "prompt": "How does `ALLSELECTED(Products)` behave inside `CALCULATE()` differently from `ALL(Products)`?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`ALLSELECTED` restores filters originating from external page/report slicers while clearing visual inner row groupings; `ALL` removes ALL filters unconditionally"
+        },
+        {
+          "id": "opt-2",
+          "text": "Both behave identically in every matrix"
+        },
+        {
+          "id": "opt-3",
+          "text": "`ALLSELECTED` filters strictly by NULL keys"
+        },
+        {
+          "id": "opt-4",
+          "text": "`ALL` resets all calculations to 0"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`ALLSELECTED` keeps report-level slicer interactivity accurate on percentages.",
+      "objectiveIds": [
+        "power-bi-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s-kc-3",
+      "type": "single-choice",
+      "prompt": "Why wrap ratios in `DIVIDE(numerator, denominator)` instead of `numerator / denominator`?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`DIVIDE` gracefully catches zero or blank denominators returning BLANK/fallback without crashing visuals with `Infinity`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`DIVIDE` multiplies values automatically by 100"
+        },
+        {
+          "id": "opt-3",
+          "text": "`/` rounds results to integers"
+        },
+        {
+          "id": "opt-4",
+          "text": "`DIVIDE` forces DirectQuery caching"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`DIVIDE` eliminates manual `IF(den = 0, BLANK(), ...)` boilerplate everywhere.",
+      "objectiveIds": [
+        "power-bi-obj-3"
+      ]
+    }
+  ],
+  "recap": "You mastered DAX evaluation contexts, X-iterators (`SUMX`), `CALCULATE` filter manipulation, and clean `VAR` structure.",
+  "videoResources": [
+    {
+      "id": "res-power-bi-primary",
+      "title": "Power BI & DAX Mastery for Data Analysts",
+      "provider": "youtube",
+      "channelOrAuthor": "Guy in a Cube / Microsoft Learn",
+      "url": "https://www.youtube.com/watch?v=AGpoc5HlR1c",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Power BI.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Power BI.",
+      "learningObjectivesSupported": [
+        "power-bi-obj-1",
+        "power-bi-obj-2",
+        "power-bi-obj-3",
+        "power-bi-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "Power BI Workflow & Power Query Unpivoting (M Language)",
+        "Data Profiling, Quality Gates & Query Folding",
+        "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+        "Dedicated Date Dimensions & Role-Playing Relationships",
+        "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+        "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Microsoft Power BI & DAX Docs",
+      "url": "https://learn.microsoft.com/en-us/power-bi/",
+      "description": "Official reference documentation for Power BI."
+    }
+  ],
+  "realWorldApplications": [
+    "Margin & discount waterfall analytics",
+    "Market share reporting"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.715Z"
+}

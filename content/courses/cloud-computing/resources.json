@@ -1,98 +1,31 @@
 [
   {
-    "id": "res-cloud-cloudcomputing",
-    "title": "Cloud Computing Infrastructure & Deployment Architecture",
+    "id": "res-cloud-computing-primary",
+    "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
     "provider": "youtube",
-    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-    "durationMinutes": 45,
+    "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+    "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+    "embedUrl": "",
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
     "learningObjectivesSupported": [
-      "Deploy and isolate workloads using Introduction to Cloud Computing"
+      "cloud-computing-obj-1",
+      "cloud-computing-obj-2",
+      "cloud-computing-obj-3",
+      "cloud-computing-obj-4"
     ],
     "keyTopicsCovered": [
-      "Container Architecture",
-      "Networking",
-      "IAM & Security Policies",
-      "Health Checks"
+      "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+      "Elastic Compute, Containers & Serverless Workloads",
+      "Virtual Private Clouds (VPC), Subnets & Routing",
+      "Object Storage, Block Volumes & Managed Databases",
+      "IAM Least-Privilege Policies & Keyless OIDC Identity",
+      "Auto-Scaling, Load Balancing & FinOps Cost Governance"
     ],
-    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
     "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-cloud-cloudcomputing",
-    "title": "Cloud Computing Infrastructure & Deployment Architecture",
-    "provider": "youtube",
-    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-    "durationMinutes": 45,
-    "difficulty": "beginner",
-    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
-    "learningObjectivesSupported": [
-      "Deploy and isolate workloads using Core Syntax and Primitives in Cloud Computing"
-    ],
-    "keyTopicsCovered": [
-      "Container Architecture",
-      "Networking",
-      "IAM & Security Policies",
-      "Health Checks"
-    ],
-    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-cloud-cloudcomputing",
-    "title": "Cloud Computing Infrastructure & Deployment Architecture",
-    "provider": "youtube",
-    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-    "durationMinutes": 45,
-    "difficulty": "beginner",
-    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
-    "learningObjectivesSupported": [
-      "Deploy and isolate workloads using Production Patterns and Resilience in Cloud Computing"
-    ],
-    "keyTopicsCovered": [
-      "Container Architecture",
-      "Networking",
-      "IAM & Security Policies",
-      "Health Checks"
-    ],
-    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-cloud-cloudcomputing",
-    "title": "Cloud Computing Infrastructure & Deployment Architecture",
-    "provider": "youtube",
-    "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-    "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-    "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-    "durationMinutes": 45,
-    "difficulty": "beginner",
-    "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-    "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
-    "learningObjectivesSupported": [
-      "Deploy and isolate workloads using Capstone Lab: Verifiable Cloud Computing Implementation"
-    ],
-    "keyTopicsCovered": [
-      "Container Architecture",
-      "Networking",
-      "IAM & Security Policies",
-      "Health Checks"
-    ],
-    "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
+    "lastCheckedDate": "2026-11-11"
   }
 ]

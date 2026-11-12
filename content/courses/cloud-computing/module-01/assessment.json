@@ -1,163 +1,235 @@
 {
-  "id": "phase-cloud-computing-mod-1-foundations-assessment",
+  "id": "phase-cloud-computing-mod-1-cloud-arch-assessment",
   "skillName": "Cloud Computing",
   "skillSlug": "cloud-computing",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
-  "moduleId": "mod-1-foundations",
-  "moduleTitle": "Module 1: Foundations & Core Concepts of Cloud Computing",
-  "title": "Cloud Computing — Module 1: Foundations & Core Concepts of Cloud Computing Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to Cloud Computing, Core Syntax and Primitives in Cloud Computing.",
+  "moduleId": "mod-1-cloud-arch",
+  "moduleTitle": "Module 1: Cloud Architecture & Core Service Models",
+  "title": "Cloud Computing — Module 1: Cloud Architecture & Core Service Models Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS) and Elastic Compute, Containers & Serverless Workloads.",
   "durationMinutes": 20,
-  "totalMarks": 9,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Strategic Execution",
-    "Mastery & Continuous Improvement",
-    "Root-Cause Analysis",
-    "Quality Standards & Deliverables"
+    "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+    "Elastic Compute, Containers & Serverless Workloads"
   ],
   "questions": [
     {
-      "id": "phase-cloud-computing-mod-1-foundations-assessment-q1",
-      "type": "scenario",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cloud Computing] When applying Cloud Computing in a high-stakes cross-functional project, what is the best strategy to align stakeholders and minimize risk?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Establish explicit written objectives, measurable milestones, and scheduled stakeholder review checkpoints."
-        },
-        {
-          "id": "opt-2",
-          "text": "Work in isolation until the final deadline without communicating status."
-        },
-        {
-          "id": "opt-3",
-          "text": "Change project requirements verbally without documenting rationale."
-        },
-        {
-          "id": "opt-4",
-          "text": "Bypass review stages to deliver ahead of schedule regardless of quality."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Transparent communication, structured milestones, and regular stakeholder feedback ensure alignment and prevent costly late-stage surprises.",
-      "difficulty": "beginner",
-      "topic": "Strategic Execution",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to Cloud Computing"
-    },
-    {
-      "id": "phase-cloud-computing-mod-1-foundations-assessment-q2",
-      "type": "multiple-select",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cloud Computing] Which principles are essential for achieving long-term proficiency in Cloud Computing?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Consistent deliberate practice with feedback loops"
-        },
-        {
-          "id": "opt-2",
-          "text": "Understanding underlying mental models rather than merely memorizing facts"
-        },
-        {
-          "id": "opt-3",
-          "text": "Reviewing mistakes and performing root-cause analysis on failures"
-        },
-        {
-          "id": "opt-4",
-          "text": "Avoiding practical exercises in favor of passive video consumption"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "Deliberate practice, foundational mental models, and reflective error analysis are the empirical pillars of skill acquisition.",
-      "difficulty": "beginner",
-      "topic": "Mastery & Continuous Improvement",
-      "marks": 3,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cloud Computing"
-    },
-    {
-      "id": "phase-cloud-computing-mod-1-foundations-assessment-q3",
+      "id": "phase-cloud-computing-mod-1-cloud-arch-q1",
+      "section": "A",
+      "sectionTitle": "Module 1: Cloud Architecture & Core Service Models Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cloud Computing] What is the most effective approach when confronting unexpected edge-case failures while executing Cloud Computing?",
+      "prompt": "In the Cloud Shared Responsibility Model for an IaaS virtual machine (e.g., AWS EC2), who is responsible for applying Linux security patches inside the VM?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Isolate the boundary inputs, form a verifiable hypothesis, and test each component independently."
+          "text": "The customer"
         },
         {
           "id": "opt-2",
-          "text": "Restart the entire process repeatedly hoping for different results."
+          "text": "The cloud hardware provider"
         },
         {
           "id": "opt-3",
-          "text": "Ignore the edge case if the general scenario succeeds."
+          "text": "The DNS registrar"
         },
         {
           "id": "opt-4",
-          "text": "Remove telemetry to hide the failure."
+          "text": "Patches are unnecessary in virtual machines"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Hypothesis-driven diagnosis and boundary isolation locate root causes systematically without introducing regressions.",
+      "explanation": "In IaaS, the customer owns the guest OS, installed packages, firewall Security Groups, and application data.",
       "difficulty": "beginner",
-      "topic": "Root-Cause Analysis",
+      "topic": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to Cloud Computing"
+      "recommendedLessonId": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model",
+      "recommendedLessonTitle": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)"
     },
     {
-      "id": "phase-cloud-computing-mod-1-foundations-assessment-q4",
-      "type": "multiple-select",
-      "prompt": "[Module 1: Foundations & Core Concepts of Cloud Computing] Which attributes characterize high-quality artifacts produced in Cloud Computing?",
+      "id": "phase-cloud-computing-mod-1-cloud-arch-q2",
+      "section": "A",
+      "sectionTitle": "Module 1: Cloud Architecture & Core Service Models Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do resilient architectures span at least two Availability Zones within a Region?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Adherence to established domain standards and conventions"
+          "text": "To survive a single physical data center power, cooling, or fiber failure with minimal latency"
         },
         {
           "id": "opt-2",
-          "text": "Thorough documentation of assumptions, constraints, and dependencies"
+          "text": "Because single-AZ regions refuse HTTPS TLS certificates"
         },
         {
           "id": "opt-3",
-          "text": "Verifiability against measurable acceptance criteria"
+          "text": "To avoid creating any VPC subnets"
         },
         {
           "id": "opt-4",
-          "text": "High complexity without explanation to demonstrate expertise"
+          "text": "To bypass IAM authentication"
         }
       ],
       "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
+        "opt-1"
       ],
-      "explanation": "Clarity, standard compliance, and verifiability make artifacts maintainable and scalable.",
+      "explanation": "Availability Zones are physically isolated facilities inside a region designed for fault containment.",
       "difficulty": "beginner",
-      "topic": "Quality Standards & Deliverables",
+      "topic": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cloud Computing"
+      "recommendedLessonId": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model",
+      "recommendedLessonTitle": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)"
+    },
+    {
+      "id": "phase-cloud-computing-mod-1-cloud-arch-q3",
+      "section": "A",
+      "sectionTitle": "Module 1: Cloud Architecture & Core Service Models Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which service model lets developers push pure function handlers triggered by HTTP/events without managing servers or OS upgrades?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Serverless / FaaS (PaaS tier)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Bare-Metal Colocation"
+        },
+        {
+          "id": "opt-3",
+          "text": "Raw Physical Hypervisor"
+        },
+        {
+          "id": "opt-4",
+          "text": "Static IaaS VM"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Serverless Function-as-a-Service automates server provisioning, scaling, and runtime OS patching.",
+      "difficulty": "beginner",
+      "topic": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model",
+      "recommendedLessonTitle": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)"
+    },
+    {
+      "id": "phase-cloud-computing-mod-1-cloud-arch-q4",
+      "section": "A",
+      "sectionTitle": "Module 1: Cloud Architecture & Core Service Models Checkpoint",
+      "type": "single-choice",
+      "prompt": "What happens if an auto-scaled web server saves uploaded user avatars onto its local EC2 instance disk?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Files vanish when instances scale down or get replaced, and other balanced instances cannot serve those files"
+        },
+        {
+          "id": "opt-2",
+          "text": "Cloud providers sync `/var/uploads` globally automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Docker copies files across regions in 1ms"
+        },
+        {
+          "id": "opt-4",
+          "text": "Load balancers store binary files inside headers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Local disks on auto-scaled nodes are ephemeral and node-bound; durable shared assets belong in Object Storage (S3/GCS).",
+      "difficulty": "beginner",
+      "topic": "Elastic Compute, Containers & Serverless Workloads",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo",
+      "recommendedLessonTitle": "Elastic Compute, Containers & Serverless Workloads"
+    },
+    {
+      "id": "phase-cloud-computing-mod-1-cloud-arch-q5",
+      "section": "A",
+      "sectionTitle": "Module 1: Cloud Architecture & Core Service Models Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do multi-stage Dockerfiles produce cleaner, safer cloud images?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Compilers and dev caches stay isolated in the build stage and are omitted from the lean runtime container"
+        },
+        {
+          "id": "opt-2",
+          "text": "They allow root SSH access directly from browsers"
+        },
+        {
+          "id": "opt-3",
+          "text": "They skip TLS verification on registries"
+        },
+        {
+          "id": "opt-4",
+          "text": "They bundle entire VM hypervisors inside containers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Smaller runtime images transfer faster across clusters and reduce exposed software CVEs.",
+      "difficulty": "beginner",
+      "topic": "Elastic Compute, Containers & Serverless Workloads",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo",
+      "recommendedLessonTitle": "Elastic Compute, Containers & Serverless Workloads"
+    },
+    {
+      "id": "phase-cloud-computing-mod-1-cloud-arch-q6",
+      "section": "A",
+      "sectionTitle": "Module 1: Cloud Architecture & Core Service Models Checkpoint",
+      "type": "single-choice",
+      "prompt": "When is a Serverless function (Lambda / Cloud Functions) generally LESS appropriate than containers/VMs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Sustained CPU-saturated rendering jobs running continuously for hours or requiring persistent raw WebSockets"
+        },
+        {
+          "id": "opt-2",
+          "text": "Asynchronous thumbnail generation on S3 image upload"
+        },
+        {
+          "id": "opt-3",
+          "text": "Low-traffic webhook receivers"
+        },
+        {
+          "id": "opt-4",
+          "text": "Scheduled nightly cleanup cron jobs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Continuous compute-saturated workloads and persistent long-lived stateful protocols are often cheaper and better served on containers/VMs.",
+      "difficulty": "beginner",
+      "topic": "Elastic Compute, Containers & Serverless Workloads",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo",
+      "recommendedLessonTitle": "Elastic Compute, Containers & Serverless Workloads"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:12.658Z",
-  "updatedAt": "2026-10-30T06:22:12.658Z"
+  "createdAt": "2026-11-11T05:58:16.023Z",
+  "updatedAt": "2026-11-11T05:58:16.023Z"
 }

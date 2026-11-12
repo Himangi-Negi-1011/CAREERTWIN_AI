@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Conditions and Boolean Logic",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Conditions and Boolean Logic."
+      "title": "MDN JavaScript Reference Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "description": "Official reference documentation for JavaScript."
     }
   ],
   "realWorldApplications": [

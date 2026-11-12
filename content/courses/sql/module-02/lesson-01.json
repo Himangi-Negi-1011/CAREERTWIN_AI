@@ -1,197 +1,223 @@
 {
-  "lessonId": "mod-2-application-l1-production-patterns-and-resilience-in-sq",
+  "lessonId": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes",
   "skillName": "SQL",
-  "moduleId": "mod-2-application",
-  "title": "Production Patterns and Resilience in SQL",
-  "summary": "Comprehensive masterclass on Production Patterns and Resilience in SQL for SQL. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-2-sql-joins-windows",
+  "title": "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+  "summary": "Compose multi-table joins safely preserving unmatched left records without accidentally converting LEFT JOINs into INNER JOINs.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 40,
   "learningObjectives": [
-    "Apply SQL in production-ready real-world scenarios",
-    "Evaluate security, performance, and best practices for SQL"
+    "Place optional table filters inside `ON` vs `WHERE` cleanly to protect LEFT JOIN unmatched rows",
+    "Break nested query complexity into readable step-by-step Common Table Expressions (`WITH` clauses)"
   ],
   "objectiveIds": [
-    "sql-obj-3",
-    "sql-obj-4"
+    "sql-obj-2",
+    "sql-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "SQL environment setup"
+    "Basic SELECT and foreign key modeling"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Production Patterns and Resilience in SQL",
-      "content": "Relational SQL databases operate on set theory and declarative logic. Rather than specifying how to iterate over rows, you declare the desired result set. In Production Patterns and Resilience in SQL, understanding query execution plans, relational integrity, and indexing strategies is crucial for low-latency queries.",
+      "id": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes-sec-1",
+      "heading": "1. Join Cardinality, Outer Join Pitfalls & CTE Clarity",
+      "content": "Whenever joining tables, track join cardinality carefully: joining 1 Customer to 5 Orders yields 5 rows—joining 5 Orders AND 3 Support Tickets directly multiplies into 15 duplicated fanout rows (`5 x 3` Cartesian trap!), inflating `SUM(order_total)` 3x! Aggregating separate pre-computed **Common Table Expressions (CTEs)** before joining eliminates fanout distortion completely.\n\nSecond classic bug: placing right-table conditions like `WHERE o.status = 'paid'` after a `LEFT JOIN orders o` destroys unmatched NULL customers, quietly converting `LEFT JOIN` back to an `INNER JOIN`! Put right-table match filters inside the `LEFT JOIN ... ON` condition whenever preserving unmatched left entities.",
       "codeExamples": [
         {
-          "language": "sql",
-          "code": "-- Relational Optimization: Production Patterns and Resilience in SQL\nSELECT \n    d.department_name,\n    COUNT(e.id) AS total_employees,\n    ROUND(AVG(e.salary), 2) AS avg_salary\nFROM departments d\nINNER JOIN employees e ON d.id = e.department_id\nWHERE e.is_active = TRUE\nGROUP BY d.department_name\nHAVING COUNT(e.id) >= 5\nORDER BY avg_salary DESC;",
-          "explanation": "Filtering active rows in the WHERE clause reduces joined volume before aggregation, while HAVING filters groups after aggregation. Indexes on foreign keys and filter columns prevent table scans.",
-          "expectedOutput": "department_name | total_employees | avg_salary\nEngineering     | 14              | 112500.00\nProduct         | 6               | 98400.00"
+          "language": "text",
+          "code": "[Safe Left Join Filter]      FROM users u LEFT JOIN orders o ON o.user_id = u.id AND o.status = 'paid'\n                             -> Unmatched users stay cleanly in result with o.* = NULL!\n[Buggy Left Join Filter]     FROM users u LEFT JOIN orders o ON o.user_id = u.id WHERE o.status = 'paid'\n                             -> NULL status rows get DROPPED by WHERE!",
+          "explanation": "Right-side filter placement decides whether unmatched parent records survive cleanly or get silently discarded.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "WHERE filters rows before aggregation; HAVING filters aggregated groups.",
-        "Join on indexed foreign keys to avoid costly nested-loop full table scans.",
-        "Avoid SELECT * in production queries to minimize I/O and network payload."
+        "Aggregate child branches separately inside `WITH` CTEs before joining two independent `1-to-many` tables!",
+        "Avoid implicit old comma joins (`FROM a, b`) that risk accidental full Cartesian products."
       ],
       "commonMistakes": [
-        "Applying functions on indexed columns in the WHERE clause (e.g. WHERE YEAR(created_at) = 2026), disabling index lookups.",
-        "Accidental Cartesian products caused by omitting join predicates on relational joins."
+        "Computing `SUM(orders.amount)` while simultaneously joining `order_line_items`, inflating every order total by its line-item count!"
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In production database architectures, transaction management (ACID), locking considerations, and idempotent migrations guarantee consistency under heavy concurrency.",
+      "id": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes-sec-2",
+      "heading": "2. Anti-Fanout CTE Pipeline",
+      "content": "Look how pre-aggregating inside two clean CTEs guarantees accurate, readable customer metrics with zero duplication risk.",
       "codeExamples": [
         {
           "language": "sql",
-          "code": "BEGIN TRANSACTION;\n\n-- Safe optimistic update with row lock\nUPDATE accounts \nSET balance = balance - 500.00, updated_at = CURRENT_TIMESTAMP\nWHERE id = 'acc-101' AND balance >= 500.00;\n\nINSERT INTO audit_log (account_id, action, amount, logged_at)\nVALUES ('acc-101', 'WITHDRAWAL', 500.00, CURRENT_TIMESTAMP);\n\nCOMMIT;",
-          "explanation": "Wrapping interrelated financial or status updates in an explicit transaction prevents partial failures from corrupting relational state.",
-          "expectedOutput": "COMMIT; Transaction applied atomically with audit log."
+          "code": "WITH customer_spend AS (\n  SELECT customer_id, COUNT(*) AS order_count, SUM(total_cents) AS total_cents\n  FROM orders\n  WHERE status = 'paid'\n  GROUP BY customer_id\n),\ncustomer_tickets AS (\n  SELECT customer_id, COUNT(*) AS open_tickets\n  FROM support_tickets\n  WHERE status = 'open'\n  GROUP BY customer_id\n)\nSELECT\n  c.id,\n  c.full_name,\n  COALESCE(s.order_count, 0) AS orders,\n  COALESCE(s.total_cents, 0) AS lifetime_spend_cents,\n  COALESCE(t.open_tickets, 0) AS open_tickets\nFROM customers c\nLEFT JOIN customer_spend s ON c.id = s.customer_id\nLEFT JOIN customer_tickets t ON c.id = t.customer_id;",
+          "explanation": "Aggregating `orders` and `tickets` in separate `1-row-per-customer` CTEs ensures joining both onto `customers` creates zero row multiplication.",
+          "expectedOutput": "Accurate per-customer lifetime spend & ticket counts preserving customers with zero orders"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "CTEs turn fragile nested subqueries into self-documenting sequential transformations."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Joining `1-to-Many-A` AND `1-to-Many-B` straight onto a root table prior to aggregating."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-sq-ex-1",
+      "id": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes-ex-1",
       "type": "coding",
-      "title": "SQL Lab: Production Patterns and Resilience in SQL",
-      "objective": "Write an optimized SQL query demonstrating aggregation, filtering, and joins.",
-      "description": "Construct a multi-table SQL query resolving the practical task in Production Patterns and Resilience in SQL. Ensure indices are respected and aggregations are accurate.",
+      "title": "Fix Fanout & Outer Join Bug in Sales Query",
+      "objective": "Repair a query dropping inactive customers and inflating totals.",
+      "description": "Fix: `SELECT c.name, COUNT(o.id), COUNT(t.id) FROM customers c LEFT JOIN orders o ON c.id=o.cid LEFT JOIN tickets t ON c.id=t.cid WHERE o.status='paid' GROUP BY c.id, c.name;`",
       "instructions": [
-        "Join the primary entity with its related transaction or child entity.",
-        "Apply selective filtering in the WHERE clause.",
-        "Group results and calculate aggregate totals with an appropriate filter on groups."
+        "Preserve customers having zero orders cleanly.",
+        "Prevent `orders × tickets` Cartesian count inflation via separate CTEs."
       ],
-      "starterCode": "-- SQL Lab for Production Patterns and Resilience in SQL\nSELECT \n    -- TODO: Specify columns explicitly\nFROM primary_table p\n-- TODO: Add JOIN and WHERE clauses\n;",
+      "starterCode": "WITH paid_orders AS (...), user_tickets AS (...)\nSELECT c.name, ... FROM customers c ...",
       "hints": [
-        "Check whether you need an INNER JOIN (intersection only) or LEFT JOIN (preserve all parent rows).",
-        "Always verify column data types when comparing timestamps."
+        "Count inside each CTE grouped by `customer_id`, then LEFT JOIN the summarized CTEs onto `customers`."
       ],
-      "submissionRequirements": "Submit clean, formatted SQL with explicit column names and valid joins.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Syntax: Valid ANSI SQL query with correct operator precedence.",
-        "Optimization: Correct use of WHERE vs HAVING without redundant subqueries."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal query applies filtering early in the execution pipeline, joins on indexed foreign keys, and aggregates only necessary dimensions."
+      "solutionExplanation": "Two grouped CTEs + LEFT JOIN + COALESCE preserves every customer cleanly with mathematically exact counts."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-sq-kc-1",
+      "id": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes-kc-1",
       "type": "single-choice",
-      "prompt": "What is the critical semantic difference between the WHERE clause and the HAVING clause in SQL?",
+      "prompt": "Why should you avoid joining two separate `1-to-Many` tables (`orders` and `refunds`) directly onto `customers` before aggregating?",
       "options": [
         {
           "id": "opt-1",
-          "text": "WHERE filters individual rows before grouping occurs; HAVING filters aggregated groups after GROUP BY."
+          "text": "It triggers a cross-product fanout between a customer's orders and refunds, wildly inflating SUM/COUNT totals"
         },
         {
           "id": "opt-2",
-          "text": "WHERE works only on numeric data; HAVING works only on strings and dates."
+          "text": "PostgreSQL throws syntax error on joining three tables"
         },
         {
           "id": "opt-3",
-          "text": "HAVING executes before table joins are resolved."
+          "text": "LEFT JOIN ignores foreign keys after 2 tables"
         },
         {
           "id": "opt-4",
-          "text": "WHERE and HAVING are completely interchangeable syntax aliases in ANSI SQL."
+          "text": "Memory doubles per NULL cell"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "WHERE evaluates predicates on raw table rows before grouping and aggregate calculations. HAVING evaluates predicates on the grouped aggregate results.",
+      "explanation": "Pre-aggregating per parent key in CTEs prevents cross-branch multiplicative row duplication.",
+      "objectiveIds": [
+        "sql-obj-2"
+      ]
+    },
+    {
+      "id": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes-kc-2",
+      "type": "single-choice",
+      "prompt": "When joining `students LEFT JOIN submissions` and wanting ALL students—plus ONLY submissions with `score >= 90`—where should `s.score >= 90` be placed?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Inside the `LEFT JOIN ... ON` predicate"
+        },
+        {
+          "id": "opt-2",
+          "text": "Inside the trailing `WHERE` clause"
+        },
+        {
+          "id": "opt-3",
+          "text": "Inside `ORDER BY`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Inside `GROUP BY`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Putting it in `WHERE` filters out NULL unmatched students.",
       "objectiveIds": [
         "sql-obj-3"
       ]
     },
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-sq-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following actions prevent unnecessary full table scans on relational databases?",
+      "id": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes-kc-3",
+      "type": "single-choice",
+      "prompt": "What does `COALESCE(val, 0)` accomplish cleanly alongside a `LEFT JOIN`?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Creating B-Tree indexes on foreign keys and frequently filtered columns"
+          "id": "opt-1",
+          "text": "Replaces missing unmatched NULL metrics gracefully with `0` for reporting and safe arithmetic"
         },
         {
-          "id": "opt-2b",
-          "text": "Avoiding functions wrapping indexed columns in WHERE predicates (e.g. avoiding UPPER(column))"
+          "id": "opt-2",
+          "text": "Deletes rows with NULL entries"
         },
         {
-          "id": "opt-2c",
-          "text": "Using SELECT * across all tables in a multi-table join"
+          "id": "opt-3",
+          "text": "Creates a temporary table index"
         },
         {
-          "id": "opt-2d",
-          "text": "Normalizing tables and analyzing query execution plans with EXPLAIN"
+          "id": "opt-4",
+          "text": "Converts strings into timestamps"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "opt-1"
       ],
-      "explanation": "Indexes, sargable predicates (no function wraps on columns), and EXPLAIN analysis allow index seeks instead of sequential table scans. SELECT * does not prevent table scans and increases network I/O.",
+      "explanation": "`COALESCE` substitutes explicit defaults whenever expressions evaluate to NULL.",
       "objectiveIds": [
-        "sql-obj-4"
+        "sql-obj-2"
       ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Production Patterns and Resilience in SQL. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You eliminated silent outer-join regressions and prevented multiplicative join fanout via structured CTEs.",
   "videoResources": [
     {
-      "id": "res-sql-sql",
-      "title": "SQL & Relational Database Design for Beginners",
+      "id": "res-sql-primary",
+      "title": "SQL & Relational Database Engineering Mastery",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+      "channelOrAuthor": "freeCodeCamp / CMU Database Group",
       "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
-      "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
-      "durationMinutes": 50,
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
-      "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of SQL.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for SQL.",
       "learningObjectivesSupported": [
-        "Apply Production Patterns and Resilience in SQL to real database tables and queries"
+        "sql-obj-1",
+        "sql-obj-2",
+        "sql-obj-3",
+        "sql-obj-4"
       ],
       "keyTopicsCovered": [
-        "SELECT & WHERE filtering",
-        "INNER & LEFT JOINs",
-        "GROUP BY & HAVING",
-        "Indexes"
+        "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+        "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+        "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+        "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+        "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+        "ACID Transactions, Isolation Levels & Safe Migrations"
       ],
-      "followUpActivity": "Write and execute three query variations based on the database exercise.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "PostgreSQL Official Documentation",
-      "url": "https://www.postgresql.org/docs/",
-      "description": "Official documentation and authoritative guides for SQL."
+      "title": "PostgreSQL Official SQL Documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "description": "Official reference documentation for SQL."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "SaaS cohort analytics pipelines",
+    "Anti-duplication ETL reporting"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:08.701Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.464Z"
 }

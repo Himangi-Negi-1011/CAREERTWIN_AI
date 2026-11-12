@@ -1,0 +1,223 @@
+{
+  "lessonId": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost-",
+  "skillName": "Cloud Computing",
+  "moduleId": "mod-3-cloud-iam-finops",
+  "title": "Auto-Scaling, Load Balancing & FinOps Cost Governance",
+  "summary": "Combine Application Load Balancers, Target Tracking Scaling, health probes, budgets, and Spot vs Reserved capacity planning.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 35,
+  "learningObjectives": [
+    "Design Application Load Balancers with graceful connection draining and target tracking scaling policies",
+    "Balance high availability against Cloud FinOps strategies (Right-sizing, Spot/Savings Plans, Billing Alarms)"
+  ],
+  "objectiveIds": [
+    "cloud-computing-obj-3",
+    "cloud-computing-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Understanding of stateless compute and AZs"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost--sec-1",
+      "heading": "1. Elastic Scaling & Graceful Traffic Draining",
+      "content": "Traffic spikes break fixed capacity servers while over-provisioning idle nodes burns budgets. Target Tracking Auto Scaling maintains target CPU/request utilization (e.g., scale out when average ALB requests-per-target exceed threshold, with cooldown periods preventing thrashing).\n\nWhen load balancers terminate excess nodes during scale-in, connection draining (deregistration delay) holds existing in-flight HTTP requests safely while halting new routing immediately—preventing sudden 502 Bad Gateway disruptions.",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "Client HTTPS -> [Application Load Balancer (TLS Termination)]\n                  | Health Checks: GET /api/health (HTTP 200 OK)\n                  +---> [Auto Scaling AZ-A Instances] (CPU Target 60%)\n                  +---> [Auto Scaling AZ-B Instances] (Graceful Drain: 30s)",
+          "explanation": "Load balancers isolate failed nodes dynamically and honor connection draining during Auto Scaling scale-in events.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "Prefer Target Tracking scaling over brittle static cron schedules for organic user spikes.",
+        "Set Billing Alerts and Budget Thresholds on day one in every cloud account to catch runaway loops early."
+      ],
+      "commonMistakes": [
+        "Scaling out slowly (10 minute startup) with tight aggressive scale-in cooldowns causing constant thrashing."
+      ]
+    },
+    {
+      "id": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost--sec-2",
+      "heading": "2. FinOps Capacity Tiering & Budget Guardrails",
+      "content": "Production FinOps blends steady baseline commitments (Savings Plans / Reserved Instances for 24/7 core traffic), stateless burst Spot capacity for batch jobs, and automated budget alerts triggering Slack/PagerDuty notifications before costs escalate.",
+      "codeExamples": [
+        {
+          "language": "yaml",
+          "code": "# Target Tracking Auto-Scaling Specification\nscalingPolicy:\n  metricType: ALBRequestCountPerTarget\n  targetValue: 500\n  scaleOutCooldownSeconds: 60\n  scaleInCooldownSeconds: 300\n  minCapacity: 2   # Ensures minimum 1 healthy node per Availability Zone\n  maxCapacity: 20\nderegistrationDelaySeconds: 30",
+          "explanation": "Asymmetric cooldowns scale out rapidly under sudden traffic surges while scaling down gently to avoid flapping.",
+          "expectedOutput": "Balanced fast scale-out (60s) with conservative scale-in cooldown (300s) and zero-drop draining"
+        }
+      ],
+      "keyPoints": [
+        "Maintain `minCapacity >= 2` distributed across 2 AZs for high availability."
+      ],
+      "commonMistakes": [
+        "Setting `minCapacity = 1` on customer-facing services, guaranteeing downtime during AZ maintenance or single crash."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost--ex-1",
+      "type": "design",
+      "title": "Zero-Downtime Auto-Scaling & FinOps Plan",
+      "objective": "Prevent 502 errors during rolling scale-in and optimize steady vs burst cloud compute spend.",
+      "description": "An API drops HTTP requests during afternoon traffic scale-downs and spends 100% On-Demand pricing on steady 24/7 containers plus nightly fault-tolerant Spark ETL batch workers.",
+      "instructions": [
+        "Configure deregistration delay and SIGTERM handling to cure afternoon 502 errors.",
+        "Recommend distinct capacity purchasing tiers for 24/7 web API vs interruptible nightly ETL batch jobs."
+      ],
+      "starterCode": "# Remediation & Cost Optimization Plan\n- 502 Scale-in Fix: ...\n- Steady 24/7 API Tier: ...\n- Interruptible Batch ETL Tier: ...",
+      "hints": [
+        "Savings Plans / Reserved cover steady predictable baselines cleanly; Spot slashes costs for fault-tolerant batch jobs."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "Deregistration delay drains open sockets during scale-in; Savings Plans optimize 24/7 API cost while Spot powers interruptible ETL cheaply."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost--kc-1",
+      "type": "single-choice",
+      "prompt": "Why do auto-scaling policies typically use shorter scale-out cooldowns (e.g., 60s) and longer scale-in cooldowns (e.g., 300s)?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "To respond quickly to rising load while preventing premature capacity teardown during bumpy traffic lulls"
+        },
+        {
+          "id": "opt-2",
+          "text": "Because scaling in triggers expensive license checks"
+        },
+        {
+          "id": "opt-3",
+          "text": "Load balancers forbid adding nodes faster than removing them"
+        },
+        {
+          "id": "opt-4",
+          "text": "To force CPU to remain permanently at 100%"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Fast scale-out preserves latency; conservative scale-in prevents oscillation thrashing.",
+      "objectiveIds": [
+        "cloud-computing-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost--kc-2",
+      "type": "single-choice",
+      "prompt": "Which cloud purchasing strategy reduces compute cost dramatically for fault-tolerant stateless batch rendering?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Spot / Preemptible Instances"
+        },
+        {
+          "id": "opt-2",
+          "text": "Dedicated Bare Metal Hosts"
+        },
+        {
+          "id": "opt-3",
+          "text": "Multiple On-Demand NAT Gateways"
+        },
+        {
+          "id": "opt-4",
+          "text": "Unencrypted EBS snapshots"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Spot capacity offers ~70-90% discounts on reclaimable compute capacity.",
+      "objectiveIds": [
+        "cloud-computing-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-cloud-iam-finops-l2-auto-scaling-load-balancing-finops-cost--kc-3",
+      "type": "single-choice",
+      "prompt": "What protects in-flight user requests from abrupt connection reset errors when an Auto Scaling group removes an instance?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Load balancer connection draining / deregistration delay paired with graceful SIGTERM handling"
+        },
+        {
+          "id": "opt-2",
+          "text": "Increasing DNS TTL to 7 days"
+        },
+        {
+          "id": "opt-3",
+          "text": "Hardkilling containers with SIGKILL"
+        },
+        {
+          "id": "opt-4",
+          "text": "Turning off target health checks"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Connection draining halts new traffic while allowing existing open responses to complete cleanly.",
+      "objectiveIds": [
+        "cloud-computing-obj-3"
+      ]
+    }
+  ],
+  "recap": "You engineered multi-AZ Auto Scaling policies, graceful load-balanced draining, and cloud FinOps budget discipline.",
+  "videoResources": [
+    {
+      "id": "res-cloud-computing-primary",
+      "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+      "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
+      "learningObjectivesSupported": [
+        "cloud-computing-obj-1",
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3",
+        "cloud-computing-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads",
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases",
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "AWS Cloud Architecture Center",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Official reference documentation for Cloud Computing."
+    }
+  ],
+  "realWorldApplications": [
+    "High-traffic e-commerce holiday scaling",
+    "SaaS FinOps cost optimization"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:16.023Z"
+}

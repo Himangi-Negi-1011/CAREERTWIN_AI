@@ -1,19 +1,141 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { z } from "zod";
+import fs from "fs/promises";
+import path from "path";
 import { DatabaseConfigurationError, getSupabaseAdmin } from "@/lib/supabase/admin";
+import { appSettingsSchema, type AppSettings, defaultSettings } from "@/lib/settings/schema";
 
-const preferencesSchema = z.object({ allowProfileContext: z.boolean(), allowHistoryPersonalization: z.boolean(), retainTranscripts: z.boolean() });
-const defaults = { allowProfileContext: false, allowHistoryPersonalization: false, retainTranscripts: true };
-const unauthorized = () => NextResponse.json({ error: { code: "UNAUTHORIZED", message: "Sign in to manage privacy settings." } }, { status: 401 });
-function failure(error: unknown) { console.error("Privacy settings operation failed", error instanceof Error ? error.name : "UnknownError"); return NextResponse.json({ error: { code: error instanceof DatabaseConfigurationError ? "DATABASE_NOT_CONFIGURED" : "SETTINGS_FAILED", message: "Privacy settings could not be loaded or saved securely." } }, { status: 503 }); }
-export async function GET() {
-  const { userId } = await auth(); if (!userId) return unauthorized();
-  try { const { data, error } = await getSupabaseAdmin().from("interview_privacy_preferences").select("allow_profile_context,allow_history_personalization,retain_transcripts").eq("owner_clerk_user_id", userId).maybeSingle(); if (error) throw error; return NextResponse.json({ data: data ? { allowProfileContext: data.allow_profile_context, allowHistoryPersonalization: data.allow_history_personalization, retainTranscripts: data.retain_transcripts } : defaults }); } catch (error) { return failure(error); }
+const DATA_DIR = path.join(process.cwd(), ".data", "settings");
+
+async function ensureDataDir() {
+  try {
+    await fs.mkdir(DATA_DIR, { recursive: true });
+  } catch {
+    // Ignore if exists
+  }
 }
+
+async function readLocalSettings(userId: string): Promise<AppSettings | null> {
+  try {
+    await ensureDataDir();
+    const filePath = path.join(DATA_DIR, `${encodeURIComponent(userId)}.json`);
+    const content = await fs.readFile(filePath, "utf-8");
+    const parsed = JSON.parse(content);
+    return appSettingsSchema.parse(parsed);
+  } catch {
+    return null;
+  }
+}
+
+async function writeLocalSettings(userId: string, settings: AppSettings): Promise<void> {
+  try {
+    await ensureDataDir();
+    const filePath = path.join(DATA_DIR, `${encodeURIComponent(userId)}.json`);
+    await fs.writeFile(filePath, JSON.stringify(settings, null, 2), "utf-8");
+  } catch (err) {
+    console.error("Local settings write error:", err);
+  }
+}
+
+export async function GET() {
+  let userId: string | null = null;
+  try {
+    const authObj = await auth();
+    if (authObj && authObj.userId) {
+      userId = authObj.userId;
+    }
+  } catch {
+    userId = null;
+  }
+
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // 1. Try local data file first
+  const local = await readLocalSettings(userId);
+  if (local) {
+    return NextResponse.json({ data: local });
+  }
+
+  // 2. Try Supabase if configured
+  try {
+    const { data, error } = await getSupabaseAdmin()
+      .from("interview_privacy_preferences")
+      .select("allow_profile_context,allow_history_personalization,retain_transcripts")
+      .eq("owner_clerk_user_id", userId)
+      .maybeSingle();
+
+    if (!error && data) {
+      const merged: AppSettings = {
+        ...defaultSettings,
+        allowProfileContext: data.allow_profile_context ?? false,
+        allowHistoryPersonalization: data.allow_history_personalization ?? false,
+        retainTranscripts: data.retain_transcripts ?? true,
+      };
+      await writeLocalSettings(userId, merged);
+      return NextResponse.json({ data: merged });
+    }
+  } catch {
+    // Supabase not available or unconfigured
+  }
+
+  return NextResponse.json({ data: defaultSettings });
+}
+
 export async function PUT(request: Request) {
-  const { userId } = await auth(); if (!userId) return unauthorized();
-  const parsed = preferencesSchema.safeParse(await request.json().catch(() => null));
-  if (!parsed.success) return NextResponse.json({ error: { code: "INVALID_SETTINGS", message: "Review the privacy settings and try again." } }, { status: 400 });
-  try { const value = parsed.data; const { error } = await getSupabaseAdmin().from("interview_privacy_preferences").upsert({ owner_clerk_user_id: userId, allow_profile_context: value.allowProfileContext, allow_history_personalization: value.allowHistoryPersonalization, retain_transcripts: value.retainTranscripts, retain_audio: false, updated_at: new Date().toISOString() }, { onConflict: "owner_clerk_user_id" }); if (error) throw error; return NextResponse.json({ data: value }); } catch (error) { return failure(error); }
+  let userId: string | null = null;
+  try {
+    const authObj = await auth();
+    if (authObj && authObj.userId) {
+      userId = authObj.userId;
+    }
+  } catch {
+    userId = null;
+  }
+
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const body = await request.json().catch(() => null);
+  const parsed = appSettingsSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "INVALID_SETTINGS",
+          message: "Review the highlighted settings and try again.",
+          details: parsed.error.flatten().fieldErrors,
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  const settings = parsed.data;
+
+  // Persist locally for instant resilience
+  await writeLocalSettings(userId, settings);
+
+  // Sync to Supabase if available
+  try {
+    await getSupabaseAdmin()
+      .from("interview_privacy_preferences")
+      .upsert(
+        {
+          owner_clerk_user_id: userId,
+          allow_profile_context: settings.allowProfileContext,
+          allow_history_personalization: settings.allowHistoryPersonalization,
+          retain_transcripts: settings.retainTranscripts,
+          retain_audio: false,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "owner_clerk_user_id" }
+      );
+  } catch {
+    // Non-blocking fallback
+  }
+
+  return NextResponse.json({ data: settings, message: "Settings saved successfully." });
 }

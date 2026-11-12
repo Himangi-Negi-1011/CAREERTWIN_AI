@@ -1,0 +1,224 @@
+{
+  "lessonId": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni",
+  "skillName": "Cybersecurity",
+  "moduleId": "mod-3-sec-ops",
+  "title": "NIST Incident Response Lifecycle & Hardening Capstone",
+  "summary": "Execute all four NIST SP 800-61 incident response phases cleanly from containment and secret rotation to blameless post-mortems.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 35,
+  "learningObjectives": [
+    "Apply Preparation, Detection & Analysis, Containment/Eradication/Recovery, and Post-Incident lessons",
+    "Quarantine compromised hosts safely without destroying volatile forensic evidence prematurely"
+  ],
+  "objectiveIds": [
+    "cybersecurity-obj-3",
+    "cybersecurity-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Understanding of log triage and IAM/firewall basics"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni-sec-1",
+      "heading": "1. NIST SP 800-61 Lifecycle & Forensic Care",
+      "content": "Panicking during an active breach causes worse damage—such as blindly rebooting a compromised host, which wipes volatile RAM malware processes and open socket forensics immediately! The NIST Incident Response lifecycle sets disciplined order:\n1. Preparation (playbooks, isolated backups, secret rotation drills).\n2. Detection & Analysis (validate alerts, establish timeline & scope).\n3. Containment, Eradication & Recovery (quarantine subnet/EDR immediately -> capture memory/disk snapshots -> rotate compromised secrets/SSH keys -> patch root vulnerability -> restore cleanly).\n4. Post-Incident Activity (blameless Root Cause Analysis updating preventive guardrails permanently).",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "[1. Preparation] --> [2. Detection & Analysis] --> [3. Contain -> Eradicate -> Recover] --> [4. Post-Incident RCA]\n(Playbooks/Backups)   (Validate IOCs/Timeline)    (Quarantine Network, Capture Snapshot,     (Update Alerting & Tests)\n                                                   Rotate Compromised Secrets, Restore Clean)",
+          "explanation": "Disciplined response isolates attackers quickly while preserving forensics so root causes get patched permanently.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "Isolate network access cleanly (quarantine Security Group / EDR isolate) BEFORE wiping any compromised server.",
+        "Assume leaked secrets stay compromised even if removed from Git HEAD (rewrite/invalidate keys upstream immediately!)."
+      ],
+      "commonMistakes": [
+        "Running `git rm .env` on a committed API key without actually revoking/rotating the leaked secret upstream at the provider (Git commit history preserves it permanently!)."
+      ]
+    },
+    {
+      "id": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni-sec-2",
+      "heading": "2. Playbook Response & Secret Revocation Sequence",
+      "content": "Every automated incident runbook puts fast secret revocation and verified clean backup validation ahead of restarting user traffic.",
+      "codeExamples": [
+        {
+          "language": "markdown",
+          "code": "### Compromised API Key Incident Runbook (Immediate Steps)\n1. **Contain (T+0m)**: Disable or rotate affected key at Provider Console immediately; deploy replacement key via Secrets Manager.\n2. **Analyze (T+15m)**: Query SIEM/CloudTrail logs filtering by that leaked `key_id` over last 30 days for unauthorized calls.\n3. **Eradicate (T+30m)**: Add pre-commit secret scanning (`gitleaks`) preventing re-commit; scrub unauthorized IAM persistence roles.\n4. **Post-Incident (T+24h)**: Document root cause timeline cleanly and automate CI regression gate.",
+          "explanation": "Revoking exposed keys first halts ongoing abuse immediately before investigating downstream cloud audit logs.",
+          "expectedOutput": "Coordinated containment and forensic audit preventing lateral escalation"
+        }
+      ],
+      "keyPoints": [
+        "Verify backups via periodic test restores—an untested backup is only an assumption."
+      ],
+      "commonMistakes": [
+        "Re-using old database passwords after restoring from an infection without rotating credentials."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni-ex-1",
+      "type": "scenario",
+      "title": "Draft an Incident Response Containment Plan",
+      "objective": "Coordinate safe forensic containment, key rotation, and clean restoration after an intrusion alert.",
+      "description": "SIEM flags suspicious cryptominer outbound DNS queries from an EC2 app worker alongside a committed `.env` secret pushed to a public fork 20 minutes ago.",
+      "instructions": [
+        "State what to do FIRST regarding the public `.env` key vs Git history.",
+        "Specify how to contain the app EC2 instance while retaining forensic evidence.",
+        "Describe two permanent controls preventing recurrence."
+      ],
+      "starterCode": "# Incident Action Plan\n1. Secret Compromise Response: ...\n2. Host Network Containment: ...\n3. Preventive Follow-Up Controls: ...",
+      "hints": [
+        "Rotate all exposed tokens upstream first; isolate EC2 via deny-all quarantine Security Group without shutting down immediately."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "Immediate upstream key revocation, network quarantine via deny-all SG preserving snapshots, and CI `gitleaks` hooks stop active damage cleanly."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni-kc-1",
+      "type": "single-choice",
+      "prompt": "If an engineer accidentally pushes an active Stripe secret key to a public GitHub repo, simply running a second commit to delete the file is insufficient. Why?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The secret stays preserved permanently in Git commit history and automated scraper bots harvest pushed keys within seconds—it MUST be revoked/rotated upstream immediately"
+        },
+        {
+          "id": "opt-2",
+          "text": "Git deletes commits only on Linux hosts"
+        },
+        {
+          "id": "opt-3",
+          "text": "Stripe refuses deleting files named `.env`"
+        },
+        {
+          "id": "opt-4",
+          "text": "TLS certificates freeze if files are removed"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Once exposed publicly, treat secrets as burned immediately and revoke/rotate upstream.",
+      "objectiveIds": [
+        "cybersecurity-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni-kc-2",
+      "type": "single-choice",
+      "prompt": "During an active server compromise, why isolate the instance firewall/network BEFORE rebooting or wiping disk?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Quarantining halts lateral attacker traffic immediately while preserving running process state and forensic evidence for root-cause analysis"
+        },
+        {
+          "id": "opt-2",
+          "text": "Rebooting improves malware scan speeds silently"
+        },
+        {
+          "id": "opt-3",
+          "text": "Firewalls cannot change rules on live servers"
+        },
+        {
+          "id": "opt-4",
+          "text": "Backups overwrite volatile RAM logs automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Stopping network communication preserves forensic artifacts needed to learn how entry occurred.",
+      "objectiveIds": [
+        "cybersecurity-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni-kc-3",
+      "type": "single-choice",
+      "prompt": "What distinguishes a 'blameless' post-incident security retrospective?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Focuses on fixing systemic missing guardrails, tooling alerts, and automated tests rather than punishing individuals who surface issues"
+        },
+        {
+          "id": "opt-2",
+          "text": "Hides breaches permanently from leadership"
+        },
+        {
+          "id": "opt-3",
+          "text": "Skips remediation tickets entirely"
+        },
+        {
+          "id": "opt-4",
+          "text": "Terminates junior developers automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Blameless culture encourages transparent reporting and lasting technical safeguards.",
+      "objectiveIds": [
+        "cybersecurity-obj-3"
+      ]
+    }
+  ],
+  "recap": "You completed the Cybersecurity track—connecting CIA/STRIDE, AppSec defenses, SOC triage, and NIST incident response.",
+  "videoResources": [
+    {
+      "id": "res-cybersecurity-primary",
+      "title": "Cybersecurity & Network Defense Foundations (Ethical Security)",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp / Professor Messer",
+      "url": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cybersecurity.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cybersecurity.",
+      "learningObjectivesSupported": [
+        "cybersecurity-obj-1",
+        "cybersecurity-obj-2",
+        "cybersecurity-obj-3",
+        "cybersecurity-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "CIA Triad, Threat Modeling & Attack Surface",
+        "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+        "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+        "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+        "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+        "NIST Incident Response Lifecycle & Hardening Capstone"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "OWASP Top 10 & NIST Framework",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "description": "Official reference documentation for Cybersecurity."
+    }
+  ],
+  "realWorldApplications": [
+    "Production incident command",
+    "Automated secret-scanning DevSecOps"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:17.502Z"
+}

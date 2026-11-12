@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Functions, References, Classes, and RAII",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Functions, References, Classes, and RAII."
+      "title": "Modern C++ Standard Reference",
+      "url": "https://en.cppreference.com/w/cpp",
+      "description": "Official reference documentation for C++."
     }
   ],
   "realWorldApplications": [

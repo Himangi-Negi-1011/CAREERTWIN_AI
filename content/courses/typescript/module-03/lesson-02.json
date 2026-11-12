@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Runtime Validation and a Typed Progress Tracker",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Runtime Validation and a Typed Progress Tracker."
+      "title": "TypeScript Handbook & Official Docs",
+      "url": "https://www.typescriptlang.org/docs/",
+      "description": "Official reference documentation for TypeScript."
     }
   ],
   "realWorldApplications": [

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { assessmentQuestionBank } from "@/lib/assessments/question-bank";
 import { AssessmentSessionError, validateAssessmentSession } from "@/lib/assessments/repository";
 import { completeAssessmentWithTwin, getCareerTwin } from "@/lib/twin/repository";
+import { checkRateLimit, getClientIdentifier } from "@/lib/security/rate-limit";
 
 const submissionSchema = z.object({ assessmentId: z.string().uuid(), role: z.string().trim().min(1).max(120), answers: z.array(z.object({ questionId: z.string().min(1).max(100), optionId: z.string().min(1).max(10) })).min(1).max(5) });
 function sessionFailure(error: unknown) {
@@ -15,6 +16,28 @@ function sessionFailure(error: unknown) {
 export async function POST(request: Request) {
   const { userId } = await auth();
   if (!userId) return NextResponse.json({ error: { code: "UNAUTHORIZED", message: "Sign in to submit an assessment." } }, { status: 401 });
+
+  const clientId = getClientIdentifier(request, userId);
+  const rateLimit = checkRateLimit(clientId, {
+    limit: 20,
+    windowMs: 60_000,
+    prefix: "assessment-submit",
+  });
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: { code: "RATE_LIMITED", message: "Too many assessment submissions. Please wait before retrying." } },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rateLimit.retryAfterSeconds),
+          "X-RateLimit-Limit": String(rateLimit.limit),
+          "X-RateLimit-Remaining": "0",
+        },
+      }
+    );
+  }
+
   const parsed = submissionSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: { code: "INVALID_SUBMISSION", message: "The assessment submission is incomplete." } }, { status: 400 });
   const uniqueIds = new Set(parsed.data.answers.map((answer) => answer.questionId));

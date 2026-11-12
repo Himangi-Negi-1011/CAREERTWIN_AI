@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official C# Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "Microsoft C# & .NET Official Docs",
+      "organization": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
       "retrievedAt": "2026-11-01T15:37:40.937Z",
       "reviewStatus": "curated"
     }

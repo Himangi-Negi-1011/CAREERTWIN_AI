@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Functions, Parameters, and Scope",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Functions, Parameters, and Scope."
+      "title": "MDN JavaScript Reference Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "description": "Official reference documentation for JavaScript."
     }
   ],
   "realWorldApplications": [

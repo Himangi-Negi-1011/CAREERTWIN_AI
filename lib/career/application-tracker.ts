@@ -35,6 +35,15 @@ export const applicationRecordSchema = z.object({
 
 export type ApplicationRecord = z.infer<typeof applicationRecordSchema>;
 
+async function getSupabaseSafe() {
+  try {
+    const { getSupabaseAdmin } = await import("@/lib/supabase/admin");
+    return getSupabaseAdmin();
+  } catch {
+    return null;
+  }
+}
+
 const DATA_FILE = path.join(process.cwd(), ".data", "career-applications.json");
 
 async function readAllApplications(): Promise<ApplicationRecord[]> {
@@ -56,6 +65,25 @@ async function writeAllApplications(records: ApplicationRecord[]): Promise<void>
 }
 
 export async function getUserApplications(userId: string): Promise<ApplicationRecord[]> {
+  // 1. Try Supabase cloud database first if configured
+  try {
+    const db = await getSupabaseSafe();
+    if (db) {
+      const { data, error } = await db
+        .from("career_applications")
+        .select("application_document")
+        .eq("owner_clerk_user_id", userId)
+        .order("updated_at", { ascending: false });
+
+      if (!error && Array.isArray(data) && data.length > 0) {
+        return data.map((d) => applicationRecordSchema.parse(d.application_document));
+      }
+    }
+  } catch {
+    // Fall back to local file
+  }
+
+  // 2. Fall back to local file
   const all = await readAllApplications();
   return all.filter((a) => a.userId === userId);
 }
@@ -74,6 +102,8 @@ export async function saveUserApplication(
     existingIndex = all.findIndex((a) => a.id === targetId && a.userId === userId);
   }
 
+  let resultRecord: ApplicationRecord;
+
   if (existingIndex >= 0) {
     const updated: ApplicationRecord = {
       ...all[existingIndex],
@@ -83,8 +113,7 @@ export async function saveUserApplication(
       updatedAt: now,
     };
     all[existingIndex] = updated;
-    await writeAllApplications(all);
-    return updated;
+    resultRecord = updated;
   } else {
     const newRecord: ApplicationRecord = {
       id: targetId || `app-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
@@ -104,9 +133,30 @@ export async function saveUserApplication(
       updatedAt: now,
     };
     all.push(newRecord);
-    await writeAllApplications(all);
-    return newRecord;
+    resultRecord = newRecord;
   }
+
+  // 1. Persist to Supabase cloud database if configured
+  try {
+    const db = await getSupabaseSafe();
+    if (db) {
+      await db.from("career_applications").upsert({
+        id: resultRecord.id,
+        owner_clerk_user_id: userId,
+        company: resultRecord.company,
+        role: resultRecord.role,
+        status: resultRecord.status,
+        application_document: resultRecord,
+        updated_at: resultRecord.updatedAt,
+      });
+    }
+  } catch (err) {
+    console.warn("Supabase career application upsert skipped or failed:", err);
+  }
+
+  // 2. Persist locally as fallback
+  await writeAllApplications(all);
+  return resultRecord;
 }
 
 export async function deleteUserApplication(userId: string, applicationId: string): Promise<boolean> {

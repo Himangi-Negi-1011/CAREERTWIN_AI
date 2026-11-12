@@ -1,0 +1,224 @@
+{
+  "lessonId": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid",
+  "skillName": "Cloud Computing",
+  "moduleId": "mod-3-cloud-iam-finops",
+  "title": "IAM Least-Privilege Policies & Keyless OIDC Identity",
+  "summary": "Master IAM explicit Deny precedence, Instance Profiles, short-lived STS tokens, and GitHub Actions OIDC keyless authentication.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 40,
+  "learningObjectives": [
+    "Audit and tighten wildcard IAM policies down to scoped resources and actions",
+    "Eliminate static long-lived secret access keys using temporary IAM roles and OIDC federation"
+  ],
+  "objectiveIds": [
+    "cloud-computing-obj-3",
+    "cloud-computing-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Understanding of cloud compute and object storage"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid-sec-1",
+      "heading": "1. IAM Policy Evaluation & Role Delegation",
+      "content": "In Cloud IAM, requests follow strict deterministic evaluation: Explicit Deny ALWAYS overrides Allow, any missing Allow defaults to Implicit Deny, and an action succeeds ONLY when explicitly allowed with zero matching Denies.\n\nProduction systems NEVER embed static `AKIA...` access key pairs in environment variables on servers or CI pipelines. Instead, workloads attach IAM Roles (issuing rotating temporary short-lived STS credentials automatically) or federate via OpenID Connect (OIDC) tokens from GitHub Actions claiming exact repo/branch identity.",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "GitHub Actions Workflow --(Signed OIDC JWT)--> Cloud STS AssumeRoleWithWebIdentity\n                                                      | (Verifies repo + main branch claim)\n                                                      v\n                                            Temporary 15m Scoped Role Token (Zero static keys!)",
+          "explanation": "OIDC federation eliminates exposed long-lived secrets in Git repositories and CI settings entirely.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "An Explicit Deny rule beats any Allow rule even if attached to an admin.",
+        "Use Condition keys (`aws:SecureTransport`, `aws:SourceVpc`) to lock down API transport and network origin."
+      ],
+      "commonMistakes": [
+        "Assigning `Action: \"*\"` and `Resource: \"*\"` temporarily during development and deploying it straight to production."
+      ]
+    },
+    {
+      "id": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid-sec-2",
+      "heading": "2. Least-Privilege Policy Refactored Example",
+      "content": "Compare a dangerous wildcard configuration against a production least-privilege policy permitting strictly `s3:GetObject` over one bucket prefix while explicitly denying object deletion and insecure plaintext HTTP.",
+      "codeExamples": [
+        {
+          "language": "json",
+          "code": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"ScopedConfigRead\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\"s3:GetObject\", \"s3:ListBucket\"],\n      \"Resource\": [\n        \"arn:aws:s3:::careertwin-prod-config\",\n        \"arn:aws:s3:::careertwin-prod-config/*\"\n      ]\n    },\n    {\n      \"Sid\": \"DenyInsecureOrDestructiveOps\",\n      \"Effect\": \"Deny\",\n      \"Action\": [\"s3:DeleteObject\", \"s3:PutBucketAcl\"],\n      \"Resource\": \"*\"\n    }\n  ]\n}",
+          "explanation": "Scoping both Action list and exact bucket ARN prevents lateral access across other buckets even if application dependencies are compromised.",
+          "expectedOutput": "Valid least-privilege IAM policy allowing strictly scoped reads and explicitly blocking destruction"
+        }
+      ],
+      "keyPoints": [
+        "Audit Service Control Policies (SCPs) at organization level as unbreakable guardrails across accounts."
+      ],
+      "commonMistakes": [
+        "Granting read access on `arn:aws:s3:::*` instead of naming exact buckets."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid-ex-1",
+      "type": "analysis",
+      "title": "Tighten Over-Privileged CI Deployment IAM Policy",
+      "objective": "Eliminate wildcard permissions while preserving deploy functionality.",
+      "description": "Refactor a wildcard policy (`Effect: Allow, Action: *, Resource: *`) down to allowing ONLY uploading objects to `careertwin-web-dist` and enforcing TLS.",
+      "instructions": [
+        "Replace `Action: '*'` with exact object upload action (`s3:PutObject`).",
+        "Constrain Resource specifically to `arn:aws:s3:::careertwin-web-dist/*`.",
+        "Add an explicit `Deny` rule enforcing `Bool: { 'aws:SecureTransport': 'false' }`."
+      ],
+      "starterCode": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    /* Add Allow and Explicit Deny Statements */\n  ]\n}",
+      "hints": [
+        "Explicit Deny + `aws:SecureTransport: false` blocks HTTP plaintext traffic permanently."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "Explicit scoped allow plus TLS enforcement limits CI capabilities purely to secure deployment uploads."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid-kc-1",
+      "type": "single-choice",
+      "prompt": "If a developer belongs to Group A allowing `s3:DeleteBucket` and also has an explicit policy statement denying `s3:DeleteBucket`, what happens when they call DeleteBucket?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "AccessDenied: Explicit Deny always overrides any Allow statement"
+        },
+        {
+          "id": "opt-2",
+          "text": "Allowed because Group permissions beat user permissions"
+        },
+        {
+          "id": "opt-3",
+          "text": "The call succeeds only from CLI"
+        },
+        {
+          "id": "opt-4",
+          "text": "IAM averages the permissions"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Explicit Deny takes absolute precedence across all policy evaluation stages.",
+      "objectiveIds": [
+        "cloud-computing-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid-kc-2",
+      "type": "single-choice",
+      "prompt": "Why is OIDC federation preferable to saving long-lived static cloud access keys in GitHub Actions secrets?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Temporary STS tokens auto-expire quickly and are cryptographically bound to specific repositories/branches with zero static keys to leak"
+        },
+        {
+          "id": "opt-2",
+          "text": "OIDC doubles container network throughput"
+        },
+        {
+          "id": "opt-3",
+          "text": "Static keys cannot upload files larger than 1MB"
+        },
+        {
+          "id": "opt-4",
+          "text": "GitHub deletes static secrets after 1 hour"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Keyless federation eliminates credential rotation headaches and long-term secret leakage risks.",
+      "objectiveIds": [
+        "cloud-computing-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-cloud-iam-finops-l1-iam-least-privilege-policies-keyless-oid-kc-3",
+      "type": "single-choice",
+      "prompt": "In an IAM policy condition blocking unencrypted S3 traffic, which condition checks HTTPS?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`Bool: { \"aws:SecureTransport\": \"false\" }` paired with `Effect: Deny`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`StringEquals: { \"aws:Port\": \"80\" }` paired with Allow"
+        },
+        {
+          "id": "opt-3",
+          "text": "`Resource: \"http://*\"`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`Principal: \"HTTP_USER\"`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Denying requests whenever `aws:SecureTransport` evaluates to false ensures encrypted TLS calls only.",
+      "objectiveIds": [
+        "cloud-computing-obj-3"
+      ]
+    }
+  ],
+  "recap": "You mastered deterministic IAM evaluation, least-privilege JSON authoring, and keyless OIDC CI authentication.",
+  "videoResources": [
+    {
+      "id": "res-cloud-computing-primary",
+      "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+      "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
+      "learningObjectivesSupported": [
+        "cloud-computing-obj-1",
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3",
+        "cloud-computing-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads",
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases",
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "AWS Cloud Architecture Center",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Official reference documentation for Cloud Computing."
+    }
+  ],
+  "realWorldApplications": [
+    "SOC 2 compliance IAM governance",
+    "Zero-secret CI/CD GitHub deployment"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:16.023Z"
+}

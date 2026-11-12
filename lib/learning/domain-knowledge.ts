@@ -25,8 +25,8 @@ export function resolveDomainCategory(skillName: string): DomainCategory {
 
   if (norm.includes("python")) return "python";
   if (norm.includes("sql") || norm.includes("postgres") || norm.includes("mysql") || norm.includes("database")) return "sql";
-  if (norm.includes("react") || norm.includes("next.js") || norm.includes("javascript") || norm.includes("typescript") || norm.includes("html") || norm.includes("css") || norm.includes("frontend")) return "web_frontend";
-  if (norm.includes("java") || norm.includes("c++") || norm.includes("c#") || norm.includes("rust") || norm.includes("go") || norm.includes("backend")) return "systems_backend";
+  if (norm.includes("react") || norm.includes("next.js") || norm.includes("javascript") || norm.includes("typescript") || norm.includes("html") || norm.includes("css") || norm.includes("frontend") || norm.includes("php")) return "web_frontend";
+  if (norm === "c" || norm.includes("c programming") || norm.includes("c-programming") || norm.includes("java") || norm.includes("c++") || norm.includes("cpp") || norm.includes("c#") || norm.includes("csharp") || norm.includes("rust") || norm.includes("go") || norm.includes("backend")) return "systems_backend";
   if (norm.includes("excel") || norm.includes("spreadsheet")) return "excel";
   if (norm.includes("power bi") || norm.includes("tableau") || norm.includes("bi") || norm.includes("visualization")) return "power_bi";
   if (norm.includes("machine learning") || norm.includes("data analysis") || norm.includes("statistics") || norm.includes("deep learning") || norm.includes("prompt") || norm.includes("generative ai") || norm.includes("ai")) return "data_science_ai";

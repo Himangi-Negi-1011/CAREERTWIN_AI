@@ -1,195 +1,235 @@
 {
-  "id": "phase-sql-mod-1-foundations-assessment",
+  "id": "phase-sql-mod-1-sql-foundations-assessment",
   "skillName": "SQL",
   "skillSlug": "sql",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
-  "moduleId": "mod-1-foundations",
-  "moduleTitle": "Module 1: Foundations & Core Concepts of SQL",
-  "title": "SQL — Module 1: Foundations & Core Concepts of SQL Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to SQL, Core Syntax and Primitives in SQL.",
+  "moduleId": "mod-1-sql-foundations",
+  "moduleTitle": "Module 1: Relational Modeling & Declarative Querying",
+  "title": "SQL — Module 1: Relational Modeling & Declarative Querying Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Relational Schema Design, Keys & Normal Forms (1NF–3NF) and Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING.",
   "durationMinutes": 20,
-  "totalMarks": 11,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Indexing & Query Optimization",
-    "Aggregation & Grouping",
-    "Transactions & Concurrency",
-    "Relational Joins & Set Theory",
-    "Three-Valued Logic & NULL Handling"
+    "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+    "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING"
   ],
   "questions": [
     {
-      "id": "phase-sql-mod-1-foundations-assessment-q1",
-      "type": "scenario",
-      "prompt": "[Module 1: Foundations & Core Concepts of SQL] A query filtering on WHERE UPPER(email) = 'USER@EXAMPLE.COM' is causing full table scans despite an index on email. What is the solution?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Create a functional/expression index on UPPER(email) or normalize email to lowercase before indexing and querying"
-        },
-        {
-          "id": "opt-2",
-          "text": "Add an extra ORDER BY email ASC clause"
-        },
-        {
-          "id": "opt-3",
-          "text": "Convert the column type from VARCHAR to TEXT"
-        },
-        {
-          "id": "opt-4",
-          "text": "Change the SELECT clause to SELECT *"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Wrapping indexed columns in functions disables standard B-Tree index lookups unless an expression index exists or values are pre-normalized.",
-      "difficulty": "beginner",
-      "topic": "Indexing & Query Optimization",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to SQL"
-    },
-    {
-      "id": "phase-sql-mod-1-foundations-assessment-q2",
-      "type": "code-output",
-      "prompt": "[Module 1: Foundations & Core Concepts of SQL] What rows are returned by this SQL query?",
-      "codeSnippet": "SELECT department_id, COUNT(*)\nFROM employees\nGROUP BY department_id\nHAVING COUNT(*) > 5;",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Only department IDs that have strictly more than 5 employee records"
-        },
-        {
-          "id": "opt-2",
-          "text": "The first 5 departments ordered by employee count"
-        },
-        {
-          "id": "opt-3",
-          "text": "All employees in departments where at least one person makes over 5k"
-        },
-        {
-          "id": "opt-4",
-          "text": "A syntax error because WHERE was omitted"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "HAVING filters aggregated groups after the GROUP BY clause, retaining only groups satisfying the aggregate predicate.",
-      "difficulty": "beginner",
-      "topic": "Aggregation & Grouping",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
-    },
-    {
-      "id": "phase-sql-mod-1-foundations-assessment-q3",
-      "type": "multiple-select",
-      "prompt": "[Module 1: Foundations & Core Concepts of SQL] Which of the following are ACID properties in relational database transactions?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Atomicity: All operations in the transaction succeed or all roll back"
-        },
-        {
-          "id": "opt-2",
-          "text": "Consistency: The transaction brings the database from one valid state to another"
-        },
-        {
-          "id": "opt-3",
-          "text": "Isolation: Concurrent execution of transactions yields the same state as serial execution"
-        },
-        {
-          "id": "opt-4",
-          "text": "Adaptability: Schema changes apply dynamically without migration locks"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "ACID stands for Atomicity, Consistency, Isolation, and Durability.",
-      "difficulty": "beginner",
-      "topic": "Transactions & Concurrency",
-      "marks": 3,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to SQL"
-    },
-    {
-      "id": "phase-sql-mod-1-foundations-assessment-q4",
+      "id": "phase-sql-mod-1-sql-foundations-q1",
+      "section": "A",
+      "sectionTitle": "Module 1: Relational Modeling & Declarative Querying Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 1: Foundations & Core Concepts of SQL] What is the difference between an INNER JOIN and a LEFT OUTER JOIN?",
+      "prompt": "Why does storing `'Python,SQL,Rust'` inside a single text column violate First Normal Form (1NF)?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "INNER JOIN returns only rows with matches in both tables; LEFT OUTER JOIN preserves all left rows and fills unmatched right columns with NULL."
+          "text": "1NF mandates atomic single-valued columns without repeating lists packed inside a cell"
         },
         {
           "id": "opt-2",
-          "text": "LEFT OUTER JOIN returns only unmatched rows."
+          "text": "Text columns cannot contain commas in PostgreSQL"
         },
         {
           "id": "opt-3",
-          "text": "INNER JOIN can only be used on primary keys."
+          "text": "SQL forbids VARCHAR types longer than 10 chars"
         },
         {
           "id": "opt-4",
-          "text": "LEFT JOIN sorts the results in ascending order automatically."
+          "text": "Primary keys must always be integers"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "LEFT JOIN keeps all records from the left-hand table regardless of whether the join predicate matches a row on the right.",
+      "explanation": "Atomicity simplifies filtering, counting, and indexing individual skills cleanly.",
       "difficulty": "beginner",
-      "topic": "Relational Joins & Set Theory",
+      "topic": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
+      "recommendedLessonId": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for",
+      "recommendedLessonTitle": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)"
     },
     {
-      "id": "phase-sql-mod-1-foundations-assessment-q5",
-      "type": "debugging",
-      "prompt": "[Module 1: Foundations & Core Concepts of SQL] What will happen if you compare a column value with NULL using '=' (e.g. WHERE status = NULL)?",
+      "id": "phase-sql-mod-1-sql-foundations-q2",
+      "section": "A",
+      "sectionTitle": "Module 1: Relational Modeling & Declarative Querying Checkpoint",
+      "type": "single-choice",
+      "prompt": "What happens when inserting a row into `enrollments` referencing a `course_id` that does NOT exist in `courses`, given an active `FOREIGN KEY` constraint?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It returns UNKNOWN (evaluating to false in WHERE), matching zero rows; 'IS NULL' must be used instead."
+          "text": "The database rejects the INSERT atomically, preserving referential integrity"
         },
         {
           "id": "opt-2",
-          "text": "It matches all rows where status is an empty string."
+          "text": "SQL inserts NULL silently into `courses`"
         },
         {
           "id": "opt-3",
-          "text": "It triggers a syntax error in ANSI SQL."
+          "text": "A missing placeholder row gets auto-created silently"
         },
         {
           "id": "opt-4",
-          "text": "It converts NULL to zero."
+          "text": "Foreign keys validate only on SELECT queries"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "In three-valued SQL logic, NULL = NULL evaluates to UNKNOWN, not TRUE. Checking for nullability requires the 'IS NULL' operator.",
+      "explanation": "Foreign key constraints prevent orphan child records referencing nonexistent parents.",
       "difficulty": "beginner",
-      "topic": "Three-Valued Logic & NULL Handling",
+      "topic": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to SQL"
+      "recommendedLessonId": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for",
+      "recommendedLessonTitle": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)"
+    },
+    {
+      "id": "phase-sql-mod-1-sql-foundations-q3",
+      "section": "A",
+      "sectionTitle": "Module 1: Relational Modeling & Declarative Querying Checkpoint",
+      "type": "single-choice",
+      "prompt": "What prevents inserting a negative quantity directly via bugs in app code?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`CHECK (quantity > 0)` column constraint"
+        },
+        {
+          "id": "opt-2",
+          "text": "Ordering columns alphabetically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Using TEXT instead of INT"
+        },
+        {
+          "id": "opt-4",
+          "text": "Writing an inline SQL comment"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Database CHECK constraints guarantee numeric domain bounds across every writer.",
+      "difficulty": "beginner",
+      "topic": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for",
+      "recommendedLessonTitle": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)"
+    },
+    {
+      "id": "phase-sql-mod-1-sql-foundations-q4",
+      "section": "A",
+      "sectionTitle": "Module 1: Relational Modeling & Declarative Querying Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why does `SELECT * FROM tasks WHERE completed_at = NULL` return ZERO rows even when NULL rows exist?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "In SQL three-valued logic, `= NULL` evaluates to `UNKNOWN` rather than `TRUE`; you must write `IS NULL`"
+        },
+        {
+          "id": "opt-2",
+          "text": "PostgreSQL hides NULL rows by default"
+        },
+        {
+          "id": "opt-3",
+          "text": "The `=` operator works only on integers"
+        },
+        {
+          "id": "opt-4",
+          "text": "Dates cannot contain NULL"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "SQL requires `IS NULL` / `IS NOT NULL` because NULL denotes missing unknown state, not equality.",
+      "difficulty": "beginner",
+      "topic": "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sql-foundations-l2-filtering-sorting-grouping-data-with-sel",
+      "recommendedLessonTitle": "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING"
+    },
+    {
+      "id": "phase-sql-mod-1-sql-foundations-q5",
+      "section": "A",
+      "sectionTitle": "Module 1: Relational Modeling & Declarative Querying Checkpoint",
+      "type": "single-choice",
+      "prompt": "If you can filter active records using either `WHERE active = true` or putting `active = true` inside `HAVING`, which performs far better on large tables?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`WHERE` runs before grouping and can utilize B-Tree indexes directly, cutting memory and aggregation cost"
+        },
+        {
+          "id": "opt-2",
+          "text": "`HAVING` always runs faster"
+        },
+        {
+          "id": "opt-3",
+          "text": "They execute identical plans regardless of size"
+        },
+        {
+          "id": "opt-4",
+          "text": "SQL ignores `WHERE` when `GROUP BY` is present"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Push row-level filters into WHERE early to shrink intermediate rows prior to aggregation.",
+      "difficulty": "beginner",
+      "topic": "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sql-foundations-l2-filtering-sorting-grouping-data-with-sel",
+      "recommendedLessonTitle": "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING"
+    },
+    {
+      "id": "phase-sql-mod-1-sql-foundations-q6",
+      "section": "A",
+      "sectionTitle": "Module 1: Relational Modeling & Declarative Querying Checkpoint",
+      "type": "single-choice",
+      "prompt": "What will `COUNT(*)` vs `COUNT(phone)` return on a 10-row users table where 3 users have NULL phone numbers?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`COUNT(*)` = 10; `COUNT(phone)` = 7"
+        },
+        {
+          "id": "opt-2",
+          "text": "Both return 10"
+        },
+        {
+          "id": "opt-3",
+          "text": "Both return 7"
+        },
+        {
+          "id": "opt-4",
+          "text": "`COUNT(*)` throws error"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`COUNT(column)` skips NULLs; `COUNT(*)` counts total rows.",
+      "difficulty": "beginner",
+      "topic": "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-sql-foundations-l2-filtering-sorting-grouping-data-with-sel",
+      "recommendedLessonTitle": "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:08.983Z",
-  "updatedAt": "2026-10-30T06:22:08.983Z"
+  "createdAt": "2026-11-11T05:58:18.464Z",
+  "updatedAt": "2026-11-11T05:58:18.464Z"
 }

@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Primitive Types, Unions, and Narrowing",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Primitive Types, Unions, and Narrowing."
+      "title": "TypeScript Handbook & Official Docs",
+      "url": "https://www.typescriptlang.org/docs/",
+      "description": "Official reference documentation for TypeScript."
     }
   ],
   "realWorldApplications": [

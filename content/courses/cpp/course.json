@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official C++ Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "Modern C++ Standard Reference",
+      "organization": "ISO C++ / cppreference",
+      "url": "https://en.cppreference.com/w/cpp",
       "retrievedAt": "2026-11-01T15:37:40.874Z",
       "reviewStatus": "curated"
     }

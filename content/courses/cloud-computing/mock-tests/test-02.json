@@ -7,157 +7,1029 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Cloud Computing BEGINNER Comprehensive Mock Test 2",
-  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Cloud Computing.",
-  "durationMinutes": 30,
-  "totalMarks": 9,
+  "title": "Cloud Computing 100-Mark Professional Mock Examination (Test 2)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Root-Cause Analysis",
-    "Quality Standards & Deliverables",
-    "Strategic Execution",
-    "Mastery & Continuous Improvement"
+    "Shared Responsibility Model",
+    "IaaS, PaaS & SaaS Models",
+    "Regions & Availability Zones",
+    "Cloud Storage Tiers",
+    "VPC Networking Foundations",
+    "IAM Least Privilege",
+    "Subnets & NAT Routing",
+    "Infrastructure as Code",
+    "IAM Policy Evaluation Logic",
+    "FinOps & Cost Optimization",
+    "IAM Roles vs Network Firewalls",
+    "CIDR Capacity Sizing",
+    "Stateful Security Groups vs Stateless NACLs",
+    "Serverless VPC Egress",
+    "IAM Policy Auditing",
+    "CDN & Origin Access Control",
+    "Zero-Downtime Load Balancing",
+    "CI/CD OIDC Workload Identity",
+    "Multi-AZ High Availability",
+    "VPC Endpoints & Cloud FinOps",
+    "Terraform State & Locking",
+    "Enforcing TLS in Cloud Policies",
+    "Container Security & Multi-Stage Builds",
+    "Storage Lifecycle Policies",
+    "Kubernetes Health Probes",
+    "Disaster Recovery (RTO & RPO)",
+    "12-Factor Secrets & Config",
+    "Multi-Account Governance & SCPs"
   ],
   "questions": [
     {
       "id": "mock-cloud-computing-beginner-t2-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "What is the most effective approach when confronting unexpected edge-case failures while executing Cloud Computing?",
+      "prompt": "Under the Cloud Shared Responsibility Model for IaaS compute (e.g., AWS EC2), who patches the guest operating system and runtime libraries?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Isolate the boundary inputs, form a verifiable hypothesis, and test each component independently."
+          "text": "The DNS registrar"
         },
         {
           "id": "opt-2",
-          "text": "Restart the entire process repeatedly hoping for different results."
+          "text": "Virtual machines never need OS patches in the cloud"
         },
         {
           "id": "opt-3",
-          "text": "Ignore the edge case if the general scenario succeeds."
+          "text": "The customer"
         },
         {
           "id": "opt-4",
-          "text": "Remove telemetry to hide the failure."
+          "text": "The cloud provider exclusively"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "opt-3"
       ],
-      "explanation": "Hypothesis-driven diagnosis and boundary isolation locate root causes systematically without introducing regressions.",
+      "explanation": "The provider secures physical hardware, facilities, and hypervisor ('Security OF the Cloud'); the customer secures guest OS, IAM, network rules, and data ('Security IN the Cloud').",
       "difficulty": "beginner",
-      "topic": "Root-Cause Analysis",
+      "topic": "Shared Responsibility Model",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cloud Computing"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
     },
     {
       "id": "mock-cloud-computing-beginner-t2-q2",
-      "type": "multiple-select",
-      "prompt": "Which attributes characterize high-quality artifacts produced in Cloud Computing?",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which cloud service model manages OS, runtime scaling, and patching automatically so developers focus strictly on application code and data?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Adherence to established domain standards and conventions"
+          "text": "Client-side local hosting"
         },
         {
           "id": "opt-2",
-          "text": "Thorough documentation of assumptions, constraints, and dependencies"
+          "text": "Platform as a Service (PaaS)"
         },
         {
           "id": "opt-3",
-          "text": "Verifiability against measurable acceptance criteria"
+          "text": "Infrastructure as a Service (IaaS)"
         },
         {
           "id": "opt-4",
-          "text": "High complexity without explanation to demonstrate expertise"
+          "text": "Bare-metal colocation"
         }
       ],
       "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
+        "opt-2"
       ],
-      "explanation": "Clarity, standard compliance, and verifiability make artifacts maintainable and scalable.",
+      "explanation": "PaaS abstracts underlying servers and operating systems, while IaaS exposes raw virtualized compute and networking control.",
       "difficulty": "beginner",
-      "topic": "Quality Standards & Deliverables",
+      "topic": "IaaS, PaaS & SaaS Models",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cloud Computing"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
     },
     {
       "id": "mock-cloud-computing-beginner-t2-q3",
-      "type": "scenario",
-      "prompt": "When applying Cloud Computing in a high-stakes cross-functional project, what is the best strategy to align stakeholders and minimize risk?",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What is an Availability Zone (AZ) within a cloud provider Region?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Establish explicit written objectives, measurable milestones, and scheduled stakeholder review checkpoints."
+          "text": "One or more discrete physical data centers with independent power, cooling, and low-latency fiber inside a Region"
         },
         {
           "id": "opt-2",
-          "text": "Work in isolation until the final deadline without communicating status."
+          "text": "An entire continental geography"
         },
         {
           "id": "opt-3",
-          "text": "Change project requirements verbally without documenting rationale."
+          "text": "A single browser CDN edge cache"
         },
         {
           "id": "opt-4",
-          "text": "Bypass review stages to deliver ahead of schedule regardless of quality."
+          "text": "An internal IAM group policy"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Transparent communication, structured milestones, and regular stakeholder feedback ensure alignment and prevent costly late-stage surprises.",
+      "explanation": "Multi-AZ architectures protect applications from single data center power, cooling, or networking failures.",
       "difficulty": "beginner",
-      "topic": "Strategic Execution",
+      "topic": "Regions & Availability Zones",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cloud Computing"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
     },
     {
       "id": "mock-cloud-computing-beginner-t2-q4",
-      "type": "multiple-select",
-      "prompt": "Which principles are essential for achieving long-term proficiency in Cloud Computing?",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which storage service is best suited for unstructured immutable static assets, backups, and media retrieved over HTTPS?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Consistent deliberate practice with feedback loops"
+          "text": "Local instance ephemeral NVMe scratch disk"
         },
         {
           "id": "opt-2",
-          "text": "Understanding underlying mental models rather than merely memorizing facts"
+          "text": "Relational OLTP SQL row lock table"
         },
         {
           "id": "opt-3",
-          "text": "Reviewing mistakes and performing root-cause analysis on failures"
+          "text": "In-memory Redis key-value store"
         },
         {
           "id": "opt-4",
-          "text": "Avoiding practical exercises in favor of passive video consumption"
+          "text": "Object storage (e.g., Amazon S3, Google Cloud Storage)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Object storage provides 99.999999999% (11 nines) durability, HTTP REST access, and virtually infinite horizontal capacity.",
+      "difficulty": "beginner",
+      "topic": "Cloud Storage Tiers",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which capabilities define a Virtual Private Cloud (VPC)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Stateful Security Groups and stateless Network ACL perimeter filtering"
+        },
+        {
+          "id": "opt-2",
+          "text": "Automatic public exposure of all internal databases to 0.0.0.0/0"
+        },
+        {
+          "id": "opt-3",
+          "text": "Custom IPv4/IPv6 CIDR address range segmentation across public and private subnets"
+        },
+        {
+          "id": "opt-4",
+          "text": "Explicit route tables controlling Internet Gateway and NAT Gateway traffic"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-3",
+        "opt-4"
+      ],
+      "explanation": "A VPC gives tenants logically isolated virtual networks with fine-grained subnetting, routing, and security boundaries.",
+      "difficulty": "beginner",
+      "topic": "VPC Networking Foundations",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What is the security principle of Least Privilege in cloud IAM?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Turning off MFA on service roles"
+        },
+        {
+          "id": "opt-2",
+          "text": "Granting identities only the exact actions and resources needed for their task and nothing more"
+        },
+        {
+          "id": "opt-3",
+          "text": "Assigning AdministratorAccess globally to reduce permission tickets"
+        },
+        {
+          "id": "opt-4",
+          "text": "Sharing one root account key pair across engineers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Least privilege minimizes blast radius if credentials or workloads are compromised.",
+      "difficulty": "beginner",
+      "topic": "IAM Least Privilege",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "In cloud networking, why do application tiers placed in private subnets use a NAT Gateway?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "To initiate outbound internet updates/API requests without allowing unsolicited inbound internet connections"
+        },
+        {
+          "id": "opt-2",
+          "text": "To bypass all IAM authentication tokens"
+        },
+        {
+          "id": "opt-3",
+          "text": "To run relational SQL joins in hardware"
+        },
+        {
+          "id": "opt-4",
+          "text": "To assign public static IPv4 addresses directly to database instances"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "NAT Gateways allow private instances to pull security patches or talk to external webhooks safely without inbound public exposure.",
+      "difficulty": "beginner",
+      "topic": "Subnets & NAT Routing",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which benefits come from Infrastructure as Code (IaC) using Terraform or CloudFormation?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Automated drift detection against desired declared cloud state"
+        },
+        {
+          "id": "opt-2",
+          "text": "Identical staging and production topologies reducing manual console clicks"
+        },
+        {
+          "id": "opt-3",
+          "text": "Complete elimination of network latency between continents"
+        },
+        {
+          "id": "opt-4",
+          "text": "Reproducible, version-controlled environment provisioning via Git pull requests"
         }
       ],
       "correctOptionIds": [
         "opt-1",
         "opt-2",
+        "opt-4"
+      ],
+      "explanation": "IaC eliminates manual configuration drift, provides code-reviewable changes, and rebuilds environments consistently.",
+      "difficulty": "beginner",
+      "topic": "Infrastructure as Code",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What happens when an Explicit Deny statement and an Allow statement both match an IAM action?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The request enters a 5-second approval hold"
+        },
+        {
+          "id": "opt-2",
+          "text": "The most recently created JSON line wins arbitrarily"
+        },
+        {
+          "id": "opt-3",
+          "text": "An Explicit Deny always overrides any Allow rule"
+        },
+        {
+          "id": "opt-4",
+          "text": "Allow overrides Deny if attached directly to a user"
+        }
+      ],
+      "correctOptionIds": [
         "opt-3"
       ],
-      "explanation": "Deliberate practice, foundational mental models, and reflective error analysis are the empirical pillars of skill acquisition.",
+      "explanation": "Cloud IAM evaluation denies by default, allows if explicitly allowed with no deny, and ALWAYS denies whenever any explicit Deny matches.",
       "difficulty": "beginner",
-      "topic": "Mastery & Continuous Improvement",
+      "topic": "IAM Policy Evaluation Logic",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which pricing model typically offers the steepest discount (up to ~70-90%) for fault-tolerant, stateless batch workloads that can handle 2-minute interruption notices?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Unreserved Static NAT Gateways"
+        },
+        {
+          "id": "opt-2",
+          "text": "Spot / Preemptible Instances"
+        },
+        {
+          "id": "opt-3",
+          "text": "On-Demand Instances"
+        },
+        {
+          "id": "opt-4",
+          "text": "Dedicated Physical Hosts"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Spot instances consume spare provider capacity at deep discounts for interruptible or checkpointed batch tasks.",
+      "difficulty": "beginner",
+      "topic": "FinOps & Cost Optimization",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Identify why a microservice EC2 instance fails to read a secret key from `s3://corp-secrets-prod/config.json` despite having `AmazonS3ReadOnlyAccess` via Security Group:",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "EC2 instances cannot communicate with S3 over HTTPS"
+        },
+        {
+          "id": "opt-2",
+          "text": "JSON files cannot be stored in S3 buckets"
+        },
+        {
+          "id": "opt-3",
+          "text": "Security Groups control network ports/IPs (not S3 IAM API authorization); the instance needs an IAM Instance Profile Role granting `s3:GetObject`"
+        },
+        {
+          "id": "opt-4",
+          "text": "S3 requires port 22 SSH access enabled in Security Groups"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Never confuse VPC network firewalling (Security Groups) with IAM service authorization policies (Roles attached to compute).",
+      "difficulty": "beginner",
+      "topic": "IAM Roles vs Network Firewalls",
       "marks": 3,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cloud Computing"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Look at this VPC subnet CIDR: `10.0.1.0/26`. A deployment script fails to spin up a 70-node Kubernetes cluster inside it. Why?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Subnet `/26` masks give 4,096 addresses"
+        },
+        {
+          "id": "opt-2",
+          "text": "A `/26` subnet contains only 64 total IPs (and ~59-62 usable hosts after reserved cloud IPs), insufficient for 70 nodes"
+        },
+        {
+          "id": "opt-3",
+          "text": "10.0.0.0/8 addresses are not private RFC 1918 ranges"
+        },
+        {
+          "id": "opt-4",
+          "text": "Kubernetes only supports IPv6 CIDRs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "A `/26` yields 2^(32-26) = 64 IPs (cloud providers reserve 5 IPs in each subnet -> 59 usable), so at least a `/25` (128 IPs) or `/24` is needed.",
+      "difficulty": "beginner",
+      "topic": "CIDR Capacity Sizing",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "A web server inside a public subnet responds to HTTP requests on port 80, yet times out when the Security Group outbound rules were stripped to empty, while inbound 80 was open. If it uses a stateless NACL with NO outbound rule for ephemeral ports (1024-65535), what occurs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Stateless NACLs block return HTTP response packets targeting client ephemeral ports unless explicitly permitted outbound"
+        },
+        {
+          "id": "opt-2",
+          "text": "NACL rules are stateful like Security Groups"
+        },
+        {
+          "id": "opt-3",
+          "text": "HTTP requests return on port 21 FTP"
+        },
+        {
+          "id": "opt-4",
+          "text": "Ephemeral ports range from 1 to 100 only"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Network ACLs are stateless and evaluate inbound AND outbound rules separately, whereas Security Groups are stateful and allow return traffic automatically.",
+      "difficulty": "beginner",
+      "topic": "Stateful Security Groups vs Stateless NACLs",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "An AWS Lambda function inside a VPC subnet has fast local DB calls but hangs when calling an external Stripe payment API. What is the root cause?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Lambda cannot run HTTPS calls in Node.js"
+        },
+        {
+          "id": "opt-2",
+          "text": "Stripe requires running instances on bare-metal hardware"
+        },
+        {
+          "id": "opt-3",
+          "text": "IAM roles prevent all HTTPS DNS resolution"
+        },
+        {
+          "id": "opt-4",
+          "text": "Lambda inside private subnets has no default public IP and requires a NAT Gateway (or route to internet) for external outbound endpoints"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "VPC-attached Lambda functions never receive public IPs; internet egress must traverse a private subnet route -> NAT Gateway -> Internet Gateway.",
+      "difficulty": "beginner",
+      "topic": "Serverless VPC Egress",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Review this IAM policy snippet attached to a CI deployment user. Why does it violate Least Privilege?",
+      "codeSnippet": "{\n  \"Effect\": \"Allow\",\n  \"Action\": \"*\",\n  \"Resource\": \"*\"\n}",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`Effect` must always be `'Permit'`"
+        },
+        {
+          "id": "opt-2",
+          "text": "CI pipelines require root privileges by specification"
+        },
+        {
+          "id": "opt-3",
+          "text": "Wildcard `Action: '*'` and `Resource: '*'` grants full unrestricted admin across all cloud services and accounts"
+        },
+        {
+          "id": "opt-4",
+          "text": "JSON keys must be lowercase"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Scoped policies specify exact needed actions (`s3:PutObject`, `ecs:UpdateService`) and exact ARN resources.",
+      "difficulty": "beginner",
+      "topic": "IAM Policy Auditing",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You want an S3 bucket hosting frontend assets to deliver globally under 50ms latency while blocking direct raw S3 URL access. How do you configure this?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Deploy 50 EC2 instances copying files via rsync"
+        },
+        {
+          "id": "opt-2",
+          "text": "Serve assets synchronously from a relational Postgres BYTEA table"
+        },
+        {
+          "id": "opt-3",
+          "text": "Keep S3 completely private (`BlockPublicAccess`), put CloudFront CDN in front, and authorize only CloudFront via Origin Access Control (OAC)"
+        },
+        {
+          "id": "opt-4",
+          "text": "Set ACL `public-read-write` on the S3 bucket globally"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "CloudFront + OAC keeps the origin bucket locked private while caching assets across global edge POPs.",
+      "difficulty": "beginner",
+      "topic": "CDN & Origin Access Control",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A multi-AZ stateless microservice fails health checks intermittently during rolling deployments causing HTTP 502 spikes. How do you eliminate dropped in-flight requests?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Hardkill containers with SIGKILL immediately on scaling down"
+        },
+        {
+          "id": "opt-2",
+          "text": "Enable Load Balancer connection draining (deregistration delay) and handle SIGTERM gracefully before closing the HTTP listener"
+        },
+        {
+          "id": "opt-3",
+          "text": "Reduce health check interval to 100ms with threshold 1"
+        },
+        {
+          "id": "opt-4",
+          "text": "Disable HTTPS TLS termination on the load balancer"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Connection draining allows active requests to complete while stopping new traffic to terminating pods.",
+      "difficulty": "beginner",
+      "topic": "Zero-Downtime Load Balancing",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An engineering team committed long-lived IAM Access Keys into GitHub by mistake. Besides rotating/revoking those keys, how do you permanently prevent key leaks in GitHub Actions deployments?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Use OpenID Connect (OIDC) federation so GitHub Actions assumes short-lived temporary IAM roles without storing static secret keys"
+        },
+        {
+          "id": "opt-2",
+          "text": "Rename variables from `AWS_SECRET` to `CONFIG_KEY_1`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Commit keys encoded in Base64 into `.github/keys.txt`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Assign MFA hardware keys via email attachments"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "OIDC federation mints short-lived STS tokens scoped to the repository/branch claim, eliminating static secret keys entirely.",
+      "difficulty": "beginner",
+      "topic": "CI/CD OIDC Workload Identity",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "How do you achieve automatic horizontal resilience for an Auto Scaling Group if a full Availability Zone becomes unavailable?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Place all instances in a single larger subnet in AZ-1a"
+        },
+        {
+          "id": "opt-2",
+          "text": "Save user sessions on each EC2 instance local `/tmp` disk"
+        },
+        {
+          "id": "opt-3",
+          "text": "Disable Auto Scaling health checks so crashed instances stay registered"
+        },
+        {
+          "id": "opt-4",
+          "text": "Spread subnets across at least 2–3 Availability Zones, use Elastic Load Balancing across them, and externalize session state into Redis/RDS"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Stateless compute across multiple AZs behind a load balancer ensures regional continuity when one AZ goes down.",
+      "difficulty": "beginner",
+      "topic": "Multi-AZ High Availability",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A data warehouse exports terabytes monthly across cloud regions, inflating NAT Gateway and cross-region egress fees. What reduces network cost without breaking private access to S3?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Spin up two extra NAT Gateways per subnet"
+        },
+        {
+          "id": "opt-2",
+          "text": "Turn off TLS encryption on transfers"
+        },
+        {
+          "id": "opt-3",
+          "text": "Configure a VPC Gateway Endpoint for S3 so traffic stays inside the private cloud backbone bypassing NAT Gateway data charges"
+        },
+        {
+          "id": "opt-4",
+          "text": "Route S3 traffic over the public internet using Elastic IPs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "S3 Gateway VPC Endpoints are free and route bucket transfers directly within the VPC without per-GB NAT Gateway processing fees.",
+      "difficulty": "beginner",
+      "topic": "VPC Endpoints & Cloud FinOps",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which Terraform block best enforces remote locking so two engineers executing `terraform apply` simultaneously cannot corrupt state?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Pass `--auto-approve` to override concurrent runs"
+        },
+        {
+          "id": "opt-2",
+          "text": "Disable state files entirely with `-state=none`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Configure an S3 remote backend with state locking (`use_lockfile = true` / DynamoDB lock table) and versioning enabled"
+        },
+        {
+          "id": "opt-4",
+          "text": "Commit `terraform.tfstate` directly to Git main branch"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Remote encrypted backends with lock coordination guarantee atomic single-writer applies across team pipelines.",
+      "difficulty": "beginner",
+      "topic": "Terraform State & Locking",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which IAM Resource Policy condition guarantees bucket objects can only be downloaded over encrypted HTTPS (TLS) connections?",
+      "codeSnippet": "{\n  \"Effect\": \"Deny\",\n  \"Principal\": \"*\",\n  \"Action\": \"s3:*\",\n  \"Condition\": { /* TASK */ }\n}",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "\"NumericLessThan\": { \"aws:Port\": 80 }"
+        },
+        {
+          "id": "opt-2",
+          "text": "\"Bool\": { \"aws:SecureTransport\": \"false\" }"
+        },
+        {
+          "id": "opt-3",
+          "text": "\"StringEquals\": { \"aws:Protocol\": \"HTTP\" }"
+        },
+        {
+          "id": "opt-4",
+          "text": "\"Bool\": { \"aws:PublicAccess\": \"true\" }"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Explicitly denying requests when `aws:SecureTransport` is false enforces TLS in transit for all bucket operations.",
+      "difficulty": "beginner",
+      "topic": "Enforcing TLS in Cloud Policies",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "To make a container image small, fast to push, and minimal attack surface, which Dockerfile practice should you apply?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Use multi-stage builds compiling in an SDK image and copying only runtime binaries into a minimal distroless/alpine runtime image"
+        },
+        {
+          "id": "opt-2",
+          "text": "Bundle build compilers, test fixtures, and `.git` history in the final Ubuntu image"
+        },
+        {
+          "id": "opt-3",
+          "text": "Run container entrypoints as root (UID 0) without a healthcheck"
+        },
+        {
+          "id": "opt-4",
+          "text": "Hardcode `.env` production secrets inside `ENV` statements"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Multi-stage builds discard compilers and source artifacts, yielding lean runtime images with minimal CVE exposure.",
+      "difficulty": "beginner",
+      "topic": "Container Security & Multi-Stage Builds",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "You need an S3 Lifecycle rule to retain compliance audit logs for 7 years while minimizing storage expenses after 90 days. What transition rule applies?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Replicate objects across 12 Standard S3 buckets globally forever"
+        },
+        {
+          "id": "opt-2",
+          "text": "Copy objects onto gp3 EBS SSD volumes attached to stopped VMs"
+        },
+        {
+          "id": "opt-3",
+          "text": "Download objects locally to laptop storage monthly"
+        },
+        {
+          "id": "opt-4",
+          "text": "Transition objects to Standard-IA at 30 days and Glacier Deep Archive at 90 days, expiring after 2555 days"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Automated lifecycle rules tier infrequent logs down to cold archive classes at pennies per TB-month.",
+      "difficulty": "beginner",
+      "topic": "Storage Lifecycle Policies",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When designing a Kubernetes Readiness vs Liveness probe, what happens differently when a Readiness probe fails?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Readiness failures terminate the entire worker node immediately"
+        },
+        {
+          "id": "opt-2",
+          "text": "Liveness never restarts crashed processes"
+        },
+        {
+          "id": "opt-3",
+          "text": "Kubernetes removes the Pod IP from Service load balancing endpoints without restarting the container; Liveness failure triggers container restart"
+        },
+        {
+          "id": "opt-4",
+          "text": "Both Readiness and Liveness delete the underlying PersistentVolume"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Readiness stops routing traffic while a pod warms up or recovers temporarily; Liveness restarts deadlocked containers.",
+      "difficulty": "beginner",
+      "topic": "Kubernetes Health Probes",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A mission-critical payment API requires Recovery Time Objective (RTO) < 5 minutes and Recovery Point Objective (RPO) < 1 minute across geographic regions. Which DR strategy meets both targets?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Single-AZ RDS instance with weekly backups"
+        },
+        {
+          "id": "opt-2",
+          "text": "Manual infrastructure rebuild from wiki documentation during an outage"
+        },
+        {
+          "id": "opt-3",
+          "text": "Multi-region Active-Active or Warm Standby topology with continuous cross-region database replication and Route 53 latency/health failover"
+        },
+        {
+          "id": "opt-4",
+          "text": "Daily nightly cold snapshots uploaded to manual tape archives"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "RTO < 5m and RPO < 1m eliminate cold Backup-and-Restore options, demanding continuously replicated standby or active-active regional clusters.",
+      "difficulty": "beginner",
+      "topic": "Disaster Recovery (RTO & RPO)",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "Following the 12-Factor App methodology, how should configuration secrets (API keys, DB URLs) reach cloud containers across Dev, Staging, and Production?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Prompt the operator via stdin on container boot"
+        },
+        {
+          "id": "opt-2",
+          "text": "Inject environment configuration cleanly at runtime via a managed Secrets Manager / Vault rather than committing files inside the container image"
+        },
+        {
+          "id": "opt-3",
+          "text": "Build three separate Dockerfiles containing hardcoded staging/prod secrets"
+        },
+        {
+          "id": "opt-4",
+          "text": "Read secrets from a public GitHub Gist during startup"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Keeping the exact same immutable build artifact across all environments while injecting runtime config via Secrets Manager prevents leaks.",
+      "difficulty": "beginner",
+      "topic": "12-Factor Secrets & Config",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
+    },
+    {
+      "id": "mock-cloud-computing-beginner-t2-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "An organization spans 40 cloud accounts across Dev, QA, and Production workloads. How should security teams enforce mandatory guardrails (like blocking disabling CloudTrail or unencrypted S3) organization-wide?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Apply Service Control Policies (SCPs) at the AWS Organizations / Management Group root restricting prohibited actions even for account admins"
+        },
+        {
+          "id": "opt-2",
+          "text": "Send Slack reminders asking engineers not to click dangerous buttons"
+        },
+        {
+          "id": "opt-3",
+          "text": "Manually review bills once per quarter"
+        },
+        {
+          "id": "opt-4",
+          "text": "Grant every team a shared single root login to audit each other"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Organization-wide SCP guardrails define maximum permission boundaries across all member accounts simultaneously.",
+      "difficulty": "beginner",
+      "topic": "Multi-Account Governance & SCPs",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cloud Computing"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:12.830Z",
-  "updatedAt": "2026-10-30T06:22:12.830Z"
+  "createdAt": "2026-11-11T05:58:20.737Z",
+  "updatedAt": "2026-11-11T05:58:20.737Z"
 }

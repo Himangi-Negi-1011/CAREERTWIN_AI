@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Functions, Pointers, and Ownership",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Functions, Pointers, and Ownership."
+      "title": "C Language Standard Reference (cppreference)",
+      "url": "https://en.cppreference.com/w/c",
+      "description": "Official reference documentation for C Programming."
     }
   ],
   "realWorldApplications": [

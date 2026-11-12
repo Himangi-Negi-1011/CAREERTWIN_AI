@@ -1,0 +1,235 @@
+{
+  "id": "phase-cybersecurity-mod-3-sec-ops-assessment",
+  "skillName": "Cybersecurity",
+  "skillSlug": "cybersecurity",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-sec-ops",
+  "moduleTitle": "Module 3: Security Operations (SOC) & Incident Response",
+  "title": "Cybersecurity — Module 3: Security Operations (SOC) & Incident Response Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across SOC Log Triage, SIEM Alerting & Anomaly Detection and NIST Incident Response Lifecycle & Hardening Capstone.",
+  "durationMinutes": 20,
+  "totalMarks": 12,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+    "NIST Incident Response Lifecycle & Hardening Capstone"
+  ],
+  "questions": [
+    {
+      "id": "phase-cybersecurity-mod-3-sec-ops-q1",
+      "section": "A",
+      "sectionTitle": "Module 3: Security Operations (SOC) & Incident Response Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why must authentication middleware strip `Authorization` headers and password fields before emitting error logs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Logging credentials plaintext turns log aggregation tools into exposed breach targets if internal log viewers lack strict access limits"
+        },
+        {
+          "id": "opt-2",
+          "text": "JSON serializers reject string passwords"
+        },
+        {
+          "id": "opt-3",
+          "text": "HttpOnly cookies fail if strings print to console"
+        },
+        {
+          "id": "opt-4",
+          "text": "Passwords exceed stdout buffer limits"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Secret redaction guarantees sensitive tokens never accumulate silently in monitoring backends.",
+      "difficulty": "beginner",
+      "topic": "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sec-ops-l1-soc-log-triage-siem-alerting-anomaly-det",
+      "recommendedLessonTitle": "SOC Log Triage, SIEM Alerting & Anomaly Detection"
+    },
+    {
+      "id": "phase-cybersecurity-mod-3-sec-ops-q2",
+      "section": "A",
+      "sectionTitle": "Module 3: Security Operations (SOC) & Incident Response Checkpoint",
+      "type": "single-choice",
+      "prompt": "What threat does `GET /download?file=../../../../etc/passwd HTTP/1.1` represent in proxy logs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Path Traversal / Local File Inclusion attempt"
+        },
+        {
+          "id": "opt-2",
+          "text": "Cross-Site Request Forgery"
+        },
+        {
+          "id": "opt-3",
+          "text": "ARP Spoofing"
+        },
+        {
+          "id": "opt-4",
+          "text": "DNS Amplification"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Relative parent sequences (`../`) attempt to break out of the intended folder root.",
+      "difficulty": "beginner",
+      "topic": "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sec-ops-l1-soc-log-triage-siem-alerting-anomaly-det",
+      "recommendedLessonTitle": "SOC Log Triage, SIEM Alerting & Anomaly Detection"
+    },
+    {
+      "id": "phase-cybersecurity-mod-3-sec-ops-q3",
+      "section": "A",
+      "sectionTitle": "Module 3: Security Operations (SOC) & Incident Response Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why should logs stream immediately off host servers into append-only central storage?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "To preserve tamper-evident forensics even if a local host is compromised and local `/var/log` is altered"
+        },
+        {
+          "id": "opt-2",
+          "text": "To shrink PostgreSQL CPU load directly"
+        },
+        {
+          "id": "opt-3",
+          "text": "Because local disks refuse plaintext writes"
+        },
+        {
+          "id": "opt-4",
+          "text": "To speed up CSS rendering in browsers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Remote immutable shipping denies attackers the ability to scrub traces cleanly post-intrusion.",
+      "difficulty": "beginner",
+      "topic": "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sec-ops-l1-soc-log-triage-siem-alerting-anomaly-det",
+      "recommendedLessonTitle": "SOC Log Triage, SIEM Alerting & Anomaly Detection"
+    },
+    {
+      "id": "phase-cybersecurity-mod-3-sec-ops-q4",
+      "section": "A",
+      "sectionTitle": "Module 3: Security Operations (SOC) & Incident Response Checkpoint",
+      "type": "single-choice",
+      "prompt": "If an engineer accidentally pushes an active Stripe secret key to a public GitHub repo, simply running a second commit to delete the file is insufficient. Why?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The secret stays preserved permanently in Git commit history and automated scraper bots harvest pushed keys within seconds—it MUST be revoked/rotated upstream immediately"
+        },
+        {
+          "id": "opt-2",
+          "text": "Git deletes commits only on Linux hosts"
+        },
+        {
+          "id": "opt-3",
+          "text": "Stripe refuses deleting files named `.env`"
+        },
+        {
+          "id": "opt-4",
+          "text": "TLS certificates freeze if files are removed"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Once exposed publicly, treat secrets as burned immediately and revoke/rotate upstream.",
+      "difficulty": "beginner",
+      "topic": "NIST Incident Response Lifecycle & Hardening Capstone",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni",
+      "recommendedLessonTitle": "NIST Incident Response Lifecycle & Hardening Capstone"
+    },
+    {
+      "id": "phase-cybersecurity-mod-3-sec-ops-q5",
+      "section": "A",
+      "sectionTitle": "Module 3: Security Operations (SOC) & Incident Response Checkpoint",
+      "type": "single-choice",
+      "prompt": "During an active server compromise, why isolate the instance firewall/network BEFORE rebooting or wiping disk?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Quarantining halts lateral attacker traffic immediately while preserving running process state and forensic evidence for root-cause analysis"
+        },
+        {
+          "id": "opt-2",
+          "text": "Rebooting improves malware scan speeds silently"
+        },
+        {
+          "id": "opt-3",
+          "text": "Firewalls cannot change rules on live servers"
+        },
+        {
+          "id": "opt-4",
+          "text": "Backups overwrite volatile RAM logs automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Stopping network communication preserves forensic artifacts needed to learn how entry occurred.",
+      "difficulty": "beginner",
+      "topic": "NIST Incident Response Lifecycle & Hardening Capstone",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni",
+      "recommendedLessonTitle": "NIST Incident Response Lifecycle & Hardening Capstone"
+    },
+    {
+      "id": "phase-cybersecurity-mod-3-sec-ops-q6",
+      "section": "A",
+      "sectionTitle": "Module 3: Security Operations (SOC) & Incident Response Checkpoint",
+      "type": "single-choice",
+      "prompt": "What distinguishes a 'blameless' post-incident security retrospective?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Focuses on fixing systemic missing guardrails, tooling alerts, and automated tests rather than punishing individuals who surface issues"
+        },
+        {
+          "id": "opt-2",
+          "text": "Hides breaches permanently from leadership"
+        },
+        {
+          "id": "opt-3",
+          "text": "Skips remediation tickets entirely"
+        },
+        {
+          "id": "opt-4",
+          "text": "Terminates junior developers automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Blameless culture encourages transparent reporting and lasting technical safeguards.",
+      "difficulty": "beginner",
+      "topic": "NIST Incident Response Lifecycle & Hardening Capstone",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-sec-ops-l2-nist-incident-response-lifecycle-hardeni",
+      "recommendedLessonTitle": "NIST Incident Response Lifecycle & Hardening Capstone"
+    }
+  ],
+  "contentVersion": 2,
+  "reviewStatus": "approved",
+  "createdAt": "2026-11-11T05:58:17.502Z",
+  "updatedAt": "2026-11-11T05:58:17.502Z"
+}

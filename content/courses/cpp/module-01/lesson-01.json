@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Compiling Modern C++ and Reading Diagnostics",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Compiling Modern C++ and Reading Diagnostics."
+      "title": "Modern C++ Standard Reference",
+      "url": "https://en.cppreference.com/w/cpp",
+      "description": "Official reference documentation for C++."
     }
   ],
   "realWorldApplications": [

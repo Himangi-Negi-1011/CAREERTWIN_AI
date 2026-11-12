@@ -7,155 +7,1027 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Power BI BEGINNER Comprehensive Mock Test 1",
-  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Power BI.",
-  "durationMinutes": 30,
-  "totalMarks": 9,
+  "title": "Power BI 100-Mark Professional Mock Examination (Test 1)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "DAX Evaluation & Filter Context",
-    "Tabular Modeling & Performance",
-    "Time Intelligence & Date Dimensions",
-    "DAX Math & Error Handling"
+    "Star Schema Dimensional Modeling",
+    "Measures vs Calculated Columns",
+    "DAX Error-Safe Ratios",
+    "Power Query ETL vs DAX",
+    "Filter Context Modulation",
+    "Time Intelligence Prerequisites",
+    "Power Query Folding",
+    "VertiPaq Memory Optimization",
+    "Row-Level Security (RLS)",
+    "Relationship Direction & Cardinality",
+    "Debugging ALL & Filter Removal",
+    "Row Context vs Iterators (SUM vs SUMX)",
+    "Conformed Dimensions & Ambiguity",
+    "Date Dimension Contiguity",
+    "Query Folding Diagnostics",
+    "Percent of Total Pattern",
+    "Role-Playing Dimensions",
+    "DAX Variables Optimization",
+    "Incremental Refresh Partitions",
+    "Multi-Grain Modeling",
+    "Time Intelligence YoY Growth",
+    "Power Query Unpivoting",
+    "Semantic Model Organization",
+    "Executive Dashboard Design",
+    "Distinct Counting",
+    "Storage Modes (Import vs DirectQuery)",
+    "Enterprise BI Governance",
+    "Performance Analyzer Diagnostics"
   ],
   "questions": [
     {
       "id": "mock-power-bi-beginner-t1-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "In DAX, how does the CALCULATE function modify evaluation?",
+      "prompt": "What is the recommended dimensional data model shape for performant Power BI datasets?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It evaluates an expression under a modified filter context, and transitions any active row context into filter context."
+          "text": "One giant flattened denormalized CSV with 150 columns"
         },
         {
           "id": "opt-2",
-          "text": "It forces the formula to compute on the GPU."
+          "text": "Deep multi-hop snowflake chains with bidirectional many-to-many links"
         },
         {
           "id": "opt-3",
-          "text": "It converts DAX measures into static physical columns."
+          "text": "Completely unlinked isolated tables queried via MERGE in visuals"
         },
         {
           "id": "opt-4",
-          "text": "It bypasses all relationship definitions in the data model."
+          "text": "Star Schema: central Fact table containing numeric transactions linked via 1-to-many relationships to Dimension lookup tables"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "opt-4"
       ],
-      "explanation": "CALCULATE is the single most powerful DAX function because it overrides, merges, or clears filter context and triggers context transition.",
+      "explanation": "Star schemas optimize VertiPaq columnar compression, minimize ambiguous filter paths, and simplify DAX measures.",
       "difficulty": "beginner",
-      "topic": "DAX Evaluation & Filter Context",
+      "topic": "Star Schema Dimensional Modeling",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Power BI"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
     },
     {
       "id": "mock-power-bi-beginner-t1-q2",
-      "type": "scenario",
-      "prompt": "Why is a Star Schema architecture preferred over a flat, single-table model in Power BI?",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "When should you author a DAX Measure rather than a Calculated Column?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "The VertiPaq tabular engine compresses columnar Dimension tables efficiently and executes single-direction relationships with minimal RAM."
+          "text": "Measures consume triple the disk storage of columns"
         },
         {
           "id": "opt-2",
-          "text": "Star schemas require fewer measures to be written."
+          "text": "Calculated columns re-evaluate whenever slicers are clicked"
         },
         {
           "id": "opt-3",
-          "text": "Single flat tables cannot be refreshed automatically in the Power BI Service."
+          "text": "For dynamic aggregations, ratios, and YoY KPIs evaluated at query time within active report filter context without bloating RAM"
         },
         {
           "id": "opt-4",
-          "text": "Power BI visual slicers do not function without star schemas."
+          "text": "When placing static grouping labels inside visual X-axis slicers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Measures compute dynamically using filter context with zero static RAM overhead, whereas calculated columns compute on data refresh and persist per row.",
+      "difficulty": "beginner",
+      "topic": "Measures vs Calculated Columns",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which DAX function safely computes ratios without raising `#DIV/0!` infinity errors when the denominator is zero or blank?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "AVERAGEIF()"
+        },
+        {
+          "id": "opt-2",
+          "text": "DIVIDE(numerator, denominator, alternateResult)"
+        },
+        {
+          "id": "opt-3",
+          "text": "QUOTIENT_SAFE()"
+        },
+        {
+          "id": "opt-4",
+          "text": "Standard `/` operator"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "`DIVIDE()` cleanly guards against zero denominators and defaults to `BLANK()` or an explicit fallback.",
+      "difficulty": "beginner",
+      "topic": "DAX Error-Safe Ratios",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which Power BI layer is responsible for ETL cleaning, data type enforcement, unpivoting columns, and merging files BEFORE loading into the tabular model?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Power Query (M language)"
+        },
+        {
+          "id": "opt-2",
+          "text": "DAX Time Intelligence"
+        },
+        {
+          "id": "opt-3",
+          "text": "Report Canvas Bookmarks"
+        },
+        {
+          "id": "opt-4",
+          "text": "Row-Level Security (RLS) roles"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "The VertiPaq in-memory engine achieves optimal dictionary encoding and memory compression when data is normalized into distinct Fact and Dimension tables.",
+      "explanation": "Power Query executes upstream Extract-Transform-Load steps using M before data hits VertiPaq compression.",
       "difficulty": "beginner",
-      "topic": "Tabular Modeling & Performance",
+      "topic": "Power Query ETL vs DAX",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Power BI"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
     },
     {
-      "id": "mock-power-bi-beginner-t1-q3",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent requirements for a dedicated Date Dimension in Power BI to support time-intelligence functions?",
+      "id": "mock-power-bi-beginner-t1-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What is the only DAX function capable of modifying or overriding active visual filter context cleanly?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It must contain continuous calendar dates with zero gaps across the required span"
+          "text": "SUMX()"
         },
         {
           "id": "opt-2",
-          "text": "It must contain at least one column formatted as Date or DateTime"
+          "text": "RELATED()"
         },
         {
           "id": "opt-3",
-          "text": "It must be marked as the official Date Table in the data model"
+          "text": "FORMAT()"
         },
         {
           "id": "opt-4",
-          "text": "It must be stored in a SQL database rather than imported into Power BI"
+          "text": "CALCULATE(<expression>, <filter1>, ...)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`CALCULATE` performs context transition and applies/modifies filter predicates before evaluating its expression.",
+      "difficulty": "beginner",
+      "topic": "Filter Context Modulation",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which rules are required for DAX Time Intelligence functions (`SAMEPERIODLASTYEAR`, `DATESYTD`) to work reliably?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Linking the Date key cleanly to the Fact table date foreign key"
+        },
+        {
+          "id": "opt-2",
+          "text": "Sorting dates alphabetically as text strings"
+        },
+        {
+          "id": "opt-3",
+          "text": "A dedicated Date dimension table containing continuous calendar days without gaps"
+        },
+        {
+          "id": "opt-4",
+          "text": "Marking the table explicitly as 'Date Table' with a unique Date column"
         }
       ],
       "correctOptionIds": [
         "opt-1",
-        "opt-2",
-        "opt-3"
+        "opt-3",
+        "opt-4"
       ],
-      "explanation": "Time intelligence (DATESYTD, SAMEPERIODLASTYEAR) requires a marked, contiguous Date table with no missing calendar days.",
+      "explanation": "Time intelligence functions scan contiguous calendar ranges across a marked Date table.",
       "difficulty": "beginner",
-      "topic": "Time Intelligence & Date Dimensions",
-      "marks": 3,
+      "topic": "Time Intelligence Prerequisites",
+      "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Power BI"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
     },
     {
-      "id": "mock-power-bi-beginner-t1-q4",
-      "type": "debugging",
-      "prompt": "A report visual crashes with a '#DIV/0!' visual error. Which DAX function avoids this issue cleanly?",
+      "id": "mock-power-bi-beginner-t1-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "In Power Query, what does 'Query Folding' optimize?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "DIVIDE(Numerator, Denominator, 0)"
+          "text": "Merging all report pages into a single visual"
         },
         {
           "id": "opt-2",
-          "text": "Numerator / Denominator"
+          "text": "Translating M transformations into native SQL pushed down directly to the source database rather than pulling raw unfiltered rows into Power BI"
         },
         {
           "id": "opt-3",
-          "text": "QUOTIENT(Numerator, Denominator)"
+          "text": "Compressing visual PNG screenshots inside PBIX archives"
         },
         {
           "id": "opt-4",
-          "text": "MOD(Numerator, Denominator)"
+          "text": "Collapsing DAX nested IF blocks into one line"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Query folding dramatically cuts data refresh time and memory by offloading filtering/joins to the database engine.",
+      "difficulty": "beginner",
+      "topic": "Power Query Folding",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Why should high-cardinality text columns (like millisecond transaction UUIDs or unparsed timestamps) be split or removed unless strictly needed?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "High unique value counts undermine VertiPaq dictionary compression and inflate model RAM memory footprint"
+        },
+        {
+          "id": "opt-2",
+          "text": "Power BI refuses to load any string longer than 5 characters"
+        },
+        {
+          "id": "opt-3",
+          "text": "UUIDs cause negative totals in SUM measures"
+        },
+        {
+          "id": "opt-4",
+          "text": "High cardinality disables dark mode themes"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "DIVIDE safely checks for zero or blank denominators and returns an optional fallback (defaulting to BLANK or 0) rather than raising an error.",
+      "explanation": "VertiPaq column-store compression excels on low-cardinality columns; dropping unused high-cardinality IDs keeps models fast and small.",
       "difficulty": "beginner",
-      "topic": "DAX Math & Error Handling",
+      "topic": "VertiPaq Memory Optimization",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Power BI"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What does Dynamic Row-Level Security (RLS) use in DAX roles so one rule adapts to every logged-in viewer?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Hardcoding 500 static user email filters manually"
+        },
+        {
+          "id": "opt-2",
+          "text": "Hiding visual headers with white rectangles"
+        },
+        {
+          "id": "opt-3",
+          "text": "Applying page filters manually before PDF export"
+        },
+        {
+          "id": "opt-4",
+          "text": "`[EmployeeEmail] = USERPRINCIPALNAME()`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`USERPRINCIPALNAME()` resolves the signed-in Power BI Service viewer identity dynamically inside RLS filter expressions.",
+      "difficulty": "beginner",
+      "topic": "Row-Level Security (RLS)",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "In relationship cardinality, which direction flows naturally from Dimension lookup tables down to Fact tables in a clean Star Schema?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Many-to-Many unindexed joins across all tables"
+        },
+        {
+          "id": "opt-2",
+          "text": "Fact -> Dimension reverse filtering only"
+        },
+        {
+          "id": "opt-3",
+          "text": "Single-directional (One-to-Many: Dimension -> Fact)"
+        },
+        {
+          "id": "opt-4",
+          "text": "Bidirectional everywhere by default"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Single-direction filtering from Dimensions to Facts avoids circular ambiguity and maximizes query speed.",
+      "difficulty": "beginner",
+      "topic": "Relationship Direction & Cardinality",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "A `Total Sales All Regions = CALCULATE([Total Sales], ALL(Regions))` card shows a number, yet adding `Regions[Country]` to a table causes every row to repeat the grand total. Why?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "ALL() multiplies metrics by the number of rows"
+        },
+        {
+          "id": "opt-2",
+          "text": "Table visuals ignore CALCULATE"
+        },
+        {
+          "id": "opt-3",
+          "text": "Total Sales needs SUMX around ALL()"
+        },
+        {
+          "id": "opt-4",
+          "text": "`ALL(Regions)` explicitly removes all visual filter context on the Regions table, yielding the unfiltered grand total per row"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`ALL()` ignores filters on the specified table—which is precisely how denominator percentages (`% of Total`) are computed cleanly.",
+      "difficulty": "beginner",
+      "topic": "Debugging ALL & Filter Removal",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "A developer notices `SUM(Sales[Quantity] * Sales[UnitPrice])` throws a DAX syntax error inside a Measure. Why?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Measures cannot reference two columns in the same table"
+        },
+        {
+          "id": "opt-2",
+          "text": "Parentheses are forbidden inside SUM"
+        },
+        {
+          "id": "opt-3",
+          "text": "`SUM` aggregates a single column only; row-by-row multiplication inside a measure requires the iterator `SUMX(Sales, Sales[Quantity] * Sales[UnitPrice])`"
+        },
+        {
+          "id": "opt-4",
+          "text": "DAX cannot multiply currency columns"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Aggregators like `SUM` lack row context; X-suffix iterators (`SUMX`, `AVERAGEX`) step row-by-row over a table.",
+      "difficulty": "beginner",
+      "topic": "Row Context vs Iterators (SUM vs SUMX)",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Two Fact tables (`Sales` and `Targets`) both link to `DimDate` and `DimRegion`. Enabling bidirectional filters everywhere throws an 'ambiguous path' model error. How do you fix this?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Turn all Fact columns into text fields"
+        },
+        {
+          "id": "opt-2",
+          "text": "Keep Star Schema relationships single-directional (Dimension -> both Fact tables) instead of bidirectional cross-filtering"
+        },
+        {
+          "id": "opt-3",
+          "text": "Merge `Sales` and `Targets` into one table with null padding"
+        },
+        {
+          "id": "opt-4",
+          "text": "Delete `DimDate` entirely"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Single-directional filtering from shared conformed Dimensions resolves multi-fact ambiguity cleanly.",
+      "difficulty": "beginner",
+      "topic": "Conformed Dimensions & Ambiguity",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Your report's YTD line chart displays empty blanks beyond March even though raw data exists in April. Inspecting `DimDate` shows missing weekends/holidays in April. Why?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Time Intelligence functions require a contiguous Date table containing every calendar day without skipped dates"
+        },
+        {
+          "id": "opt-2",
+          "text": "DAX only aggregates the first 90 days of any calendar year"
+        },
+        {
+          "id": "opt-3",
+          "text": "Line charts cannot render dates past Q1"
+        },
+        {
+          "id": "opt-4",
+          "text": "Weekends are excluded automatically by Power BI Desktop"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "A Date table generated via `CALENDAR(MIN, MAX)` guarantees continuous dates with zero gaps.",
+      "difficulty": "beginner",
+      "topic": "Date Dimension Contiguity",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "A Power Query merge query loads fast on small files, yet refreshing SQL Server data pulls 20 million rows slowly across the network. Inspecting M steps reveals `Table.Buffer` early in the query. Why?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "SQL Server forbids MERGE queries over TCP"
+        },
+        {
+          "id": "opt-2",
+          "text": "Unpivoting columns multiplies network bytes"
+        },
+        {
+          "id": "opt-3",
+          "text": "Power Query strips WHERE filters deliberately after 1M rows"
+        },
+        {
+          "id": "opt-4",
+          "text": "Non-foldable M steps like `Table.Buffer` early in a query break Query Folding, forcing local evaluation instead of native SQL pushdown"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Keep foldable operations (`SelectColumns`, `Filter`, `Group`) first before custom non-foldable M functions so the DB does the heavy lifting.",
+      "difficulty": "beginner",
+      "topic": "Query Folding Diagnostics",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You need an executive metric showing `% Share of Regional Sales` that updates dynamically when filtering years via slicer. Which DAX expression works correctly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`[Total Sales] / [Total Sales]`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`SUM(Sales[Amount]) / COUNTROWS(Sales)`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`RELATED(Regions[Share])`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`DIVIDE([Total Sales], CALCULATE([Total Sales], ALLSELECTED(Regions)))`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`ALLSELECTED` clears inner visual row filters while respecting external page/report slicers.",
+      "difficulty": "beginner",
+      "topic": "Percent of Total Pattern",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "Sales rows contain both `OrderDate` and `ShipDate`. Both must slice cleanly by calendar months inside one report. How do you model this cleanly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Store dates purely as formatted strings without relationships"
+        },
+        {
+          "id": "opt-2",
+          "text": "Delete ShipDate from the dataset"
+        },
+        {
+          "id": "opt-3",
+          "text": "Create one active relationship (`OrderDate -> DimDate`) and one inactive relationship (`ShipDate -> DimDate`), activating ShipDate per measure via `USERELATIONSHIP()`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Turn both relationships active simultaneously (forbidden in DAX)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Role-playing dimensions use `USERELATIONSHIP(Fact[ShipDate], DimDate[Date])` cleanly inside `CALCULATE()`.",
+      "difficulty": "beginner",
+      "topic": "Role-Playing Dimensions",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A complex measure computes `[Total Sales]` four times inside nested `IF` statements, slowing visuals down. What DAX syntax cleans readability and avoids redundant re-evaluation?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Use Calculated Columns per visual"
+        },
+        {
+          "id": "opt-2",
+          "text": "Store `[Total Sales]` once in a `VAR` declaration before `RETURN` so the engine caches and reuses its result"
+        },
+        {
+          "id": "opt-3",
+          "text": "Duplicate `[Total Sales]` into 4 separate measures"
+        },
+        {
+          "id": "opt-4",
+          "text": "Replace `[Total Sales]` with `CALCULATETABLE`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "`VAR ... RETURN` captures the result inside its filter context once, eliminating repeated evaluation passes.",
+      "difficulty": "beginner",
+      "topic": "DAX Variables Optimization",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "Incremental Refresh on a 500M-row SQL table reduces daily load times from 2 hours to 3 minutes. Which two Power Query parameters are mandatory to configure Incremental Refresh?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`RangeStart` and `RangeEnd` (DateTime type) filtering the Fact date column cleanly via foldable predicates"
+        },
+        {
+          "id": "opt-2",
+          "text": "`UserEmail` and `Department`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`MinRows` and `MaxPages`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`ExportCSV` and `ThemeMode`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Power BI partitions historical data cleanly only when `RangeStart` and `RangeEnd` parameters drive foldable date filters.",
+      "difficulty": "beginner",
+      "topic": "Incremental Refresh Partitions",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "Your report compares Budget (at monthly granularity) against Daily Sales (at daily granularity). How should you prevent users from misinterpreting daily Budget projections?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Duplicate full monthly budgets onto every single day row (multiplying totals 30x)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Join FactSales directly to FactBudget Many-to-Many"
+        },
+        {
+          "id": "opt-3",
+          "text": "Disable all visual tooltips"
+        },
+        {
+          "id": "opt-4",
+          "text": "Model Budget to a Month-start key or use DAX `ISINSCOPE(DimDate[Date])` to suppress meaningless daily budget breakdowns"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Handling multi-grain fact tables safely prevents silent 30x double-counting when drilling down below the budget grain.",
+      "difficulty": "beginner",
+      "topic": "Multi-Grain Modeling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Author a DAX measure computing Year-over-Year (YoY) Revenue growth percentage safely:",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "([Total Rev] - [Total Rev]) / 'Date'[Year]"
+        },
+        {
+          "id": "opt-2",
+          "text": "SUMX(SAMEPERIODLASTYEAR('Date'[Date]), [Total Rev])"
+        },
+        {
+          "id": "opt-3",
+          "text": "AVERAGE(Sales[Rev]) * 100"
+        },
+        {
+          "id": "opt-4",
+          "text": "VAR Cur = [Total Rev] VAR Prev = CALCULATE([Total Rev], SAMEPERIODLASTYEAR('Date'[Date])) RETURN DIVIDE(Cur - Prev, Prev)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`SAMEPERIODLASTYEAR` shifts the contiguous Date filter context back 1 year, and `DIVIDE` prevents zero-division errors.",
+      "difficulty": "beginner",
+      "topic": "Time Intelligence YoY Growth",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "A spreadsheet export has 12 wide month columns (`Jan`, `Feb`, ..., `Dec`). Before building DAX measures, which Power Query step makes it Star Schema-ready?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Concatenate all 12 columns into one string"
+        },
+        {
+          "id": "opt-2",
+          "text": "Pivot the rows wider into 365 day columns"
+        },
+        {
+          "id": "opt-3",
+          "text": "Use 'Unpivot Other Columns' to normalize wide month headers into clean `Month` and `Value` attribute rows"
+        },
+        {
+          "id": "opt-4",
+          "text": "Write 12 separate DAX `SUM` measures hardcoded per month"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Unpivoting converts crosstab spreadsheets into tall, narrow relational fact rows so single flexible measures slice across all months.",
+      "difficulty": "beginner",
+      "topic": "Power Query Unpivoting",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "To organize 60 measures cleanly inside a Power BI workspace model, what structural feature prevents cluttering Fact tables?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Hide the Fields pane permanently"
+        },
+        {
+          "id": "opt-2",
+          "text": "Create a dedicated empty Measure Table (`_Measures`) organized into descriptive Display Folders"
+        },
+        {
+          "id": "opt-3",
+          "text": "Prefix all measures with `'ZZZ_'` inside Fact tables"
+        },
+        {
+          "id": "opt-4",
+          "text": "Split every measure into a different `.pbix` file"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Dedicated measure tables with display folders streamline authoring and self-service BI discovery.",
+      "difficulty": "beginner",
+      "topic": "Semantic Model Organization",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When designing a high-density executive KPI dashboard, which UX choice improves visual scan speed and comprehension?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Limit each page to 3–5 complementary visuals with clear hierarchy (KPIs top-left -> Trends -> Breakdowns) and explicit comparative context (vs Target / YoY)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Pack 25 pie charts onto one page with rainbow neon backgrounds"
+        },
+        {
+          "id": "opt-3",
+          "text": "Use 3D exploding bar charts without data labels"
+        },
+        {
+          "id": "opt-4",
+          "text": "Omit axis units and comparison baselines"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Executive dashboards prioritize immediate F-pattern visual hierarchy, restrained accessible color palettes, and variance context.",
+      "difficulty": "beginner",
+      "topic": "Executive Dashboard Design",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which DAX construct counts unique active customers who placed at least one purchase without counting repeat purchases twice?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`COUNT(FactSales[CustomerID])`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`COUNTROWS(FactSales)`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`SUM(FactSales[CustomerID])`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`DISTINCTCOUNT(FactSales[CustomerID])`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`DISTINCTCOUNT` deduplicates key values in the active filter context.",
+      "difficulty": "beginner",
+      "topic": "Distinct Counting",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "Should you select DirectQuery vs Import Mode for a 5M-row analytical model requiring sub-second interactive slicing and rich DAX time intelligence?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Always force DirectQuery regardless of size because RAM is slow"
+        },
+        {
+          "id": "opt-2",
+          "text": "Use Live Connection to CSV files on SharePoint"
+        },
+        {
+          "id": "opt-3",
+          "text": "Disable data refresh permanently"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use Import Mode (VertiPaq in-memory) for sub-second speed and full DAX support unless real-time sub-minute freshness strictly demands DirectQuery"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Import Mode leverages VertiPaq's columnar in-memory engine for vastly faster visual rendering than DirectQuery round-trips.",
+      "difficulty": "beginner",
+      "topic": "Storage Modes (Import vs DirectQuery)",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "An enterprise wants multiple report authors to build finance, HR, and marketing dashboards using one consistent verified Revenue definition. How do you govern this?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Export raw SQL tables daily into Google Sheets"
+        },
+        {
+          "id": "opt-2",
+          "text": "Remove version history across teams"
+        },
+        {
+          "id": "opt-3",
+          "text": "Publish a Golden Certified Semantic Model (Shared Dataset) in a governed workspace and connect thin reports via Live Connection"
+        },
+        {
+          "id": "opt-4",
+          "text": "Email local `.pbix` copies to every analyst to modify separately"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Shared Certified Semantic Models create a single source of truth for KPIs and avoid conflicting metric definitions.",
+      "difficulty": "beginner",
+      "topic": "Enterprise BI Governance",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
+    },
+    {
+      "id": "mock-power-bi-beginner-t1-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A report page renders slowly despite simple DAX. Using Performance Analyzer reveals 'Visual Display' takes 100ms while 'DAX Query' takes 4.8s on a matrix with 40 complex measures. How do you isolate and solve it?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Turn off visual tooltips permanently"
+        },
+        {
+          "id": "opt-2",
+          "text": "Inspect server timings in DAX Studio, simplify excessive callback iterators / high-cardinality visual columns, and eliminate bi-directional filters"
+        },
+        {
+          "id": "opt-3",
+          "text": "Change chart font color to black"
+        },
+        {
+          "id": "opt-4",
+          "text": "Replace PNG logos with BMP images"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Performance Analyzer + DAX Studio pinpoint storage engine vs formula engine bottlenecks cleanly.",
+      "difficulty": "beginner",
+      "topic": "Performance Analyzer Diagnostics",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Power BI"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:13.616Z",
-  "updatedAt": "2026-10-30T06:22:13.616Z"
+  "createdAt": "2026-11-11T05:58:33.414Z",
+  "updatedAt": "2026-11-11T05:58:33.414Z"
 }

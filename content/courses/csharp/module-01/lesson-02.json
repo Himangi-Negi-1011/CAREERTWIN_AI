@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Types, Conversion, and Nullable References",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Types, Conversion, and Nullable References."
+      "title": "Microsoft C# & .NET Official Docs",
+      "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+      "description": "Official reference documentation for C#."
     }
   ],
   "realWorldApplications": [

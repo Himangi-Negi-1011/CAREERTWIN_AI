@@ -22,6 +22,8 @@
   "questions": [
     {
       "id": "phase-javascript-beginner-mod-3-q1",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes array filter in JavaScript?",
       "codeSnippet": "",
@@ -55,6 +57,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-3-q2",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes reduce in JavaScript?",
       "codeSnippet": "",
@@ -88,6 +92,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-3-q3",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes while loops in JavaScript?",
       "codeSnippet": "",
@@ -121,6 +127,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-3-q4",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes return in JavaScript?",
       "codeSnippet": "",
@@ -154,6 +162,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-3-q5",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which statement accurately describes lexical scope in JavaScript?",
       "codeSnippet": "",

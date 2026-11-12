@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Generics and Standard Utility Types",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Generics and Standard Utility Types."
+      "title": "TypeScript Handbook & Official Docs",
+      "url": "https://www.typescriptlang.org/docs/",
+      "description": "Official reference documentation for TypeScript."
     }
   ],
   "realWorldApplications": [

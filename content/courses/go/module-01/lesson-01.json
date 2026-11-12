@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Go Toolchain, Modules, and Packages",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Go Toolchain, Modules, and Packages."
+      "title": "Go Official Language Documentation",
+      "url": "https://go.dev/doc/",
+      "description": "Official reference documentation for Go."
     }
   ],
   "realWorldApplications": [

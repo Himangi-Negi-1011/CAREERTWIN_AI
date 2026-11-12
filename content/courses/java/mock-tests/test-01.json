@@ -1,5 +1,5 @@
 {
-  "id": "mock-java-beginner-test-01",
+  "id": "mock-java-beginner-t1",
   "skillName": "Java",
   "skillSlug": "java",
   "level": "beginner",
@@ -7,697 +7,1027 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Java Beginner Mock Test 1",
-  "description": "Comprehensive 50-minute mock examination for Java at beginner level.",
-  "durationMinutes": 35,
-  "totalMarks": 20,
+  "title": "Java 100-Mark Professional Mock Examination (Test 1)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "JDK",
-    "bytecode",
-    "main method",
-    "primitive types",
-    "integer division",
-    "String equality",
-    "parsing",
-    "short circuit logic",
-    "if chains",
-    "switch",
-    "arrays",
-    "enhanced for",
-    "while loops",
-    "methods",
-    "pass by value",
-    "encapsulation",
-    "static",
-    "List",
-    "Map",
-    "Set"
+    "Stack vs Heap Memory Model",
+    "Ownership & Borrow Checking",
+    "Go Channels & `select`",
+    "RAII & Smart Pointers",
+    "Identity vs Content Equality",
+    "Cancellation & Context Propagation",
+    "Memory Safety & C Pitfalls",
+    "Structured Async Programming",
+    "Explicit Error Modeling",
+    "Lazy Stream & LINQ Pipelines",
+    "Dangling Stack Pointers",
+    "Immutable String Allocation Cost",
+    "Concurrent Map Safety",
+    "Move Semantics & Ownership Errors",
+    "Async-Over-Sync Deadlocks",
+    "Bounded Fan-Out & Timeouts",
+    "Zero-Copy Slices & Spans",
+    "HTTP Socket & Pool Management",
+    "Sanitizer-Backed Verification",
+    "Exact Numeric Precision",
+    "Graceful Signal Handling",
+    "Dependency Inversion & Testing",
+    "Smart Pointer Ownership",
+    "Idiomatic Error Propagation (`?`)",
+    "Bounded C String Safety",
+    "Distributed Consistency & Outbox",
+    "Circuit Breakers & Fault Isolation",
+    "Distributed Tracing & Observability"
   ],
   "questions": [
     {
-      "id": "mock-java-beginner-test-01-q1",
+      "id": "mock-java-beginner-t1-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes JDK in Java?",
+      "prompt": "In systems languages (`C`, `C++`, `Rust`), how do Stack memory and Heap memory differ fundamentally?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "the JDK includes development tools such as javac"
+          "id": "opt-1",
+          "text": "Heap allocations never require pointers or references"
         },
         {
-          "id": "B",
-          "text": "a JRE-only installation may not provide javac"
+          "id": "opt-2",
+          "text": "Stack memory grows unbounded across gigabytes safely"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Heap memory is strictly faster than CPU registers"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Stack uses fast LIFO frame allocation scoped to function calls; Heap enables dynamic variable-lifetime allocation requiring explicit deallocation or RAII/ownership"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "the JDK includes development tools such as javac. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Understanding stack frames vs heap allocation explains lifetimes, buffer overflows, leaks, and Rust/C++ ownership idioms.",
       "difficulty": "beginner",
-      "topic": "JDK",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Stack vs Heap Memory Model",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q2",
+      "id": "mock-java-beginner-t1-q2",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes bytecode in Java?",
+      "prompt": "What compile-time guarantee makes Rust eliminate data races and dangling pointers without a garbage collector?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "javac emits JVM bytecode in class files"
+          "id": "opt-1",
+          "text": "Automatic conversion of every integer into a heap object"
         },
         {
-          "id": "B",
-          "text": "editing a class file is not a source workflow"
+          "id": "opt-2",
+          "text": "Disabling multithreading across OS cores"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Ownership and the Borrow Checker: each value has one owner and allows either multiple immutable (`&T`) or one single mutable (`&mut T`) borrow at a time"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Runtime pause-the-world tracing garbage collection every 10ms"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "javac emits JVM bytecode in class files. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Rust's aliasing XOR mutability rules enforce memory safety and data-race freedom statically at compile time.",
       "difficulty": "beginner",
-      "topic": "bytecode",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Ownership & Borrow Checking",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q3",
+      "id": "mock-java-beginner-t1-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes main method in Java?",
+      "prompt": "In Go concurrency, what is the purpose of a `select` block operating over multiple channels?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "the JVM entry point uses public static void main(String[] args)"
+          "id": "opt-1",
+          "text": "It freezes the program until all channels close permanently"
         },
         {
-          "id": "B",
-          "text": "a misspelled signature is not selected as the entry point"
+          "id": "opt-2",
+          "text": "It multiplexes blocking send/receive operations across channels, firing whichever channel is ready first (or a timeout/default branch)"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "It executes SQL queries directly against SQLite"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "It spawns OS kernel threads unconditionally"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "the JVM entry point uses public static void main(String[] args). Confirm the rule by compiling and running a minimal program.",
+      "explanation": "`select` lets goroutines coordinate timeouts, cancellations (`<-ctx.Done()`), and multi-channel events cleanly.",
       "difficulty": "beginner",
-      "topic": "main method",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Go Channels & `select`",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q4",
+      "id": "mock-java-beginner-t1-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes primitive types in Java?",
+      "prompt": "In Modern C++ (`std::unique_ptr`), what idiom ensures dynamic resources close deterministically even when an exception throws?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "primitive variables directly hold primitive values"
+          "id": "opt-1",
+          "text": "RAII (Resource Acquisition Is Initialization): resource lifetime is bound to stack-allocated object destructors"
         },
         {
-          "id": "B",
-          "text": "double is approximate and unsuitable for exact currency rules"
+          "id": "opt-2",
+          "text": "Manual paired `new`/`delete` calls before every `return` statement"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Using raw C-style `malloc()` without `free()`"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Suppressing exceptions with `catch (...) {}`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "primitive variables directly hold primitive values. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "RAII binds file handles, mutexes, and memory directly to object destructors triggered deterministically on scope exit.",
       "difficulty": "beginner",
-      "topic": "primitive types",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "RAII & Smart Pointers",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q5",
+      "id": "mock-java-beginner-t1-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes integer division in Java?",
+      "prompt": "In JVM / .NET (`Java`, `C#`), why is comparing two object/string contents with `==` often hazardous compared to `.Equals()` / `.equals()`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "division of two integers produces an integer result"
+          "id": "opt-1",
+          "text": "`.equals()` only checks memory addresses"
         },
         {
-          "id": "B",
-          "text": "casting only after integer division cannot restore the fraction"
+          "id": "opt-2",
+          "text": "Strings are value structs on the CPU stack in Java"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "`==` fails compilation in C#"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "`==` on reference types checks whether two pointers reference the same heap identity rather than comparing content equality"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "division of two integers produces an integer result. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Java String equality requires `.equals()` to compare characters reliably (as non-interned heap instances hold different references).",
       "difficulty": "beginner",
-      "topic": "integer division",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Identity vs Content Equality",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q6",
+      "id": "mock-java-beginner-t1-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes String equality in Java?",
+      "prompt": "What problem does `context.Context` solve cleanly across HTTP handlers and microservices in Go?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "String content is compared with equals"
+          "id": "opt-1",
+          "text": "Encrypting TLS handshake certificates"
         },
         {
-          "id": "B",
-          "text": "== compares object references rather than String content"
+          "id": "opt-2",
+          "text": "Preventing all integer overflows"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Propagating deadlines, timeouts, and cancellation signals down call chains so abandoned requests release DB/goroutine work immediately"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Replacing HTTP JSON encoding with XML"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "String content is compared with equals. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Passing `ctx` as the first parameter prevents goroutine leaks when clients disconnect early or RPCs exceed deadlines.",
       "difficulty": "beginner",
-      "topic": "String equality",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Cancellation & Context Propagation",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q7",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes parsing in Java?",
+      "id": "mock-java-beginner-t1-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which errors occur from unsafe manual pointer/buffer manipulation in C?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "parse methods convert valid text or throw on invalid text"
+          "id": "opt-1",
+          "text": "Automatic bounds expansion allocating RAM cleanly at runtime"
         },
         {
-          "id": "B",
-          "text": "parseInt does not accept arbitrary decimal text"
+          "id": "opt-2",
+          "text": "Buffer overflow writing past allocated array bounds (`strcpy` vs bounded `snprintf`)"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Use-after-free accessing heap pointers already passed to `free()`"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Null pointer dereference reading memory address `0x0`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2",
+        "opt-3",
+        "opt-4"
       ],
-      "explanation": "parse methods convert valid text or throw on invalid text. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "C gives zero implicit bounds checking; explicit length tracking and sanitizer tooling (ASan/UBSan) guard against memory corruption.",
       "difficulty": "beginner",
-      "topic": "parsing",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Memory Safety & C Pitfalls",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q8",
+      "id": "mock-java-beginner-t1-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes short circuit logic in Java?",
+      "prompt": "In C# / .NET asynchronous programming, why should `async void` methods generally be avoided except for top-level UI event handlers?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "&& and || may skip evaluation of the right operand"
+          "id": "opt-1",
+          "text": "Callers cannot `await` an `async void` method and unhandled exceptions inside it cannot be caught, crashing the process"
         },
         {
-          "id": "B",
-          "text": "using non-short-circuit operators can evaluate unsafe expressions"
+          "id": "opt-2",
+          "text": "`async Task` blocks UI threads synchronously"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "`async void` executes code twice"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "`Task` is deprecated in .NET 8+"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "&& and || may skip evaluation of the right operand. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Returning `Task` / `Task<T>` preserves awaitability, composable exception handling, and structured concurrency.",
       "difficulty": "beginner",
-      "topic": "short circuit logic",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Structured Async Programming",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q9",
+      "id": "mock-java-beginner-t1-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes if chains in Java?",
+      "prompt": "How do Go and Rust both avoid fragile `null` dereference surprises common in older languages?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "only the first matched branch of an if/else-if chain runs"
+          "id": "opt-1",
+          "text": "They convert null pointers automatically into `0`"
         },
         {
-          "id": "B",
-          "text": "separate if statements can execute overlapping branches"
+          "id": "opt-2",
+          "text": "They halt execution only in unit tests"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "They prohibit functions from returning values"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Go requires explicit multi-value `(val, err)` error checking; Rust uses exhaustive `Option<T>` and `Result<T, E>` enums verified by compiler"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "only the first matched branch of an if/else-if chain runs. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Explicit sum types (`Result`/`Option`) and `(val, err)` conventions prevent hidden null-pointer surprises.",
       "difficulty": "beginner",
-      "topic": "if chains",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Explicit Error Modeling",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q10",
+      "id": "mock-java-beginner-t1-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes switch in Java?",
+      "prompt": "In Java Streams and C# LINQ pipelines, what does 'deferred (lazy) execution' mean?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "switch is useful for finite discrete choices"
+          "id": "opt-1",
+          "text": "Data is dropped from memory randomly"
         },
         {
-          "id": "B",
-          "text": "switch does not replace range-oriented conditions cleanly"
+          "id": "opt-2",
+          "text": "Loops run backwards from last item to first"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Intermediate transformations (`filter`/`Where`, `map`/`Select`) do not evaluate elements until a terminal operation (`collect`/`ToList`) iterates the sequence"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Queries wait 5 seconds before returning"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "switch is useful for finite discrete choices. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Lazy evaluation fuses pipeline stages into a single traversal without allocating intermediate lists at every step.",
       "difficulty": "beginner",
-      "topic": "switch",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Lazy Stream & LINQ Pipelines",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q11",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes arrays in Java?",
+      "id": "mock-java-beginner-t1-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "What dangerous undefined behavior occurs in C if a function returns the address of a local array (`int buf[10]; return buf;`)?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "arrays have fixed length and zero-based indexes"
+          "id": "opt-1",
+          "text": "C automatically promotes stack arrays to garbage-collected heap memory"
         },
         {
-          "id": "B",
-          "text": "access at index length throws an exception"
+          "id": "opt-2",
+          "text": "The array values are frozen permanently as read-only constants"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Compilers convert local arrays to global static variables implicitly"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "The local array resides on the function's stack frame, which is popped on return—leaving a dangling pointer to overwritten memory"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "arrays have fixed length and zero-based indexes. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Never return pointers to stack-local storage; pass caller-owned output buffers (`out_len`) or heap-allocate with clear ownership.",
       "difficulty": "beginner",
-      "topic": "arrays",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Dangling Stack Pointers",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q12",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes enhanced for in Java?",
+      "id": "mock-java-beginner-t1-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does `StringBuilder` outperform string `+` concatenation inside a 50,000-iteration loop in Java / C#?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "enhanced for iterates values without exposing indexes"
+          "id": "opt-1",
+          "text": "StringBuilder bypasses garbage collection completely via direct disk I/O"
         },
         {
-          "id": "B",
-          "text": "assigning the loop variable does not replace an array element"
+          "id": "opt-2",
+          "text": "The `+` operator executes inside a synchronized global lock"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Strings are immutable; repeated `+` allocates O(n^2) temporary copies on the heap, whereas `StringBuilder` mutates a resizable buffer in amortized O(n)"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Strings cannot hold more than 255 characters"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "enhanced for iterates values without exposing indexes. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Accumulating strings via mutable builders eliminates quadratic heap churn and GC pressure.",
       "difficulty": "beginner",
-      "topic": "enhanced for",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Immutable String Allocation Cost",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q13",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes while loops in Java?",
+      "id": "mock-java-beginner-t1-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "In Go, spinning up 10,000 goroutines reading/writing an unguarded `map[string]int` panics at runtime (`fatal error: concurrent map read and map write`). Fix?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "while repeats while a boolean remains true"
+          "id": "opt-1",
+          "text": "Use global slice indexing without locks"
         },
         {
-          "id": "B",
-          "text": "missing progress can produce an infinite loop"
+          "id": "opt-2",
+          "text": "Protect map access with `sync.RWMutex`, use `sync.Map`, or funnel writes through a dedicated owner goroutine via channels"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Cast the map to `interface{}`"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Wrap calls in `defer recover()` assuming writes didn't corrupt memory"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "while repeats while a boolean remains true. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Built-in Go maps are intentionally non-thread-safe for zero-overhead single-goroutine speed and must be synchronized explicitly.",
       "difficulty": "beginner",
-      "topic": "while loops",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Concurrent Map Safety",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q14",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes methods in Java?",
+      "id": "mock-java-beginner-t1-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Look at this Rust snippet: `let s1 = String::from(\"twin\"); let s2 = s1; println!(\"{}\", s1);`. Why does `rustc` reject compilation?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "methods declare parameter and return contracts"
+          "id": "opt-1",
+          "text": "`s1` was moved into `s2` transferring heap ownership; using `s1` afterward would cause double-free/use-after-free unless borrowed (`&s1`) or `.clone()`ed"
         },
         {
-          "id": "B",
-          "text": "a void method cannot provide a result expression"
+          "id": "opt-2",
+          "text": "`println!` forbids printing Strings"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Rust Strings cannot exceed 4 characters"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "`let` bindings are write-only"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "methods declare parameter and return contracts. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Move semantics ensure a heap buffer has exactly one owner at any point unless shared explicitly via references or cloning.",
       "difficulty": "beginner",
-      "topic": "methods",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Move Semantics & Ownership Errors",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q15",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes pass by value in Java?",
+      "id": "mock-java-beginner-t1-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does calling `.Result` or `.Wait()` synchronously inside an ASP.NET Core / UI `async` request handler risk an immediate deadlock?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "Java copies every argument value during a call"
+          "id": "opt-1",
+          "text": "`.Wait()` automatically deletes all HTTP cookies"
         },
         {
-          "id": "B",
-          "text": "reassigning a parameter does not reassign the caller variable"
+          "id": "opt-2",
+          "text": "Async methods cannot execute inside controllers"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "C# disables TCP ports during `.Result` calls"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Blocking a thread waiting on an incomplete Task that captures/needs that exact synchronization context freezes both caller and continuation"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "Java copies every argument value during a call. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Follow 'async all the way' using `await` instead of blocking synchronously on asynchronous Tasks.",
       "difficulty": "beginner",
-      "topic": "pass by value",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Async-Over-Sync Deadlocks",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q16",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes encapsulation in Java?",
+      "id": "mock-java-beginner-t1-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A high-throughput network proxy needs to aggregate results concurrently from 5 backend microservices while aborting pending RPCs cleanly if overall deadline exceeds 250ms. Which pattern achieves this?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "private state is changed through invariant-preserving behavior"
+          "id": "opt-1",
+          "text": "Loop sequentially over the 5 services with 10-second socket timeouts each"
         },
         {
-          "id": "B",
-          "text": "public mutable fields allow invalid states"
+          "id": "opt-2",
+          "text": "Spawn detached background threads ignoring cancellation indefinitely"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Cache responses globally ignoring URL paths"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Pass a deadline-bounded `context.WithTimeout` / `CancellationToken` into parallel worker tasks and aggregate via channel/Task.WhenAll"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "private state is changed through invariant-preserving behavior. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Structured fan-out with timeout cancellation limits tail latency and prevents orphaned zombie workers.",
       "difficulty": "beginner",
-      "topic": "encapsulation",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Bounded Fan-Out & Timeouts",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q17",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes static in Java?",
+      "id": "mock-java-beginner-t1-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You must process a 20M-element array in C++/Rust safely without allocating extra O(n) copies on the heap. What representation provides zero-copy windowing over contiguous memory?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "static members belong to the class rather than one instance"
+          "id": "opt-1",
+          "text": "Convert integers to boxed strings"
         },
         {
-          "id": "B",
-          "text": "static code cannot directly use instance fields without an object"
+          "id": "opt-2",
+          "text": "Write segments to temporary disk files"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Pass read-only views/slices (`std::span<const T>` in C++, `&[T]` in Rust, `ReadOnlySpan<T>` in C#)"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Clone the entire array into new `vector`/`Vec` instances per recursive call"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "static members belong to the class rather than one instance. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Slices/Spans bundle `(pointer, length)` without copying backing storage, enabling fast, bounds-checked zero-copy slicing.",
       "difficulty": "beginner",
-      "topic": "static",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Zero-Copy Slices & Spans",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q18",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes List in Java?",
+      "id": "mock-java-beginner-t1-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A Java/C# REST service creates a fresh `HttpClient` instance inside every controller request loop, leading to `SocketException` port exhaustion under load. Why?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "List preserves order and allows duplicates"
+          "id": "opt-1",
+          "text": "DNS resolution disables network cards after 50 lookups"
         },
         {
-          "id": "B",
-          "text": "removing during enhanced iteration can cause concurrent modification"
+          "id": "opt-2",
+          "text": "Closing transient `HttpClient`s leaves OS TCP sockets lingering in `TIME_WAIT`; share pooled clients (`IHttpClientFactory` / singleton `HttpClient`)"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "TCP sockets support only 10 requests per process lifetime"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "HTTP requests should use raw UDP datagrams instead"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "List preserves order and allows duplicates. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Reusing pooled connection managers preserves TCP keep-alive connections and prevents ephemeral port exhaustion.",
       "difficulty": "beginner",
-      "topic": "List",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "HTTP Socket & Pool Management",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q19",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes Map in Java?",
+      "id": "mock-java-beginner-t1-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "How can C/C++ build pipelines catch subtle undefined behavior, out-of-bounds reads, and memory leaks reliably during automated CI testing?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "Map associates unique keys with values"
+          "id": "opt-1",
+          "text": "Compile and run unit tests under AddressSanitizer (`-fsanitize=address,undefined`) and `-Wall -Wextra -Werror`"
         },
         {
-          "id": "B",
-          "text": "get on a missing key commonly returns null"
+          "id": "opt-2",
+          "text": "Pass `-w` to silence all compiler diagnostics"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Test only release `-O3` binaries manually once per year"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Disable return code assertions in tests"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "Map associates unique keys with values. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Sanitizers (ASan/UBSan/TSan) detect out-of-bounds access, use-after-free, and data races reliably during test runs.",
       "difficulty": "beginner",
-      "topic": "Map",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Sanitizer-Backed Verification",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     },
     {
-      "id": "mock-java-beginner-test-01-q20",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes Set in Java?",
+      "id": "mock-java-beginner-t1-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An enterprise billing engine requires deterministic rounding to exact cents without IEEE-754 binary floating-point drift (`0.1 + 0.2 = 0.30000000000000004`). What type must hold currency?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "Set retains unique elements"
+          "id": "opt-1",
+          "text": "`float` (32-bit IEEE binary float)"
         },
         {
-          "id": "B",
-          "text": "Set does not provide positional indexing"
+          "id": "opt-2",
+          "text": "`double` formatted purely with `printf` on output"
         },
         {
-          "id": "C",
-          "text": "The JVM chooses behavior randomly"
+          "id": "opt-3",
+          "text": "Unvalidated arbitrary strings concatenated with `$`"
         },
         {
-          "id": "D",
-          "text": "It requires an external paid library"
+          "id": "opt-4",
+          "text": "Integer minor units (cents `int64`) or fixed-point decimal types (`BigDecimal` in Java, `decimal` in C#)"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "Set retains unique elements. Confirm the rule by compiling and running a minimal program.",
+      "explanation": "Binary floats cannot represent base-10 fractions accurately; financial calculations demand integer cents or arbitrary decimal types.",
       "difficulty": "beginner",
-      "topic": "Set",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-java-beginner-module-1-l1",
-      "recommendedLessonTitle": "JDK, Compilation, and Program Structure"
+      "topic": "Exact Numeric Precision",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "How do you execute graceful server shutdown on `SIGTERM` in a Go/Java/Node microservice so open requests drain cleanly before process exit?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Call `os.Exit(1)` immediately dropping active client sockets"
+        },
+        {
+          "id": "opt-2",
+          "text": "Ignore OS shutdown signals completely until forced SIGKILL"
+        },
+        {
+          "id": "opt-3",
+          "text": "Delete local config files during shutdown"
+        },
+        {
+          "id": "opt-4",
+          "text": "Listen for `SIGINT`/`SIGTERM`, stop accepting new connections via `server.Shutdown(ctx)` with a bounded timeout, flush logs/DB pools, then exit `0`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Graceful shutdown prevents failed 502 responses and partial database mutations during container rolling updates.",
+      "difficulty": "beginner",
+      "topic": "Graceful Signal Handling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When building a Dependency Injection friendly service in C#/Java/Go, why accept interfaces (abstractions) instead of concrete DB drivers in constructor signatures?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Concrete classes forbid method signatures"
+        },
+        {
+          "id": "opt-2",
+          "text": "Interfaces bypass TCP serialization automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Services decouple business rules from storage infrastructure, allowing fast deterministic unit tests using in-memory fakes/mocks"
+        },
+        {
+          "id": "opt-4",
+          "text": "Interfaces compile code 100x faster than structs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Dependence on abstractions supports clean unit testing, swapping stores, and enforcing boundary separation.",
+      "difficulty": "beginner",
+      "topic": "Dependency Inversion & Testing",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "In C++, which modern smart pointer represents exclusive single ownership of a heap object with zero reference-counting overhead?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`std::auto_ptr` (removed in C++17)"
+        },
+        {
+          "id": "opt-2",
+          "text": "`std::unique_ptr<T>` created via `std::make_unique<T>(...)`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`raw T*` deleted manually inside finalizers"
+        },
+        {
+          "id": "opt-4",
+          "text": "`void*` cast inside C macros"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "`std::unique_ptr` imposes zero runtime size/ref-count overhead over raw pointers while enforcing RAII cleanup.",
+      "difficulty": "beginner",
+      "topic": "Smart Pointer Ownership",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When reading an untrusted configuration JSON/YAML file in Rust (`Result<Config, Error>`), what clean operator propagates errors upward safely without panicking on `.unwrap()`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "The `?` operator propagating `Err(e)` directly back to the caller"
+        },
+        {
+          "id": "opt-2",
+          "text": "Calling `.unwrap()` on every line in production handlers"
+        },
+        {
+          "id": "opt-3",
+          "text": "Using `unsafe { std::mem::transmute(...) }`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Silently dropping error enums via `let _ =`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Using `?` cleanly returns recoverable `Result` errors up the stack instead of aborting processes via `.unwrap()` panics.",
+      "difficulty": "beginner",
+      "topic": "Idiomatic Error Propagation (`?`)",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which standard practice avoids buffer overflow when formatting bounded strings into a stack buffer `char buf[64]` in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Use `gets(buf)` reading arbitrarily from stdin"
+        },
+        {
+          "id": "opt-2",
+          "text": "Use `strcat` repeatedly hoping inputs remain small"
+        },
+        {
+          "id": "opt-3",
+          "text": "Turn off compiler warnings"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use `snprintf(buf, sizeof(buf), \"%s\", src)` checking return truncation length rather than unbounded `sprintf` or `strcpy`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Bounded string primitives like `snprintf` guarantee NUL-termination within exact allocated buffer sizes.",
+      "difficulty": "beginner",
+      "topic": "Bounded C String Safety",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "An order service saves an order to Postgres and publishes a confirmation message to Kafka. If Postgres commits yet Kafka crashes midway, events become lost. What architectural pattern solves this reliably?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Send the Kafka event first before checking DB constraints"
+        },
+        {
+          "id": "opt-2",
+          "text": "Wrap HTTP calls in a `try/catch` printing `'retry later'`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Drop database transactions completely"
+        },
+        {
+          "id": "opt-4",
+          "text": "Transactional Outbox Pattern: persist order + outbox event row atomically in the same DB transaction, then relay outbox asynchronously with idempotency"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "The Outbox pattern guarantees at-least-once event delivery atomically coupled to local database state without fragile two-phase distributed commits.",
+      "difficulty": "beginner",
+      "topic": "Distributed Consistency & Outbox",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A downstream payment gateway begins hanging for 30s per call, backing up worker pools across the whole platform (cascading failure). Which resilience pattern isolates this immediately?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Remove timeout bounds waiting forever"
+        },
+        {
+          "id": "opt-2",
+          "text": "Scale worker memory to 512GB"
+        },
+        {
+          "id": "opt-3",
+          "text": "Deploy strict client timeouts paired with a Circuit Breaker failing fast when error rate crosses threshold"
+        },
+        {
+          "id": "opt-4",
+          "text": "Retry failing requests 50 times synchronously inside the user request handler"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Timeouts + Circuit Breakers shed load quickly when a downstream dependency degrades, preserving core system responsiveness.",
+      "difficulty": "beginner",
+      "topic": "Circuit Breakers & Fault Isolation",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
+    },
+    {
+      "id": "mock-java-beginner-t1-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "High-concurrency distributed microservices generate trace logs across 8 hops per checkout request. How do engineers correlate a single user's error end-to-end across servers?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Disable production error logging"
+        },
+        {
+          "id": "opt-2",
+          "text": "Propagate a distributed `traceparent` / Correlation Request ID header across all RPCs and attach it to structured JSON logs and spans (OpenTelemetry)"
+        },
+        {
+          "id": "opt-3",
+          "text": "SSH manually into 40 containers grepping timestamps by hand"
+        },
+        {
+          "id": "opt-4",
+          "text": "Log plain unstructured strings without request IDs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "OpenTelemetry trace context propagation links logs, metrics, and latency spans across service boundaries instantaneously.",
+      "difficulty": "beginner",
+      "topic": "Distributed Tracing & Observability",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Java"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.037Z",
-  "updatedAt": "2026-11-01T15:37:41.037Z"
+  "createdAt": "2026-11-11T05:58:29.156Z",
+  "updatedAt": "2026-11-11T05:58:29.156Z"
 }

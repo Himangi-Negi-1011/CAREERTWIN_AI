@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official C Programming Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "C Language Standard Reference (cppreference)",
+      "organization": "ISO/IEC 9899 Reference",
+      "url": "https://en.cppreference.com/w/c",
       "retrievedAt": "2026-11-01T15:37:40.756Z",
       "reviewStatus": "curated"
     }

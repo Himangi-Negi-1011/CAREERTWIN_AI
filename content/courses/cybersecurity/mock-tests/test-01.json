@@ -7,155 +7,1027 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Cybersecurity BEGINNER Comprehensive Mock Test 1",
-  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for Cybersecurity.",
-  "durationMinutes": 30,
-  "totalMarks": 9,
+  "title": "Cybersecurity 100-Mark Professional Mock Examination (Test 1)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Vulnerability Assessment",
-    "Defensive Engineering",
-    "Access Control & Identity",
-    "Cryptography Foundations"
+    "CIA Triad Foundations",
+    "Credential Hashing & Salting",
+    "Cryptography Distinctions",
+    "OWASP Injection Defense",
+    "PKI & TLS Certificate Trust",
+    "Web Session Security",
+    "Security Architecture Principles",
+    "Access Control & Authorization",
+    "Incident Response Lifecycle",
+    "Browser Security Headers",
+    "Authorization Bypass / IDOR Triage",
+    "SOC Access Log Triage",
+    "Token Storage Security",
+    "Cross-Site Scripting (XSS) Prevention",
+    "Timing Attacks & Constant-Time Checks",
+    "Incident Containment & Forensics",
+    "Mitigating Credential Stuffing",
+    "Webhook Signature Verification",
+    "Secure File Upload Architecture",
+    "Secret Management in Full-Stack Apps",
+    "Host Firewall Hardening",
+    "SSRF Mitigation",
+    "HMAC Payload Integrity",
+    "Secure Audit Logging",
+    "JWT Verification Hardening",
+    "Zero-Trust Architecture",
+    "Database Multi-Tenancy & RLS",
+    "STRIDE Threat Modeling"
   ],
   "questions": [
     {
       "id": "mock-cybersecurity-beginner-t1-q1",
-      "type": "scenario",
-      "prompt": "During a vulnerability scan, a web server responds to requests containing '../../etc/passwd'. What vulnerability does this indicate?",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which security property guarantees that sensitive payload data has NOT been altered or tampered with during transit or storage?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Path Traversal (Directory Traversal)"
+          "text": "Confidentiality"
         },
         {
           "id": "opt-2",
-          "text": "Cross-Site Request Forgery (CSRF)"
+          "text": "Availability"
         },
         {
           "id": "opt-3",
-          "text": "Server-Side Request Forgery (SSRF)"
+          "text": "Usability"
         },
         {
           "id": "opt-4",
-          "text": "Insecure Direct Object Reference (IDOR)"
+          "text": "Integrity"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "The CIA Triad consists of Confidentiality (secrecy), Integrity (trustworthy/unaltered data via HMAC/hashes), and Availability (uptime).",
+      "difficulty": "beginner",
+      "topic": "CIA Triad Foundations",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q2",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Why must password storage use slow, salted, memory-hard hashing (Argon2id or bcrypt) instead of fast SHA-256?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Web frameworks crash when comparing 64-character hex strings"
+        },
+        {
+          "id": "opt-2",
+          "text": "Argon2 hashes never require storage in databases"
+        },
+        {
+          "id": "opt-3",
+          "text": "General-purpose hashes like SHA-256 run at billions of guesses/second on GPUs; slow salted hashes resist brute-force and rainbow tables"
+        },
+        {
+          "id": "opt-4",
+          "text": "SHA-256 output is reversible back to plaintext mathematically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Password hashing requires deliberately high computational & memory work factors plus per-user cryptographic salts.",
+      "difficulty": "beginner",
+      "topic": "Credential Hashing & Salting",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What is the primary difference between Encoding (e.g., Base64), Hashing (SHA-256), and Encryption (AES-256-GCM)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "All three terms are exact cryptographic synonyms"
+        },
+        {
+          "id": "opt-2",
+          "text": "Encoding transforms format reversibly without keys; Hashing is one-way fixed digest; Encryption provides confidentiality via secret keys"
+        },
+        {
+          "id": "opt-3",
+          "text": "Base64 protects passwords safely when transmitted over plaintext HTTP"
+        },
+        {
+          "id": "opt-4",
+          "text": "AES-256 destroys original plaintext irreversibly"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Confusing encoding with encryption is a critical vulnerability—anyone can decode Base64 without credentials.",
+      "difficulty": "beginner",
+      "topic": "Cryptography Distinctions",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which defense eliminates SQL Injection (SQLi) vulnerabilities cleanly at the root architectural level?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Parameterized queries / prepared statements separating SQL commands from bound literal inputs"
+        },
+        {
+          "id": "opt-2",
+          "text": "Blacklisting the uppercase word 'SELECT' via frontend regex"
+        },
+        {
+          "id": "opt-3",
+          "text": "Encrypting the hard drive volume with BitLocker"
+        },
+        {
+          "id": "opt-4",
+          "text": "Enabling gzip HTTP compression on API responses"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Path traversal allows attackers to read arbitrary files on the server by stepping up directories using dot-dot-slash patterns.",
+      "explanation": "Parameterized statements ensure the DB parser treats user inputs strictly as data values, never executable SQL grammar.",
       "difficulty": "beginner",
-      "topic": "Vulnerability Assessment",
+      "topic": "OWASP Injection Defense",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cybersecurity"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
     },
     {
-      "id": "mock-cybersecurity-beginner-t1-q2",
-      "type": "multiple-select",
-      "prompt": "Which defensive measures protect against SQL Injection vulnerabilities?",
+      "id": "mock-cybersecurity-beginner-t1-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "In TLS (HTTPS), how do browsers verify the authenticity of a server's public key certificate?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Parameterized queries (prepared statements)"
+          "text": "By calling the site owner over DNS UDP port 53"
         },
         {
           "id": "opt-2",
-          "text": "Object-Relational Mapping (ORM) with parameterized bindings"
+          "text": "By accepting any self-signed key blindly during TLS 1.3 handshake"
         },
         {
           "id": "opt-3",
-          "text": "Strict input validation against allowlists"
+          "text": "By hashing the favicon image"
         },
         {
           "id": "opt-4",
-          "text": "Client-side alert boxes warning users not to type quotes"
+          "text": "By validating its cryptographic signature chain back to a trusted root Certificate Authority (CA), checking domain SAN and expiration"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "PKI chain-of-trust validation prevents active Man-in-the-Middle impersonation attacks.",
+      "difficulty": "beginner",
+      "topic": "PKI & TLS Certificate Trust",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which protections defend session cookies against hijacking and Cross-Site Scripting (XSS) theft?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`SameSite=Lax` or `Strict` mitigating CSRF cross-origin submissions"
+        },
+        {
+          "id": "opt-2",
+          "text": "Storing raw session IDs directly inside URL query strings"
+        },
+        {
+          "id": "opt-3",
+          "text": "`HttpOnly` flag blocking `document.cookie` JavaScript access"
+        },
+        {
+          "id": "opt-4",
+          "text": "`Secure` flag ensuring transmission strictly over HTTPS"
         }
       ],
       "correctOptionIds": [
         "opt-1",
-        "opt-2",
+        "opt-3",
+        "opt-4"
+      ],
+      "explanation": "Hardened session cookies combine HttpOnly, Secure, and SameSite flags to shut down JS exfiltration and CSRF.",
+      "difficulty": "beginner",
+      "topic": "Web Session Security",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What security principle defines 'Defense in Depth'?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Running every internal container with full root privileges"
+        },
+        {
+          "id": "opt-2",
+          "text": "Layering multiple independent preventive, detective, and corrective security controls so single-control failure does not lead to breach"
+        },
+        {
+          "id": "opt-3",
+          "text": "Relying strictly on a strong outer edge perimeter firewall with zero internal auth"
+        },
+        {
+          "id": "opt-4",
+          "text": "Hiding application source files inside proprietary binary encodings"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Defense in depth combines WAF, TLS, MFA, RBAC, input sanitization, network segmentation, and SIEM monitoring.",
+      "difficulty": "beginner",
+      "topic": "Security Architecture Principles",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which vulnerability occurs when an application modifies an authorization parameter (e.g., `/api/orders/1002` instead of `/api/orders/1001`) without verifying object ownership server-side?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Broken Object Level Authorization (IDOR / BOLA)"
+        },
+        {
+          "id": "opt-2",
+          "text": "DNS Cache Poisoning"
+        },
+        {
+          "id": "opt-3",
+          "text": "ARP Spoofing"
+        },
+        {
+          "id": "opt-4",
+          "text": "Stack Buffer Smashing"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "IDOR (Insecure Direct Object Reference / OWASP API1 BOLA) occurs whenever backend routes fail to assert `record.ownerId === authenticatedUserId`.",
+      "difficulty": "beginner",
+      "topic": "Access Control & Authorization",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "In NIST Incident Response (SP 800-61), which phase follows 'Detection & Analysis' to stop a compromised host from spreading malware laterally?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Preparation only"
+        },
+        {
+          "id": "opt-2",
+          "text": "Rebooting and deleting all audit logs"
+        },
+        {
+          "id": "opt-3",
+          "text": "Archiving user accounts publicly"
+        },
+        {
+          "id": "opt-4",
+          "text": "Containment, Eradication & Recovery"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "NIST IR lifecycle: Preparation -> Detection & Analysis -> Containment, Eradication & Recovery -> Post-Incident Activity.",
+      "difficulty": "beginner",
+      "topic": "Incident Response Lifecycle",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which HTTP header restricts which JavaScript origins, script nonces, and frames a browser is allowed to load/execute, mitigating XSS?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Cache-Control: public"
+        },
+        {
+          "id": "opt-2",
+          "text": "Accept-Encoding: gzip"
+        },
+        {
+          "id": "opt-3",
+          "text": "Content-Security-Policy (CSP)"
+        },
+        {
+          "id": "opt-4",
+          "text": "X-Powered-By"
+        }
+      ],
+      "correctOptionIds": [
         "opt-3"
       ],
-      "explanation": "Parameterized queries separate SQL structure from data, completely neutralizing malicious query injection.",
+      "explanation": "Strict CSP policies block inline unsafe scripts and restrict external script hosts, providing robust secondary XSS defense.",
       "difficulty": "beginner",
-      "topic": "Defensive Engineering",
+      "topic": "Browser Security Headers",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Examine this Express/Node handler. Identify the critical security flaw enabling account takeover or unauthorized record reads:",
+      "codeSnippet": "app.get(\"/api/invoices/:id\", requireAuth, async (req, res) => {\n  const invoice = await db.invoices.findUnique({ where: { id: req.params.id } });\n  return res.json(invoice);\n});",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Async handlers are unsupported in Express"
+        },
+        {
+          "id": "opt-2",
+          "text": "GET endpoints cannot take path parameters like `:id`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Returning JSON breaks TLS transport encryption"
+        },
+        {
+          "id": "opt-4",
+          "text": "Missing ownership check: `requireAuth` checks login, not whether `invoice.userId === req.auth.userId` (IDOR vulnerability)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Authentication (Who are you?) is distinct from Authorization (Do you own invoice `:id`?). Always scope DB queries by `AND user_id = authenticatedUserId`.",
+      "difficulty": "beginner",
+      "topic": "Authorization Bypass / IDOR Triage",
       "marks": 3,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cybersecurity"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
     },
     {
-      "id": "mock-cybersecurity-beginner-t1-q3",
-      "type": "single-choice",
-      "prompt": "What is the primary objective of the Principle of Least Privilege (PoLP)?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Every user and service is granted only the minimum permissions necessary to perform their legitimate tasks."
-        },
-        {
-          "id": "opt-2",
-          "text": "All users are assigned administrative privileges to prevent operational bottlenecks."
-        },
-        {
-          "id": "opt-3",
-          "text": "Password complexity requirements are reduced for internal network users."
-        },
-        {
-          "id": "opt-4",
-          "text": "Firewalls are configured to allow all outbound traffic unconditionally."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Least privilege limits blast radius: if an identity is compromised, an attacker cannot pivot beyond that identity's minimal permissions.",
-      "difficulty": "beginner",
-      "topic": "Access Control & Identity",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Cybersecurity"
-    },
-    {
-      "id": "mock-cybersecurity-beginner-t1-q4",
+      "id": "mock-cybersecurity-beginner-t1-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
       "type": "debugging",
-      "prompt": "Why is base64 encoding NOT considered an encryption mechanism?",
+      "prompt": "Analyze this log excerpt from a reverse proxy. Which threat activity is clearly shown?",
+      "codeSnippet": "203.0.113.88 - POST /api/login 401 (12ms)\n203.0.113.88 - POST /api/login 401 (11ms)\n203.0.113.88 - GET /search?q=1' UNION SELECT null,password FROM users-- 500",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Healthy health-check probes from AWS Elastic Load Balancer"
+        },
+        {
+          "id": "opt-2",
+          "text": "Normal browser TLS session resumption"
+        },
+        {
+          "id": "opt-3",
+          "text": "Automated credential stuffing / brute-force attempts followed by SQL Injection reconnaissance targeting `users` table"
+        },
+        {
+          "id": "opt-4",
+          "text": "Standard search engine crawler indexing public FAQ pages"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Rapid repeated HTTP 401 failures from a single IP combined with `UNION SELECT` query payloads indicate active offensive probing.",
+      "difficulty": "beginner",
+      "topic": "SOC Access Log Triage",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Identify why storing JWT access tokens inside `window.localStorage` increases risk compared to `HttpOnly` Secure cookies:",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Base64 is an encoding scheme with no secret cryptographic key; anyone can decode it instantly without credentials."
+          "text": "JWTs cannot contain JSON claims when placed inside storage"
         },
         {
           "id": "opt-2",
-          "text": "Base64 uses 128-bit keys which are easily brute-forced."
+          "text": "Any Cross-Site Scripting (XSS) payload or malicious third-party npm analytics script can read `localStorage` directly; `HttpOnly` cookies cannot be read by JS"
         },
         {
           "id": "opt-3",
-          "text": "Base64 only works on ASCII text."
+          "text": "`localStorage` deletes all entries every 5 seconds automatically"
         },
         {
           "id": "opt-4",
-          "text": "Base64 is a proprietary hashing algorithm."
+          "text": "Browsers strip `localStorage` on HTTPS origins"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "`HttpOnly` cookies isolate credentials completely from DOM JavaScript access.",
+      "difficulty": "beginner",
+      "topic": "Token Storage Security",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does `dangerouslySetInnerHTML={{ __html: userBio }}` without sanitization expose users to Stored XSS?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Malicious `<img onerror=...>` or `<script>` strings stored in `userBio` execute arbitrary JavaScript in every viewer's authenticated session"
+        },
+        {
+          "id": "opt-2",
+          "text": "React automatically escapes HTML inside `dangerouslySetInnerHTML`"
+        },
+        {
+          "id": "opt-3",
+          "text": "It sends user passwords directly to browser console"
+        },
+        {
+          "id": "opt-4",
+          "text": "It converts JSON into XML schemas"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Encoding transforms data representation for transport. Encryption requires secret keys and mathematical algorithms (AES, RSA) to ensure confidentiality.",
+      "explanation": "Bypassing React's default DOM text escaping renders raw user HTML unless scrubbed strictly with a sanitizer like DOMPurify.",
       "difficulty": "beginner",
-      "topic": "Cryptography Foundations",
-      "marks": 2,
+      "topic": "Cross-Site Scripting (XSS) Prevention",
+      "marks": 3,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Cybersecurity"
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Notice this authentication comparison: `if (providedSignature === expectedSignature)`. Why might high-precision benchmarks warn against `===` for HMAC secrets?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Triple equals ignores string casing"
+        },
+        {
+          "id": "opt-2",
+          "text": "HMAC signatures must be compared alphabetically via `<`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Strict equality throws errors on hexadecimal characters"
+        },
+        {
+          "id": "opt-4",
+          "text": "Standard short-circuit string equality leaks comparison progress timing byte-by-byte; use `crypto.timingSafeEqual()`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Constant-time comparison (`crypto.timingSafeEqual`) mitigates cryptographic timing side-channel attacks.",
+      "difficulty": "beginner",
+      "topic": "Timing Attacks & Constant-Time Checks",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "During an active ransomware outbreak inside one VLAN subnet, what is the FIRST containment action after verifying compromise?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Format every server hard drive immediately destroying forensic timeline logs"
+        },
+        {
+          "id": "opt-2",
+          "text": "Disable all logging daemons across the organization"
+        },
+        {
+          "id": "opt-3",
+          "text": "Pay ransom immediately before analyzing scope or backups"
+        },
+        {
+          "id": "opt-4",
+          "text": "Isolate the infected hosts/VLAN via network ACL/EDR quarantine while preserving volatile memory/disk forensic evidence rather than wiping immediately"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Containment stops lateral encryption/exfiltration immediately while preserving artifacts for root-cause investigation.",
+      "difficulty": "beginner",
+      "topic": "Incident Containment & Forensics",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "Your public authentication endpoints receive automated credential stuffing from a distributed botnet of 10,000 rotating IPs. Blocking single IPs fails. What layered controls mitigate the attack?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Lock accounts permanently forever after 1 single mistyped character (causing attacker-triggered DoS)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Switch logins to HTTP GET query parameters"
+        },
+        {
+          "id": "opt-3",
+          "text": "Apply per-account sliding-window rate limits, breached-password screening, step-up MFA, and risk-based WAF challenges"
+        },
+        {
+          "id": "opt-4",
+          "text": "Remove password length requirements to speed logins"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Combining rate-limiting, credential-breach checks, MFA, and progressive backoff foils botnets without causing easy account lockouts.",
+      "difficulty": "beginner",
+      "topic": "Mitigating Credential Stuffing",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An internal microservice verifies webhook callbacks from Stripe. What stops attackers from forging fake 'payment_succeeded' requests?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Trust incoming HTTP `Origin` header alone"
+        },
+        {
+          "id": "opt-2",
+          "text": "Cryptographically verify the signed HMAC timestamped signature header against the shared webhook secret before parsing side effects"
+        },
+        {
+          "id": "opt-3",
+          "text": "Check if `User-Agent` contains the string `'Stripe'`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Allow any POST containing `\"paid\": true` inside JSON"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "User-Agent and headers are trivially spoofed. Signed HMAC + timestamp replay tolerance guarantees webhook authenticity.",
+      "difficulty": "beginner",
+      "topic": "Webhook Signature Verification",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A user uploads a profile avatar image to an S3-backed portal. What upload hardening protects your backend from Remote Code Execution (RCE) and XSS?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Validate magic bytes, enforce strict size/MIME allowlist, rename files to random UUIDs, serve from an isolated domain with `Content-Disposition: attachment` or `nosniff`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Check only `file.name.endsWith('.png')` and store into `/var/www/public/uploads` executing server scripts"
+        },
+        {
+          "id": "opt-3",
+          "text": "Trust client browser `Content-Type` header blindly"
+        },
+        {
+          "id": "opt-4",
+          "text": "Allow arbitrary `.svg` scripts executed inline on the main origin"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Magic-byte validation, randomized keys, non-executable storage domains, and `X-Content-Type-Options: nosniff` defeat file-upload exploits.",
+      "difficulty": "beginner",
+      "topic": "Secure File Upload Architecture",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "To avoid Secret Leakage in CI/CD logs and frontend bundles in Next.js, what naming/deployment rule is strictly enforced?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Store secret API tokens inside `localStorage` during build"
+        },
+        {
+          "id": "opt-2",
+          "text": "Prefix all secrets with `NEXT_PUBLIC_` so SSR runs faster"
+        },
+        {
+          "id": "opt-3",
+          "text": "Commit `.env.local` into public Git history using Base64"
+        },
+        {
+          "id": "opt-4",
+          "text": "Never prefix sensitive keys (DB service role, AI API keys, signing secrets) with `NEXT_PUBLIC_`; access them strictly on server modules"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Any variable prefixed with `NEXT_PUBLIC_` is inlined verbatim into public browser JavaScript bundles.",
+      "difficulty": "beginner",
+      "topic": "Secret Management in Full-Stack Apps",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Configure an iptables / firewall drop rule blocking ongoing malicious SSH brute-force traffic from `198.51.100.77` on port 22:",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`iptables -A INPUT -s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`chmod 777 /etc/ssh/sshd_config`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`ping -c 100 198.51.100.77`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`iptables -I INPUT -s 198.51.100.77 -p tcp --dport 22 -j DROP`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Inserting (`-I INPUT`) a DROP rule targeting the specific source IP and port blocks subsequent probes immediately.",
+      "difficulty": "beginner",
+      "topic": "Host Firewall Hardening",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "You discover a Server-Side Request Forgery (SSRF) risk where users submit URLs for link previews. How must your backend fetch those URLs securely?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Reject URLs literally containing `'localhost'` as plain text (easily bypassed via 127.1 or IPv6 `::1`)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Pass user URL directly into shell `curl`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Allowlist HTTPS scheme only, resolve DNS first and block private/loopback/link-local CIDRs (127.0.0.0/8, 10.0.0.0/8, 169.254.169.254), and disable automatic redirects"
+        },
+        {
+          "id": "opt-4",
+          "text": "Check only `url.startsWith('http')` before calling `fetch(url)`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Robust SSRF defense checks the resolved IP address range against RFC 1918 / cloud metadata (`169.254.169.254`) and blocks unsafe HTTP redirects.",
+      "difficulty": "beginner",
+      "topic": "SSRF Mitigation",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which `openssl` or cryptographic approach confirms an integrity-checked webhook payload in Node.js?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`Math.random().toString(36)`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`crypto.createHmac('sha256', secret).update(rawBody).digest('hex')` verified via `crypto.timingSafeEqual`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`Buffer.from(body).toString('base64')`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`JSON.stringify(body).length === expectedLength`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "HMAC-SHA256 over the exact raw request body verified in constant time ensures both payload integrity and sender secret possession.",
+      "difficulty": "beginner",
+      "topic": "HMAC Payload Integrity",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When writing audit logs for security events (logins, role changes, deletions), which practice preserves forensic trust?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Write immutable structured logs (timestamp, actorId, action, IP, status) to append-only central SIEM storage WITHOUT logging plaintext passwords or secrets"
+        },
+        {
+          "id": "opt-2",
+          "text": "Log full raw JWTs and passwords inside `console.log` so engineers can debug faster"
+        },
+        {
+          "id": "opt-3",
+          "text": "Allow regular users to edit or delete their own audit log rows"
+        },
+        {
+          "id": "opt-4",
+          "text": "Store audit logs only inside ephemeral client browser memory"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Security logs must never record sensitive secrets/passwords and should stream to tamper-evident central logging.",
+      "difficulty": "beginner",
+      "topic": "Secure Audit Logging",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "An API enforces RBAC via JWT claims. Before honoring `role: 'admin'` inside the decoded payload, what MUST the server perform?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Decode middle Base64 payload segment using `JSON.parse(atob(...))` directly"
+        },
+        {
+          "id": "opt-2",
+          "text": "Read `role` from an additional hidden form field in the request body"
+        },
+        {
+          "id": "opt-3",
+          "text": "Accept unsigned JWTs when `alg: 'none'` is specified"
+        },
+        {
+          "id": "opt-4",
+          "text": "Verify cryptographic signature (`alg` allowlisted RS256/EdDSA, NOT `none`), `exp`, `iss`, and `aud` claims via trusted server verification"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Base64 JWT payloads can be freely forged by anyone; cryptographic verification against trusted public keys/secrets is mandatory.",
+      "difficulty": "beginner",
+      "topic": "JWT Verification Hardening",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "An enterprise migrates to Zero-Trust Network Architecture (ZTNA). How does service-to-service trust work compared to legacy castle-and-moat VPNs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "All traffic inside `10.0.0.0/8` trusts all internal servers without encryption or authentication"
+        },
+        {
+          "id": "opt-2",
+          "text": "Security teams share one static VPN certificate forever"
+        },
+        {
+          "id": "opt-3",
+          "text": "Firewall rules are disabled internally for faster RPC latency"
+        },
+        {
+          "id": "opt-4",
+          "text": "Every workload request is mutually authenticated (mTLS) and authorized per request using short-lived identity tokens, regardless of internal subnet origin"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Zero trust assumes compromise inside any network perimeter and mandates explicit authentication, encryption, and least privilege everywhere.",
+      "difficulty": "beginner",
+      "topic": "Zero-Trust Architecture",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A SaaS platform supports multiple tenant companies sharing PostgreSQL tables. How do you enforce multi-tenant data isolation at the database engine layer itself?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Increment numeric record IDs starting at 1 per client"
+        },
+        {
+          "id": "opt-2",
+          "text": "Disable WHERE filtering and drop unauthorized rows on the browser"
+        },
+        {
+          "id": "opt-3",
+          "text": "Enable PostgreSQL Row-Level Security (RLS) policies binding `tenant_id` to session context alongside backend ownership checks"
+        },
+        {
+          "id": "opt-4",
+          "text": "Hide records using CSS `display: none` in React components"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "PostgreSQL RLS enforces strict tenant isolation directly in the DB engine as defense-in-depth alongside API authorization.",
+      "difficulty": "beginner",
+      "topic": "Database Multi-Tenancy & RLS",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
+    },
+    {
+      "id": "mock-cybersecurity-beginner-t1-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "During threat modeling (STRIDE) for a new file-sharing feature, how do you systematically surface vulnerabilities before writing code?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Publish raw source code publicly hoping security researchers fix bugs"
+        },
+        {
+          "id": "opt-2",
+          "text": "Diagram trust boundaries and data flows, then evaluate Spoofing, Tampering, Repudiation, Information Disclosure, DoS, and Elevation of Privilege per flow"
+        },
+        {
+          "id": "opt-3",
+          "text": "Skip design review and rely purely on an automated linter after production launch"
+        },
+        {
+          "id": "opt-4",
+          "text": "Assume SSL/HTTPS automatically stops authorization bugs and business logic exploits"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "STRIDE threat modeling identifies architectural trust-boundary weaknesses before costly post-launch remediation.",
+      "difficulty": "beginner",
+      "topic": "STRIDE Threat Modeling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Cybersecurity"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:10.333Z",
-  "updatedAt": "2026-10-30T06:22:10.333Z"
+  "createdAt": "2026-11-11T05:58:25.056Z",
+  "updatedAt": "2026-11-11T05:58:25.056Z"
 }

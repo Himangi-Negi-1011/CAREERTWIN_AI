@@ -22,6 +22,8 @@
   "questions": [
     {
       "id": "phase-javascript-beginner-mod-2-q1",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about truthiness is valid?",
       "codeSnippet": "",
@@ -55,6 +57,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-2-q2",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about nullish coalescing is valid?",
       "codeSnippet": "",
@@ -88,6 +92,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-2-q3",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about optional chaining is valid?",
       "codeSnippet": "",
@@ -121,6 +127,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-2-q4",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about for of is valid?",
       "codeSnippet": "",
@@ -154,6 +162,8 @@
     },
     {
       "id": "phase-javascript-beginner-mod-2-q5",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about array map is valid?",
       "codeSnippet": "",

@@ -6,88 +6,107 @@
   "objectives": [
     {
       "id": "cloud-computing-obj-1",
-      "statement": "Understand foundational mental models and syntax of Cloud Computing",
+      "statement": "Understand foundational mental models and architecture of Cloud Computing",
       "order": 1
     },
     {
       "id": "cloud-computing-obj-2",
-      "statement": "Implement reliable patterns and error handling in Cloud Computing",
+      "statement": "Implement secure, reproducible solutions across real-world Cloud Computing tasks",
       "order": 2
     },
     {
       "id": "cloud-computing-obj-3",
-      "statement": "Apply Cloud Computing in production-ready real-world scenarios",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in Cloud Computing",
       "order": 3
     },
     {
       "id": "cloud-computing-obj-4",
-      "statement": "Evaluate security, performance, and best practices for Cloud Computing",
+      "statement": "Architect scalable enterprise workflows aligned with Cloud Computing industry best practices",
       "order": 4
     }
   ],
   "prerequisites": [
-    "Basic digital literacy and analytical reasoning"
+    "Basic understanding of operating systems and IP networking concepts",
+    "Familiarity with command-line terminals and HTTP web requests"
   ],
   "modules": [
     {
-      "id": "mod-1-foundations",
-      "title": "Module 1: Foundations & Core Concepts of Cloud Computing",
-      "summary": "Explore the fundamental concepts, terminology, and development workflow.",
+      "id": "mod-1-cloud-arch",
+      "title": "Module 1: Cloud Architecture & Core Service Models",
+      "summary": "Master cloud deployment topologies, IaaS/PaaS/SaaS responsibility boundaries, Regions vs Availability Zones, and elastic compute selection.",
       "order": 1,
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 90,
       "objectiveIds": [
         "cloud-computing-obj-1",
         "cloud-computing-obj-2"
       ],
       "lessonTitles": [
-        "Introduction to Cloud Computing",
-        "Core Syntax and Primitives in Cloud Computing"
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads"
       ],
-      "checkpoint": "Build a functional baseline demonstration verifying syntax and flow."
+      "checkpoint": "Classify cloud service workloads across IaaS, PaaS, Serverless, and Multi-AZ fault domains."
     },
     {
-      "id": "mod-2-application",
-      "title": "Module 2: Practical Implementation & Production Patterns",
-      "summary": "Deep dive into resilient design, test automation, and real-world deployment.",
+      "id": "mod-2-cloud-network-storage",
+      "title": "Module 2: Cloud Networking (VPC) & Storage Architectures",
+      "summary": "Configure VPC IPv4 CIDR plans, public/private subnet routing, Security Groups vs NACLs, Object Storage, and managed cloud databases.",
       "order": 2,
+      "estimatedMinutes": 90,
+      "objectiveIds": [
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3"
+      ],
+      "lessonTitles": [
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases"
+      ],
+      "checkpoint": "Calculate VPC subnet sizes and isolate database tiers safely from raw internet traffic."
+    },
+    {
+      "id": "mod-3-cloud-iam-finops",
+      "title": "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps",
+      "summary": "Author least-privilege IAM roles, OIDC keyless CI/CD pipelines, multi-AZ Auto Scaling policies, and cloud cost governance.",
+      "order": 3,
       "estimatedMinutes": 90,
       "objectiveIds": [
         "cloud-computing-obj-3",
         "cloud-computing-obj-4"
       ],
       "lessonTitles": [
-        "Production Patterns and Resilience in Cloud Computing",
-        "Capstone Lab: Verifiable Cloud Computing Implementation"
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
       ],
-      "checkpoint": "Complete a verifiable project applying defense-in-depth principles."
+      "checkpoint": "Refactor over-privileged policies cleanly and build fault-resilient auto-scaling rules."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic",
-    "Interactive boundary condition exercises",
-    "Production code review simulations"
+    "Audit and rewrite an overly permissive JSON IAM policy to strict least privilege",
+    "Design a Multi-AZ VPC CIDR subnet plan with public load balancers and private databases",
+    "Configure S3 lifecycle transition rules and CDN Origin Access Control headers"
   ],
   "assessmentCheckpoints": [
-    "Module 1 Knowledge Check (70% pass threshold)",
-    "Module 2 Production Readiness Evaluation"
+    "Module 1: Cloud Architecture & Core Service Models Checkpoint (70% pass threshold)",
+    "Module 2: Cloud Networking (VPC) & Storage Architectures Checkpoint (70% pass threshold)",
+    "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "Production-ready Cloud Computing portfolio module with automated test suite and documentation"
+    "Multi-Tier High-Availability Cloud Architecture Blueprint & Least-Privilege IAM Repository"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Submit verifiable implementation satisfying acceptance criteria"
+    "Explain the Shared Responsibility Model across IaaS, PaaS, and SaaS boundaries",
+    "Calculate VPC CIDR blocks and configure public/private subnet routing safely",
+    "Author leak-proof IAM policies enforcing least privilege and TLS encryption"
   ],
   "resources": [
     {
-      "title": "Official Cloud Computing Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
-      "retrievedAt": "2026-10-30T06:22:12.350Z",
+      "title": "AWS Cloud Architecture Center",
+      "organization": "Amazon Web Services",
+      "url": "https://docs.aws.amazon.com/",
+      "retrievedAt": "2026-11-11T05:58:16.023Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

@@ -11,7 +11,13 @@ import {
 export async function GET(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to view your job applications." } },
+        { status: 401 }
+      );
+    }
+    const userId = user.id;
 
     const { searchParams } = new URL(req.url);
     const format = searchParams.get("format");
@@ -58,7 +64,13 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to save job applications." } },
+        { status: 401 }
+      );
+    }
+    const userId = user.id;
 
     const body = await req.json();
     if (!body.company || !body.role || !body.status) {
@@ -81,7 +93,13 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to delete job applications." } },
+        { status: 401 }
+      );
+    }
+    const userId = user.id;
 
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");

@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Control Flow, Switches, and Boundaries",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Control Flow, Switches, and Boundaries."
+      "title": "Go Official Language Documentation",
+      "url": "https://go.dev/doc/",
+      "description": "Official reference documentation for Go."
     }
   ],
   "realWorldApplications": [

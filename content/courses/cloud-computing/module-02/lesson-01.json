@@ -1,197 +1,226 @@
 {
-  "lessonId": "mod-2-application-l1-production-patterns-and-resilience-in-cl",
+  "lessonId": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi",
   "skillName": "Cloud Computing",
-  "moduleId": "mod-2-application",
-  "title": "Production Patterns and Resilience in Cloud Computing",
-  "summary": "Comprehensive masterclass on Production Patterns and Resilience in Cloud Computing for Cloud Computing. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-2-cloud-network-storage",
+  "title": "Virtual Private Clouds (VPC), Subnets & Routing",
+  "summary": "Design multi-tier public and private VPC topologies using CIDR math, Internet Gateways, NAT Gateways, and stateful Security Groups.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 40,
   "learningObjectives": [
-    "Apply Cloud Computing in production-ready real-world scenarios",
-    "Evaluate security, performance, and best practices for Cloud Computing"
+    "Partition a VPC CIDR block into isolated public and private Availability Zone subnets",
+    "Trace packet flow cleanly through Internet Gateways, NAT Gateways, Security Groups, and Route Tables"
   ],
   "objectiveIds": [
-    "cloud-computing-obj-3",
-    "cloud-computing-obj-4"
+    "cloud-computing-obj-2",
+    "cloud-computing-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Cloud Computing environment setup"
+    "Basic IPv4 addressing concepts"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Production Patterns and Resilience in Cloud Computing",
-      "content": "Mastering Production Patterns and Resilience in Cloud Computing requires building an accurate conceptual model of how core principles operate and interact within the larger Cloud Computing domain. Every successful practitioner balances foundational theory with practical, verifiable execution.",
+      "id": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi-sec-1",
+      "heading": "1. Multi-Tier VPC Isolation & Packet Flow",
+      "content": "A Virtual Private Cloud (VPC) gives you a logically isolated virtual network (e.g., `10.0.0.0/16`). Security best practice isolates infrastructure tiers across Public Subnets (holding strictly Load Balancers and NAT Gateways routed to an Internet Gateway `0.0.0.0/0 -> igw-...`) and Private Subnets (holding Application nodes and Databases with NO direct public IP or route from the open internet).\n\nIf an application instance inside a private subnet needs to call external vendor APIs or download OS patches, its route table points `0.0.0.0/0` to a NAT Gateway residing in a public subnet—enabling outbound egress while blocking unsolicited inbound internet scans completely.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Core Framework for Production Patterns and Resilience in Cloud Computing\n\n1. **Define the Objective:** Identify the primary outcome and measurable criteria for success.\n2. **Deconstruct the Problem:** Break the domain challenge into independent, testable sub-components.\n3. **Execute & Iterate:** Apply targeted techniques and validate results against established standards.\n4. **Review & Refine:** Conduct root-cause analysis on deviations to drive continuous improvement.",
-          "explanation": "Systematic decomposition and objective verification ensure consistent, repeatable outcomes regardless of complexity.",
-          "expectedOutput": "Structured execution plan aligned with industry standards for Cloud Computing."
+          "language": "text",
+          "code": "Internet <--> [Internet Gateway] <--> Public Subnet (ALB + NAT Gateway)\n                                           | (Security Group: 443 allowed from ALB only)\n                                           v\n                                     Private App Subnet (ECS / EC2 App)\n                                           | (Security Group: 5432 allowed from App SG only)\n                                           v\n                                     Private DB Subnet (Managed PostgreSQL)",
+          "explanation": "Defense-in-depth subnet tiering keeps databases completely unreachable from public IP space.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Clear mental models prevent premature optimization and procedural errors.",
-        "Establish verifiable feedback loops early in the execution process.",
-        "Document core decisions and assumptions to facilitate review and scaling."
+        "Security Groups are stateful firewalls bound to instances/ENIs (allowing return packets automatically).",
+        "Network ACLs (NACLs) are stateless subnet boundaries filtering explicit inbound and outbound rules.",
+        "Never open database ports (`5432`, `3306`, `27017`) or SSH (`22`) to `0.0.0.0/0`."
       ],
       "commonMistakes": [
-        "Proceeding to execution without verifying requirements and boundary constraints.",
-        "Failing to measure outcomes against objective criteria."
+        "Launching PostgreSQL inside a public subnet with `0.0.0.0/0` access during initial setup and forgetting to close it."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In professional practice, resilient workflows adapt to operational constraints through structured checkpoints, risk mitigation strategies, and transparent peer review.",
+      "id": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi-sec-2",
+      "heading": "2. CIDR Capacity Math & Route Table Verification",
+      "content": "Before creating subnets, engineers validate host capacity using CIDR prefix length (`2^(32 - prefix)`). Always leave comfortable IP headroom in Kubernetes/container subnets so rolling upgrades can spawn surge pods before draining old ones.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Professional Workflow Checklist for Cloud Computing\n- [ ] Input Validation: Verify prerequisites and baseline data.\n- [ ] Execution: Implement core technique following best practices.\n- [ ] Verification: Test boundary cases and confirm alignment.\n- [ ] Sign-off: Document results and archive audit evidence.",
-          "explanation": "Standardized checklists and verification gates eliminate human omission errors in mission-critical workflows.",
-          "expectedOutput": "Verified artifact ready for production deployment or stakeholder review."
+          "language": "bash",
+          "code": "# Example VPC Allocation Plan (10.0.0.0/16 -> 65,536 IPs)\n# Public Subnet AZ-A:  10.0.1.0/24   (256 IPs -> route 0.0.0.0/0 to igw-main)\n# Public Subnet AZ-B:  10.0.2.0/24   (256 IPs -> route 0.0.0.0/0 to igw-main)\n# Private App AZ-A:    10.0.16.0/22  (1,024 IPs -> route 0.0.0.0/0 to nat-az-a)\n# Private DB AZ-A:     10.0.32.0/24  (256 IPs -> route strictly local VPC only)\n\n# Calculate usable hosts cleanly with Python ipaddress:\npython3 -c \"import ipaddress; n=ipaddress.ip_network('10.0.16.0/22'); print('Total:', n.num_addresses, 'Range:', n.network_address, '-', n.broadcast_address)\"",
+          "explanation": "Using non-overlapping `/22` app subnets ensures rolling container deployments never run out of ENI private IP addresses.",
+          "expectedOutput": "Total: 1024 Range: 10.0.16.0 - 10.0.19.255"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Reference source Security Group IDs (e.g., `sg-app-tier`) rather than static IP addresses inside database firewall rules."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Sizing Kubernetes worker subnets as tiny `/28` ranges (only 16 total IPs -> 11 usable in cloud), stalling auto-scaling immediately."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-cl-ex-1",
-      "type": "scenario",
-      "title": "Applied Practice Lab: Production Patterns and Resilience in Cloud Computing",
-      "objective": "Demonstrate mastery of Production Patterns and Resilience in Cloud Computing through structured problem analysis and execution.",
-      "description": "Analyze the scenario presented in Production Patterns and Resilience in Cloud Computing. Develop an actionable plan adhering to the foundational principles of Cloud Computing.",
+      "id": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi-ex-1",
+      "type": "analysis",
+      "title": "Design a Zero-Exposure 3-Tier VPC Subnet Plan",
+      "objective": "Architect non-overlapping VPC CIDR blocks and pinpoint Security Group rules isolating backend databases.",
+      "description": "Given VPC `172.16.0.0/16`, allocate 2 public subnets, 2 private application subnets supporting 400 hosts each, and 2 private DB subnets across AZ-a and AZ-b.",
       "instructions": [
-        "Identify the primary challenge and its boundary constraints.",
-        "Formulate a step-by-step resolution strategy.",
-        "Define objective verification criteria proving successful execution."
+        "Select appropriate CIDR blocks (`/24` vs `/23` vs `/22`) avoiding overlap.",
+        "Define routes for public subnets vs private subnets.",
+        "Specify the exact Security Group rule allowing app servers to query PostgreSQL port 5432."
       ],
-      "starterCode": "// Execution Plan for Production Patterns and Resilience in Cloud Computing\nObjective: ...\nScope & Constraints: ...\nImplementation Steps:\n1. ...\n2. ...\nVerification Method: ...",
+      "starterCode": "# VPC 172.16.0.0/16 Plan\nPublic AZ-A: 172.16.1.0/24 -> Route 0.0.0.0/0 -> ...\nPrivate App AZ-A (needs 400+ hosts): ...\nDB Security Group Rule: Source = ... Port = ...",
       "hints": [
-        "Focus on root causes rather than superficial symptoms.",
-        "Ensure every proposed step is actionable and verifiable."
+        "A `/24` has only 256 IPs (insufficient for 400+ hosts); `/23` provides 512 IPs.",
+        "Databases should only accept TCP 5432 from the App Security Group ID."
       ],
-      "submissionRequirements": "Submit a structured execution plan addressing all scenario objectives.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Thoroughness: Addresses all critical requirements and constraints.",
-        "Actionability: Steps are practical, clear, and measurable."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal approach combines structured problem decomposition with objective verification criteria and clear accountability."
+      "solutionExplanation": "`/23` yields 512 IPs fitting 400+ pods cleanly, while referencing the App Security Group restricts database traffic purely to verified app nodes."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-cl-kc-1",
+      "id": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi-kc-1",
       "type": "single-choice",
-      "prompt": "When implementing Production Patterns and Resilience in Cloud Computing in a modern workflow, what is the primary consideration to ensure stability and correctness?",
+      "prompt": "Why does placing application containers inside a Private Subnet with a NAT Gateway enhance security over Public Subnets?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Enforce strict boundary validation, clear operational standards, and automated feedback loops."
+          "text": "Instances have no public IPv4 address reachable for unsolicited inbound scans while still able to initiate outbound API/package calls cleanly"
         },
         {
           "id": "opt-2",
-          "text": "Bypass verification steps to maximize delivery velocity."
+          "text": "NAT Gateways automatically encrypt SQL queries inside JSON"
         },
         {
           "id": "opt-3",
-          "text": "Rely solely on undocumented assumptions without stakeholder alignment."
+          "text": "Private subnets turn off CPU hyperthreading"
         },
         {
           "id": "opt-4",
-          "text": "Eliminate measurement and logging to minimize overhead."
+          "text": "Public subnets forbid HTTPS certificates"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Operational stability requires rigorous boundary checks, clear standards, and continuous feedback loops before production deployment.",
+      "explanation": "NAT Gateways allow initiated outbound sessions while blocking unsolicited inbound internet connections.",
+      "objectiveIds": [
+        "cloud-computing-obj-2"
+      ]
+    },
+    {
+      "id": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi-kc-2",
+      "type": "single-choice",
+      "prompt": "How many total IPv4 addresses exist inside a `/26` CIDR subnet block?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "64 (minus 2 standard network/broadcast or ~5 provider-reserved IPs)"
+        },
+        {
+          "id": "opt-2",
+          "text": "256"
+        },
+        {
+          "id": "opt-3",
+          "text": "32"
+        },
+        {
+          "id": "opt-4",
+          "text": "128"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "32 - 26 = 6 host bits -> 2^6 = 64 total addresses.",
       "objectiveIds": [
         "cloud-computing-obj-3"
       ]
     },
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-cl-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent industry best practices when working with Cloud Computing?",
+      "id": "mod-2-cloud-network-storage-l1-virtual-private-clouds-vpc-subnets-routi-kc-3",
+      "type": "single-choice",
+      "prompt": "Which firewall construct operates statelessly at the subnet boundary evaluating inbound and outbound ACL numbers separately?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Designing modular, decoupled components with single responsibilities"
+          "id": "opt-1",
+          "text": "Network ACL (NACL)"
         },
         {
-          "id": "opt-2b",
-          "text": "Establishing verifiable quality gates and feedback mechanisms"
+          "id": "opt-2",
+          "text": "Security Group"
         },
         {
-          "id": "opt-2c",
-          "text": "Documenting architectural trade-offs and operational constraints"
+          "id": "opt-3",
+          "text": "CORS HTTP Middleware"
         },
         {
-          "id": "opt-2d",
-          "text": "Ignoring failure modes under the assumption that conditions remain ideal"
+          "id": "opt-4",
+          "text": "IAM Trust Policy"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2c"
+        "opt-1"
       ],
-      "explanation": "Modularity, verifiable quality gates, and transparent documentation are core best practices. Assuming ideal conditions leads to unhandled failures in live environments.",
+      "explanation": "NACLs are stateless packet filters evaluated at subnet edges; Security Groups are stateful.",
       "objectiveIds": [
-        "cloud-computing-obj-4"
+        "cloud-computing-obj-2"
       ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Production Patterns and Resilience in Cloud Computing. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You built secure multi-tier VPC topologies, calculated CIDR ranges reliably, and separated stateful vs stateless cloud firewalls.",
   "videoResources": [
     {
-      "id": "res-cloud-cloudcomputing",
-      "title": "Cloud Computing Infrastructure & Deployment Architecture",
+      "id": "res-cloud-computing-primary",
+      "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
       "provider": "youtube",
-      "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-      "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-      "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-      "durationMinutes": 45,
+      "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+      "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-      "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
       "learningObjectivesSupported": [
-        "Deploy and isolate workloads using Production Patterns and Resilience in Cloud Computing"
+        "cloud-computing-obj-1",
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3",
+        "cloud-computing-obj-4"
       ],
       "keyTopicsCovered": [
-        "Container Architecture",
-        "Networking",
-        "IAM & Security Policies",
-        "Health Checks"
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads",
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases",
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
       ],
-      "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "Official Cloud Computing Reference & Standards",
-      "url": "https://en.wikipedia.org/wiki/Cloud%20Computing",
-      "description": "Official documentation and authoritative guides for Cloud Computing."
+      "title": "AWS Cloud Architecture Center",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Official reference documentation for Cloud Computing."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "PCI-DSS / HIPAA isolated healthcare networks",
+    "Production Kubernetes VPC topologies"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:12.541Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:16.023Z"
 }

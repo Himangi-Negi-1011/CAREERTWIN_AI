@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Classes, Value Objects, and Encapsulation",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Classes, Value Objects, and Encapsulation."
+      "title": "PHP 8 Official Manual",
+      "url": "https://www.php.net/docs.php",
+      "description": "Official reference documentation for PHP."
     }
   ],
   "realWorldApplications": [

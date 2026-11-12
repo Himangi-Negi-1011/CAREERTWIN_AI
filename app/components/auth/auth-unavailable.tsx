@@ -1,40 +1,52 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Eye, EyeOff, Lock, Mail, ArrowRight, Sparkles, Check } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Eye, EyeOff, Lock, Mail, ArrowRight, Sparkles, Check, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
 export function AuthUnavailable() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const justLoggedOut = searchParams.get("logged_out") === "true";
   const [mode, setMode] = useState<"login" | "signup">("login");
-  const [email, setEmail] = useState("aarav@example.com");
-  const [password, setPassword] = useState("password123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(true);
   const [loading, setLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setStatusMessage("Authenticating and preparing your workspace…");
 
     try {
+      const res = await fetch("/api/account/demo-session", { method: "POST" });
+      if (!res.ok) {
+        setStatusMessage("Demo session unavailable when auth provider is active.");
+        setLoading(false);
+        return;
+      }
       localStorage.setItem("ct-user-email", email);
-      localStorage.setItem("ct-user-name", email.split("@")[0]);
+      localStorage.setItem("ct-user-name", email.split("@")[0] || "Student");
       localStorage.setItem("ct-demo-session", "true");
     } catch {
       // safe
     }
 
-    setTimeout(() => {
-      router.push("/dashboard?demo=true");
-    }, 600);
+    router.push("/dashboard");
   };
 
   return (
     <div className="w-full max-w-[420px] rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl shadow-2xl sm:p-8 text-[var(--fg)]">
+      {justLoggedOut && (
+        <div className="mb-5 flex items-center gap-2.5 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5 text-xs font-semibold text-emerald-400 animate-in fade-in slide-in-from-top-2">
+          <CheckCircle2 size={16} className="shrink-0 text-emerald-400" />
+          <span>You have been logged out securely. All session tokens cleared.</span>
+        </div>
+      )}
       <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
         <div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold text-accent">

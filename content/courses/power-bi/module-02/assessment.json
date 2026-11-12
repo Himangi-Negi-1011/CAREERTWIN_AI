@@ -1,161 +1,235 @@
 {
-  "id": "phase-power-bi-mod-2-application-assessment",
+  "id": "phase-power-bi-mod-2-pbi-modeling-assessment",
   "skillName": "Power BI",
   "skillSlug": "power-bi",
   "level": "beginner",
-  "testNumber": 1,
+  "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-application",
-  "moduleTitle": "Module 2: Practical Implementation & Production Patterns",
-  "title": "Power BI — Module 2: Practical Implementation & Production Patterns Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Production Patterns and Resilience in Power BI, Capstone Lab: Verifiable Power BI Implementation.",
+  "moduleId": "mod-2-pbi-modeling",
+  "moduleTitle": "Module 2: Star Schema Modeling & Date Dimensions",
+  "title": "Power BI — Module 2: Star Schema Modeling & Date Dimensions Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Fact vs Dimension Tables, Cardinality & Star Schema Design and Dedicated Date Dimensions & Role-Playing Relationships.",
   "durationMinutes": 20,
-  "totalMarks": 9,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "DAX Evaluation & Filter Context",
-    "Tabular Modeling & Performance",
-    "Time Intelligence & Date Dimensions",
-    "DAX Math & Error Handling"
+    "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+    "Dedicated Date Dimensions & Role-Playing Relationships"
   ],
   "questions": [
     {
-      "id": "phase-power-bi-mod-2-application-assessment-q1",
+      "id": "phase-power-bi-mod-2-pbi-modeling-q1",
+      "section": "A",
+      "sectionTitle": "Module 2: Star Schema Modeling & Date Dimensions Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] In DAX, how does the CALCULATE function modify evaluation?",
+      "prompt": "Why does hiding Fact-table foreign key IDs (e.g., `FactSales[CustomerID]`) improve report usability and accuracy?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It evaluates an expression under a modified filter context, and transitions any active row context into filter context."
+          "text": "Prevents accidental slicing by incomplete transaction keys instead of clean complete attributes inside `DimCustomer`"
         },
         {
           "id": "opt-2",
-          "text": "It forces the formula to compute on the GPU."
+          "text": "Deletes foreign key data from disk freeing 50% RAM"
         },
         {
           "id": "opt-3",
-          "text": "It converts DAX measures into static physical columns."
+          "text": "Forces DirectQuery conversion"
         },
         {
           "id": "opt-4",
-          "text": "It bypasses all relationship definitions in the data model."
+          "text": "Removes duplicate sums automatically"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "CALCULATE is the single most powerful DAX function because it overrides, merges, or clears filter context and triggers context transition.",
+      "explanation": "Users should slice strictly by Dimension attributes while aggregating Fact measures.",
       "difficulty": "beginner",
-      "topic": "DAX Evaluation & Filter Context",
+      "topic": "Fact vs Dimension Tables, Cardinality & Star Schema Design",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Power BI"
+      "recommendedLessonId": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta",
+      "recommendedLessonTitle": "Fact vs Dimension Tables, Cardinality & Star Schema Design"
     },
     {
-      "id": "phase-power-bi-mod-2-application-assessment-q2",
-      "type": "scenario",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Why is a Star Schema architecture preferred over a flat, single-table model in Power BI?",
+      "id": "phase-power-bi-mod-2-pbi-modeling-q2",
+      "section": "A",
+      "sectionTitle": "Module 2: Star Schema Modeling & Date Dimensions Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why should indiscriminate bi-directional (`Both`) relationship filtering across multiple Fact tables be avoided?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "The VertiPaq tabular engine compresses columnar Dimension tables efficiently and executes single-direction relationships with minimal RAM."
+          "text": "Creates ambiguous circular filter paths that fail deployment and slow VertiPaq queries down significantly"
         },
         {
           "id": "opt-2",
-          "text": "Star schemas require fewer measures to be written."
+          "text": "Bi-directional filters block dark-mode styling"
         },
         {
           "id": "opt-3",
-          "text": "Single flat tables cannot be refreshed automatically in the Power BI Service."
+          "text": "Removes numeric decimals from currency measures"
         },
         {
           "id": "opt-4",
-          "text": "Power BI visual slicers do not function without star schemas."
+          "text": "Prevents exporting PBIX files to PDF"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "The VertiPaq in-memory engine achieves optimal dictionary encoding and memory compression when data is normalized into distinct Fact and Dimension tables.",
+      "explanation": "Single-directional Star filters keep semantic behavior crisp and unambiguous.",
       "difficulty": "beginner",
-      "topic": "Tabular Modeling & Performance",
+      "topic": "Fact vs Dimension Tables, Cardinality & Star Schema Design",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Power BI Implementation"
+      "recommendedLessonId": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta",
+      "recommendedLessonTitle": "Fact vs Dimension Tables, Cardinality & Star Schema Design"
     },
     {
-      "id": "phase-power-bi-mod-2-application-assessment-q3",
-      "type": "multiple-select",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which of the following represent requirements for a dedicated Date Dimension in Power BI to support time-intelligence functions?",
+      "id": "phase-power-bi-mod-2-pbi-modeling-q3",
+      "section": "A",
+      "sectionTitle": "Module 2: Star Schema Modeling & Date Dimensions Checkpoint",
+      "type": "single-choice",
+      "prompt": "In a well-tuned Star Schema comparing Sales against Budgets, how are `FactSales` and `FactBudgets` connected?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It must contain continuous calendar dates with zero gaps across the required span"
+          "text": "Both are filtered cleanly downwards (`1 -> *`) by shared conformed Dimensions like `DimDate` and `DimStore` without directly joining Fact-to-Fact"
         },
         {
           "id": "opt-2",
-          "text": "It must contain at least one column formatted as Date or DateTime"
+          "text": "Linked directly via a Many-to-Many bridge without Dimensions"
         },
         {
           "id": "opt-3",
-          "text": "It must be marked as the official Date Table in the data model"
+          "text": "Merged sideways into a single duplicated row table"
         },
         {
           "id": "opt-4",
-          "text": "It must be stored in a SQL database rather than imported into Power BI"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "Time intelligence (DATESYTD, SAMEPERIODLASTYEAR) requires a marked, contiguous Date table with no missing calendar days.",
-      "difficulty": "beginner",
-      "topic": "Time Intelligence & Date Dimensions",
-      "marks": 3,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in Power BI"
-    },
-    {
-      "id": "phase-power-bi-mod-2-application-assessment-q4",
-      "type": "debugging",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] A report visual crashes with a '#DIV/0!' visual error. Which DAX function avoids this issue cleanly?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "DIVIDE(Numerator, Denominator, 0)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Numerator / Denominator"
-        },
-        {
-          "id": "opt-3",
-          "text": "QUOTIENT(Numerator, Denominator)"
-        },
-        {
-          "id": "opt-4",
-          "text": "MOD(Numerator, Denominator)"
+          "text": "Left disconnected and unified using visual text overlays"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "DIVIDE safely checks for zero or blank denominators and returns an optional fallback (defaulting to BLANK or 0) rather than raising an error.",
+      "explanation": "Conformed Dimensions synchronize filtering across disparate granularities safely.",
       "difficulty": "beginner",
-      "topic": "DAX Math & Error Handling",
+      "topic": "Fact vs Dimension Tables, Cardinality & Star Schema Design",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable Power BI Implementation"
+      "recommendedLessonId": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta",
+      "recommendedLessonTitle": "Fact vs Dimension Tables, Cardinality & Star Schema Design"
+    },
+    {
+      "id": "phase-power-bi-mod-2-pbi-modeling-q4",
+      "section": "A",
+      "sectionTitle": "Module 2: Star Schema Modeling & Date Dimensions Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do bar charts plot `'April, August, December'` before `'January'` until fixed?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Month names are text strings sorted alphabetically unless 'Sort by Column' maps them to numeric `MonthNumber` (1–12)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Power BI defaults to fiscal Australian quarters"
+        },
+        {
+          "id": "opt-3",
+          "text": "Slicers reverse text arrays automatically"
+        },
+        {
+          "id": "opt-4",
+          "text": "Dates lack VertiPaq dictionaries"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Mapping text month/weekday labels to numeric sort columns fixes chronological axis display cleanly.",
+      "difficulty": "beginner",
+      "topic": "Dedicated Date Dimensions & Role-Playing Relationships",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-pbi-modeling-l2-dedicated-date-dimensions-role-playing-r",
+      "recommendedLessonTitle": "Dedicated Date Dimensions & Role-Playing Relationships"
+    },
+    {
+      "id": "phase-power-bi-mod-2-pbi-modeling-q5",
+      "section": "A",
+      "sectionTitle": "Module 2: Star Schema Modeling & Date Dimensions Checkpoint",
+      "type": "single-choice",
+      "prompt": "How do you activate an inactive dashed relationship between `DimDate[Date]` and `FactSales[ShipDate]` inside one specific metric?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Wrap the metric inside `CALCULATE(..., USERELATIONSHIP(FactSales[ShipDate], DimDate[Date]))`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Delete the active `OrderDate` relationship dynamically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Turn on bi-directional filters across all dimensions"
+        },
+        {
+          "id": "opt-4",
+          "text": "Multiply values by `RELATED(DimDate[Date])`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`USERELATIONSHIP()` activates dormant links deterministically during that measure's calculation.",
+      "difficulty": "beginner",
+      "topic": "Dedicated Date Dimensions & Role-Playing Relationships",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-pbi-modeling-l2-dedicated-date-dimensions-role-playing-r",
+      "recommendedLessonTitle": "Dedicated Date Dimensions & Role-Playing Relationships"
+    },
+    {
+      "id": "phase-power-bi-mod-2-pbi-modeling-q6",
+      "section": "A",
+      "sectionTitle": "Module 2: Star Schema Modeling & Date Dimensions Checkpoint",
+      "type": "single-choice",
+      "prompt": "What breaks when a Date table contains ONLY dates that actually had sales transactions (skipping weekends/holidays)?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Time Intelligence functions (`SAMEPERIODLASTYEAR`, `TOTALYTD`) misalign or output blanks because they assume contiguous daily calendar spans"
+        },
+        {
+          "id": "opt-2",
+          "text": "Tables refuse to save as UTF-8"
+        },
+        {
+          "id": "opt-3",
+          "text": "SUM metrics turn negative on Mondays"
+        },
+        {
+          "id": "opt-4",
+          "text": "Tooltips disable automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Always span full Jan 1–Dec 31 calendar ranges cleanly via `CALENDAR()`.",
+      "difficulty": "beginner",
+      "topic": "Dedicated Date Dimensions & Role-Playing Relationships",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-pbi-modeling-l2-dedicated-date-dimensions-role-playing-r",
+      "recommendedLessonTitle": "Dedicated Date Dimensions & Role-Playing Relationships"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:13.359Z",
-  "updatedAt": "2026-10-30T06:22:13.359Z"
+  "createdAt": "2026-11-11T05:58:18.715Z",
+  "updatedAt": "2026-11-11T05:58:18.715Z"
 }

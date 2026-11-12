@@ -1,5 +1,5 @@
 {
-  "id": "mock-javascript-beginner-test-02",
+  "id": "mock-javascript-beginner-t2",
   "skillName": "JavaScript",
   "skillSlug": "javascript",
   "level": "beginner",
@@ -7,697 +7,1027 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "JavaScript Beginner Mock Test 2",
-  "description": "Comprehensive 50-minute mock examination for JavaScript at beginner level.",
-  "durationMinutes": 35,
-  "totalMarks": 20,
+  "title": "JavaScript 100-Mark Professional Mock Examination (Test 2)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "const and let",
-    "typeof",
-    "Number conversion",
-    "strict equality",
-    "template literals",
-    "truthiness",
-    "nullish coalescing",
-    "optional chaining",
-    "for of",
-    "array map",
-    "array filter",
-    "reduce",
-    "while loops",
-    "return",
-    "lexical scope",
-    "default parameters",
-    "objects",
-    "Map",
-    "Set",
-    "exceptions"
+    "Event Loop & Microtasks",
+    "TypeScript Type Safety (`unknown` vs `any`)",
+    "Equality & Type Coercion",
+    "React Reconciliation & Keys",
+    "Lexical Scope & Closures",
+    "Async Concurrency Combinators",
+    "TypeScript Strict Configuration",
+    "Backend Web Input Safety",
+    "Next.js RSC Architecture",
+    "Effect Lifecycle & Memory Hygiene",
+    "Async Execution Tracing",
+    "SSR Hydration Safety",
+    "State Batching & Closures",
+    "Exhaustive Type Narrowing",
+    "Immutable State Updates",
+    "Request Cancellation & Debouncing",
+    "Runtime Schema Validation",
+    "TypeScript Generics Design",
+    "React Rendering Optimization",
+    "Resilient API Error Contracts",
+    "Utility Types & `keyof`",
+    "Safe Fetch Error Handling",
+    "Accessible UI Semantics (A11y)",
+    "Safe Dynamic Key Maps",
+    "CSS Stacking Contexts & Responsive Layout",
+    "Frontend Bundle & Code Splitting",
+    "Client/Server Security Boundaries",
+    "Optimistic UI & Error Recovery"
   ],
   "questions": [
     {
-      "id": "mock-javascript-beginner-test-02-q1",
+      "id": "mock-javascript-beginner-t2-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply const and let. Which approach is most reliable?",
+      "prompt": "In JavaScript/TypeScript event loops, which queue has strictly higher priority immediately after the current synchronous call stack clears?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "declare stable bindings with const and state that changes with let"
+          "id": "opt-1",
+          "text": "CSS Repaint callbacks execute mid-function before return statements"
         },
         {
-          "id": "B",
-          "text": "const does not make a referenced object deeply immutable"
+          "id": "opt-2",
+          "text": "`setInterval` preempts synchronous `for` loops"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Microtask Queue (`Promise.then`, `queueMicrotask`, `MutationObserver`) runs completely before the next Macrotask (`setTimeout`)"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Macrotask Queue (`setTimeout(fn, 0)`) always runs before resolved Promises"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "declare stable bindings with const and state that changes with let. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "The JS runtime drains every queued microtask after each synchronous turn before picking up a single macrotask from the task queue.",
       "difficulty": "beginner",
-      "topic": "const and let",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Event Loop & Microtasks",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q2",
+      "id": "mock-javascript-beginner-t2-q2",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply typeof. Which approach is most reliable?",
+      "prompt": "What does `unknown` enforce in TypeScript compared to `any`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use typeof while diagnosing values at an input boundary"
+          "id": "opt-1",
+          "text": "`unknown` converts numbers to undefined automatically"
         },
         {
-          "id": "B",
-          "text": "typeof null is historically 'object'"
+          "id": "opt-2",
+          "text": "`unknown` forbids calling methods or accessing properties until runtime type narrowing proves its shape; `any` disables type checking entirely"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "`unknown` strips properties during runtime JSON serialization"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "`any` performs stricter compile-time safety checks than `unknown`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use typeof while diagnosing values at an input boundary. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "`unknown` is the type-safe top type for untrusted inputs (like JSON.parse), compelling explicit validation/narrowing.",
       "difficulty": "beginner",
-      "topic": "typeof",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "TypeScript Type Safety (`unknown` vs `any`)",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q3",
+      "id": "mock-javascript-beginner-t2-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply Number conversion. Which approach is most reliable?",
+      "prompt": "Why does JavaScript recommend strict equality (`===`) over loose equality (`==`)?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "convert then check Number.isNaN before arithmetic"
+          "id": "opt-1",
+          "text": "`===` checks both value and type without surprising implicit type coercion (e.g., `0 == ''` is true, `0 === ''` is false)"
         },
         {
-          "id": "B",
-          "text": "Number('') produces zero, which may require separate empty-input validation"
+          "id": "opt-2",
+          "text": "`==` does not work on objects or arrays at all"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "`===` mutates compared variables into constants"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "`==` executes asynchronously"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "convert then check Number.isNaN before arithmetic. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Strict equality avoids JS's complex abstract equality coercion rules.",
       "difficulty": "beginner",
-      "topic": "Number conversion",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Equality & Type Coercion",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q4",
+      "id": "mock-javascript-beginner-t2-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply strict equality. Which approach is most reliable?",
+      "prompt": "In React, why must list items supply a stable unique `key` prop rather than relying on array index on dynamic lists?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use strict equality for predictable branch conditions"
+          "id": "opt-1",
+          "text": "Keys are used to authenticate network fetch calls"
         },
         {
-          "id": "B",
-          "text": "0 == false is true but 0 === false is false"
+          "id": "opt-2",
+          "text": "React refuses to compile JSX unless `key` equals an integer index"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "`key` props get forwarded directly into `props.key` inside the child component"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Stable IDs allow React reconciliation to accurately match DOM nodes and component state across insertions, deletions, and reorders"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "use strict equality for predictable branch conditions. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Array index keys break component input focus/state when items are prepended, sorted, or deleted.",
       "difficulty": "beginner",
-      "topic": "strict equality",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "React Reconciliation & Keys",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q5",
+      "id": "mock-javascript-beginner-t2-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply template literals. Which approach is most reliable?",
+      "prompt": "In JavaScript closures, what does an inner function retain access to after its outer function returns?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use template literals for readable calculated output"
+          "id": "opt-1",
+          "text": "Private keys inside CSS stylesheets"
         },
         {
-          "id": "B",
-          "text": "ordinary quoted strings do not interpolate ${expressions}"
+          "id": "opt-2",
+          "text": "Only static arguments copied by value as strings"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "The outer lexical environment scope (variables bound at function creation)"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Only `window` global variables"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "use template literals for readable calculated output. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Closures capture references to their enclosing lexical scope, enabling encapsulation and factory hooks.",
       "difficulty": "beginner",
-      "topic": "template literals",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Lexical Scope & Closures",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q6",
+      "id": "mock-javascript-beginner-t2-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply truthiness. Which approach is most reliable?",
+      "prompt": "How does `Promise.allSettled()` differ from `Promise.all()`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "convert user intent explicitly when strings such as 'false' are possible"
+          "id": "opt-1",
+          "text": "They have identical error behavior"
         },
         {
-          "id": "B",
-          "text": "non-empty strings including '0' and 'false' are truthy"
+          "id": "opt-2",
+          "text": "`Promise.allSettled()` waits for all promises to finish and returns each status (`fulfilled`/`rejected`); `Promise.all()` rejects immediately on the first error"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "`Promise.allSettled()` executes promises sequentially one by one"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "`Promise.all()` ignores rejected promises silently"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "convert user intent explicitly when strings such as 'false' are possible. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "`Promise.allSettled()` is ideal when independent batch requests shouldn't abort each other if one fails.",
       "difficulty": "beginner",
-      "topic": "truthiness",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Async Concurrency Combinators",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q7",
-      "type": "single-choice",
-      "prompt": "A program needs to apply nullish coalescing. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which TypeScript compiler flags belong in `strict: true` best practices?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use ?? when zero and empty string are valid values"
+          "id": "opt-1",
+          "text": "`strictNullChecks`"
         },
         {
-          "id": "B",
-          "text": "using || can replace valid zero or empty-string input"
+          "id": "opt-2",
+          "text": "`noImplicitAny`"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "`strictFunctionTypes`"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "`allowJs: false` disables TypeScript errors globally"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1",
+        "opt-2",
+        "opt-3"
       ],
-      "explanation": "use ?? when zero and empty string are valid values. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "TypeScript's `strict` mode catches null/undefined dereferences and implicit `any` gaps at compile time.",
       "difficulty": "beginner",
-      "topic": "nullish coalescing",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "TypeScript Strict Configuration",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q8",
+      "id": "mock-javascript-beginner-t2-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply optional chaining. Which approach is most reliable?",
+      "prompt": "In Web Security & PHP/Node backends, why should template literals NEVER build SQL queries directly?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use optional chaining for genuinely optional nested data"
+          "id": "opt-1",
+          "text": "Template literals break UTF-8 encoding in browsers"
         },
         {
-          "id": "B",
-          "text": "optional chaining does not validate a present value's type"
+          "id": "opt-2",
+          "text": "Databases reject queries longer than 40 characters"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Prepared statements skip HTTP encryption"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Direct string interpolation permits SQL injection; bound prepared statements keep user inputs separated from SQL syntax"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "use optional chaining for genuinely optional nested data. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Always pass values through parameterized bindings (`$1`, `?`) or typed query builders.",
       "difficulty": "beginner",
-      "topic": "optional chaining",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Backend Web Input Safety",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q9",
+      "id": "mock-javascript-beginner-t2-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply for of. Which approach is most reliable?",
+      "prompt": "In Next.js App Router, why do Client Components require `'use client'` at the top while Server Components do not?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use for...of for array values when no index is needed"
+          "id": "opt-1",
+          "text": "Client Components cannot render JSX tags"
         },
         {
-          "id": "B",
-          "text": "for...in yields property keys rather than array values"
+          "id": "opt-2",
+          "text": "`'use client'` disables Tailwind CSS classes"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Server Components stay purely on the server (zero client JS bundle, direct DB access); `'use client'` marks browser-interactive islands needing hooks/events"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Server Components cannot read environment secrets"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "use for...of for array values when no index is needed. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "React Server Components shrink shipped JavaScript bundles and allow async server data fetching cleanly.",
       "difficulty": "beginner",
-      "topic": "for of",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Next.js RSC Architecture",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q10",
+      "id": "mock-javascript-beginner-t2-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "A program needs to apply array map. Which approach is most reliable?",
+      "prompt": "What prevents unintended memory leaks when attaching `window.addEventListener('resize', handler)` inside a React `useEffect`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use map for a pure one-to-one transformation"
+          "id": "opt-1",
+          "text": "Calling `event.preventDefault()`"
         },
         {
-          "id": "B",
-          "text": "ignoring map's returned array loses the transformed result"
+          "id": "opt-2",
+          "text": "Returning a cleanup function `() => window.removeEventListener('resize', handler)` from `useEffect`"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Wrapping the listener inside `setTimeout`"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Using `var` instead of `const`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use map for a pure one-to-one transformation. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Effect cleanups detach global listeners cleanly whenever components unmount or dependencies change.",
       "difficulty": "beginner",
-      "topic": "array map",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Effect Lifecycle & Memory Hygiene",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q11",
-      "type": "single-choice",
-      "prompt": "A program needs to apply array filter. Which approach is most reliable?",
-      "codeSnippet": "",
+      "id": "mock-javascript-beginner-t2-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "code-output",
+      "prompt": "What order does this JavaScript snippet log to the console?",
+      "codeSnippet": "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
       "options": [
         {
-          "id": "A",
-          "text": "use filter to select records without mutating the source"
+          "id": "opt-1",
+          "text": "1, 3, 4, 2"
         },
         {
-          "id": "B",
-          "text": "filter does not modify each selected item"
+          "id": "opt-2",
+          "text": "1, 4, 2, 3"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "1, 4, 3, 2"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "1, 2, 3, 4"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "use filter to select records without mutating the source. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Synchronous logs (`1`, `4`) run first, followed by the Microtask queue (`3` from Promise), then the Macrotask queue (`2` from setTimeout).",
       "difficulty": "beginner",
-      "topic": "array filter",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Async Execution Tracing",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q12",
-      "type": "single-choice",
-      "prompt": "A program needs to apply reduce. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does `useState(() => localStorage.getItem('theme') || 'dark')` cause a React Hydration Mismatch (#418) warning in Next.js?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "provide an explicit initial accumulator value"
+          "id": "opt-1",
+          "text": "React does not allow dark themes on SSR"
         },
         {
-          "id": "B",
-          "text": "omitting the initial value changes behavior and fails on an empty array"
+          "id": "opt-2",
+          "text": "The server lacks `localStorage` and renders `'dark'`, while the browser reads `'light'` during initial hydration pass, mismatching DOM trees"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "localStorage is asynchronous and returns a Promise"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "useState forbids lazy initializer functions"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "provide an explicit initial accumulator value. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Initialize state deterministically for SSR parity and synchronize `localStorage` reads inside `useEffect` post-mount.",
       "difficulty": "beginner",
-      "topic": "reduce",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "SSR Hydration Safety",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q13",
-      "type": "single-choice",
-      "prompt": "A program needs to apply while loops. Which approach is most reliable?",
-      "codeSnippet": "",
+      "id": "mock-javascript-beginner-t2-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Identify why clicking increment 3 times triggers only +1 in this buggy React handler:",
+      "codeSnippet": "function incrementThree() {\n  setCount(count + 1);\n  setCount(count + 1);\n  setCount(count + 1);\n}",
       "options": [
         {
-          "id": "A",
-          "text": "update condition state on every normal path"
+          "id": "opt-1",
+          "text": "`count` reflects the stale render snapshot inside the closure; functional updates `setCount(c => c + 1)` queue relative to latest state"
         },
         {
-          "id": "B",
-          "text": "no progress toward termination can create an infinite loop"
+          "id": "opt-2",
+          "text": "React refuses more than one setState inside an event handler"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Addition with +1 rounds down inside JSX"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "React components do not batch events"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "update condition state on every normal path. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Functional state updaters (`prev => prev + 1`) operate on the queued next value cleanly across batched state updates.",
       "difficulty": "beginner",
-      "topic": "while loops",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "State Batching & Closures",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q14",
-      "type": "single-choice",
-      "prompt": "A program needs to apply return. Which approach is most reliable?",
-      "codeSnippet": "",
+      "id": "mock-javascript-beginner-t2-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Look at this TypeScript discriminated union handler. How can TS guarantee exhaustiveness at compile time if a new `status` case is added later?",
+      "codeSnippet": "type State = { kind: 'ok'; data: string } | { kind: 'err'; error: Error };\nfunction handle(s: State) { switch (s.kind) { case 'ok': return s.data; case 'err': return s.error.message; } }",
       "options": [
         {
-          "id": "A",
-          "text": "return calculated data and format it at the interface"
+          "id": "opt-1",
+          "text": "Cast `s as any` before switching"
         },
         {
-          "id": "B",
-          "text": "console.log does not return the displayed value"
+          "id": "opt-2",
+          "text": "Disable `strict` in `tsconfig.json`"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Use `typeof s === 'object'`"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Add a `default: const _exhaustive: never = s; return _exhaustive;` branch forcing compile errors on unhandled union cases"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "return calculated data and format it at the interface. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Assigning unreachable `default` cases to `never` guarantees compile-time exhaustive checking when new union members are introduced.",
       "difficulty": "beginner",
-      "topic": "return",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Exhaustive Type Narrowing",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q15",
-      "type": "single-choice",
-      "prompt": "A program needs to apply lexical scope. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does mutating `items.push(newItem); setItems(items)` fail to trigger a re-render in React?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "pass changing dependencies as parameters"
+          "id": "opt-1",
+          "text": "React blocks arrays longer than 10 items"
         },
         {
-          "id": "B",
-          "text": "local bindings cannot be read outside their scope"
+          "id": "opt-2",
+          "text": "setItems runs synchronously before render"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "React compares state references with `Object.is`; mutating the existing array keeps the exact same reference so React bails out"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "`push()` clears the array contents automatically"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "pass changing dependencies as parameters. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Always produce a fresh immutable reference (`setItems(prev => [...prev, newItem])`).",
       "difficulty": "beginner",
-      "topic": "lexical scope",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Immutable State Updates",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q16",
-      "type": "single-choice",
-      "prompt": "A program needs to apply default parameters. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A search bar fires an API fetch on every keystroke, causing out-of-order responses when an older slow request resolves after a newer fast request. What solves both traffic spam and race conditions?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use defaults for documented optional arguments"
+          "id": "opt-1",
+          "text": "Store query inputs in `window.name`"
         },
         {
-          "id": "B",
-          "text": "passing null does not activate a default parameter"
+          "id": "opt-2",
+          "text": "Reload the full browser tab after each character"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Debounce input (e.g., 250ms) and cancel stale in-flight fetches using `AbortController` inside `useEffect` cleanup"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Use `async/await` without canceling previous requests"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "use defaults for documented optional arguments. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Debouncing reduces request volume while `AbortController` guarantees superseded responses never overwrite fresh UI state.",
       "difficulty": "beginner",
-      "topic": "default parameters",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Request Cancellation & Debouncing",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q17",
-      "type": "single-choice",
-      "prompt": "A program needs to apply objects. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You receive an untyped JSON webhook payload in TypeScript. How do you bridge compile-time TypeScript interfaces with real runtime validation?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use objects for records with known named fields"
+          "id": "opt-1",
+          "text": "Wrap `JSON.parse` in a JSX comment"
         },
         {
-          "id": "B",
-          "text": "spread creates only a shallow copy"
+          "id": "opt-2",
+          "text": "Parse input cleanly with a runtime schema validator (`zod`) exporting inferred TypeScript types via `z.infer<typeof schema>`"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Cast `body as UserPayload` directly (which disappears completely at runtime!)"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Turn off `noImplicitAny`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "use objects for records with known named fields. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "TypeScript types are erased at runtime; runtime schema validators (`zod`) protect API boundaries against malformed payloads.",
       "difficulty": "beginner",
-      "topic": "objects",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Runtime Schema Validation",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q18",
-      "type": "single-choice",
-      "prompt": "A program needs to apply Map. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "How can an engineering team share reusable generic validation across varying data models (`Course`, `User`, `Project`) cleanly in TypeScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use Map when non-string keys or frequent keyed updates matter"
+          "id": "opt-1",
+          "text": "Author parameterized generic functions `<T extends { id: string }>(items: T[]): Map<string, T>` preserving exact return inference"
         },
         {
-          "id": "B",
-          "text": "JSON.stringify does not serialize Map entries directly"
+          "id": "opt-2",
+          "text": "Duplicate helper functions for every interface"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Type parameters as `any[]` losing editor autocompletion"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Serialize models back to raw CSV strings"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "use Map when non-string keys or frequent keyed updates matter. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Bounded Generics enforce structural contracts (`extends { id: string }`) without sacrificing caller type fidelity.",
       "difficulty": "beginner",
-      "topic": "Map",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "TypeScript Generics Design",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q19",
-      "type": "single-choice",
-      "prompt": "A program needs to apply Set. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A heavy dashboard data table lags while typing in a top search filter box because thousands of unrelated chart rows re-render on each keystroke. What structural split optimizes rendering?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "use Set for membership and duplicate removal"
+          "id": "opt-1",
+          "text": "Replace all buttons with `<div>` elements"
         },
         {
-          "id": "B",
-          "text": "Set has no positional indexing"
+          "id": "opt-2",
+          "text": "Force full window reload on filter change"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Remove CSS classes from elements"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Colocate search input state down inside a leaf component or wrap expensive pure table views with `useMemo`/`React.memo`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "use Set for membership and duplicate removal. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "State colocation limits React reconciliation subtrees strictly to affected components before reaching for micro-memoization.",
       "difficulty": "beginner",
-      "topic": "Set",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "React Rendering Optimization",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     },
     {
-      "id": "mock-javascript-beginner-test-02-q20",
-      "type": "single-choice",
-      "prompt": "A program needs to apply exceptions. Which approach is most reliable?",
+      "id": "mock-javascript-beginner-t2-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You build a secure PHP/Node REST endpoint updating user profile data. How should failed database updates report status safely to the client?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "throw a specific Error subtype and catch only where recovery is possible"
+          "id": "opt-1",
+          "text": "Swallow errors quietly returning `success: true`"
         },
         {
-          "id": "B",
-          "text": "a broad catch that discards the error hides defects"
+          "id": "opt-2",
+          "text": "Crash the Node process intentionally on invalid email format"
         },
         {
-          "id": "C",
-          "text": "Suppress every error"
+          "id": "opt-3",
+          "text": "Log full stack trace privately on the server and return sanitized JSON error message with accurate HTTP 4xx/5xx status code"
         },
         {
-          "id": "D",
-          "text": "Replace the operation with console.log"
+          "id": "opt-4",
+          "text": "Return raw SQL error dumps and table schemas in HTTP 200 OK JSON"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "throw a specific Error subtype and catch only where recovery is possible. Verify this behavior with a minimal runnable example and observable output.",
+      "explanation": "Clean API boundaries return safe user-facing messages and proper HTTP codes without exposing internal stack traces or DB structure.",
       "difficulty": "beginner",
-      "topic": "exceptions",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-javascript-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running JavaScript and Understanding Values"
+      "topic": "Resilient API Error Contracts",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Complete the custom generic helper `pickFields<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K>` so TypeScript rejects nonexistent property names at compile time:",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`K = any` disables key validation"
+        },
+        {
+          "id": "opt-2",
+          "text": "`obj: object` removes property inference"
+        },
+        {
+          "id": "opt-3",
+          "text": "`K extends keyof T` guarantees only genuine keys of `T` can be passed"
+        },
+        {
+          "id": "opt-4",
+          "text": "`K extends string` allows any typo string"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Constraining keys via `keyof T` and returning `Pick<T, K>` retains compile-time safety across refactoring.",
+      "difficulty": "beginner",
+      "topic": "Utility Types & `keyof`",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When fetching remote JSON safely in browser React code with proper error handling (`401`, `500`, network drops), what pattern prevents uncaught rejection crashes?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Disable `try/catch` so Next error boundaries crash the entire page"
+        },
+        {
+          "id": "opt-2",
+          "text": "Check `if (!res.ok)` before parsing, handle errors cleanly inside `try/catch/finally`, and show user-friendly recovery UI"
+        },
+        {
+          "id": "opt-3",
+          "text": "Call `await fetch(url).then(r => r.json())` assuming HTTP 404/500 rejects Promises (fetch only rejects on network failures!)"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use synchronous XMLHttpRequest blocking the UI thread"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "`fetch()` resolves on HTTP 4xx/500 responses (`res.ok === false`), so explicit `if (!res.ok)` checks are critical.",
+      "difficulty": "beginner",
+      "topic": "Safe Fetch Error Handling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which HTML accessibility attribute pair properly connects a custom modal dialog to screen readers and Escape dismissal?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"...\"` plus keyboard Escape listener and focus trap/return"
+        },
+        {
+          "id": "opt-2",
+          "text": "`role=\"marquee\" tabindex=\"-99\"`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Styling a generic `<div>` without ARIA attributes or keyboard support"
+        },
+        {
+          "id": "opt-4",
+          "text": "`aria-hidden=\"true\"` on the open visible dialog"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Proper modal semantics ensure keyboard-only and screen-reader users interact cleanly without focus escaping beneath backdrops.",
+      "difficulty": "beginner",
+      "topic": "Accessible UI Semantics (A11y)",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which modern TypeScript `Record` / `Map` choice avoids prototype pollution key collisions (`'toString'`, `'__proto__'`) when indexing arbitrary dynamic user keys?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Plain `{}` checked purely with `dict[key]` truthiness"
+        },
+        {
+          "id": "opt-2",
+          "text": "Serializing everything onto `Array.prototype`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Mutating `Object.prototype` directly"
+        },
+        {
+          "id": "opt-4",
+          "text": "`new Map<string, Value>()` (or `Object.create(null)`)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`Map` holds no inherited Object.prototype properties (`constructor`, `toString`), eliminating accidental key collisions cleanly.",
+      "difficulty": "beginner",
+      "topic": "Safe Dynamic Key Maps",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When designing responsive dashboard navigation sidebars and modals across mobile and desktop, how do you prevent z-index overlap collisions cleanly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Use `position: absolute` with negative margins across breakpoints"
+        },
+        {
+          "id": "opt-2",
+          "text": "Hide buttons off-screen via `margin-left: -200px`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Define an explicit ordered z-index scale (canvas base 0 -> header 30 -> backdrop 35/40 -> sidebar drawer 40/50 -> modals/command palette 50+) avoiding `overflow: hidden` ancestors on sticky elements"
+        },
+        {
+          "id": "opt-4",
+          "text": "Put `z-index: 999999` arbitrarily on every card and button"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Ordered stacking scales isolate layering systematically across breakpoints without clipping dropdowns or hiding triggers.",
+      "difficulty": "beginner",
+      "topic": "CSS Stacking Contexts & Responsive Layout",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A heavy SaaS dashboard suffers slow Time-to-Interactive (TTI) because unused charting/PDF modules ship inside the initial landing bundle. How do you drop bundle size dramatically?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Disable webpack tree-shaking and minification"
+        },
+        {
+          "id": "opt-2",
+          "text": "Include three duplicate UI icon libraries"
+        },
+        {
+          "id": "opt-3",
+          "text": "Lazy-load heavy secondary views (`React.lazy` / `next/dynamic`) on tab/view navigation and keep critical initial shell lean"
+        },
+        {
+          "id": "opt-4",
+          "text": "Inline all base64 video files directly into JavaScript modules"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Code-splitting secondary route modules defers non-critical JS downloads until the user opens them.",
+      "difficulty": "beginner",
+      "topic": "Frontend Bundle & Code Splitting",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "How should a Next.js full-stack application split sensitive business mutations (e.g., exam grading, issuing certificates) between client React UI and Server APIs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Store admin keys inside `window.__CONFIG__`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Keep answer keys, grading rubrics, and database credentials strictly on the server; client sends sanitized submission IDs/answers via HTTPS API routes"
+        },
+        {
+          "id": "opt-3",
+          "text": "Embed `correctOptionIds` in React props and compute grades in client browser JS"
+        },
+        {
+          "id": "opt-4",
+          "text": "Allow clients to POST `{ \"passed\": true, \"score\": 100 }` directly to DB"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Never trust client-submitted scores or leak answer keys in frontend JS; keep grading authoritative on the server.",
+      "difficulty": "beginner",
+      "topic": "Client/Server Security Boundaries",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
+    },
+    {
+      "id": "mock-javascript-beginner-t2-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "You want instant optimistic feedback when toggling a lesson bookmark while recovering cleanly if the backend save fails. What architecture prevents corrupt UI state?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Apply optimistic state toggle -> call persisted server mutation -> roll back optimistic state and surface error toast if `!res.ok`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Save purely to `localStorage` and ignore 401/500 API failures silently"
+        },
+        {
+          "id": "opt-3",
+          "text": "Lock the entire page with a spinner for 10 seconds on every click"
+        },
+        {
+          "id": "opt-4",
+          "text": "Never verify HTTP response status"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Optimistic updates with explicit rollback and user notification keep UX snappy without lying about failed saves.",
+      "difficulty": "beginner",
+      "topic": "Optimistic UI & Error Recovery",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in JavaScript"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.086Z",
-  "updatedAt": "2026-11-01T15:37:41.086Z"
+  "createdAt": "2026-11-11T05:58:30.302Z",
+  "updatedAt": "2026-11-11T05:58:30.302Z"
 }

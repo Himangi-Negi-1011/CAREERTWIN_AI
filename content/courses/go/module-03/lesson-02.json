@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Goroutines, Channels, Context, and a Tracker",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Goroutines, Channels, Context, and a Tracker."
+      "title": "Go Official Language Documentation",
+      "url": "https://go.dev/doc/",
+      "description": "Official reference documentation for Go."
     }
   ],
   "realWorldApplications": [

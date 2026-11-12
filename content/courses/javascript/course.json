@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official JavaScript Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "MDN JavaScript Reference Guide",
+      "organization": "Mozilla Web Docs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
       "retrievedAt": "2026-11-01T15:37:41.084Z",
       "reviewStatus": "curated"
     }

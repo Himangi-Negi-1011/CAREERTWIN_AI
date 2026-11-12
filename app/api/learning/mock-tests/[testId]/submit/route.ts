@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { getMockTest, saveMockTestAttempt } from "@/lib/learning/repository";
 import { mockTestSubmissionSchema, gradeMockTest } from "@/lib/learning/mock-test-schema";
+import { checkRateLimit, getClientIdentifier } from "@/lib/security/rate-limit";
 
 export async function POST(
   request: Request,
@@ -9,7 +10,35 @@ export async function POST(
 ) {
   try {
     const session = await auth();
-    const userId = session?.userId || "guest";
+    const userId = session?.userId;
+    if (!userId) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to submit mock tests." } },
+        { status: 401 }
+      );
+    }
+
+    const clientId = getClientIdentifier(request, userId);
+    const rateLimit = checkRateLimit(clientId, {
+      limit: 20,
+      windowMs: 60_000,
+      prefix: "mock-test-submit",
+    });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: { message: "Too many test submissions. Please wait a minute before submitting again." } },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(rateLimit.retryAfterSeconds),
+            "X-RateLimit-Limit": String(rateLimit.limit),
+            "X-RateLimit-Remaining": "0",
+          },
+        }
+      );
+    }
+
     const { testId } = await params;
 
     const test = await getMockTest(testId);

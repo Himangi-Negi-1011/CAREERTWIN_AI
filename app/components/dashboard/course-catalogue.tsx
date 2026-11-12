@@ -63,19 +63,19 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Foundations & Control Flow",
-        lessons: ["Python Syntax and Data Types", "Control Flow and Functions"],
-        assessment: "Foundation Checkpoint: Syntax & Flow",
+        title: "Python Execution and Data",
+        lessons: ["Running Python and Working with Values", "Types, Conversion, and Input/Output"],
+        assessment: "Python Execution and Data Phase Assessment",
       },
       {
-        title: "Module 2: Data Structures & OOP",
-        lessons: ["Data Structures and Algorithms", "Object-Oriented Programming in Python"],
-        assessment: "Mid-Term Exam: Data Structures & Classes",
+        title: "Python Control Flow",
+        lessons: ["Decisions with Conditions and Boolean Logic", "Iteration with for, while, and range"],
+        assessment: "Python Control Flow Phase Assessment",
       },
       {
-        title: "Module 3: Errors, Packages & Testing",
-        lessons: ["Modules, Packages, and Virtual Environments", "Error Handling and Testing with Pytest"],
-        assessment: "Comprehensive Python Final Exam",
+        title: "Python Functions and Collections",
+        lessons: ["Functions, Parameters, and Return Values", "Collections and a Small Progress Tracker"],
+        assessment: "Python 100-Mark Certification Exam",
       },
     ],
   },
@@ -100,19 +100,19 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: JavaScript Foundations & Scopes",
-        lessons: ["JavaScript Fundamentals & Scope", "Functions, Closures, and Higher-Order Functions"],
-        assessment: "Scope & Closure Checkpoint",
+        title: "JavaScript Execution and Types",
+        lessons: ["Running JavaScript and Understanding Values", "Types, Conversion, and Strict Equality"],
+        assessment: "JavaScript Execution and Types Phase Assessment",
       },
       {
-        title: "Module 2: Asynchronous Programming",
-        lessons: ["Asynchronous JavaScript & Promises", "DOM Manipulation and Event Handling"],
-        assessment: "Asynchronous & DOM Assessment",
+        title: "JavaScript Control Flow",
+        lessons: ["Conditions and Boolean Logic", "Loops and Array Iteration"],
+        assessment: "JavaScript Control Flow Phase Assessment",
       },
       {
-        title: "Module 3: Modern Tooling & Architecture",
-        lessons: ["Modern ES6+ Features and Modules", "Testing and Debugging JavaScript Applications"],
-        assessment: "Modern JavaScript Certification Exam",
+        title: "JavaScript Functions and Objects",
+        lessons: ["Functions, Parameters, and Scope", "Objects, Collections, and a Progress Tracker"],
+        assessment: "Modern JavaScript 100-Mark Certification Exam",
       },
     ],
   },
@@ -137,19 +137,19 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Type Fundamentals & Interfaces",
-        lessons: ["Introduction to TypeScript & Type Annotations", "Interfaces, Type Aliases, and Object Types"],
-        assessment: "Type Systems & Interfaces Checkpoint",
+        title: "TypeScript Setup and Narrowing",
+        lessons: ["TypeScript Setup and Type Inference", "Primitive Types, Unions, and Narrowing"],
+        assessment: "TypeScript Setup Phase Assessment",
       },
       {
-        title: "Module 2: Generics & Advanced Types",
-        lessons: ["Generics and Type Constraints", "Union, Intersection, and Literal Types"],
-        assessment: "Generics & Advanced Types Assessment",
+        title: "TypeScript Shapes and Collections",
+        lessons: ["Object Types, Interfaces, and Optional Properties", "Typed Arrays and Function Contracts"],
+        assessment: "TypeScript Shapes Phase Assessment",
       },
       {
-        title: "Module 3: Production Tooling & Strict Mode",
-        lessons: ["Classes and Object-Oriented TypeScript", "TypeScript Configuration, Tooling, and Strict Mode"],
-        assessment: "Enterprise TypeScript Final Exam",
+        title: "TypeScript Generics and Validation",
+        lessons: ["Generics and Standard Utility Types", "Runtime Validation and a Typed Progress Tracker"],
+        assessment: "Enterprise TypeScript 100-Mark Exam",
       },
     ],
   },
@@ -159,29 +159,34 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     category: "data",
     categoryLabel: "Data & Analytics",
     level: "beginner",
-    duration: "3–4 weeks · 4 hrs/week",
-    lessonsCount: 4,
+    duration: "4–6 weeks · 4 hrs/week",
+    lessonsCount: 6,
     mockTestsCount: 3,
     practicalLabsCount: 2,
-    shortDescription: "Relational modeling, multi-table JOINs, aggregations, window functions, and indexing.",
-    fullDescription: "From entity-relationship modeling and ACID guarantees to complex multi-table queries, subqueries, analytical window functions, query plan analysis, and performance indexing.",
+    shortDescription: "Relational modeling, multi-table JOINs, CTEs, window functions, indexing, and ACID locks.",
+    fullDescription: "From entity-relationship normalization (1NF–3NF) and ACID guarantees to complex multi-table joins, CTEs, analytical window functions, query plan diagnostics, and B-Tree composite indexing.",
     prerequisites: ["Basic data literacy"],
     learningOutcomes: [
       "Design normalized relational schemas up to 3NF",
-      "Query datasets with complex JOINs, GROUP BY, and HAVING",
-      "Optimize query execution with indexes and EXPLAIN plans",
-      "Manage transactional integrity with ACID guarantees",
+      "Query datasets with complex JOINs, CTEs, GROUP BY, and Window Functions",
+      "Optimize query execution with composite indexes and EXPLAIN plans",
+      "Manage transactional integrity with atomic ACID locking",
     ],
     modules: [
       {
-        title: "Module 1: Relational Schema & Basic Queries",
-        lessons: ["Relational Database Foundations & SQL Basics", "Filtering, Sorting, and Aggregating Data"],
-        assessment: "Query Basics & Filtering Checkpoint",
+        title: "Module 1: Relational Modeling & Declarative Querying",
+        lessons: ["Relational Schema Design, Keys & Normal Forms (1NF–3NF)", "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING"],
+        assessment: "Relational Foundations Phase Assessment",
       },
       {
-        title: "Module 2: Advanced Joins, Transactions & Tuning",
-        lessons: ["Joining Multiple Tables and Subqueries", "Database Design, Transactions, and Performance"],
-        assessment: "Relational SQL Comprehensive Exam",
+        title: "Module 2: Multi-Table Joins, CTEs & Window Functions",
+        lessons: ["Multi-Table INNER, LEFT, FULL Joins & CTEs", "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals"],
+        assessment: "Joins & Windows Phase Assessment",
+      },
+      {
+        title: "Module 3: Indexing, Transactions & Performance Tuning",
+        lessons: ["B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans", "ACID Transactions, Isolation Levels & Safe Migrations"],
+        assessment: "Relational SQL 100-Mark Comprehensive Exam",
       },
     ],
   },
@@ -191,29 +196,34 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     category: "data",
     categoryLabel: "Data & Analytics",
     level: "beginner",
-    duration: "3–4 weeks · 4 hrs/week",
-    lessonsCount: 4,
+    duration: "4–6 weeks · 4 hrs/week",
+    lessonsCount: 6,
     mockTestsCount: 3,
     practicalLabsCount: 1,
-    shortDescription: "Power Query ETL, star schema data modeling, DAX measures, and executive dashboards.",
-    fullDescription: "Transform messy raw datasets into interactive visual analytics. Master Power Query data cleaning, star schema dimensional modeling, DAX calculated columns and measures, and executive dashboard design.",
+    shortDescription: "Power Query ETL, Star Schema modeling, Date dimensions, DAX measures, and executive UX.",
+    fullDescription: "Transform messy spreadsheets into interactive analytical semantic models. Master Power Query M unpivoting & query folding, conformed Star Schemas, contiguous Date dimensions, DAX filter/row contexts, and executive dashboard design.",
     prerequisites: ["Spreadsheet or basic data familiarity"],
     learningOutcomes: [
-      "Extract and transform data using Power Query M language",
-      "Build performant star schemas with active relationships",
-      "Author DAX formulas (CALCULATE, RELATED, time intelligence)",
-      "Design responsive, accessible executive report dashboards",
+      "Extract and unpivot messy sources using foldable Power Query M pipelines",
+      "Build performant single-direction Star Schemas with contiguous Date dimensions",
+      "Author DAX formulas (SUMX, CALCULATE, time intelligence, DIVIDE)",
+      "Design responsive, accessible executive dashboards with dynamic RLS",
     ],
     modules: [
       {
-        title: "Module 1: Data Ingestion & Star Schema",
-        lessons: ["Power BI Environment & Data Ingestion", "Data Modeling and Star Schema Design"],
-        assessment: "ETL & Star Schema Checkpoint",
+        title: "Module 1: Data Ingestion & Power Query ETL (M Language)",
+        lessons: ["Power BI Workflow & Power Query Unpivoting (M Language)", "Data Profiling, Quality Gates & Query Folding"],
+        assessment: "ETL & Query Folding Checkpoint",
       },
       {
-        title: "Module 2: DAX Measures & Report Design",
-        lessons: ["DAX Formulas and Calculated Measures", "Interactive Visualizations and Dashboard Publishing"],
-        assessment: "Power BI Analytics Certification Exam",
+        title: "Module 2: Star Schema Modeling & Date Dimensions",
+        lessons: ["Fact vs Dimension Tables, Cardinality & Star Schema Design", "Dedicated Date Dimensions & Role-Playing Relationships"],
+        assessment: "Dimensional Modeling Assessment",
+      },
+      {
+        title: "Module 3: DAX Analytics & Executive Reporting",
+        lessons: ["DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE", "Time Intelligence (YoY/MTD) & Executive Dashboard Design"],
+        assessment: "Power BI Analytics 100-Mark Certification Exam",
       },
     ],
   },
@@ -223,29 +233,34 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     category: "cloud",
     categoryLabel: "Infrastructure & Cloud",
     level: "beginner",
-    duration: "3–4 weeks · 4 hrs/week",
-    lessonsCount: 4,
+    duration: "4–6 weeks · 4 hrs/week",
+    lessonsCount: 6,
     mockTestsCount: 3,
     practicalLabsCount: 2,
-    shortDescription: "Cloud architectures, virtual networks, compute instances, object storage, and IAM.",
-    fullDescription: "Understand fundamental cloud provider paradigms (AWS, Azure, GCP). Master shared responsibility models, Virtual Private Clouds (VPC), subnetting, compute instances, blob storage, and least-privilege IAM.",
+    shortDescription: "Cloud Regions/AZs, containers, VPC subnets, private object storage, IAM roles & FinOps.",
+    fullDescription: "Master fundamental cloud infrastructure architectures. Understand the Shared Responsibility Model, VMs vs Containers vs Serverless, VPC subnetting/NAT routing, private S3 storage with CDN OAC, keyless OIDC IAM, Auto Scaling, and FinOps.",
     prerequisites: ["Basic computer networking fundamentals"],
     learningOutcomes: [
-      "Differentiate IaaS, PaaS, and SaaS cloud architectures",
-      "Configure VPC subnets, security groups, and routing tables",
-      "Deploy elastic compute and serverless function workloads",
-      "Implement least-privilege IAM identity policies",
+      "Differentiate IaaS, PaaS, and SaaS under the Shared Responsibility Model",
+      "Configure multi-AZ VPC subnets, security groups, and NAT/Endpoint routing",
+      "Package stateless non-root containers and auto-scaling architectures",
+      "Implement least-privilege JSON IAM identity policies & FinOps controls",
     ],
     modules: [
       {
-        title: "Module 1: Cloud Architecture & IAM",
-        lessons: ["Cloud Architecture and Service Models", "Compute, Virtualization, and Containers"],
-        assessment: "Architecture & Compute Checkpoint",
+        title: "Module 1: Cloud Architecture & Core Service Models",
+        lessons: ["Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)", "Elastic Compute, Containers & Serverless Workloads"],
+        assessment: "Cloud Architecture & Compute Checkpoint",
       },
       {
-        title: "Module 2: Networking & Security Operations",
-        lessons: ["Cloud Storage, Databases, and Networking", "Cloud Security, IAM, and Cost Governance"],
-        assessment: "Cloud Foundations Comprehensive Exam",
+        title: "Module 2: Cloud Networking (VPC) & Storage Architectures",
+        lessons: ["Virtual Private Clouds (VPC), Subnets & Routing", "Object Storage, Block Volumes & Managed Databases"],
+        assessment: "VPC Networking & Storage Assessment",
+      },
+      {
+        title: "Module 3: Identity (IAM), Auto-Scaling & Cloud FinOps",
+        lessons: ["IAM Least-Privilege Policies & Keyless OIDC Identity", "Auto-Scaling, Load Balancing & FinOps Cost Governance"],
+        assessment: "Cloud Foundations 100-Mark Certification Exam",
       },
     ],
   },
@@ -255,29 +270,34 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     category: "security",
     categoryLabel: "Cybersecurity & Defense",
     level: "beginner",
-    duration: "3–4 weeks · 4 hrs/week",
-    lessonsCount: 4,
+    duration: "4–6 weeks · 4 hrs/week",
+    lessonsCount: 6,
     mockTestsCount: 3,
     practicalLabsCount: 2,
-    shortDescription: "CIA triad, threat vectors, authentication protocols, firewalls, and SOC log analysis.",
-    fullDescription: "Establish core cyber defense competencies. Explore threat modeling, OWASP Top 10 web vulnerabilities, cryptographic encryption, multi-factor authentication, network security perimeters, and incident response.",
+    shortDescription: "CIA triad, STRIDE, TLS/PKI, Argon2 auth, OWASP SQLi/XSS defense, SOC triage & NIST IR.",
+    fullDescription: "Establish core defensive security engineering skills. Master STRIDE threat modeling, stateful firewalling & TLS trust chains, Argon2id credential hashing, IDOR/SQLi/XSS remediation, SOC access log triage, and the NIST Incident Response lifecycle.",
     prerequisites: ["Basic computer and networking awareness"],
     learningOutcomes: [
-      "Identify common attack vectors (phishing, MITM, injection, DoS)",
-      "Analyze authentication mechanisms and cryptographic hashes",
-      "Read server auth logs to identify brute-force attacks",
-      "Apply the NIST cybersecurity incident response framework",
+      "Identify attack vectors via STRIDE threat modeling and CIA impact",
+      "Implement secure authentication, Argon2 hashing, and HTTP cookie hardening",
+      "Eliminate SQLi, XSS, and IDOR flaws cleanly in backend handlers",
+      "Triage raw access logs and execute NIST SP 800-61 containment playbooks",
     ],
     modules: [
       {
-        title: "Module 1: Security Fundamentals & Vectors",
-        lessons: ["Cybersecurity Principles and Threat Landscape", "Network Security, Firewalls, and Protocols"],
-        assessment: "Threat Landscape Checkpoint",
+        title: "Module 1: Security Principles & Network Defense",
+        lessons: ["CIA Triad, Threat Modeling & Attack Surface", "Network Defense: Firewalls, Stateful Inspection & TLS 1.3"],
+        assessment: "Network & Threat Defense Checkpoint",
       },
       {
-        title: "Module 2: Identity, Defense & Incident Triage",
-        lessons: ["Authentication, Cryptography, and Access Control", "Application Security, Vulnerability Assessment, and Incident Response"],
-        assessment: "Cybersecurity Defense Certification Exam",
+        title: "Module 2: Authentication, Cryptography & OWASP AppSec",
+        lessons: ["Authentication, Password Hashing (Argon2/bcrypt) & Access Control", "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening"],
+        assessment: "AppSec & Access Control Assessment",
+      },
+      {
+        title: "Module 3: Security Operations (SOC) & Incident Response",
+        lessons: ["SOC Log Triage, SIEM Alerting & Anomaly Detection", "NIST Incident Response Lifecycle & Hardening Capstone"],
+        assessment: "Cybersecurity Defense 100-Mark Certification Exam",
       },
     ],
   },
@@ -302,18 +322,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Language Syntax & Pointers",
-        lessons: ["Go Fundamentals & Syntax", "Pointers, Structs, and Methods"],
-        assessment: "Go Syntax & Pointers Checkpoint",
+        title: "Module 1: Toolchain, Types, Errors, and Control Flow",
+        lessons: ["Go Toolchain, Modules, and Packages", "Types, Parsing, and Explicit Errors"],
+        assessment: "Go Syntax & Error Handling Checkpoint",
       },
       {
-        title: "Module 2: Interfaces & Concurrency",
-        lessons: ["Interfaces and Polymorphism in Go", "Goroutines, Channels, and Concurrency"],
-        assessment: "Goroutines & Concurrency Assessment",
+        title: "Module 2: Slices, Maps, Functions, and Domain Models",
+        lessons: ["Control Flow, Switches, and Boundaries", "Arrays, Slices, Maps, and Iteration"],
+        assessment: "Slices, Maps & Boundaries Assessment",
       },
       {
-        title: "Module 3: Microservices & Testing",
-        lessons: ["Standard Library, I/O, and Networking", "Testing, Benchmarking, and Production Deployment in Go"],
+        title: "Module 3: Concurrency, Persistence, and a Project",
+        lessons: ["Functions, Structs, Methods, and Interfaces", "Goroutines, Channels, Context, and a Tracker"],
         assessment: "Go Systems Engineering Final Exam",
       },
     ],
@@ -339,18 +359,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Ownership & The Borrow Checker",
-        lessons: ["Rust Fundamentals & Ownership", "Borrowing, References, and Slices"],
-        assessment: "Ownership & Borrowing Checkpoint",
+        title: "Module 1: Cargo, Types, Results, and Control Flow",
+        lessons: ["Cargo Projects, Compilation, and Diagnostics", "Types, Parsing, Option, and Result"],
+        assessment: "Cargo, Types & Result Checkpoint",
       },
       {
-        title: "Module 2: Structs, Enums & Error Handling",
-        lessons: ["Structs, Enums, and Pattern Matching", "Error Handling with Result and Option"],
-        assessment: "Pattern Matching & Errors Assessment",
+        title: "Module 2: Ownership, Collections, and Domain Models",
+        lessons: ["Control Flow, Matching, and Boundaries", "Ownership, Borrowing, Slices, and Collections"],
+        assessment: "Ownership & Borrowing Assessment",
       },
       {
-        title: "Module 3: Generics, Traits & Concurrency",
-        lessons: ["Generics, Traits, and Lifetimes", "Fearless Concurrency and Memory Safety in Rust"],
+        title: "Module 3: Persistence, Concurrency, and a Project",
+        lessons: ["Functions, Structs, Enums, and Traits", "Files, Serialization, Threads, and a Tracker"],
         assessment: "Rust Systems Architect Certification Exam",
       },
     ],
@@ -376,18 +396,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Modern Syntax & RAII",
-        lessons: ["Modern C++ Foundations and Syntax", "Object-Oriented Programming and RAII in C++"],
-        assessment: "Modern C++ & RAII Checkpoint",
+        title: "Module 1: Builds, Types, and Control Flow",
+        lessons: ["Compiling Modern C++ and Reading Diagnostics", "Values, Types, Initialization, and Streams"],
+        assessment: "Modern C++ Builds & Types Checkpoint",
       },
       {
-        title: "Module 2: Memory & STL Containers",
-        lessons: ["Memory Management, Pointers, and References", "Standard Template Library (STL) Containers & Algorithms"],
-        assessment: "Memory & STL Algorithms Assessment",
+        title: "Module 2: Containers, Functions, and Classes",
+        lessons: ["Conditions, Boolean Logic, and Boundaries", "Loops, std::array, and std::vector"],
+        assessment: "Containers & Boundaries Assessment",
       },
       {
-        title: "Module 3: Templates & Move Semantics",
-        lessons: ["Templates and Generic Programming", "Move Semantics, Concurrency, and Modern C++ Practices"],
+        title: "Module 3: RAII, Algorithms, Files, and a Project",
+        lessons: ["Functions, References, Classes, and RAII", "STL Algorithms, Maps, and a Progress Tracker"],
         assessment: "C++ High-Performance Final Exam",
       },
     ],
@@ -413,18 +433,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Foundations & OOP in C#",
-        lessons: ["C# Language Basics and Type System", "Object-Oriented Programming with C#"],
+        title: "Module 1: .NET, Types, and Control Flow",
+        lessons: ["The .NET Build and Execution Model", "Types, Conversion, and Nullable References"],
         assessment: "C# Foundations Checkpoint",
       },
       {
-        title: "Module 2: LINQ & Asynchronous C#",
-        lessons: ["LINQ and Data Manipulation", "Asynchronous Programming and Multithreading in C#"],
-        assessment: "LINQ & Async Programming Assessment",
+        title: "Module 2: Collections, LINQ, and Domain Models",
+        lessons: ["Conditions, Patterns, and Boundaries", "Collections, Iteration, and LINQ"],
+        assessment: "LINQ & Boundaries Assessment",
       },
       {
-        title: "Module 3: ASP.NET Core & Enterprise Patterns",
-        lessons: ["Generics, Collections, and Exception Handling", "Building Applications with .NET and Modern C#"],
+        title: "Module 3: JSON, Async I/O, and a Project",
+        lessons: ["Methods, Records, Classes, and Encapsulation", "Files, JSON, Async, and a Progress Tracker"],
         assessment: "Enterprise C# .NET Certification Exam",
       },
     ],
@@ -450,18 +470,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: C Syntax & Functions",
-        lessons: ["C Language Foundations & Execution Model", "Functions, Variable Scope, and the Call Stack"],
+        title: "Module 1: Build Process, Types, and Input",
+        lessons: ["Compiling C and Reading Diagnostics", "Types, Expressions, and Safe Input"],
         assessment: "C Foundations Checkpoint",
       },
       {
-        title: "Module 2: Pointers & Dynamic Memory",
-        lessons: ["Pointers and Memory Addressing", "Arrays, Strings, and Dynamic Memory Allocation"],
-        assessment: "Pointers & Dynamic Memory Assessment",
+        title: "Module 2: Control Flow, Arrays, and Functions",
+        lessons: ["Conditions, Operators, and Boundaries", "Loops, Arrays, and Bounds"],
+        assessment: "Control Flow & Arrays Assessment",
       },
       {
-        title: "Module 3: Structures, File I/O & Tooling",
-        lessons: ["Structures, Unions, and Bit Manipulation", "File I/O, Preprocessor Directives, and Build Tooling"],
+        title: "Module 3: Pointers, Structs, Files, and a Project",
+        lessons: ["Functions, Pointers, and Ownership", "Structs, Text Files, and a Progress Tracker"],
         assessment: "Systems C Programming Final Exam",
       },
     ],
@@ -487,18 +507,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: Java OOP & JVM Internals",
-        lessons: ["Java Foundations and JVM Architecture", "Object-Oriented Design and Inheritance in Java"],
+        title: "Module 1: Compilation, Types, and Input",
+        lessons: ["JDK, Compilation, and Program Structure", "Primitive Types, Strings, and Input"],
         assessment: "Java Foundations Checkpoint",
       },
       {
-        title: "Module 2: Collections & Concurrency",
-        lessons: ["Java Collections Framework and Generics", "Concurrency and Multithreading in Java"],
-        assessment: "Collections & Concurrency Assessment",
+        title: "Module 2: Control Flow, Arrays, and Methods",
+        lessons: ["Conditions, Boolean Logic, and Boundaries", "Loops, Arrays, and Iteration"],
+        assessment: "Control Flow & Arrays Assessment",
       },
       {
-        title: "Module 3: Streams, I/O & Enterprise Java",
-        lessons: ["Streams API and Functional Programming in Java", "File I/O, Networking, and Enterprise Patterns in Java"],
+        title: "Module 3: Classes, Collections, and a Project",
+        lessons: ["Methods, Classes, and Encapsulation", "Collections and a Progress Tracker"],
         assessment: "Enterprise Java Final Exam",
       },
     ],
@@ -524,18 +544,18 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
     ],
     modules: [
       {
-        title: "Module 1: PHP 8 Syntax & Web Basics",
-        lessons: ["PHP Fundamentals and Environment Setup", "Object-Oriented PHP and Class Design"],
+        title: "Module 1: Runtime, Types, Input, and Control Flow",
+        lessons: ["PHP Runtime, Files, and Composer", "Types, Strings, Input, and Validation"],
         assessment: "PHP 8 Syntax Checkpoint",
       },
       {
-        title: "Module 2: Databases & Security with PDO",
-        lessons: ["Database Integration with PDO and Security", "Composer, Autoloading, and Dependency Management"],
-        assessment: "PDO & Security Assessment",
+        title: "Module 2: Functions, Errors, and Domain Models",
+        lessons: ["Control Flow, Arrays, and Iteration", "Functions, Exceptions, and Boundaries"],
+        assessment: "Functions & Errors Assessment",
       },
       {
-        title: "Module 3: Web MVC & REST APIs",
-        lessons: ["Building Web Applications and REST APIs with PHP", "Testing, Quality Assurance, and Modern PHP Standards"],
+        title: "Module 3: PDO, Web Security, and a Project",
+        lessons: ["Classes, Value Objects, and Encapsulation", "PDO, Sessions, Security, and a Progress Tracker"],
         assessment: "Modern PHP Web Architecture Final Exam",
       },
     ],
@@ -545,16 +565,41 @@ export const CATALOGUE_COURSES: CourseCatalogueItem[] = [
 interface CourseCatalogueProps {
   onSelectCourse: (slug: string) => void;
   onNavigatePaths?: () => void;
+  userRole?: string;
+  preferredField?: string;
 }
 
-export function CourseCatalogueView({ onSelectCourse, onNavigatePaths }: CourseCatalogueProps) {
+function isCourseRelevantToGoal(course: CourseCatalogueItem, userGoal: string): boolean {
+  if (!userGoal) return false;
+  const g = userGoal.toLowerCase();
+  if (g.includes("cloud") || g.includes("devops") || g.includes("infrastructure") || g.includes("sre")) {
+    return course.category === "cloud" || course.slug.includes("cloud") || course.slug.includes("devops");
+  }
+  if (g.includes("security") || g.includes("cyber") || g.includes("soc") || g.includes("penetration")) {
+    return course.category === "security" || course.slug.includes("security") || course.slug.includes("cyber");
+  }
+  if (g.includes("data") || g.includes("analytics") || g.includes("sql") || g.includes("bi") || g.includes("analyst") || g.includes("ai") || g.includes("machine learning")) {
+    return course.category === "data" || course.slug.includes("sql") || course.slug.includes("power-bi") || course.slug.includes("python");
+  }
+  if (g.includes("frontend") || g.includes("react") || g.includes("web") || g.includes("full-stack") || g.includes("software") || g.includes("developer") || g.includes("engineer")) {
+    return course.category === "programming" || course.slug.includes("javascript") || course.slug.includes("typescript") || course.slug.includes("python") || course.slug.includes("go") || course.slug.includes("java");
+  }
+  return false;
+}
+
+export function CourseCatalogueView({ onSelectCourse, onNavigatePaths, userRole, preferredField }: CourseCatalogueProps) {
+  const effectiveGoal = userRole || preferredField || "";
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>(effectiveGoal ? "recommended" : "all");
   const [selectedLevel, setSelectedLevel] = useState<string>("all");
   const [activeCourseDetail, setActiveCourseDetail] = useState<CourseCatalogueItem | null>(null);
 
   const filteredCourses = CATALOGUE_COURSES.filter((course) => {
-    if (selectedCategory !== "all" && course.category !== selectedCategory) return false;
+    if (selectedCategory === "recommended" && effectiveGoal) {
+      if (!isCourseRelevantToGoal(course, effectiveGoal)) return false;
+    } else if (selectedCategory !== "all" && course.category !== selectedCategory) {
+      return false;
+    }
     if (selectedLevel !== "all" && course.level !== selectedLevel) return false;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
@@ -617,6 +662,9 @@ export function CourseCatalogueView({ onSelectCourse, onNavigatePaths }: CourseC
         <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
           <div className="flex items-center gap-1 overflow-x-auto pb-1 md:pb-0">
             {[
+              ...(effectiveGoal
+                ? [{ id: "recommended", label: `✨ For ${effectiveGoal}` }]
+                : []),
               { id: "all", label: "All Topics" },
               { id: "programming", label: "Programming" },
               { id: "cloud", label: "Cloud" },
@@ -653,30 +701,54 @@ export function CourseCatalogueView({ onSelectCourse, onNavigatePaths }: CourseC
         </div>
       </div>
 
+      {selectedCategory === "recommended" && effectiveGoal && (
+        <div className="flex items-center justify-between bg-emerald-50/70 border border-emerald-200/60 rounded-xl px-4 py-2.5 text-xs text-emerald-900">
+          <span>Showing courses tailored to your target goal: <strong>{effectiveGoal}</strong></span>
+          <button
+            type="button"
+            onClick={() => setSelectedCategory("all")}
+            className="font-semibold underline hover:text-emerald-950 cursor-pointer"
+          >
+            Explore all 14 courses →
+          </button>
+        </div>
+      )}
+
       {/* Courses Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredCourses.map((course) => (
-          <div
-            key={course.slug}
-            className="group flex flex-col justify-between rounded-2xl border border-ink/10 bg-white p-6 shadow-xs hover:border-brand-forest/40 hover:shadow-md transition-all"
-          >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between gap-2">
-                <span className="rounded-full bg-surface px-2.5 py-0.5 text-[11px] font-semibold text-ink/70 uppercase tracking-wider">
-                  {course.categoryLabel}
-                </span>
-                <span
-                  className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
-                    course.level === "beginner"
-                      ? "bg-emerald-50 text-emerald-700"
-                      : course.level === "intermediate"
-                      ? "bg-blue-50 text-blue-700"
-                      : "bg-purple-50 text-purple-700"
-                  }`}
-                >
-                  {course.level}
-                </span>
-              </div>
+        {filteredCourses.map((course) => {
+          const isMatch = Boolean(effectiveGoal && isCourseRelevantToGoal(course, effectiveGoal));
+          return (
+            <div
+              key={course.slug}
+              className={`group flex flex-col justify-between rounded-2xl border bg-white p-6 shadow-xs hover:border-brand-forest/40 hover:shadow-md transition-all ${
+                isMatch ? "border-emerald-300 ring-1 ring-emerald-100" : "border-ink/10"
+              }`}
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="rounded-full bg-surface px-2.5 py-0.5 text-[11px] font-semibold text-ink/70 uppercase tracking-wider">
+                      {course.categoryLabel}
+                    </span>
+                    {isMatch && (
+                      <span className="rounded-full bg-emerald-100/80 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">
+                        Role Match
+                      </span>
+                    )}
+                  </div>
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
+                      course.level === "beginner"
+                        ? "bg-emerald-50 text-emerald-700"
+                        : course.level === "intermediate"
+                        ? "bg-blue-50 text-blue-700"
+                        : "bg-purple-50 text-purple-700"
+                    }`}
+                  >
+                    {course.level}
+                  </span>
+                </div>
 
               <div>
                 <h3 className="text-lg font-bold text-ink group-hover:text-brand-forest transition-colors">
@@ -721,7 +793,8 @@ export function CourseCatalogueView({ onSelectCourse, onNavigatePaths }: CourseC
               </button>
             </div>
           </div>
-        ))}
+        );
+      })}
       </div>
 
       {filteredCourses.length === 0 && (

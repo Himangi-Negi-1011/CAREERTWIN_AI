@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Functions, Exceptions, and Boundaries",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Functions, Exceptions, and Boundaries."
+      "title": "PHP 8 Official Manual",
+      "url": "https://www.php.net/docs.php",
+      "description": "Official reference documentation for PHP."
     }
   ],
   "realWorldApplications": [

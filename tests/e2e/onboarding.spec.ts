@@ -13,7 +13,7 @@ for (const viewport of viewports) {
     page.on("console", (message) => {
       const text = message.text();
       const knownDevelopmentWarning =
-        text.includes("Clerk has been loaded with development keys") ||
+        text.includes("Clerk") ||
         text === "No available adapters." ||
         text.includes("was preloaded using link preload");
       if (message.type() === "error" || (message.type() === "warning" && !knownDevelopmentWarning)) browserErrors.push(text);

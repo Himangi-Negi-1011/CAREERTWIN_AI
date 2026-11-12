@@ -1,5 +1,5 @@
 {
-  "id": "mock-c-programming-beginner-test-03",
+  "id": "mock-c-programming-beginner-t3",
   "skillName": "C Programming",
   "skillSlug": "c-programming",
   "level": "beginner",
@@ -7,697 +7,1027 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "C Programming Beginner Mock Test 3",
-  "description": "Comprehensive 50-minute mock examination for C Programming at beginner level.",
-  "durationMinutes": 35,
-  "totalMarks": 20,
+  "title": "C Programming 100-Mark Professional Mock Examination (Test 3)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "preprocessing",
-    "compiler warnings",
-    "linking",
-    "integer division",
-    "format specifiers",
-    "fgets",
-    "strtol",
-    "short circuit",
-    "assignment equality",
-    "switch",
-    "array bounds",
-    "sizeof array",
-    "size_t",
-    "undefined behavior",
-    "pass by value",
-    "null pointers",
-    "const pointers",
-    "object lifetime",
-    "structs",
-    "file I/O"
+    "Stack vs Heap Memory Model",
+    "Ownership & Borrow Checking",
+    "Go Channels & `select`",
+    "RAII & Smart Pointers",
+    "Identity vs Content Equality",
+    "Cancellation & Context Propagation",
+    "Memory Safety & C Pitfalls",
+    "Structured Async Programming",
+    "Explicit Error Modeling",
+    "Lazy Stream & LINQ Pipelines",
+    "Dangling Stack Pointers",
+    "Immutable String Allocation Cost",
+    "Concurrent Map Safety",
+    "Move Semantics & Ownership Errors",
+    "Async-Over-Sync Deadlocks",
+    "Bounded Fan-Out & Timeouts",
+    "Zero-Copy Slices & Spans",
+    "HTTP Socket & Pool Management",
+    "Sanitizer-Backed Verification",
+    "Exact Numeric Precision",
+    "Graceful Signal Handling",
+    "Dependency Inversion & Testing",
+    "Smart Pointer Ownership",
+    "Idiomatic Error Propagation (`?`)",
+    "Bounded C String Safety",
+    "Distributed Consistency & Outbox",
+    "Circuit Breakers & Fault Isolation",
+    "Distributed Tracing & Observability"
   ],
   "questions": [
     {
-      "id": "mock-c-programming-beginner-test-03-q1",
+      "id": "mock-c-programming-beginner-t3-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about preprocessing is valid?",
+      "prompt": "In systems languages (`C`, `C++`, `Rust`), how do Stack memory and Heap memory differ fundamentally?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "macros do textual substitution without type checking"
+          "id": "opt-1",
+          "text": "Heap memory is strictly faster than CPU registers"
         },
         {
-          "id": "B",
-          "text": "preprocessing handles directives before compilation"
+          "id": "opt-2",
+          "text": "Stack uses fast LIFO frame allocation scoped to function calls; Heap enables dynamic variable-lifetime allocation requiring explicit deallocation or RAII/ownership"
         },
         {
-          "id": "C",
-          "text": "use headers for declarations and include guards"
+          "id": "opt-3",
+          "text": "Heap allocations never require pointers or references"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Stack memory grows unbounded across gigabytes safely"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "macros do textual substitution without type checking. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Understanding stack frames vs heap allocation explains lifetimes, buffer overflows, leaks, and Rust/C++ ownership idioms.",
       "difficulty": "beginner",
-      "topic": "preprocessing",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Stack vs Heap Memory Model",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q2",
+      "id": "mock-c-programming-beginner-t3-q2",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about compiler warnings is valid?",
+      "prompt": "What compile-time guarantee makes Rust eliminate data races and dangling pointers without a garbage collector?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "ignoring warnings can leave real defects"
+          "id": "opt-1",
+          "text": "Ownership and the Borrow Checker: each value has one owner and allows either multiple immutable (`&T`) or one single mutable (`&mut T`) borrow at a time"
         },
         {
-          "id": "B",
-          "text": "warnings identify suspicious but translatable code"
+          "id": "opt-2",
+          "text": "Runtime pause-the-world tracing garbage collection every 10ms"
         },
         {
-          "id": "C",
-          "text": "enable Wall Wextra and Wpedantic"
+          "id": "opt-3",
+          "text": "Automatic conversion of every integer into a heap object"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Disabling multithreading across OS cores"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "ignoring warnings can leave real defects. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Rust's aliasing XOR mutability rules enforce memory safety and data-race freedom statically at compile time.",
       "difficulty": "beginner",
-      "topic": "compiler warnings",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Ownership & Borrow Checking",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q3",
+      "id": "mock-c-programming-beginner-t3-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about linking is valid?",
+      "prompt": "In Go concurrency, what is the purpose of a `select` block operating over multiple channels?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a declaration alone does not satisfy the linker"
+          "id": "opt-1",
+          "text": "It executes SQL queries directly against SQLite"
         },
         {
-          "id": "B",
-          "text": "linking resolves referenced definitions"
+          "id": "opt-2",
+          "text": "It spawns OS kernel threads unconditionally"
         },
         {
-          "id": "C",
-          "text": "provide exactly one matching external definition"
+          "id": "opt-3",
+          "text": "It freezes the program until all channels close permanently"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "It multiplexes blocking send/receive operations across channels, firing whichever channel is ready first (or a timeout/default branch)"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "a declaration alone does not satisfy the linker. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "`select` lets goroutines coordinate timeouts, cancellations (`<-ctx.Done()`), and multi-channel events cleanly.",
       "difficulty": "beginner",
-      "topic": "linking",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Go Channels & `select`",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q4",
+      "id": "mock-c-programming-beginner-t3-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about integer division is valid?",
+      "prompt": "In Modern C++ (`std::unique_ptr`), what idiom ensures dynamic resources close deterministically even when an exception throws?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "casting after division cannot restore the fraction"
+          "id": "opt-1",
+          "text": "Using raw C-style `malloc()` without `free()`"
         },
         {
-          "id": "B",
-          "text": "integer operands produce an integer quotient"
+          "id": "opt-2",
+          "text": "Suppressing exceptions with `catch (...) {}`"
         },
         {
-          "id": "C",
-          "text": "cast before division for a fractional result"
+          "id": "opt-3",
+          "text": "RAII (Resource Acquisition Is Initialization): resource lifetime is bound to stack-allocated object destructors"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Manual paired `new`/`delete` calls before every `return` statement"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "casting after division cannot restore the fraction. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "RAII binds file handles, mutexes, and memory directly to object destructors triggered deterministically on scope exit.",
       "difficulty": "beginner",
-      "topic": "integer division",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "RAII & Smart Pointers",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q5",
+      "id": "mock-c-programming-beginner-t3-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about format specifiers is valid?",
+      "prompt": "In JVM / .NET (`Java`, `C#`), why is comparing two object/string contents with `==` often hazardous compared to `.Equals()` / `.equals()`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a mismatch can cause undefined behavior"
+          "id": "opt-1",
+          "text": "`==` fails compilation in C#"
         },
         {
-          "id": "B",
-          "text": "formatted I/O relies on matching argument types"
+          "id": "opt-2",
+          "text": "`==` on reference types checks whether two pointers reference the same heap identity rather than comparing content equality"
         },
         {
-          "id": "C",
-          "text": "match every conversion with the documented type"
+          "id": "opt-3",
+          "text": "`.equals()` only checks memory addresses"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Strings are value structs on the CPU stack in Java"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a mismatch can cause undefined behavior. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Java String equality requires `.equals()` to compare characters reliably (as non-interned heap instances hold different references).",
       "difficulty": "beginner",
-      "topic": "format specifiers",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Identity vs Content Equality",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q6",
+      "id": "mock-c-programming-beginner-t3-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about fgets is valid?",
+      "prompt": "What problem does `context.Context` solve cleanly across HTTP handlers and microservices in Go?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "assuming every line fits can leave unread fragments"
+          "id": "opt-1",
+          "text": "Propagating deadlines, timeouts, and cancellation signals down call chains so abandoned requests release DB/goroutine work immediately"
         },
         {
-          "id": "B",
-          "text": "fgets reads a bounded line and retains a newline when present"
+          "id": "opt-2",
+          "text": "Replacing HTTP JSON encoding with XML"
         },
         {
-          "id": "C",
-          "text": "read text then parse and validate it"
+          "id": "opt-3",
+          "text": "Encrypting TLS handshake certificates"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Preventing all integer overflows"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "assuming every line fits can leave unread fragments. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Passing `ctx` as the first parameter prevents goroutine leaks when clients disconnect early or RPCs exceed deadlines.",
       "difficulty": "beginner",
-      "topic": "fgets",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Cancellation & Context Propagation",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q7",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about strtol is valid?",
+      "id": "mock-c-programming-beginner-t3-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which errors occur from unsafe manual pointer/buffer manipulation in C?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "atoi cannot report detailed conversion failure"
+          "id": "opt-1",
+          "text": "Use-after-free accessing heap pointers already passed to `free()`"
         },
         {
-          "id": "B",
-          "text": "strtol reports where numeric parsing stopped"
+          "id": "opt-2",
+          "text": "Null pointer dereference reading memory address `0x0`"
         },
         {
-          "id": "C",
-          "text": "check end pointer errno and target range"
+          "id": "opt-3",
+          "text": "Automatic bounds expansion allocating RAM cleanly at runtime"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Buffer overflow writing past allocated array bounds (`strcpy` vs bounded `snprintf`)"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1",
+        "opt-2",
+        "opt-4"
       ],
-      "explanation": "atoi cannot report detailed conversion failure. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "C gives zero implicit bounds checking; explicit length tracking and sanitizer tooling (ASan/UBSan) guard against memory corruption.",
       "difficulty": "beginner",
-      "topic": "strtol",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Memory Safety & C Pitfalls",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q8",
+      "id": "mock-c-programming-beginner-t3-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about short circuit is valid?",
+      "prompt": "In C# / .NET asynchronous programming, why should `async void` methods generally be avoided except for top-level UI event handlers?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "bitwise operators do not short-circuit"
+          "id": "opt-1",
+          "text": "`async void` executes code twice"
         },
         {
-          "id": "B",
-          "text": "logical operators may skip the right operand"
+          "id": "opt-2",
+          "text": "`Task` is deprecated in .NET 8+"
         },
         {
-          "id": "C",
-          "text": "put validity checks before dependent expressions"
+          "id": "opt-3",
+          "text": "Callers cannot `await` an `async void` method and unhandled exceptions inside it cannot be caught, crashing the process"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "`async Task` blocks UI threads synchronously"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "bitwise operators do not short-circuit. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Returning `Task` / `Task<T>` preserves awaitability, composable exception handling, and structured concurrency.",
       "difficulty": "beginner",
-      "topic": "short circuit",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Structured Async Programming",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q9",
+      "id": "mock-c-programming-beginner-t3-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about assignment equality is valid?",
+      "prompt": "How do Go and Rust both avoid fragile `null` dereference surprises common in older languages?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "using assignment in a condition can silently alter state"
+          "id": "opt-1",
+          "text": "They prohibit functions from returning values"
         },
         {
-          "id": "B",
-          "text": "single equals assigns while double equals compares"
+          "id": "opt-2",
+          "text": "Go requires explicit multi-value `(val, err)` error checking; Rust uses exhaustive `Option<T>` and `Result<T, E>` enums verified by compiler"
         },
         {
-          "id": "C",
-          "text": "keep assignment out of conditions unless intentional and clear"
+          "id": "opt-3",
+          "text": "They convert null pointers automatically into `0`"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "They halt execution only in unit tests"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "using assignment in a condition can silently alter state. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Explicit sum types (`Result`/`Option`) and `(val, err)` conventions prevent hidden null-pointer surprises.",
       "difficulty": "beginner",
-      "topic": "assignment equality",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Explicit Error Modeling",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q10",
+      "id": "mock-c-programming-beginner-t3-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about switch is valid?",
+      "prompt": "In Java Streams and C# LINQ pipelines, what does 'deferred (lazy) execution' mean?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "missing break can execute later cases"
+          "id": "opt-1",
+          "text": "Intermediate transformations (`filter`/`Where`, `map`/`Select`) do not evaluate elements until a terminal operation (`collect`/`ToList`) iterates the sequence"
         },
         {
-          "id": "B",
-          "text": "switch selects integral cases"
+          "id": "opt-2",
+          "text": "Queries wait 5 seconds before returning"
         },
         {
-          "id": "C",
-          "text": "use breaks or explicit fallthrough comments"
+          "id": "opt-3",
+          "text": "Data is dropped from memory randomly"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Loops run backwards from last item to first"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "missing break can execute later cases. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Lazy evaluation fuses pipeline stages into a single traversal without allocating intermediate lists at every step.",
       "difficulty": "beginner",
-      "topic": "switch",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Lazy Stream & LINQ Pipelines",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q11",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about array bounds is valid?",
+      "id": "mock-c-programming-beginner-t3-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "What dangerous undefined behavior occurs in C if a function returns the address of a local array (`int buf[10]; return buf;`)?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "index equal to count is out of bounds"
+          "id": "opt-1",
+          "text": "Compilers convert local arrays to global static variables implicitly"
         },
         {
-          "id": "B",
-          "text": "valid indexes are below the element count"
+          "id": "opt-2",
+          "text": "The local array resides on the function's stack frame, which is popped on return—leaving a dangling pointer to overwritten memory"
         },
         {
-          "id": "C",
-          "text": "use i < count as the common traversal guard"
+          "id": "opt-3",
+          "text": "C automatically promotes stack arrays to garbage-collected heap memory"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "The array values are frozen permanently as read-only constants"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "index equal to count is out of bounds. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Never return pointers to stack-local storage; pass caller-owned output buffers (`out_len`) or heap-allocate with clear ownership.",
       "difficulty": "beginner",
-      "topic": "array bounds",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Dangling Stack Pointers",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q12",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about sizeof array is valid?",
+      "id": "mock-c-programming-beginner-t3-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does `StringBuilder` outperform string `+` concatenation inside a 50,000-iteration loop in Java / C#?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a function parameter declared as array is adjusted to a pointer"
+          "id": "opt-1",
+          "text": "Strings are immutable; repeated `+` allocates O(n^2) temporary copies on the heap, whereas `StringBuilder` mutates a resizable buffer in amortized O(n)"
         },
         {
-          "id": "B",
-          "text": "local array size can derive an element count"
+          "id": "opt-2",
+          "text": "Strings cannot hold more than 255 characters"
         },
         {
-          "id": "C",
-          "text": "divide total array bytes by one element size"
+          "id": "opt-3",
+          "text": "StringBuilder bypasses garbage collection completely via direct disk I/O"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "The `+` operator executes inside a synchronized global lock"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "a function parameter declared as array is adjusted to a pointer. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Accumulating strings via mutable builders eliminates quadratic heap churn and GC pressure.",
       "difficulty": "beginner",
-      "topic": "sizeof array",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Immutable String Allocation Cost",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q13",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about size_t is valid?",
+      "id": "mock-c-programming-beginner-t3-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "In Go, spinning up 10,000 goroutines reading/writing an unguarded `map[string]int` panics at runtime (`fatal error: concurrent map read and map write`). Fix?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "mixing signed and unsigned values can distort comparisons"
+          "id": "opt-1",
+          "text": "Cast the map to `interface{}`"
         },
         {
-          "id": "B",
-          "text": "size_t represents object sizes and indexes"
+          "id": "opt-2",
+          "text": "Wrap calls in `defer recover()` assuming writes didn't corrupt memory"
         },
         {
-          "id": "C",
-          "text": "use size_t with sizeof-derived counts"
+          "id": "opt-3",
+          "text": "Use global slice indexing without locks"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Protect map access with `sync.RWMutex`, use `sync.Map`, or funnel writes through a dedicated owner goroutine via channels"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "mixing signed and unsigned values can distort comparisons. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Built-in Go maps are intentionally non-thread-safe for zero-overhead single-goroutine speed and must be synchronized explicitly.",
       "difficulty": "beginner",
-      "topic": "size_t",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Concurrent Map Safety",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q14",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about undefined behavior is valid?",
+      "id": "mock-c-programming-beginner-t3-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Look at this Rust snippet: `let s1 = String::from(\"twin\"); let s2 = s1; println!(\"{}\", s1);`. Why does `rustc` reject compilation?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a successful run does not prove undefined behavior is safe"
+          "id": "opt-1",
+          "text": "Rust Strings cannot exceed 4 characters"
         },
         {
-          "id": "B",
-          "text": "undefined behavior imposes no required result"
+          "id": "opt-2",
+          "text": "`let` bindings are write-only"
         },
         {
-          "id": "C",
-          "text": "prevent invalid accesses rather than expecting an exception"
+          "id": "opt-3",
+          "text": "`s1` was moved into `s2` transferring heap ownership; using `s1` afterward would cause double-free/use-after-free unless borrowed (`&s1`) or `.clone()`ed"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "`println!` forbids printing Strings"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "a successful run does not prove undefined behavior is safe. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Move semantics ensure a heap buffer has exactly one owner at any point unless shared explicitly via references or cloning.",
       "difficulty": "beginner",
-      "topic": "undefined behavior",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Move Semantics & Ownership Errors",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q15",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about pass by value is valid?",
+      "id": "mock-c-programming-beginner-t3-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does calling `.Result` or `.Wait()` synchronously inside an ASP.NET Core / UI `async` request handler risk an immediate deadlock?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "reassigning a pointer parameter does not reassign caller pointer"
+          "id": "opt-1",
+          "text": "C# disables TCP ports during `.Result` calls"
         },
         {
-          "id": "B",
-          "text": "every C function parameter receives a value copy"
+          "id": "opt-2",
+          "text": "Blocking a thread waiting on an incomplete Task that captures/needs that exact synchronization context freezes both caller and continuation"
         },
         {
-          "id": "C",
-          "text": "pass an address when deliberate caller mutation is needed"
+          "id": "opt-3",
+          "text": "`.Wait()` automatically deletes all HTTP cookies"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Async methods cannot execute inside controllers"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "reassigning a pointer parameter does not reassign caller pointer. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Follow 'async all the way' using `await` instead of blocking synchronously on asynchronous Tasks.",
       "difficulty": "beginner",
-      "topic": "pass by value",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Async-Over-Sync Deadlocks",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q16",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about null pointers is valid?",
+      "id": "mock-c-programming-beginner-t3-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A high-throughput network proxy needs to aggregate results concurrently from 5 backend microservices while aborting pending RPCs cleanly if overall deadline exceeds 250ms. Which pattern achieves this?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "dereferencing null is undefined behavior"
+          "id": "opt-1",
+          "text": "Cache responses globally ignoring URL paths"
         },
         {
-          "id": "B",
-          "text": "NULL represents no pointed-to object"
+          "id": "opt-2",
+          "text": "Pass a deadline-bounded `context.WithTimeout` / `CancellationToken` into parallel worker tasks and aggregate via channel/Task.WhenAll"
         },
         {
-          "id": "C",
-          "text": "validate nullable pointers before dereference"
+          "id": "opt-3",
+          "text": "Loop sequentially over the 5 services with 10-second socket timeouts each"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Spawn detached background threads ignoring cancellation indefinitely"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "dereferencing null is undefined behavior. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Structured fan-out with timeout cancellation limits tail latency and prevents orphaned zombie workers.",
       "difficulty": "beginner",
-      "topic": "null pointers",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Bounded Fan-Out & Timeouts",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q17",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about const pointers is valid?",
+      "id": "mock-c-programming-beginner-t3-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You must process a 20M-element array in C++/Rust safely without allocating extra O(n) copies on the heap. What representation provides zero-copy windowing over contiguous memory?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "const does not necessarily make the original object globally immutable"
+          "id": "opt-1",
+          "text": "Pass read-only views/slices (`std::span<const T>` in C++, `&[T]` in Rust, `ReadOnlySpan<T>` in C#)"
         },
         {
-          "id": "B",
-          "text": "pointer-to-const prevents modification through that pointer"
+          "id": "opt-2",
+          "text": "Clone the entire array into new `vector`/`Vec` instances per recursive call"
         },
         {
-          "id": "C",
-          "text": "use const for read-only input buffers and objects"
+          "id": "opt-3",
+          "text": "Convert integers to boxed strings"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Write segments to temporary disk files"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "const does not necessarily make the original object globally immutable. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Slices/Spans bundle `(pointer, length)` without copying backing storage, enabling fast, bounds-checked zero-copy slicing.",
       "difficulty": "beginner",
-      "topic": "const pointers",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Zero-Copy Slices & Spans",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q18",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about object lifetime is valid?",
+      "id": "mock-c-programming-beginner-t3-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A Java/C# REST service creates a fresh `HttpClient` instance inside every controller request loop, leading to `SocketException` port exhaustion under load. Why?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "returning an address of a local creates a dangling pointer"
+          "id": "opt-1",
+          "text": "TCP sockets support only 10 requests per process lifetime"
         },
         {
-          "id": "B",
-          "text": "automatic locals end lifetime when their block exits"
+          "id": "opt-2",
+          "text": "HTTP requests should use raw UDP datagrams instead"
         },
         {
-          "id": "C",
-          "text": "return values or caller-owned storage instead of local addresses"
+          "id": "opt-3",
+          "text": "DNS resolution disables network cards after 50 lookups"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Closing transient `HttpClient`s leaves OS TCP sockets lingering in `TIME_WAIT`; share pooled clients (`IHttpClientFactory` / singleton `HttpClient`)"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "returning an address of a local creates a dangling pointer. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Reusing pooled connection managers preserves TCP keep-alive connections and prevents ephemeral port exhaustion.",
       "difficulty": "beginner",
-      "topic": "object lifetime",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "HTTP Socket & Pool Management",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q19",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about structs is valid?",
+      "id": "mock-c-programming-beginner-t3-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "How can C/C++ build pipelines catch subtle undefined behavior, out-of-bounds reads, and memory leaks reliably during automated CI testing?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "struct assignment is shallow for pointer fields"
+          "id": "opt-1",
+          "text": "Test only release `-O3` binaries manually once per year"
         },
         {
-          "id": "B",
-          "text": "structs group named fields into a record"
+          "id": "opt-2",
+          "text": "Disable return code assertions in tests"
         },
         {
-          "id": "C",
-          "text": "use a typedef struct for repeated domain records"
+          "id": "opt-3",
+          "text": "Compile and run unit tests under AddressSanitizer (`-fsanitize=address,undefined`) and `-Wall -Wextra -Werror`"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "Pass `-w` to silence all compiler diagnostics"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "struct assignment is shallow for pointer fields. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Sanitizers (ASan/UBSan/TSan) detect out-of-bounds access, use-after-free, and data races reliably during test runs.",
       "difficulty": "beginner",
-      "topic": "structs",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Sanitizer-Backed Verification",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     },
     {
-      "id": "mock-c-programming-beginner-test-03-q20",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about file I/O is valid?",
+      "id": "mock-c-programming-beginner-t3-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An enterprise billing engine requires deterministic rounding to exact cents without IEEE-754 binary floating-point drift (`0.1 + 0.2 = 0.30000000000000004`). What type must hold currency?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "assuming a file is trusted can corrupt program state"
+          "id": "opt-1",
+          "text": "Unvalidated arbitrary strings concatenated with `$`"
         },
         {
-          "id": "B",
-          "text": "file operations report failure through returns and stream state"
+          "id": "opt-2",
+          "text": "Integer minor units (cents `int64`) or fixed-point decimal types (`BigDecimal` in Java, `decimal` in C#)"
         },
         {
-          "id": "C",
-          "text": "check fopen reads writes and close results"
+          "id": "opt-3",
+          "text": "`float` (32-bit IEEE binary float)"
         },
         {
-          "id": "D",
-          "text": "The language automatically repairs the issue"
+          "id": "opt-4",
+          "text": "`double` formatted purely with `printf` on output"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "assuming a file is trusted can corrupt program state. Verify with strict warnings, a minimal program, and observable output.",
+      "explanation": "Binary floats cannot represent base-10 fractions accurately; financial calculations demand integer cents or arbitrary decimal types.",
       "difficulty": "beginner",
-      "topic": "file I/O",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-c-beginner-module-1-l1",
-      "recommendedLessonTitle": "Compiling C and Reading Diagnostics"
+      "topic": "Exact Numeric Precision",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "How do you execute graceful server shutdown on `SIGTERM` in a Go/Java/Node microservice so open requests drain cleanly before process exit?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Delete local config files during shutdown"
+        },
+        {
+          "id": "opt-2",
+          "text": "Listen for `SIGINT`/`SIGTERM`, stop accepting new connections via `server.Shutdown(ctx)` with a bounded timeout, flush logs/DB pools, then exit `0`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Call `os.Exit(1)` immediately dropping active client sockets"
+        },
+        {
+          "id": "opt-4",
+          "text": "Ignore OS shutdown signals completely until forced SIGKILL"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Graceful shutdown prevents failed 502 responses and partial database mutations during container rolling updates.",
+      "difficulty": "beginner",
+      "topic": "Graceful Signal Handling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When building a Dependency Injection friendly service in C#/Java/Go, why accept interfaces (abstractions) instead of concrete DB drivers in constructor signatures?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Services decouple business rules from storage infrastructure, allowing fast deterministic unit tests using in-memory fakes/mocks"
+        },
+        {
+          "id": "opt-2",
+          "text": "Interfaces compile code 100x faster than structs"
+        },
+        {
+          "id": "opt-3",
+          "text": "Concrete classes forbid method signatures"
+        },
+        {
+          "id": "opt-4",
+          "text": "Interfaces bypass TCP serialization automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Dependence on abstractions supports clean unit testing, swapping stores, and enforcing boundary separation.",
+      "difficulty": "beginner",
+      "topic": "Dependency Inversion & Testing",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "In C++, which modern smart pointer represents exclusive single ownership of a heap object with zero reference-counting overhead?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`raw T*` deleted manually inside finalizers"
+        },
+        {
+          "id": "opt-2",
+          "text": "`void*` cast inside C macros"
+        },
+        {
+          "id": "opt-3",
+          "text": "`std::auto_ptr` (removed in C++17)"
+        },
+        {
+          "id": "opt-4",
+          "text": "`std::unique_ptr<T>` created via `std::make_unique<T>(...)`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`std::unique_ptr` imposes zero runtime size/ref-count overhead over raw pointers while enforcing RAII cleanup.",
+      "difficulty": "beginner",
+      "topic": "Smart Pointer Ownership",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When reading an untrusted configuration JSON/YAML file in Rust (`Result<Config, Error>`), what clean operator propagates errors upward safely without panicking on `.unwrap()`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Using `unsafe { std::mem::transmute(...) }`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Silently dropping error enums via `let _ =`"
+        },
+        {
+          "id": "opt-3",
+          "text": "The `?` operator propagating `Err(e)` directly back to the caller"
+        },
+        {
+          "id": "opt-4",
+          "text": "Calling `.unwrap()` on every line in production handlers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Using `?` cleanly returns recoverable `Result` errors up the stack instead of aborting processes via `.unwrap()` panics.",
+      "difficulty": "beginner",
+      "topic": "Idiomatic Error Propagation (`?`)",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which standard practice avoids buffer overflow when formatting bounded strings into a stack buffer `char buf[64]` in C?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Turn off compiler warnings"
+        },
+        {
+          "id": "opt-2",
+          "text": "Use `snprintf(buf, sizeof(buf), \"%s\", src)` checking return truncation length rather than unbounded `sprintf` or `strcpy`"
+        },
+        {
+          "id": "opt-3",
+          "text": "Use `gets(buf)` reading arbitrarily from stdin"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use `strcat` repeatedly hoping inputs remain small"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Bounded string primitives like `snprintf` guarantee NUL-termination within exact allocated buffer sizes.",
+      "difficulty": "beginner",
+      "topic": "Bounded C String Safety",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "An order service saves an order to Postgres and publishes a confirmation message to Kafka. If Postgres commits yet Kafka crashes midway, events become lost. What architectural pattern solves this reliably?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Drop database transactions completely"
+        },
+        {
+          "id": "opt-2",
+          "text": "Transactional Outbox Pattern: persist order + outbox event row atomically in the same DB transaction, then relay outbox asynchronously with idempotency"
+        },
+        {
+          "id": "opt-3",
+          "text": "Send the Kafka event first before checking DB constraints"
+        },
+        {
+          "id": "opt-4",
+          "text": "Wrap HTTP calls in a `try/catch` printing `'retry later'`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "The Outbox pattern guarantees at-least-once event delivery atomically coupled to local database state without fragile two-phase distributed commits.",
+      "difficulty": "beginner",
+      "topic": "Distributed Consistency & Outbox",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A downstream payment gateway begins hanging for 30s per call, backing up worker pools across the whole platform (cascading failure). Which resilience pattern isolates this immediately?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Deploy strict client timeouts paired with a Circuit Breaker failing fast when error rate crosses threshold"
+        },
+        {
+          "id": "opt-2",
+          "text": "Retry failing requests 50 times synchronously inside the user request handler"
+        },
+        {
+          "id": "opt-3",
+          "text": "Remove timeout bounds waiting forever"
+        },
+        {
+          "id": "opt-4",
+          "text": "Scale worker memory to 512GB"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Timeouts + Circuit Breakers shed load quickly when a downstream dependency degrades, preserving core system responsiveness.",
+      "difficulty": "beginner",
+      "topic": "Circuit Breakers & Fault Isolation",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
+    },
+    {
+      "id": "mock-c-programming-beginner-t3-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "High-concurrency distributed microservices generate trace logs across 8 hops per checkout request. How do engineers correlate a single user's error end-to-end across servers?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "SSH manually into 40 containers grepping timestamps by hand"
+        },
+        {
+          "id": "opt-2",
+          "text": "Log plain unstructured strings without request IDs"
+        },
+        {
+          "id": "opt-3",
+          "text": "Disable production error logging"
+        },
+        {
+          "id": "opt-4",
+          "text": "Propagate a distributed `traceparent` / Correlation Request ID header across all RPCs and attach it to structured JSON logs and spans (OpenTelemetry)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "OpenTelemetry trace context propagation links logs, metrics, and latency spans across service boundaries instantaneously.",
+      "difficulty": "beginner",
+      "topic": "Distributed Tracing & Observability",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in C Programming"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:40.810Z",
-  "updatedAt": "2026-11-01T15:37:40.810Z"
+  "createdAt": "2026-11-11T05:58:20.137Z",
+  "updatedAt": "2026-11-11T05:58:20.137Z"
 }

@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: TypeScript Setup and Type Inference",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for TypeScript Setup and Type Inference."
+      "title": "TypeScript Handbook & Official Docs",
+      "url": "https://www.typescriptlang.org/docs/",
+      "description": "Official reference documentation for TypeScript."
     }
   ],
   "realWorldApplications": [

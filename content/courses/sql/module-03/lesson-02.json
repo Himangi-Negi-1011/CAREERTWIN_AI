@@ -1,0 +1,224 @@
+{
+  "lessonId": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe-",
+  "skillName": "SQL",
+  "moduleId": "mod-3-sql-perf-acid",
+  "title": "ACID Transactions, Isolation Levels & Safe Migrations",
+  "summary": "Prevent race conditions (double-spending/overbooking) using explicit transactions, row locking (`FOR UPDATE`), and zero-downtime Expand-Contract schema migrations.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 35,
+  "learningObjectives": [
+    "Prevent concurrent double-spend races cleanly using transactional locks and atomic conditional updates",
+    "Execute zero-downtime database migrations via the Expand-Contract strategy"
+  ],
+  "objectiveIds": [
+    "sql-obj-3",
+    "sql-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Understanding of INSERT/UPDATE and basic indexes"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe--sec-1",
+      "heading": "1. Atomic Transactions & Preventing Check-Then-Act Races",
+      "content": "Imagine two concurrent HTTP requests checking a student wallet (`balance = 100`) simultaneously: both read `100 >= 80`, then both subtract `80`, corrupting the ledger (`-60`)! This **Time-of-Check to Time-of-Use (TOCTOU)** race condition vanishes inside explicit transactions (`BEGIN ... COMMIT`) using atomic updates (`UPDATE wallets SET balance = balance - 80 WHERE id = $1 AND balance >= 80`) or pessimistic row locks (`SELECT ... FOR UPDATE`).\n\nFor concurrent multi-row transfers, always lock account IDs in a sorted canonical order (`LEAST(id1, id2)` first!) so concurrent opposite transfers NEVER trigger circular deadlocks!",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "Request A (Debit 80) ---> [BEGIN] -> UPDATE WHERE balance >= 80 -> [1 row updated -> COMMIT]\nRequest B (Debit 80) ---> [Wait on Lock] ----------------------> WHERE balance >= 80 FALSE -> 0 rows -> Safe Rollback!",
+          "explanation": "Row locks + atomic predicates prevent concurrent requests from double-spending the exact same balance.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "Never perform 'read into Node memory -> check in JS -> separate UPDATE' without locking or conditional WHERE guards.",
+        "Expand-Contract migrations add new columns cleanly first, backfill safely, update code, then drop legacy columns later without outages."
+      ],
+      "commonMistakes": [
+        "Renaming or dropping actively queried columns directly (`ALTER TABLE ... RENAME COLUMN`) while older deployed app containers still query the old name!"
+      ]
+    },
+    {
+      "id": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe--sec-2",
+      "heading": "2. Atomic Conditional Wallet Deduction & Audit Insert",
+      "content": "Check how combining `RETURNING` and conditional `WHERE` inside an explicit `BEGIN ... COMMIT` makes financial state updates mathematically atomic.",
+      "codeExamples": [
+        {
+          "language": "sql",
+          "code": "BEGIN;\n\nUPDATE accounts\nSET balance_cents = balance_cents - 5000, updated_at = NOW()\nWHERE id = 'acct_01' AND balance_cents >= 5000\nRETURNING balance_cents;\n\n-- If rowcount == 1 in backend driver:\nINSERT INTO audit_entries (account_id, delta_cents, reason)\nVALUES ('acct_01', -5000, 'Course certification fee');\n\nCOMMIT;",
+          "explanation": "Checking `balance_cents >= 5000` inside the `UPDATE` holds the row lock atomically avoiding stale JS reads.",
+          "expectedOutput": "Atomic balance reduction strictly blocked when funds < 5000, committed alongside immutable audit row"
+        }
+      ],
+      "keyPoints": [
+        "Check `ROLLBACK;` cleanly in `catch` blocks whenever any intermediate statement fails."
+      ],
+      "commonMistakes": [
+        "Leaving uncommitted idle transactions (`BEGIN` without `COMMIT`/`ROLLBACK`) hanging, holding table locks and blocking `VACUUM` cleanup."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe--ex-1",
+      "type": "coding",
+      "title": "Solve Concurrent Seat Booking Overbooking Race",
+      "objective": "Prevent concurrent reservations from exceeding workshop seat capacity.",
+      "description": "Two users simultaneously click 'Reserve Seat' on a live workshop with `seats_remaining = 1`. Fix the naive JS read-then-write logic (`if (workshop.seats > 0) update seats = seats - 1`).",
+      "instructions": [
+        "Wrap reservation inside a clean PostgreSQL `BEGIN ... COMMIT` block.",
+        "Use an atomic conditional `UPDATE workshops SET seats_remaining = seats_remaining - 1 WHERE id = $1 AND seats_remaining >= 1 RETURNING id`.",
+        "Insert the reservation row ONLY if `UPDATE` matched 1 row; otherwise `ROLLBACK`."
+      ],
+      "starterCode": "-- Atomic Reservation Transaction\nBEGIN;\nUPDATE workshops ...;\n-- Conditional INSERT INTO bookings ...\nCOMMIT;",
+      "hints": [
+        "Putting `AND seats_remaining >= 1` directly inside the atomic `UPDATE` serializes competing row updates cleanly."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "The first request decrements `1 -> 0` and succeeds; the second blocks briefly on row lock, evaluates `0 >= 1` (false), updates 0 rows, and aborts cleanly with zero overbooking."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe--kc-1",
+      "type": "single-choice",
+      "prompt": "Why does checking `if (wallet.balance >= amount)` in Node.js memory followed by a separate `UPDATE wallets SET balance = balance - amount` risk negative balances?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Concurrent requests can both read the old positive balance before either commits (TOCTOU race condition)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Node numbers turn negative on JSON parse"
+        },
+        {
+          "id": "opt-3",
+          "text": "PostgreSQL ignores `UPDATE` inside transactions"
+        },
+        {
+          "id": "opt-4",
+          "text": "JavaScript floats round numbers down automatically"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Atomic database-level `WHERE balance >= amount` or `SELECT FOR UPDATE` closes race windows cleanly.",
+      "objectiveIds": [
+        "sql-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe--kc-2",
+      "type": "single-choice",
+      "prompt": "What ACID guarantee ensures that if step 2 (audit log insert) fails mid-transaction, step 1 (balance deduction) is completely undone?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Atomicity"
+        },
+        {
+          "id": "opt-2",
+          "text": "Isolation"
+        },
+        {
+          "id": "opt-3",
+          "text": "Normal Form"
+        },
+        {
+          "id": "opt-4",
+          "text": "Replication"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Atomicity makes every multi-statement transaction strictly all-or-nothing.",
+      "objectiveIds": [
+        "sql-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-sql-perf-acid-l2-acid-transactions-isolation-levels-safe--kc-3",
+      "type": "single-choice",
+      "prompt": "How does the Expand-Contract migration pattern rename a live column with zero deployment downtime?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Add new column + dual-write/backfill -> update deployed code reads -> drop old column once old pods terminate"
+        },
+        {
+          "id": "opt-2",
+          "text": "Run RENAME COLUMN immediately during peak hours"
+        },
+        {
+          "id": "opt-3",
+          "text": "Truncate the table before running ALTER TABLE"
+        },
+        {
+          "id": "opt-4",
+          "text": "Restart Postgres ignoring running web queries"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Overlap-tolerant transitions prevent rolling pods from crashing on missing column errors.",
+      "objectiveIds": [
+        "sql-obj-3"
+      ]
+    }
+  ],
+  "recap": "You completed the SQL Engineering track—mastering normalized design, CTE/Window analytics, B-Tree index tuning, and atomic ACID locking.",
+  "videoResources": [
+    {
+      "id": "res-sql-primary",
+      "title": "SQL & Relational Database Engineering Mastery",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp / CMU Database Group",
+      "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of SQL.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for SQL.",
+      "learningObjectivesSupported": [
+        "sql-obj-1",
+        "sql-obj-2",
+        "sql-obj-3",
+        "sql-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+        "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+        "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+        "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+        "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+        "ACID Transactions, Isolation Levels & Safe Migrations"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "PostgreSQL Official SQL Documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "description": "Official reference documentation for SQL."
+    }
+  ],
+  "realWorldApplications": [
+    "Booking & payment systems",
+    "Zero-downtime SaaS schema changes"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.464Z"
+}

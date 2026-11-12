@@ -278,6 +278,18 @@ export function validateLessonContentQuality(lesson: LessonDocument): { valid: b
     issues.push(`Lesson '${lesson.title}' total section content is under 300 characters.`);
   }
 
+  // 5. Reject placeholder template text and comment mismatches
+  const serialized = JSON.stringify({ sections: lesson.sections, exercises: lesson.exercises });
+  if (
+    serialized.includes("Systematic decomposition and objective verification") ||
+    serialized.includes("Validate assumptions at domain boundaries rather than assuming callers")
+  ) {
+    issues.push(`Lesson '${lesson.title}' contains generic template boilerplate text.`);
+  }
+  if (category === "python" && lesson.exercises.some((ex) => ex.starterCode?.trimStart().startsWith("//"))) {
+    issues.push(`Python lesson '${lesson.title}' uses '//' JS comment syntax in starterCode instead of '#'.`);
+  }
+
   return { valid: issues.length === 0, issues };
 }
 

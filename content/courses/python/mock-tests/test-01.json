@@ -1,5 +1,5 @@
 {
-  "id": "mock-python-beginner-test-01",
+  "id": "mock-python-beginner-t1",
   "skillName": "Python",
   "skillSlug": "python",
   "level": "beginner",
@@ -7,697 +7,1030 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "Python Beginner Mock Test 1",
-  "description": "Comprehensive 50-minute mock examination for Python at beginner level.",
-  "durationMinutes": 35,
-  "totalMarks": 20,
+  "title": "Python 100-Mark Professional Mock Examination (Test 1)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "01",
-    "02",
-    "integer",
-    "f",
-    "05",
-    "comparison",
-    "07",
-    "08",
-    "for",
-    "while",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "local",
-    "17",
-    "18",
-    "19",
-    "20"
+    "Execution Model & Bytecode",
+    "Data Structures & Time Complexity",
+    "Mutability & Memory Semantics",
+    "Object-Oriented Programming & Memory",
+    "Concurrency & The GIL",
+    "Scoping & Namespaces",
+    "Identity vs Equality",
+    "Generators & Iteration",
+    "Decorators & Metaprogramming",
+    "Exception Hierarchy",
+    "Mutable Default Arguments",
+    "Comprehension Execution Mechanics",
+    "Late Binding Closures",
+    "Exception Inheritance Tree",
+    "Shallow vs Deep Copy",
+    "Streaming I/O & Memory Optimization",
+    "Resilience & Idempotent Retries",
+    "Thread Safety & Synchronization",
+    "Abstract Base Classes & Interfaces",
+    "Memoization & Caching Strategies",
+    "Context Managers & Resource Cleanup",
+    "Structured Logging & Observability",
+    "Unit Testing & Assertions",
+    "Dataclasses & Immutability",
+    "Thread Pools & Future Objects",
+    "Multi-Core System Architecture",
+    "Connection Pooling & Database Scalability",
+    "Zero-Trust Security & Service Identity"
   ],
   "questions": [
     {
-      "id": "mock-python-beginner-test-01-q1",
+      "id": "mock-python-beginner-t1-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes assignment in Python?",
+      "prompt": "How does CPython execute Python source code?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "assignment binds a name to the evaluated object"
+          "id": "opt-1",
+          "text": "Compiles directly into machine code assembly without an intermediate representation"
         },
         {
-          "id": "B",
-          "text": "using a name before assignment raises NameError"
+          "id": "opt-2",
+          "text": "Interprets lines directly via bash shell pipes"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Converts Python code into C++ and compiles with Clang on every run"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Compiles source code into intermediate bytecode (.pyc) executed by the CPython virtual machine loop"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "assignment binds a name to the evaluated object. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "CPython compiles source code into bytecode (.pyc) which is subsequently evaluated by a stack-based virtual machine.",
       "difficulty": "beginner",
-      "topic": "01",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Execution Model & Bytecode",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q2",
+      "id": "mock-python-beginner-t1-q2",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes input in Python?",
+      "prompt": "What is the average time complexity of a key lookup in a standard Python dictionary?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "input returns a string"
+          "id": "opt-1",
+          "text": "O(n)"
         },
         {
-          "id": "B",
-          "text": "adding an input string to an integer raises TypeError"
+          "id": "opt-2",
+          "text": "O(n log n)"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "O(1) amortized average time"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "O(log n)"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "input returns a string. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Python dictionaries use compact hash tables with open addressing, providing amortized O(1) lookup performance.",
       "difficulty": "beginner",
-      "topic": "02",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Data Structures & Time Complexity",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q3",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes integer division in Python?",
+      "id": "mock-python-beginner-t1-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which of the following built-in Python data types are immutable?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "`//` performs floor division"
+          "id": "opt-1",
+          "text": "list"
         },
         {
-          "id": "B",
-          "text": "floor division rounds toward negative infinity, not toward zero"
+          "id": "opt-2",
+          "text": "tuple"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "str"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "frozenset"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2",
+        "opt-3",
+        "opt-4"
       ],
-      "explanation": "`//` performs floor division. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Tuples, strings, and frozensets cannot be altered after creation. Lists, dicts, and sets are mutable.",
       "difficulty": "beginner",
-      "topic": "integer",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Mutability & Memory Semantics",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q4",
+      "id": "mock-python-beginner-t1-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes f-strings in Python?",
+      "prompt": "What is the effect of declaring '__slots__' on a Python class definition?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "an f-string evaluates expressions inside braces"
+          "id": "opt-1",
+          "text": "It restricts instance attributes to a predetermined set and eliminates per-instance __dict__ to optimize RAM"
         },
         {
-          "id": "B",
-          "text": "forgetting the leading f leaves braces as ordinary text"
+          "id": "opt-2",
+          "text": "It makes all instance attributes private and inaccessible from outside methods"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "It enables multi-core threading execution without the GIL"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "It prevents other classes from inheriting from this class"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "an f-string evaluates expressions inside braces. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Declaring __slots__ prevents the default __dict__ allocation for every instance, significantly reducing memory footprint when instantiating millions of objects.",
       "difficulty": "beginner",
-      "topic": "f",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Object-Oriented Programming & Memory",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q5",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes booleans in Python?",
+      "id": "mock-python-beginner-t1-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which of the following statements about the Python Global Interpreter Lock (GIL) are true?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "comparison expressions produce boolean values"
+          "id": "opt-1",
+          "text": "I/O bound operations (disk/network) release the GIL while waiting for the OS kernel"
         },
         {
-          "id": "B",
-          "text": "the strings 'False' and '0' are non-empty and therefore truthy"
+          "id": "opt-2",
+          "text": "multiprocessing spawns separate OS processes with individual GILs to achieve multi-core parallelism"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "The GIL eliminates the need for locks around multi-threaded file writing"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "The GIL prevents multiple native OS threads from executing Python bytecode in parallel in CPython"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1",
+        "opt-2",
+        "opt-4"
       ],
-      "explanation": "comparison expressions produce boolean values. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "The GIL serializes bytecode execution on multi-core CPUs in CPython. I/O releases the GIL, and multiprocessing circumvents it.",
       "difficulty": "beginner",
-      "topic": "05",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Concurrency & The GIL",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q6",
+      "id": "mock-python-beginner-t1-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes comparison boundaries in Python?",
+      "prompt": "What does the LEGB rule describe in Python variable resolution?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "`>=` includes the boundary value"
+          "id": "opt-1",
+          "text": "The garbage collector generational triage policy"
         },
         {
-          "id": "B",
-          "text": "using `>` accidentally excludes the exact boundary"
+          "id": "opt-2",
+          "text": "The byte-ordering format of serialized pickle files"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "The scope lookup order: Local -> Enclosing -> Global -> Builtin"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "The loop execution order for generator comprehensions"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "`>=` includes the boundary value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Python searches namespaces in strict LEGB precedence: Local namespace, Enclosing function closures, Global module namespace, Builtin namespace.",
       "difficulty": "beginner",
-      "topic": "comparison",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Scoping & Namespaces",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q7",
+      "id": "mock-python-beginner-t1-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes elif in Python?",
+      "prompt": "What is the difference between '==' and 'is' in Python?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "only the first true branch in an if/elif chain executes"
+          "id": "opt-1",
+          "text": "They are completely interchangeable operators"
         },
         {
-          "id": "B",
-          "text": "independent if statements can execute more than one overlapping branch"
+          "id": "opt-2",
+          "text": "'==' compares value equivalence via __eq__, while 'is' checks object identity (same memory address via id())"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "'is' compares value equality, while '==' checks memory addresses"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "'==' is deprecated in Python 3.12+"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "only the first true branch in an if/elif chain executes. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "'==' checks whether two objects have equivalent contents; 'is' checks whether two variable references point to the exact same object in memory.",
       "difficulty": "beginner",
-      "topic": "07",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Identity vs Equality",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q8",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes range in Python?",
+      "id": "mock-python-beginner-t1-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which of the following expressions yield a generator without evaluating all elements immediately?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "range excludes its stop value"
+          "id": "opt-1",
+          "text": "(x * 2 for x in range(1000000))"
         },
         {
-          "id": "B",
-          "text": "assuming the stop is included creates off-by-one errors"
+          "id": "opt-2",
+          "text": "def gen(): yield 1"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "[x * 2 for x in range(1000000)]"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "{x: x * 2 for x in range(10)}"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1",
+        "opt-2"
       ],
-      "explanation": "range excludes its stop value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Parentheses syntax creates a generator expression; functions containing the 'yield' keyword return generator iterators. Brackets and braces create full collections in memory.",
       "difficulty": "beginner",
-      "topic": "08",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Generators & Iteration",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q9",
+      "id": "mock-python-beginner-t1-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes for loops in Python?",
+      "prompt": "What does the '@functools.wraps' decorator do when authoring custom decorators?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a for loop consumes values from an iterable"
+          "id": "opt-1",
+          "text": "It automatically caches the return value of the wrapped function"
         },
         {
-          "id": "B",
-          "text": "changing the loop variable does not replace the original list element"
+          "id": "opt-2",
+          "text": "It compiles the decorated function into WebAssembly"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "It prevents exceptions from bubbling out of the inner function"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "It copies the original function's name, docstring, and annotations onto the wrapper function"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "a for loop consumes values from an iterable. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Without @functools.wraps, introspection tools and debuggers see the generic wrapper name instead of the decorated function's genuine metadata.",
       "difficulty": "beginner",
-      "topic": "for",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Decorators & Metaprogramming",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q10",
+      "id": "mock-python-beginner-t1-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which statement accurately describes while loops in Python?",
+      "prompt": "What exception is raised when attempting to access a non-existent key in a Python dict without using get()?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a while loop repeats while its condition remains truthy"
+          "id": "opt-1",
+          "text": "AttributeError"
         },
         {
-          "id": "B",
-          "text": "failing to make progress can create an infinite loop"
+          "id": "opt-2",
+          "text": "LookupFailure"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "KeyError"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "IndexError"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "a while loop repeats while its condition remains truthy. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Direct subscript lookup on a mapping (`dict[key]`) raises KeyError if the key is not present.",
       "difficulty": "beginner",
-      "topic": "while",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Exception Hierarchy",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q11",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes break in Python?",
-      "codeSnippet": "",
+      "id": "mock-python-beginner-t1-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Identify the defect causing unexpected state leakage across calls in this function:",
+      "codeSnippet": "def collect_metrics(metric_name, store=[]):\n    store.append(metric_name)\n    return store\n\na = collect_metrics(\"cpu\")\nb = collect_metrics(\"ram\")\nprint(b)",
       "options": [
         {
-          "id": "A",
-          "text": "break exits the nearest enclosing loop"
+          "id": "opt-1",
+          "text": "Python functions return by value rather than reference"
         },
         {
-          "id": "B",
-          "text": "break does not exit an enclosing function unless followed by return"
+          "id": "opt-2",
+          "text": "The append() method creates a global variable"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "String arguments cannot be placed in lists"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Default parameter expressions are evaluated once at function definition time, sharing the mutable list instance across invocations"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "break exits the nearest enclosing loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Using mutable default arguments like `store=[]` shares the same list across all calls. The idiomatic fix is `store=None` with `if store is None: store = []`.",
       "difficulty": "beginner",
-      "topic": "11",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Mutable Default Arguments",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q12",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes continue in Python?",
-      "codeSnippet": "",
+      "id": "mock-python-beginner-t1-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "code-output",
+      "prompt": "What is the exact output of this nested comprehension?",
+      "codeSnippet": "matrix = [[10, 20], [30, 40]]\nresult = [val for row in matrix for val in row if val > 15]\nprint(result)",
       "options": [
         {
-          "id": "A",
-          "text": "continue skips to the next iteration"
+          "id": "opt-1",
+          "text": "[10, 20, 30, 40]"
         },
         {
-          "id": "B",
-          "text": "placing required state updates after continue can prevent progress"
+          "id": "opt-2",
+          "text": "TypeError: nested list comprehension syntax invalid"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "[20, 30, 40]"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "[[20], [30, 40]]"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "continue skips to the next iteration. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Nested comprehensions evaluate loops from left to right: for row in matrix, then for val in row, filtering items strictly greater than 15.",
       "difficulty": "beginner",
-      "topic": "12",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Comprehension Execution Mechanics",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q13",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes accumulators in Python?",
-      "codeSnippet": "",
+      "id": "mock-python-beginner-t1-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "What is the output of this loop closure snippet?",
+      "codeSnippet": "funcs = [lambda: i for i in range(3)]\nprint([f() for f in funcs])",
       "options": [
         {
-          "id": "A",
-          "text": "an accumulator is initialized before and updated inside a loop"
+          "id": "opt-1",
+          "text": "NameError: variable 'i' is not defined"
         },
         {
-          "id": "B",
-          "text": "resetting the accumulator inside the loop loses earlier work"
+          "id": "opt-2",
+          "text": "[2, 2, 2] due to late binding of closures in Python"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "[0, 1, 2]"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "[0, 0, 0]"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "an accumulator is initialized before and updated inside a loop. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Python closures bind variables late (by reference, not value). By the time the functions execute, the loop variable `i` is 2. The fix is `lambda i=i: i`.",
       "difficulty": "beginner",
-      "topic": "13",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Late Binding Closures",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q14",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes functions in Python?",
-      "codeSnippet": "",
+      "id": "mock-python-beginner-t1-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "code-output",
+      "prompt": "What will this exception handling block print?",
+      "codeSnippet": "try:\n    x = 1 / 0\nexcept LookupError:\n    print(\"Lookup\")\nexcept ArithmeticError:\n    print(\"Arithmetic\")\nexcept Exception:\n    print(\"Exception\")",
       "options": [
         {
-          "id": "A",
-          "text": "a function call evaluates to its returned value"
+          "id": "opt-1",
+          "text": "Arithmetic"
         },
         {
-          "id": "B",
-          "text": "a function with no return statement returns None"
+          "id": "opt-2",
+          "text": "Lookup"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Exception"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Uncaught ZeroDivisionError crash"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "a function call evaluates to its returned value. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "ZeroDivisionError inherits from ArithmeticError (which is also the parent of OverflowError and FloatingPointError), but not LookupError.",
       "difficulty": "beginner",
-      "topic": "14",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Exception Inheritance Tree",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q15",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes return in Python?",
-      "codeSnippet": "",
+      "id": "mock-python-beginner-t1-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does modifying `b` affect `a` in this snippet?",
+      "codeSnippet": "a = [[1, 2], [3, 4]]\nb = list(a)\nb[0].append(99)\nprint(a[0])",
       "options": [
         {
-          "id": "A",
-          "text": "return ends the current function call"
+          "id": "opt-1",
+          "text": "list(a) creates an alias pointer to `a`"
         },
         {
-          "id": "B",
-          "text": "printing a value does not make it available to the caller"
+          "id": "opt-2",
+          "text": "Integers inside lists cannot be copied"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "append() triggers a circular memory reference"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "list(a) performs a shallow copy; the inner nested lists remain references to the exact same objects in memory"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "return ends the current function call. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Shallow copies only duplicate the outermost container. Inner objects are shared references. A deep copy (`copy.deepcopy`) is required to clone nested containers.",
       "difficulty": "beginner",
-      "topic": "15",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Shallow vs Deep Copy",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q16",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes local scope in Python?",
+      "id": "mock-python-beginner-t1-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You must process a 50GB CSV log file on an instance with 4GB RAM without triggering an Out-Of-Memory (OOM) kill. What is the optimal Python strategy?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "parameters and assigned names are local by default"
+          "id": "opt-1",
+          "text": "Use f.readlines() to load all lines into an in-memory list"
         },
         {
-          "id": "B",
-          "text": "a local name is unavailable after the function call finishes"
+          "id": "opt-2",
+          "text": "Convert the CSV to a Python dictionary before parsing"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Spawn 64 concurrent threads each calling read() on the same file descriptor"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Open the file with a generator context manager and iterate line-by-line or in fixed chunk sizes with itertools.islice"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "parameters and assigned names are local by default. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Iterating directly over an open file object acts as a memory-efficient generator that streams lines as needed without reading the entire file into RAM.",
       "difficulty": "beginner",
-      "topic": "local",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Streaming I/O & Memory Optimization",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q17",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes lists in Python?",
+      "id": "mock-python-beginner-t1-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An API client intermittently fails due to network jitter. What pattern guarantees idempotent retry behavior with exponential backoff?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "lists are ordered and mutable"
+          "id": "opt-1",
+          "text": "Catch all exceptions including SystemExit and retry indefinitely"
         },
         {
-          "id": "B",
-          "text": "aliasing the same list means mutations are visible through both names"
+          "id": "opt-2",
+          "text": "Restart the application server on any non-200 HTTP code"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Catch transient network exceptions, apply 2^attempt sleep jitter, and attach a unique idempotency key header to request payloads"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Loop continuously without sleep until a 200 OK status arrives"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "lists are ordered and mutable. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Exponential backoff with jitter prevents thundering herd problems, and idempotency keys guarantee duplicate requests are not processed multiple times.",
       "difficulty": "beginner",
-      "topic": "17",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Resilience & Idempotent Retries",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q18",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes dictionaries in Python?",
+      "id": "mock-python-beginner-t1-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You are designing a thread-safe in-memory cache in Python. What primitive prevents race conditions when updating cached keys?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "dictionaries map unique hashable keys to values"
+          "id": "opt-1",
+          "text": "Calling time.sleep(0.01) before each dict assignment"
         },
         {
-          "id": "B",
-          "text": "indexing a missing key raises KeyError"
+          "id": "opt-2",
+          "text": "threading.Lock() or threading.RLock() wrapping read-modify-write mutations"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Relying solely on the Global Interpreter Lock (GIL)"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Using global variables without synchronization"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "dictionaries map unique hashable keys to values. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "While individual atomic CPython bytecode instructions are thread-safe, compound read-check-write sequences are not and require explicit Lock synchronization.",
       "difficulty": "beginner",
-      "topic": "18",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Thread Safety & Synchronization",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q19",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes sets in Python?",
+      "id": "mock-python-beginner-t1-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "When implementing a clean plugin architecture, how do you enforce that subclass implementations supply required interface methods?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "sets retain unique hashable elements"
+          "id": "opt-1",
+          "text": "Inherit from abc.ABC and decorate required methods with @abc.abstractmethod"
         },
         {
-          "id": "B",
-          "text": "sets do not preserve a meaningful positional index"
+          "id": "opt-2",
+          "text": "Check method names using string matching inside __init__"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Use global assert statements in the base file"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Catch NotImplementedError at runtime during program termination"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "sets retain unique hashable elements. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "Classes inheriting from abc.ABC with @abstractmethod cannot be instantiated unless all abstract methods are overridden, catching interface mismatches at instantiation.",
       "difficulty": "beginner",
-      "topic": "19",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Abstract Base Classes & Interfaces",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     },
     {
-      "id": "mock-python-beginner-test-01-q20",
-      "type": "single-choice",
-      "prompt": "Which statement accurately describes exceptions in Python?",
+      "id": "mock-python-beginner-t1-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You have a computationally intensive recursive function calculating Fibonacci numbers. How do you eliminate redundant calls with standard library tooling?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "exceptions separate failure handling from the normal path"
+          "id": "opt-1",
+          "text": "Wrap the function in a while loop that increments a counter"
         },
         {
-          "id": "B",
-          "text": "a broad bare except can hide programming defects and interrupts"
+          "id": "opt-2",
+          "text": "Serialize return values to local disk JSON on each call"
         },
         {
-          "id": "C",
-          "text": "Python automatically selects the correct behavior without code"
+          "id": "opt-3",
+          "text": "Disable Python garbage collection"
         },
         {
-          "id": "D",
-          "text": "It is available only through third-party packages"
+          "id": "opt-4",
+          "text": "Apply the '@functools.lru_cache(maxsize=None)' decorator to memoize past outputs"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "exceptions separate failure handling from the normal path. This matters because Python follows explicit runtime rules; verify the behavior with a minimal example rather than guessing.",
+      "explanation": "@functools.lru_cache memoizes function arguments and return values, reducing exponential O(2^n) recursion down to linear O(n) execution.",
       "difficulty": "beginner",
-      "topic": "20",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-python-beginner-module-1-l1",
-      "recommendedLessonTitle": "Running Python and Working with Values"
+      "topic": "Memoization & Caching Strategies",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Complete the context manager to safely open, acquire a lock file, and automatically release it even if an unhandled exception occurs:",
+      "codeSnippet": "from contextlib import contextmanager\n\n@contextmanager\ndef file_lock(lock_path: str):\n    acquire_lock(lock_path)\n    try:\n        # [TASK: What statement belongs here?]\n    finally:\n        release_lock(lock_path)",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "return True"
+        },
+        {
+          "id": "opt-2",
+          "text": "pass"
+        },
+        {
+          "id": "opt-3",
+          "text": "break"
+        },
+        {
+          "id": "opt-4",
+          "text": "yield"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "The 'yield' statement in a @contextmanager transfers control to the 'with' block body. When the with-block terminates or raises, execution resumes in the 'finally' clause.",
+      "difficulty": "beginner",
+      "topic": "Context Managers & Resource Cleanup",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "In a production Python logging setup, how should you log an exception within an 'except' block to capture the full traceback?",
+      "codeSnippet": "try:\n    result = process_order(order_id)\nexcept Exception as err:\n    # [TASK: Best logging call?]\n    raise",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "logger.info(err)"
+        },
+        {
+          "id": "opt-2",
+          "text": "logger.warn(traceback.format_exc().replace('\\n', ' '))"
+        },
+        {
+          "id": "opt-3",
+          "text": "logger.exception('Order processing failed for id %s', order_id)"
+        },
+        {
+          "id": "opt-4",
+          "text": "print('Error: ' + str(err))"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "logger.exception() logs at ERROR level and automatically appends the active sys.exc_info() traceback without manual formatting.",
+      "difficulty": "beginner",
+      "topic": "Structured Logging & Observability",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which pytest syntax properly asserts that a function raises a ValueError with an expected error message?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "pytest.expect_error(ValueError, connect, -1)"
+        },
+        {
+          "id": "opt-2",
+          "text": "with pytest.raises(ValueError, match=r'invalid port'): connect(port=-1)"
+        },
+        {
+          "id": "opt-3",
+          "text": "assert connect(port=-1) == ValueError"
+        },
+        {
+          "id": "opt-4",
+          "text": "try: connect(port=-1); except ValueError: pass"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "pytest.raises() acts as a context manager that passes if the expected exception type and regex match pattern occur, failing if no exception is raised.",
+      "difficulty": "beginner",
+      "topic": "Unit Testing & Assertions",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "You need to enforce runtime immutability on a data container class with Python 3.7+. Which decorator configuration is appropriate?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "@dataclass(frozen=True)"
+        },
+        {
+          "id": "opt-2",
+          "text": "@dataclass(immutable=True)"
+        },
+        {
+          "id": "opt-3",
+          "text": "@dataclass(read_only=True)"
+        },
+        {
+          "id": "opt-4",
+          "text": "@dataclass(static=True)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "@dataclass(frozen=True) generates __setattr__ and __delattr__ methods that raise FrozenInstanceError when any attribute modification is attempted.",
+      "difficulty": "beginner",
+      "topic": "Dataclasses & Immutability",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When running concurrent HTTP network requests across 50 endpoints in Python, which standard library tool provides pool-based worker threads?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "os.fork_pool(50)"
+        },
+        {
+          "id": "opt-2",
+          "text": "sys.threads.spawn_all()"
+        },
+        {
+          "id": "opt-3",
+          "text": "threading.loop_until_finished()"
+        },
+        {
+          "id": "opt-4",
+          "text": "concurrent.futures.ThreadPoolExecutor(max_workers=10)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "concurrent.futures.ThreadPoolExecutor manages a thread pool cleanly with Future objects, submit(), and map() methods suitable for I/O bound workloads.",
+      "difficulty": "beginner",
+      "topic": "Thread Pools & Future Objects",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "An image processing service is pegged at 100% CPU on one core while 15 other CPU cores sit idle, despite using Python's `threading` library. What architectural refactor is required?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Increase the number of threads from 16 to 256"
+        },
+        {
+          "id": "opt-2",
+          "text": "Switch from Python 3.11 to Python 2.7"
+        },
+        {
+          "id": "opt-3",
+          "text": "Add more RAM to the server"
+        },
+        {
+          "id": "opt-4",
+          "text": "Replace `threading` with `multiprocessing` or a distributed task queue (e.g. Celery / Ray) to bypass the GIL across all CPU cores"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "CPU-bound calculations in CPython cannot run concurrently across multiple cores on threads due to the GIL. Separate processes are required for true parallel CPU execution.",
+      "difficulty": "beginner",
+      "topic": "Multi-Core System Architecture",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A high-throughput FastAPI application is exhausting PostgreSQL connection limits under traffic spikes. What architectural pattern resolves this?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Disable all database indexes to speed up connection handshakes"
+        },
+        {
+          "id": "opt-2",
+          "text": "Configure PostgreSQL max_connections to 1,000,000 on a 4GB RAM instance"
+        },
+        {
+          "id": "opt-3",
+          "text": "Deploy an external connection pooler (e.g. PgBouncer) in transaction pooling mode and configure client pool sizing with connection timeouts"
+        },
+        {
+          "id": "opt-4",
+          "text": "Open a new raw database connection on every incoming HTTP request and never close it"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Each PostgreSQL connection consumes 5-10MB RAM. External connection poolers like PgBouncer multiplex thousands of client connections onto a small fixed pool of backend server connections.",
+      "difficulty": "beginner",
+      "topic": "Connection Pooling & Database Scalability",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
+    },
+    {
+      "id": "mock-python-beginner-t1-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "In a zero-trust distributed architecture, how should a backend service authenticate and authorize requests originating from downstream microservices?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Inspect the HTTP Referer header to confirm the origin service name"
+        },
+        {
+          "id": "opt-2",
+          "text": "Require mutual TLS (mTLS) for transport identity, and cryptographically verify signed JWT / Spiffe tokens containing scoped role claims"
+        },
+        {
+          "id": "opt-3",
+          "text": "Trust any request arriving over the internal private subnet without token validation"
+        },
+        {
+          "id": "opt-4",
+          "text": "Hardcode a shared master password inside every service source code repository"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Zero trust assumes network perimeters can be breached. Every request must be authenticated and authorized via mTLS and cryptographically verifiable claims.",
+      "difficulty": "beginner",
+      "topic": "Zero-Trust Security & Service Identity",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in Python"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.180Z",
-  "updatedAt": "2026-11-01T15:37:41.180Z"
+  "createdAt": "2026-11-11T05:58:35.138Z",
+  "updatedAt": "2026-11-11T05:58:35.138Z"
 }

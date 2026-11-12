@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official PHP Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "PHP 8 Official Manual",
+      "organization": "The PHP Group",
+      "url": "https://www.php.net/docs.php",
       "retrievedAt": "2026-11-01T15:37:41.125Z",
       "reviewStatus": "curated"
     }

@@ -1,0 +1,224 @@
+{
+  "lessonId": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid",
+  "skillName": "SQL",
+  "moduleId": "mod-3-sql-perf-acid",
+  "title": "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+  "summary": "Understand leftmost prefix rules on composite indexes, non-sargable traps, partial indexes, and reading EXPLAIN ANALYZE node metrics cleanly.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 40,
+  "learningObjectives": [
+    "Order composite index columns cleanly by equality selectivity first, range filters second",
+    "Diagnose Sequential Scan bottlenecks using EXPLAIN ANALYZE and cure deep-offset slowdown via Keyset pagination"
+  ],
+  "objectiveIds": [
+    "sql-obj-3",
+    "sql-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "Understanding of basic queries and tables"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid-sec-1",
+      "heading": "1. How Composite B-Trees & Sargability Work",
+      "content": "Every time SQL filters an unindexed column (`Seq Scan`), the database reads millions of disk pages scanning row by row (`O(n)`). Adding a **B-Tree index** sorts column pointers into a balanced tree enabling logarithmic `O(log n)` hops.\n\nTwo rules govern production indexing cleanly: **1. Column Ordering**: on a composite index `(tenant_id, created_at)`, queries filtering `tenant_id` alone OR `(tenant_id, created_at)` hit the index fast—filtering `created_at` ALONE misses it because the leftmost column comes first! **2. Sargability**: NEVER wrap indexed columns inside functions (`WHERE LOWER(email) = ...` or `WHERE YEAR(created_at) = 2026`), or the engine abandons the B-Tree unless a matching expression index or clean range comparison is supplied.",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "Unindexed:       SELECT ... OFFSET 500000 LIMIT 20  -> Discards 500,000 scanned rows! O(N)\nKeyset Cursor:   WHERE created_at < $last_ts LIMIT 20 -> B-Tree jumps straight to cursor! O(log N)",
+          "explanation": "Keyset seek pagination scales smoothly at page 100,000 while OFFSET degrades linearly across large tables.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "Every secondary index speeds reads (`SELECT`) while costing extra disk storage and slightly slower writes (`INSERT/UPDATE/DELETE`)—don't over-index blindly!",
+        "Replace `OFFSET` with cursor/keyset pagination on infinite feeds and large admin logs."
+      ],
+      "commonMistakes": [
+        "Using `SELECT *` everywhere instead of targeted projections, preventing Index-Only Scans!"
+      ]
+    },
+    {
+      "id": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid-sec-2",
+      "heading": "2. Inspecting EXPLAIN ANALYZE & Composite Index Creation",
+      "content": "Before shipping high-traffic endpoints, verify the optimizer hits `Index Scan` rather than `Seq Scan` via `EXPLAIN (ANALYZE, BUFFERS)`.",
+      "codeExamples": [
+        {
+          "language": "sql",
+          "code": "-- Equality column FIRST ('status'), range/sort column SECOND ('created_at DESC')\nCREATE INDEX idx_orders_status_created\n  ON orders (status, created_at DESC)\n  WHERE status IN ('pending', 'processing');\n\n-- Check actual plan execution metrics cleanly:\nEXPLAIN (ANALYZE, BUFFERS)\nSELECT id, total_cents, created_at\nFROM orders\nWHERE status = 'pending' AND created_at < NOW() - INTERVAL '1 hour'\nORDER BY created_at DESC\nLIMIT 25;",
+          "explanation": "Equality columns leading composite partial indexes let PostgreSQL seek exact pending targets in sub-millisecond time.",
+          "expectedOutput": "Index Scan using idx_orders_status_created on orders (cost=... actual time=0.08..0.14ms rows=25)"
+        }
+      ],
+      "keyPoints": [
+        "Use partial indexes (`WHERE status = 'pending'`) to exclude millions of already-archived rows from index maintenance."
+      ],
+      "commonMistakes": [
+        "Adding indexes without running `CREATE INDEX CONCURRENTLY` in busy live Postgres production databases (which otherwise locks writes!)."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid-ex-1",
+      "type": "coding",
+      "title": "Optimize Slow Pagination & Non-Sargable Date Filter",
+      "objective": "Rewrite non-sargable queries cleanly and design an optimal composite index.",
+      "description": "Refactor: `SELECT * FROM logs WHERE EXTRACT(YEAR FROM created_at) = 2026 AND service_name = 'auth' ORDER BY created_at DESC OFFSET 100000 LIMIT 50;`",
+      "instructions": [
+        "Rewrite `EXTRACT(YEAR FROM ...)` as an sargable explicit timestamp range (`>=` and `<`).",
+        "Design the ideal composite index column order `(service_name, created_at)`.",
+        "Replace `OFFSET 100000` with Keyset cursor comparison."
+      ],
+      "starterCode": "CREATE INDEX idx_logs_fast ON logs (...);\n\nSELECT id, event_type, created_at\nFROM logs\nWHERE service_name = 'auth' AND ...\nLIMIT 50;",
+      "hints": [
+        "Equality match (`service_name`) comes before range/order column (`created_at`)."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "Explicit range conditions paired with `(service_name, created_at)` and cursor seek transform multi-second scans into sub-millisecond reads."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid-kc-1",
+      "type": "single-choice",
+      "prompt": "On a composite index `ON events (org_id, created_at)`, which query cleanly utilizes the leftmost index order?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`WHERE org_id = 'org_1' AND created_at > '2026-01-01'`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`WHERE created_at > '2026-01-01'` (without `org_id`)"
+        },
+        {
+          "id": "opt-3",
+          "text": "`WHERE UPPER(org_id) = 'ORG_1'`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`ORDER BY payload_text`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "B-Tree composite indexes sort primarily by the leftmost key (`org_id`), requiring it to match efficiently.",
+      "objectiveIds": [
+        "sql-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid-kc-2",
+      "type": "single-choice",
+      "prompt": "Why does `WHERE LOWER(email) = 'alice@x.com'` skip a normal `INDEX(email)` unless configured specially?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Wrapping an indexed column in a function breaks sargability because the B-Tree stores raw original values, not lowercased hashes"
+        },
+        {
+          "id": "opt-2",
+          "text": "Emails cannot be indexed in B-Trees"
+        },
+        {
+          "id": "opt-3",
+          "text": "`LOWER()` returns booleans instead of strings"
+        },
+        {
+          "id": "opt-4",
+          "text": "Indexes forbid equality `=` checks"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Maintain canonical lowercase emails on write or create a matching expression index `ON users(LOWER(email))`.",
+      "objectiveIds": [
+        "sql-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-sql-perf-acid-l1-b-tree-indexes-explain-query-plans-avoid-kc-3",
+      "type": "single-choice",
+      "prompt": "Why use `CREATE INDEX CONCURRENTLY` on active production PostgreSQL tables?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Builds the index cleanly without acquiring write-blocking locks over live INSERT/UPDATE transactions"
+        },
+        {
+          "id": "opt-2",
+          "text": "Deletes old duplicate rows automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Skips B-Tree balancing to build instantaneously"
+        },
+        {
+          "id": "opt-4",
+          "text": "Compresses disk space by 95%"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Standard index builds lock writes on busy tables for minutes/hours; concurrent creation avoids downtime.",
+      "objectiveIds": [
+        "sql-obj-3"
+      ]
+    }
+  ],
+  "recap": "You mastered composite B-Tree design, sargable query rewrites, Keyset pagination, and EXPLAIN plan inspection.",
+  "videoResources": [
+    {
+      "id": "res-sql-primary",
+      "title": "SQL & Relational Database Engineering Mastery",
+      "provider": "youtube",
+      "channelOrAuthor": "freeCodeCamp / CMU Database Group",
+      "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of SQL.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for SQL.",
+      "learningObjectivesSupported": [
+        "sql-obj-1",
+        "sql-obj-2",
+        "sql-obj-3",
+        "sql-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+        "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+        "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+        "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+        "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+        "ACID Transactions, Isolation Levels & Safe Migrations"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "PostgreSQL Official SQL Documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "description": "Official reference documentation for SQL."
+    }
+  ],
+  "realWorldApplications": [
+    "High-scale audit timeline APIs",
+    "E-commerce catalog filter latency tuning"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.464Z"
+}

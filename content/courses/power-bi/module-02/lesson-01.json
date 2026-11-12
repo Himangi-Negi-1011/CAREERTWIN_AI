@@ -1,198 +1,224 @@
 {
-  "lessonId": "mod-2-application-l1-production-patterns-and-resilience-in-po",
+  "lessonId": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta",
   "skillName": "Power BI",
-  "moduleId": "mod-2-application",
-  "title": "Production Patterns and Resilience in Power BI",
-  "summary": "Comprehensive masterclass on Production Patterns and Resilience in Power BI for Power BI. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-2-pbi-modeling",
+  "title": "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+  "summary": "Separate quantitative Facts from descriptive Dimensions cleanly, eliminate flat single-table bloat, and prevent ambiguous bi-directional loops.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Apply Power BI in production-ready real-world scenarios",
-    "Evaluate security, performance, and best practices for Power BI"
+    "Distinguish narrow additive numeric Fact tables from wide descriptive Dimension lookups",
+    "Enforce single-direction `One-to-Many (Dimension -> Fact)` filtering preventing circular ambiguity"
   ],
   "objectiveIds": [
-    "power-bi-obj-3",
-    "power-bi-obj-4"
+    "power-bi-obj-2",
+    "power-bi-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Power BI environment setup"
+    "Normalized SQL / Power Query cleaned tables"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Production Patterns and Resilience in Power BI",
-      "content": "Power BI combines a relational tabular data engine with the DAX (Data Analysis Expressions) formula language. In Production Patterns and Resilience in Power BI, the fundamental mental model is understanding Filter Context vs Row Context, star schema relationships, and distinguishing Calculated Columns from Measures.",
+      "id": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta-sec-1",
+      "heading": "1. Why VertiPaq Loves Clean Star Schemas",
+      "content": "Analysts coming from Excel often jam 80 product, customer, store, and numeric sales columns into ONE giant flat table! While tiny files work fine, flattening duplicates text labels millions of times, slows slicers, and breaks multi-fact comparisons (e.g., comparing Monthly Budgets vs Daily Sales cleanly!).\n\nA **Star Schema** keeps **Fact Tables** tall and numeric (foreign keys + numeric measurements like `Quantity`, `Revenue`, `Discount`) surrounded by **Dimension Tables** (`DimProduct`, `DimCustomer`, `DimDate`) filtering cleanly **Downhill** in **One-to-Many single direction** (`1 -> *`). Avoid toggling 'Both' bi-directional cross-filtering globally—it triggers subtle ambiguity loops and severely hurts query performance!",
       "codeExamples": [
         {
-          "language": "dax",
-          "code": "-- DAX Measure: Production Patterns and Resilience in Power BI\nTotal Revenue = SUM(Sales[Revenue])\n\nRevenue YoY Growth = \nVAR CurrentRevenue = [Total Revenue]\nVAR PriorRevenue = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR('Date'[Date]))\nRETURN\n    DIVIDE(CurrentRevenue - PriorRevenue, PriorRevenue, 0)",
-          "explanation": "CALCULATE alters the active filter context, while DIVIDE safely handles division by zero. Declaring variables (VAR) improves readability and query performance.",
-          "expectedOutput": "Percentage metric reacting dynamically to visual slicers (Date, Region, Product)."
+          "language": "text",
+          "code": "[DimDate (1)] --------v\n[DimProduct (1)] -----> [FactSales (*)] <--- [DimCustomer (1)]\n(Conformed filters)   (Keys + Metrics!)     (Single-direction arrows down!)",
+          "explanation": "Dimensions slice downwards into central numeric Fact tables in crisp Star geometry.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Always model data as a Star Schema: central Fact table surrounded by 1-to-many Dimension tables.",
-        "Use Measures (calculated at query time) instead of Calculated Columns (which consume RAM in the tabular model).",
-        "Use DIVIDE(num, denom, alternate) instead of '/' to avoid #DIV/0! visual errors."
+        "Hide foreign key columns (`ProductKey`, `CustomerKey`) inside Fact tables from Report View so report builders slice cleanly strictly from Dimension fields!",
+        "Drop unused high-cardinality millisecond timestamps or transaction UUID columns unless drilled directly into visuals."
       ],
       "commonMistakes": [
-        "Creating bidirectional cross-filtering relationships across multiple tables, causing ambiguous filter propagation.",
-        "Using calculated columns for aggregation metrics instead of explicit DAX measures."
+        "Turning every relationship to 'Bi-directional' just to filter a slicer count instead of using clean DAX `CROSSFILTER` inside one measure."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "Production enterprise Power BI models require a dedicated Date dimension table marked as Date Table, explicit measures grouped in display folders, and optimized cardinality.",
+      "id": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta-sec-2",
+      "heading": "2. Handling Multiple Fact Tables Safely",
+      "content": "Compare how conformed dimensions (`DimDate`, `DimRegion`) safely cross-slice both `FactSales` and `FactTargets` simultaneously without ever joining Fact-to-Fact directly.",
       "codeExamples": [
         {
           "language": "dax",
-          "code": "Sales MTD = \nCALCULATE(\n    [Total Revenue],\n    DATESMTD('Date'[Date])\n)",
-          "explanation": "Time intelligence DAX functions rely strictly on a continuous, contiguous Date dimension with no missing calendar days.",
-          "expectedOutput": "Month-to-date cumulative metric resetting on the first of each calendar month."
+          "code": "// Variance vs Target works seamlessly because BOTH facts hang off conformed DimDate & DimRegion!\nActual Revenue = SUM(FactSales[Revenue])\nTarget Revenue = SUM(FactTargets[TargetAmount])\nTarget Variance % = DIVIDE([Actual Revenue] - [Target Revenue], [Target Revenue])",
+          "explanation": "Sharing conformed Dimensions slices unrelated Fact tables smoothly without risky Fact-to-Fact joins.",
+          "expectedOutput": "Accurate side-by-side matrix comparing Actual vs Target across Regions and Months"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Keep relationships clean: 1 -> * single direction from conformed Dimensions to each Fact table."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Linking `FactSales` directly to `FactTargets` via Many-to-Many links (producing doubled/corrupt aggregates!)."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-po-ex-1",
-      "type": "analysis",
-      "title": "Power BI & DAX Lab: Production Patterns and Resilience in Power BI",
-      "objective": "Formulate a Star Schema data model and construct dynamic DAX measures for Production Patterns and Resilience in Power BI.",
-      "description": "Design the relational model and write the core DAX measures to calculate metrics required for Production Patterns and Resilience in Power BI.",
+      "id": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta-ex-1",
+      "type": "design",
+      "title": "Refactor Multi-Fact Flat Model Into a Star Schema",
+      "objective": "Separate descriptive attributes from quantitative facts cleanly.",
+      "description": "You have `RawSales(OrderID, Date, StoreName, StoreManager, ProductSKU, Category, Qty, Price)` and `StoreBudgets(Month, StoreName, BudgetAmt)`. Design the clean Star Schema relationships.",
       "instructions": [
-        "Define the Fact table and related Dimension tables with their primary/foreign keys.",
-        "Write the base aggregation measure.",
-        "Write a time-intelligence or ratio measure using CALCULATE and DIVIDE.",
-        "Explain how visual slicers affect the measure's filter context."
+        "Identify the 3 Dimension tables and 2 Fact tables.",
+        "List exact cardinality (`1:*`) and filter direction arrows.",
+        "Explain how Store slicers affect BOTH Revenue and Budget seamlessly."
       ],
-      "starterCode": "-- DAX Measure Formulation for Production Patterns and Resilience in Power BI\n[Base Metric] = SUM(FactTable[Value])\n\n[Advanced Metric] = \nVAR BaseVal = [Base Metric]\nRETURN\n    CALCULATE(BaseVal, ... -- Add filter condition)",
+      "starterCode": "# Star Schema Design\nDimensions: DimDate, ...\nFacts: FactSales, ...\nRelationships (1 -> *): ...",
       "hints": [
-        "Remember that CALCULATE transitions row context to filter context.",
-        "Check whether relationships are 1-to-many from Dimension to Fact."
+        "`DimStore` holds `(StoreName, StoreManager)` once and filters down onto both `FactSales` and `FactBudgets`."
       ],
-      "submissionRequirements": "Submit valid DAX code formatted with VAR/RETURN syntax and relational modeling notes.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "DAX Syntax: Valid measure definitions with proper handling of filter context.",
-        "Modeling: Star schema principles adhered to without circular or ambiguous relationships."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal solution uses a clean star schema with single-direction filtering and computes metrics via explicit DAX measures leveraging CALCULATE and time intelligence."
+      "solutionExplanation": "Conformed `DimStore` and `DimDate` sit above `FactSales` and `FactBudgets` with clean `1 -> *` single-direction filters."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-po-kc-1",
+      "id": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta-kc-1",
       "type": "single-choice",
-      "prompt": "What is the primary difference between a Calculated Column and a Measure in Power BI?",
+      "prompt": "Why does hiding Fact-table foreign key IDs (e.g., `FactSales[CustomerID]`) improve report usability and accuracy?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Calculated columns are evaluated during data refresh and stored in memory row-by-row; Measures are dynamic formulas calculated on the fly based on current filter context."
+          "text": "Prevents accidental slicing by incomplete transaction keys instead of clean complete attributes inside `DimCustomer`"
         },
         {
           "id": "opt-2",
-          "text": "Calculated columns can only contain numbers, while measures can only contain text."
+          "text": "Deletes foreign key data from disk freeing 50% RAM"
         },
         {
           "id": "opt-3",
-          "text": "Measures increase the storage file size of the PBIX file substantially more than columns."
+          "text": "Forces DirectQuery conversion"
         },
         {
           "id": "opt-4",
-          "text": "Calculated columns adapt dynamically when a user clicks a slicer in a report."
+          "text": "Removes duplicate sums automatically"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Calculated columns consume RAM and disk storage because values are computed row-by-row at refresh time. Measures consume minimal memory and compute dynamically in response to visual filters and slicers.",
+      "explanation": "Users should slice strictly by Dimension attributes while aggregating Fact measures.",
+      "objectiveIds": [
+        "power-bi-obj-2"
+      ]
+    },
+    {
+      "id": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta-kc-2",
+      "type": "single-choice",
+      "prompt": "Why should indiscriminate bi-directional (`Both`) relationship filtering across multiple Fact tables be avoided?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Creates ambiguous circular filter paths that fail deployment and slow VertiPaq queries down significantly"
+        },
+        {
+          "id": "opt-2",
+          "text": "Bi-directional filters block dark-mode styling"
+        },
+        {
+          "id": "opt-3",
+          "text": "Removes numeric decimals from currency measures"
+        },
+        {
+          "id": "opt-4",
+          "text": "Prevents exporting PBIX files to PDF"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Single-directional Star filters keep semantic behavior crisp and unambiguous.",
       "objectiveIds": [
         "power-bi-obj-3"
       ]
     },
     {
-      "id": "mod-2-application-l1-production-patterns-and-resilience-in-po-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent data modeling best practices in Power BI?",
+      "id": "mod-2-pbi-modeling-l1-fact-vs-dimension-tables-cardinality-sta-kc-3",
+      "type": "single-choice",
+      "prompt": "In a well-tuned Star Schema comparing Sales against Budgets, how are `FactSales` and `FactBudgets` connected?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Structuring the data model into a Star Schema with Fact and Dimension tables"
+          "id": "opt-1",
+          "text": "Both are filtered cleanly downwards (`1 -> *`) by shared conformed Dimensions like `DimDate` and `DimStore` without directly joining Fact-to-Fact"
         },
         {
-          "id": "opt-2b",
-          "text": "Using the DIVIDE function instead of the '/' operator to prevent division-by-zero errors"
+          "id": "opt-2",
+          "text": "Linked directly via a Many-to-Many bridge without Dimensions"
         },
         {
-          "id": "opt-2c",
-          "text": "Enabling bidirectional cross-filtering on all relationships indiscriminately"
+          "id": "opt-3",
+          "text": "Merged sideways into a single duplicated row table"
         },
         {
-          "id": "opt-2d",
-          "text": "Marking a dedicated Date dimension as an official Date Table for time-intelligence calculations"
+          "id": "opt-4",
+          "text": "Left disconnected and unified using visual text overlays"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "opt-1"
       ],
-      "explanation": "Star schema design, DIVIDE for error safety, and a dedicated Date table are foundational Power BI best practices. Indiscriminate bidirectional filtering creates relationship ambiguity and degrades performance.",
+      "explanation": "Conformed Dimensions synchronize filtering across disparate granularities safely.",
       "objectiveIds": [
-        "power-bi-obj-4"
+        "power-bi-obj-2"
       ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Production Patterns and Resilience in Power BI. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You designed clean VertiPaq Star Schemas preventing flat bloat, Fact-to-Fact mistakes, and bi-directional ambiguity.",
   "videoResources": [
     {
-      "id": "res-pbi-powerbi",
-      "title": "Power BI Full Course: DAX & Data Modeling",
+      "id": "res-power-bi-primary",
+      "title": "Power BI & DAX Mastery for Data Analysts",
       "provider": "youtube",
-      "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
-      "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
-      "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
-      "durationMinutes": 55,
+      "channelOrAuthor": "Guy in a Cube / Microsoft Learn",
+      "url": "https://www.youtube.com/watch?v=AGpoc5HlR1c",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
-      "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Power BI.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Power BI.",
       "learningObjectivesSupported": [
-        "Build relational tabular data models and DAX measures for Production Patterns and Resilience in Power BI"
+        "power-bi-obj-1",
+        "power-bi-obj-2",
+        "power-bi-obj-3",
+        "power-bi-obj-4"
       ],
       "keyTopicsCovered": [
-        "Star Schema Modeling",
-        "DAX Measures vs Columns",
-        "CALCULATE Context Transition",
-        "Time Intelligence"
+        "Power BI Workflow & Power Query Unpivoting (M Language)",
+        "Data Profiling, Quality Gates & Query Folding",
+        "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+        "Dedicated Date Dimensions & Role-Playing Relationships",
+        "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+        "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
       ],
-      "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "Microsoft Power BI DAX Reference",
-      "url": "https://learn.microsoft.com/en-us/dax/",
-      "description": "Official documentation and authoritative guides for Power BI."
+      "title": "Microsoft Power BI & DAX Docs",
+      "url": "https://learn.microsoft.com/en-us/power-bi/",
+      "description": "Official reference documentation for Power BI."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Multi-fact Finance Actuals vs Budgets",
+    "Retail inventory vs POS tracking"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:13.191Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.715Z"
 }

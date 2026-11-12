@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official Rust Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "The Rust Programming Language Book",
+      "organization": "Rust Foundation",
+      "url": "https://doc.rust-lang.org/book/",
       "retrievedAt": "2026-11-01T15:37:41.231Z",
       "reviewStatus": "curated"
     }

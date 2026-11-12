@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Loops, std::array, and std::vector",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Loops, std::array, and std::vector."
+      "title": "Modern C++ Standard Reference",
+      "url": "https://en.cppreference.com/w/cpp",
+      "description": "Official reference documentation for C++."
     }
   ],
   "realWorldApplications": [

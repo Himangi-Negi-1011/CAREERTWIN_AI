@@ -1,197 +1,224 @@
 {
-  "lessonId": "mod-1-foundations-l1-introduction-to-cybersecurity",
+  "lessonId": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface",
   "skillName": "Cybersecurity",
-  "moduleId": "mod-1-foundations",
-  "title": "Introduction to Cybersecurity",
-  "summary": "Comprehensive masterclass on Introduction to Cybersecurity for Cybersecurity. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-1-sec-principles",
+  "title": "CIA Triad, Threat Modeling & Attack Surface",
+  "summary": "Establish security engineering judgment built on Confidentiality, Integrity, Availability, Least Privilege, and STRIDE threat modeling.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Understand foundational mental models and syntax of Cybersecurity",
-    "Implement reliable patterns and error handling in Cybersecurity"
+    "Classify real-world incidents by Confidentiality, Integrity, or Availability impact",
+    "Decompose application trust boundaries cleanly using the STRIDE methodology"
   ],
   "objectiveIds": [
     "cybersecurity-obj-1",
     "cybersecurity-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Cybersecurity environment setup"
+    "Client-server web basics"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Introduction to Cybersecurity",
-      "content": "Cybersecurity operates under the principle of defense-in-depth and the CIA Triad (Confidentiality, Integrity, Availability). In Introduction to Cybersecurity, defensive controls, least privilege, threat modeling, and telemetry monitoring prevent adversaries from gaining unauthorized footholds or escalating privileges.",
+      "id": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface-sec-1",
+      "heading": "1. The CIA Triad & Defense in Depth",
+      "content": "Every cybersecurity control defends one or more pillars of the CIA Triad: Confidentiality (preventing unauthorized reads via encryption & RBAC), Integrity (preventing tampering via cryptographic signatures & HMAC), and Availability (preserving resilient service under failures or DDoS via redundancy & rate limits).\n\nRather than gambling everything on one perimeter firewall, engineers stack Defense in Depth—pairing network firewalls, TLS, MFA, parameterized queries, strict access checks, and audit logs so breaching one control still stops the attacker.",
       "codeExamples": [
         {
-          "language": "bash",
-          "code": "# Defensive Security & Telemetry Inspection for Introduction to Cybersecurity\n# 1. Audit listening network sockets\nsudo ss -tulpn\n\n# 2. Inspect authentication failure anomalies in system logs\nsudo grep -i \"failed password\" /var/log/auth.log | awk '{print $1, $2, $3, $11}' | sort | uniq -c | sort -nr | head -n 10\n\n# 3. Verify file permissions on critical system assets\nsudo find /etc/shadow -perm /o+rwx",
-          "explanation": "Auditing active listening ports and parsing authentication logs identifies unauthorized reconnaissance or intrusion attempts before exploitation occurs.",
-          "expectedOutput": "Summary list of top attacker source IP addresses attempting brute-force authentication."
+          "language": "text",
+          "code": "[Internet Client] -> [WAF / Rate Limiter] -> [TLS Edge Termination]\n                         | Security Header Checks & IP Throttling\n                         v\n[Verified Session Auth] -> [Object Ownership Authorization] -> [Parameterized DB Query]\n                                                                  (Encrypted at Rest + Audit Log)",
+          "explanation": "Defense in depth ensures multiple independent validation gates inspect requests from edge to storage.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Enforce the Principle of Least Privilege: users and processes receive only minimum necessary access.",
-        "Validate and sanitize all ingress data at service boundaries using parameterized constructs.",
-        "Log security events (authentication, privilege escalation, policy violations) centrally to an immutable SIEM."
+        "Confidentiality != Integrity: encrypted ciphertexts without MAC/AEAD tags can still be flipped/tampered.",
+        "Least Privilege restricts identities strictly to required capabilities."
       ],
       "commonMistakes": [
-        "Relying on security through obscurity (such as changing a default port without hardening authentication).",
-        "Storing plain-text credentials or API tokens in source code or configuration files."
+        "Security through obscurity (relying on undocumented URLs or hidden JS UI buttons rather than server authorization)."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "Modern security architectures adopt Zero Trust: verify explicitly, enforce least-privilege access, and assume breach across all network segments.",
+      "id": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface-sec-2",
+      "heading": "2. STRIDE Threat Modeling Before Deployment",
+      "content": "Before launching APIs, defenders trace data flows across trust boundaries and systematically inspect all six STRIDE risks: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.",
       "codeExamples": [
         {
-          "language": "bash",
-          "code": "# Zero-Trust Network Policy Example (iptables / UFW)\nsudo ufw default deny incoming\nsudo ufw default allow outgoing\nsudo ufw allow from 10.0.10.0/24 to any port 22 proto tcp\nsudo ufw enable",
-          "explanation": "Default-deny network ingress policies isolate workloads so only authorized subnets and ports can establish connections.",
-          "expectedOutput": "Firewall active and enabled on system startup with default-deny inbound posture."
+          "language": "markdown",
+          "code": "### STRIDE Pre-Launch Security Checklist: Password Reset Endpoint\n- **Spoofing**: Require high-entropy single-use cryptographic token hashed in DB, NEVER predictable incremental IDs.\n- **Tampering**: Deliver reset token strictly via verified TLS HTTPS; bind token to exact userId.\n- **Repudiation**: Log immutable timestamped reset requests and completions cleanly.\n- **Info Disclosure**: Always display generic response (\"If account exists, email sent\") avoiding user email enumeration.\n- **DoS**: Apply per-IP & per-account sliding window rate limits.",
+          "explanation": "Generic HTTP responses combined with high-entropy one-time hashed tokens eliminate classic password-reset leaks.",
+          "expectedOutput": "Verified threat mitigation plan neutralizing token prediction, account enumeration, and abuse"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Never confirm whether an arbitrary email exists during public login/reset flows unless intentionally required."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Returning `'Email does not exist'` vs `'Wrong password'`, giving attackers free automated account lists."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-cybersecurity-ex-1",
-      "type": "scenario",
-      "title": "Security Case Study Lab: Introduction to Cybersecurity",
-      "objective": "Diagnose a security vulnerability scenario and propose defense-in-depth mitigations.",
-      "description": "Analyze the security incident scenario outlined in Introduction to Cybersecurity. Identify the threat vector, determine impacted CIA triad components, and define mitigation steps.",
+      "id": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface-ex-1",
+      "type": "analysis",
+      "title": "STRIDE Assessment on Student File Upload API",
+      "objective": "Identify spoofing, disclosure, and DoS risks on a naive `/api/upload` endpoint.",
+      "description": "A student team releases `/api/upload` accepting files up to 500MB with no login check and writing raw filenames directly onto disk `/public/files/<originalName>`.",
       "instructions": [
-        "Classify the threat vector using STRIDE or MITRE ATT&CK categories.",
-        "Identify the root-cause vulnerability in configuration, code, or architecture.",
-        "Provide immediate containment steps and long-term preventive controls."
+        "Identify the Spoofing and DoS risks of unbounded unauthenticated 500MB uploads.",
+        "Explain the Path Traversal / RCE hazard of trusting `originalName` (e.g., `../../index.html`).",
+        "List 3 concrete hardening steps solving these threats."
       ],
-      "starterCode": "// Security Incident Analysis: Introduction to Cybersecurity\nIncident Type: Unauthorized Access Attempt\nAffected Asset: Production Database Ingress\nIdentified Vulnerability: Missing network ACL & weak credential policy\nProposed Containment:\n1. Revoke compromised credentials immediately\n2. Restrict IP ingress via security group\n3. Rotate all dependent service secrets",
+      "starterCode": "# Threat Review: /api/upload\n- Unauthenticated 500MB DoS Fix: ...\n- Raw originalName Traversal Fix: ...\n- Serving Safety Fix: ...",
       "hints": [
-        "Consider both network layer and application layer controls.",
-        "Think about how authentication and authorization differ in this scenario."
+        "Enforce auth, strict max byte limits (e.g., 5MB), magic-byte inspection, and random UUID filenames."
       ],
-      "submissionRequirements": "Submit an actionable incident response summary with technical mitigation steps.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Threat Understanding: Accurately identifies root cause and attack surface.",
-        "Mitigation Feasibility: Recommendations follow defense-in-depth principles without breaking legitimate services."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal security response contains active exposure through immediate credential revocation and firewall isolation, followed by root-cause remediation (e.g. MFA enforcement and principle of least privilege)."
+      "solutionExplanation": "Authenticating uploaders, capping sizes, renaming files with UUIDs, checking MIME magic bytes, and isolating file serving shut down path traversal and XSS."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-cybersecurity-kc-1",
+      "id": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface-kc-1",
       "type": "single-choice",
-      "prompt": "What is the foundational principle of a 'Zero Trust' security architecture?",
+      "prompt": "Which security pillar protects bank ledger amounts from being altered during transit or storage?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Never trust, always verify: every access request must be authenticated, authorized, and encrypted regardless of network location."
+          "text": "Integrity"
         },
         {
           "id": "opt-2",
-          "text": "Internal network requests behind a corporate VPN are automatically trusted."
+          "text": "Confidentiality"
         },
         {
           "id": "opt-3",
-          "text": "Zero Trust means eliminating all user passwords in favor of IP address whitelisting alone."
+          "text": "Availability"
         },
         {
           "id": "opt-4",
-          "text": "Zero Trust applies exclusively to physical data center badge access."
+          "text": "Latency"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Zero Trust assumes that threats exist both inside and outside the traditional network perimeter. Every request is explicitly verified, given least-privilege access, and assumed to operate in an untrusted environment.",
+      "explanation": "Integrity ensures trustworthiness and protects data against unauthorized tampering.",
       "objectiveIds": [
         "cybersecurity-obj-1"
       ]
     },
     {
-      "id": "mod-1-foundations-l1-introduction-to-cybersecurity-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent effective defense-in-depth controls against unauthorized access and data breaches?",
+      "id": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface-kc-2",
+      "type": "single-choice",
+      "prompt": "Why does returning 'No account found for alice@corp.com' enable attackers during password resets?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Multi-Factor Authentication (MFA) on all administrative and corporate accounts"
+          "id": "opt-1",
+          "text": "It enables silent User Enumeration allowing attackers to harvest registered user emails"
         },
         {
-          "id": "opt-2b",
-          "text": "Centralized, tamper-evident audit logging sent to a SIEM"
+          "id": "opt-2",
+          "text": "It triggers SQL injection automatically"
         },
         {
-          "id": "opt-2c",
-          "text": "Disabling firewall rules to reduce network latency during high-load periods"
+          "id": "opt-3",
+          "text": "It clears browser cookies"
         },
         {
-          "id": "opt-2d",
-          "text": "Encrypting sensitive data both at rest (AES-256) and in transit (TLS 1.3)"
+          "id": "opt-4",
+          "text": "It degrades TLS cipher strength"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "opt-1"
       ],
-      "explanation": "MFA, centralized logging, and end-to-end encryption are critical layers of defense in depth. Disabling firewall rules removes perimeter protection and exposes internal services to attack.",
+      "explanation": "Consistent generic reset messages prevent leaking account existence.",
       "objectiveIds": [
         "cybersecurity-obj-2"
       ]
+    },
+    {
+      "id": "mod-1-sec-principles-l1-cia-triad-threat-modeling-attack-surface-kc-3",
+      "type": "single-choice",
+      "prompt": "In STRIDE threat modeling, 'E' stands for which risk (such as tampering a JWT claim to gain admin role)?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Elevation of Privilege"
+        },
+        {
+          "id": "opt-2",
+          "text": "Encryption Padding"
+        },
+        {
+          "id": "opt-3",
+          "text": "Endpoint Scanning"
+        },
+        {
+          "id": "opt-4",
+          "text": "Error Logging"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Elevation of Privilege covers unauthorized capability escalation.",
+      "objectiveIds": [
+        "cybersecurity-obj-1"
+      ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Introduction to Cybersecurity. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You applied CIA Triad reasoning, Defense in Depth controls, and structured STRIDE threat modeling cleanly.",
   "videoResources": [
     {
-      "id": "res-sec-cybersecurity",
-      "title": "Defensive Security & Threat Analysis Fundamentals",
+      "id": "res-cybersecurity-primary",
+      "title": "Cybersecurity & Network Defense Foundations (Ethical Security)",
       "provider": "youtube",
-      "channelOrAuthor": "NetworkChuck / Professor Messer",
-      "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-      "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
-      "durationMinutes": 55,
+      "channelOrAuthor": "freeCodeCamp / Professor Messer",
+      "url": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
-      "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cybersecurity.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cybersecurity.",
       "learningObjectivesSupported": [
-        "Defend systems and diagnose vulnerabilities in Introduction to Cybersecurity"
+        "cybersecurity-obj-1",
+        "cybersecurity-obj-2",
+        "cybersecurity-obj-3",
+        "cybersecurity-obj-4"
       ],
       "keyTopicsCovered": [
-        "Defense in Depth",
-        "Principle of Least Privilege",
-        "Audit Logging",
-        "Patch Management"
+        "CIA Triad, Threat Modeling & Attack Surface",
+        "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+        "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+        "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+        "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+        "NIST Incident Response Lifecycle & Hardening Capstone"
       ],
-      "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "NIST Cybersecurity Framework (CSF)",
-      "url": "https://www.nist.gov/cyberframework",
-      "description": "Official documentation and authoritative guides for Cybersecurity."
+      "title": "OWASP Top 10 & NIST Framework",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "description": "Official reference documentation for Cybersecurity."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Pre-launch security design reviews",
+    "FinTech payment API hardening"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:09.715Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:17.502Z"
 }

@@ -1,18 +1,29 @@
 import { expect, test } from "@playwright/test";
 
-test("landing page presents the product and reaches sign-up", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.getByRole("heading", { name: /your career.*your potential.*your ai twin/i })).toBeVisible();
-  await page.getByRole("link", { name: /build my career twin/i }).first().click();
-  await expect(page).toHaveURL(/\/sign-up/);
-});
+test("home renders hero, login CTAs, analyzer drawer, and omits Pip assistant", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  const pageErrors: string[] = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(msg.text());
+  });
+  page.on("pageerror", (err) => pageErrors.push(err.message));
 
-test("Pip opens, answers a supported question, and minimizes", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("button", { name: /open pip/i }).click();
-  await expect(page.getByRole("button", { name: /minimize pip/i })).toBeVisible();
-  await page.getByRole("button", { name: /is this an ai score/i }).click();
-  await expect(page.getByText(/generative ai advice is not enabled/i)).toBeVisible();
-  await page.getByRole("button", { name: /minimize pip/i }).click();
-  await expect(page.getByRole("button", { name: /open pip/i })).toBeVisible();
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/AI Career Co-pilot/i);
+  await expect(page.getByRole("link", { name: /^Login$/i }).first()).toHaveAttribute("href", "/login");
+  await expect(page.getByRole("link", { name: /^Get Started$/i }).first()).toHaveAttribute("href", "/login");
+
+  // Phase 12 requirement: floating Pip box removed from public landing page
+  await expect(page.getByRole("button", { name: /open pip/i })).toHaveCount(0);
+  await expect(page.getByText(/Pip · CareerTwin Guide/i)).toHaveCount(0);
+
+  // Primary hero analyzer drawer still opens
+  await page.getByRole("button", { name: /Analyze My Career/i }).click();
+  await expect(page.getByRole("heading", { name: /best-fit career/i })).toBeVisible();
+
+  const noOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);
+  expect(noOverflow).toBe(true);
+  expect(pageErrors).toEqual([]);
+  expect(consoleErrors.filter((e) => !e.includes("Clerk"))).toEqual([]);
 });

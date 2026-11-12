@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Values, Types, Initialization, and Streams",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Values, Types, Initialization, and Streams."
+      "title": "Modern C++ Standard Reference",
+      "url": "https://en.cppreference.com/w/cpp",
+      "description": "Official reference documentation for C++."
     }
   ],
   "realWorldApplications": [

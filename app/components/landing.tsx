@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef, ChangeEvent } from "react";
 import Link from "next/link";
 import { RobotCharacter, CheerChip } from "./robot/robot-character";
-import { Pip } from "./pip";
 import "./landing/landing-clone.css";
 
 const SAMPLE_RESUME = `Aarav Mehta — Frontend Developer
@@ -102,15 +101,14 @@ export function Landing() {
   const heroRef = useRef<HTMLElement | null>(null);
   const spotlightRef = useRef<HTMLDivElement | null>(null);
 
-  const [theme, setTheme] = useState<"dark" | "light">(() => {
-    if (typeof window === "undefined") return "dark";
-    return (localStorage.getItem("ct-theme") as "dark" | "light") || "dark";
-  });
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   // Initialize theme
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+    const saved = (localStorage.getItem("ct-theme") as "dark" | "light") || "dark";
+    setTheme(saved);
+    document.documentElement.setAttribute("data-theme", saved);
+  }, []);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
@@ -255,13 +253,15 @@ export function Landing() {
         <div className="container header-inner">
           <Link className="brand" href="/" aria-label="CareerTwin — home">
             <span className="brand-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m12 14 4-4" />
-                <path d="M3.34 19a10 10 0 1 1 17.32 0" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5.6 11.1q2.4-3.1 4.8 0" />
+                <path d="M13.6 11.1q2.4-3.1 4.8 0" />
+                <path d="M7.6 14.2q4.4 3.5 8.8 0" />
               </svg>
             </span>
             <span className="brand-text">
-              <span className="grad-text">Career</span>Twin
+              <span className="brand-thin">Career</span>
+              <span className="brand-strong">Twin</span>
             </span>
           </Link>
 
@@ -291,16 +291,9 @@ export function Landing() {
             <Link className="btn btn-ghost hide-md" href="/login">
               Login
             </Link>
-            <button
-              type="button"
-              className="btn btn-primary hide-md magnetic"
-              onClick={() => {
-                setAnalyzeOpen(true);
-                setAnalyzeStep(1);
-              }}
-            >
+            <Link className="btn btn-primary hide-md magnetic" href="/login">
               Get Started
-            </button>
+            </Link>
             <button
               className="menu-btn"
               id="menuBtn"
@@ -323,17 +316,9 @@ export function Landing() {
             <Link className="btn btn-outline" href="/login" onClick={() => setMobileMenuOpen(false)}>
               Login
             </Link>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setAnalyzeOpen(true);
-                setAnalyzeStep(1);
-              }}
-            >
+            <Link className="btn btn-primary" href="/login" onClick={() => setMobileMenuOpen(false)}>
               Get Started
-            </button>
+            </Link>
           </div>
         </nav>
       </header>
@@ -416,15 +401,12 @@ export function Landing() {
             {/* Hero Visual with 3D Robot Canvas */}
             <div className="hero-visual" id="heroVisual">
               <div className="visual-glow" aria-hidden="true" />
-              <div className="scene-shell relative w-full h-full">
+              <div className="scene-shell">
                 <RobotCharacter pose="hero" canvasId="robotCanvas" />
                 <noscript><div className="scene-fallback">CareerTwin AI</div></noscript>
-                <div className="absolute bottom-5 left-5 z-20">
-                  <CheerChip label="Say hi" tag="Click to wave" />
-                </div>
               </div>
 
-              <div className="float-card float-card--a">
+              <div className="float-card float-card--a" data-float>
                 <div className="fc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -439,7 +421,7 @@ export function Landing() {
                 <div className="ring" style={{ "--p": 92 } as React.CSSProperties}><b>92</b></div>
               </div>
 
-              <div className="float-card float-card--b">
+              <div className="float-card float-card--b" data-float>
                 <div className="fc-icon alt">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
@@ -781,28 +763,6 @@ export function Landing() {
                   />
                 </label>
 
-                <div className="analyze-row">
-                  <label className="file-drop" id="fileDrop">
-                    <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.md" onChange={handleFileUpload} hidden />
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="17 8 12 3 7 8" /><line x1="12" x2="12" y1="3" y2="15" />
-                    </svg>
-                    <span id="fileName">{uploadedFileName}</span>
-                  </label>
-                  <button
-                    className="btn btn-ghost"
-                    id="sampleBtn"
-                    type="button"
-                    onClick={() => {
-                      setResumeText(SAMPLE_RESUME);
-                      setTargetRole("Frontend Developer");
-                    }}
-                  >
-                    Use sample resume
-                  </button>
-                </div>
-
                 <button className="btn btn-primary btn-lg shine analyze-submit" id="analyzeBtn" type="button" onClick={startAnalysis}>
                   Analyze My Career
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -905,8 +865,8 @@ export function Landing() {
         </div>
       </section>
 
-      {/* Interactive Pip Guide Assistant */}
-      <Pip variant="floating" />
+      {/* Analyze Modal and Drawer */}
+      {/* Pip Agent removed from public landing per Phase 12 specification */}
     </div>
   );
 }

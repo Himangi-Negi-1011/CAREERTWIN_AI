@@ -22,6 +22,8 @@
   "questions": [
     {
       "id": "phase-java-beginner-mod-2-q1",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about String equality is valid?",
       "codeSnippet": "",
@@ -55,6 +57,8 @@
     },
     {
       "id": "phase-java-beginner-mod-2-q2",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about parsing is valid?",
       "codeSnippet": "",
@@ -88,6 +92,8 @@
     },
     {
       "id": "phase-java-beginner-mod-2-q3",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about short circuit logic is valid?",
       "codeSnippet": "",
@@ -121,6 +127,8 @@
     },
     {
       "id": "phase-java-beginner-mod-2-q4",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about if chains is valid?",
       "codeSnippet": "",
@@ -154,6 +162,8 @@
     },
     {
       "id": "phase-java-beginner-mod-2-q5",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which code-review warning about switch is valid?",
       "codeSnippet": "",

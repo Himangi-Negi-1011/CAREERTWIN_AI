@@ -20,6 +20,8 @@ export const mockAnswerOptionSchema = z.object({
 
 export const mockTestQuestionSchema = z.object({
   id: text(100),
+  section: z.string().default("A"),
+  sectionTitle: optText(240),
   type: mockQuestionTypeSchema,
   prompt: text(2000),
   codeSnippet: optText(4000),
@@ -28,7 +30,7 @@ export const mockTestQuestionSchema = z.object({
   explanation: text(2000),
   difficulty: z.enum(["foundation", "beginner", "intermediate", "advanced"]),
   topic: text(120),
-  marks: z.number().int().min(1).max(10).default(1),
+  marks: z.number().int().min(1).max(25).default(2),
   recommendedLessonId: optText(120),
   recommendedLessonTitle: optText(200),
 });
@@ -65,6 +67,8 @@ export function sanitizeMockTestForStudent(test: MockTestDocument) {
     ...test,
     questions: test.questions.map((q) => ({
       id: q.id,
+      section: q.section ?? "A",
+      sectionTitle: q.sectionTitle ?? "",
       type: q.type,
       prompt: q.prompt,
       codeSnippet: q.codeSnippet,
@@ -85,6 +89,8 @@ export type MockTestSubmission = z.infer<typeof mockTestSubmissionSchema>;
 
 export interface QuestionGradingResult {
   questionId: string;
+  section?: string;
+  sectionTitle?: string;
   prompt: string;
   topic: string;
   type: MockQuestionType;
@@ -95,6 +101,14 @@ export interface QuestionGradingResult {
   maxMarks: number;
   explanation: string;
   recommendedLessonTitle?: string;
+}
+
+export interface SectionScore {
+  section: string;
+  sectionTitle: string;
+  scored: number;
+  total: number;
+  percentage: number;
 }
 
 export interface TopicScore {
@@ -114,6 +128,7 @@ export interface MockTestGradedReport {
   passed: boolean;
   passingPercentage: number;
   timeSpentSeconds: number;
+  sectionWiseScores?: Record<string, SectionScore>;
   topicWiseScores: Record<string, TopicScore>;
   questions: QuestionGradingResult[];
   incorrectQuestionCount: number;
@@ -128,6 +143,7 @@ export function gradeMockTest(
 ): MockTestGradedReport {
   let scoredMarks = 0;
   const topicMap: Record<string, { scored: number; total: number }> = {};
+  const sectionMap: Record<string, { sectionTitle: string; scored: number; total: number }> = {};
   const questionResults: QuestionGradingResult[] = [];
   const recommendedLessonsSet = new Map<string, string>();
 
@@ -137,16 +153,39 @@ export function gradeMockTest(
     }
     topicMap[q.topic].total += q.marks;
 
+    const secKey = q.section || "A";
+    if (!sectionMap[secKey]) {
+      sectionMap[secKey] = {
+        sectionTitle: q.sectionTitle || `Section ${secKey}`,
+        scored: 0,
+        total: 0,
+      };
+    }
+    sectionMap[secKey].total += q.marks;
+
     const selected = [...new Set(submission.answers[q.id] ?? [])].sort();
     const expected = [...q.correctOptionIds].sort();
+    const expectedSet = new Set(expected);
 
-    const isCorrect =
+    const isExactMatch =
       selected.length === expected.length &&
       selected.every((val, idx) => val === expected[idx]);
 
-    const marksAwarded = isCorrect ? q.marks : 0;
+    let marksAwarded = 0;
+    if (isExactMatch) {
+      marksAwarded = q.marks;
+    } else if (q.type === "multiple-select" && expected.length > 0 && selected.length > 0) {
+      // Deterministic partial-credit rule: reward genuine correct selections while penalizing incorrect checkboxes
+      const correctHits = selected.filter((id) => expectedSet.has(id)).length;
+      const wrongPicks = selected.filter((id) => !expectedSet.has(id)).length;
+      const netHits = Math.max(0, correctHits - wrongPicks);
+      marksAwarded = Math.min(q.marks, Math.max(0, Math.floor((netHits / expected.length) * q.marks)));
+    }
+
+    const isCorrect = isExactMatch;
     scoredMarks += marksAwarded;
     topicMap[q.topic].scored += marksAwarded;
+    sectionMap[secKey].scored += marksAwarded;
 
     if (!isCorrect && q.recommendedLessonTitle) {
       recommendedLessonsSet.set(q.recommendedLessonTitle, q.topic);
@@ -154,6 +193,8 @@ export function gradeMockTest(
 
     questionResults.push({
       questionId: q.id,
+      section: q.section,
+      sectionTitle: q.sectionTitle,
       prompt: q.prompt,
       topic: q.topic,
       type: q.type,
@@ -167,13 +208,25 @@ export function gradeMockTest(
     });
   }
 
-  const percentage = test.totalMarks > 0 ? Math.round((scoredMarks / test.totalMarks) * 100) : 0;
+  const clampedScore = Math.min(test.totalMarks, Math.max(0, scoredMarks));
+  const percentage = test.totalMarks > 0 ? Math.round((clampedScore / test.totalMarks) * 100) : 0;
   const passed = percentage >= test.passingPercentage;
 
   const topicWiseScores: Record<string, TopicScore> = {};
   for (const [topic, stats] of Object.entries(topicMap)) {
     topicWiseScores[topic] = {
       topic,
+      scored: stats.scored,
+      total: stats.total,
+      percentage: stats.total > 0 ? Math.round((stats.scored / stats.total) * 100) : 0,
+    };
+  }
+
+  const sectionWiseScores: Record<string, SectionScore> = {};
+  for (const [secKey, stats] of Object.entries(sectionMap)) {
+    sectionWiseScores[secKey] = {
+      section: secKey,
+      sectionTitle: stats.sectionTitle,
       scored: stats.scored,
       total: stats.total,
       percentage: stats.total > 0 ? Math.round((stats.scored / stats.total) * 100) : 0,
@@ -189,12 +242,13 @@ export function gradeMockTest(
     testId: test.id,
     skillName: test.skillName,
     level: test.level,
-    score: scoredMarks,
+    score: clampedScore,
     totalMarks: test.totalMarks,
     percentage,
     passed,
     passingPercentage: test.passingPercentage,
     timeSpentSeconds: submission.timeSpentSeconds,
+    sectionWiseScores,
     topicWiseScores,
     questions: questionResults,
     incorrectQuestionCount: questionResults.filter((q) => !q.isCorrect).length,

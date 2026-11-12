@@ -76,7 +76,7 @@
       "instructions": [
         "Build a progress tracker with functions to add a topic, reject percentages outside 0–100, update progress, list completed topics, and calculate the overall average. Include at least six assertions covering normal and invalid cases. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
       ],
-      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
       "hints": [
         "A runnable Python program with descriptive names",
         "Observed output and at least one boundary or failure test",
@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Collections and a Small Progress Tracker",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Collections and a Small Progress Tracker."
+      "title": "Python 3 Official Documentation",
+      "url": "https://docs.python.org/3/",
+      "description": "Official reference documentation for Python."
     }
   ],
   "realWorldApplications": [

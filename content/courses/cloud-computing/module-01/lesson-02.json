@@ -1,197 +1,226 @@
 {
-  "lessonId": "mod-1-foundations-l2-core-syntax-and-primitives-in-cloud-comp",
+  "lessonId": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo",
   "skillName": "Cloud Computing",
-  "moduleId": "mod-1-foundations",
-  "title": "Core Syntax and Primitives in Cloud Computing",
-  "summary": "Comprehensive masterclass on Core Syntax and Primitives in Cloud Computing for Cloud Computing. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-1-cloud-arch",
+  "title": "Elastic Compute, Containers & Serverless Workloads",
+  "summary": "Compare Virtual Machines, Containers (Docker/Kubernetes), and Serverless execution trade-offs including cold starts, state isolation, and auto-scaling.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Understand foundational mental models and syntax of Cloud Computing",
-    "Implement reliable patterns and error handling in Cloud Computing"
+    "Evaluate VM hypervisors vs Linux container namespaces vs serverless micro-VMs",
+    "Design stateless application instances backed by shared caches and databases for horizontal scaling"
   ],
   "objectiveIds": [
     "cloud-computing-obj-1",
     "cloud-computing-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Cloud Computing environment setup"
+    "Understanding of IaaS vs PaaS boundaries"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Core Syntax and Primitives in Cloud Computing",
-      "content": "Mastering Core Syntax and Primitives in Cloud Computing requires building an accurate conceptual model of how core principles operate and interact within the larger Cloud Computing domain. Every successful practitioner balances foundational theory with practical, verifiable execution.",
+      "id": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo-sec-1",
+      "heading": "1. Virtual Machines vs Containers vs Serverless Micro-VMs",
+      "content": "Every VM packages an entire guest Operating System kernel atop hardware virtualization (hypervisor), consuming gigabytes of RAM and tens of seconds to boot. Containers share the host Linux kernel while isolating processes cleanly via namespaces and resource cgroups, yielding lightweight sub-second startup and identical environments from developer laptops to production nodes.\n\nServerless functions (e.g., AWS Lambda via Firecracker micro-VMs) abstract server capacity completely behind event invocations, billing strictly per millisecond executed—ideal for spiky HTTP hooks and async workers, though stateful long-running sockets fit containers/VMs cleanly.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Core Framework for Core Syntax and Primitives in Cloud Computing\n\n1. **Define the Objective:** Identify the primary outcome and measurable criteria for success.\n2. **Deconstruct the Problem:** Break the domain challenge into independent, testable sub-components.\n3. **Execute & Iterate:** Apply targeted techniques and validate results against established standards.\n4. **Review & Refine:** Conduct root-cause analysis on deviations to drive continuous improvement.",
-          "explanation": "Systematic decomposition and objective verification ensure consistent, repeatable outcomes regardless of complexity.",
-          "expectedOutput": "Structured execution plan aligned with industry standards for Cloud Computing."
+          "language": "text",
+          "code": "[VM Model]             [Container Model]        [Serverless Model]\nApp A  | App B         App A  | App B           Fn Handler (Event)\nBins   | Bins          Bins   | Bins            Isolated Micro-VM\nGuest  | Guest         Container Runtime        Provider Runtime\n---Hypervisor---       ----Host Linux Kernel--- Provider Control Plane\nPhysical Hardware      Infrastructure VMs       Billed per 1ms Execution",
+          "explanation": "Abstraction reduces OS overhead as you move from dedicated Guest VMs to shared-kernel Containers and event-driven Serverless functions.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Clear mental models prevent premature optimization and procedural errors.",
-        "Establish verifiable feedback loops early in the execution process.",
-        "Document core decisions and assumptions to facilitate review and scaling."
+        "Always build stateless compute nodes: keep user sessions in Redis/JWTs rather than local `/tmp` disk.",
+        "Multi-stage Docker builds keep runtime images minimal and free of compilers or credentials."
       ],
       "commonMistakes": [
-        "Proceeding to execution without verifying requirements and boundary constraints.",
-        "Failing to measure outcomes against objective criteria."
+        "Storing uploaded user images or login sessions on VM local disk, which disappears when Auto Scaling replaces or terminates an instance."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In professional practice, resilient workflows adapt to operational constraints through structured checkpoints, risk mitigation strategies, and transparent peer review.",
+      "id": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo-sec-2",
+      "heading": "2. Graceful Container Packaging & Health Check Probes",
+      "content": "Production compute targets rely on explicit container health endpoints (`/healthz`) and non-root execution UIDs so orchestrators detect stalled workers early and drain requests cleanly before replacing pods.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Professional Workflow Checklist for Cloud Computing\n- [ ] Input Validation: Verify prerequisites and baseline data.\n- [ ] Execution: Implement core technique following best practices.\n- [ ] Verification: Test boundary cases and confirm alignment.\n- [ ] Sign-off: Document results and archive audit evidence.",
-          "explanation": "Standardized checklists and verification gates eliminate human omission errors in mission-critical workflows.",
-          "expectedOutput": "Verified artifact ready for production deployment or stakeholder review."
+          "language": "dockerfile",
+          "code": "# Hardened Multi-Stage Dockerfile (Zero build tools in production runtime)\nFROM node:22-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --ignore-scripts\nCOPY . .\nRUN npm run build\n\nFROM node:22-alpine AS runner\nWORKDIR /app\nRUN addgroup -S appgrp && adduser -S appusr -G appgrp\nUSER appusr\nCOPY --from=builder /app/.next ./.next\nCOPY --from=builder /app/node_modules ./node_modules\nHEALTHCHECK --interval=30s --timeout=3s CMD wget -qO- http://127.0.0.1:3000/api/health || exit 1\nCMD [\"npx\", \"next\", \"start\"]",
+          "explanation": "Switching to `USER appusr` prevents root container privilege escalation while multi-stage copying strips compilers from the runtime image.",
+          "expectedOutput": "Lean non-root production image verified via healthcheck probe"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Stateless containers enable horizontal Auto Scaling behind Load Balancers.",
+        "Expose `/healthz` readiness checks and respect `SIGTERM` for graceful draining."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Running production web apps inside containers as default `root` UID 0."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-foundations-l2-core-syntax-and-primitives-in-cloud-comp-ex-1",
-      "type": "scenario",
-      "title": "Applied Practice Lab: Core Syntax and Primitives in Cloud Computing",
-      "objective": "Demonstrate mastery of Core Syntax and Primitives in Cloud Computing through structured problem analysis and execution.",
-      "description": "Analyze the scenario presented in Core Syntax and Primitives in Cloud Computing. Develop an actionable plan adhering to the foundational principles of Cloud Computing.",
+      "id": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo-ex-1",
+      "type": "design",
+      "title": "Compute Workload Right-Sizing & Dockerfile Review",
+      "objective": "Eliminate root execution and stateful storage bugs from a container deployment.",
+      "description": "Inspect a deployment writing user PDF uploads directly into VM `/var/uploads` inside a root container. Refactor the architecture for horizontal multi-AZ auto-scaling.",
       "instructions": [
-        "Identify the primary challenge and its boundary constraints.",
-        "Formulate a step-by-step resolution strategy.",
-        "Define objective verification criteria proving successful execution."
+        "Explain what happens to `/var/uploads` if the Auto Scaling group scales down by 1 instance.",
+        "Replace local disk file storage with signed S3 object uploads.",
+        "Update the Docker runtime configuration to execute under a non-root service user."
       ],
-      "starterCode": "// Execution Plan for Core Syntax and Primitives in Cloud Computing\nObjective: ...\nScope & Constraints: ...\nImplementation Steps:\n1. ...\n2. ...\nVerification Method: ...",
+      "starterCode": "# Refactor Plan\n- Storage Fix: ...\n- Session State Fix: ...\n- Container Non-Root User: ...",
       "hints": [
-        "Focus on root causes rather than superficial symptoms.",
-        "Ensure every proposed step is actionable and verifiable."
+        "Instance filesystems are ephemeral under auto-scaling.",
+        "Dedicated non-root UID mitigates container breakout severity."
       ],
-      "submissionRequirements": "Submit a structured execution plan addressing all scenario objectives.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Thoroughness: Addresses all critical requirements and constraints.",
-        "Actionability: Steps are practical, clear, and measurable."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal approach combines structured problem decomposition with objective verification criteria and clear accountability."
+      "solutionExplanation": "Moving uploads to object storage (S3), state to Redis/DB, and processes to non-root UIDs makes compute truly elastic and fault-tolerant."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-foundations-l2-core-syntax-and-primitives-in-cloud-comp-kc-1",
+      "id": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo-kc-1",
       "type": "single-choice",
-      "prompt": "When implementing Core Syntax and Primitives in Cloud Computing in a modern workflow, what is the primary consideration to ensure stability and correctness?",
+      "prompt": "What happens if an auto-scaled web server saves uploaded user avatars onto its local EC2 instance disk?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Enforce strict boundary validation, clear operational standards, and automated feedback loops."
+          "text": "Files vanish when instances scale down or get replaced, and other balanced instances cannot serve those files"
         },
         {
           "id": "opt-2",
-          "text": "Bypass verification steps to maximize delivery velocity."
+          "text": "Cloud providers sync `/var/uploads` globally automatically"
         },
         {
           "id": "opt-3",
-          "text": "Rely solely on undocumented assumptions without stakeholder alignment."
+          "text": "Docker copies files across regions in 1ms"
         },
         {
           "id": "opt-4",
-          "text": "Eliminate measurement and logging to minimize overhead."
+          "text": "Load balancers store binary files inside headers"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Operational stability requires rigorous boundary checks, clear standards, and continuous feedback loops before production deployment.",
+      "explanation": "Local disks on auto-scaled nodes are ephemeral and node-bound; durable shared assets belong in Object Storage (S3/GCS).",
       "objectiveIds": [
         "cloud-computing-obj-1"
       ]
     },
     {
-      "id": "mod-1-foundations-l2-core-syntax-and-primitives-in-cloud-comp-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent industry best practices when working with Cloud Computing?",
+      "id": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo-kc-2",
+      "type": "single-choice",
+      "prompt": "Why do multi-stage Dockerfiles produce cleaner, safer cloud images?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Designing modular, decoupled components with single responsibilities"
+          "id": "opt-1",
+          "text": "Compilers and dev caches stay isolated in the build stage and are omitted from the lean runtime container"
         },
         {
-          "id": "opt-2b",
-          "text": "Establishing verifiable quality gates and feedback mechanisms"
+          "id": "opt-2",
+          "text": "They allow root SSH access directly from browsers"
         },
         {
-          "id": "opt-2c",
-          "text": "Documenting architectural trade-offs and operational constraints"
+          "id": "opt-3",
+          "text": "They skip TLS verification on registries"
         },
         {
-          "id": "opt-2d",
-          "text": "Ignoring failure modes under the assumption that conditions remain ideal"
+          "id": "opt-4",
+          "text": "They bundle entire VM hypervisors inside containers"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2c"
+        "opt-1"
       ],
-      "explanation": "Modularity, verifiable quality gates, and transparent documentation are core best practices. Assuming ideal conditions leads to unhandled failures in live environments.",
+      "explanation": "Smaller runtime images transfer faster across clusters and reduce exposed software CVEs.",
       "objectiveIds": [
         "cloud-computing-obj-2"
       ]
+    },
+    {
+      "id": "mod-1-cloud-arch-l2-elastic-compute-containers-serverless-wo-kc-3",
+      "type": "single-choice",
+      "prompt": "When is a Serverless function (Lambda / Cloud Functions) generally LESS appropriate than containers/VMs?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Sustained CPU-saturated rendering jobs running continuously for hours or requiring persistent raw WebSockets"
+        },
+        {
+          "id": "opt-2",
+          "text": "Asynchronous thumbnail generation on S3 image upload"
+        },
+        {
+          "id": "opt-3",
+          "text": "Low-traffic webhook receivers"
+        },
+        {
+          "id": "opt-4",
+          "text": "Scheduled nightly cleanup cron jobs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Continuous compute-saturated workloads and persistent long-lived stateful protocols are often cheaper and better served on containers/VMs.",
+      "objectiveIds": [
+        "cloud-computing-obj-1"
+      ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Core Syntax and Primitives in Cloud Computing. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You contrasted VMs, containers, and serverless models and built stateless multi-stage non-root workloads.",
   "videoResources": [
     {
-      "id": "res-cloud-cloudcomputing",
-      "title": "Cloud Computing Infrastructure & Deployment Architecture",
+      "id": "res-cloud-computing-primary",
+      "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
       "provider": "youtube",
-      "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-      "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-      "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-      "durationMinutes": 45,
+      "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+      "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-      "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
       "learningObjectivesSupported": [
-        "Deploy and isolate workloads using Core Syntax and Primitives in Cloud Computing"
+        "cloud-computing-obj-1",
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3",
+        "cloud-computing-obj-4"
       ],
       "keyTopicsCovered": [
-        "Container Architecture",
-        "Networking",
-        "IAM & Security Policies",
-        "Health Checks"
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads",
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases",
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
       ],
-      "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "Official Cloud Computing Reference & Standards",
-      "url": "https://en.wikipedia.org/wiki/Cloud%20Computing",
-      "description": "Official documentation and authoritative guides for Cloud Computing."
+      "title": "AWS Cloud Architecture Center",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Official reference documentation for Cloud Computing."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Kubernetes microservice scaling",
+    "Zero-downtime rolling CI/CD containers"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:12.481Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:16.023Z"
 }

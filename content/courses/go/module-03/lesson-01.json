@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Functions, Structs, Methods, and Interfaces",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Functions, Structs, Methods, and Interfaces."
+      "title": "Go Official Language Documentation",
+      "url": "https://go.dev/doc/",
+      "description": "Official reference documentation for Go."
     }
   ],
   "realWorldApplications": [

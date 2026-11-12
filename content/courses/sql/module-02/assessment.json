@@ -1,195 +1,235 @@
 {
-  "id": "phase-sql-mod-2-application-assessment",
+  "id": "phase-sql-mod-2-sql-joins-windows-assessment",
   "skillName": "SQL",
   "skillSlug": "sql",
   "level": "beginner",
-  "testNumber": 1,
+  "testNumber": 2,
   "isPhaseAssessment": true,
-  "moduleId": "mod-2-application",
-  "moduleTitle": "Module 2: Practical Implementation & Production Patterns",
-  "title": "SQL — Module 2: Practical Implementation & Production Patterns Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Production Patterns and Resilience in SQL, Capstone Lab: Verifiable SQL Implementation.",
+  "moduleId": "mod-2-sql-joins-windows",
+  "moduleTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions",
+  "title": "SQL — Module 2: Multi-Table Joins, CTEs & Window Functions Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Multi-Table INNER, LEFT, FULL Joins & CTEs and Analytical Window Functions: ROW_NUMBER, RANK & Running Totals.",
   "durationMinutes": 20,
-  "totalMarks": 11,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "Indexing & Query Optimization",
-    "Aggregation & Grouping",
-    "Transactions & Concurrency",
-    "Relational Joins & Set Theory",
-    "Three-Valued Logic & NULL Handling"
+    "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+    "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals"
   ],
   "questions": [
     {
-      "id": "phase-sql-mod-2-application-assessment-q1",
-      "type": "scenario",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] A query filtering on WHERE UPPER(email) = 'USER@EXAMPLE.COM' is causing full table scans despite an index on email. What is the solution?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Create a functional/expression index on UPPER(email) or normalize email to lowercase before indexing and querying"
-        },
-        {
-          "id": "opt-2",
-          "text": "Add an extra ORDER BY email ASC clause"
-        },
-        {
-          "id": "opt-3",
-          "text": "Convert the column type from VARCHAR to TEXT"
-        },
-        {
-          "id": "opt-4",
-          "text": "Change the SELECT clause to SELECT *"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "Wrapping indexed columns in functions disables standard B-Tree index lookups unless an expression index exists or values are pre-normalized.",
-      "difficulty": "beginner",
-      "topic": "Indexing & Query Optimization",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in SQL"
-    },
-    {
-      "id": "phase-sql-mod-2-application-assessment-q2",
-      "type": "code-output",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What rows are returned by this SQL query?",
-      "codeSnippet": "SELECT department_id, COUNT(*)\nFROM employees\nGROUP BY department_id\nHAVING COUNT(*) > 5;",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Only department IDs that have strictly more than 5 employee records"
-        },
-        {
-          "id": "opt-2",
-          "text": "The first 5 departments ordered by employee count"
-        },
-        {
-          "id": "opt-3",
-          "text": "All employees in departments where at least one person makes over 5k"
-        },
-        {
-          "id": "opt-4",
-          "text": "A syntax error because WHERE was omitted"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "HAVING filters aggregated groups after the GROUP BY clause, retaining only groups satisfying the aggregate predicate.",
-      "difficulty": "beginner",
-      "topic": "Aggregation & Grouping",
-      "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable SQL Implementation"
-    },
-    {
-      "id": "phase-sql-mod-2-application-assessment-q3",
-      "type": "multiple-select",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] Which of the following are ACID properties in relational database transactions?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "Atomicity: All operations in the transaction succeed or all roll back"
-        },
-        {
-          "id": "opt-2",
-          "text": "Consistency: The transaction brings the database from one valid state to another"
-        },
-        {
-          "id": "opt-3",
-          "text": "Isolation: Concurrent execution of transactions yields the same state as serial execution"
-        },
-        {
-          "id": "opt-4",
-          "text": "Adaptability: Schema changes apply dynamically without migration locks"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "ACID stands for Atomicity, Consistency, Isolation, and Durability.",
-      "difficulty": "beginner",
-      "topic": "Transactions & Concurrency",
-      "marks": 3,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in SQL"
-    },
-    {
-      "id": "phase-sql-mod-2-application-assessment-q4",
+      "id": "phase-sql-mod-2-sql-joins-windows-q1",
+      "section": "A",
+      "sectionTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What is the difference between an INNER JOIN and a LEFT OUTER JOIN?",
+      "prompt": "Why should you avoid joining two separate `1-to-Many` tables (`orders` and `refunds`) directly onto `customers` before aggregating?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "INNER JOIN returns only rows with matches in both tables; LEFT OUTER JOIN preserves all left rows and fills unmatched right columns with NULL."
+          "text": "It triggers a cross-product fanout between a customer's orders and refunds, wildly inflating SUM/COUNT totals"
         },
         {
           "id": "opt-2",
-          "text": "LEFT OUTER JOIN returns only unmatched rows."
+          "text": "PostgreSQL throws syntax error on joining three tables"
         },
         {
           "id": "opt-3",
-          "text": "INNER JOIN can only be used on primary keys."
+          "text": "LEFT JOIN ignores foreign keys after 2 tables"
         },
         {
           "id": "opt-4",
-          "text": "LEFT JOIN sorts the results in ascending order automatically."
+          "text": "Memory doubles per NULL cell"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "LEFT JOIN keeps all records from the left-hand table regardless of whether the join predicate matches a row on the right.",
+      "explanation": "Pre-aggregating per parent key in CTEs prevents cross-branch multiplicative row duplication.",
       "difficulty": "beginner",
-      "topic": "Relational Joins & Set Theory",
+      "topic": "Multi-Table INNER, LEFT, FULL Joins & CTEs",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Capstone Lab: Verifiable SQL Implementation"
+      "recommendedLessonId": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes",
+      "recommendedLessonTitle": "Multi-Table INNER, LEFT, FULL Joins & CTEs"
     },
     {
-      "id": "phase-sql-mod-2-application-assessment-q5",
-      "type": "debugging",
-      "prompt": "[Module 2: Practical Implementation & Production Patterns] What will happen if you compare a column value with NULL using '=' (e.g. WHERE status = NULL)?",
+      "id": "phase-sql-mod-2-sql-joins-windows-q2",
+      "section": "A",
+      "sectionTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint",
+      "type": "single-choice",
+      "prompt": "When joining `students LEFT JOIN submissions` and wanting ALL students—plus ONLY submissions with `score >= 90`—where should `s.score >= 90` be placed?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It returns UNKNOWN (evaluating to false in WHERE), matching zero rows; 'IS NULL' must be used instead."
+          "text": "Inside the `LEFT JOIN ... ON` predicate"
         },
         {
           "id": "opt-2",
-          "text": "It matches all rows where status is an empty string."
+          "text": "Inside the trailing `WHERE` clause"
         },
         {
           "id": "opt-3",
-          "text": "It triggers a syntax error in ANSI SQL."
+          "text": "Inside `ORDER BY`"
         },
         {
           "id": "opt-4",
-          "text": "It converts NULL to zero."
+          "text": "Inside `GROUP BY`"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "In three-valued SQL logic, NULL = NULL evaluates to UNKNOWN, not TRUE. Checking for nullability requires the 'IS NULL' operator.",
+      "explanation": "Putting it in `WHERE` filters out NULL unmatched students.",
       "difficulty": "beginner",
-      "topic": "Three-Valued Logic & NULL Handling",
+      "topic": "Multi-Table INNER, LEFT, FULL Joins & CTEs",
       "marks": 2,
-      "recommendedLessonId": "mod-2-application-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in SQL"
+      "recommendedLessonId": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes",
+      "recommendedLessonTitle": "Multi-Table INNER, LEFT, FULL Joins & CTEs"
+    },
+    {
+      "id": "phase-sql-mod-2-sql-joins-windows-q3",
+      "section": "A",
+      "sectionTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint",
+      "type": "single-choice",
+      "prompt": "What does `COALESCE(val, 0)` accomplish cleanly alongside a `LEFT JOIN`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Replaces missing unmatched NULL metrics gracefully with `0` for reporting and safe arithmetic"
+        },
+        {
+          "id": "opt-2",
+          "text": "Deletes rows with NULL entries"
+        },
+        {
+          "id": "opt-3",
+          "text": "Creates a temporary table index"
+        },
+        {
+          "id": "opt-4",
+          "text": "Converts strings into timestamps"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`COALESCE` substitutes explicit defaults whenever expressions evaluate to NULL.",
+      "difficulty": "beginner",
+      "topic": "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sql-joins-windows-l1-multi-table-inner-left-full-joins-ctes",
+      "recommendedLessonTitle": "Multi-Table INNER, LEFT, FULL Joins & CTEs"
+    },
+    {
+      "id": "phase-sql-mod-2-sql-joins-windows-q4",
+      "section": "A",
+      "sectionTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint",
+      "type": "single-choice",
+      "prompt": "Given scores [100, 100, 90, 85], what ranks does `DENSE_RANK() OVER (ORDER BY score DESC)` produce?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "1, 1, 2, 3"
+        },
+        {
+          "id": "opt-2",
+          "text": "1, 2, 3, 4"
+        },
+        {
+          "id": "opt-3",
+          "text": "1, 1, 3, 4"
+        },
+        {
+          "id": "opt-4",
+          "text": "1, 2, 2, 3"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "DENSE_RANK gives ties identical ranks without leaving numerical gaps.",
+      "difficulty": "beginner",
+      "topic": "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sql-joins-windows-l2-analytical-window-functions-row-number-r",
+      "recommendedLessonTitle": "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals"
+    },
+    {
+      "id": "phase-sql-mod-2-sql-joins-windows-q5",
+      "section": "A",
+      "sectionTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why must a filter on `ROW_NUMBER()` (`WHERE rn = 1`) be wrapped in an outer query or CTE instead of inline in `WHERE`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`WHERE` executes prior to Window Functions in SQL logical evaluation order, so `ROW_NUMBER()` hasn't been calculated yet"
+        },
+        {
+          "id": "opt-2",
+          "text": "PostgreSQL forbids numbers inside `WHERE`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`ROW_NUMBER()` runs only on views"
+        },
+        {
+          "id": "opt-4",
+          "text": "CTEs speed up window syntax by 1000x"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Window functions evaluate during projection right before `ORDER BY`.",
+      "difficulty": "beginner",
+      "topic": "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sql-joins-windows-l2-analytical-window-functions-row-number-r",
+      "recommendedLessonTitle": "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals"
+    },
+    {
+      "id": "phase-sql-mod-2-sql-joins-windows-q6",
+      "section": "A",
+      "sectionTitle": "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which analytical window function reads the value from the preceding ordered row cleanly without self-joining the table?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`LAG(column, 1) OVER (ORDER BY date)`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`NEXT_ROW()`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`CROSS APPLY`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`COALESCE()`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`LAG()` and `LEAD()` compare consecutive periods (like Day-over-Day growth) cleanly in one scan.",
+      "difficulty": "beginner",
+      "topic": "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+      "marks": 2,
+      "recommendedLessonId": "mod-2-sql-joins-windows-l2-analytical-window-functions-row-number-r",
+      "recommendedLessonTitle": "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:09.043Z",
-  "updatedAt": "2026-10-30T06:22:09.043Z"
+  "createdAt": "2026-11-11T05:58:18.464Z",
+  "updatedAt": "2026-11-11T05:58:18.464Z"
 }

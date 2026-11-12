@@ -1,197 +1,228 @@
 {
-  "lessonId": "mod-1-foundations-l1-introduction-to-cloud-computing",
+  "lessonId": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model",
   "skillName": "Cloud Computing",
-  "moduleId": "mod-1-foundations",
-  "title": "Introduction to Cloud Computing",
-  "summary": "Comprehensive masterclass on Introduction to Cloud Computing for Cloud Computing. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-1-cloud-arch",
+  "title": "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+  "summary": "Understand the physical footprint behind cloud Regions and Availability Zones alongside the IaaS, PaaS, and SaaS Shared Responsibility boundaries.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Understand foundational mental models and syntax of Cloud Computing",
-    "Implement reliable patterns and error handling in Cloud Computing"
+    "Differentiate IaaS, PaaS, and SaaS by operational ownership under the Shared Responsibility Model",
+    "Architect workloads across Regions and Availability Zones (AZs) to survive data center outages"
   ],
   "objectiveIds": [
     "cloud-computing-obj-1",
     "cloud-computing-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Cloud Computing environment setup"
+    "Basic OS & client-server request fundamentals"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Introduction to Cloud Computing",
-      "content": "Mastering Introduction to Cloud Computing requires building an accurate conceptual model of how core principles operate and interact within the larger Cloud Computing domain. Every successful practitioner balances foundational theory with practical, verifiable execution.",
+      "id": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model-sec-1",
+      "heading": "1. Physical Cloud Topology & Shared Responsibility Boundaries",
+      "content": "Modern cloud platforms are NOT amorphous abstractions—they run on physically isolated data centers grouped into geographically distinct Regions (e.g., us-east-1, ap-south-1). Each Region contains multiple independent Availability Zones (AZs) connected by ultra-low-latency private fiber links while isolating power, cooling, and flood risks.\n\nMeanwhile, the Shared Responsibility Model defines exactly what the provider secures ('Security OF the Cloud': concrete physical security, hypervisors, network racks) vs what your engineering team must configure safely ('Security IN the Cloud': OS kernel patching in IaaS, IAM identities, encryption keys, VPC firewall rules, and application secrets).",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Core Framework for Introduction to Cloud Computing\n\n1. **Define the Objective:** Identify the primary outcome and measurable criteria for success.\n2. **Deconstruct the Problem:** Break the domain challenge into independent, testable sub-components.\n3. **Execute & Iterate:** Apply targeted techniques and validate results against established standards.\n4. **Review & Refine:** Conduct root-cause analysis on deviations to drive continuous improvement.",
-          "explanation": "Systematic decomposition and objective verification ensure consistent, repeatable outcomes regardless of complexity.",
-          "expectedOutput": "Structured execution plan aligned with industry standards for Cloud Computing."
+          "language": "text",
+          "code": "+-------------------------------------------------------------------+\n| CLOUD REGION (e.g. us-east-1)                                     |\n|  +-----------------------------+  +-----------------------------+ |\n|  | Availability Zone A         |  | Availability Zone B         | |\n|  |  [App Node 1] [DB Primary]  |==|  [App Node 2] [DB Standby]  | |\n|  |  Independent Power / ISP    |  |  Independent Power / ISP    | |\n|  +-----------------------------+  +-----------------------------+ |\n+-------------------------------------------------------------------+",
+          "explanation": "Multi-AZ separation mirrors active application nodes and database replicas across physically separate data centers inside the same region.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Clear mental models prevent premature optimization and procedural errors.",
-        "Establish verifiable feedback loops early in the execution process.",
-        "Document core decisions and assumptions to facilitate review and scaling."
+        "Regions protect against regional disasters and satisfy data residency regulations (GDPR, DPDP).",
+        "Availability Zones provide fault isolation inside one region with synchronous or near-zero-latency replication.",
+        "Under IaaS (EC2/VMs), the customer patches the guest OS; under PaaS/Serverless, the provider patches the runtime."
       ],
       "commonMistakes": [
-        "Proceeding to execution without verifying requirements and boundary constraints.",
-        "Failing to measure outcomes against objective criteria."
+        "Assuming cloud data is automatically distributed across multiple continents by default.",
+        "Believing the cloud vendor secures misconfigured S3 buckets or wildcard IAM admin roles."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In professional practice, resilient workflows adapt to operational constraints through structured checkpoints, risk mitigation strategies, and transparent peer review.",
+      "id": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model-sec-2",
+      "heading": "2. Selecting Service Models & Infrastructure-as-Code Verification",
+      "content": "In real engineering environments, teams rarely click settings manually in web consoles because manual clicks cause undocumented configuration drift. Declarative Infrastructure as Code (Terraform / CloudFormation) version-controls every region, subnet, and responsibility boundary cleanly.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Professional Workflow Checklist for Cloud Computing\n- [ ] Input Validation: Verify prerequisites and baseline data.\n- [ ] Execution: Implement core technique following best practices.\n- [ ] Verification: Test boundary cases and confirm alignment.\n- [ ] Sign-off: Document results and archive audit evidence.",
-          "explanation": "Standardized checklists and verification gates eliminate human omission errors in mission-critical workflows.",
-          "expectedOutput": "Verified artifact ready for production deployment or stakeholder review."
+          "language": "hcl",
+          "code": "# Terraform multi-AZ target specification\nprovider \"aws\" {\n  region = \"us-east-1\"\n}\n\ndata \"aws_availability_zones\" \"available\" {\n  state = \"available\"\n}\n\noutput \"fault_isolated_azs\" {\n  value = slice(data.aws_availability_zones.available.names, 0, 2)\n}",
+          "explanation": "Querying live active Availability Zones programmatically guarantees deployments span multiple isolated power and network domains.",
+          "expectedOutput": "fault_isolated_azs = [\"us-east-1a\", \"us-east-1b\"]"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Match workload requirements cleanly: static web apps -> CDN/Object Storage; APIs -> Containers/PaaS; event hooks -> Serverless.",
+        "Always track infrastructure changes via pull requests in Git rather than manual console toggles."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Hardcoding regional AZ availability strings that break when reused in newer accounts or regions."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-cloud-computing-ex-1",
+      "id": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model-ex-1",
       "type": "scenario",
-      "title": "Applied Practice Lab: Introduction to Cloud Computing",
-      "objective": "Demonstrate mastery of Introduction to Cloud Computing through structured problem analysis and execution.",
-      "description": "Analyze the scenario presented in Introduction to Cloud Computing. Develop an actionable plan adhering to the foundational principles of Cloud Computing.",
+      "title": "Responsibility & Service Tier Classification Audit",
+      "objective": "Map security and maintenance ownership accurately across IaaS, PaaS, and SaaS systems.",
+      "description": "A startup deploys three components: an Ubuntu PostgreSQL VM (EC2), a managed serverless webhook function (Lambda), and corporate email (Google Workspace). Classify customer vs provider responsibility for OS patching, data encryption, IAM policies, and physical cooling.",
       "instructions": [
-        "Identify the primary challenge and its boundary constraints.",
-        "Formulate a step-by-step resolution strategy.",
-        "Define objective verification criteria proving successful execution."
+        "Identify which layers belong to Customer vs Cloud Provider for the Ubuntu EC2 instance.",
+        "Contrast how OS maintenance shifts for the managed serverless function.",
+        "Explain why IAM roles and uploaded database secrets remain 100% customer responsibility in ALL three models."
       ],
-      "starterCode": "// Execution Plan for Introduction to Cloud Computing\nObjective: ...\nScope & Constraints: ...\nImplementation Steps:\n1. ...\n2. ...\nVerification Method: ...",
+      "starterCode": "# Shared Responsibility Matrix\n1. Ubuntu EC2 (IaaS):\n   - Provider owns: ...\n   - Customer owns: ...\n2. Serverless Webhook (FaaS/PaaS):\n   - Provider owns: ...\n   - Customer owns: ...",
       "hints": [
-        "Focus on root causes rather than superficial symptoms.",
-        "Ensure every proposed step is actionable and verifiable."
+        "Hypervisors, concrete walls, and generator fuel belong to the provider in all models.",
+        "Customer accounts, access permissions, and application logic always belong to the customer."
       ],
-      "submissionRequirements": "Submit a structured execution plan addressing all scenario objectives.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Thoroughness: Addresses all critical requirements and constraints.",
-        "Actionability: Steps are practical, clear, and measurable."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal approach combines structured problem decomposition with objective verification criteria and clear accountability."
+      "solutionExplanation": "In IaaS, you patch Ubuntu and tune firewalls; in serverless/PaaS, the provider patches runtimes while you own code, IAM, and data safety."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-cloud-computing-kc-1",
+      "id": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model-kc-1",
       "type": "single-choice",
-      "prompt": "When implementing Introduction to Cloud Computing in a modern workflow, what is the primary consideration to ensure stability and correctness?",
+      "prompt": "In the Cloud Shared Responsibility Model for an IaaS virtual machine (e.g., AWS EC2), who is responsible for applying Linux security patches inside the VM?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Enforce strict boundary validation, clear operational standards, and automated feedback loops."
+          "text": "The customer"
         },
         {
           "id": "opt-2",
-          "text": "Bypass verification steps to maximize delivery velocity."
+          "text": "The cloud hardware provider"
         },
         {
           "id": "opt-3",
-          "text": "Rely solely on undocumented assumptions without stakeholder alignment."
+          "text": "The DNS registrar"
         },
         {
           "id": "opt-4",
-          "text": "Eliminate measurement and logging to minimize overhead."
+          "text": "Patches are unnecessary in virtual machines"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Operational stability requires rigorous boundary checks, clear standards, and continuous feedback loops before production deployment.",
+      "explanation": "In IaaS, the customer owns the guest OS, installed packages, firewall Security Groups, and application data.",
       "objectiveIds": [
         "cloud-computing-obj-1"
       ]
     },
     {
-      "id": "mod-1-foundations-l1-introduction-to-cloud-computing-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent industry best practices when working with Cloud Computing?",
+      "id": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model-kc-2",
+      "type": "single-choice",
+      "prompt": "Why do resilient architectures span at least two Availability Zones within a Region?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Designing modular, decoupled components with single responsibilities"
+          "id": "opt-1",
+          "text": "To survive a single physical data center power, cooling, or fiber failure with minimal latency"
         },
         {
-          "id": "opt-2b",
-          "text": "Establishing verifiable quality gates and feedback mechanisms"
+          "id": "opt-2",
+          "text": "Because single-AZ regions refuse HTTPS TLS certificates"
         },
         {
-          "id": "opt-2c",
-          "text": "Documenting architectural trade-offs and operational constraints"
+          "id": "opt-3",
+          "text": "To avoid creating any VPC subnets"
         },
         {
-          "id": "opt-2d",
-          "text": "Ignoring failure modes under the assumption that conditions remain ideal"
+          "id": "opt-4",
+          "text": "To bypass IAM authentication"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2c"
+        "opt-1"
       ],
-      "explanation": "Modularity, verifiable quality gates, and transparent documentation are core best practices. Assuming ideal conditions leads to unhandled failures in live environments.",
+      "explanation": "Availability Zones are physically isolated facilities inside a region designed for fault containment.",
       "objectiveIds": [
         "cloud-computing-obj-2"
       ]
+    },
+    {
+      "id": "mod-1-cloud-arch-l1-cloud-architecture-regions-service-model-kc-3",
+      "type": "single-choice",
+      "prompt": "Which service model lets developers push pure function handlers triggered by HTTP/events without managing servers or OS upgrades?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Serverless / FaaS (PaaS tier)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Bare-Metal Colocation"
+        },
+        {
+          "id": "opt-3",
+          "text": "Raw Physical Hypervisor"
+        },
+        {
+          "id": "opt-4",
+          "text": "Static IaaS VM"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Serverless Function-as-a-Service automates server provisioning, scaling, and runtime OS patching.",
+      "objectiveIds": [
+        "cloud-computing-obj-1"
+      ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Introduction to Cloud Computing. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You mastered physical Regions vs AZ isolation and clear ownership split across IaaS, PaaS, and SaaS under the Shared Responsibility Model.",
   "videoResources": [
     {
-      "id": "res-cloud-cloudcomputing",
-      "title": "Cloud Computing Infrastructure & Deployment Architecture",
+      "id": "res-cloud-computing-primary",
+      "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
       "provider": "youtube",
-      "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-      "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-      "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-      "durationMinutes": 45,
+      "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+      "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-      "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
       "learningObjectivesSupported": [
-        "Deploy and isolate workloads using Introduction to Cloud Computing"
+        "cloud-computing-obj-1",
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3",
+        "cloud-computing-obj-4"
       ],
       "keyTopicsCovered": [
-        "Container Architecture",
-        "Networking",
-        "IAM & Security Policies",
-        "Health Checks"
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads",
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases",
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
       ],
-      "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "Official Cloud Computing Reference & Standards",
-      "url": "https://en.wikipedia.org/wiki/Cloud%20Computing",
-      "description": "Official documentation and authoritative guides for Cloud Computing."
+      "title": "AWS Cloud Architecture Center",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Official reference documentation for Cloud Computing."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Multi-AZ web SaaS hosting",
+    "FinTech compliance residency design"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:12.428Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:16.023Z"
 }

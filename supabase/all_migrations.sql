@@ -625,5 +625,85 @@ create policy progress_records_read_own on public.user_learning_progress for sel
 grant select on public.curriculum_records, public.learning_lessons, public.learning_mock_tests to authenticated;
 grant select, insert, update on public.learning_mock_test_attempts, public.user_learning_progress to authenticated;
 
+-- ==============================================================================
+-- PHASE 14: PRODUCTION READINESS - STUDENT PERSISTENCE (PORTFOLIO, APPS, SETTINGS, FEEDBACK)
+-- ==============================================================================
+
+create table if not exists public.student_portfolios (
+  id text primary key,
+  owner_clerk_user_id text not null unique,
+  slug text not null unique,
+  portfolio_document jsonb not null,
+  is_public boolean not null default false,
+  updated_at timestamptz not null default now()
+);
+create index if not exists student_portfolios_slug_idx on public.student_portfolios(slug);
+create index if not exists student_portfolios_owner_idx on public.student_portfolios(owner_clerk_user_id);
+
+create table if not exists public.career_applications (
+  id text primary key,
+  owner_clerk_user_id text not null,
+  company text not null,
+  role text not null,
+  status text not null default 'saved',
+  application_document jsonb not null,
+  updated_at timestamptz not null default now()
+);
+create index if not exists career_applications_owner_idx on public.career_applications(owner_clerk_user_id, updated_at desc);
+
+create table if not exists public.student_feedback (
+  id text primary key,
+  owner_clerk_user_id text not null,
+  category text not null,
+  message text not null,
+  rating integer,
+  context jsonb,
+  status text not null default 'new',
+  created_at timestamptz not null default now()
+);
+create index if not exists student_feedback_created_idx on public.student_feedback(created_at desc);
+
+create table if not exists public.user_app_settings (
+  owner_clerk_user_id text primary key,
+  settings_document jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+-- Row Level Security for Phase 14 tables
+alter table public.student_portfolios enable row level security;
+alter table public.career_applications enable row level security;
+alter table public.student_feedback enable row level security;
+alter table public.user_app_settings enable row level security;
+
+-- Policies for student_portfolios: owners can read/write their own; public can read if is_public = true
+create policy student_portfolios_read_public on public.student_portfolios for select using (is_public = true or owner_clerk_user_id = (select public.current_clerk_user_id()));
+create policy student_portfolios_manage_own on public.student_portfolios for all to authenticated using (owner_clerk_user_id = (select public.current_clerk_user_id()));
+
+-- Policies for career_applications: owner access only
+create policy career_applications_manage_own on public.career_applications for all to authenticated using (owner_clerk_user_id = (select public.current_clerk_user_id()));
+
+-- Policies for student_feedback: authenticated users can insert and view their own feedback
+create policy student_feedback_insert on public.student_feedback for insert to authenticated with check (owner_clerk_user_id = (select public.current_clerk_user_id()));
+create policy student_feedback_read_own on public.student_feedback for select to authenticated using (owner_clerk_user_id = (select public.current_clerk_user_id()));
+
+-- Policies for user_app_settings: owner access only
+create policy user_app_settings_manage_own on public.user_app_settings for all to authenticated using (owner_clerk_user_id = (select public.current_clerk_user_id()));
+
+-- Distributed Rate Limiting (Serverless multi-instance support)
+create table if not exists public.api_rate_limits (
+  key text primary key,
+  request_count integer not null default 1,
+  window_expires_at timestamptz not null
+);
+create index if not exists api_rate_limits_expires_idx on public.api_rate_limits(window_expires_at);
+alter table public.api_rate_limits enable row level security;
+create policy api_rate_limits_service_access on public.api_rate_limits for all using (true);
+
+-- Grants for Phase 14 & 15 tables
+grant select, insert, update, delete on public.api_rate_limits to service_role, authenticated;
+grant select, insert, update on public.student_portfolios, public.career_applications, public.student_feedback, public.user_app_settings to authenticated;
+grant select on public.student_portfolios to anon;
+
+
 
 

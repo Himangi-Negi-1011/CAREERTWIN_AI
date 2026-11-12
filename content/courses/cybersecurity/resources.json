@@ -1,98 +1,31 @@
 [
   {
-    "id": "res-sec-cybersecurity",
-    "title": "Defensive Security & Threat Analysis Fundamentals",
+    "id": "res-cybersecurity-primary",
+    "title": "Cybersecurity & Network Defense Foundations (Ethical Security)",
     "provider": "youtube",
-    "channelOrAuthor": "NetworkChuck / Professor Messer",
-    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
-    "durationMinutes": 55,
+    "channelOrAuthor": "freeCodeCamp / Professor Messer",
+    "url": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+    "embedUrl": "",
+    "durationMinutes": 60,
     "difficulty": "beginner",
-    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
-    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
+    "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cybersecurity.",
+    "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cybersecurity.",
     "learningObjectivesSupported": [
-      "Defend systems and diagnose vulnerabilities in Introduction to Cybersecurity"
+      "cybersecurity-obj-1",
+      "cybersecurity-obj-2",
+      "cybersecurity-obj-3",
+      "cybersecurity-obj-4"
     ],
     "keyTopicsCovered": [
-      "Defense in Depth",
-      "Principle of Least Privilege",
-      "Audit Logging",
-      "Patch Management"
+      "CIA Triad, Threat Modeling & Attack Surface",
+      "Network Defense: Firewalls, Stateful Inspection & TLS 1.3",
+      "Authentication, Password Hashing (Argon2/bcrypt) & Access Control",
+      "OWASP Top 10: Injection (SQLi), XSS & Cookie Hardening",
+      "SOC Log Triage, SIEM Alerting & Anomaly Detection",
+      "NIST Incident Response Lifecycle & Hardening Capstone"
     ],
-    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
+    "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
     "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-sec-cybersecurity",
-    "title": "Defensive Security & Threat Analysis Fundamentals",
-    "provider": "youtube",
-    "channelOrAuthor": "NetworkChuck / Professor Messer",
-    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
-    "durationMinutes": 55,
-    "difficulty": "beginner",
-    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
-    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
-    "learningObjectivesSupported": [
-      "Defend systems and diagnose vulnerabilities in Core Syntax and Primitives in Cybersecurity"
-    ],
-    "keyTopicsCovered": [
-      "Defense in Depth",
-      "Principle of Least Privilege",
-      "Audit Logging",
-      "Patch Management"
-    ],
-    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-sec-cybersecurity",
-    "title": "Defensive Security & Threat Analysis Fundamentals",
-    "provider": "youtube",
-    "channelOrAuthor": "NetworkChuck / Professor Messer",
-    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
-    "durationMinutes": 55,
-    "difficulty": "beginner",
-    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
-    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
-    "learningObjectivesSupported": [
-      "Defend systems and diagnose vulnerabilities in Production Patterns and Resilience in Cybersecurity"
-    ],
-    "keyTopicsCovered": [
-      "Defense in Depth",
-      "Principle of Least Privilege",
-      "Audit Logging",
-      "Patch Management"
-    ],
-    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
-  },
-  {
-    "id": "res-sec-cybersecurity",
-    "title": "Defensive Security & Threat Analysis Fundamentals",
-    "provider": "youtube",
-    "channelOrAuthor": "NetworkChuck / Professor Messer",
-    "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
-    "embedUrl": "https://www.youtube.com/embed/3Kq1MIfTWCE",
-    "durationMinutes": 55,
-    "difficulty": "beginner",
-    "whySelected": "Authoritative educational resource emphasizing legal, defensive security, least privilege, and log telemetry.",
-    "whatItTeaches": "Vulnerability scanning, port analysis, packet inspection, and hardening defense in depth.",
-    "learningObjectivesSupported": [
-      "Defend systems and diagnose vulnerabilities in Capstone Lab: Verifiable Cybersecurity Implementation"
-    ],
-    "keyTopicsCovered": [
-      "Defense in Depth",
-      "Principle of Least Privilege",
-      "Audit Logging",
-      "Patch Management"
-    ],
-    "followUpActivity": "Analyze the vulnerability case study in the lesson guide without accessing live networks.",
-    "verificationStatus": "curated",
-    "lastCheckedDate": "2026-10-25"
+    "lastCheckedDate": "2026-11-11"
   }
 ]

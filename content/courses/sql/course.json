@@ -6,88 +6,106 @@
   "objectives": [
     {
       "id": "sql-obj-1",
-      "statement": "Understand foundational mental models and syntax of SQL",
+      "statement": "Understand foundational mental models and architecture of SQL",
       "order": 1
     },
     {
       "id": "sql-obj-2",
-      "statement": "Implement reliable patterns and error handling in SQL",
+      "statement": "Implement secure, reproducible solutions across real-world SQL tasks",
       "order": 2
     },
     {
       "id": "sql-obj-3",
-      "statement": "Apply SQL in production-ready real-world scenarios",
+      "statement": "Diagnose common production edge cases, bottlenecks, and vulnerabilities in SQL",
       "order": 3
     },
     {
       "id": "sql-obj-4",
-      "statement": "Evaluate security, performance, and best practices for SQL",
+      "statement": "Architect scalable enterprise workflows aligned with SQL industry best practices",
       "order": 4
     }
   ],
   "prerequisites": [
-    "Basic digital literacy and analytical reasoning"
+    "Basic familiarity with spreadsheets or structured data tables"
   ],
   "modules": [
     {
-      "id": "mod-1-foundations",
-      "title": "Module 1: Foundations & Core Concepts of SQL",
-      "summary": "Explore the fundamental concepts, terminology, and development workflow.",
+      "id": "mod-1-sql-foundations",
+      "title": "Module 1: Relational Modeling & Declarative Querying",
+      "summary": "Master keys, Third Normal Form (3NF), SQL logical execution order, filtering, NULL three-valued logic, and GROUP BY/HAVING aggregations.",
       "order": 1,
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 90,
       "objectiveIds": [
         "sql-obj-1",
         "sql-obj-2"
       ],
       "lessonTitles": [
-        "Introduction to SQL",
-        "Core Syntax and Primitives in SQL"
+        "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+        "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING"
       ],
-      "checkpoint": "Build a functional baseline demonstration verifying syntax and flow."
+      "checkpoint": "Design normalized schemas and author accurate multi-condition grouped reports."
     },
     {
-      "id": "mod-2-application",
-      "title": "Module 2: Practical Implementation & Production Patterns",
-      "summary": "Deep dive into resilient design, test automation, and real-world deployment.",
+      "id": "mod-2-sql-joins-windows",
+      "title": "Module 2: Multi-Table Joins, CTEs & Window Functions",
+      "summary": "Master INNER, LEFT, and SELF joins without outer-join bugs, structure clear Common Table Expressions (CTEs), and rank/aggregate across sliding windows.",
       "order": 2,
+      "estimatedMinutes": 90,
+      "objectiveIds": [
+        "sql-obj-2",
+        "sql-obj-3"
+      ],
+      "lessonTitles": [
+        "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+        "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals"
+      ],
+      "checkpoint": "Solve complex Top-N per group analytics and running cumulative totals without correlated subqueries."
+    },
+    {
+      "id": "mod-3-sql-perf-acid",
+      "title": "Module 3: Indexing, Transactions & Performance Tuning",
+      "summary": "Design B-Tree & composite indexes, inspect EXPLAIN ANALYZE plans, implement keyset pagination, and enforce atomic ACID transactions.",
+      "order": 3,
       "estimatedMinutes": 90,
       "objectiveIds": [
         "sql-obj-3",
         "sql-obj-4"
       ],
       "lessonTitles": [
-        "Production Patterns and Resilience in SQL",
-        "Capstone Lab: Verifiable SQL Implementation"
+        "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+        "ACID Transactions, Isolation Levels & Safe Migrations"
       ],
-      "checkpoint": "Complete a verifiable project applying defense-in-depth principles."
+      "checkpoint": "Eliminate slow full-table scans and guard financial/state updates against race conditions."
     }
   ],
   "practiceActivities": [
-    "Hands-on coding labs for each core topic",
-    "Interactive boundary condition exercises",
-    "Production code review simulations"
+    "Design normalized 3NF relational tables linking students, courses, and enrollments",
+    "Author analytical TOP-N per group queries via ROW_NUMBER() window functions",
+    "Optimize full-table scan filters via composite B-Tree indexes and keyset pagination"
   ],
   "assessmentCheckpoints": [
-    "Module 1 Knowledge Check (70% pass threshold)",
-    "Module 2 Production Readiness Evaluation"
+    "Module 1: Relational Modeling & Declarative Querying Checkpoint (70% pass threshold)",
+    "Module 2: Multi-Table Joins, CTEs & Window Functions Checkpoint (70% pass threshold)",
+    "Module 3: Indexing, Transactions & Performance Tuning Checkpoint (70% pass threshold)"
   ],
   "projects": [
-    "Production-ready SQL portfolio module with automated test suite and documentation"
+    "E-Commerce & Learning Analytics Relational Database Schema + Query Performance Benchmark"
   ],
   "proficiencyCriteria": [
-    "Demonstrate 70%+ score on all concept knowledge checks",
-    "Submit verifiable implementation satisfying acceptance criteria"
+    "Model normalized relational tables enforcing PRIMARY, FOREIGN, and CHECK integrity",
+    "Write expressive multi-table JOINs, CTEs, GROUP BY aggregations, and Window Functions",
+    "Interpret EXPLAIN query plans and guarantee atomic ACID transactions cleanly"
   ],
   "resources": [
     {
-      "title": "Official SQL Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
-      "retrievedAt": "2026-10-30T06:22:08.529Z",
+      "title": "PostgreSQL Official SQL Documentation",
+      "organization": "PostgreSQL Global Development Group",
+      "url": "https://www.postgresql.org/docs/current/",
+      "retrievedAt": "2026-11-11T05:58:18.464Z",
       "reviewStatus": "curated"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "generationMode": "curated",
   "reviewStatus": "approved"
 }

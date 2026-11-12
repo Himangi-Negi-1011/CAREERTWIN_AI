@@ -19,12 +19,21 @@ import { GUIDED_PROJECTS, type GuidedProject } from "@/lib/career/projects-catal
 
 interface GuidedProjectsViewProps {
   role: string;
+  ownerKey?: string;
   onNavigateAchievements?: () => void;
+  onNavigatePortfolio?: () => void;
 }
 
-export function GuidedProjectsView({ role, onNavigateAchievements }: GuidedProjectsViewProps) {
+export function GuidedProjectsView({
+  role,
+  ownerKey = "default",
+  onNavigateAchievements,
+  onNavigatePortfolio,
+}: GuidedProjectsViewProps) {
   const [expandedId, setExpandedId] = useState<string>(GUIDED_PROJECTS[0]?.id || "");
   const [selectedProject, setSelectedProject] = useState<GuidedProject | null>(null);
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [publishedSuccess, setPublishedSuccess] = useState<string | null>(null);
 
   // Submission modal state
   const [githubUrl, setGithubUrl] = useState("");
@@ -36,6 +45,30 @@ export function GuidedProjectsView({ role, onNavigateAchievements }: GuidedProje
     score: number;
     feedback: string;
   } | null>(null);
+
+  const isRecommendedForRole = (proj: GuidedProject) => {
+    if (!role) return true;
+    const r = role.toLowerCase();
+    if (r.includes("front") || r.includes("back") || r.includes("full") || r.includes("software") || r.includes("engineer")) {
+      return proj.category === "software_engineering";
+    }
+    if (r.includes("cloud") || r.includes("devops") || r.includes("infra") || r.includes("site reliability")) {
+      return proj.category === "cloud_devops";
+    }
+    if (r.includes("security") || r.includes("soc") || r.includes("cyber")) {
+      return proj.category === "cybersecurity";
+    }
+    if (r.includes("data") || r.includes("analytics") || r.includes("bi") || r.includes("ai")) {
+      return proj.category === "data_analytics";
+    }
+    return true;
+  };
+
+  const filteredProjects = GUIDED_PROJECTS.filter((proj) => {
+    if (categoryFilter === "recommended") return isRecommendedForRole(proj);
+    if (categoryFilter !== "all" && proj.category !== categoryFilter) return false;
+    return true;
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,21 +132,77 @@ export function GuidedProjectsView({ role, onNavigateAchievements }: GuidedProje
           </p>
         </div>
 
-        {onNavigateAchievements && (
+        <div className="flex flex-wrap items-center gap-2">
+          {onNavigatePortfolio && (
+            <button
+              type="button"
+              onClick={onNavigatePortfolio}
+              className="button-secondary px-4 py-2.5 text-xs inline-flex items-center gap-2 shrink-0 cursor-pointer"
+            >
+              <FolderKanban size={14} /> My Portfolio
+            </button>
+          )}
+          {onNavigateAchievements && (
+            <button
+              type="button"
+              onClick={onNavigateAchievements}
+              className="button-secondary px-4 py-2.5 text-xs inline-flex items-center gap-2 shrink-0 cursor-pointer"
+            >
+              <Award size={14} /> View Verified Achievements
+            </button>
+          )}
+        </div>
+      </section>
+
+      {publishedSuccess && (
+        <div className="rounded-2xl border border-emerald-300 bg-emerald-50 p-4 text-xs font-semibold text-emerald-900 flex items-center justify-between gap-4 animate-fade-in">
+          <div className="flex items-center gap-2">
+            <CheckCircle2 size={16} className="text-emerald-700 shrink-0" />
+            <span>{publishedSuccess}</span>
+          </div>
           <button
             type="button"
-            onClick={onNavigateAchievements}
-            className="button-secondary px-4 py-2.5 text-xs inline-flex items-center gap-2 shrink-0 cursor-pointer"
+            onClick={() => setPublishedSuccess(null)}
+            className="text-emerald-700 hover:text-emerald-950 font-bold"
           >
-            <Award size={14} /> View Verified Achievements
+            Dismiss
           </button>
-        )}
-      </section>
+        </div>
+      )}
+
+      {/* Category & Recommendation Filters */}
+      <div className="flex flex-wrap items-center gap-2 border-b border-ink/8 pb-4">
+        {[
+          { id: "all", label: "All Projects" },
+          { id: "recommended", label: `Recommended for ${role || "Your Target Role"}` },
+          { id: "software_engineering", label: "Software Engineering" },
+          { id: "cloud_devops", label: "Cloud & DevOps" },
+          { id: "cybersecurity", label: "Cybersecurity" },
+          { id: "data_analytics", label: "Data & Databases" },
+        ].map((tab) => {
+          const isActive = categoryFilter === tab.id;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setCategoryFilter(tab.id)}
+              className={`rounded-xl px-3.5 py-2 text-xs font-semibold transition-all cursor-pointer ${
+                isActive
+                  ? "bg-accent text-white shadow-xs"
+                  : "bg-white text-slate hover:text-ink border border-ink/8 hover:border-ink/20"
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
 
       {/* Projects List */}
       <div className="space-y-5">
-        {GUIDED_PROJECTS.map((proj) => {
+        {filteredProjects.map((proj) => {
           const isExpanded = expandedId === proj.id;
+          const isRec = isRecommendedForRole(proj);
 
           return (
             <article
@@ -123,6 +212,11 @@ export function GuidedProjectsView({ role, onNavigateAchievements }: GuidedProje
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-ink/8 pb-4">
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
+                    {isRec && (
+                      <span className="rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                        <CheckCircle2 size={10} /> Role Match
+                      </span>
+                    )}
                     <span className="rounded-md bg-violet-50 text-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
                       {proj.difficulty}
                     </span>
@@ -275,7 +369,41 @@ export function GuidedProjectsView({ role, onNavigateAchievements }: GuidedProje
                   {submitResult.verified ? "Project Artifact Verified! 🎉" : "Verification Incomplete"}
                 </h4>
                 <p className="text-xs text-slate max-w-md mx-auto leading-relaxed">{submitResult.feedback}</p>
-                <div className="pt-2">
+                <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5">
+                  {submitResult.verified && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        try {
+                          const existingKey = `careertwin-development-v1:${ownerKey || "default"}`;
+                          const raw = window.localStorage.getItem(existingKey);
+                          const devData = raw ? JSON.parse(raw) : { tasks: [], projects: [], practice: [] };
+                          const newProj = {
+                            id: selectedProject.id,
+                            title: selectedProject.title,
+                            outcome: githubUrl.trim(),
+                            status: "completed",
+                            createdAt: new Date().toISOString(),
+                          };
+                          const updated = {
+                            ...devData,
+                            projects: [newProj, ...(devData.projects || []).filter((p: any) => p.id !== selectedProject.id)],
+                          };
+                          window.localStorage.setItem(existingKey, JSON.stringify(updated));
+                          setPublishedSuccess(`Published "${selectedProject.title}" to your student portfolio!`);
+                        } catch {
+                          // ignore
+                        }
+                        setSelectedProject(null);
+                        if (onNavigatePortfolio) {
+                          onNavigatePortfolio();
+                        }
+                      }}
+                      className="button-primary px-4 py-2 text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer shadow-xs"
+                    >
+                      <Award size={13} /> Publish to Portfolio
+                    </button>
+                  )}
                   <button
                     type="button"
                     onClick={() => {
@@ -284,7 +412,7 @@ export function GuidedProjectsView({ role, onNavigateAchievements }: GuidedProje
                         onNavigateAchievements();
                       }
                     }}
-                    className="button-primary px-5 py-2 text-xs font-bold"
+                    className="button-secondary px-4 py-2 text-xs font-semibold cursor-pointer"
                   >
                     Done
                   </button>

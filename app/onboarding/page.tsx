@@ -63,43 +63,43 @@ export default function OnboardingPage() {
   const [skillQuery, setSkillQuery] = useState("");
 
   useEffect(() => {
-    if (!authLoaded) return;
     let cancelled = false;
 
-    async function load() {
-      const raw = localStorage.getItem(key);
-      let draft: ReturnType<typeof careerProfileSchema.safeParse> | null = null;
-      if (raw) {
-        try {
-          draft = careerProfileSchema.safeParse(JSON.parse(raw));
-        } catch {
-          localStorage.removeItem(key);
-        }
+    // Immediately hydrate local browser draft without blocking on third-party Clerk CDN initialization
+    const raw = localStorage.getItem(key) ?? localStorage.getItem("careertwin-profile-wizard:guest");
+    let draft: ReturnType<typeof careerProfileSchema.safeParse> | null = null;
+    if (raw) {
+      try {
+        draft = careerProfileSchema.safeParse(JSON.parse(raw));
+      } catch {
+        localStorage.removeItem(key);
       }
-      let selected = draft?.success ? draft.data : null;
+    }
+    const localSelected = draft?.success ? draft.data : null;
+    if (!cancelled) {
+      setProfile((prev) => localSelected ?? prev);
+      setLoaded(true);
+    }
 
-      if (isSignedIn) {
-        try {
-          const response = await fetch("/api/profile");
-          const payload = (await response.json()) as { data?: { profile_data?: unknown } | null };
-          const remote = careerProfileSchema.safeParse(payload.data?.profile_data);
-          if (remote.success) {
-            const draftTime = selected?.updatedAt ? Date.parse(selected.updatedAt) : 0;
-            const remoteTime = remote.data.updatedAt ? Date.parse(remote.data.updatedAt) : 0;
-            if (!selected || remoteTime >= draftTime) selected = remote.data;
+    async function syncRemote() {
+      if (!authLoaded || !isSignedIn) return;
+      try {
+        const response = await fetch("/api/profile");
+        const payload = (await response.json()) as { data?: { profile_data?: unknown } | null };
+        const remote = careerProfileSchema.safeParse(payload.data?.profile_data);
+        if (remote.success && !cancelled) {
+          const draftTime = localSelected?.updatedAt ? Date.parse(localSelected.updatedAt) : 0;
+          const remoteTime = remote.data.updatedAt ? Date.parse(remote.data.updatedAt) : 0;
+          if (!localSelected || remoteTime >= draftTime) {
+            setProfile(remote.data);
           }
-        } catch {
-          /* a valid browser draft remains the recovery path */
         }
-      }
-
-      if (!cancelled) {
-        setProfile(selected ?? emptyCareerProfile);
-        setLoaded(true);
+      } catch {
+        /* a valid browser draft remains the recovery path */
       }
     }
 
-    void load();
+    void syncRemote();
     return () => {
       cancelled = true;
     };

@@ -1,198 +1,223 @@
 {
-  "lessonId": "mod-1-foundations-l2-core-syntax-and-primitives-in-power-bi",
+  "lessonId": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi",
   "skillName": "Power BI",
-  "moduleId": "mod-1-foundations",
-  "title": "Core Syntax and Primitives in Power BI",
-  "summary": "Comprehensive masterclass on Core Syntax and Primitives in Power BI for Power BI. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-1-pbi-etl",
+  "title": "Data Profiling, Quality Gates & Query Folding",
+  "summary": "Leverage column quality histograms, whitespace/error traps, and Query Folding best practices across large database refreshes.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Understand foundational mental models and syntax of Power BI",
-    "Implement reliable patterns and error handling in Power BI"
+    "Diagnose hidden null/whitespace mismatches in merge joins using Power Query profiling",
+    "Order M transformations (`Filter` before `Transform`) cleanly to keep SQL Query Folding active"
   ],
   "objectiveIds": [
     "power-bi-obj-1",
     "power-bi-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Power BI environment setup"
+    "Power Query M basics"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Core Syntax and Primitives in Power BI",
-      "content": "Power BI combines a relational tabular data engine with the DAX (Data Analysis Expressions) formula language. In Core Syntax and Primitives in Power BI, the fundamental mental model is understanding Filter Context vs Row Context, star schema relationships, and distinguishing Calculated Columns from Measures.",
+      "id": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi-sec-1",
+      "heading": "1. Column Profiling & Order-Sensitive Folding",
+      "content": "Silent join mismatches often come from invisible trailing spaces (`'Sales '` vs `'Sales'`) or mixed case (`'usa'` vs `'USA'`), turning `100%` expected matches into silent orphans. Trimming, cleaning control characters, and standardizing case BEFORE merging prevents data gaps.\n\nJust as critical for SQL/Warehouse connections: **Transformation Ordering** dictates whether Query Folding survives! Placing foldable SQL steps (`SelectColumns`, `Filter`, `Group`, `Sort`) FIRST before non-foldable local M steps (`Index` or custom regex) lets the remote database discard 99% of unnecessary historical data cleanly over the wire.",
       "codeExamples": [
         {
-          "language": "dax",
-          "code": "-- DAX Measure: Core Syntax and Primitives in Power BI\nTotal Revenue = SUM(Sales[Revenue])\n\nRevenue YoY Growth = \nVAR CurrentRevenue = [Total Revenue]\nVAR PriorRevenue = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR('Date'[Date]))\nRETURN\n    DIVIDE(CurrentRevenue - PriorRevenue, PriorRevenue, 0)",
-          "explanation": "CALCULATE alters the active filter context, while DIVIDE safely handles division by zero. Declaring variables (VAR) improves readability and query performance.",
-          "expectedOutput": "Percentage metric reacting dynamically to visual slicers (Date, Region, Product)."
+          "language": "text",
+          "code": "[SQL Server Source (100M rows)]\n   |--(Foldable: Filter Year >= 2025 + Select 4 cols)--> Pulls ONLY 2M clean rows!\n   |--(Non-Foldable first! e.g. Custom Index before Filter)--> Pulls 100M rows -> Timeout Crash!",
+          "explanation": "Keep database-pushdown foldable predicates at the very top of Applied Steps so source engines prune irrelevant history cleanly.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Always model data as a Star Schema: central Fact table surrounded by 1-to-many Dimension tables.",
-        "Use Measures (calculated at query time) instead of Calculated Columns (which consume RAM in the tabular model).",
-        "Use DIVIDE(num, denom, alternate) instead of '/' to avoid #DIV/0! visual errors."
+        "Audit column distribution and quality indicators (>1,000 rows view in Power Query bottom status bar!)—don't profile strictly on top 1,000 rows!",
+        "Trim and normalize casing cleanly prior to Distinct / Merge steps."
       ],
       "commonMistakes": [
-        "Creating bidirectional cross-filtering relationships across multiple tables, causing ambiguous filter propagation.",
-        "Using calculated columns for aggregation metrics instead of explicit DAX measures."
+        "Adding an Index Column at step 2 before filtering years at step 5—silently disabling Query Folding over 50M rows!"
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "Production enterprise Power BI models require a dedicated Date dimension table marked as Date Table, explicit measures grouped in display folders, and optimized cardinality.",
+      "id": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi-sec-2",
+      "heading": "2. Defensive Merge Keys & Null Coalescing",
+      "content": "See cleanly how ordering trims and filtering prior to adding derived keys preserves fast remote query folding.",
       "codeExamples": [
         {
-          "language": "dax",
-          "code": "Sales MTD = \nCALCULATE(\n    [Total Revenue],\n    DATESMTD('Date'[Date])\n)",
-          "explanation": "Time intelligence DAX functions rely strictly on a continuous, contiguous Date dimension with no missing calendar days.",
-          "expectedOutput": "Month-to-date cumulative metric resetting on the first of each calendar month."
+          "language": "powerquery",
+          "code": "let\n  Source = Sql.Database(\"warehouse.corp.local\", \"AnalyticsDB\"),\n  RawOrders = Source{[Schema=\"dbo\", Item=\"Orders\"]}[Data],\n  // 1. Prune rows and columns FIRST (maintains 100% Native SQL Query Folding!)\n  RecentOrders = Table.SelectRows(RawOrders, each [OrderDate] >= #date(2025, 1, 1)),\n  SelectedCols = Table.SelectColumns(RecentOrders, {\"OrderId\", \"RegionCode\", \"OrderDate\", \"Amount\"}),\n  // 2. Normalize join keys cleanly\n  CleanRegion = Table.TransformColumns(SelectedCols, {{\"RegionCode\", each Text.Upper(Text.Trim(_)), type text}})\nin\n  CleanRegion",
+          "explanation": "Selecting needed columns and date bounds immediately yields a lightweight native SQL `SELECT ... WHERE` upstream.",
+          "expectedOutput": "Fast remote SQL filtered extraction with normalized RegionCode keys"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Click 'Column profiling based on entire data set' inside Power Query before shipping schemas to avoid missing late-file edge nulls."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Leaving auto-generated `'Changed Type'` steps injecting dozens of hardcoded columns that crash if upstream tables rename minor unused fields."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-foundations-l2-core-syntax-and-primitives-in-power-bi-ex-1",
-      "type": "analysis",
-      "title": "Power BI & DAX Lab: Core Syntax and Primitives in Power BI",
-      "objective": "Formulate a Star Schema data model and construct dynamic DAX measures for Core Syntax and Primitives in Power BI.",
-      "description": "Design the relational model and write the core DAX measures to calculate metrics required for Core Syntax and Primitives in Power BI.",
+      "id": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi-ex-1",
+      "type": "scenario",
+      "title": "Rescue Broken Query Folding in a 50M-Row Refresh",
+      "objective": "Reorder Applied Steps to restore Native SQL Query Folding.",
+      "description": "A nightly refresh pulling from Azure SQL fails with memory timeout after 90 minutes. Applied Steps shows: `1. Source -> 2. Add Custom Index -> 3. Filter Country = 'IN' -> 4. Remove 25 unused columns`.",
       "instructions": [
-        "Define the Fact table and related Dimension tables with their primary/foreign keys.",
-        "Write the base aggregation measure.",
-        "Write a time-intelligence or ratio measure using CALCULATE and DIVIDE.",
-        "Explain how visual slicers affect the measure's filter context."
+        "Identify the step destroying SQL Query Folding.",
+        "Rewrite the exact step sequence allowing SQL Server to execute column pruning and filtering before local operations run."
       ],
-      "starterCode": "-- DAX Measure Formulation for Core Syntax and Primitives in Power BI\n[Base Metric] = SUM(FactTable[Value])\n\n[Advanced Metric] = \nVAR BaseVal = [Base Metric]\nRETURN\n    CALCULATE(BaseVal, ... -- Add filter condition)",
+      "starterCode": "# Rescued Applied Steps Order:\n1. Source\n2. ...\n3. ...\n4. ...",
       "hints": [
-        "Remember that CALCULATE transitions row context to filter context.",
-        "Check whether relationships are 1-to-many from Dimension to Fact."
+        "Remove unused columns and filter Country FIRST before adding local Index columns."
       ],
-      "submissionRequirements": "Submit valid DAX code formatted with VAR/RETURN syntax and relational modeling notes.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "DAX Syntax: Valid measure definitions with proper handling of filter context.",
-        "Modeling: Star schema principles adhered to without circular or ambiguous relationships."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal solution uses a clean star schema with single-direction filtering and computes metrics via explicit DAX measures leveraging CALCULATE and time intelligence."
+      "solutionExplanation": "Filtering `Country = 'IN'` and pruning 25 columns upfront drops transferred rows cleanly, enabling the optional Index to run rapidly strictly on surviving records."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-foundations-l2-core-syntax-and-primitives-in-power-bi-kc-1",
+      "id": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi-kc-1",
       "type": "single-choice",
-      "prompt": "What is the primary difference between a Calculated Column and a Measure in Power BI?",
+      "prompt": "Why did placing `'Add Index Column'` before `'Filter Date >= 2026'` cause a 50M-row SQL import to time out?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Calculated columns are evaluated during data refresh and stored in memory row-by-row; Measures are dynamic formulas calculated on the fly based on current filter context."
+          "text": "Row index numbering breaks Query Folding, forcing Power Query to fetch all 50M rows over the network before filtering locally"
         },
         {
           "id": "opt-2",
-          "text": "Calculated columns can only contain numbers, while measures can only contain text."
+          "text": "Dates cannot appear after integer columns in VertiPaq"
         },
         {
           "id": "opt-3",
-          "text": "Measures increase the storage file size of the PBIX file substantially more than columns."
+          "text": "Index columns corrupt Unicode strings"
         },
         {
           "id": "opt-4",
-          "text": "Calculated columns adapt dynamically when a user clicks a slicer in a report."
+          "text": "SQL Server bans filtering integer indexes"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Calculated columns consume RAM and disk storage because values are computed row-by-row at refresh time. Measures consume minimal memory and compute dynamically in response to visual filters and slicers.",
+      "explanation": "Apply row/column pruning first while Query Folding stays active.",
       "objectiveIds": [
         "power-bi-obj-1"
       ]
     },
     {
-      "id": "mod-1-foundations-l2-core-syntax-and-primitives-in-power-bi-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent data modeling best practices in Power BI?",
+      "id": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi-kc-2",
+      "type": "single-choice",
+      "prompt": "By default, Power Query's visual column quality preview profiles how many rows unless explicitly switched?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Structuring the data model into a Star Schema with Fact and Dimension tables"
+          "id": "opt-1",
+          "text": "Top 1,000 rows only"
         },
         {
-          "id": "opt-2b",
-          "text": "Using the DIVIDE function instead of the '/' operator to prevent division-by-zero errors"
+          "id": "opt-2",
+          "text": "All 100% rows automatically"
         },
         {
-          "id": "opt-2c",
-          "text": "Enabling bidirectional cross-filtering on all relationships indiscriminately"
+          "id": "opt-3",
+          "text": "First 50 rows"
         },
         {
-          "id": "opt-2d",
-          "text": "Marking a dedicated Date dimension as an official Date Table for time-intelligence calculations"
+          "id": "opt-4",
+          "text": "Last 100 rows"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "opt-1"
       ],
-      "explanation": "Star schema design, DIVIDE for error safety, and a dedicated Date table are foundational Power BI best practices. Indiscriminate bidirectional filtering creates relationship ambiguity and degrades performance.",
+      "explanation": "Errors or rare nulls appearing past row 1,000 stay hidden unless full-dataset profiling is enabled.",
       "objectiveIds": [
         "power-bi-obj-2"
       ]
+    },
+    {
+      "id": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi-kc-3",
+      "type": "single-choice",
+      "prompt": "Why apply `Text.Trim()` and uniform casing to text category keys before performing merges/relationships?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Eliminates silent trailing spaces and casing discrepancies that break joins cleanly"
+        },
+        {
+          "id": "opt-2",
+          "text": "Compresses integers into booleans"
+        },
+        {
+          "id": "opt-3",
+          "text": "Removes the need for a Date dimension"
+        },
+        {
+          "id": "opt-4",
+          "text": "Enables DirectQuery SQL triggers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Whitespace mismatch creates silent orphan rows and duplicate legend entries in visuals.",
+      "objectiveIds": [
+        "power-bi-obj-1"
+      ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Core Syntax and Primitives in Power BI. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You guarded joins against whitespace/casing drift and structured fast foldable ETL pipelines.",
   "videoResources": [
     {
-      "id": "res-pbi-powerbi",
-      "title": "Power BI Full Course: DAX & Data Modeling",
+      "id": "res-power-bi-primary",
+      "title": "Power BI & DAX Mastery for Data Analysts",
       "provider": "youtube",
-      "channelOrAuthor": "Avi Singh (PowerBIPro) / Guy in a Cube",
-      "url": "https://www.youtube.com/watch?v=AGrl-H87pRU",
-      "embedUrl": "https://www.youtube.com/embed/AGrl-H87pRU",
-      "durationMinutes": 55,
+      "channelOrAuthor": "Guy in a Cube / Microsoft Learn",
+      "url": "https://www.youtube.com/watch?v=AGpoc5HlR1c",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Clear explanation of Star Schema modeling, DAX filter context vs row context, and time intelligence.",
-      "whatItTeaches": "VertiPaq storage engine behavior, CALCULATE function, and building interactive business dashboards.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Power BI.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Power BI.",
       "learningObjectivesSupported": [
-        "Build relational tabular data models and DAX measures for Core Syntax and Primitives in Power BI"
+        "power-bi-obj-1",
+        "power-bi-obj-2",
+        "power-bi-obj-3",
+        "power-bi-obj-4"
       ],
       "keyTopicsCovered": [
-        "Star Schema Modeling",
-        "DAX Measures vs Columns",
-        "CALCULATE Context Transition",
-        "Time Intelligence"
+        "Power BI Workflow & Power Query Unpivoting (M Language)",
+        "Data Profiling, Quality Gates & Query Folding",
+        "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+        "Dedicated Date Dimensions & Role-Playing Relationships",
+        "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+        "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
       ],
-      "followUpActivity": "Formulate the DAX measure in the Practice Lab.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "Microsoft Power BI DAX Reference",
-      "url": "https://learn.microsoft.com/en-us/dax/",
-      "description": "Official documentation and authoritative guides for Power BI."
+      "title": "Microsoft Power BI & DAX Docs",
+      "url": "https://learn.microsoft.com/en-us/power-bi/",
+      "description": "Official reference documentation for Power BI."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Warehouse refresh SLA reliability",
+    "Data quality sanitization"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:13.142Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.715Z"
 }

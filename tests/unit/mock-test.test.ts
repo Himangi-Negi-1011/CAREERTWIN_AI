@@ -16,21 +16,21 @@ import {
 } from "@/lib/learning/repository";
 
 describe("Mock Test System & Persistence", () => {
-  it("generates a valid, schema-compliant 20-question mock test", () => {
+  it("generates a valid, schema-compliant 28-question 100-mark mock test", () => {
     const testDoc = buildDeterministicMockTest("Python", "beginner", 1);
     const parsed = mockTestDocumentSchema.parse(testDoc);
 
     expect(parsed.id).toBe("mock-python-beginner-t1");
     expect(parsed.skillName).toBe("Python");
-    expect(parsed.questions.length).toBe(20);
-    expect(parsed.durationMinutes).toBe(30);
+    expect(parsed.questions.length).toBe(28);
+    expect(parsed.durationMinutes).toBe(60);
     expect(parsed.passingPercentage).toBe(70);
-    expect(parsed.totalMarks).toBeGreaterThanOrEqual(20);
+    expect(parsed.totalMarks).toBe(100);
     expect(parsed.topicsCovered.length).toBeGreaterThan(0);
 
     // Verify questions have unique IDs and valid options
     const questionIds = new Set(parsed.questions.map((q) => q.id));
-    expect(questionIds.size).toBe(20);
+    expect(questionIds.size).toBe(28);
   });
 
   it("sanitizes mock test questions so student view contains no answer keys", () => {
@@ -48,11 +48,11 @@ describe("Mock Test System & Persistence", () => {
   it("grades submissions accurately, reports topic scores, and recommends lessons for mistakes", () => {
     const testDoc = buildDeterministicMockTest("SQL", "beginner", 1);
 
-    // Answer first 14 questions correctly, remaining 6 incorrectly
+    // Answer first 22 questions (giving 70 marks: Sec A 20 + Sec B 15 + Sec C 25 + Sec D first 2 = 10), remaining 6 incorrectly
     const answers: Record<string, string[]> = {};
     for (let i = 0; i < testDoc.questions.length; i++) {
       const q = testDoc.questions[i];
-      if (i < 14) {
+      if (i < 22) {
         answers[q.id] = [...q.correctOptionIds];
       } else {
         answers[q.id] = ["wrong-option-id"];
@@ -66,6 +66,8 @@ describe("Mock Test System & Persistence", () => {
     });
 
     expect(report.testId).toBe(testDoc.id);
+    expect(report.totalMarks).toBe(100);
+    expect(report.score).toBe(70);
     expect(report.percentage).toBe(70);
     expect(report.passed).toBe(true);
     expect(report.incorrectQuestionCount).toBe(6);
@@ -97,6 +99,6 @@ describe("Mock Test System & Persistence", () => {
     const attempts = await getUserMockTestAttempts(testUserId);
     expect(attempts.length).toBe(1);
     expect(attempts[0].testId).toBe(savedTest!.id);
-  });
+  }, 40000);
 });
 

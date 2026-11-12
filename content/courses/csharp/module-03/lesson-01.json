@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Methods, Records, Classes, and Encapsulation",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Methods, Records, Classes, and Encapsulation."
+      "title": "Microsoft C# & .NET Official Docs",
+      "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+      "description": "Official reference documentation for C#."
     }
   ],
   "realWorldApplications": [

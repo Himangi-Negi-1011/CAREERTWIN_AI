@@ -1,0 +1,235 @@
+{
+  "id": "phase-power-bi-mod-3-pbi-dax-reports-assessment",
+  "skillName": "Power BI",
+  "skillSlug": "power-bi",
+  "level": "beginner",
+  "testNumber": 3,
+  "isPhaseAssessment": true,
+  "moduleId": "mod-3-pbi-dax-reports",
+  "moduleTitle": "Module 3: DAX Analytics & Executive Reporting",
+  "title": "Power BI — Module 3: DAX Analytics & Executive Reporting Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE and Time Intelligence (YoY/MTD) & Executive Dashboard Design.",
+  "durationMinutes": 20,
+  "totalMarks": 12,
+  "passingPercentage": 70,
+  "topicsCovered": [
+    "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+    "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
+  ],
+  "questions": [
+    {
+      "id": "phase-power-bi-mod-3-pbi-dax-reports-q1",
+      "section": "A",
+      "sectionTitle": "Module 3: DAX Analytics & Executive Reporting Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why must `Net Sales` across `Quantity * UnitPrice` columns inside a Measure use `SUMX` rather than `SUM`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`SUM` accepts only a single column reference without row context; `SUMX` iterates row-by-row over the table evaluating the multiplication"
+        },
+        {
+          "id": "opt-2",
+          "text": "`SUM` fails on decimal prices"
+        },
+        {
+          "id": "opt-3",
+          "text": "`SUMX` triggers asynchronous GPU caching"
+        },
+        {
+          "id": "opt-4",
+          "text": "`SUM` is deprecated in Power BI"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Row iterators (`SUMX`, `MINX`, `AVERAGEX`) step across row context prior to aggregating.",
+      "difficulty": "beginner",
+      "topic": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s",
+      "recommendedLessonTitle": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE"
+    },
+    {
+      "id": "phase-power-bi-mod-3-pbi-dax-reports-q2",
+      "section": "A",
+      "sectionTitle": "Module 3: DAX Analytics & Executive Reporting Checkpoint",
+      "type": "single-choice",
+      "prompt": "How does `ALLSELECTED(Products)` behave inside `CALCULATE()` differently from `ALL(Products)`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`ALLSELECTED` restores filters originating from external page/report slicers while clearing visual inner row groupings; `ALL` removes ALL filters unconditionally"
+        },
+        {
+          "id": "opt-2",
+          "text": "Both behave identically in every matrix"
+        },
+        {
+          "id": "opt-3",
+          "text": "`ALLSELECTED` filters strictly by NULL keys"
+        },
+        {
+          "id": "opt-4",
+          "text": "`ALL` resets all calculations to 0"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`ALLSELECTED` keeps report-level slicer interactivity accurate on percentages.",
+      "difficulty": "beginner",
+      "topic": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s",
+      "recommendedLessonTitle": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE"
+    },
+    {
+      "id": "phase-power-bi-mod-3-pbi-dax-reports-q3",
+      "section": "A",
+      "sectionTitle": "Module 3: DAX Analytics & Executive Reporting Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why wrap ratios in `DIVIDE(numerator, denominator)` instead of `numerator / denominator`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`DIVIDE` gracefully catches zero or blank denominators returning BLANK/fallback without crashing visuals with `Infinity`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`DIVIDE` multiplies values automatically by 100"
+        },
+        {
+          "id": "opt-3",
+          "text": "`/` rounds results to integers"
+        },
+        {
+          "id": "opt-4",
+          "text": "`DIVIDE` forces DirectQuery caching"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`DIVIDE` eliminates manual `IF(den = 0, BLANK(), ...)` boilerplate everywhere.",
+      "difficulty": "beginner",
+      "topic": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pbi-dax-reports-l1-dax-fundamentals-row-vs-filter-context-s",
+      "recommendedLessonTitle": "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE"
+    },
+    {
+      "id": "phase-power-bi-mod-3-pbi-dax-reports-q4",
+      "section": "A",
+      "sectionTitle": "Module 3: DAX Analytics & Executive Reporting Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why do bar charts with 12–15 categories strongly beat circular pie charts in executive BI design?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Human eyes judge linear aligned bar lengths and sorted order vastly more accurately than comparing angular pie slice areas"
+        },
+        {
+          "id": "opt-2",
+          "text": "Pie charts cannot accept DAX measures"
+        },
+        {
+          "id": "opt-3",
+          "text": "Bar charts bypass database Row-Level Security"
+        },
+        {
+          "id": "opt-4",
+          "text": "Pie charts break Power Query folding"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Sorted horizontal bars make multi-category comparisons effortless and precise.",
+      "difficulty": "beginner",
+      "topic": "Time Intelligence (YoY/MTD) & Executive Dashboard Design",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash",
+      "recommendedLessonTitle": "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
+    },
+    {
+      "id": "phase-power-bi-mod-3-pbi-dax-reports-q5",
+      "section": "A",
+      "sectionTitle": "Module 3: DAX Analytics & Executive Reporting Checkpoint",
+      "type": "single-choice",
+      "prompt": "What happens in a `Revenue YoY %` metric if you compute `(Cur - Prev) / Prev` in upcoming un-elapsed months where `Cur` is BLANK?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`Cur - Prev` evaluates to `-Prev`, rendering an alarming fake `-100%` line drop unless guarded with `NOT ISBLANK(Cur)`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Power BI hides future months automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Percentage returns `+100%`"
+        },
+        {
+          "id": "opt-4",
+          "text": "DAX throws an exception halting report load"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Always guard period-over-period deltas against un-elapsed blank periods.",
+      "difficulty": "beginner",
+      "topic": "Time Intelligence (YoY/MTD) & Executive Dashboard Design",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash",
+      "recommendedLessonTitle": "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
+    },
+    {
+      "id": "phase-power-bi-mod-3-pbi-dax-reports-q6",
+      "section": "A",
+      "sectionTitle": "Module 3: DAX Analytics & Executive Reporting Checkpoint",
+      "type": "single-choice",
+      "prompt": "Which DAX function dynamically matches the currently logged-in report viewer's identity in Row-Level Security filters?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`USERPRINCIPALNAME()`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`CURRENT_ROLE()`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`AUTH_USER_ID()`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`SELECTEDVALUE(Email)`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`USERPRINCIPALNAME()` maps dynamically to the authenticated viewer's account UPN.",
+      "difficulty": "beginner",
+      "topic": "Time Intelligence (YoY/MTD) & Executive Dashboard Design",
+      "marks": 2,
+      "recommendedLessonId": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash",
+      "recommendedLessonTitle": "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
+    }
+  ],
+  "contentVersion": 2,
+  "reviewStatus": "approved",
+  "createdAt": "2026-11-11T05:58:18.715Z",
+  "updatedAt": "2026-11-11T05:58:18.715Z"
+}

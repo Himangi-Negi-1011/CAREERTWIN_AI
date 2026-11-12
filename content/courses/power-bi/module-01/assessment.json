@@ -1,161 +1,235 @@
 {
-  "id": "phase-power-bi-mod-1-foundations-assessment",
+  "id": "phase-power-bi-mod-1-pbi-etl-assessment",
   "skillName": "Power BI",
   "skillSlug": "power-bi",
   "level": "beginner",
   "testNumber": 1,
   "isPhaseAssessment": true,
-  "moduleId": "mod-1-foundations",
-  "moduleTitle": "Module 1: Foundations & Core Concepts of Power BI",
-  "title": "Power BI — Module 1: Foundations & Core Concepts of Power BI Phase Assessment",
-  "description": "Module checkpoint assessment verifying mastery of learning objectives across: Introduction to Power BI, Core Syntax and Primitives in Power BI.",
+  "moduleId": "mod-1-pbi-etl",
+  "moduleTitle": "Module 1: Data Ingestion & Power Query ETL (M Language)",
+  "title": "Power BI — Module 1: Data Ingestion & Power Query ETL (M Language) Assessment",
+  "description": "Checkpoint evaluation verifying conceptual mastery across Power BI Workflow & Power Query Unpivoting (M Language) and Data Profiling, Quality Gates & Query Folding.",
   "durationMinutes": 20,
-  "totalMarks": 9,
-  "passingPercentage": 75,
+  "totalMarks": 12,
+  "passingPercentage": 70,
   "topicsCovered": [
-    "DAX Evaluation & Filter Context",
-    "Tabular Modeling & Performance",
-    "Time Intelligence & Date Dimensions",
-    "DAX Math & Error Handling"
+    "Power BI Workflow & Power Query Unpivoting (M Language)",
+    "Data Profiling, Quality Gates & Query Folding"
   ],
   "questions": [
     {
-      "id": "phase-power-bi-mod-1-foundations-assessment-q1",
+      "id": "phase-power-bi-mod-1-pbi-etl-q1",
+      "section": "A",
+      "sectionTitle": "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint",
       "type": "single-choice",
-      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] In DAX, how does the CALCULATE function modify evaluation?",
+      "prompt": "Why should you use 'Unpivot Other Columns' anchored on fixed ID/Name columns rather than selecting Jan..Dec manually?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It evaluates an expression under a modified filter context, and transitions any active row context into filter context."
+          "text": "New future month columns added to source spreadsheets automatically unpivot cleanly during scheduled refreshes without editing M code"
         },
         {
           "id": "opt-2",
-          "text": "It forces the formula to compute on the GPU."
+          "text": "Unpivoting reduces Excel password length"
         },
         {
           "id": "opt-3",
-          "text": "It converts DAX measures into static physical columns."
+          "text": "DAX cannot display dates unless stored as columns"
         },
         {
           "id": "opt-4",
-          "text": "It bypasses all relationship definitions in the data model."
+          "text": "Manual unpivoting removes negative currencies"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "CALCULATE is the single most powerful DAX function because it overrides, merges, or clears filter context and triggers context transition.",
+      "explanation": "Anchoring fixed columns ensures schema resilience as new periods arrive.",
       "difficulty": "beginner",
-      "topic": "DAX Evaluation & Filter Context",
+      "topic": "Power BI Workflow & Power Query Unpivoting (M Language)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to Power BI"
+      "recommendedLessonId": "mod-1-pbi-etl-l1-power-bi-workflow-power-query-unpivoting",
+      "recommendedLessonTitle": "Power BI Workflow & Power Query Unpivoting (M Language)"
     },
     {
-      "id": "phase-power-bi-mod-1-foundations-assessment-q2",
-      "type": "scenario",
-      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] Why is a Star Schema architecture preferred over a flat, single-table model in Power BI?",
+      "id": "phase-power-bi-mod-1-pbi-etl-q2",
+      "section": "A",
+      "sectionTitle": "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint",
+      "type": "single-choice",
+      "prompt": "What serious reporting error occurs if an Excel 'Grand Total' row stays inside a Power BI Fact table?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "The VertiPaq tabular engine compresses columnar Dimension tables efficiently and executes single-direction relationships with minimal RAM."
+          "text": "Power BI `SUM()` metrics aggregate BOTH line items AND the Grand Total row, silently doubling reported company revenue"
         },
         {
           "id": "opt-2",
-          "text": "Star schemas require fewer measures to be written."
+          "text": "VertiPaq refuses saving the `.pbix` file"
         },
         {
           "id": "opt-3",
-          "text": "Single flat tables cannot be refreshed automatically in the Power BI Service."
+          "text": "Slicers disable dark mode colors"
         },
         {
           "id": "opt-4",
-          "text": "Power BI visual slicers do not function without star schemas."
+          "text": "Currency symbols turn into percentages"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "The VertiPaq in-memory engine achieves optimal dictionary encoding and memory compression when data is normalized into distinct Fact and Dimension tables.",
+      "explanation": "DAX aggregates every row dynamically—so Excel subtotal rows must ALWAYS be excluded upstream in Power Query.",
       "difficulty": "beginner",
-      "topic": "Tabular Modeling & Performance",
+      "topic": "Power BI Workflow & Power Query Unpivoting (M Language)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Power BI"
+      "recommendedLessonId": "mod-1-pbi-etl-l1-power-bi-workflow-power-query-unpivoting",
+      "recommendedLessonTitle": "Power BI Workflow & Power Query Unpivoting (M Language)"
     },
     {
-      "id": "phase-power-bi-mod-1-foundations-assessment-q3",
-      "type": "multiple-select",
-      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] Which of the following represent requirements for a dedicated Date Dimension in Power BI to support time-intelligence functions?",
+      "id": "phase-power-bi-mod-1-pbi-etl-q3",
+      "section": "A",
+      "sectionTitle": "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint",
+      "type": "single-choice",
+      "prompt": "When transforming data from an external SQL database in Power Query, why monitor 'View Native Query' (Query Folding)?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It must contain continuous calendar dates with zero gaps across the required span"
+          "text": "It confirms filtering and joins push directly down to the fast source SQL database rather than pulling huge unindexed tables into Power BI RAM"
         },
         {
           "id": "opt-2",
-          "text": "It must contain at least one column formatted as Date or DateTime"
+          "text": "It turns Excel tables into encrypted PDFs"
         },
         {
           "id": "opt-3",
-          "text": "It must be marked as the official Date Table in the data model"
+          "text": "It prevents calculated measures from updating on slicers"
         },
         {
           "id": "opt-4",
-          "text": "It must be stored in a SQL database rather than imported into Power BI"
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1",
-        "opt-2",
-        "opt-3"
-      ],
-      "explanation": "Time intelligence (DATESYTD, SAMEPERIODLASTYEAR) requires a marked, contiguous Date table with no missing calendar days.",
-      "difficulty": "beginner",
-      "topic": "Time Intelligence & Date Dimensions",
-      "marks": 3,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Introduction to Power BI"
-    },
-    {
-      "id": "phase-power-bi-mod-1-foundations-assessment-q4",
-      "type": "debugging",
-      "prompt": "[Module 1: Foundations & Core Concepts of Power BI] A report visual crashes with a '#DIV/0!' visual error. Which DAX function avoids this issue cleanly?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "DIVIDE(Numerator, Denominator, 0)"
-        },
-        {
-          "id": "opt-2",
-          "text": "Numerator / Denominator"
-        },
-        {
-          "id": "opt-3",
-          "text": "QUOTIENT(Numerator, Denominator)"
-        },
-        {
-          "id": "opt-4",
-          "text": "MOD(Numerator, Denominator)"
+          "text": "It removes foreign keys"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "DIVIDE safely checks for zero or blank denominators and returns an optional fallback (defaulting to BLANK or 0) rather than raising an error.",
+      "explanation": "Preserving query folding accelerates scheduled refreshes drastically.",
       "difficulty": "beginner",
-      "topic": "DAX Math & Error Handling",
+      "topic": "Power BI Workflow & Power Query Unpivoting (M Language)",
       "marks": 2,
-      "recommendedLessonId": "mod-1-foundations-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in Power BI"
+      "recommendedLessonId": "mod-1-pbi-etl-l1-power-bi-workflow-power-query-unpivoting",
+      "recommendedLessonTitle": "Power BI Workflow & Power Query Unpivoting (M Language)"
+    },
+    {
+      "id": "phase-power-bi-mod-1-pbi-etl-q4",
+      "section": "A",
+      "sectionTitle": "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why did placing `'Add Index Column'` before `'Filter Date >= 2026'` cause a 50M-row SQL import to time out?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Row index numbering breaks Query Folding, forcing Power Query to fetch all 50M rows over the network before filtering locally"
+        },
+        {
+          "id": "opt-2",
+          "text": "Dates cannot appear after integer columns in VertiPaq"
+        },
+        {
+          "id": "opt-3",
+          "text": "Index columns corrupt Unicode strings"
+        },
+        {
+          "id": "opt-4",
+          "text": "SQL Server bans filtering integer indexes"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Apply row/column pruning first while Query Folding stays active.",
+      "difficulty": "beginner",
+      "topic": "Data Profiling, Quality Gates & Query Folding",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi",
+      "recommendedLessonTitle": "Data Profiling, Quality Gates & Query Folding"
+    },
+    {
+      "id": "phase-power-bi-mod-1-pbi-etl-q5",
+      "section": "A",
+      "sectionTitle": "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint",
+      "type": "single-choice",
+      "prompt": "By default, Power Query's visual column quality preview profiles how many rows unless explicitly switched?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Top 1,000 rows only"
+        },
+        {
+          "id": "opt-2",
+          "text": "All 100% rows automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "First 50 rows"
+        },
+        {
+          "id": "opt-4",
+          "text": "Last 100 rows"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Errors or rare nulls appearing past row 1,000 stay hidden unless full-dataset profiling is enabled.",
+      "difficulty": "beginner",
+      "topic": "Data Profiling, Quality Gates & Query Folding",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi",
+      "recommendedLessonTitle": "Data Profiling, Quality Gates & Query Folding"
+    },
+    {
+      "id": "phase-power-bi-mod-1-pbi-etl-q6",
+      "section": "A",
+      "sectionTitle": "Module 1: Data Ingestion & Power Query ETL (M Language) Checkpoint",
+      "type": "single-choice",
+      "prompt": "Why apply `Text.Trim()` and uniform casing to text category keys before performing merges/relationships?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Eliminates silent trailing spaces and casing discrepancies that break joins cleanly"
+        },
+        {
+          "id": "opt-2",
+          "text": "Compresses integers into booleans"
+        },
+        {
+          "id": "opt-3",
+          "text": "Removes the need for a Date dimension"
+        },
+        {
+          "id": "opt-4",
+          "text": "Enables DirectQuery SQL triggers"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Whitespace mismatch creates silent orphan rows and duplicate legend entries in visuals.",
+      "difficulty": "beginner",
+      "topic": "Data Profiling, Quality Gates & Query Folding",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-pbi-etl-l2-data-profiling-quality-gates-query-foldi",
+      "recommendedLessonTitle": "Data Profiling, Quality Gates & Query Folding"
     }
   ],
-  "contentVersion": 1,
+  "contentVersion": 2,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:13.303Z",
-  "updatedAt": "2026-10-30T06:22:13.303Z"
+  "createdAt": "2026-11-11T05:58:18.715Z",
+  "updatedAt": "2026-11-11T05:58:18.715Z"
 }

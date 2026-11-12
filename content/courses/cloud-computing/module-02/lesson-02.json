@@ -1,197 +1,224 @@
 {
-  "lessonId": "mod-2-application-l2-capstone-lab-verifiable-cloud-computing-",
+  "lessonId": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat",
   "skillName": "Cloud Computing",
-  "moduleId": "mod-2-application",
-  "title": "Capstone Lab: Verifiable Cloud Computing Implementation",
-  "summary": "Comprehensive masterclass on Capstone Lab: Verifiable Cloud Computing Implementation for Cloud Computing. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-2-cloud-network-storage",
+  "title": "Object Storage, Block Volumes & Managed Databases",
+  "summary": "Select accurately between Object Storage (S3), Block Storage (EBS), and Shared File Systems alongside Cloud CDN caching and VPC endpoints.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Apply Cloud Computing in production-ready real-world scenarios",
-    "Evaluate security, performance, and best practices for Cloud Computing"
+    "Contrast Object, Block, and File storage characteristics across latency, access protocol, and multi-node sharing",
+    "Protect private Object Storage with CloudFront Origin Access Control and Lifecycle policies"
   ],
   "objectiveIds": [
-    "cloud-computing-obj-3",
-    "cloud-computing-obj-4"
+    "cloud-computing-obj-2",
+    "cloud-computing-obj-3"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "Cloud Computing environment setup"
+    "Understanding of VPC private subnets"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Capstone Lab: Verifiable Cloud Computing Implementation",
-      "content": "Mastering Capstone Lab: Verifiable Cloud Computing Implementation requires building an accurate conceptual model of how core principles operate and interact within the larger Cloud Computing domain. Every successful practitioner balances foundational theory with practical, verifiable execution.",
+      "id": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat-sec-1",
+      "heading": "1. Object vs Block vs Network File Storage",
+      "content": "Block storage (AWS EBS / GCP Persistent Disk) acts like an ultra-fast virtual NVMe drive formatted with ext4/XFS attached to one VM inside one AZ—ideal for self-managed OS roots and database engines requiring microsecond random writes.\n\nObject storage (Amazon S3 / Google Cloud Storage) stores immutable blobs referenced by key strings over HTTPS REST APIs across an entire Region (11 nines durability), scaling infinitely for backups, static SPAs, and data lakes—served globally at <30ms latency using a CloudFront CDN with Origin Access Control (OAC) while keeping raw buckets 100% locked private.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Core Framework for Capstone Lab: Verifiable Cloud Computing Implementation\n\n1. **Define the Objective:** Identify the primary outcome and measurable criteria for success.\n2. **Deconstruct the Problem:** Break the domain challenge into independent, testable sub-components.\n3. **Execute & Iterate:** Apply targeted techniques and validate results against established standards.\n4. **Review & Refine:** Conduct root-cause analysis on deviations to drive continuous improvement.",
-          "explanation": "Systematic decomposition and objective verification ensure consistent, repeatable outcomes regardless of complexity.",
-          "expectedOutput": "Structured execution plan aligned with industry standards for Cloud Computing."
+          "language": "text",
+          "code": "Browser Request -> [CloudFront Edge CDN] --(Signed OAC)--> [Private S3 Bucket]\n                                                            (BlockPublicAccess: ON)\n[Private App EC2] --(Gateway VPC Endpoint)--> [S3 Bucket] (Zero NAT Gateway egress cost!)",
+          "explanation": "Combining Origin Access Control for users and VPC Gateway Endpoints for private instances eliminates both public exposure and unnecessary NAT data fees.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "Clear mental models prevent premature optimization and procedural errors.",
-        "Establish verifiable feedback loops early in the execution process.",
-        "Document core decisions and assumptions to facilitate review and scaling."
+        "Never leave S3 buckets publicly listable or world-writable; enforce Block Public Access and use Pre-Signed URLs or CDN OAC.",
+        "S3 Lifecycle policies lower storage spend by automatically moving cold audit logs to Standard-IA and Glacier Deep Archive."
       ],
       "commonMistakes": [
-        "Proceeding to execution without verifying requirements and boundary constraints.",
-        "Failing to measure outcomes against objective criteria."
+        "Storing sensitive user IDs/resumes inside an unauthenticated public S3 bucket."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In professional practice, resilient workflows adapt to operational constraints through structured checkpoints, risk mitigation strategies, and transparent peer review.",
+      "id": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat-sec-2",
+      "heading": "2. Lifecycle Cost Rules & Pre-Signed Time-Limited URLs",
+      "content": "For secure document uploads/downloads (like student resumes), the backend API authenticates ownership first and generates a cryptographically signed temporary URL valid for 60 seconds—so the browser talks straight to encrypted S3 without routing 10MB binaries through Node server RAM.",
       "codeExamples": [
         {
-          "language": "markdown",
-          "code": "### Professional Workflow Checklist for Cloud Computing\n- [ ] Input Validation: Verify prerequisites and baseline data.\n- [ ] Execution: Implement core technique following best practices.\n- [ ] Verification: Test boundary cases and confirm alignment.\n- [ ] Sign-off: Document results and archive audit evidence.",
-          "explanation": "Standardized checklists and verification gates eliminate human omission errors in mission-critical workflows.",
-          "expectedOutput": "Verified artifact ready for production deployment or stakeholder review."
+          "language": "json",
+          "code": "{\n  \"Rules\": [\n    {\n      \"ID\": \"ArchiveComplianceLogsAfter90Days\",\n      \"Filter\": { \"Prefix\": \"audit-logs/\" },\n      \"Status\": \"Enabled\",\n      \"Transitions\": [\n        { \"Days\": 30, \"StorageClass\": \"STANDARD_IA\" },\n        { \"Days\": 90, \"StorageClass\": \"GLACIER_IR\" }\n      ],\n      \"Expiration\": { \"Days\": 2555 }\n    }\n  ]\n}",
+          "explanation": "Declarative lifecycle rules shift aged telemetry objects down storage tiers without modifying application code.",
+          "expectedOutput": "Automated tiered cost reduction retaining compliance logs cleanly for 7 years"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Enable bucket versioning on critical buckets to recover cleanly from accidental overwrites or ransomware deletes."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Streaming large uploads synchronously through serverless APIs instead of short-lived S3 pre-signed PUT URLs."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-2-application-l2-capstone-lab-verifiable-cloud-computing--ex-1",
+      "id": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat-ex-1",
       "type": "scenario",
-      "title": "Applied Practice Lab: Capstone Lab: Verifiable Cloud Computing Implementation",
-      "objective": "Demonstrate mastery of Capstone Lab: Verifiable Cloud Computing Implementation through structured problem analysis and execution.",
-      "description": "Analyze the scenario presented in Capstone Lab: Verifiable Cloud Computing Implementation. Develop an actionable plan adhering to the foundational principles of Cloud Computing.",
+      "title": "Lock Down Public Storage & Optimize Data Transfer",
+      "objective": "Eliminate public bucket ACL exposure and expensive NAT Gateway S3 egress.",
+      "description": "An app serves downloadable course certificates from an open public S3 URL while internal worker batch jobs fetch gigabytes of parquet logs from S3 via a pricey NAT Gateway.",
       "instructions": [
-        "Identify the primary challenge and its boundary constraints.",
-        "Formulate a step-by-step resolution strategy.",
-        "Define objective verification criteria proving successful execution."
+        "Explain how short-lived Pre-Signed URLs protect user certificates while keeping S3 private.",
+        "Recommend the free VPC networking feature that routes private app worker traffic to S3 bypassing the NAT Gateway."
       ],
-      "starterCode": "// Execution Plan for Capstone Lab: Verifiable Cloud Computing Implementation\nObjective: ...\nScope & Constraints: ...\nImplementation Steps:\n1. ...\n2. ...\nVerification Method: ...",
+      "starterCode": "# Storage & Egress Fixes\n1. Certificate Access Fix: ...\n2. Bypass NAT Egress Fees via: ...",
       "hints": [
-        "Focus on root causes rather than superficial symptoms.",
-        "Ensure every proposed step is actionable and verifiable."
+        "Gateway VPC Endpoints route internal S3 traffic cleanly at zero per-GB cost.",
+        "Pre-signed URLs grant scoped, time-bound access after server authorization."
       ],
-      "submissionRequirements": "Submit a structured execution plan addressing all scenario objectives.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Thoroughness: Addresses all critical requirements and constraints.",
-        "Actionability: Steps are practical, clear, and measurable."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal approach combines structured problem decomposition with objective verification criteria and clear accountability."
+      "solutionExplanation": "Private bucket + pre-signed download URLs eliminate unintended URL scraping, while an S3 Gateway VPC Endpoint cuts NAT processing costs to zero."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-2-application-l2-capstone-lab-verifiable-cloud-computing--kc-1",
+      "id": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat-kc-1",
       "type": "single-choice",
-      "prompt": "When implementing Capstone Lab: Verifiable Cloud Computing Implementation in a modern workflow, what is the primary consideration to ensure stability and correctness?",
+      "prompt": "Why do organizations enforce 'Block Public Access' on S3 and generate short-lived Pre-Signed URLs for private downloads?",
       "options": [
         {
           "id": "opt-1",
-          "text": "Enforce strict boundary validation, clear operational standards, and automated feedback loops."
+          "text": "To keep buckets strictly private and ensure users only fetch authorized files for brief expiration windows"
         },
         {
           "id": "opt-2",
-          "text": "Bypass verification steps to maximize delivery velocity."
+          "text": "Pre-Signed URLs compress PDF files by 80%"
         },
         {
           "id": "opt-3",
-          "text": "Rely solely on undocumented assumptions without stakeholder alignment."
+          "text": "S3 prohibits HTTPS unless URLs expire"
         },
         {
           "id": "opt-4",
-          "text": "Eliminate measurement and logging to minimize overhead."
+          "text": "To speed up local hard disk formatting"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "Operational stability requires rigorous boundary checks, clear standards, and continuous feedback loops before production deployment.",
+      "explanation": "Pre-signed URLs delegate temporary credentialed GET/PUT authority cleanly after app authorization.",
+      "objectiveIds": [
+        "cloud-computing-obj-2"
+      ]
+    },
+    {
+      "id": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat-kc-2",
+      "type": "single-choice",
+      "prompt": "Which cloud networking feature allows private EC2/Lambda workloads to read S3 buckets internally without incurring per-GB NAT Gateway charges?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "S3 Gateway VPC Endpoint"
+        },
+        {
+          "id": "opt-2",
+          "text": "Public Elastic IPv4 Address"
+        },
+        {
+          "id": "opt-3",
+          "text": "DNS MX Record"
+        },
+        {
+          "id": "opt-4",
+          "text": "Cross-Region Peering Mesh"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "VPC Gateway Endpoints route internal S3/DynamoDB traffic directly across the cloud backbone cleanly.",
       "objectiveIds": [
         "cloud-computing-obj-3"
       ]
     },
     {
-      "id": "mod-2-application-l2-capstone-lab-verifiable-cloud-computing--kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following represent industry best practices when working with Cloud Computing?",
+      "id": "mod-2-cloud-network-storage-l2-object-storage-block-volumes-managed-dat-kc-3",
+      "type": "single-choice",
+      "prompt": "Which storage type mounts directly onto a single VM as a low-latency formatted OS filesystem for PostgreSQL data blocks?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Designing modular, decoupled components with single responsibilities"
+          "id": "opt-1",
+          "text": "Block Storage (EBS / Persistent Disk)"
         },
         {
-          "id": "opt-2b",
-          "text": "Establishing verifiable quality gates and feedback mechanisms"
+          "id": "opt-2",
+          "text": "CDN Edge Cache"
         },
         {
-          "id": "opt-2c",
-          "text": "Documenting architectural trade-offs and operational constraints"
+          "id": "opt-3",
+          "text": "Object Storage Bucket"
         },
         {
-          "id": "opt-2d",
-          "text": "Ignoring failure modes under the assumption that conditions remain ideal"
+          "id": "opt-4",
+          "text": "DNS Zone File"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2c"
+        "opt-1"
       ],
-      "explanation": "Modularity, verifiable quality gates, and transparent documentation are core best practices. Assuming ideal conditions leads to unhandled failures in live environments.",
+      "explanation": "Block devices attach like high-IOPS local SSDs supporting POSIX random byte-range database writes.",
       "objectiveIds": [
-        "cloud-computing-obj-4"
+        "cloud-computing-obj-2"
       ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Capstone Lab: Verifiable Cloud Computing Implementation. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You chose appropriate storage mediums cleanly and secured Object Storage with OAC CDN, Pre-Signed URLs, and VPC Endpoints.",
   "videoResources": [
     {
-      "id": "res-cloud-cloudcomputing",
-      "title": "Cloud Computing Infrastructure & Deployment Architecture",
+      "id": "res-cloud-computing-primary",
+      "title": "AWS Certified Cloud Practitioner & Architecture Foundations",
       "provider": "youtube",
-      "channelOrAuthor": "TechWorld with Nana / freeCodeCamp",
-      "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
-      "embedUrl": "https://www.youtube.com/embed/3c-iBn73dDE",
-      "durationMinutes": 45,
+      "channelOrAuthor": "freeCodeCamp / Andrew Brown",
+      "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Hands-on visual demonstrations of containerization, cloud networking, and isolation boundaries.",
-      "whatItTeaches": "Container runtimes, image layering, volume persistence, and secure network bridging.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Cloud Computing.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Cloud Computing.",
       "learningObjectivesSupported": [
-        "Deploy and isolate workloads using Capstone Lab: Verifiable Cloud Computing Implementation"
+        "cloud-computing-obj-1",
+        "cloud-computing-obj-2",
+        "cloud-computing-obj-3",
+        "cloud-computing-obj-4"
       ],
       "keyTopicsCovered": [
-        "Container Architecture",
-        "Networking",
-        "IAM & Security Policies",
-        "Health Checks"
+        "Cloud Architecture, Regions & Service Models (IaaS/PaaS/SaaS)",
+        "Elastic Compute, Containers & Serverless Workloads",
+        "Virtual Private Clouds (VPC), Subnets & Routing",
+        "Object Storage, Block Volumes & Managed Databases",
+        "IAM Least-Privilege Policies & Keyless OIDC Identity",
+        "Auto-Scaling, Load Balancing & FinOps Cost Governance"
       ],
-      "followUpActivity": "Examine the sample configuration file and test basic container deployment.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "Official Cloud Computing Reference & Standards",
-      "url": "https://en.wikipedia.org/wiki/Cloud%20Computing",
-      "description": "Official documentation and authoritative guides for Cloud Computing."
+      "title": "AWS Cloud Architecture Center",
+      "url": "https://docs.aws.amazon.com/",
+      "description": "Official reference documentation for Cloud Computing."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "Secure SaaS document uploads",
+    "High-throughput analytics data lakes"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:12.595Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:16.023Z"
 }

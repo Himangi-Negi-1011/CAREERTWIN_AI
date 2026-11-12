@@ -1,0 +1,223 @@
+{
+  "lessonId": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash",
+  "skillName": "Power BI",
+  "moduleId": "mod-3-pbi-dax-reports",
+  "title": "Time Intelligence (YoY/MTD) & Executive Dashboard Design",
+  "summary": "Build Year-over-Year growth, Month-to-Date metrics, Dynamic Row-Level Security (`USERPRINCIPALNAME`), and clear accessible executive report layouts.",
+  "learnerLevel": "beginner",
+  "estimatedMinutes": 35,
+  "learningObjectives": [
+    "Write resilient YoY growth and cumulative MTD metrics over marked contiguous Date tables",
+    "Organize executive visuals cleanly with clear KPI hierarchy, accessibility, and dynamic RLS"
+  ],
+  "objectiveIds": [
+    "power-bi-obj-3",
+    "power-bi-obj-4"
+  ],
+  "prerequisiteConcepts": [
+    "CALCULATE and DimDate table fundamentals"
+  ],
+  "sections": [
+    {
+      "id": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash-sec-1",
+      "heading": "1. Time Intelligence & Decision-Driven Report UX",
+      "content": "Great BI models fail if dashboards clutter 15 unlabelled pie charts onto a tiny canvas! Executive visual hierarchy guides eyes cleanly along an **F-pattern**: top banner holds concise **Headline KPIs with Variance Context** (Current vs Prior Year / vs Budget—never isolated numbers!), middle rows display **Time Trends** cleanly via line/bar charts, and bottom tables enable **Granular Drill-Through**.\n\nMeanwhile, securing shared reports via **Dynamic Row-Level Security (RLS)** (`[SalesRepEmail] = USERPRINCIPALNAME()`) guarantees every regional rep views strictly their own territory inside one unified published dataset!",
+      "codeExamples": [
+        {
+          "language": "text",
+          "code": "+-----------------------------------------------------------------------+\n|  [Revenue: $4.2M (+14% YoY)]   [Orders: 18,400]   [Margin: 34.2% OK]  | <-- 1. Executive KPIs + Variance\n+-----------------------------------+-----------------------------------+\n|  Revenue Monthly Trend (Line)     |  Top 5 Products (Horizontal Bar)  | <-- 2. Patterns & Drivers\n+-----------------------------------+-----------------------------------+\n|  Territory Drill-Down Matrix (Filtered via RLS: USERPRINCIPALNAME())  | <-- 3. Actionable Detail\n+-----------------------------------------------------------------------+",
+          "explanation": "Structured top-to-bottom visual flow communicates executive insights in under 5 seconds.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
+        }
+      ],
+      "keyPoints": [
+        "Limit dashboards to cohesive restrained palettes avoiding misleading 3D charts or truncated bar Y-axes starting above zero!",
+        "Always attach comparison baselines (vs PY, vs Budget) directly inside KPI cards."
+      ],
+      "commonMistakes": [
+        "Using unreadable nested pie/donut charts with 18 slices instead of a crisp sorted horizontal bar chart!"
+      ]
+    },
+    {
+      "id": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash-sec-2",
+      "heading": "2. Complete YoY & Dynamic RLS Expressions",
+      "content": "Inspect how clean `VAR`-based Time Intelligence handles missing prior-year baselines cleanly using `ISBLANK` checks.",
+      "codeExamples": [
+        {
+          "language": "dax",
+          "code": "Revenue MTD = CALCULATE([Line Revenue], DATESMTD(DimDate[Date]))\n\nRevenue YoY Growth % = \nVAR CurrentRev = [Line Revenue]\nVAR PriorYearRev = CALCULATE([Line Revenue], SAMEPERIODLASTYEAR(DimDate[Date]))\nRETURN\n  IF(\n    NOT ISBLANK(CurrentRev) && NOT ISBLANK(PriorYearRev),\n    DIVIDE(CurrentRev - PriorYearRev, PriorYearRev)\n  )\n\n// Dynamic RLS Role Filter expression applied on DimEmployees:\n// [WorkEmail] = USERPRINCIPALNAME()",
+          "explanation": "Checking `NOT ISBLANK(CurrentRev)` hides future calendar months instead of rendering broken `-100%` dips mid-year!",
+          "expectedOutput": "Clean percentage variance suppressing misleading -100% noise on future un-reported months"
+        }
+      ],
+      "keyPoints": [
+        "Place formatted helper metrics cleanly inside an organized `_Measures` display folder table."
+      ],
+      "commonMistakes": [
+        "Starting bar chart quantitative axes arbitrarily at `90` rather than `0`, exaggerating trivial `2%` differences visually."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash-ex-1",
+      "type": "coding",
+      "title": "Design YoY Variance & Prevent Misleading Future Drops",
+      "objective": "Guard YoY percentage growth cleanly against blank current periods and recommend clear visual replacements.",
+      "description": "A dashboard renders `-100%` YoY growth for upcoming December months and plots 14 regional shares inside a cluttered circular pie chart.",
+      "instructions": [
+        "Update `YoY Growth %` cleanly so future months with zero sales display blank instead of `-100%`.",
+        "Replace the 14-slice pie chart with a clearer accessible alternative visual."
+      ],
+      "starterCode": "YoY Growth % = \nVAR Cur = [Line Revenue]\nVAR Prev = ...\nRETURN ...",
+      "hints": [
+        "Wrap return inside `IF(NOT ISBLANK(Cur) && NOT ISBLANK(Prev), ...)`."
+      ],
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
+      "evaluationCriteria": [
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
+      ],
+      "solutionExplanation": "Checking `NOT ISBLANK(Cur)` avoids noisy `-100%` artifacts on future quarters; a sorted horizontal bar chart renders 14 categories cleanly."
+    }
+  ],
+  "knowledgeChecks": [
+    {
+      "id": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash-kc-1",
+      "type": "single-choice",
+      "prompt": "Why do bar charts with 12–15 categories strongly beat circular pie charts in executive BI design?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Human eyes judge linear aligned bar lengths and sorted order vastly more accurately than comparing angular pie slice areas"
+        },
+        {
+          "id": "opt-2",
+          "text": "Pie charts cannot accept DAX measures"
+        },
+        {
+          "id": "opt-3",
+          "text": "Bar charts bypass database Row-Level Security"
+        },
+        {
+          "id": "opt-4",
+          "text": "Pie charts break Power Query folding"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Sorted horizontal bars make multi-category comparisons effortless and precise.",
+      "objectiveIds": [
+        "power-bi-obj-3"
+      ]
+    },
+    {
+      "id": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash-kc-2",
+      "type": "single-choice",
+      "prompt": "What happens in a `Revenue YoY %` metric if you compute `(Cur - Prev) / Prev` in upcoming un-elapsed months where `Cur` is BLANK?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`Cur - Prev` evaluates to `-Prev`, rendering an alarming fake `-100%` line drop unless guarded with `NOT ISBLANK(Cur)`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Power BI hides future months automatically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Percentage returns `+100%`"
+        },
+        {
+          "id": "opt-4",
+          "text": "DAX throws an exception halting report load"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Always guard period-over-period deltas against un-elapsed blank periods.",
+      "objectiveIds": [
+        "power-bi-obj-4"
+      ]
+    },
+    {
+      "id": "mod-3-pbi-dax-reports-l2-time-intelligence-yoy-mtd-executive-dash-kc-3",
+      "type": "single-choice",
+      "prompt": "Which DAX function dynamically matches the currently logged-in report viewer's identity in Row-Level Security filters?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`USERPRINCIPALNAME()`"
+        },
+        {
+          "id": "opt-2",
+          "text": "`CURRENT_ROLE()`"
+        },
+        {
+          "id": "opt-3",
+          "text": "`AUTH_USER_ID()`"
+        },
+        {
+          "id": "opt-4",
+          "text": "`SELECTEDVALUE(Email)`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`USERPRINCIPALNAME()` maps dynamically to the authenticated viewer's account UPN.",
+      "objectiveIds": [
+        "power-bi-obj-3"
+      ]
+    }
+  ],
+  "recap": "You completed the Power BI Analytics track—mastering Power Query ETL, Star Schema modeling, DAX evaluation contexts, and executive dashboard design.",
+  "videoResources": [
+    {
+      "id": "res-power-bi-primary",
+      "title": "Power BI & DAX Mastery for Data Analysts",
+      "provider": "youtube",
+      "channelOrAuthor": "Guy in a Cube / Microsoft Learn",
+      "url": "https://www.youtube.com/watch?v=AGpoc5HlR1c",
+      "embedUrl": "",
+      "durationMinutes": 60,
+      "difficulty": "beginner",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of Power BI.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for Power BI.",
+      "learningObjectivesSupported": [
+        "power-bi-obj-1",
+        "power-bi-obj-2",
+        "power-bi-obj-3",
+        "power-bi-obj-4"
+      ],
+      "keyTopicsCovered": [
+        "Power BI Workflow & Power Query Unpivoting (M Language)",
+        "Data Profiling, Quality Gates & Query Folding",
+        "Fact vs Dimension Tables, Cardinality & Star Schema Design",
+        "Dedicated Date Dimensions & Role-Playing Relationships",
+        "DAX Fundamentals: Row vs Filter Context, SUMX & CALCULATE",
+        "Time Intelligence (YoY/MTD) & Executive Dashboard Design"
+      ],
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
+      "verificationStatus": "curated",
+      "lastCheckedDate": "2026-11-11"
+    }
+  ],
+  "furtherReading": [
+    {
+      "title": "Microsoft Power BI & DAX Docs",
+      "url": "https://learn.microsoft.com/en-us/power-bi/",
+      "description": "Official reference documentation for Power BI."
+    }
+  ],
+  "realWorldApplications": [
+    "Self-service BI semantic models",
+    "Executive revenue & sales territory reporting"
+  ],
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.715Z"
+}

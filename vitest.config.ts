@@ -10,6 +10,7 @@ export default defineConfig({
     include: ["tests/unit/**/*.test.ts?(x)"],
     testTimeout: 20000,
     hookTimeout: 20000,
+    pool: "forks",
   },
   resolve: {
     alias: {

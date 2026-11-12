@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official Java Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "Oracle Java SE Official Documentation",
+      "organization": "Oracle",
+      "url": "https://docs.oracle.com/en/java/",
       "retrievedAt": "2026-11-01T15:37:41.031Z",
       "reviewStatus": "curated"
     }

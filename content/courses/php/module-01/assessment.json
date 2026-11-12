@@ -22,6 +22,8 @@
   "questions": [
     {
       "id": "phase-php-beginner-mod-1-q1",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which is the safest beginner application of strict types?",
       "codeSnippet": "",
@@ -55,6 +57,8 @@
     },
     {
       "id": "phase-php-beginner-mod-1-q2",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which is the safest beginner application of linting?",
       "codeSnippet": "",
@@ -88,6 +92,8 @@
     },
     {
       "id": "phase-php-beginner-mod-1-q3",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which is the safest beginner application of Composer?",
       "codeSnippet": "",
@@ -121,6 +127,8 @@
     },
     {
       "id": "phase-php-beginner-mod-1-q4",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which is the safest beginner application of type declarations?",
       "codeSnippet": "",
@@ -154,6 +162,8 @@
     },
     {
       "id": "phase-php-beginner-mod-1-q5",
+      "section": "A",
+      "sectionTitle": "",
       "type": "single-choice",
       "prompt": "Which is the safest beginner application of strict comparison?",
       "codeSnippet": "",

@@ -7,107 +7,313 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "SQL BEGINNER Comprehensive Mock Test 1",
-  "description": "Standardized skill evaluation covering practical tasks, debugging, architectural patterns, and domain theory for SQL.",
-  "durationMinutes": 30,
-  "totalMarks": 13,
+  "title": "SQL 100-Mark Professional Mock Examination (Test 1)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "Indexing & Query Optimization",
-    "Aggregation & Grouping",
-    "Transactions & Concurrency",
-    "Relational Joins & Set Theory",
-    "Three-Valued Logic & NULL Handling",
-    "CTEs & Advanced Querying"
+    "SQL Execution Order & Aggregation",
+    "Relational Join Semantics",
+    "ACID Transactions",
+    "B-Tree Indexing & Internals",
+    "Normalization & Schema Design",
+    "Window Functions & Analytics",
+    "NULL Semantics & Aggregations",
+    "Referential Integrity",
+    "Aggregate Nuances",
+    "Set Operations & Performance",
+    "GROUP BY Projection Rules",
+    "Three-Valued NULL Logic",
+    "Query Sargability & Index Scans",
+    "Outer Join Predicate Placement",
+    "Window Ranking Mechanics",
+    "Composite Indexing & Execution Plans",
+    "Top-N Per Group Patterns",
+    "Concurrency & Deadlock Prevention",
+    "Keyset Pagination Scaling",
+    "Query Plan Diagnostics",
+    "Window Framing & Running Totals",
+    "Atomic Upserts",
+    "Parameterized Queries & Security",
+    "Transactional Ledger Integrity",
+    "Partial & Filtered Indexes",
+    "Read Replicas & Workload Isolation",
+    "Connection Pooling Architecture",
+    "Zero-Downtime Schema Migrations"
   ],
   "questions": [
     {
       "id": "mock-sql-beginner-t1-q1",
-      "type": "scenario",
-      "prompt": "A query filtering on WHERE UPPER(email) = 'USER@EXAMPLE.COM' is causing full table scans despite an index on email. What is the solution?",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What is the primary distinction between WHERE and HAVING clauses in SQL?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Create a functional/expression index on UPPER(email) or normalize email to lowercase before indexing and querying"
+          "text": "HAVING can only inspect indexed primary key columns"
         },
         {
           "id": "opt-2",
-          "text": "Add an extra ORDER BY email ASC clause"
+          "text": "WHERE executes after ORDER BY to sort final results"
         },
         {
           "id": "opt-3",
-          "text": "Convert the column type from VARCHAR to TEXT"
+          "text": "HAVING modifies underlying table schemas while WHERE is read-only"
         },
         {
           "id": "opt-4",
-          "text": "Change the SELECT clause to SELECT *"
+          "text": "WHERE filters individual rows before GROUP BY; HAVING filters grouped rows after aggregation"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "opt-4"
       ],
-      "explanation": "Wrapping indexed columns in functions disables standard B-Tree index lookups unless an expression index exists or values are pre-normalized.",
+      "explanation": "SQL evaluates WHERE prior to GROUP BY aggregation, whereas HAVING filters aggregate buckets post-grouping.",
       "difficulty": "beginner",
-      "topic": "Indexing & Query Optimization",
+      "topic": "SQL Execution Order & Aggregation",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
     },
     {
       "id": "mock-sql-beginner-t1-q2",
-      "type": "code-output",
-      "prompt": "What rows are returned by this SQL query?",
-      "codeSnippet": "SELECT department_id, COUNT(*)\nFROM employees\nGROUP BY department_id\nHAVING COUNT(*) > 5;",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which JOIN preserves all rows from the left table and fills unmatched right-side columns with NULL?",
+      "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Only department IDs that have strictly more than 5 employee records"
+          "text": "CROSS JOIN"
         },
         {
           "id": "opt-2",
-          "text": "The first 5 departments ordered by employee count"
+          "text": "NATURAL INTERSECT"
         },
         {
           "id": "opt-3",
-          "text": "All employees in departments where at least one person makes over 5k"
+          "text": "LEFT OUTER JOIN"
         },
         {
           "id": "opt-4",
-          "text": "A syntax error because WHERE was omitted"
+          "text": "INNER JOIN"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "A LEFT JOIN returns every row from the left table along with matching rows from the right table, yielding NULL when no match exists.",
+      "difficulty": "beginner",
+      "topic": "Relational Join Semantics",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which properties make up the four ACID guarantees in relational databases?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Durability"
+        },
+        {
+          "id": "opt-2",
+          "text": "Atomicity"
+        },
+        {
+          "id": "opt-3",
+          "text": "Consistency"
+        },
+        {
+          "id": "opt-4",
+          "text": "Isolation"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1",
+        "opt-2",
+        "opt-3",
+        "opt-4"
+      ],
+      "explanation": "ACID stands for Atomicity (all-or-nothing), Consistency (valid state transitions), Isolation (concurrent independence), and Durability (persisted commits).",
+      "difficulty": "beginner",
+      "topic": "ACID Transactions",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What data structure do most relational databases use by default for standard table indexes?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Balanced B-Tree (or B+Tree) supporting O(log n) lookups and range scans"
+        },
+        {
+          "id": "opt-2",
+          "text": "Singly linked list scanning O(n) sequential nodes"
+        },
+        {
+          "id": "opt-3",
+          "text": "Unindexed CSV append buffer"
+        },
+        {
+          "id": "opt-4",
+          "text": "FIFO ring queue"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "HAVING filters aggregated groups after the GROUP BY clause, retaining only groups satisfying the aggregate predicate.",
+      "explanation": "B+Trees keep keys sorted in shallow hierarchical pages, accelerating equality lookups and range filters (BETWEEN, >, <).",
       "difficulty": "beginner",
-      "topic": "Aggregation & Grouping",
+      "topic": "B-Tree Indexing & Internals",
       "marks": 2,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in SQL"
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
     },
     {
-      "id": "mock-sql-beginner-t1-q3",
-      "type": "multiple-select",
-      "prompt": "Which of the following are ACID properties in relational database transactions?",
+      "id": "mock-sql-beginner-t1-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What condition is violated if a non-key column depends on only part of a composite primary key?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "Atomicity: All operations in the transaction succeed or all roll back"
+          "text": "First Normal Form (1NF)"
         },
         {
           "id": "opt-2",
-          "text": "Consistency: The transaction brings the database from one valid state to another"
+          "text": "Entity Nullability Constraint"
         },
         {
           "id": "opt-3",
-          "text": "Isolation: Concurrent execution of transactions yields the same state as serial execution"
+          "text": "Referential Trigger Integrity"
         },
         {
           "id": "opt-4",
-          "text": "Adaptability: Schema changes apply dynamically without migration locks"
+          "text": "Second Normal Form (2NF)"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "2NF requires being in 1NF and eliminating partial dependencies on a composite primary key.",
+      "difficulty": "beginner",
+      "topic": "Normalization & Schema Design",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Which SQL window function assigns consecutive integers without skipping ranks when ties occur?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "ROW_NUMBER()"
+        },
+        {
+          "id": "opt-2",
+          "text": "NTILE(1)"
+        },
+        {
+          "id": "opt-3",
+          "text": "DENSE_RANK()"
+        },
+        {
+          "id": "opt-4",
+          "text": "RANK()"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "DENSE_RANK() assigns identical ranks to tied rows and increments the next rank by 1 (e.g., 1, 1, 2), whereas RANK() skips (1, 1, 3).",
+      "difficulty": "beginner",
+      "topic": "Window Functions & Analytics",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What happens if an aggregate function like SUM(bonus) encounters NULL values in some rows?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "NULL values are coerced into -1 automatically"
+        },
+        {
+          "id": "opt-2",
+          "text": "SQL aggregate functions ignore NULL values except COUNT(*)"
+        },
+        {
+          "id": "opt-3",
+          "text": "SUM always returns 0 as soon as one NULL is encountered"
+        },
+        {
+          "id": "opt-4",
+          "text": "SUM raises a DivisionByNull runtime error"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Aggregate functions (SUM, AVG, MIN, MAX) ignore NULL entries, whereas COUNT(*) counts all rows including NULLs.",
+      "difficulty": "beginner",
+      "topic": "NULL Semantics & Aggregations",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which statements about FOREIGN KEY constraints are true?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "They enforce referential integrity between child and parent tables"
+        },
+        {
+          "id": "opt-2",
+          "text": "ON DELETE CASCADE deletes dependent child rows when the referenced parent row is removed"
+        },
+        {
+          "id": "opt-3",
+          "text": "They require a matching candidate key (PRIMARY KEY or UNIQUE) in the referenced table"
+        },
+        {
+          "id": "opt-4",
+          "text": "They automatically duplicate all parent columns into the child table"
         }
       ],
       "correctOptionIds": [
@@ -115,115 +321,716 @@
         "opt-2",
         "opt-3"
       ],
-      "explanation": "ACID stands for Atomicity, Consistency, Isolation, and Durability.",
+      "explanation": "Foreign keys preserve referential integrity against a parent PRIMARY KEY/UNIQUE column and support ON DELETE/UPDATE actions.",
       "difficulty": "beginner",
-      "topic": "Transactions & Concurrency",
+      "topic": "Referential Integrity",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "Why does COUNT(*) behave differently from COUNT(email) on an orders table?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "COUNT(email) automatically deduplicates distinct email strings"
+        },
+        {
+          "id": "opt-2",
+          "text": "COUNT(*) is invalid ANSI SQL syntax"
+        },
+        {
+          "id": "opt-3",
+          "text": "COUNT(email) sorts the table alphabetically first"
+        },
+        {
+          "id": "opt-4",
+          "text": "COUNT(*) counts total rows regardless of NULLs; COUNT(email) only counts rows where email IS NOT NULL"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "COUNT(column) skips rows with NULL values in that specific column, while COUNT(*) counts every row matched.",
+      "difficulty": "beginner",
+      "topic": "Aggregate Nuances",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "single-choice",
+      "prompt": "What does UNION do differently from UNION ALL when combining two SELECT results?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "UNION ignores mismatched column counts"
+        },
+        {
+          "id": "opt-2",
+          "text": "UNION ALL automatically creates a temporary disk table"
+        },
+        {
+          "id": "opt-3",
+          "text": "UNION deduplicates identical result rows; UNION ALL keeps all rows including duplicates without a sort/hash step"
+        },
+        {
+          "id": "opt-4",
+          "text": "UNION ALL performs an inner join on matching IDs"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "UNION removes duplicate rows (costing a distinct sort/hash), while UNION ALL appends results directly and is faster when duplicates are acceptable.",
+      "difficulty": "beginner",
+      "topic": "Set Operations & Performance",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why will the following SQL query fail to execute on strict ANSI SQL engines?",
+      "codeSnippet": "SELECT department_id, first_name, COUNT(*) FROM employees GROUP BY department_id;",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "COUNT(*) cannot be paired with GROUP BY"
+        },
+        {
+          "id": "opt-2",
+          "text": "Trailing semicolons are invalid inside SELECT queries"
+        },
+        {
+          "id": "opt-3",
+          "text": "The FROM clause must precede the SELECT clause"
+        },
+        {
+          "id": "opt-4",
+          "text": "`first_name` is in the SELECT list without being aggregated or included in GROUP BY"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Every non-aggregated column in the SELECT projection must appear in the GROUP BY clause to preserve deterministic grouping.",
+      "difficulty": "beginner",
+      "topic": "GROUP BY Projection Rules",
       "marks": 3,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in SQL"
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
     },
     {
-      "id": "mock-sql-beginner-t1-q4",
-      "type": "single-choice",
-      "prompt": "What is the difference between an INNER JOIN and a LEFT OUTER JOIN?",
-      "codeSnippet": "",
-      "options": [
-        {
-          "id": "opt-1",
-          "text": "INNER JOIN returns only rows with matches in both tables; LEFT OUTER JOIN preserves all left rows and fills unmatched right columns with NULL."
-        },
-        {
-          "id": "opt-2",
-          "text": "LEFT OUTER JOIN returns only unmatched rows."
-        },
-        {
-          "id": "opt-3",
-          "text": "INNER JOIN can only be used on primary keys."
-        },
-        {
-          "id": "opt-4",
-          "text": "LEFT JOIN sorts the results in ascending order automatically."
-        }
-      ],
-      "correctOptionIds": [
-        "opt-1"
-      ],
-      "explanation": "LEFT JOIN keeps all records from the left-hand table regardless of whether the join predicate matches a row on the right.",
-      "difficulty": "beginner",
-      "topic": "Relational Joins & Set Theory",
-      "marks": 2,
-      "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
-    },
-    {
-      "id": "mock-sql-beginner-t1-q5",
+      "id": "mock-sql-beginner-t1-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
       "type": "debugging",
-      "prompt": "What will happen if you compare a column value with NULL using '=' (e.g. WHERE status = NULL)?",
+      "prompt": "Why does a query filtering `WHERE email != 'admin@site.com'` accidentally exclude rows where `email` is NULL?",
       "codeSnippet": "",
       "options": [
         {
           "id": "opt-1",
-          "text": "It returns UNKNOWN (evaluating to false in WHERE), matching zero rows; 'IS NULL' must be used instead."
+          "text": "The `!=` operator is ignored on VARCHAR columns"
         },
         {
           "id": "opt-2",
-          "text": "It matches all rows where status is an empty string."
+          "text": "Database optimizers automatically drop rows containing NULLs on table creation"
         },
         {
           "id": "opt-3",
-          "text": "It triggers a syntax error in ANSI SQL."
+          "text": "In SQL three-valued logic, comparing any value to NULL with `!=` yields UNKNOWN, which WHERE treats as false"
         },
         {
           "id": "opt-4",
-          "text": "It converts NULL to zero."
+          "text": "NULL evaluates to equal `'admin@site.com'` internally"
         }
       ],
       "correctOptionIds": [
-        "opt-1"
+        "opt-3"
       ],
-      "explanation": "In three-valued SQL logic, NULL = NULL evaluates to UNKNOWN, not TRUE. Checking for nullability requires the 'IS NULL' operator.",
+      "explanation": "Three-valued logic requires explicit `OR email IS NULL` or `IS DISTINCT FROM` when preserving NULL entries.",
       "difficulty": "beginner",
-      "topic": "Three-Valued Logic & NULL Handling",
-      "marks": 2,
+      "topic": "Three-Valued NULL Logic",
+      "marks": 3,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Production Patterns and Resilience in SQL"
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
     },
     {
-      "id": "mock-sql-beginner-t1-q6",
-      "type": "scenario",
-      "prompt": "When is a Common Table Expression (CTE / WITH clause) preferred over a nested subquery?",
-      "codeSnippet": "",
+      "id": "mock-sql-beginner-t1-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does wrapping an indexed column like `WHERE YEAR(created_at) = 2026` prevent B-Tree index usage?",
+      "codeSnippet": "SELECT id FROM invoices WHERE YEAR(created_at) = 2026;",
       "options": [
         {
           "id": "opt-1",
-          "text": "When improving readability for multi-step data pipelines or when performing recursive hierarchical queries."
+          "text": "Created timestamps cannot be indexed with B-Trees"
         },
         {
           "id": "opt-2",
-          "text": "Because CTEs automatically bypass database transaction locks."
+          "text": "Applying a function to the indexed column breaks sargability, forcing a sequential scan unless rewritten as a date range"
         },
         {
           "id": "opt-3",
-          "text": "Because subqueries cannot contain WHERE clauses."
+          "text": "SQL engines forbid integers in WHERE predicates"
         },
         {
           "id": "opt-4",
-          "text": "Because CTEs are stored permanently as physical database tables."
+          "text": "YEAR() locks the table exclusively"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Non-sargable predicates (`YEAR(created_at)`) force evaluation on every row. Rewrite as `created_at >= '2026-01-01' AND created_at < '2027-01-01'`.",
+      "difficulty": "beginner",
+      "topic": "Query Sargability & Index Scans",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Notice this query converts a LEFT JOIN accidentally into an INNER JOIN. Which line causes the defect?",
+      "codeSnippet": "SELECT c.name, o.total\nFROM customers c\nLEFT JOIN orders o ON c.id = o.customer_id\nWHERE o.status = 'paid';",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`WHERE o.status = 'paid'` filters out unmatched NULL right-table rows; moving that predicate into the `ON` clause preserves unmatched customers"
+        },
+        {
+          "id": "opt-2",
+          "text": "LEFT JOIN must use RIGHT OUTER syntax instead"
+        },
+        {
+          "id": "opt-3",
+          "text": "The SELECT alias `o.total` breaks NULL propagation"
+        },
+        {
+          "id": "opt-4",
+          "text": "Customers cannot be joined to orders on an integer ID"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "CTEs structure complex queries into logical sequential steps and support recursive queries for trees or graph structures.",
+      "explanation": "Filtering a nullable right-table column in WHERE drops unmatched NULL rows. Place the condition inside the JOIN ... ON predicate instead.",
       "difficulty": "beginner",
-      "topic": "CTEs & Advanced Querying",
-      "marks": 2,
+      "topic": "Outer Join Predicate Placement",
+      "marks": 3,
       "recommendedLessonId": "mod-1-l1",
-      "recommendedLessonTitle": "Core Syntax and Primitives in SQL"
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "code-output",
+      "prompt": "Given rows with scores [90, 90, 80], what sequence does `RANK() OVER (ORDER BY score DESC)` return?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "1, 1, 2"
+        },
+        {
+          "id": "opt-2",
+          "text": "1, 2, 3"
+        },
+        {
+          "id": "opt-3",
+          "text": "1, 2, 2"
+        },
+        {
+          "id": "opt-4",
+          "text": "1, 1, 3"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "RANK() leaves gaps after ties (1, 1, 3), while DENSE_RANK() emits (1, 1, 2) and ROW_NUMBER() emits (1, 2, 3).",
+      "difficulty": "beginner",
+      "topic": "Window Ranking Mechanics",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An analytical report joins 50 million `events` rows with `users`, scanning the full `events` table on every run. What creates the largest speedup?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Convert primary keys from BIGINT to UUID strings across all partitions"
+        },
+        {
+          "id": "opt-2",
+          "text": "Remove all indexes so PostgreSQL scans disk sequentially without memory overhead"
+        },
+        {
+          "id": "opt-3",
+          "text": "Wrap every column in `LOWER(TRIM(...))` inside the WHERE clause"
+        },
+        {
+          "id": "opt-4",
+          "text": "Create a composite index matching the high-selectivity filter and join key, and replace `SELECT *` with explicit needed columns"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Targeted composite indexes (e.g., `(user_id, created_at)`) and covering projections cut disk I/O dramatically.",
+      "difficulty": "beginner",
+      "topic": "Composite Indexing & Execution Plans",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You need the single most recent order per customer without running correlated subqueries for each row. Which SQL pattern solves this cleanly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Select all orders into client memory and sort with Python"
+        },
+        {
+          "id": "opt-2",
+          "text": "Add DISTINCT on created_at globally without PARTITION BY"
+        },
+        {
+          "id": "opt-3",
+          "text": "Use a CTE with `ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY created_at DESC)` and filter `WHERE rn = 1`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Run SELECT MAX(id) inside an unindexed cross join"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Top-N per group via `ROW_NUMBER() OVER (PARTITION BY ...)` computes in a single indexed pass or sort without correlated re-scans.",
+      "difficulty": "beginner",
+      "topic": "Top-N Per Group Patterns",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A billing transfer updates two rows inside concurrent requests, occasionally deadlocking when locks are acquired in opposite order. How do you prevent deadlocks?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Increase statement timeout to 24 hours"
+        },
+        {
+          "id": "opt-2",
+          "text": "Acquire row locks (`SELECT ... FOR UPDATE`) in a consistent canonical key ordering across all transactions"
+        },
+        {
+          "id": "opt-3",
+          "text": "Drop transaction isolation down to READ UNCOMMITTED"
+        },
+        {
+          "id": "opt-4",
+          "text": "Remove COMMIT statements and rely on autocommit per row"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Consistent lock ordering breaks circular wait conditions, preventing classic two-transaction deadlocks while retaining strict SERIALIZABLE/REPEATABLE safety.",
+      "difficulty": "beginner",
+      "topic": "Concurrency & Deadlock Prevention",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "An `OFFSET 500000 LIMIT 20` pagination query degrades severely on deep pages. What replacement scales in O(log n) regardless of page depth?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Keyset (seek) pagination filtering `WHERE created_at < :last_seen_ts ORDER BY created_at DESC LIMIT 20`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Wrapping OFFSET in two nested CTEs"
+        },
+        {
+          "id": "opt-3",
+          "text": "Increasing shared_buffers by 50MB without index changes"
+        },
+        {
+          "id": "opt-4",
+          "text": "Sorting in ascending and descending order simultaneously"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Keyset pagination jumps straight into the B-Tree index via the cursor key, avoiding discarding hundreds of thousands of preceding rows.",
+      "difficulty": "beginner",
+      "topic": "Keyset Pagination Scaling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "How do you inspect why a PostgreSQL query runs slow and verify whether an index or sequential scan was chosen at runtime?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Inspect database migration filenames manually"
+        },
+        {
+          "id": "opt-2",
+          "text": "Use `SHOW COLUMNS` on the parent schema"
+        },
+        {
+          "id": "opt-3",
+          "text": "Ping the TCP database port with ICMP packets"
+        },
+        {
+          "id": "opt-4",
+          "text": "Run `EXPLAIN (ANALYZE, BUFFERS)` on the query inside a rolled-back read transaction"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "`EXPLAIN ANALYZE` executes the plan (when safe or rolled back) showing actual vs estimated rows, buffer hits, and exact join algorithms.",
+      "difficulty": "beginner",
+      "topic": "Query Plan Diagnostics",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Complete the Common Table Expression (CTE) to compute a running cumulative revenue ordered by `order_date`:",
+      "codeSnippet": "SELECT order_date, daily_rev,\n  SUM(daily_rev) OVER (/* TASK */) AS running_total\nFROM daily_sales;",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "GROUP BY order_date"
+        },
+        {
+          "id": "opt-2",
+          "text": "HAVING order_date > 0"
+        },
+        {
+          "id": "opt-3",
+          "text": "JOIN daily_sales ON order_date"
+        },
+        {
+          "id": "opt-4",
+          "text": "ORDER BY order_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Specifying `ORDER BY order_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` calculates a deterministic running total.",
+      "difficulty": "beginner",
+      "topic": "Window Framing & Running Totals",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Write an idempotent upsert in PostgreSQL when inserting a user score into `enrollments(student_id, course_slug, score)` with a UNIQUE `(student_id, course_slug)` key:",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "INSERT IGNORE ALL INTO enrollments VALUES (...);"
+        },
+        {
+          "id": "opt-2",
+          "text": "SELECT OR INSERT INTO enrollments VALUES (...);"
+        },
+        {
+          "id": "opt-3",
+          "text": "INSERT INTO enrollments (...) VALUES (...) ON CONFLICT (student_id, course_slug) DO UPDATE SET score = EXCLUDED.score;"
+        },
+        {
+          "id": "opt-4",
+          "text": "DROP TABLE enrollments; INSERT INTO enrollments VALUES (...);"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "`ON CONFLICT (...) DO UPDATE` atomically updates existing rows or inserts new ones without race conditions.",
+      "difficulty": "beginner",
+      "topic": "Atomic Upserts",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "How should an API backend execute user-supplied search input inside a SQL query to guarantee zero SQL injection risk?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Disable WHERE clauses when user strings contain spaces"
+        },
+        {
+          "id": "opt-2",
+          "text": "Use parameterized prepared statements (`SELECT * FROM courses WHERE title ILIKE $1`, [`%${term}%`])"
+        },
+        {
+          "id": "opt-3",
+          "text": "Interpolate the string after stripping single quotes via JavaScript `.replace(\"'\", \"\")`"
+        },
+        {
+          "id": "opt-4",
+          "text": "Base64-encode the whole SQL statement before sending it over HTTP"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Prepared statements bind values cleanly as protocol parameters separate from SQL syntax parsing, neutralizing SQL injection.",
+      "difficulty": "beginner",
+      "topic": "Parameterized Queries & Security",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "How do you safely execute a ledger transfer where debiting account A and crediting account B must either both commit or both rollback?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Wrap both UPDATEs inside `BEGIN; ... COMMIT;` checking `balance >= amount`, rolling back on error (`ROLLBACK;`)"
+        },
+        {
+          "id": "opt-2",
+          "text": "Execute two unrelated HTTP calls sequentially without locking"
+        },
+        {
+          "id": "opt-3",
+          "text": "Store negative numbers inside a VARCHAR column and recalculate daily"
+        },
+        {
+          "id": "opt-4",
+          "text": "Disable foreign key constraints before UPDATE"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Explicit SQL transactions preserve atomicity and consistency across multi-statement financial mutations.",
+      "difficulty": "beginner",
+      "topic": "Transactional Ledger Integrity",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which partial index best optimizes querying only active pending background jobs from a 10M-row table where 99.8% are `completed`?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "CREATE INDEX idx_jobs_completed ON jobs(payload_json);"
+        },
+        {
+          "id": "opt-2",
+          "text": "CREATE TABLE jobs_all AS SELECT * FROM jobs;"
+        },
+        {
+          "id": "opt-3",
+          "text": "ALTER TABLE jobs DROP PRIMARY KEY;"
+        },
+        {
+          "id": "opt-4",
+          "text": "CREATE INDEX idx_jobs_pending ON jobs(created_at) WHERE status = 'pending';"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "A partial index (`WHERE status = 'pending'`) stays tiny (indexing just 0.2% of rows) and speeds worker queue polling dramatically.",
+      "difficulty": "beginner",
+      "topic": "Partial & Filtered Indexes",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "Read-heavy analytics dashboards overload the transactional primary PostgreSQL database. What architectural scaling pattern isolates read load cleanly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Disable ACID durability (`fsync=off`) on the primary production database"
+        },
+        {
+          "id": "opt-2",
+          "text": "Allow browser clients to connect directly over public port 5432 without pooling"
+        },
+        {
+          "id": "opt-3",
+          "text": "Delete all historical rows older than 24 hours automatically"
+        },
+        {
+          "id": "opt-4",
+          "text": "Provision asynchronous streaming read replicas for heavy analytics/reporting queries and route OLTP writes to the primary"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Read replicas absorb reporting and BI scans while keeping write-heavy primary OLTP response times low and predictable.",
+      "difficulty": "beginner",
+      "topic": "Read Replicas & Workload Isolation",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A serverless backend spawns 1,500 short-lived worker instances during peak spikes, exhausting PostgreSQL max_connections. What component fixes this?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Raise max_connections to 50,000 on a 2GB RAM node"
+        },
+        {
+          "id": "opt-2",
+          "text": "Drop all secondary indexes"
+        },
+        {
+          "id": "opt-3",
+          "text": "Place a connection pooler (PgBouncer in transaction mode / Supabase Supavisor) in front of PostgreSQL"
+        },
+        {
+          "id": "opt-4",
+          "text": "Restart PostgreSQL every 60 seconds via cron"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "Transaction-mode connection pooling multiplexes thousands of ephemeral serverless connections across a bounded pool of server backends.",
+      "difficulty": "beginner",
+      "topic": "Connection Pooling Architecture",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
+    },
+    {
+      "id": "mock-sql-beginner-t1-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "You need zero-downtime schema evolution when renaming or replacing a heavily used column in production. What strategy avoids breaking running pods?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Store all fields inside one single comma-delimited text column"
+        },
+        {
+          "id": "opt-2",
+          "text": "Use the Expand-Contract pattern: add the new column + dual-write/backfill -> switch application reads -> drop old column safely"
+        },
+        {
+          "id": "opt-3",
+          "text": "Run ALTER TABLE ... RENAME COLUMN during peak traffic without updating app code first"
+        },
+        {
+          "id": "opt-4",
+          "text": "Drop the table and re-import from backup while live users browse"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Expand-Contract migrations keep both old and new schemas compatible across rolling deployments, guaranteeing zero downtime.",
+      "difficulty": "beginner",
+      "topic": "Zero-Downtime Schema Migrations",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in SQL"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-10-30T06:22:09.121Z",
-  "updatedAt": "2026-10-30T06:22:09.121Z"
+  "createdAt": "2026-11-11T05:58:38.591Z",
+  "updatedAt": "2026-11-11T05:58:38.591Z"
 }

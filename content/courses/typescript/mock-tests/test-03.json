@@ -1,5 +1,5 @@
 {
-  "id": "mock-typescript-beginner-test-03",
+  "id": "mock-typescript-beginner-t3",
   "skillName": "TypeScript",
   "skillSlug": "typescript",
   "level": "beginner",
@@ -7,697 +7,1027 @@
   "isPhaseAssessment": false,
   "moduleId": "",
   "moduleTitle": "",
-  "title": "TypeScript Beginner Mock Test 3",
-  "description": "Comprehensive 50-minute mock examination for TypeScript at beginner level.",
-  "durationMinutes": 35,
-  "totalMarks": 20,
+  "title": "TypeScript 100-Mark Professional Mock Examination (Test 3)",
+  "description": "Comprehensive 5-section examination covering Fundamentals (20 marks), Debugging (15 marks), Technical Problem Solving (25 marks), Practical Implementation (25 marks), and System Architecture (15 marks). Total: 100 marks.",
+  "durationMinutes": 60,
+  "totalMarks": 100,
   "passingPercentage": 70,
   "topicsCovered": [
-    "type inference",
-    "strict mode",
-    "annotations",
-    "union types",
-    "unknown",
-    "any",
-    "literal unions",
-    "narrowing",
-    "interfaces",
-    "optional properties",
-    "readonly",
-    "excess property checks",
-    "typed arrays",
-    "function return types",
-    "generics",
-    "generic constraints",
-    "Pick and Omit",
-    "Partial",
-    "type guards",
-    "type assertions"
+    "Event Loop & Microtasks",
+    "TypeScript Type Safety (`unknown` vs `any`)",
+    "Equality & Type Coercion",
+    "React Reconciliation & Keys",
+    "Lexical Scope & Closures",
+    "Async Concurrency Combinators",
+    "TypeScript Strict Configuration",
+    "Backend Web Input Safety",
+    "Next.js RSC Architecture",
+    "Effect Lifecycle & Memory Hygiene",
+    "Async Execution Tracing",
+    "SSR Hydration Safety",
+    "State Batching & Closures",
+    "Exhaustive Type Narrowing",
+    "Immutable State Updates",
+    "Request Cancellation & Debouncing",
+    "Runtime Schema Validation",
+    "TypeScript Generics Design",
+    "React Rendering Optimization",
+    "Resilient API Error Contracts",
+    "Utility Types & `keyof`",
+    "Safe Fetch Error Handling",
+    "Accessible UI Semantics (A11y)",
+    "Safe Dynamic Key Maps",
+    "CSS Stacking Contexts & Responsive Layout",
+    "Frontend Bundle & Code Splitting",
+    "Client/Server Security Boundaries",
+    "Optimistic UI & Error Recovery"
   ],
   "questions": [
     {
-      "id": "mock-typescript-beginner-test-03-q1",
+      "id": "mock-typescript-beginner-t3-q1",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about type inference is valid?",
+      "prompt": "In JavaScript/TypeScript event loops, which queue has strictly higher priority immediately after the current synchronous call stack clears?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "reassigning an inferred string variable to a number is rejected"
+          "id": "opt-1",
+          "text": "`setInterval` preempts synchronous `for` loops"
         },
         {
-          "id": "B",
-          "text": "the compiler derives a type from available expressions"
+          "id": "opt-2",
+          "text": "Microtask Queue (`Promise.then`, `queueMicrotask`, `MutationObserver`) runs completely before the next Macrotask (`setTimeout`)"
         },
         {
-          "id": "C",
-          "text": "rely on inference for obvious local values and annotate public boundaries"
+          "id": "opt-3",
+          "text": "Macrotask Queue (`setTimeout(fn, 0)`) always runs before resolved Promises"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "CSS Repaint callbacks execute mid-function before return statements"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "reassigning an inferred string variable to a number is rejected. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "The JS runtime drains every queued microtask after each synchronous turn before picking up a single macrotask from the task queue.",
       "difficulty": "beginner",
-      "topic": "type inference",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Event Loop & Microtasks",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q2",
+      "id": "mock-typescript-beginner-t3-q2",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about strict mode is valid?",
+      "prompt": "What does `unknown` enforce in TypeScript compared to `any`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "disabling strict can hide null and implicit-any defects"
+          "id": "opt-1",
+          "text": "`unknown` forbids calling methods or accessing properties until runtime type narrowing proves its shape; `any` disables type checking entirely"
         },
         {
-          "id": "B",
-          "text": "strict enables a coordinated set of stronger checks"
+          "id": "opt-2",
+          "text": "`unknown` strips properties during runtime JSON serialization"
         },
         {
-          "id": "C",
-          "text": "enable strict in tsconfig for new application code"
+          "id": "opt-3",
+          "text": "`any` performs stricter compile-time safety checks than `unknown`"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "`unknown` converts numbers to undefined automatically"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "disabling strict can hide null and implicit-any defects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "`unknown` is the type-safe top type for untrusted inputs (like JSON.parse), compelling explicit validation/narrowing.",
       "difficulty": "beginner",
-      "topic": "strict mode",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "TypeScript Type Safety (`unknown` vs `any`)",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q3",
+      "id": "mock-typescript-beginner-t3-q3",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about annotations is valid?",
+      "prompt": "Why does JavaScript recommend strict equality (`===`) over loose equality (`==`)?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "annotations do not convert values at runtime"
+          "id": "opt-1",
+          "text": "`==` does not work on objects or arrays at all"
         },
         {
-          "id": "B",
-          "text": "annotations state an expected compile-time type"
+          "id": "opt-2",
+          "text": "`===` mutates compared variables into constants"
         },
         {
-          "id": "C",
-          "text": "annotate function boundaries when the contract should remain stable"
+          "id": "opt-3",
+          "text": "`==` executes asynchronously"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "`===` checks both value and type without surprising implicit type coercion (e.g., `0 == ''` is true, `0 === ''` is false)"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "annotations do not convert values at runtime. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Strict equality avoids JS's complex abstract equality coercion rules.",
       "difficulty": "beginner",
-      "topic": "annotations",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Equality & Type Coercion",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q4",
+      "id": "mock-typescript-beginner-t3-q4",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about union types is valid?",
+      "prompt": "In React, why must list items supply a stable unique `key` prop rather than relying on array index on dynamic lists?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "calling a string-only method on string | number is unsafe"
+          "id": "opt-1",
+          "text": "React refuses to compile JSX unless `key` equals an integer index"
         },
         {
-          "id": "B",
-          "text": "a union permits values from any listed member type"
+          "id": "opt-2",
+          "text": "`key` props get forwarded directly into `props.key` inside the child component"
         },
         {
-          "id": "C",
-          "text": "narrow a union before using member-specific operations"
+          "id": "opt-3",
+          "text": "Stable IDs allow React reconciliation to accurately match DOM nodes and component state across insertions, deletions, and reorders"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Keys are used to authenticate network fetch calls"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "calling a string-only method on string | number is unsafe. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Array index keys break component input focus/state when items are prepended, sorted, or deleted.",
       "difficulty": "beginner",
-      "topic": "union types",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "React Reconciliation & Keys",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q5",
+      "id": "mock-typescript-beginner-t3-q5",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about unknown is valid?",
+      "prompt": "In JavaScript closures, what does an inner function retain access to after its outer function returns?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "casting unknown directly avoids checking but does not make data safe"
+          "id": "opt-1",
+          "text": "Only static arguments copied by value as strings"
         },
         {
-          "id": "B",
-          "text": "unknown accepts any value but requires evidence before use"
+          "id": "opt-2",
+          "text": "The outer lexical environment scope (variables bound at function creation)"
         },
         {
-          "id": "C",
-          "text": "represent untrusted external data as unknown"
+          "id": "opt-3",
+          "text": "Only `window` global variables"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Private keys inside CSS stylesheets"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "casting unknown directly avoids checking but does not make data safe. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Closures capture references to their enclosing lexical scope, enabling encapsulation and factory hooks.",
       "difficulty": "beginner",
-      "topic": "unknown",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Lexical Scope & Closures",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q6",
+      "id": "mock-typescript-beginner-t3-q6",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about any is valid?",
+      "prompt": "How does `Promise.allSettled()` differ from `Promise.all()`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "any can propagate unsound operations through otherwise typed code"
+          "id": "opt-1",
+          "text": "`Promise.allSettled()` waits for all promises to finish and returns each status (`fulfilled`/`rejected`); `Promise.all()` rejects immediately on the first error"
         },
         {
-          "id": "B",
-          "text": "any disables most useful type checking for that value"
+          "id": "opt-2",
+          "text": "`Promise.allSettled()` executes promises sequentially one by one"
         },
         {
-          "id": "C",
-          "text": "isolate unavoidable any at a boundary and replace it quickly"
+          "id": "opt-3",
+          "text": "`Promise.all()` ignores rejected promises silently"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "They have identical error behavior"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "any can propagate unsound operations through otherwise typed code. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "`Promise.allSettled()` is ideal when independent batch requests shouldn't abort each other if one fails.",
       "difficulty": "beginner",
-      "topic": "any",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Async Concurrency Combinators",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q7",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about literal unions is valid?",
+      "id": "mock-typescript-beginner-t3-q7",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
+      "type": "multiple-select",
+      "prompt": "Which TypeScript compiler flags belong in `strict: true` best practices?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a general string loses exhaustiveness checking"
+          "id": "opt-1",
+          "text": "`noImplicitAny`"
         },
         {
-          "id": "B",
-          "text": "literal unions restrict values to named constants"
+          "id": "opt-2",
+          "text": "`strictFunctionTypes`"
         },
         {
-          "id": "C",
-          "text": "model finite statuses with a literal union"
+          "id": "opt-3",
+          "text": "`allowJs: false` disables TypeScript errors globally"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "`strictNullChecks`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1",
+        "opt-2",
+        "opt-4"
       ],
-      "explanation": "a general string loses exhaustiveness checking. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "TypeScript's `strict` mode catches null/undefined dereferences and implicit `any` gaps at compile time.",
       "difficulty": "beginner",
-      "topic": "literal unions",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "TypeScript Strict Configuration",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q8",
+      "id": "mock-typescript-beginner-t3-q8",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about narrowing is valid?",
+      "prompt": "In Web Security & PHP/Node backends, why should template literals NEVER build SQL queries directly?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a type assertion is not runtime evidence"
+          "id": "opt-1",
+          "text": "Databases reject queries longer than 40 characters"
         },
         {
-          "id": "B",
-          "text": "narrowing refines possibilities using runtime evidence"
+          "id": "opt-2",
+          "text": "Prepared statements skip HTTP encryption"
         },
         {
-          "id": "C",
-          "text": "use typeof or discriminants before member-specific access"
+          "id": "opt-3",
+          "text": "Direct string interpolation permits SQL injection; bound prepared statements keep user inputs separated from SQL syntax"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Template literals break UTF-8 encoding in browsers"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "a type assertion is not runtime evidence. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Always pass values through parameterized bindings (`$1`, `?`) or typed query builders.",
       "difficulty": "beginner",
-      "topic": "narrowing",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Backend Web Input Safety",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q9",
+      "id": "mock-typescript-beginner-t3-q9",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about interfaces is valid?",
+      "prompt": "In Next.js App Router, why do Client Components require `'use client'` at the top while Server Components do not?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "an interface disappears from emitted JavaScript"
+          "id": "opt-1",
+          "text": "`'use client'` disables Tailwind CSS classes"
         },
         {
-          "id": "B",
-          "text": "interfaces describe object contracts and support extension"
+          "id": "opt-2",
+          "text": "Server Components stay purely on the server (zero client JS bundle, direct DB access); `'use client'` marks browser-interactive islands needing hooks/events"
         },
         {
-          "id": "C",
-          "text": "use an interface for a named extendable object shape"
+          "id": "opt-3",
+          "text": "Server Components cannot read environment secrets"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Client Components cannot render JSX tags"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "an interface disappears from emitted JavaScript. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "React Server Components shrink shipped JavaScript bundles and allow async server data fetching cleanly.",
       "difficulty": "beginner",
-      "topic": "interfaces",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Next.js RSC Architecture",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q10",
+      "id": "mock-typescript-beginner-t3-q10",
+      "section": "A",
+      "sectionTitle": "Section A: Multiple Choice Questions & Fundamentals",
       "type": "single-choice",
-      "prompt": "Which code-review warning about optional properties is valid?",
+      "prompt": "What prevents unintended memory leaks when attaching `window.addEventListener('resize', handler)` inside a React `useEffect`?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "optional does not mean every value type is accepted"
+          "id": "opt-1",
+          "text": "Returning a cleanup function `() => window.removeEventListener('resize', handler)` from `useEffect`"
         },
         {
-          "id": "B",
-          "text": "an optional property may be absent"
+          "id": "opt-2",
+          "text": "Wrapping the listener inside `setTimeout`"
         },
         {
-          "id": "C",
-          "text": "check or default an optional value before use"
+          "id": "opt-3",
+          "text": "Using `var` instead of `const`"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Calling `event.preventDefault()`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "optional does not mean every value type is accepted. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Effect cleanups detach global listeners cleanly whenever components unmount or dependencies change.",
       "difficulty": "beginner",
-      "topic": "optional properties",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Effect Lifecycle & Memory Hygiene",
+      "marks": 2,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q11",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about readonly is valid?",
-      "codeSnippet": "",
+      "id": "mock-typescript-beginner-t3-q11",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "code-output",
+      "prompt": "What order does this JavaScript snippet log to the console?",
+      "codeSnippet": "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
       "options": [
         {
-          "id": "A",
-          "text": "readonly is compile-time protection, not deep runtime freezing"
+          "id": "opt-1",
+          "text": "1, 4, 2, 3"
         },
         {
-          "id": "B",
-          "text": "readonly prevents assignment through that typed reference"
+          "id": "opt-2",
+          "text": "1, 4, 3, 2"
         },
         {
-          "id": "C",
-          "text": "use readonly for inputs a function must not mutate"
+          "id": "opt-3",
+          "text": "1, 2, 3, 4"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "1, 3, 4, 2"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "readonly is compile-time protection, not deep runtime freezing. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Synchronous logs (`1`, `4`) run first, followed by the Microtask queue (`3` from Promise), then the Macrotask queue (`2` from setTimeout).",
       "difficulty": "beginner",
-      "topic": "readonly",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Async Execution Tracing",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q12",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about excess property checks is valid?",
+      "id": "mock-typescript-beginner-t3-q12",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does `useState(() => localStorage.getItem('theme') || 'dark')` cause a React Hydration Mismatch (#418) warning in Next.js?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "assigning through a broad variable can bypass the fresh-literal check"
+          "id": "opt-1",
+          "text": "The server lacks `localStorage` and renders `'dark'`, while the browser reads `'light'` during initial hydration pass, mismatching DOM trees"
         },
         {
-          "id": "B",
-          "text": "fresh object literals are checked for unexpected keys"
+          "id": "opt-2",
+          "text": "localStorage is asynchronous and returns a Promise"
         },
         {
-          "id": "C",
-          "text": "use them to catch misspelled fields at creation"
+          "id": "opt-3",
+          "text": "useState forbids lazy initializer functions"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "React does not allow dark themes on SSR"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "assigning through a broad variable can bypass the fresh-literal check. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Initialize state deterministically for SSR parity and synchronize `localStorage` reads inside `useEffect` post-mount.",
       "difficulty": "beginner",
-      "topic": "excess property checks",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "SSR Hydration Safety",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q13",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about typed arrays is valid?",
-      "codeSnippet": "",
+      "id": "mock-typescript-beginner-t3-q13",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Identify why clicking increment 3 times triggers only +1 in this buggy React handler:",
+      "codeSnippet": "function incrementThree() {\n  setCount(count + 1);\n  setCount(count + 1);\n  setCount(count + 1);\n}",
       "options": [
         {
-          "id": "A",
-          "text": "a tuple and an array express different positional guarantees"
+          "id": "opt-1",
+          "text": "React refuses more than one setState inside an event handler"
         },
         {
-          "id": "B",
-          "text": "T[] constrains each array element to T"
+          "id": "opt-2",
+          "text": "Addition with +1 rounds down inside JSX"
         },
         {
-          "id": "C",
-          "text": "use readonly T[] for non-mutating function inputs"
+          "id": "opt-3",
+          "text": "React components do not batch events"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "`count` reflects the stale render snapshot inside the closure; functional updates `setCount(c => c + 1)` queue relative to latest state"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "a tuple and an array express different positional guarantees. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Functional state updaters (`prev => prev + 1`) operate on the queued next value cleanly across batched state updates.",
       "difficulty": "beginner",
-      "topic": "typed arrays",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "State Batching & Closures",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q14",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about function return types is valid?",
-      "codeSnippet": "",
+      "id": "mock-typescript-beginner-t3-q14",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Look at this TypeScript discriminated union handler. How can TS guarantee exhaustiveness at compile time if a new `status` case is added later?",
+      "codeSnippet": "type State = { kind: 'ok'; data: string } | { kind: 'err'; error: Error };\nfunction handle(s: State) { switch (s.kind) { case 'ok': return s.data; case 'err': return s.error.message; } }",
       "options": [
         {
-          "id": "A",
-          "text": "console output is not a returned value"
+          "id": "opt-1",
+          "text": "Disable `strict` in `tsconfig.json`"
         },
         {
-          "id": "B",
-          "text": "a return annotation protects the promised output contract"
+          "id": "opt-2",
+          "text": "Use `typeof s === 'object'`"
         },
         {
-          "id": "C",
-          "text": "annotate exported functions and domain boundaries"
+          "id": "opt-3",
+          "text": "Add a `default: const _exhaustive: never = s; return _exhaustive;` branch forcing compile errors on unhandled union cases"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Cast `s as any` before switching"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "console output is not a returned value. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Assigning unreachable `default` cases to `never` guarantees compile-time exhaustive checking when new union members are introduced.",
       "difficulty": "beginner",
-      "topic": "function return types",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Exhaustive Type Narrowing",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q15",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about generics is valid?",
+      "id": "mock-typescript-beginner-t3-q15",
+      "section": "B",
+      "sectionTitle": "Section B: Conceptual Analysis & Debugging",
+      "type": "debugging",
+      "prompt": "Why does mutating `items.push(newItem); setItems(items)` fail to trigger a re-render in React?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a generic appearing once adds complexity without a relationship"
+          "id": "opt-1",
+          "text": "setItems runs synchronously before render"
         },
         {
-          "id": "B",
-          "text": "generics preserve type relationships across positions"
+          "id": "opt-2",
+          "text": "React compares state references with `Object.is`; mutating the existing array keeps the exact same reference so React bails out"
         },
         {
-          "id": "C",
-          "text": "use a generic when output type depends on input type"
+          "id": "opt-3",
+          "text": "`push()` clears the array contents automatically"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "React blocks arrays longer than 10 items"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a generic appearing once adds complexity without a relationship. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Always produce a fresh immutable reference (`setItems(prev => [...prev, newItem])`).",
       "difficulty": "beginner",
-      "topic": "generics",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Immutable State Updates",
+      "marks": 3,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q16",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about generic constraints is valid?",
+      "id": "mock-typescript-beginner-t3-q16",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A search bar fires an API fetch on every keystroke, causing out-of-order responses when an older slow request resolves after a newer fast request. What solves both traffic spam and race conditions?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "a constraint does not create missing runtime properties"
+          "id": "opt-1",
+          "text": "Reload the full browser tab after each character"
         },
         {
-          "id": "B",
-          "text": "constraints require capabilities used by generic code"
+          "id": "opt-2",
+          "text": "Debounce input (e.g., 250ms) and cancel stale in-flight fetches using `AbortController` inside `useEffect` cleanup"
         },
         {
-          "id": "C",
-          "text": "constrain T to an id-bearing object when reading id"
+          "id": "opt-3",
+          "text": "Use `async/await` without canceling previous requests"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Store query inputs in `window.name`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "a constraint does not create missing runtime properties. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Debouncing reduces request volume while `AbortController` guarantees superseded responses never overwrite fresh UI state.",
       "difficulty": "beginner",
-      "topic": "generic constraints",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Request Cancellation & Debouncing",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q17",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about Pick and Omit is valid?",
+      "id": "mock-typescript-beginner-t3-q17",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You receive an untyped JSON webhook payload in TypeScript. How do you bridge compile-time TypeScript interfaces with real runtime validation?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "utility types do not validate runtime objects"
+          "id": "opt-1",
+          "text": "Parse input cleanly with a runtime schema validator (`zod`) exporting inferred TypeScript types via `z.infer<typeof schema>`"
         },
         {
-          "id": "B",
-          "text": "Pick selects keys and Omit excludes keys from an existing type"
+          "id": "opt-2",
+          "text": "Cast `body as UserPayload` directly (which disappears completely at runtime!)"
         },
         {
-          "id": "C",
-          "text": "derive view and creation types from a canonical domain contract"
+          "id": "opt-3",
+          "text": "Turn off `noImplicitAny`"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Wrap `JSON.parse` in a JSX comment"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-1"
       ],
-      "explanation": "utility types do not validate runtime objects. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "TypeScript types are erased at runtime; runtime schema validators (`zod`) protect API boundaries against malformed payloads.",
       "difficulty": "beginner",
-      "topic": "Pick and Omit",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Runtime Schema Validation",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q18",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about Partial is valid?",
+      "id": "mock-typescript-beginner-t3-q18",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "How can an engineering team share reusable generic validation across varying data models (`Course`, `User`, `Project`) cleanly in TypeScript?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "Partial can permit empty updates unless separately checked"
+          "id": "opt-1",
+          "text": "Duplicate helper functions for every interface"
         },
         {
-          "id": "B",
-          "text": "Partial makes every property optional at compile time"
+          "id": "opt-2",
+          "text": "Type parameters as `any[]` losing editor autocompletion"
         },
         {
-          "id": "C",
-          "text": "use Partial for controlled patch inputs then validate invariants"
+          "id": "opt-3",
+          "text": "Serialize models back to raw CSV strings"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Author parameterized generic functions `<T extends { id: string }>(items: T[]): Map<string, T>` preserving exact return inference"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-4"
       ],
-      "explanation": "Partial can permit empty updates unless separately checked. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Bounded Generics enforce structural contracts (`extends { id: string }`) without sacrificing caller type fidelity.",
       "difficulty": "beginner",
-      "topic": "Partial",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "TypeScript Generics Design",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q19",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about type guards is valid?",
+      "id": "mock-typescript-beginner-t3-q19",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "A heavy dashboard data table lags while typing in a top search filter box because thousands of unrelated chart rows re-render on each keystroke. What structural split optimizes rendering?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "returning true without complete checks creates unsound trust"
+          "id": "opt-1",
+          "text": "Force full window reload on filter change"
         },
         {
-          "id": "B",
-          "text": "a type guard links runtime checks to a type predicate"
+          "id": "opt-2",
+          "text": "Remove CSS classes from elements"
         },
         {
-          "id": "C",
-          "text": "check every required field before returning value is T"
+          "id": "opt-3",
+          "text": "Colocate search input state down inside a leaf component or wrap expensive pure table views with `useMemo`/`React.memo`"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Replace all buttons with `<div>` elements"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-3"
       ],
-      "explanation": "returning true without complete checks creates unsound trust. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "State colocation limits React reconciliation subtrees strictly to affected components before reaching for micro-memoization.",
       "difficulty": "beginner",
-      "topic": "type guards",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "React Rendering Optimization",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     },
     {
-      "id": "mock-typescript-beginner-test-03-q20",
-      "type": "single-choice",
-      "prompt": "Which code-review warning about type assertions is valid?",
+      "id": "mock-typescript-beginner-t3-q20",
+      "section": "C",
+      "sectionTitle": "Section C: Technical Problem Solving",
+      "type": "scenario",
+      "prompt": "You build a secure PHP/Node REST endpoint updating user profile data. How should failed database updates report status safely to the client?",
       "codeSnippet": "",
       "options": [
         {
-          "id": "A",
-          "text": "asserting parsed JSON does not validate its shape"
+          "id": "opt-1",
+          "text": "Crash the Node process intentionally on invalid email format"
         },
         {
-          "id": "B",
-          "text": "an assertion overrides compiler inference without runtime checking"
+          "id": "opt-2",
+          "text": "Log full stack trace privately on the server and return sanitized JSON error message with accurate HTTP 4xx/5xx status code"
         },
         {
-          "id": "C",
-          "text": "reserve assertions for evidence the compiler cannot express"
+          "id": "opt-3",
+          "text": "Return raw SQL error dumps and table schemas in HTTP 200 OK JSON"
         },
         {
-          "id": "D",
-          "text": "It is valid only in class declarations"
+          "id": "opt-4",
+          "text": "Swallow errors quietly returning `success: true`"
         }
       ],
       "correctOptionIds": [
-        "A"
+        "opt-2"
       ],
-      "explanation": "asserting parsed JSON does not validate its shape. Confirm compiler behavior with strict mode and a minimal example instead of relying on an assertion.",
+      "explanation": "Clean API boundaries return safe user-facing messages and proper HTTP codes without exposing internal stack traces or DB structure.",
       "difficulty": "beginner",
-      "topic": "type assertions",
-      "marks": 1,
-      "recommendedLessonId": "mod-1-typescript-beginner-module-1-l1",
-      "recommendedLessonTitle": "TypeScript Setup and Type Inference"
+      "topic": "Resilient API Error Contracts",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q21",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Complete the custom generic helper `pickFields<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K>` so TypeScript rejects nonexistent property names at compile time:",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`obj: object` removes property inference"
+        },
+        {
+          "id": "opt-2",
+          "text": "`K extends keyof T` guarantees only genuine keys of `T` can be passed"
+        },
+        {
+          "id": "opt-3",
+          "text": "`K extends string` allows any typo string"
+        },
+        {
+          "id": "opt-4",
+          "text": "`K = any` disables key validation"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Constraining keys via `keyof T` and returning `Pick<T, K>` retains compile-time safety across refactoring.",
+      "difficulty": "beginner",
+      "topic": "Utility Types & `keyof`",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q22",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When fetching remote JSON safely in browser React code with proper error handling (`401`, `500`, network drops), what pattern prevents uncaught rejection crashes?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Check `if (!res.ok)` before parsing, handle errors cleanly inside `try/catch/finally`, and show user-friendly recovery UI"
+        },
+        {
+          "id": "opt-2",
+          "text": "Call `await fetch(url).then(r => r.json())` assuming HTTP 404/500 rejects Promises (fetch only rejects on network failures!)"
+        },
+        {
+          "id": "opt-3",
+          "text": "Use synchronous XMLHttpRequest blocking the UI thread"
+        },
+        {
+          "id": "opt-4",
+          "text": "Disable `try/catch` so Next error boundaries crash the entire page"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "`fetch()` resolves on HTTP 4xx/500 responses (`res.ok === false`), so explicit `if (!res.ok)` checks are critical.",
+      "difficulty": "beginner",
+      "topic": "Safe Fetch Error Handling",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q23",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which HTML accessibility attribute pair properly connects a custom modal dialog to screen readers and Escape dismissal?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`role=\"marquee\" tabindex=\"-99\"`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Styling a generic `<div>` without ARIA attributes or keyboard support"
+        },
+        {
+          "id": "opt-3",
+          "text": "`aria-hidden=\"true\"` on the open visible dialog"
+        },
+        {
+          "id": "opt-4",
+          "text": "`role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"...\"` plus keyboard Escape listener and focus trap/return"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Proper modal semantics ensure keyboard-only and screen-reader users interact cleanly without focus escaping beneath backdrops.",
+      "difficulty": "beginner",
+      "topic": "Accessible UI Semantics (A11y)",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q24",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "Which modern TypeScript `Record` / `Map` choice avoids prototype pollution key collisions (`'toString'`, `'__proto__'`) when indexing arbitrary dynamic user keys?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Serializing everything onto `Array.prototype`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Mutating `Object.prototype` directly"
+        },
+        {
+          "id": "opt-3",
+          "text": "`new Map<string, Value>()` (or `Object.create(null)`)"
+        },
+        {
+          "id": "opt-4",
+          "text": "Plain `{}` checked purely with `dict[key]` truthiness"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-3"
+      ],
+      "explanation": "`Map` holds no inherited Object.prototype properties (`constructor`, `toString`), eliminating accidental key collisions cleanly.",
+      "difficulty": "beginner",
+      "topic": "Safe Dynamic Key Maps",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q25",
+      "section": "D",
+      "sectionTitle": "Section D: Practical / Coding Tasks",
+      "type": "practical",
+      "prompt": "When designing responsive dashboard navigation sidebars and modals across mobile and desktop, how do you prevent z-index overlap collisions cleanly?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Hide buttons off-screen via `margin-left: -200px`"
+        },
+        {
+          "id": "opt-2",
+          "text": "Define an explicit ordered z-index scale (canvas base 0 -> header 30 -> backdrop 35/40 -> sidebar drawer 40/50 -> modals/command palette 50+) avoiding `overflow: hidden` ancestors on sticky elements"
+        },
+        {
+          "id": "opt-3",
+          "text": "Put `z-index: 999999` arbitrarily on every card and button"
+        },
+        {
+          "id": "opt-4",
+          "text": "Use `position: absolute` with negative margins across breakpoints"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Ordered stacking scales isolate layering systematically across breakpoints without clipping dropdowns or hiding triggers.",
+      "difficulty": "beginner",
+      "topic": "CSS Stacking Contexts & Responsive Layout",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q26",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "A heavy SaaS dashboard suffers slow Time-to-Interactive (TTI) because unused charting/PDF modules ship inside the initial landing bundle. How do you drop bundle size dramatically?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Include three duplicate UI icon libraries"
+        },
+        {
+          "id": "opt-2",
+          "text": "Lazy-load heavy secondary views (`React.lazy` / `next/dynamic`) on tab/view navigation and keep critical initial shell lean"
+        },
+        {
+          "id": "opt-3",
+          "text": "Inline all base64 video files directly into JavaScript modules"
+        },
+        {
+          "id": "opt-4",
+          "text": "Disable webpack tree-shaking and minification"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-2"
+      ],
+      "explanation": "Code-splitting secondary route modules defers non-critical JS downloads until the user opens them.",
+      "difficulty": "beginner",
+      "topic": "Frontend Bundle & Code Splitting",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q27",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "How should a Next.js full-stack application split sensitive business mutations (e.g., exam grading, issuing certificates) between client React UI and Server APIs?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Keep answer keys, grading rubrics, and database credentials strictly on the server; client sends sanitized submission IDs/answers via HTTPS API routes"
+        },
+        {
+          "id": "opt-2",
+          "text": "Embed `correctOptionIds` in React props and compute grades in client browser JS"
+        },
+        {
+          "id": "opt-3",
+          "text": "Allow clients to POST `{ \"passed\": true, \"score\": 100 }` directly to DB"
+        },
+        {
+          "id": "opt-4",
+          "text": "Store admin keys inside `window.__CONFIG__`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Never trust client-submitted scores or leak answer keys in frontend JS; keep grading authoritative on the server.",
+      "difficulty": "beginner",
+      "topic": "Client/Server Security Boundaries",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
+    },
+    {
+      "id": "mock-typescript-beginner-t3-q28",
+      "section": "E",
+      "sectionTitle": "Section E: Architecture & Scenario Evaluation",
+      "type": "scenario",
+      "prompt": "You want instant optimistic feedback when toggling a lesson bookmark while recovering cleanly if the backend save fails. What architecture prevents corrupt UI state?",
+      "codeSnippet": "",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "Save purely to `localStorage` and ignore 401/500 API failures silently"
+        },
+        {
+          "id": "opt-2",
+          "text": "Lock the entire page with a spinner for 10 seconds on every click"
+        },
+        {
+          "id": "opt-3",
+          "text": "Never verify HTTP response status"
+        },
+        {
+          "id": "opt-4",
+          "text": "Apply optimistic state toggle -> call persisted server mutation -> roll back optimistic state and surface error toast if `!res.ok`"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-4"
+      ],
+      "explanation": "Optimistic updates with explicit rollback and user notification keep UX snappy without lying about failed saves.",
+      "difficulty": "beginner",
+      "topic": "Optimistic UI & Error Recovery",
+      "marks": 5,
+      "recommendedLessonId": "mod-1-l1",
+      "recommendedLessonTitle": "Core Primitives and Syntax in TypeScript"
     }
   ],
   "contentVersion": 1,
   "reviewStatus": "approved",
-  "createdAt": "2026-11-01T15:37:41.281Z",
-  "updatedAt": "2026-11-01T15:37:41.281Z"
+  "createdAt": "2026-11-11T05:58:39.607Z",
+  "updatedAt": "2026-11-11T05:58:39.607Z"
 }

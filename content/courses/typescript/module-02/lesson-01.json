@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Object Types, Interfaces, and Optional Properties",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Object Types, Interfaces, and Optional Properties."
+      "title": "TypeScript Handbook & Official Docs",
+      "url": "https://www.typescriptlang.org/docs/",
+      "description": "Official reference documentation for TypeScript."
     }
   ],
   "realWorldApplications": [

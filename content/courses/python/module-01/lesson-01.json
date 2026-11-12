@@ -76,7 +76,7 @@
       "instructions": [
         "Create a price calculator that binds unit price and quantity, calculates a total, prints the result and its type, then deliberately misspells one name and explains the resulting traceback. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
       ],
-      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
       "hints": [
         "A runnable Python program with descriptive names",
         "Observed output and at least one boundary or failure test",
@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Running Python and Working with Values",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Running Python and Working with Values."
+      "title": "Python 3 Official Documentation",
+      "url": "https://docs.python.org/3/",
+      "description": "Official reference documentation for Python."
     }
   ],
   "realWorldApplications": [

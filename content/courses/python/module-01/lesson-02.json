@@ -76,7 +76,7 @@
       "instructions": [
         "Write a console program that accepts a learner's name and weekly study hours, converts the hours safely, and prints a formatted four-week total. Document what happens for non-numeric input. Submit the source, observed output, and a short explanation connecting each result to the relevant Python rule."
       ],
-      "starterCode": "// Python Exercise: Build and explain\n// Write your solution below",
+      "starterCode": "# Python Exercise: Build and explain\n# Write your solution below",
       "hints": [
         "A runnable Python program with descriptive names",
         "Observed output and at least one boundary or failure test",
@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Types, Conversion, and Input/Output",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Types, Conversion, and Input/Output."
+      "title": "Python 3 Official Documentation",
+      "url": "https://docs.python.org/3/",
+      "description": "Official reference documentation for Python."
     }
   ],
   "realWorldApplications": [

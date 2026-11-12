@@ -1,197 +1,224 @@
 {
-  "lessonId": "mod-1-foundations-l1-introduction-to-sql",
+  "lessonId": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for",
   "skillName": "SQL",
-  "moduleId": "mod-1-foundations",
-  "title": "Introduction to SQL",
-  "summary": "Comprehensive masterclass on Introduction to SQL for SQL. Covering core concepts, design trade-offs, practical patterns, and verification.",
+  "moduleId": "mod-1-sql-foundations",
+  "title": "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+  "summary": "Understand Primary Keys, Foreign Keys, constraints, and step-by-step Normalization preventing update anomalies and duplicate data.",
   "learnerLevel": "beginner",
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 35,
   "learningObjectives": [
-    "Understand foundational mental models and syntax of SQL",
-    "Implement reliable patterns and error handling in SQL"
+    "Enforce data integrity directly in DDL using PRIMARY KEY, FOREIGN KEY, NOT NULL, and CHECK constraints",
+    "Normalize messy repeating tables safely through 1NF, 2NF, and 3NF"
   ],
   "objectiveIds": [
     "sql-obj-1",
     "sql-obj-2"
   ],
   "prerequisiteConcepts": [
-    "Basic foundational concepts",
-    "SQL environment setup"
+    "Familiarity with rows and columns"
   ],
   "sections": [
     {
-      "id": "section-overview",
-      "heading": "1. Core Architecture & Mental Model of Introduction to SQL",
-      "content": "Relational SQL databases operate on set theory and declarative logic. Rather than specifying how to iterate over rows, you declare the desired result set. In Introduction to SQL, understanding query execution plans, relational integrity, and indexing strategies is crucial for low-latency queries.",
+      "id": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for-sec-1",
+      "heading": "1. Relational Keys & Preventing Data Anomalies",
+      "content": "Relational databases prevent duplicate, contradicting data by modeling entities cleanly into normalized tables connected by Primary Keys (unique immutable row identifiers) and Foreign Keys (enforcing referential links between tables).\n\nNormalization eliminates insertion/update anomalies systematically: **1NF** bans repeating comma-lists inside single cells; **2NF** eliminates non-key attributes depending on only half a composite key; **3NF** ensures every non-key attribute depends solely on 'the key, the whole key, and nothing but the key' (removing transitive dependencies like storing `department_head_phone` repeatedly on every `employee` row).",
       "codeExamples": [
         {
-          "language": "sql",
-          "code": "-- Relational Optimization: Introduction to SQL\nSELECT \n    d.department_name,\n    COUNT(e.id) AS total_employees,\n    ROUND(AVG(e.salary), 2) AS avg_salary\nFROM departments d\nINNER JOIN employees e ON d.id = e.department_id\nWHERE e.is_active = TRUE\nGROUP BY d.department_name\nHAVING COUNT(e.id) >= 5\nORDER BY avg_salary DESC;",
-          "explanation": "Filtering active rows in the WHERE clause reduces joined volume before aggregation, while HAVING filters groups after aggregation. Indexes on foreign keys and filter columns prevent table scans.",
-          "expectedOutput": "department_name | total_employees | avg_salary\nEngineering     | 14              | 112500.00\nProduct         | 6               | 98400.00"
+          "language": "text",
+          "code": "[departments] (id PK, name UNIQUE, budget CHECK > 0)\n      | 1\n      |---< Many [employees] (id PK, department_id FK -> departments.id, email UNIQUE, salary)\n      |\n      +--- One clear source of truth: updating department budget updates ONCE!",
+          "explanation": "Referential foreign keys separate entities cleanly so modifying department metadata never requires updating thousands of employee rows.",
+          "expectedOutput": "System Architecture & Data Flow Diagram"
         }
       ],
       "keyPoints": [
-        "WHERE filters rows before aggregation; HAVING filters aggregated groups.",
-        "Join on indexed foreign keys to avoid costly nested-loop full table scans.",
-        "Avoid SELECT * in production queries to minimize I/O and network payload."
+        "Put strict invariants (`NOT NULL`, `UNIQUE`, `CHECK (price >= 0)`) right inside database DDL—not just frontend UI forms!",
+        "Avoid nullable foreign keys unless relationships are genuinely optional."
       ],
       "commonMistakes": [
-        "Applying functions on indexed columns in the WHERE clause (e.g. WHERE YEAR(created_at) = 2026), disabling index lookups.",
-        "Accidental Cartesian products caused by omitting join predicates on relational joins."
+        "Storing tag arrays as comma-joined text `'python,sql'` inside one VARCHAR column, breaking indexed joins."
       ]
     },
     {
-      "id": "section-deep-dive",
-      "heading": "2. Production Patterns & Real-World Implementations",
-      "content": "In production database architectures, transaction management (ACID), locking considerations, and idempotent migrations guarantee consistency under heavy concurrency.",
+      "id": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for-sec-2",
+      "heading": "2. Explicit DDL Constraints in PostgreSQL",
+      "content": "Declarative DDL constraints make illegal application states unrepresentable regardless of which script or microservice touches the database.",
       "codeExamples": [
         {
           "language": "sql",
-          "code": "BEGIN TRANSACTION;\n\n-- Safe optimistic update with row lock\nUPDATE accounts \nSET balance = balance - 500.00, updated_at = CURRENT_TIMESTAMP\nWHERE id = 'acc-101' AND balance >= 500.00;\n\nINSERT INTO audit_log (account_id, action, amount, logged_at)\nVALUES ('acc-101', 'WITHDRAWAL', 500.00, CURRENT_TIMESTAMP);\n\nCOMMIT;",
-          "explanation": "Wrapping interrelated financial or status updates in an explicit transaction prevents partial failures from corrupting relational state.",
-          "expectedOutput": "COMMIT; Transaction applied atomically with audit log."
+          "code": "CREATE TABLE courses (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  slug TEXT NOT NULL UNIQUE,\n  title TEXT NOT NULL,\n  difficulty TEXT NOT NULL CHECK (difficulty IN ('beginner', 'intermediate', 'advanced'))\n);\n\nCREATE TABLE enrollments (\n  id BIGSERIAL PRIMARY KEY,\n  student_id UUID NOT NULL,\n  course_id UUID NOT NULL REFERENCES courses(id) ON DELETE CASCADE,\n  progress_pct SMALLINT NOT NULL DEFAULT 0 CHECK (progress_pct BETWEEN 0 AND 100),\n  UNIQUE (student_id, course_id)\n);",
+          "explanation": "Unique composite constraints `(student_id, course_id)` stop duplicate enrollment race conditions cleanly at the engine level.",
+          "expectedOutput": "Strictly constrained normalized schema enforcing uniqueness and valid progress bounds (0–100)"
         }
       ],
       "keyPoints": [
-        "Validate assumptions at domain boundaries rather than assuming callers supply well-formed data.",
-        "Ensure operations and calculations are auditable, reproducible, and verifiable."
+        "Add `UNIQUE (student_id, course_id)` to join/bridge tables preventing silent double records."
       ],
       "commonMistakes": [
-        "Proceeding without clear acceptance criteria or error telemetry.",
-        "Silently ignoring failure modes instead of implementing deterministic error handling."
+        "Omitting `CHECK` bounds and letting negative balances or `150%` completion slip into tables."
       ]
     }
   ],
   "exercises": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-sql-ex-1",
-      "type": "coding",
-      "title": "SQL Lab: Introduction to SQL",
-      "objective": "Write an optimized SQL query demonstrating aggregation, filtering, and joins.",
-      "description": "Construct a multi-table SQL query resolving the practical task in Introduction to SQL. Ensure indices are respected and aggregations are accurate.",
+      "id": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for-ex-1",
+      "type": "design",
+      "title": "Normalize an Unstructured Order Table to 3NF",
+      "objective": "Split repeating customer and product fields into normalized entities.",
+      "description": "Refactor `OrdersRaw(order_id, customer_email, customer_city, items_csv, supplier_phone)` into clean normalized DDL tables up to 3NF.",
       "instructions": [
-        "Join the primary entity with its related transaction or child entity.",
-        "Apply selective filtering in the WHERE clause.",
-        "Group results and calculate aggregate totals with an appropriate filter on groups."
+        "Extract Customers, Orders, and OrderItems resolving 1NF repeating `items_csv`.",
+        "Eliminate transitive `supplier_phone` dependency cleanly.",
+        "Include appropriate PRIMARY KEY, REFERENCES, and CHECK (qty > 0) constraints."
       ],
-      "starterCode": "-- SQL Lab for Introduction to SQL\nSELECT \n    -- TODO: Specify columns explicitly\nFROM primary_table p\n-- TODO: Add JOIN and WHERE clauses\n;",
+      "starterCode": "-- Normalized DDL Schema\nCREATE TABLE customers (...);\nCREATE TABLE orders (...);\nCREATE TABLE order_items (...);",
       "hints": [
-        "Check whether you need an INNER JOIN (intersection only) or LEFT JOIN (preserve all parent rows).",
-        "Always verify column data types when comparing timestamps."
+        "Many-to-many order items split neatly into a bridge table referencing `order_id` and `product_id`."
       ],
-      "submissionRequirements": "Submit clean, formatted SQL with explicit column names and valid joins.",
+      "submissionRequirements": "Complete all checklist items, test assumptions, and document verification rationale.",
       "evaluationCriteria": [
-        "Syntax: Valid ANSI SQL query with correct operator precedence.",
-        "Optimization: Correct use of WHERE vs HAVING without redundant subqueries."
+        "Addresses the root architectural/technical challenge accurately",
+        "Follows defensive industry standards and edge-case validation"
       ],
-      "solutionExplanation": "The optimal query applies filtering early in the execution pipeline, joins on indexed foreign keys, and aggregates only necessary dimensions."
+      "solutionExplanation": "Extracting Customers, Products/Suppliers, Orders, and OrderItems guarantees 3NF integrity with zero redundant string replication."
     }
   ],
   "knowledgeChecks": [
     {
-      "id": "mod-1-foundations-l1-introduction-to-sql-kc-1",
+      "id": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for-kc-1",
       "type": "single-choice",
-      "prompt": "What is the critical semantic difference between the WHERE clause and the HAVING clause in SQL?",
+      "prompt": "Why does storing `'Python,SQL,Rust'` inside a single text column violate First Normal Form (1NF)?",
       "options": [
         {
           "id": "opt-1",
-          "text": "WHERE filters individual rows before grouping occurs; HAVING filters aggregated groups after GROUP BY."
+          "text": "1NF mandates atomic single-valued columns without repeating lists packed inside a cell"
         },
         {
           "id": "opt-2",
-          "text": "WHERE works only on numeric data; HAVING works only on strings and dates."
+          "text": "Text columns cannot contain commas in PostgreSQL"
         },
         {
           "id": "opt-3",
-          "text": "HAVING executes before table joins are resolved."
+          "text": "SQL forbids VARCHAR types longer than 10 chars"
         },
         {
           "id": "opt-4",
-          "text": "WHERE and HAVING are completely interchangeable syntax aliases in ANSI SQL."
+          "text": "Primary keys must always be integers"
         }
       ],
       "correctOptionIds": [
         "opt-1"
       ],
-      "explanation": "WHERE evaluates predicates on raw table rows before grouping and aggregate calculations. HAVING evaluates predicates on the grouped aggregate results.",
+      "explanation": "Atomicity simplifies filtering, counting, and indexing individual skills cleanly.",
       "objectiveIds": [
         "sql-obj-1"
       ]
     },
     {
-      "id": "mod-1-foundations-l1-introduction-to-sql-kc-2",
-      "type": "multiple-select",
-      "prompt": "Which of the following actions prevent unnecessary full table scans on relational databases?",
+      "id": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for-kc-2",
+      "type": "single-choice",
+      "prompt": "What happens when inserting a row into `enrollments` referencing a `course_id` that does NOT exist in `courses`, given an active `FOREIGN KEY` constraint?",
       "options": [
         {
-          "id": "opt-2a",
-          "text": "Creating B-Tree indexes on foreign keys and frequently filtered columns"
+          "id": "opt-1",
+          "text": "The database rejects the INSERT atomically, preserving referential integrity"
         },
         {
-          "id": "opt-2b",
-          "text": "Avoiding functions wrapping indexed columns in WHERE predicates (e.g. avoiding UPPER(column))"
+          "id": "opt-2",
+          "text": "SQL inserts NULL silently into `courses`"
         },
         {
-          "id": "opt-2c",
-          "text": "Using SELECT * across all tables in a multi-table join"
+          "id": "opt-3",
+          "text": "A missing placeholder row gets auto-created silently"
         },
         {
-          "id": "opt-2d",
-          "text": "Normalizing tables and analyzing query execution plans with EXPLAIN"
+          "id": "opt-4",
+          "text": "Foreign keys validate only on SELECT queries"
         }
       ],
       "correctOptionIds": [
-        "opt-2a",
-        "opt-2b",
-        "opt-2d"
+        "opt-1"
       ],
-      "explanation": "Indexes, sargable predicates (no function wraps on columns), and EXPLAIN analysis allow index seeks instead of sequential table scans. SELECT * does not prevent table scans and increases network I/O.",
+      "explanation": "Foreign key constraints prevent orphan child records referencing nonexistent parents.",
       "objectiveIds": [
         "sql-obj-2"
       ]
+    },
+    {
+      "id": "mod-1-sql-foundations-l1-relational-schema-design-keys-normal-for-kc-3",
+      "type": "single-choice",
+      "prompt": "What prevents inserting a negative quantity directly via bugs in app code?",
+      "options": [
+        {
+          "id": "opt-1",
+          "text": "`CHECK (quantity > 0)` column constraint"
+        },
+        {
+          "id": "opt-2",
+          "text": "Ordering columns alphabetically"
+        },
+        {
+          "id": "opt-3",
+          "text": "Using TEXT instead of INT"
+        },
+        {
+          "id": "opt-4",
+          "text": "Writing an inline SQL comment"
+        }
+      ],
+      "correctOptionIds": [
+        "opt-1"
+      ],
+      "explanation": "Database CHECK constraints guarantee numeric domain bounds across every writer.",
+      "objectiveIds": [
+        "sql-obj-1"
+      ]
     }
   ],
-  "recap": "In this lesson, you established the foundations of Introduction to SQL. You explored core architecture patterns, studied production resilience techniques, completed a hands-on exercise, and validated your understanding through knowledge checks.",
+  "recap": "You built normalized 3NF tables armed with declarative PRIMARY, UNIQUE, FOREIGN KEY, and CHECK protections.",
   "videoResources": [
     {
-      "id": "res-sql-sql",
-      "title": "SQL & Relational Database Design for Beginners",
+      "id": "res-sql-primary",
+      "title": "SQL & Relational Database Engineering Mastery",
       "provider": "youtube",
-      "channelOrAuthor": "freeCodeCamp / Luke Barousse",
+      "channelOrAuthor": "freeCodeCamp / CMU Database Group",
       "url": "https://www.youtube.com/watch?v=HXV3zeRR3h4",
-      "embedUrl": "https://www.youtube.com/embed/HXV3zeRR3h4",
-      "durationMinutes": 50,
+      "embedUrl": "",
+      "durationMinutes": 60,
       "difficulty": "beginner",
-      "whySelected": "Practical query optimization, indexing strategies, and relational schema normalization.",
-      "whatItTeaches": "Query execution plans, relational JOIN mechanics, aggregation pipelines, and constraint integrity.",
+      "whySelected": "Comprehensive, technically accurate conceptual & practical walkthrough of SQL.",
+      "whatItTeaches": "Core architecture, security boundaries, and real-world workflows for SQL.",
       "learningObjectivesSupported": [
-        "Apply Introduction to SQL to real database tables and queries"
+        "sql-obj-1",
+        "sql-obj-2",
+        "sql-obj-3",
+        "sql-obj-4"
       ],
       "keyTopicsCovered": [
-        "SELECT & WHERE filtering",
-        "INNER & LEFT JOINs",
-        "GROUP BY & HAVING",
-        "Indexes"
+        "Relational Schema Design, Keys & Normal Forms (1NF–3NF)",
+        "Filtering, Sorting & Grouping Data with SELECT/WHERE/HAVING",
+        "Multi-Table INNER, LEFT, FULL Joins & CTEs",
+        "Analytical Window Functions: ROW_NUMBER, RANK & Running Totals",
+        "B-Tree Indexes, EXPLAIN Query Plans & Avoiding Scans",
+        "ACID Transactions, Isolation Levels & Safe Migrations"
       ],
-      "followUpActivity": "Write and execute three query variations based on the database exercise.",
+      "followUpActivity": "Complete all hands-on lab checks and knowledge checks in this module.",
       "verificationStatus": "curated",
-      "lastCheckedDate": "2026-10-25"
+      "lastCheckedDate": "2026-11-11"
     }
   ],
   "furtherReading": [
     {
-      "title": "PostgreSQL Official Documentation",
-      "url": "https://www.postgresql.org/docs/",
-      "description": "Official documentation and authoritative guides for SQL."
+      "title": "PostgreSQL Official SQL Documentation",
+      "url": "https://www.postgresql.org/docs/current/",
+      "description": "Official reference documentation for SQL."
     }
   ],
   "realWorldApplications": [
-    "Industrial engineering workflows and production services",
-    "Mission-critical business systems requiring accuracy and compliance"
+    "E-commerce order ledgers",
+    "LMS student enrollment architectures"
   ],
-  "generationMode": "ai-draft",
-  "reviewStatus": "draft",
-  "contentVersion": 1,
-  "generatedAt": "2026-10-30T06:22:08.591Z"
+  "generationMode": "curated",
+  "reviewStatus": "approved",
+  "contentVersion": 2,
+  "generatedAt": "2026-11-11T05:58:18.464Z"
 }

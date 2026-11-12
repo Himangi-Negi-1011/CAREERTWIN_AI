@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Cargo Projects, Compilation, and Diagnostics",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Cargo Projects, Compilation, and Diagnostics."
+      "title": "The Rust Programming Language Book",
+      "url": "https://doc.rust-lang.org/book/",
+      "description": "Official reference documentation for Rust."
     }
   ],
   "realWorldApplications": [

@@ -210,9 +210,9 @@
   ],
   "furtherReading": [
     {
-      "title": "Official Documentation: Objects, Collections, and a Progress Tracker",
-      "url": "https://developer.mozilla.org/en-US/",
-      "description": "Authoritative reference documentation for Objects, Collections, and a Progress Tracker."
+      "title": "MDN JavaScript Reference Guide",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "description": "Official reference documentation for JavaScript."
     }
   ],
   "realWorldApplications": [

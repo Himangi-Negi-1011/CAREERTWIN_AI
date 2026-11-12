@@ -9,8 +9,14 @@ import { issueAchievement } from "@/lib/career/achievements";
 export async function POST(req: Request) {
   try {
     const user = await currentUser().catch(() => null);
-    const userId = user?.id || "guest-local";
-    const studentName = user?.firstName
+    if (!user?.id) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Sign in to submit project artifacts." } },
+        { status: 401 }
+      );
+    }
+    const userId = user.id;
+    const studentName = user.firstName
       ? `${user.firstName} ${user.lastName || ""}`.trim()
       : "CareerTwin Scholar";
 

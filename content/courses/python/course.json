@@ -109,9 +109,9 @@
   ],
   "resources": [
     {
-      "title": "Official Python Reference",
-      "organization": "Industry Standard Documentation",
-      "url": "https://developer.mozilla.org/en-US/",
+      "title": "Python 3 Official Documentation",
+      "organization": "Python Software Foundation",
+      "url": "https://docs.python.org/3/",
       "retrievedAt": "2026-11-01T15:37:41.177Z",
       "reviewStatus": "curated"
     }
