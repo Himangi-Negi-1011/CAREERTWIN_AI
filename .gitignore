@@ -73,3 +73,12 @@ scripts/*
 !scripts/rebuild-deep-courses.ts
 !scripts/author-flagship-programming-courses.ts
 *.zip
+
+# Internal dev docs & historical audit reports
+docs/archive/
+docs/CAREERTWIN_*.md
+docs/engineering-audit-*.md
+docs/feature-program-*.md
+docs/integration-audit.md
+BETA_ONBOARDING_GUIDE.md
+DESIGN.md
