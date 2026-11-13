@@ -41,6 +41,45 @@
 .border-slate { border-color: var(--slate); }
 .bg-slate { background-color: var(--slate); }
 
+/* Dark/Light Contrast Rules across entire app */
+[data-theme="dark"] .bg-ink,
+html[data-theme="dark"] .bg-ink {
+  background-color: #111726 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="light"] .bg-ink,
+html[data-theme="light"] .bg-ink {
+  background-color: #1e2238 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .bg-ink h1,
+[data-theme="dark"] .bg-ink h2,
+[data-theme="dark"] .bg-ink h3,
+[data-theme="dark"] .bg-ink strong,
+[data-theme="dark"] .bg-ink p {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .bg-ink .text-white\/62,
+[data-theme="dark"] .bg-ink .text-white\/60,
+[data-theme="dark"] .bg-ink .text-white\/65 {
+  color: rgba(248, 250, 252, 0.75) !important;
+}
+
+/* Ensure inputs and labels are readable in both themes */
+html[data-theme="light"] input,
+html[data-theme="light"] select,
+html[data-theme="light"] textarea {
+  color: #0f172a;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  color: #f8fafc;
+}
+
 /* Hide Spline Watermark Globally Across All Containers, Shadows and Body */
 .spline-wrapper canvas {
   touch-action: pan-y !important;

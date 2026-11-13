@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import { BrandMark } from "./brand";
 import { SplineRobot } from "./spline-robot";
 import { openCookieSettings } from "./cookie-consent";
 import "./landing/landing-clone.css";
@@ -232,9 +233,7 @@ export function Landing() {
       <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`} id="header">
         <div className="container header-inner">
           <Link className="brand magnetic" href="/">
-            <span className="brand-mark overflow-hidden" aria-hidden="true">
-              <img src="/careertwin-logo.png" alt="CareerTwin" className="size-full object-cover rounded-[10px]" />
-            </span>
+            <BrandMark className="size-9" />
             <span className="brand-text">
               <span className="brand-thin">Career</span>
               <span className="brand-strong">Twin</span>
@@ -246,7 +245,6 @@ export function Landing() {
             <a href="#features" className="hover:text-purple-400 transition-colors">Features</a>
             <a href="#how" className="hover:text-purple-400 transition-colors">How it works</a>
             <a href="#faq" className="hover:text-purple-400 transition-colors">FAQ</a>
-            <Link href="/dashboard?view=learning" className="hover:text-purple-400 transition-colors">Academy</Link>
           </nav>
 
           <div className="header-actions">
@@ -290,7 +288,6 @@ export function Landing() {
           <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
           <a href="#how" onClick={() => setMobileMenuOpen(false)}>How it works</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-          <Link href="/dashboard?view=learning" onClick={() => setMobileMenuOpen(false)}>Academy</Link>
           <div className="mobile-menu-actions">
             <Link className="btn btn-outline" href="/login" onClick={() => setMobileMenuOpen(false)}>
               Login
@@ -529,9 +526,7 @@ export function Landing() {
         <div className="container footer-inner">
           <div className="footer-brand">
             <Link className="brand" href="/">
-              <span className="brand-mark overflow-hidden" aria-hidden="true">
-                <img src="/careertwin-logo.png" alt="CareerTwin" className="size-full object-cover rounded-[10px]" />
-              </span>
+              <BrandMark className="size-9" />
               <span className="brand-text">
                 <span className="brand-thin">Career</span>
                 <span className="brand-strong">Twin</span>
@@ -540,9 +535,6 @@ export function Landing() {
             <p>© {new Date().getFullYear()} CareerTwin Academy. All rights reserved.</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#features">Features</a>
-            <a href="#how">How it works</a>
-            <a href="#faq">FAQ</a>
             <Link href="/dashboard?view=learning">Academy</Link>
             <Link href="/terms">Terms & Conditions</Link>
             <button

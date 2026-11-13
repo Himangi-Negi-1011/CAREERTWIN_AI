@@ -13,14 +13,16 @@ export const publicEnvSchema = z.object({
 export const serverEnvSchema = publicEnvSchema.extend({
   CLERK_SECRET_KEY: optionalSecret,
   SUPABASE_SERVICE_ROLE_KEY: optionalSecret,
-  AI_PROVIDER: z.enum(["gemini", "openrouter"]).optional(),
+  AI_PROVIDER: z.enum(["gemini", "openrouter", "groq"]).optional(),
   GEMINI_API_KEY: optionalSecret,
   GEMINI_MODEL: optionalSecret,
   OPENROUTER_API_KEY: optionalSecret,
   OPENROUTER_MODEL: optionalSecret,
+  GROQ_API_KEY: optionalSecret,
+  GROQ_MODEL: optionalSecret,
 });
 
-export type IntegrationName = "clerk" | "supabase" | "gemini" | "openrouter";
+export type IntegrationName = "clerk" | "supabase" | "gemini" | "openrouter" | "groq";
 export type IntegrationStatus = Record<IntegrationName, "configured" | "incomplete" | "not-configured">;
 
 function groupStatus(values: Array<string | undefined>): IntegrationStatus[IntegrationName] {
@@ -40,5 +42,6 @@ export function getIntegrationStatus(input: z.input<typeof serverEnvSchema>): In
     ]),
     gemini: groupStatus([env.GEMINI_API_KEY, env.GEMINI_MODEL]),
     openrouter: groupStatus([env.OPENROUTER_API_KEY, env.OPENROUTER_MODEL]),
+    groq: groupStatus([env.GROQ_API_KEY, env.GROQ_MODEL]),
   };
 }

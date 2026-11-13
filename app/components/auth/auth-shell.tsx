@@ -5,6 +5,7 @@ import Link from "next/link";
 import { type ReactNode, useEffect, useState } from "react";
 import "../landing/landing-clone.css";
 import "./login-clone.css";
+import { BrandMark } from "../brand";
 import { SplineRobot } from "../spline-robot";
 
 export function AuthShell({
@@ -56,9 +57,7 @@ export function AuthShell({
       <header className="site-header auth-header">
         <div className="container header-inner flex items-center justify-between">
           <Link href="/" className="brand" aria-label="CareerTwin — home">
-            <span className="brand-mark overflow-hidden" aria-hidden="true">
-              <img src="/careertwin-logo.png" alt="CareerTwin" className="size-full object-cover rounded-[10px]" />
-            </span>
+            <BrandMark className="size-9" />
             <span className="brand-text">
               <span className="brand-thin">Career</span>
               <span className="brand-strong">Twin</span>

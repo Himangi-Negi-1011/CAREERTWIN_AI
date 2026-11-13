@@ -15,6 +15,7 @@ import {
 } from "@/lib/learning/agent";
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 export class AIConfigurationError extends Error {}
 export class AIProviderError extends Error {
@@ -259,9 +260,22 @@ const lessonJsonSchema = {
 
 export function getAIProviderStatus() {
   const env = getServerEnv();
-  const provider = env.AI_PROVIDER ?? (env.GEMINI_API_KEY ? "gemini" : env.OPENROUTER_API_KEY ? "openrouter" : null);
-  const configured = provider === "gemini" ? Boolean(env.GEMINI_API_KEY && env.GEMINI_MODEL) : provider === "openrouter" ? Boolean(env.OPENROUTER_API_KEY && env.OPENROUTER_MODEL) : false;
-  return { provider, configured, model: configured ? (provider === "gemini" ? env.GEMINI_MODEL : env.OPENROUTER_MODEL) ?? null : null };
+  const provider = env.AI_PROVIDER ?? (env.GROQ_API_KEY ? "groq" : env.GEMINI_API_KEY ? "gemini" : env.OPENROUTER_API_KEY ? "openrouter" : null);
+  const configured = provider === "groq"
+    ? Boolean(env.GROQ_API_KEY)
+    : provider === "gemini"
+    ? Boolean(env.GEMINI_API_KEY && env.GEMINI_MODEL)
+    : provider === "openrouter"
+    ? Boolean(env.OPENROUTER_API_KEY && env.OPENROUTER_MODEL)
+    : false;
+  const model = configured
+    ? (provider === "groq"
+        ? (env.GROQ_MODEL || "llama-3.3-70b-versatile")
+        : provider === "gemini"
+        ? env.GEMINI_MODEL
+        : env.OPENROUTER_MODEL) ?? null
+    : null;
+  return { provider, configured, model };
 }
 
 function sanitizeSchemaForGemini(schema: unknown): unknown {
@@ -305,6 +319,30 @@ async function generateJson(prompt: string, schema: object, signal: AbortSignal)
     if (!response.text) throw new AIProviderError("Provider response did not contain content");
     return parseJsonContent(response.text);
   }
+  if (status.provider === "groq") {
+    const response = await fetch(GROQ_URL, {
+      method: "POST",
+      signal,
+      headers: {
+        Authorization: `Bearer ${env.GROQ_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: status.model,
+        temperature: 0.2,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: "You are CareerTwin's curriculum, assessment, and career intelligence engine. Return ONLY a single, valid JSON object strictly adhering to the requested schema. Do not add markdown backticks, conversational preamble, or trailing commentary." },
+          { role: "user", content: prompt },
+        ],
+      }),
+    });
+    if (!response.ok) throw new AIProviderError("Groq request failed", response.status === 429 ? 429 : 502, response.headers.get("retry-after") ?? undefined);
+    const json = await response.json() as { choices?: Array<{ message?: { content?: string } }> };
+    const content = json.choices?.[0]?.message?.content;
+    if (!content) throw new AIProviderError("Groq response did not contain content");
+    return parseJsonContent(content);
+  }
   const response = await fetch(OPENROUTER_URL, { method: "POST", signal, headers: { Authorization: `Bearer ${env.OPENROUTER_API_KEY}`, "Content-Type": "application/json", ...(env.NEXT_PUBLIC_APP_URL ? { "HTTP-Referer": env.NEXT_PUBLIC_APP_URL } : {}), "X-Title": "CareerTwin" }, body: JSON.stringify({ model: status.model, temperature: 0.2, response_format: { type: "json_object" }, messages: [{ role: "system", content: "Return only valid JSON matching the requested schema." }, { role: "user", content: prompt }] }) });
   if (!response.ok) throw new AIProviderError("Provider request failed", response.status === 429 ? 429 : 502, response.headers.get("retry-after") ?? undefined);
   const json = await response.json() as { choices?: Array<{ message?: { content?: string } }> }; const content = json.choices?.[0]?.message?.content;
@@ -323,6 +361,9 @@ export async function verifyAIConnectivity(signal: AbortSignal) {
   if (status.provider === "gemini") {
     const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY }); const response = await ai.models.generateContent({ model: status.model, contents: "Reply with exactly OK.", config: { abortSignal: signal, temperature: 0, maxOutputTokens: 100 } });
     if (!response.text?.trim()) throw new AIProviderError("Gemini connectivity check returned no content");
+  } else if (status.provider === "groq") {
+    const response = await fetch(GROQ_URL, { method: "POST", signal, headers: { Authorization: `Bearer ${env.GROQ_API_KEY}`, "Content-Type": "application/json" }, body: JSON.stringify({ model: status.model, max_tokens: 8, temperature: 0, messages: [{ role: "user", content: "Reply with exactly OK." }] }) });
+    if (!response.ok) throw new AIProviderError("Groq connectivity check failed", response.status === 429 ? 429 : 502, response.headers.get("retry-after") ?? undefined);
   } else {
     const response = await fetch(OPENROUTER_URL, { method: "POST", signal, headers: { Authorization: `Bearer ${env.OPENROUTER_API_KEY}`, "Content-Type": "application/json", "X-Title": "CareerTwin health check" }, body: JSON.stringify({ model: status.model, max_tokens: 8, temperature: 0, messages: [{ role: "user", content: "Reply with exactly OK." }] }) });
     if (!response.ok) throw new AIProviderError("Provider connectivity check failed", response.status === 429 ? 429 : 502, response.headers.get("retry-after") ?? undefined);

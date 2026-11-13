@@ -690,6 +690,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [settingsTab, setSettingsTab] = useState<"account" | "learning" | "ai" | "appearance" | "notifications" | "privacy">("account");
   const reduceMotion = useReducedMotion();
 
   const handleLogout = async () => {
@@ -849,6 +850,10 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
     const syncFromUrl = () => {
       const params = new URLSearchParams(window.location.search);
       const requestedView = params.get("view");
+      const tabParam = params.get("tab") || params.get("settings_tab");
+      if (tabParam && ["account", "learning", "ai", "appearance", "notifications", "privacy"].includes(tabParam)) {
+        setSettingsTab(tabParam as any);
+      }
       if (requestedView === "documents") {
         setView("settings");
         return;
@@ -1015,6 +1020,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                     type="button"
                     onClick={() => {
                       setAccountMenuOpen(false);
+                      setSettingsTab("account");
                       changeView("settings");
                     }}
                     className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
@@ -1028,6 +1034,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                     type="button"
                     onClick={() => {
                       setAccountMenuOpen(false);
+                      setSettingsTab("learning");
                       changeView("settings");
                     }}
                     className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
@@ -1041,6 +1048,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
                     type="button"
                     onClick={() => {
                       setAccountMenuOpen(false);
+                      setSettingsTab("privacy");
                       changeView("settings");
                     }}
                     className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium text-slate dark:text-slate-300 hover:bg-surface dark:hover:bg-white/10 hover:text-ink dark:hover:text-white cursor-pointer"
@@ -1336,6 +1344,7 @@ export function CareerWorkspace({ ownerKey }: { ownerKey?: string }) {
             ) : (
               <SettingsHub
                 ownerKey={storageOwnerKey}
+                initialTab={settingsTab}
                 onLogout={handleLogout}
                 initialEmail={user?.primaryEmailAddress?.emailAddress ?? undefined}
                 initialName={displayName || undefined}

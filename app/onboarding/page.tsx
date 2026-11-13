@@ -66,8 +66,13 @@ export default function OnboardingPage() {
     let cancelled = false;
 
     // Synchronize global theme attribute
-    const savedTheme = (localStorage.getItem("ct-theme") as "dark" | "light") || "dark";
-    document.documentElement.setAttribute("data-theme", savedTheme);
+    const syncTheme = () => {
+      const savedTheme = (localStorage.getItem("ct-theme") as "dark" | "light") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    };
+    syncTheme();
+    window.addEventListener("careertwin:theme", syncTheme);
+    window.addEventListener("storage", syncTheme);
 
     // Immediately hydrate local browser draft without blocking on third-party Clerk CDN initialization
     const raw = localStorage.getItem(key) ?? localStorage.getItem("careertwin-profile-wizard:guest");
@@ -106,6 +111,8 @@ export default function OnboardingPage() {
     void syncRemote();
     return () => {
       cancelled = true;
+      window.removeEventListener("careertwin:theme", syncTheme);
+      window.removeEventListener("storage", syncTheme);
     };
   }, [key, isSignedIn, authLoaded]);
 

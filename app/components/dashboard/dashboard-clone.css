@@ -965,10 +965,24 @@ html[data-theme="dark"] .career-dashboard [class*="bg-white"],
 html[data-theme="dark"] .career-dashboard .bg-surface {
   background-color: #131826 !important;
   border-color: rgba(255, 255, 255, 0.09) !important;
+  color: #f1f5f9 !important;
 }
 html[data-theme="dark"] .career-dashboard .bg-app,
 html[data-theme="dark"] .career-dashboard [class*="bg-cream"] {
   background-color: #090c12 !important;
+}
+html[data-theme="dark"] .career-dashboard .bg-ink {
+  background-color: #111726 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+html[data-theme="dark"] .career-dashboard .bg-ink .text-white\/62,
+html[data-theme="dark"] .career-dashboard .bg-ink .text-white\/60,
+html[data-theme="dark"] .career-dashboard .bg-ink .text-white\/65 {
+  color: rgba(248, 250, 252, 0.75) !important;
+}
+html[data-theme="dark"] .career-dashboard .bg-ink .text-mint {
+  color: #c4b5fd !important;
 }
 html[data-theme="dark"] .career-dashboard .text-ink {
   color: #f8fafc !important;
@@ -996,4 +1010,65 @@ html[data-theme="dark"] .career-dashboard .brand-link span {
 }
 html[data-theme="dark"] .career-dashboard .brand-link span span {
   color: #a855f7 !important;
+}
+
+/* Light Theme explicit contrast guarantees */
+html[data-theme="light"] .career-dashboard {
+  background-color: #f4f5fb !important;
+  color: #1e2238 !important;
+  --fg: #1e2238;
+  --bg: #f4f5fb;
+  --card: #ffffff;
+  --muted: #64748b;
+  --border: rgba(32, 36, 64, 0.08);
+  --border-strong: rgba(109, 61, 245, 0.35);
+}
+html[data-theme="light"] .career-dashboard aside,
+html[data-theme="light"] .career-dashboard header,
+html[data-theme="light"] .career-dashboard [class*="bg-[#f8f7f2]"],
+html[data-theme="light"] .career-dashboard [class*="bg-[#f2f4f1]"] {
+  background-color: #ffffff !important;
+  border-color: rgba(32, 36, 64, 0.08) !important;
+  color: #1e2238 !important;
+}
+html[data-theme="light"] .career-dashboard [class*="bg-white"],
+html[data-theme="light"] .career-dashboard .bg-surface {
+  background-color: #ffffff !important;
+  border-color: rgba(32, 36, 64, 0.08) !important;
+  color: #1e2238 !important;
+}
+html[data-theme="light"] .career-dashboard .bg-app,
+html[data-theme="light"] .career-dashboard [class*="bg-cream"] {
+  background-color: #f1f3f9 !important;
+}
+html[data-theme="light"] .career-dashboard .bg-ink {
+  background-color: #1e2238 !important;
+  color: #ffffff !important;
+}
+html[data-theme="light"] .career-dashboard .text-ink {
+  color: #1e2238 !important;
+}
+html[data-theme="light"] .career-dashboard .text-slate {
+  color: #64748b !important;
+}
+html[data-theme="light"] .career-dashboard input,
+html[data-theme="light"] .career-dashboard select,
+html[data-theme="light"] .career-dashboard textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+html[data-theme="light"] .career-dashboard .text-ink\/60,
+html[data-theme="light"] .career-dashboard .text-ink\/70,
+html[data-theme="light"] .career-dashboard .text-ink\/80 {
+  color: #475569 !important;
+}
+html[data-theme="light"] .career-dashboard [class*="bg-[#f5f6fb]"] {
+  background-color: #f4f5fb !important;
+}
+html[data-theme="light"] .career-dashboard .brand-link span {
+  color: #1e2238 !important;
+}
+html[data-theme="light"] .career-dashboard .brand-link span span {
+  color: #6d3df5 !important;
 }

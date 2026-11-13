@@ -86,6 +86,10 @@ export function SettingsHub({
 }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(initialTab);
+
+  useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
   const [settings, setSettings] = useState<AppSettings>(defaultSettings);
   const [profile, setProfile] = useState<AccountProfileData>(() => ({
     ...defaultAccountData,
