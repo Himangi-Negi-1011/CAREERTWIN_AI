@@ -3,13 +3,13 @@ import Link from "next/link";
 export function BrandMark({ className = "size-9" }: { className?: string }) {
   return (
     <span
-      className={`brand-mark relative grid shrink-0 place-items-center overflow-hidden rounded-[12px] bg-slate-900 border border-purple-500/30 text-white shadow-md shadow-purple-500/20 ${className}`}
+      className={`brand-mark relative inline-grid shrink-0 place-items-center overflow-hidden rounded-[12px] bg-[#0c101d] border border-purple-500/40 text-white shadow-md shadow-purple-500/20 ${className}`}
       aria-hidden="true"
     >
       <img
         src="/careertwin-logo.png"
         alt="CareerTwin Logo"
-        className="size-full object-cover rounded-[11px]"
+        className="size-full object-cover rounded-[11px] block select-none pointer-events-none"
       />
     </span>
   );
